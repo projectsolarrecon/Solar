@@ -1,6 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: projectsolarrecon/Solar
   branch: main
+  base_url: https://solar-oauth.netlify.app
+  auth_endpoint: /api/auth
 
 media_folder: "public/uploads"   # where uploaded images/files are stored
 public_folder: "/uploads"        # how the site links to them
