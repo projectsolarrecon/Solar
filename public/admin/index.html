@@ -4,7 +4,61 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>SOLAR Admin</title>
+
+    <!-- IMPORTANT: keep this CDN exactly like this -->
+    <script>
+      window.CMS_MANUAL_INIT = true;   // We'll pass config by hand
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.min.js"></script>
   </head>
-  <body></body>
+  <body>
+    <script>
+      // 🔧 CHANGE THIS to your OAuth helper site's URL (no trailing slash)
+      const OAUTH_BASE_URL = "https://solar-oauth.netlify.app";
+
+      // Initialize Decap CMS with a JS config (so we don't rely on config.yml)
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "projectsolarrecon/Solar",
+            branch: "main",
+            base_url: OAUTH_BASE_URL,
+            auth_endpoint: "/api/auth"
+          },
+          media_folder: "public/uploads",
+          public_folder: "/uploads",
+          collections: [
+            {
+              name: "posts",
+              label: "Blog Posts",
+              folder: "public/content/posts",
+              create: true,
+              slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+              extension: "md",
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Publish Date", name: "date", widget: "datetime" },
+                { label: "Summary", name: "summary", widget: "text", required: false },
+                { label: "Body", name: "body", widget: "markdown" }
+              ]
+            },
+            {
+              name: "guides",
+              label: "Resource Guides",
+              folder: "public/content/guides",
+              create: true,
+              slug: "{{slug}}",
+              extension: "md",
+              fields: [
+                { label: "Title", name: "title", widget: "string" },
+                { label: "Updated", name: "date", widget: "datetime" },
+                { label: "Body", name: "body", widget: "markdown" }
+              ]
+            }
+          ]
+        }
+      });
+    </script>
+  </body>
 </html>
