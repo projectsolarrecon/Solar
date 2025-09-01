@@ -1,41 +1,15 @@
-<script>
-  window.CMS_MANUAL_INIT = true;
-</script>
-<script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.min.js"></script>
-<script>
-  const OAUTH_BASE_URL = "https://solar-oauth.netlify.app";
-  const AUTH_ENDPOINT = "/api/auth?origin=" + encodeURIComponent(window.location.origin);
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>SOLAR Admin</title>
 
-  CMS.init({
-    config: {
-      backend: {
-        name: "github",
-        repo: "projectsolarrecon/Solar",
-        branch: "main",
-        base_url: OAUTH_BASE_URL,
-        auth_endpoint: AUTH_ENDPOINT           // 👈 important
-      },
-      media_folder: "public/uploads",
-      public_folder: "/uploads",
-      collections: [
-        { name: "posts", label: "Blog Posts", folder: "public/content/posts",
-          create: true, slug: "{{year}}-{{month}}-{{day}}-{{slug}}", extension: "md",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Publish Date", name: "date", widget: "datetime" },
-            { label: "Summary", name: "summary", widget: "text", required: false },
-            { label: "Body", name: "body", widget: "markdown" }
-          ]
-        },
-        { name: "guides", label: "Resource Guides", folder: "public/content/guides",
-          create: true, slug: "{{slug}}", extension: "md",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "Updated", name: "date", widget: "datetime" },
-            { label: "Body", name: "body", widget: "markdown" }
-          ]
-        }
-      ]
-    }
-  });
-</script>
+    <!-- Decap CMS -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3/dist/decap-cms.min.js"></script>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body></body>
+</html>
