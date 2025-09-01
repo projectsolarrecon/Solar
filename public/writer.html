@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>SOLAR Writer</title>
+  <style>
+    body{max-width:800px;margin:2rem auto;padding:0 1rem;font-family:system-ui,sans-serif}
+    h1{margin-bottom:1rem}
+    label{display:block;margin:.75rem 0 .25rem}
+    textarea,input,select,button{width:100%;padding:.75rem;font-size:1rem}
+    textarea{height:200px}
+    .row{display:flex;gap:.75rem}
+    .row>*{flex:1}
+    .hint{font-size:.9rem;opacity:.8}
+  </style>
+</head>
+<body>
+  <h1>SOLAR Writer</h1>
+
+  <div class="row">
+    <div>
+      <label>Type</label>
+      <select id="type">
+        <option value="post">Blog Post</option>
+        <option value="guide">Resource Guide</option>
+      </select>
+    </div>
+    <div>
+      <label>Date</label>
+      <input id="date" type="date"/>
+    </div>
+  </div>
+
+  <label>Title</label>
+  <input id="title" placeholder="Your title"/>
+
+  <label>Summary (optional, posts only)</label>
+  <input id="summary" placeholder="One-line summary (optional)"/>
+
+  <label>Body (Markdown)</label>
+  <textarea id="body" placeholder="# Heading&#10;Your content here..."></textarea>
+
+  <p class="hint">When you click “Create in GitHub” you'll be taken to a pre-filled “new file” page in your repo. Just tap Commit.</p>
+  <button id="go">Create in GitHub</button>
+
+  <script>
+    // CHANGE these two to your GitHub repo
+    const GH_USER = "projectsolarrecon";
+    const GH_REPO = "Solar";
+
+    function slugify(s){return s.toLowerCase().trim()
+      .replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");}
+
+    function today(){const d=new Date(); const z=n=>String(n).padStart(2,"0");
+      return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`;}
+
+    document.getElementById("date").value = today();
+
+    document.getElementById("go").onclick = () => {
+      const type = document.getElementById("type").value;
+      const date = document.getElementById("date").value || today();
+      const title = document.getElementById("title").value.trim();
+      const summary = document.getElementById("summary").value.trim();
+      const body = document.getElementById("body").value;
+
+      if(!title){ alert("Please enter a title."); return; }
+
+      const slug = slugify(title);
+      let path, content;
+
+      if(type === "post"){
+        const filename = `${date.replaceAll("-","-")}-${slug}.md`;
+        path = `public/content/posts/${filename}`;
+        content =
+`---
+title: "${title.replace(/"/g,'\\"')}"
+date: "${date}"
+${summary ? `summary: "${summary.replace(/"/g,'\\"')}"` : ""}
+---
+
+${body}
+`;
+      } else {
+        const filename = `${slug}.md`;
+        path = `public/content/guides/${filename}`;
+        content =
+`---
+title: "${title.replace(/"/g,'\\"')}"
+date: "${date}"
+---
+
+${body}
+`;
+      }
+
+      const url =
+        `https://github.com/${GH_USER}/${GH_REPO}/new/main/` +
+        path.replace(/^\/+/,"") +
+        `?message=${encodeURIComponent(`Add ${type}: ${title}`)}` +
+        `&value=${encodeURIComponent(content)}`;
+
+      window.location.href = url;
+    };
+  </script>
+</body>
+</html>
