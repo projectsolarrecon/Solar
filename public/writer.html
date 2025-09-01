@@ -9,10 +9,13 @@
     h1{margin-bottom:1rem}
     label{display:block;margin:.75rem 0 .25rem}
     textarea,input,select,button{width:100%;padding:.75rem;font-size:1rem}
-    textarea{height:200px}
+    textarea{height:220px}
     .row{display:flex;gap:.75rem}
     .row>*{flex:1}
     .hint{font-size:.9rem;opacity:.8}
+    .box{background:#f6f6f6;border:1px solid #e3e3e3;border-radius:10px;padding:12px;margin-top:12px}
+    .links{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem}
+    .copy{display:inline-block;padding:.4rem .6rem;border:1px solid #ddd;border-radius:6px;background:#fff}
   </style>
 </head>
 <body>
@@ -41,21 +44,56 @@
   <label>Body (Markdown)</label>
   <textarea id="body" placeholder="# Heading&#10;Your content here..."></textarea>
 
-  <p class="hint">When you click “Create in GitHub” you'll be taken to a pre-filled “new file” page in your repo. Just tap Commit.</p>
+  <p class="hint">
+    Tap “Create in GitHub” → you’ll land on a pre-filled “new file” page. Tap <b>Commit</b>.
+    Your public URL below will work after Netlify finishes deploying.
+  </p>
+
   <button id="go">Create in GitHub</button>
 
+  <div id="result" class="box" style="display:none">
+    <div><b>Public URL (after deploy):</b></div>
+    <div class="links">
+      <a id="publicUrl" href="#" target="_blank" rel="noopener"></a>
+      <button id="copy" class="copy">Copy URL</button>
+    </div>
+    <div class="hint">If it 404s at first, wait a minute and refresh—deploy may still be running.</div>
+  </div>
+
   <script>
-    // CHANGE these two to your GitHub repo
+    // 🔧 Set these two to your GitHub repo owner/name
     const GH_USER = "projectsolarrecon";
     const GH_REPO = "Solar";
 
-    function slugify(s){return s.toLowerCase().trim()
-      .replace(/[^a-z0-9\s-]/g,"").replace(/\s+/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");}
+    // 🔧 Your live domain (used to build the public URL you can share)
+    const PUBLIC_ORIGIN = "https://thesolarproject.org";
 
-    function today(){const d=new Date(); const z=n=>String(n).padStart(2,"0");
-      return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`;}
-
+    function slugify(s){
+      return s.toLowerCase().trim()
+        .replace(/[^a-z0-9\s-]/g,"")
+        .replace(/\s+/g,"-")
+        .replace(/-+/g,"-")
+        .replace(/^-|-$/g,"");
+    }
+    function today(){
+      const d=new Date(); const z=n=>String(n).padStart(2,"0");
+      return `${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())}`;
+    }
     document.getElementById("date").value = today();
+
+    function buildContent({type,title,date,summary,body,filename}){
+      if(type==="post"){
+        return `---\ntitle: "${title.replace(/"/g,'\\"')}"\ndate: "${date}"\n${summary?`summary: "${summary.replace(/"/g,'\\"')}"\n`:""}---\n\n${body}\n`;
+      } else {
+        return `---\ntitle: "${title.replace(/"/g,'\\"')}"\ndate: "${date}"\n---\n\n${body}\n`;
+      }
+    }
+
+    function buildGitHubNewFileURL(path, commitMsg, content){
+      return `https://github.com/${GH_USER}/${GH_REPO}/new/main/` +
+             path.replace(/^\/+/,"") +
+             `?message=${encodeURIComponent(commitMsg)}&value=${encodeURIComponent(content)}`;
+    }
 
     document.getElementById("go").onclick = () => {
       const type = document.getElementById("type").value;
@@ -67,40 +105,41 @@
       if(!title){ alert("Please enter a title."); return; }
 
       const slug = slugify(title);
-      let path, content;
+      let filename, repoPath, publicUrl;
 
-      if(type === "post"){
-        const filename = `${date.replaceAll("-","-")}-${slug}.md`;
-        path = `public/content/posts/${filename}`;
-        content =
-`---
-title: "${title.replace(/"/g,'\\"')}"
-date: "${date}"
-${summary ? `summary: "${summary.replace(/"/g,'\\"')}"` : ""}
----
-
-${body}
-`;
+      if(type==="post"){
+        filename = `${date}-${slug}.md`;
+        repoPath = `public/content/posts/${filename}`;
+        publicUrl = `${PUBLIC_ORIGIN}/post.html?file=/content/posts/${filename}`;
       } else {
-        const filename = `${slug}.md`;
-        path = `public/content/guides/${filename}`;
-        content =
-`---
-title: "${title.replace(/"/g,'\\"')}"
-date: "${date}"
----
-
-${body}
-`;
+        filename = `${slug}.md`;
+        repoPath = `public/content/guides/${filename}`;
+        publicUrl = `${PUBLIC_ORIGIN}/guide.html?file=/content/guides/${filename}`;
       }
 
-      const url =
-        `https://github.com/${GH_USER}/${GH_REPO}/new/main/` +
-        path.replace(/^\/+/,"") +
-        `?message=${encodeURIComponent(`Add ${type}: ${title}`)}` +
-        `&value=${encodeURIComponent(content)}`;
+      const content = buildContent({type,title,date,summary,body,filename});
+      const commitMsg = `Add ${type}: ${title}`;
+      const ghUrl = buildGitHubNewFileURL(repoPath, commitMsg, content);
 
-      window.location.href = url;
+      // Show the public URL so you can copy it now
+      const box = document.getElementById("result");
+      const link = document.getElementById("publicUrl");
+      const copyBtn = document.getElementById("copy");
+      link.textContent = publicUrl;
+      link.href = publicUrl;
+      box.style.display = "block";
+      copyBtn.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(publicUrl);
+          copyBtn.textContent = "Copied!";
+          setTimeout(()=>copyBtn.textContent="Copy URL", 1200);
+        } catch(e){
+          alert(publicUrl); // fallback
+        }
+      };
+
+      // Open GitHub to create the file
+      window.location.href = ghUrl;
     };
   </script>
 </body>
