@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Post • SOLAR</title>
+  <style>
+    :root{--fg:#0f172a;--muted:#64748b;--accent:#0ea5e9;--bg:#ffffff;--card:#f8fafc}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    header{background:var(--card);border-bottom:1px solid #e5e7eb}
+    .wrap{max-width:960px;margin:0 auto;padding:16px}
+    .brand{display:flex;gap:10px;align-items:center}
+    .brand a{font-weight:700;font-size:18px}
+    nav{margin-left:auto;display:flex;gap:16px}
+    .row{display:flex;align-items:center;gap:16px;justify-content:space-between}
+    main.wrap{padding-top:24px;padding-bottom:64px}
+    h1{line-height:1.25;margin:0 0 8px}
+    .meta{color:var(--muted);font-size:14px;margin-bottom:24px}
+    article img{max-width:100%;height:auto;border-radius:8px}
+    footer{border-top:1px solid #e5e7eb;background:var(--card);margin-top:48px}
+    .notice{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:10px;border-radius:8px;margin:12px 0}
+    .error{color:#b91c1c}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap row">
+      <div class="brand"><a href="/">SOLAR</a></div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/writer.html">Writer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="banner" class="notice" style="display:none"></div>
+    <h1 id="title">Loading…</h1>
+    <div class="meta" id="meta"></div>
+    <article id="content"></article>
+  </main>
+
+  <footer>
+    <div class="wrap" style="padding:16px;font-size:14px;color:var(--muted)">
+      © <span id="yy"></span> SOLAR • <a href="/guide.html?file=/content/guides/getting-started.md">Guides</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    document.getElementById('yy').textContent = new Date().getFullYear();
+
+    const p = new URLSearchParams(location.search);
+    const file = p.get('file'); // e.g. /content/posts/2025-08-31-hello-solar.md
+    const titleEl = document.getElementById('title');
+    const metaEl = document.getElementById('meta');
+    const contentEl = document.getElementById('content');
+    const banner = document.getElementById('banner');
+
+    if (!file) {
+      titleEl.textContent = 'Missing ?file= path.';
+      titleEl.className = 'error';
+    } else {
+      fetch(file)
+        .then(r => r.ok ? r.text() : Promise.reject(r.status + ' ' + r.statusText))
+        .then(md => {
+          // Parse front matter like:
+          // ---
+          // title: "..."
+          // date: "YYYY-MM-DD"
+          // summary: "..."
+          // ---
+          let fm = {}, body = md;
+          const m = md.match(/^---\s*[\r\n]+([\s\S]*?)[\r\n]+---\s*/);
+          if (m) {
+            const raw = m[1].split(/\r?\n/);
+            raw.forEach(line => {
+              const i = line.indexOf(':');
+              if (i > -1) {
+                const k = line.slice(0,i).trim();
+                let v = line.slice(i+1).trim();
+                v = v.replace(/^"(.*)"$/,'$1').replace(/^'(.*)'$/,'$1');
+                fm[k] = v;
+              }
+            });
+            body = md.slice(m[0].length);
+          }
+          const niceDate = fm.date ? new Date(fm.date).toLocaleDateString(undefined, {year:'numeric', month:'long', day:'numeric'}) : '';
+          titleEl.textContent = fm.title || 'Untitled';
+          document.title = (fm.title ? fm.title + ' • ' : '') + 'SOLAR';
+          metaEl.textContent = [niceDate, fm.summary].filter(Boolean).join(' • ');
+          contentEl.innerHTML = marked.parse(body);
+        })
+        .catch(err => {
+          titleEl.textContent = 'Could not load file';
+          titleEl.className = 'error';
+          banner.style.display='block';
+          banner.textContent = 'Error: ' + err + ' — Check the ?file= path exactly matches your filename.';
+        });
+    }
+  </script>
+</body>
+</html>
