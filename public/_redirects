@@ -1,21 +1,2 @@
-# Netlify redirects file for React Router (SPA)
-# This ensures all routes are handled by the client-side router
-
-# Main pages
-/about                    /index.html   200
-/advocacy                 /index.html   200
-/resources                /index.html   200
-/legal-directory          /index.html   200
-/contact                  /index.html   200
-/blog                     /index.html   200
-
-# Blog posts
-/blog/all-felon-registry  /index.html   200
-/blog/dangerous-myth      /index.html   200
-/blog/legal-rights        /index.html   200
-/blog/life-on-registry    /index.html   200
-/blog/rethinking-registry /index.html   200
-
-# Catch-all: redirect any other path to index.html with 200 status
-# This allows React Router to handle the routing client-side
-/*                        /index.html   200
+/admin/*    /admin/:splat    200
+/*          /index.html      200
