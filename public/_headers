@@ -1,0 +1,2 @@
+/admin/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://identity.netlify.com https://cdn.jsdelivr.net https://unpkg.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com https://github.com https://api.github.com https://identity.netlify.com; font-src 'self' https: data:
