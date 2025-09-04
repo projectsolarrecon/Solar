@@ -46,6 +46,7 @@ import PoliticalTheater from './pages/blog/PoliticalTheater';
 import CustodyWithoutCages from './pages/blog/CustodyWithoutCages';
 import SanctuaryAndSilence from './pages/blog/SanctuaryAndSilence';
 import PlayingFieldsAndSchoolyards from './pages/blog/PlayingFieldsAndSchoolyards';
+import CommunityBetrayal from './pages/blog/CommunityBetrayal';
 
 function App() {
   return (
