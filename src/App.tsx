@@ -104,7 +104,8 @@ function App() {
               <Route path="/blog/custody-without-cages" element={<CustodyWithoutCages />} />
               <Route path="/blog/sanctuary-and-silence" element={<SanctuaryAndSilence />} />
               <Route path="/blog/playing-fields-and-schoolyards" element={<PlayingFieldsAndSchoolyards />} />
-
+              <Route path="/blog/community-betrayal" element={<CommunityBetrayal />} />
+                      
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
             </Routes>
