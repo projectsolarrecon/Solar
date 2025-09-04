@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   {
+  id: 'community-betrayal',
+  title: 'Community Betrayal: When Trusted Youth Groups Failed Families',
+  excerpt: 'Parents believed uniforms, slogans, and red-dot registry maps meant safety. But the greatest betrayals happened in Scouts, camps, and clubs trusted to protect children. This investigation exposes how systemic abuse thrived inside America\'s most iconic youth organizations.',
+  author: 'The SOLAR Project',
+  date: 'September 4, 2025',
+  readTime: '15 min read',
+  category: 'Investigation',
+  tags: ['Boy Scouts', 'YMCA', 'Boys & Girls Clubs', 'Big Brothers Big Sisters', 'Registry Myth', 'Investigative Series'],
+  path: '/blog/community-betrayal'
+  },
+  {
     id: 'playing-fields-and-schoolyards',
     title: 'Playing Fields & Schoolyards: Where the Protection Myth Fails',
     excerpt: 'Parents send their kids to school and practice believing two things are keeping them safe: the adults in charge and the map. But case after case shows what the map can\'t: the most catastrophic harm was inside systems families were told to trust.',
