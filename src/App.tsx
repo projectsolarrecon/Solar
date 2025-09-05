@@ -47,6 +47,7 @@ import CustodyWithoutCages from './pages/blog/CustodyWithoutCages';
 import SanctuaryAndSilence from './pages/blog/SanctuaryAndSilence';
 import PlayingFieldsAndSchoolyards from './pages/blog/PlayingFieldsAndSchoolyards';
 import CommunityBetrayal from './pages/blog/CommunityBetrayal';
+import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide";
 
 function App() {
   return (
