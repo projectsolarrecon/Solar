@@ -110,7 +110,28 @@ export default function Home(): JSX.Element {
         link: "/resources/reentry-checklist"
       },
       badge: "Reentry Checklist"
-    }
+    },
+      {
+  id: 6,
+  title: "Legislative Advocacy Guide",
+  subtitle: "Contacting Officials & Advancing Reform",
+  description: "Step-by-step playbook for finding your officials, choosing phone/email, and making clear, respectful, evidence-based asks. Includes templates, links to SOLAR’s Position Statements, and trusted sources.",
+  features: [
+    "Find local, state, and federal officials quickly",
+    "Call and email scripts tailored to policy change",
+    "Tips for effective respectful advocacy",
+    "Links to SOLAR’s RECON stance & script generator"
+  ],
+  primaryButton: {
+    text: "View Complete Guide",
+    link: "/resources/legislative-advocacy-guide"
+  },
+  secondaryButton: {
+    text: "Print/Save PDF",
+    link: "/resources/legislative-advocacy-guide"
+  },
+  badge: "Advocacy Toolkit"
+  }
   ];
 
   // Rotation state for featured resources
