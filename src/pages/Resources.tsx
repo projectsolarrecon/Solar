@@ -169,12 +169,12 @@ function Resources() {
       title: "Family & Supporter Resources",
       icon: "👨‍👩‍👧‍👦",
       resources: [
-        {
-          name: "Family Support Guide",
-          type: "Guide",
-          description: "Comprehensive guide for family members and allies supporting a loved one through a sex-offense case—from arrest to reentry and beyond.",
-          link: "/resources/family-support-guide"
-        },
+      {
+  name: "Legislative Advocacy Guide",
+  type: "Guide",
+  description: "Step-by-step playbook for finding your officials, choosing phone/email, and making clear, respectful, evidence-based asks—includes templates and trusted sources.",
+  link: "/resources/legislative-advocacy-guide"
+},
         {
           name: "Children & Disclosure Guide",
           type: "Guide", 
