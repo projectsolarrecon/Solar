@@ -242,7 +242,7 @@ export const allBlogPosts: BlogPost[] = [
     readTime: '10 min read',
     tags: ['Registry Reform', 'Recidivism', 'Public Safety', 'Criminal Justice'],
     path: '/blog/register-all-felons'
-  }
+  }, 
   {
   id: 'who-is-solar-2025-07-04',
   title: 'Who Is SOLAR, and Why Should I Care?',
@@ -253,8 +253,8 @@ export const allBlogPosts: BlogPost[] = [
   category: 'Advocacy',
   tags: ['SOLAR', 'Registry Reform', 'Evidence-Based Policy', 'RECON', 'Civil Rights'],
   path: '/blog/who-is-solar'
-}
-];
+  }
+  ];
 
 // Helper function to get the most recent posts
 export const getRecentPosts = (count: number = 3): BlogPost[] => {
