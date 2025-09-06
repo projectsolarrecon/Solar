@@ -12,6 +12,17 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   {
+  id: 'two-men-one-release-date',
+  title: 'Two Men, One Release Date',
+  excerpt: 'A drug trafficker walks free with no strings attached; a first-time offender is branded for life. What does that say about justice?',
+  author: 'The SOLAR Project',
+  date: 'September 5, 2025',
+  readTime: '8 min read',
+  category: 'Investigation',
+  tags: ['Justice', 'Registry Reform', 'Policy', 'Comparative Sentencing', 'Investigative Feature'],
+  path: '/blog/two-men-one-release-date'
+  },
+  {
   id: 'community-betrayal',
   title: 'Community Betrayal: When Trusted Youth Groups Failed Families',
   excerpt: 'Parents believed uniforms, slogans, and red-dot registry maps meant safety. But the greatest betrayals happened in Scouts, camps, and clubs trusted to protect children. This investigation exposes how systemic abuse thrived inside America\'s most iconic youth organizations.',
