@@ -49,6 +49,7 @@ import PlayingFieldsAndSchoolyards from './pages/blog/PlayingFieldsAndSchoolyard
 import CommunityBetrayal from './pages/blog/CommunityBetrayal';
 import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide";
 import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
+import WhoIsSOLAR from './pages/blog/WhoIsSOLAR';
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
               <Route path="/resources/financial-planning-guide" element={<FinancialPlanningGuide />} />
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
+              <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
