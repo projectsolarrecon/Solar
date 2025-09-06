@@ -1,7 +1,30 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
-
+// Reusable gradient section header (icon + title)
+// Usage: <SectionHeader icon="📄" title="What is a lease, really?" id="lease-basics" />
+function SectionHeader({
+  icon,
+  title,
+  id,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  id?: string;
+}) {
+  return (
+    <div id={id} className="mb-6">
+      <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 text-white rounded-2xl shadow-md">
+        <div className="px-5 py-4 flex items-center gap-3">
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 text-2xl">
+            <span aria-hidden="true">{icon}</span>
+          </div>
+          <h2 className="text-xl md:text-2xl font-semibold">{title}</h2>
+        </div>
+      </div>
+    </div>
+  );
+}
 export default function TenantRightsGuide(): JSX.Element {
   const [checkedItems, setCheckedItems] = useState<{[key: string]: boolean}>({});
 
@@ -53,7 +76,8 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 1 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">1) What is a lease, really?</h2>
+          {/* OLD: <h2 className="text-2xl font-bold mb-4">1) What is a lease, really?</h2> */}
+          <SectionHeader icon="📄" title="What is a lease, really?" id="lease-basics" />
 
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
@@ -82,8 +106,8 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 2 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">2) Build your “Tenant Binder”</h2>
-
+          {/* OLD: <h2 className="text-2xl font-bold mb-4">2) Build your “Tenant Binder”</h2> */}
+<SectionHeader icon="🗂️" title="Build your “Tenant Binder”" id="tenant-binder" />
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">Imagine you’re walking into court. The landlord says, “They never paid rent.” You say, “Yes I did.” Who wins? The one with <strong>the papers</strong>.</p>
@@ -108,8 +132,9 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 3 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">3) Never move out unless a judge says so</h2>
-
+          {/* OLD: <h2 className="text-2xl font-bold mb-4">3) Never move out unless a judge says so</h2> */}
+<SectionHeader icon="⚖️" title="Never move out unless a judge says so" id="no-self-eviction" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p>Picture this: your landlord changes the locks or shuts off the heat and says, “You’re out.” It feels terrifying. But the truth is: <strong>only a judge can evict you</strong>.</p>
