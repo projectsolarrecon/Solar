@@ -50,6 +50,7 @@ import CommunityBetrayal from './pages/blog/CommunityBetrayal';
 import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide";
 import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
 import WhoIsSOLAR from './pages/blog/WhoIsSOLAR';
+import TenantRightsGuide from './pages/resources/TenantRightsGuide';
 
 function App() {
   return (
@@ -86,6 +87,8 @@ function App() {
               <Route path="/resources/financial-planning-guide" element={<FinancialPlanningGuide />} />
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
+              <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
+                       
               
 
               {/* Blog Routes */}
