@@ -48,6 +48,7 @@ import SanctuaryAndSilence from './pages/blog/SanctuaryAndSilence';
 import PlayingFieldsAndSchoolyards from './pages/blog/PlayingFieldsAndSchoolyards';
 import CommunityBetrayal from './pages/blog/CommunityBetrayal';
 import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide";
+import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
               <Route path="/blog/sanctuary-and-silence" element={<SanctuaryAndSilence />} />
               <Route path="/blog/playing-fields-and-schoolyards" element={<PlayingFieldsAndSchoolyards />} />
               <Route path="/blog/community-betrayal" element={<CommunityBetrayal />} />
+                      <Route path="/blog/two-men-one-release-date" element={<TwoMenOneReleaseDate />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
