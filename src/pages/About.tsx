@@ -1,4 +1,4 @@
-    import SEO from "../components/SEO";
+import SEO from "../components/SEO";
 import { Link } from "react-router-dom";
 
 function About() {
@@ -28,12 +28,12 @@ function About() {
   return (
     <div className="bg-white">
       <SEO 
-        title="About The SOLAR Project - Sex Offender Legal Advocacy & Reform"
-        description="Learn about The SOLAR Project's mission to provide legal advocacy, resources, and support for individuals affected by sex offense laws. Our commitment to justice, reform, and constitutional rights."
-        keywords="about SOLAR project, sex offender advocacy organization, legal reform mission, constitutional rights advocacy, registry reform organization"
+        title="About The SOLAR Project - Sex Offense Learning, Advocacy & Resources"
+        description="Learn how The SOLAR Project supports change: Supporting, Organizing, Leading, Advancing, Reforming — providing Sex Offense Learning, Advocacy, and Resources — to realize Safety, Opportunity, Liberty, Accountability, and Redemption."
+        keywords="SOLAR Project, about, Supporting Organizing Leading Advancing Reforming, Sex Offense Learning Advocacy Resources, Safety Opportunity Liberty Accountability Redemption"
       />
 
-      {/* Hero Section */}
+      {/* Hero (updated) */}
       <section className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 backdrop-blur-sm text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -46,7 +46,7 @@ function About() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">About The SOLAR Project</h1>
             
             <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
-              <strong>S</strong>ex <strong>O</strong>ffenses: <strong>L</strong>earning, <strong>A</strong>dvocacy, and <strong>R</strong>esources — <strong>S</strong>upporting, <strong>O</strong>rganizing, <strong>L</strong>eading, <strong>A</strong>dvancing, and <strong>R</strong>eforming for constitutional rights, effective public safety, and evidence-based policy.
+              We exist to <strong>Support, Organize, Lead, Advance, and Reform</strong> — providing <strong>Sex Offense Learning, Advocacy, and Resources</strong> — to realize a future of <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
             </p>
           </div>
         </div>
@@ -54,26 +54,103 @@ function About() {
 
       <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-500"></div>
 
-      {/* Mission Statement */}
-      <section className="py-16">
+      {/* New condensed About narrative */}
+      <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              The SOLAR Project was founded on the belief that everyone deserves accurate information, 
-              fair treatment, and access to justice. We provide comprehensive resources for individuals 
-              affected by sex offense laws and their families, while advocating for sensible reform 
-              and constitutional protections.
+            <p className="text-lg text-gray-700 leading-relaxed mb-5">
+              At <strong>The SOLAR Project</strong>, our name isn’t just a label — it’s our blueprint. We bring people together, confront misinformation with research, and translate lived experience into policy reform that strengthens real public safety and restores dignity.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Our work is guided by evidence-based research, constitutional principles, and a deep 
-              commitment to human dignity. We believe that effective advocacy requires both compassion 
-              and expertise, which is why we combine legal knowledge with lived experience to create 
-              meaningful change.
+            <p className="text-lg text-gray-700 leading-relaxed">
+              We shine light where there’s been only shadow: replacing stigma with knowledge, fear with compassion, and permanent punishment with evidence-based paths toward stability and community safety.
             </p>
           </div>
         </div>
       </section>
+
+      {/* Triple SOLAR cards */}
+      <section className="pb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            {/* Card 1: Supporting, Organizing, Leading, Advancing, Reforming */}
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 text-xl mr-3">✨</span>
+                  <h3 className="text-xl font-bold text-slate-900">Supporting • Organizing • Leading • Advancing • Reforming</h3>
+                </div>
+                <p className="text-slate-700 mb-4">
+                  We exist to <strong>Support, Organize, Lead, Advance, and Reform</strong> — uniting people and communities to challenge harmful laws, provide solidarity, and build a safer, more just future.
+                </p>
+                <ul className="text-slate-700 space-y-2">
+                  <li>🤝 Support: community, resources, and navigation</li>
+                  <li>🧩 Organize: coalitions and credible advocacy</li>
+                  <li>🧪 Lead: evidence over myth</li>
+                  <li>🛡️ Advance: prevention, treatment, stability</li>
+                  <li>⚙️ Reform: laws that perpetuate harm</li>
+                </ul>
+              </div>
+              <div className="px-6 pb-6">
+                <div className="mt-4 p-3 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-900 text-sm">
+                  Purpose in action: people-first, data-driven, reform-ready.
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Sex Offense Learning, Advocacy, Resources */}
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-amber-50 text-amber-600 text-xl mr-3">📚</span>
+                  <h3 className="text-xl font-bold text-slate-900">Sex Offense Learning • Advocacy • Resources</h3>
+                </div>
+                <p className="text-slate-700 mb-4">
+                  Our promise is to provide <strong>Sex Offense Learning, Advocacy, and Resources</strong> — confronting misinformation with research, speaking out for evidence-based reform, and offering practical tools for individuals and families.
+                </p>
+                <ul className="text-slate-700 space-y-2">
+                  <li>📖 Learning: accurate info & plain-language guides</li>
+                  <li>📣 Advocacy: person-first, evidence-based policy</li>
+                  <li>🧭 Resources: housing, work, travel, compliance</li>
+                </ul>
+              </div>
+              <div className="px-6 pb-6">
+                <div className="mt-4 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-sm">
+                  People are more than their worst act — language and policy should reflect that truth.
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Safety, Opportunity, Liberty, Accountability, Redemption */}
+            <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+              <div className="p-6">
+                <div className="flex items-center mb-4">
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 text-xl mr-3">🌱</span>
+                  <h3 className="text-xl font-bold text-slate-900">Safety • Opportunity • Liberty • Accountability • Redemption</h3>
+                </div>
+                <p className="text-slate-700 mb-4">
+                  The future we fight for is one of <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong> — where safety is real (not performative), opportunity and dignity are restored, liberty is protected, accountability is fair, and redemption is truly possible.
+                </p>
+                <ul className="text-slate-700 space-y-2">
+                  <li>🔒 Safety: focus on actual risk, not stigma</li>
+                  <li>💼 Opportunity: remove barriers to stability</li>
+                  <li>🗽 Liberty: uphold constitutional limits</li>
+                  <li>⚖️ Accountability: evidence-based and mutual</li>
+                  <li>🌿 Redemption: second chances that strengthen safety</li>
+                </ul>
+              </div>
+              <div className="px-6 pb-6">
+                <div className="mt-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm">
+                  A vision that turns fear into safety — and exclusion into belonging.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Your original sections below remain unchanged ===== */}
 
       {/* Our Values */}
       <section className="bg-gray-50 py-16">
@@ -106,7 +183,6 @@ function About() {
               Making a difference in the lives of individuals and families
             </p>
           </div>
-
           <div className="max-w-4xl mx-auto text-center">
             <div className="bg-slate-800 rounded-lg p-12 border-2 border-slate-600">
               <div className="mb-8">
