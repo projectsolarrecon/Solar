@@ -243,6 +243,17 @@ export const allBlogPosts: BlogPost[] = [
     tags: ['Registry Reform', 'Recidivism', 'Public Safety', 'Criminal Justice'],
     path: '/blog/register-all-felons'
   }
+  {
+  id: 'who-is-solar-2025-07-04',
+  title: 'Who Is SOLAR, and Why Should I Care?',
+  excerpt: 'Meet SOLAR: evidence-first, person-centered advocacy replacing stigma with true safety, opportunity, liberty, accountability, and redemption.',
+  author: 'The SOLAR Project',
+  date: '2025-07-04',
+  readTime: '12–15 min',
+  category: 'Advocacy',
+  tags: ['SOLAR', 'Registry Reform', 'Evidence-Based Policy', 'RECON', 'Civil Rights'],
+  path: '/blog/who-is-solar'
+}
 ];
 
 // Helper function to get the most recent posts
