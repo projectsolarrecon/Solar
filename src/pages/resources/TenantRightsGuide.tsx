@@ -169,8 +169,9 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 4 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">4) Background checks & denials</h2>
-
+          {/* OLD: <h2 className="text-2xl font-bold mb-4">4) Background checks & denials</h2> */}
+<SectionHeader icon="🔎" title="Background checks & denials" id="screening-denials" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p>Landlords often run background checks. If yours comes back bad:</p>
@@ -206,8 +207,8 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 5 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">5) Registry-specific survival tips</h2>
-
+          <SectionHeader icon="📍" title="Registry-specific survival tips" id="registry-tips" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">
@@ -240,8 +241,8 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 6 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">6) Public housing & vouchers</h2>
-
+          <SectionHeader icon="🏢" title="Public housing & vouchers" id="public-housing" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">Public Housing Authorities (PHAs) run programs like vouchers (Section 8) and public housing apartments.</p>
@@ -267,8 +268,8 @@ export default function TenantRightsGuide(): JSX.Element {
       {/* Section 7 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">7) Fighting denials</h2>
-
+          <SectionHeader icon="🛡️" title="Fighting denials" id="fighting-denials" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">If a landlord says, “We don’t rent to people with records,” here’s your playbook:</p>
@@ -319,7 +320,7 @@ Thank you.`
       {/* Section 8 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">8) Reasonable accommodations (for disabilities)</h2>
+          <SectionHeader icon="♿" title="Reasonable accommodations (for disabilities)" id="accommodations" />
 
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
@@ -363,8 +364,8 @@ Thank you.`
       {/* Section 9 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">9) Your “Go-Bag”</h2>
-
+          <SectionHeader icon="🎒" title="Your “Go-Bag”" id="go-bag" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">Think of this as your <strong>emergency kit</strong>. If things heat up, you grab it and go. Keep paper + digital copies of:</p>
@@ -384,8 +385,8 @@ Thank you.`
       {/* Section 10 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">10) Find local help today</h2>
-
+          <SectionHeader icon="🧭" title="Find local help today" id="local-help" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <p className="mb-2">Don’t freeze — start searching. Use these phrases (swap in your city/state):</p>
@@ -409,8 +410,8 @@ Thank you.`
       {/* Section 11 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">11) Daily reminders</h2>
-
+          <SectionHeader icon="✅" title="Daily reminders" id="daily-reminders" />
+          
           <div className="mb-6">
             <h3 className="text-xl font-semibold text-slate-700 mb-2">✨ Survival Advice (ELI5)</h3>
             <ul className="list-disc pl-6 space-y-2">
@@ -427,8 +428,8 @@ Thank you.`
       {/* Section 12 */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-2xl shadow-md border border-slate-200 p-6 mb-10">
-          <h2 className="text-2xl font-bold mb-4">12) Handy scripts you can copy</h2>
-
+          <SectionHeader icon="✉️" title="Handy scripts you can copy" id="handy-scripts" />
+          
           <div className="space-y-6">
             <div>
               <p className="font-semibold mb-2">🚪 Illegal lockout (to police):</p>
@@ -468,7 +469,8 @@ How is distance measured here (property line or door-to-door)? Could you send me
       {/* Final Pep Talk */}
       <section className="max-w-4xl mx-auto px-4 py-10">
         <blockquote className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-md shadow-inner">
-          <h2 className="text-2xl font-bold mb-4">💛 Final Pep Talk</h2>
+          <SectionHeader icon="💛" title="Final Pep Talk" id="pep-talk" />
+          
           <p className="mb-4">
             Housing with a record or registry status feels like an uphill climb. But you are not powerless.
             Your <strong>binder</strong>, your <strong>scripts</strong>, your <strong>deadlines</strong>, and your <strong>proof</strong> 
