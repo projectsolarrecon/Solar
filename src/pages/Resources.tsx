@@ -62,10 +62,10 @@ function Resources() {
           link: "#"
         },
         {
-          name: "Tenant Rights Information",
+          name: "Tenant Rights Survival Guide",
           type: "Guide",
-          description: "Know your rights as a tenant and how to handle housing discrimination.",
-          link: "#"
+          description: "Plain-language survival advice + legal deep dives for registrants and families navigating housing and tenant rights.",
+          link: "/resources/tenant-rights"
         },
         {
           name: "Emergency Housing Resources",
