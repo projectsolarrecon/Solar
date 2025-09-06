@@ -177,101 +177,124 @@ export default function Home(): JSX.Element {
       />
 
       {/* Hero Section */}
-      <section className="relative text-white overflow-hidden min-h-screen flex items-center">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src="/starry-sunset-hero-final.jpg"
-            alt="Starry sunset sky with warm orange and purple colors - symbolizing hope and new beginnings" 
-            className="w-full h-full object-cover"
-          />
-          {/* Overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/20"></div>
-        </div>
-        
-        {/* Content */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-10">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-              The SOLAR Project
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed">
-              <strong>S</strong>ex <strong>O</strong>ffenses: <strong>L</strong>earning, <strong>A</strong>dvocacy, and <strong>R</strong>esources — <strong>S</strong>upporting, <strong>O</strong>rganizing, <strong>L</strong>eading, <strong>A</strong>dvancing, and <strong>R</strong>eforming for constitutional rights, effective public safety, and evidence-based policy.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/blog"
-                className="bg-white text-blue-800 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg"
-              >
-                Read Our Blog
-              </Link>
-              <Link
-                to="/advocacy"
-                className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg"
-              >
-                Get Involved
-              </Link>
-              <Link
-                to="/resources"
-                className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition-colors shadow-lg backdrop-blur-sm"
-              >
-                View Resources
-              </Link>
-            </div>
+<section className="relative text-white overflow-hidden min-h-screen flex items-center">
+  {/* Background Image */}
+  <div className="absolute inset-0">
+    <img 
+      src="/starry-sunset-hero-final.jpg"
+      alt="Starry sunset sky with warm orange and purple colors - symbolizing hope and new beginnings" 
+      className="w-full h-full object-cover"
+    />
+    {/* Stronger overlay for readability */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30"></div>
+  </div>
+  
+  {/* Content */}
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-10">
+    <div className="text-center">
+      <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
+        The SOLAR Project
+      </h1>
+
+      <p className="text-xl md:text-2xl text-slate-200 mb-8 max-w-4xl mx-auto leading-relaxed">
+        We exist to <strong>Support, Organize, Lead, Advance, and Reform</strong> —
+        providing <strong>Sex Offense Learning, Advocacy, and Resources</strong> —
+        to realize a future of <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <Link
+          to="/blog"
+          className="bg-white text-blue-800 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg"
+        >
+          Read Our Blog
+        </Link>
+        <Link
+          to="/advocacy"
+          className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg"
+        >
+          Get Involved
+        </Link>
+        <Link
+          to="/resources"
+          className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800 transition-colors shadow-lg backdrop-blur-sm"
+        >
+          View Resources
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* Triple SOLAR Section (Mission) – Emoji */}
+<section className="py-16">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
+      <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        We shine light where there has been shadow—replacing stigma with knowledge, fear with compassion,
+        and permanent punishment with evidence-based paths to stability and true public safety.
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+        <div className="p-6">
+          <div className="flex items-center mb-4">
+            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50 text-indigo-600 text-2xl mr-3">🤝</span>
+            <h3 className="text-xl font-bold text-slate-900">Supporting • Organizing • Leading • Advancing • Reforming</h3>
           </div>
+          <p className="text-slate-700">
+            We unite people and communities to challenge harmful laws, provide solidarity, and build a safer, more just future.
+          </p>
+          <ul className="mt-4 text-slate-700 space-y-2 text-sm">
+            <li>• Support: navigation, resources, community</li>
+            <li>• Organize: coalitions and credible advocacy</li>
+            <li>• Lead: evidence over myth</li>
+            <li>• Advance: prevention, treatment, stability</li>
+            <li>• Reform: overbroad laws that perpetuate harm</li>
+          </ul>
         </div>
-      </section>
+      </div>
 
-      {/* Mission Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We believe in second chances, rehabilitation, and the importance of accurate information 
-              in navigating complex legal and social challenges.
-            </p>
+      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+        <div className="p-6">
+          <div className="flex items-center mb-4">
+            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-50 text-amber-600 text-2xl mr-3">📚</span>
+            <h3 className="text-xl font-bold text-slate-900">Sex Offense Learning • Advocacy • Resources</h3>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Education</h3>
-              <p className="text-gray-600">
-                Providing accurate, up-to-date information about laws, rights, and resources.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Advocacy</h3>
-              <p className="text-gray-600">
-                Fighting for fair treatment and constitutional rights for all individuals.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Support</h3>
-              <p className="text-gray-600">
-                Connecting individuals and families with specialized legal and support resources.
-              </p>
-            </div>
-          </div>
+          <p className="text-slate-700">
+            We confront misinformation with research, advocate for evidence-based policy, and offer practical tools for individuals and families.
+          </p>
+          <ul className="mt-4 text-slate-700 space-y-2 text-sm">
+            <li>• Learning: accurate info & plain-language guides</li>
+            <li>• Advocacy: person-first, evidence-based reform</li>
+            <li>• Resources: housing, work, travel, compliance</li>
+          </ul>
         </div>
-      </section>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition">
+        <div className="p-6">
+          <div className="flex items-center mb-4">
+            <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 text-2xl mr-3">🌱</span>
+            <h3 className="text-xl font-bold text-slate-900">Safety • Opportunity • Liberty • Accountability • Redemption</h3>
+          </div>
+          <p className="text-slate-700">
+            The future we fight for: real safety (not performative), restored opportunity, protected liberty, fair accountability, and true redemption.
+          </p>
+          <ul className="mt-4 text-slate-700 space-y-2 text-sm">
+            <li>• Safety: focus resources on actual risk, not stigma</li>
+            <li>• Opportunity: remove barriers to housing and work</li>
+            <li>• Liberty: uphold constitutional limits</li>
+            <li>• Accountability: evidence-based and mutual</li>
+            <li>• Redemption: second chances strengthen safety</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Featured Resources */}
       <section className="bg-white py-16">
