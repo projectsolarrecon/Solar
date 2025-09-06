@@ -334,4 +334,16 @@ export default function WhoIsSOLAR(): JSX.Element {
         </section>
 
         {/* Footer nav */}
-        <div className="mt-12 pt-8 border
+        <div className="mt-12 pt-8 border-t border-slate-200 flex items-center justify-between">
+          <Link to="/blog" className="inline-flex items-center text-slate-700 hover:text-slate-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+            Back to Blog
+          </Link>
+          <div className="text-sm text-slate-500">© {new Date().getFullYear()} The SOLAR Project</div>
+        </div>
+      </main>
+    </div>
+  );
+}
