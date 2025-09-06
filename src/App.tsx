@@ -86,7 +86,7 @@ function App() {
               <Route path="/resources/financial-planning-guide" element={<FinancialPlanningGuide />} />
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
-              <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />
+              
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
@@ -110,6 +110,7 @@ function App() {
               <Route path="/blog/playing-fields-and-schoolyards" element={<PlayingFieldsAndSchoolyards />} />
               <Route path="/blog/community-betrayal" element={<CommunityBetrayal />} />
               <Route path="/blog/two-men-one-release-date" element={<TwoMenOneReleaseDate />} />
+              <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />     
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
