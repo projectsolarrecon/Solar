@@ -12,11 +12,11 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
-    date: '2025-09-06',
-    title: 'Legislative Update — Sept 6, 2025',
-    slug: '2025-09-06',
-    summary: 'Federal committee hearing on X; State Y advances bill Z; notable appellate ruling ABC with potential nationwide implications.',
-    tags: ['federal','states','cases']
-  },
+  date: '2025-08-30',
+  title: 'YTD 2025: Courts Narrow Relief, States Tinker with Tiers, Zones Expand',
+  slug: 'sex-offender-registry-2025-ytd-roundup-courts-tiers-presence-zones',
+  summary:
+    'Year-to-date roundup: courts split on registry challenges, states tweak tiering/definitions, and presence-zone bans expand. Florida overhaul signed; USSC amendments effective Nov 1.',
+},
   // Add new weekly objects here going forward (any position is fine).
 ];
