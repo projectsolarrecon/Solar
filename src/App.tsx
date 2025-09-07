@@ -1,4 +1,6 @@
-          import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+
 import Layout from "./components/Layout";
 import ScrollToTop from './components/ScrollToTop';
 import GoogleAnalytics from './components/GoogleAnalytics';
@@ -10,6 +12,12 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Advocacy from "./pages/Advocacy";
 import NotFound from "./pages/NotFound";
+
+// Auto-discover weekly pages under /resources/legislative-tracker
+import LegislativeTracker from './pages/resources/LegislativeTracker';
+const weeklyModules = import.meta.glob('./pages/resources/legislative-tracker/*.tsx');
+
+// --- your blog + resource imports follow ---
 import RethinkingRegistry from './pages/blog/RethinkingRegistry';
 import LifeOnRegistry from './pages/blog/LifeOnRegistry';
 import LegalRights from './pages/blog/LegalRights';
