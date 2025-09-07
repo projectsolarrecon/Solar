@@ -1,7 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { legislativeUpdates, LegislativeUpdateMeta } from '../../data/legislativeUpdates';
+
+// Auto-discover weekly update pages (relative to THIS file)
+const weeklyModules = import.meta.glob('./legislative-tracker/*.tsx');
 
 export default function LegislativeTracker(): JSX.Element {
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -25,6 +28,26 @@ export default function LegislativeTracker(): JSX.Element {
       // no-op
     }
   };
+
+  // Load teasers (ELI5 bullets + highlight cards) from latest weekly page
+  const [latestTeasers, setLatestTeasers] = useState<{
+    glance?: string[];
+    highlights?: { icon: string; title: string; url: string }[];
+  } | null>(null);
+
+  useEffect(() => {
+    if (!latest) return;
+    // IMPORTANT: slug must match the latest weekly page's file name (no ".tsx")
+    const importPath = `./legislative-tracker/${latest.slug}.tsx`;
+    const importer = weeklyModules[importPath];
+    if (importer) {
+      importer().then((mod: any) => {
+        setLatestTeasers(mod.teasers ?? null);
+      });
+    } else {
+      setLatestTeasers(null);
+    }
+  }, [latest]);
 
   return (
     <div className="bg-white">
@@ -97,16 +120,20 @@ export default function LegislativeTracker(): JSX.Element {
         </div>
       </section>
 
-      {/* This Week at a Glance */}
-      <section className="py-2">
+      {/* This Week at a Glance (auto from latest teasers) */}
+      <section className="py-2" id="glance">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
             <h2 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="calendar">🗓️</span> This Week at a Glance (ELI5)</h2>
             <ul className="mt-3 space-y-2 text-slate-800">
-              <li>🏛️ <strong>Federal</strong> — <em>[Example]</em> A House subcommittee held a hearing on interstate registration data sharing. <strong>ELI5:</strong> Congress asked, “Are states talking to each other fast enough?”</li>
-              <li>🗺️ <strong>States</strong> — <em>[Example]</em> <strong>Ohio SB 123</strong> moved out of committee; it adds residency bans near daycares. <strong>ELI5:</strong> More places where people can’t live.</li>
-              <li>⚖️ <strong>Cases</strong> — <em>[Example]</em> <strong>Doe v. CityName</strong> (state appeals court) said a retroactive rule looked like extra punishment. <strong>ELI5:</strong> Court flagged “punishment after punishment.”</li>
-              <li>📣 <strong>Action</strong> — Two hearings open for public comment this week; scripts and links below.</li>
+              {(latestTeasers?.glance ?? [
+                '🏛️ Federal — placeholder until teasers are loaded.',
+                '🗺️ States — placeholder until teasers are loaded.',
+                '⚖️ Cases — placeholder until teasers are loaded.',
+                '📣 Action — placeholder until teasers are loaded.',
+              ]).map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
             </ul>
             <blockquote className="mt-4 border-l-4 border-blue-400 pl-4 text-slate-700 italic">
               🔵 <strong>Why this matters (30 seconds):</strong> Policy moves quickly; families live with the outcomes for years. We translate the legalese and give you direct actions that actually help.
@@ -114,114 +141,39 @@ export default function LegislativeTracker(): JSX.Element {
           </div>
         </div>
       </section>
-
-      {/* Highlight 1 — Federal */}
-      <section className="py-6">
+      {/* Highlights (auto from latest teasers) */}
+      <section className="py-2" id="highlights">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="star">⭐</span> Highlight 1 — Federal</h3>
-            <p className="mt-2 text-slate-700"><strong>What happened (ELI5):</strong> Congress looked at whether states are quickly updating who must register and what info is shared. Think: “Is the map up to date so people aren’t blindsided after they move?”</p>
-            <div className="mt-3 rounded-xl bg-blue-50 text-blue-900 p-4">
-              <div className="font-medium">🟦 Info callout</div>
-              <p>Key questions: timelines for updates, error correction, and a national mechanism for fixing mistakes.</p>
+          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <span role="img" aria-label="star">⭐</span> Highlights
+            </h2>
+            <div className="mt-4 grid gap-6 md:grid-cols-3">
+              {(latestTeasers?.highlights ?? [
+                { icon: '🏛️', title: 'Example Federal Highlight', url: '#' },
+                { icon: '🏷️', title: 'Example State Highlight', url: '#' },
+                { icon: '⚖️', title: 'Example Case Highlight', url: '#' },
+              ]).map((h, i) => (
+                <article key={i} className="rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                  <h3 className="text-lg font-semibold flex items-center gap-2">
+                    <span>{h.icon}</span> {h.title}
+                  </h3>
+                  {h.url && (
+                    <p className="mt-3">
+                      <a
+                        href={h.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-blue-600 hover:underline text-sm"
+                      >
+                        View source →
+                      </a>
+                    </p>
+                  )}
+                </article>
+              ))}
             </div>
-            <div className="mt-3 text-slate-700">
-              <p><strong>Why it matters (plain language):</strong></p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Delays = surprise “you didn’t register here yet” problems, even when someone followed the rules.</li>
-                <li>Better data-sharing <strong>reduces</strong> accidental non-compliance and unnecessary arrests.</li>
-              </ul>
-            </div>
-            <div className="mt-4">
-              <div className="rounded-xl bg-slate-50 border border-slate-200 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="font-medium">📣 Take action — email your Representative</div>
-                  <button
-                    onClick={() => copyText('script-fed', 'Hello, I’m writing to support clear timelines and an appeal process for interstate registration data updates. Delays create avoidable harms for families who are trying to comply. Please support measures that ensure timely updates and a fix/appeal mechanism. Thank you.')}
-                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
-                  >
-                    {copiedId === 'script-fed' ? 'Copied!' : 'Copy script'}
-                  </button>
-                </div>
-                <p className="mt-2 text-slate-700 text-sm">We provide short scripts as a starting point. Personalize with a 2–3 sentence story if you can.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* Highlight 2 — State Spotlight */}
-      <section className="py-2">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="label">🏷️</span> Highlight 2 — State Spotlight (Example: Ohio SB 123)</h3>
-            <p className="mt-2 text-slate-700"><strong>ELI5:</strong> The bill would expand “no-live zones” around daycares. That sounds protective, but research shows <strong>residency bans don’t prevent crime</strong> and <strong>do</strong> cause homelessness and job loss.</p>
-            <div className="mt-3 rounded-xl bg-orange-50 text-amber-900 p-4">
-              <div className="font-medium">🟧 Legal/Policy callout</div>
-              <ul className="list-disc pl-6 space-y-1">
-                <li><strong>What changes:</strong> adds new restricted zones.</li>
-                <li><strong>Who’s affected:</strong> people already compliant, families with kids, landlords nearby.</li>
-                <li><strong>When:</strong> effective 90 days after passage (timeline and committees here).</li>
-              </ul>
-            </div>
-            <div className="mt-3 rounded-xl bg-amber-50 text-amber-900 p-4">
-              <div className="font-medium">🔶 Why it matters</div>
-              <p>Evidence shows stability (housing + work) lowers risk; bans move people away from stability. This could push families to the margins without proven safety benefits.</p>
-            </div>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <a className="rounded-xl ring-1 ring-slate-200 p-3 hover:bg-slate-50" href="#" target="_blank" rel="noopener">Official bill page</a>
-              <a className="rounded-xl ring-1 ring-slate-200 p-3 hover:bg-slate-50" href="#" target="_blank" rel="noopener">Committee calendar</a>
-              <a className="rounded-xl ring-1 ring-slate-200 p-3 hover:bg-slate-50" href="#" target="_blank" rel="noopener">Bill analysis</a>
-            </div>
-            <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <div className="font-medium">📣 Submit testimony — 60-second voicemail / written note</div>
-                <button
-                  onClick={() => copyText('script-state', 'Chair and Members: Please oppose expanding residency bans in SB 123. Research shows these zones do not improve safety but do increase homelessness and job loss. Support evidence-based approaches that reduce harm and improve stability. Thank you.')}
-                  className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
-                >
-                  {copiedId === 'script-state' ? 'Copied!' : 'Copy script'}
-                </button>
-              </div>
-              <p className="mt-2 text-slate-700 text-sm">We’ll link the real committee portal and deadlines on each weekly page.</p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      {/* Highlight 3 — Case Watch */}
-      <section className="py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <article className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="scales">⚖️</span> Highlight 3 — Case Watch (Example: Doe v. CityName)</h3>
-            <p className="mt-2 text-slate-700"><strong>ELI5:</strong> A person challenged new rules applied to them <strong>after</strong> their case was over. The appeals court said, “If it walks like punishment, it might be punishment,” even if the law says it’s “civil.”</p>
-            <div className="mt-3 rounded-xl bg-violet-50 text-violet-900 p-4">
-              <div className="font-medium">🟪 Policy lens</div>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Courts are re-examining “civil vs. punitive” claims as rules pile up.</li>
-                <li>Retroactive add-ons can violate constitutional protections.</li>
-              </ul>
-            </div>
-            <div className="mt-3 rounded-xl bg-yellow-50 text-yellow-900 p-4">
-              <div className="font-medium">🟨 What this could mean for you</div>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>If similar rules apply in your state, watch for copycat lawsuits or legislative fixes.</li>
-                <li>Document concrete harms (lost housing, job denials) — those facts matter in court.</li>
-              </ul>
-            </div>
-            <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4">
-              <div className="flex items-center justify-between gap-3">
-                <div className="font-medium">📣 Do something — join amicus efforts</div>
-                <button
-                  onClick={() => copyText('script-case', 'I support efforts to challenge retroactive punitive measures that function as additional punishment. Please keep me informed about amicus opportunities and ways to document concrete harms affecting families.')}
-                  className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
-                >
-                  {copiedId === 'script-case' ? 'Copied!' : 'Copy interest note'}
-                </button>
-              </div>
-              <p className="mt-2 text-slate-700 text-sm">We’ll list active amicus contacts when available and link to official dockets/opinions.</p>
-            </div>
-          </article>
+          </div>
         </div>
       </section>
 
@@ -265,7 +217,6 @@ export default function LegislativeTracker(): JSX.Element {
           </div>
         </div>
       </section>
-
       {/* How we track, vet, and curate sources (with AI disclosure) */}
       <section className="py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -328,28 +279,6 @@ export default function LegislativeTracker(): JSX.Element {
         </div>
       </section>
 
-      {/* Where this lives in SOLAR */}
-      <section className="py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="map">🧭</span> Where this lives in SOLAR
-            </h3>
-            <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
-              <li><strong>Hub page (this):</strong> 
-                <code className="bg-slate-100 px-1 rounded">/resources/legislative-tracker</code> 
-                with highlights + archive.
-              </li>
-              <li><strong>Each week:</strong> its own page with full links, quotes, and sources.</li>
-              <li><strong>Auto-updates:</strong> once you add a line in 
-                <code className="bg-slate-100 px-1 rounded">src/data/legislativeUpdates.ts</code>, 
-                the newest appears at the top.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* Print styles */}
       <style>{`
         @media print {
@@ -361,4 +290,4 @@ export default function LegislativeTracker(): JSX.Element {
       `}</style>
     </div>
   );
-}
+      }
