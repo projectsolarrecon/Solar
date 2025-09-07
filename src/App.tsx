@@ -99,9 +99,9 @@ function App() {
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
               <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
               <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
-              <Route path="/resources/legislative-tracker/2025-09-06" element={<LegislativeUpdate_2025_09_06 />} />
-                       
-              
+              <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
+              <Route path="/resources/legislative-tracker/:slug" element={<WeeklyUpdateLoader />} />
+          
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
