@@ -14,7 +14,8 @@ export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
   date: '2025-08-30',
   title: 'YTD 2025: Courts Narrow Relief, States Tinker with Tiers, Zones Expand',
-  slug: 'sex-offender-registry-2025-ytd-roundup-courts-tiers-presence-zones',
+  // replace the slug for the 2025-08-30 entry:
+  slug: '2025-08-30',
   summary:
     'Year-to-date roundup: courts split on registry challenges, states tweak tiering/definitions, and presence-zone bans expand. Florida overhaul signed; USSC amendments effective Nov 1.',
 },
