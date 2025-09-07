@@ -226,15 +226,15 @@ function Resources() {
       ]
     },
     {
-      title: "Current Events & Legislative Updates",
-      icon: "📰",
-      resources: [
-        {
-          name: "Legislative Tracker",
-          type: "Database",
-          description: "Real-time tracking of pending sex offense legislation, registry reform bills, and policy changes across all states.",
-          link: "#"
-        },
+  title: "Current Events & Legislative Updates",
+  icon: "📰",
+  resources: [
+    {
+      name: "Legislative Tracker",
+      type: "Database",
+      description: "Real-time tracking of pending sex offense legislation, registry reform bills, and policy changes across all states.",
+      link: "/resources/legislative-tracker"
+    },
         {
           name: "Advocacy Wins & Updates",
           type: "News",
