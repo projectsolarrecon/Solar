@@ -137,4 +137,21 @@ function App() {
   );
 }
 
+function WeeklyUpdateLoader(): JSX.Element {
+  const { slug } = useParams();
+  if (!slug) return <div className="p-6">Update not found.</div>;
+
+  const matchKey = Object.keys(weeklyModules).find(k => k.endsWith(`/${slug}.tsx`));
+  if (!matchKey) return <div className="p-6">Update not found.</div>;
+
+  // Lazy-load the matching weekly page component
+  const LazyComp = lazy(weeklyModules[matchKey] as any);
+
+  return (
+    <Suspense fallback={<div className="p-6">Loading…</div>}>
+      <LazyComp />
+    </Suspense>
+  );
+}
+
 export default App;
