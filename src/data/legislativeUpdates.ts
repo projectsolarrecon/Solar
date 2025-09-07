@@ -12,6 +12,13 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
+  date: '2025-09-07',
+  title: 'TX law takes effect; WY tightens verification; NY proposes school-zone ban; MI stay denied',
+  slug: '2025-09-07',
+  summary:
+    'Texas adds “invasive visual recording” to registry (effective Sept 1); Wyoming boosts verification and limits removal; New York proposes 1,350-ft school-zone housing ban; Michigan judge denies stay.',
+},
+  {
   date: '2025-08-30',
   title: 'YTD 2025: Courts Narrow Relief, States Tinker with Tiers, Zones Expand',
   // replace the slug for the 2025-08-30 entry:
