@@ -10,6 +10,31 @@ export const meta = {
   summary:
     'Year-to-date roundup: courts split on registry challenges, states tweak tiering/definitions, and presence-zone bans expand. Florida overhaul signed; USSC amendments effective Nov 1.',
 };
+export const teasers = {
+  glance: [
+    '🏛️ Federal — USSC adopted supervised-release changes effective Nov 1, 2025.',
+    '🗺️ States — PA Act 22 (youth-sports/nonprofit -> Tier II); TN TBI classification; AR expands “no-go” zones + juvenile fee waiver; FL overhaul effective Oct 1; UT recodified; WV fees/admin.',
+    '⚖️ Cases — OK upheld retroactive park-distance rule; MO upheld lifetime GPS (as-applied); 10th Cir okayed strict device/internet limits; 6th Cir says TN injunctions must target specific provisions.',
+    '📣 Action — Florida implementation ahead of Oct 1; track Michigan SB 424; watch WA SB 5312 re-intro in 2026.',
+  ],
+  highlights: [
+    {
+      icon: '🏛️',
+      title: 'USSC — Supervised-Release Changes',
+      url: 'https://www.ussc.gov/guidelines/amendments/adopted-amendments-effective-november-1-2025'
+    },
+    {
+      icon: '🏷️',
+      title: 'Florida — CS/HB 1351 (Effective Oct 1, 2025)',
+      url: 'https://www.flsenate.gov/Session/Bill/2025/1351'
+    },
+    {
+      icon: '⚖️',
+      title: 'Case Watch — Doe v. Lee (6th Cir.)',
+      url: 'https://law.justia.com/cases/federal/appellate-courts/ca6/24-6020/24-6020-2025-05-12.html'
+    }
+  ]
+};
 
 export default function Update_2025_08_30(): JSX.Element {
   const [copiedId, setCopiedId] = useState<string | null>(null);
