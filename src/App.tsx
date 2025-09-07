@@ -51,6 +51,8 @@ import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide
 import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
 import WhoIsSOLAR from './pages/blog/WhoIsSOLAR';
 import TenantRightsGuide from './pages/resources/TenantRightsGuide';
+import LegislativeTracker from './pages/resources/LegislativeTracker';
+import LegislativeUpdate_2025_09_06 from './pages/resources/legislative-tracker/2025-09-06';
 
 function App() {
   return (
@@ -88,6 +90,8 @@ function App() {
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
               <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
+              <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
+              <Route path="/resources/legislative-tracker/2025-09-06" element={<LegislativeUpdate_2025_09_06 />} />
                        
               
 
