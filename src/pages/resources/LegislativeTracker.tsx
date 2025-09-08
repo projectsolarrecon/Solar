@@ -158,7 +158,32 @@ export default function LegislativeTracker(): JSX.Element {
       </section>
 
       {/* Featured action (always visible) */}
-      
+      <section className="mt-2">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-slate-50 border border-slate-200 p-5 shadow-sm flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="text-slate-800">
+              <div className="font-semibold">📣 Featured action</div>
+              <p className="text-sm">Copy a short message and send it through the official portal. Personalize if you can.</p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => copyText('script-feature', 'Hello — Please provide clear, plain-language guidance and timelines so families can comply without surprises. Thank you.')}
+                className="text-sm rounded-lg px-3 py-2 ring-1 ring-slate-300 hover:bg-slate-100"
+              >
+                {copied === 'script-feature' ? 'Copied!' : 'Copy script'}
+              </button>
+              {latest && (
+                <Link
+                  to={`/resources/legislative-tracker/${latest.slug}#highlights`}
+                  className="text-sm rounded-lg px-3 py-2 ring-1 ring-slate-300 hover:bg-slate-100"
+                >
+                  Go to this week’s actions
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Archive — dark gradient header */}
       <section id="archive" className="mt-6">
         <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
@@ -239,31 +264,6 @@ export default function LegislativeTracker(): JSX.Element {
         </div>
       </section>
       {/* Sticky "Take Action" bar (desktop & mobile) */}
-      {latest && (
-        <div className="fixed inset-x-0 bottom-0 z-30 print:hidden">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-4">
-            <div className="rounded-2xl shadow-lg bg-white ring-1 ring-slate-200 p-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-              <div className="text-slate-800">
-                <span className="font-semibold">🚀 Take action:</span> Visit this week’s page for scripts and official portals.
-              </div>
-              <div className="flex gap-2">
-                <Link
-                  to={`/resources/legislative-tracker/${latest.slug}#highlights`}
-                  className="rounded-xl px-3 py-2 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
-                >
-                  Open this week’s actions
-                </Link>
-                <button
-                  onClick={() => copyText('sticky-script', 'Hello — Please provide clear, plain-language guidance and timelines so families can comply without surprises. Thank you.')}
-                  className="rounded-xl px-3 py-2 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
-                >
-                  {copied === 'sticky-script' ? 'Copied!' : 'Copy script'}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Social share */}
       <section className="py-8">
