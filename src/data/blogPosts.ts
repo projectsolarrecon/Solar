@@ -11,6 +11,25 @@ export interface BlogPost {
 }
 
 export const allBlogPosts: BlogPost[] = [
+  // Insert this object at the TOP of the exported array (newest-first):
+
+  {
+  id: "when-everything-is-violent-2025-09-08",
+  title: "When Everything Is Violent, Nothing Is Violent",
+  excerpt:
+    "Labeling all sex crimes as 'violent' distorts justice, inflates sentences, undermines rehabilitation, and misallocates public-safety resources.",
+  author: "The SOLAR Project",
+  date: "2025-09-08",
+  readTime: "12–14 min",
+  category: "Policy",
+  tags: ["violent crime classification",
+    "sentencing guidelines",
+    "sex offender registry",
+    "Bureau of Prisons",
+    "First Step Act",
+    "RDAP"],
+  path: "/blog/when-everything-is-violent"
+  },
   {
   id: 'two-men-one-release-date',
   title: 'Two Men, One Release Date',
