@@ -5,25 +5,36 @@ import SEO from '../../../components/SEO';
 // --- meta used by the hub index ---
 export const meta = {
   date: '2025-09-07',
-  title: 'TX law takes effect; WY tightens verification; NY proposes school-zone ban; MI stay denied',
-  slug: '2025-09-07',
+  title: 'Weekly: Texas Law Now In Effect, NY Proposes School-Zone Ban, Michigan Ruling Stands',
+  slug: 'weekly-registry-2025-09-07-texas-ny-michigan',
   summary:
-    'Texas adds “invasive visual recording” to registry (effective Sept 1); Wyoming boosts verification and limits removal; New York proposes 1,350-ft school-zone housing ban; Michigan judge denies stay.',
+    'Texas HB 1465 takes effect; New York bill would add a 1,350-ft school-zone housing ban; Michigan judge keeps ruling in force during appeal; Wyoming reclassification already active.',
 };
 
-// --- teasers used by the hub preview ---
+// --- teasers for the hub (auto-pulled) ---
 export const teasers = {
   glance: [
-    '🏛️ Texas — HB 1465 now effective (Sept 1, 2025): “invasive visual recording” triggers registration.',
-    '🦬 Wyoming — HB 0280 enacted: higher verification frequency and fewer petition-off options (effective July 1, 2025).',
-    '🏙️ New York — S3113 proposes 1,350-ft school-zone housing ban (500 ft in NYC).',
-    '⚖️ Michigan — Does v. Whitmer: judge denied stay; ruling remains in effect during appeal.',
+    '🏛️ Federal — Sentencing Commission’s supervised-release changes remain set for Nov 1, 2025 (device/internet guidance).',
+    '🗺️ States — TX HB 1465 is now in effect (invasive visual recording → registration); NY S3113 proposes 1,350-ft school-zone housing ban; WY HB 0280 reclassification effective Jul 1.',
+    '⚖️ Cases — MI judge denied a stay, so his ruling remains active during appeal in Does v. Whitmer.',
+    '📣 Action — Quick contact links provided under each highlight.',
   ],
   highlights: [
-    { icon: '🏛️', title: 'Texas — HB 1465 now in effect', url: 'https://capitol.texas.gov/billlookup/text.aspx?Bill=HB1465&LegSess=89R' },
-    { icon: '🦬', title: 'Wyoming — HB 0280 raises verification', url: 'https://www.wyoleg.gov/Legislation/2025/HB0280' },
-    { icon: '🏙️', title: 'New York — S3113 school-zone proposal', url: 'https://assembly.state.ny.us/leg/?Text=Y&bn=S3113&sh=printbill&term=2025' },
-    { icon: '⚖️', title: 'Michigan — Does v. Whitmer stay denied', url: 'https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/' },
+    {
+      icon: '🏛️',
+      title: 'Texas — HB 1465 now in effect (Sept 1, 2025)',
+      url: 'https://capitol.texas.gov/tlodocs/89R/billtext/html/HB01465F.htm',
+    },
+    {
+      icon: '⚖️',
+      title: 'Michigan — Does v. Whitmer (stay denied, ruling stands)',
+      url: 'https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/',
+    },
+    {
+      icon: '🏷️',
+      title: 'New York — S3113 (proposed 1,350-ft school-zone ban)',
+      url: 'https://www.nysenate.gov/legislation/bills/2025/S3113',
+    },
   ],
 };
 
@@ -40,9 +51,9 @@ export default function Update_2025_09_07(): JSX.Element {
   return (
     <div className="bg-white">
       <SEO
-        title={`${meta.title} — SOLAR Legislative Tracker (Week of Sept 7, 2025)`}
-        description="Texas HB 1465 now effective; Wyoming verification/tiering changes enacted; New York proposes school-zone housing ban; Michigan judge denies stay. Official links and ELI5 summaries."
-        keywords="sex offender registry, Texas HB 1465, Wyoming HB 0280, New York S3113, Does v. Whitmer, SORA, verification frequency"
+        title={`${meta.title} — SOLAR Legislative Tracker (Week of Sep 7, 2025)`}
+        description="Texas law takes effect; New York proposes school-zone housing ban; Michigan ruling stands during appeal; Wyoming reclassification already active. Sources linked."
+        keywords="sex offender registry, residency restrictions, Texas HB 1465, Michigan Does v. Whitmer, New York S3113, Wyoming HB 0280"
       />
 
       {/* Hero */}
@@ -53,13 +64,13 @@ export default function Update_2025_09_07(): JSX.Element {
             <h1 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
               {meta.title}
             </h1>
-            <p className="mt-2 text-white/90">Week of September 7, 2025</p>
+            <p className="mt-2 text-white/90">Week of Sep 7, 2025</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#glance" className="rounded-2xl bg-white text-slate-800 px-4 py-2 font-medium shadow">This week at a glance</a>
               <a href="#highlights" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Highlights</a>
+              <a href="#states" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">States (A→W)</a>
               <a href="#cases" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Court decisions</a>
-              <a href="#states" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Legislation by state</a>
-              <a href="#media" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Media watch</a>
+              <a href="#media" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Media</a>
               <a href="#watchlist" className="rounded-2xl ring-1 ring-white/40 px-4 py-2">Watchlist</a>
             </div>
           </div>
@@ -71,24 +82,24 @@ export default function Update_2025_09_07(): JSX.Element {
         <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
             <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="calendar">🗓️</span> This Week at a Glance (ELI5)
+              <span role="img" aria-label="calendar">🗓️</span> This Week at a Glance
             </h2>
           </div>
         </header>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <ul className="space-y-2 text-slate-800">
-            <li>🏛️ <strong>Texas:</strong> <strong>HB 1465</strong> now effective (<strong>Sept 1, 2025</strong>) — invasive visual recording convictions now require registration. <a className="underline" href="https://capitol.texas.gov/billlookup/text.aspx?Bill=HB1465&LegSess=89R" target="_blank" rel="noreferrer">Bill text</a></li>
-            <li>🦬 <strong>Wyoming:</strong> <strong>HB 0280</strong> enacted (<strong>July 1, 2025</strong>) — higher verification frequency, limits on petition-off. <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Bill page</a></li>
-            <li>🏙️ <strong>New York:</strong> <strong>S3113</strong> proposes a 1,350-ft school-zone housing ban (500 ft in NYC). <a className="underline" href="https://assembly.state.ny.us/leg/?Text=Y&bn=S3113&sh=printbill&term=2025" target="_blank" rel="noreferrer">Bill text</a></li>
-            <li>⚖️ <strong>Michigan:</strong> <em>Does v. Whitmer</em> — judge <strong>denied a stay</strong>; ruling remains in force during appeal. <a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Court order</a></li>
+            <li>🏛️ <strong>Texas:</strong> <a className="underline" href="https://capitol.texas.gov/tlodocs/89R/billtext/html/HB01465F.htm" target="_blank" rel="noreferrer">HB 1465</a> is now in force (Sept 1) — people convicted of invasive visual recording must register. <span className="text-sm text-slate-600">(See also media: <a className="underline" href="https://www.kcentv.com/article/news/local/law-expanding-sex-offender-registry-texas/500-5208c095-3de0-4751-ba15-73245009642e" target="_blank" rel="noreferrer">KCEN</a>, <a className="underline" href="https://www.khou.com/article/news/local/texas/new-texas-laws-september-1-2025-crime-education/285-2974fa10-e304-4b4e-a756-2e99a21a5133" target="_blank" rel="noreferrer">KHOU</a>)</span></li>
+            <li>🏙️ <strong>New York:</strong> <a className="underline" href="https://www.nysenate.gov/legislation/bills/2025/S3113" target="_blank" rel="noreferrer">S3113</a> would create a 1,350-ft school-zone housing ban (500 ft in NYC); still in committee.</li>
+            <li>🦬 <strong>Wyoming:</strong> <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">HB 0280</a> (reclassification → more frequent verification; blocks petition-off for certain offenses) has been effective since Jul 1; enrolled act: <a className="underline" href="https://legiscan.com/WY/text/HB0280/id/3153364/Wyoming-2025-HB0280-Enrolled.pdf" target="_blank" rel="noreferrer">PDF</a>.</li>
+            <li>⚖️ <strong>Michigan:</strong> Judge <em>denied</em> a stay, so the ruling in <em>Does v. Whitmer</em> remains in effect during appeal (<a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">order</a>; media: <a className="underline" href="https://milawyersweekly.com/news/2025/07/11/michigan-sex-offender-registry-stay-denied/" target="_blank" rel="noreferrer">MiLawyersWeekly</a>).</li>
           </ul>
           <blockquote className="mt-4 border-l-4 border-blue-400 pl-4 text-slate-700 italic">
-            <strong>Why this matters:</strong> rule changes and uneven data-sharing create compliance traps; we flag what changed, what’s proposed, and where to act.
+            <strong>Why this matters:</strong> Surprise rule changes and uneven data-sharing create compliance traps. We show what changed, what’s proposed, and where to act — with official links so you can verify fast.
           </blockquote>
         </div>
       </section>
 
-      {/* Highlights */}
+      {/* Highlights (Top items first) */}
       <section id="highlights" className="mt-2">
         <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
@@ -99,271 +110,243 @@ export default function Update_2025_09_07(): JSX.Element {
         </header>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
-          {/* Texas */}
+          {/* Highlight — Texas */}
           <article className="rounded-2xl border border-slate-200 shadow-sm">
             <div className="px-5 pt-5">
-              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="capitol">🏛️</span> Texas — HB 1465 (now in effect)</h3>
-              <p className="mt-2"><strong>ELI5:</strong> Adds “invasive visual recording” (voyeurism) to offenses requiring registration.</p>
+              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                <span role="img" aria-label="state">🏛️</span> Texas — HB 1465 (now in effect)
+              </h3>
+              <p className="mt-2 text-slate-700"><strong>In plain terms:</strong> People convicted of <em>invasive visual recording</em> must register under Texas’s Article 62. Effective <strong>Sept 1, 2025</strong>.</p>
               <div className="mt-3 rounded-xl bg-amber-50 text-amber-900 p-4">
                 <div className="font-medium">Why it matters</div>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li>All Article 62 duties (reporting, verification, notices) now apply.</li>
-                  <li>Effective <strong>Sept 1, 2025</strong>.</li>
+                  <li>Triggers all report/verify duties (address changes, employment/school notice, timelines).</li>
+                  <li>Travel/move planning should account for reporting windows to avoid violations.</li>
                 </ul>
               </div>
-              <p className="mt-3 text-sm">
-                <span className="font-medium">Sources:</span>{' '}
-                <a className="underline" href="https://capitol.texas.gov/billlookup/text.aspx?Bill=HB1465&LegSess=89R" target="_blank" rel="noreferrer">Bill text</a>{' · '}
-                <a className="underline" href="https://capitol.texas.gov/reports/Report.aspx?ID=passed&LegSess=89R" target="_blank" rel="noreferrer">Passed report</a>{' · '}
-                <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">TX DPS program</a>
-              </p>
-              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div className="font-medium">📣 Take action</div>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">TX DPS guidance</a>
+              <div className="mt-3 text-sm">
+                <span className="font-medium">Official:</span> <a className="underline" href="https://capitol.texas.gov/tlodocs/89R/billtext/html/HB01465F.htm" target="_blank" rel="noreferrer">Enrolled text</a> ·{' '}
+                <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">TX DPS — Registration Program</a><br/>
+                <span className="font-medium">Media:</span> <a className="underline" href="https://www.kcentv.com/article/news/local/law-expanding-sex-offender-registry-texas/500-5208c095-3de0-4751-ba15-73245009642e" target="_blank" rel="noreferrer">KCEN explainer</a> ·{' '}
+                <a className="underline" href="https://www.khou.com/article/news/local/texas/new-texas-laws-september-1-2025-crime-education/285-2974fa10-e304-4b4e-a756-2e99a21a5133" target="_blank" rel="noreferrer">KHOU roundup</a>
+              </div>
+              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="font-medium">📣 Know your obligations / contact your legislators</div>
+                <div className="flex gap-2">
                   <button
-                    onClick={() => copyText('script-tx', 'Hello — please publish plain-language guidance for HB 1465 so people understand reporting timelines and verification under Article 62.')}
+                    onClick={() => copyText('script-tx', 'Hello — With HB 1465 now in effect, please ensure clear, plain-language guidance and timelines for registration and verification so families can comply without surprises. Thank you.')}
                     className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
                   >
-                    {copiedId === 'script-tx' ? 'Copied!' : 'Copy message'}
+                    {copiedId === 'script-tx' ? 'Copied!' : 'Copy script'}
                   </button>
-                </div>
-              </div>
-            </div>
-          </article>
-          {/* Wyoming */}
-          <article className="rounded-2xl border border-slate-200 shadow-sm">
-            <div className="px-5 pt-5">
-              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="bison">🦬</span> Wyoming — HB 0280 (effective July 1, 2025)</h3>
-              <p className="mt-2"><strong>ELI5:</strong> Certain offenses move into higher classifications — meaning <strong>more frequent verification</strong> and fewer options to petition off.</p>
-              <div className="mt-3 rounded-xl bg-blue-50 text-blue-900 p-4">
-                <div className="font-medium">Why it matters</div>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li>People who expected to petition off after some years may no longer qualify.</li>
-                  <li>Missing a verification can trigger violations; know your new timeline.</li>
-                </ul>
-              </div>
-              <p className="mt-3 text-sm">
-                <span className="font-medium">Sources:</span>{' '}
-                <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Bill page</a>{' · '}
-                <a className="underline" href="https://wyomingdci.wyo.gov/criminal-justice-information-services-cjis/sor-faqs" target="_blank" rel="noreferrer">Wyoming DCI — SOR FAQs</a>
-              </p>
-              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div className="font-medium">📣 Get oriented</div>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://wyomingdci.wyo.gov/criminal-justice-information-services-cjis/sex-offender-registry" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">Registry overview</a>
-                  <button
-                    onClick={() => copyText('script-wy', 'Hello — I need clarity on HB 0280 verification schedules and petition-off eligibility. Could you publish a simple timeline and eligibility chart?')}
+                  <a
+                    href="https://wrm.capitol.texas.gov/"
+                    target="_blank"
+                    rel="noreferrer"
                     className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
                   >
-                    {copiedId === 'script-wy' ? 'Copied!' : 'Copy message'}
-                  </button>
+                    Find TX legislators
+                  </a>
+                  <a
+                    href="https://www.dps.texas.gov/section/crime-records/faq/criminal-history-records-and-texas-sex-offender-registration-program-faq"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
+                  >
+                    DPS FAQ
+                  </a>
                 </div>
               </div>
             </div>
           </article>
 
-          {/* New York */}
+          {/* Highlight — Michigan case */}
           <article className="rounded-2xl border border-slate-200 shadow-sm">
             <div className="px-5 pt-5">
-              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="city">🏙️</span> New York — S3113 (proposed school-zone housing ban)</h3>
-              <p className="mt-2"><strong>ELI5:</strong> Would ban residence within <strong>1,350 ft</strong> of school property lines statewide (and <strong>500 ft</strong> in NYC). It’s still in committee.</p>
-              <div className="mt-3 rounded-xl bg-violet-50 text-violet-900 p-4">
+              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                <span role="img" aria-label="scales">⚖️</span> Michigan — <em>Does v. Whitmer</em> (stay denied)
+              </h3>
+              <p className="mt-2 text-slate-700"><strong>In plain terms:</strong> The judge <em>refused</em> to pause his earlier ruling that found parts of SORA unconstitutional, so that ruling remains in effect during the appeal.</p>
+              <div className="mt-3 rounded-xl bg-blue-50 text-blue-900 p-4">
                 <div className="font-medium">Why it matters</div>
                 <ul className="list-disc pl-6 space-y-1">
-                  <li>Residency bans have not shown public-safety benefits but do increase homelessness and instability.</li>
+                  <li>Reduces the risk of being penalized under provisions already flagged as unconstitutional.</li>
+                  <li>Signals courts expect targeted, evidence-based justifications for burdensome rules.</li>
+                </ul>
+              </div>
+              <div className="mt-3 text-sm">
+                <span className="font-medium">Official/Docs:</span> <a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order denying stay</a><br/>
+                <span className="font-medium">Media/Explainers:</span> <a className="underline" href="https://milawyersweekly.com/news/2025/07/11/michigan-sex-offender-registry-stay-denied/" target="_blank" rel="noreferrer">Michigan Lawyers Weekly</a> · <a className="underline" href="https://www.aclumich.org/en/what-you-need-know-about-does-iii" target="_blank" rel="noreferrer">ACLU-MI background</a>
+              </div>
+              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="font-medium">📣 Ask for legislative clarity (optional)</div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => copyText('script-mi', 'Hello — Please prioritize clear, plain-language guidance aligning Michigan law with recent court rulings so that compliant families aren’t caught in confusion during the appeal.')}
+                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
+                  >
+                    {copiedId === 'script-mi' ? 'Copied!' : 'Copy note'}
+                  </button>
+                  <a
+                    href="https://www.legislature.mi.gov/Legislature/Legislators"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
+                  >
+                    Find MI legislators
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+          {/* Highlight — New York proposal */}
+          <article className="rounded-2xl border border-slate-200 shadow-sm">
+            <div className="px-5 pt-5">
+              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
+                <span role="img" aria-label="label">🏷️</span> New York — S3113 (proposed school-zone housing ban)
+              </h3>
+              <p className="mt-2 text-slate-700"><strong>In plain terms:</strong> Would bar certain people from living within <strong>1,350 ft</strong> of school property lines (or <strong>500 ft</strong> in NYC). Violations would be a Class C felony. In committee.</p>
+              <div className="mt-3 rounded-xl bg-orange-50 text-amber-900 p-4">
+                <div className="font-medium">Why it matters</div>
+                <ul className="list-disc pl-6 space-y-1">
+                  <li>Residency bans don’t have strong evidence of improving safety and can increase homelessness and instability.</li>
                   <li>This would be among the stricter default distance rules if enacted.</li>
                 </ul>
               </div>
-              <p className="mt-3 text-sm">
-                <span className="font-medium">Sources:</span>{' '}
-                <a className="underline" href="https://assembly.state.ny.us/leg/?Text=Y&bn=S3113&sh=printbill&term=2025" target="_blank" rel="noreferrer">Bill text</a>{' · '}
-                <a className="underline" href="https://www.nysenate.gov/committees/crime-victims-crime-and-correction" target="_blank" rel="noreferrer">Senate committee page</a>
-              </p>
-              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div className="font-medium">📣 Share input</div>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.nysenate.gov/find-my-senator" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">Find your Senator</a>
-                  <a href="https://www.nysenate.gov/contact" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">General contact form</a>
+              <div className="mt-3 text-sm">
+                <span className="font-medium">Official:</span> <a className="underline" href="https://www.nysenate.gov/legislation/bills/2025/S3113" target="_blank" rel="noreferrer">NY Senate bill page</a> · <a className="underline" href="https://assembly.state.ny.us/leg/?Actions=Y&Committee%26nbspVotes=Y&Floor%26nbspVotes=Y&Summary=Y&Text=Y&bn=S03113&term=2025" target="_blank" rel="noreferrer">Assembly mirror</a>
+              </div>
+              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <div className="font-medium">📣 Send input (committee & members)</div>
+                <div className="flex gap-2">
                   <button
-                    onClick={() => copyText('script-ny', 'Chair and Members: Please reject broad school-zone housing bans in S3113. Evidence shows residency restrictions don’t improve safety and do increase homelessness. Focus on approaches that support stability and prevention.')}
+                    onClick={() => copyText('script-ny', 'Chair and Members — Please consider evidence that residency bans do not improve safety and can increase homelessness. I urge careful review of S3113 and support for stability-focused alternatives.')}
                     className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
                   >
-                    {copiedId === 'script-ny' ? 'Copied!' : 'Copy message'}
+                    {copiedId === 'script-ny' ? 'Copied!' : 'Copy note'}
                   </button>
+                  <a
+                    href="https://www.nysenate.gov/committees/crime-victims-crime-and-correction"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
+                  >
+                    Committee page
+                  </a>
+                  <a
+                    href="https://www.nysenate.gov/find-my-senator"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
+                  >
+                    Find my Senator
+                  </a>
                 </div>
               </div>
             </div>
           </article>
-
-          {/* Michigan */}
-          <article className="rounded-2xl border border-slate-200 shadow-sm">
-            <div className="px-5 pt-5">
-              <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="scales">⚖️</span> Michigan — <em>Does v. Whitmer</em> (stay denied)</h3>
-              <p className="mt-2"><strong>ELI5:</strong> The judge refused to pause his ruling that found parts of the registry unconstitutional, so the ruling <strong>remains in effect</strong> during appeal.</p>
-              <div className="mt-3 rounded-xl bg-blue-50 text-blue-900 p-4">
-                <div className="font-medium">Why it matters</div>
-                <ul className="list-disc pl-6 space-y-1">
-                  <li>Reduces risk of being penalized under provisions already flagged as unconstitutional.</li>
-                  <li>Sets up a clearer path for targeted legislative fixes.</li>
-                </ul>
-              </div>
-              <p className="mt-3 text-sm">
-                <span className="font-medium">Sources:</span>{' '}
-                <a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order denying stay</a>{' · '}
-                <a className="underline" href="https://www.aclumich.org/en/sora" target="_blank" rel="noreferrer">ACLU-MI SORA hub</a>
-              </p>
-              <div className="mt-4 rounded-xl bg-slate-50 border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div className="font-medium">📣 Get updates / contact lawmakers</div>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.aclumich.org/en/sora" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">ACLU-MI SORA updates</a>
-                  <a href="https://www.legislature.mi.gov/Legislature/Legislators" target="_blank" rel="noreferrer" className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100">Find MI legislators</a>
-                  <button
-                    onClick={() => copyText('script-mi', 'Hello — please prioritize targeted, constitutional fixes to Michigan’s registry in light of the current ruling, with clear guidance so families can comply without surprises.')}
-                    className="text-sm rounded-lg px-3 py-1 ring-1 ring-slate-300 hover:bg-slate-100"
-                  >
-                    {copiedId === 'script-mi' ? 'Copied!' : 'Copy message'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </article>
-
         </div>
       </section>
 
-      {/* Court Decisions & Litigation */}
-      <section id="cases" className="mt-4">
-        <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="gavel">⚖️</span> Court Decisions & Litigation
-            </h2>
-          </div>
-        </header>
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
-          {/* Michigan detail card */}
-          <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-            <h3 className="text-lg font-semibold">Michigan — <em>Does v. Whitmer</em> (E.D. Mich.) — <span className="text-emerald-700 font-semibold">Stay denied</span></h3>
-            <ul className="mt-2 list-disc pl-6 text-slate-800 space-y-1">
-              <li><strong>Date:</strong> May 19, 2025 (order denying stay).</li>
-              <li><strong>Plain English:</strong> The judge declined to pause his ruling; it remains in effect during appeal.</li>
-            </ul>
-            <p className="mt-2 text-sm">
-              <span className="font-medium">Docs & explainer:</span>{' '}
-              <a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order</a>{' · '}
-              <a className="underline" href="https://www.aclumich.org/en/sora" target="_blank" rel="noreferrer">ACLU-MI SORA hub</a>
-            </p>
-          </article>
-        </div>
-      </section>
-
-      {/* Legislation by State (A→Z) */}
+      {/* States (alphabetized) */}
       <section id="states" className="mt-4">
         <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
             <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="map">🗺️</span> Legislation by State (A→Z)
+              <span role="img" aria-label="map">🗺️</span> State Highlights (A→W)
             </h2>
           </div>
         </header>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
-
           {/* New York */}
           <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-            <h3 className="text-lg font-semibold">New York — S3113 (residency ban near schools)</h3>
-            <p className="mt-1 text-slate-800"><strong>Status:</strong> In committee. Would set a default <strong>1,350-ft</strong> housing ban from school property lines (500 ft in NYC).</p>
+            <h3 className="text-lg font-semibold">New York</h3>
+            <p><strong>S3113</strong> — Proposed school-zone housing ban (<strong>1,350 ft</strong>, or <strong>500 ft</strong> in NYC). <em>In committee.</em></p>
             <p className="mt-1 text-sm">
-              <a className="underline" href="https://assembly.state.ny.us/leg/?Text=Y&bn=S3113&sh=printbill&term=2025" target="_blank" rel="noreferrer">Bill page & text</a>{' · '}
-              <a className="underline" href="https://www.nysenate.gov/committees/crime-victims-crime-and-correction" target="_blank" rel="noreferrer">Senate committee</a>
+              <a className="underline" href="https://www.nysenate.gov/legislation/bills/2025/S3113" target="_blank" rel="noreferrer">Bill page</a> ·{' '}
+              <a className="underline" href="https://assembly.state.ny.us/leg/?Actions=Y&Committee%26nbspVotes=Y&Floor%26nbspVotes=Y&Summary=Y&Text=Y&bn=S03113&term=2025" target="_blank" rel="noreferrer">Assembly mirror</a>
             </p>
           </article>
 
           {/* Texas */}
           <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-            <h3 className="text-lg font-semibold">Texas — HB 1465 (invasive visual recording → registration)</h3>
-            <p className="mt-1 text-slate-800"><strong>Status:</strong> Signed; <strong>effective Sept 1, 2025</strong>. Adds invasive visual recording to offenses requiring registration.</p>
+            <h3 className="text-lg font-semibold">Texas</h3>
+            <p><strong>HB 1465</strong> — Invasive visual recording now a reportable offense under Article 62. <strong>Effective Sept 1, 2025.</strong></p>
             <p className="mt-1 text-sm">
-              <a className="underline" href="https://capitol.texas.gov/billlookup/text.aspx?Bill=HB1465&LegSess=89R" target="_blank" rel="noreferrer">Bill text</a>{' · '}
-              <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">TX DPS Registration</a>
+              <a className="underline" href="https://capitol.texas.gov/tlodocs/89R/billtext/html/HB01465F.htm" target="_blank" rel="noreferrer">Enrolled text</a> ·{' '}
+              <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">TX DPS program page</a>
             </p>
           </article>
 
           {/* Wyoming */}
           <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-            <h3 className="text-lg font-semibold">Wyoming — HB 0280 (verification frequency ↑; petition-off limits)</h3>
-            <p className="mt-1 text-slate-800"><strong>Status:</strong> Enacted; <strong>effective July 1, 2025</strong>. Reclassifies certain offenses, increasing verification and limiting removal petitions.</p>
+            <h3 className="text-lg font-semibold">Wyoming</h3>
+            <p><strong>HB 0280</strong> — Reclassification leading to more frequent verification; blocks petition-off for listed offenses. <strong>Effective Jul 1, 2025.</strong></p>
             <p className="mt-1 text-sm">
-              <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Session page</a>{' · '}
-              <a className="underline" href="https://wyomingdci.wyo.gov/criminal-justice-information-services-cjis/sor-faqs" target="_blank" rel="noreferrer">Wyoming DCI — FAQs</a>
+              <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Session page</a> ·{' '}
+              <a className="underline" href="https://legiscan.com/WY/text/HB0280/id/3153364/Wyoming-2025-HB0280-Enrolled.pdf" target="_blank" rel="noreferrer">Enrolled Act PDF</a>
             </p>
           </article>
 
-          {/* No Updates Accordion */}
+          {/* No-update states toggle */}
           <details className="rounded-2xl border border-dashed border-slate-300 p-4">
-            <summary className="cursor-pointer font-medium">No state-level legislative updates this week (click to view list)</summary>
+            <summary className="cursor-pointer font-medium">No state-level legislative movement posted this week (collapsed)</summary>
             <p className="mt-2 text-slate-700 text-sm">
-              AL, AK, AZ, AR, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MN, MO, MS, MT,
-              NC, ND, NE, NH, NJ, NM, NV, OH, OK, OR, PA, RI, SC, SD, TN, UT, VA, VT, WA, WI, WV
+              AL, AK, AZ, AR, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MN, MO, MS, MT, NC, ND, NE, NH, NJ, NM, NV, OH, OK, OR, PA, RI, SC, SD, TN, UT, VA, VT, WI, WV
             </p>
           </details>
-
-        </div>
-      </section>
-{/* Practical Corner */}
-      <section id="practical" className="mt-4">
-        <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="toolbox">🧰</span> Practical Corner (quick links)
-            </h2>
-          </div>
-        </header>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-4 sm:grid-cols-2">
-          <a className="rounded-xl ring-1 ring-slate-200 p-4 hover:bg-slate-50"
-             href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program"
-             target="_blank" rel="noreferrer">🔎 Texas Article 62 basics — reporting & verification</a>
-          <a className="rounded-xl ring-1 ring-slate-200 p-4 hover:bg-slate-50"
-             href="https://www.nysenate.gov/find-my-senator"
-             target="_blank" rel="noreferrer">📨 Find your NY Senator — send a comment on S3113</a>
-          <a className="rounded-xl ring-1 ring-slate-200 p-4 hover:bg-slate-50"
-             href="https://wyomingdci.wyo.gov/criminal-justice-information-services-cjis/sor-faqs"
-             target="_blank" rel="noreferrer">🗺️ Wyoming registry FAQ — verification timelines</a>
-          <a className="rounded-xl ring-1 ring-slate-200 p-4 hover:bg-slate-50"
-             href="https://www.aclumich.org/en/sora"
-             target="_blank" rel="noreferrer">🧾 Michigan SORA updates — what the ruling means</a>
         </div>
       </section>
 
-      {/* Media Watch */}
-      <section id="media" className="mt-4">
+      {/* Court decisions */}
+      <section id="cases" className="mt-4">
         <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
             <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="newspaper">📰</span> Media Watch (policy-relevant coverage)
+              <span role="img" aria-label="scales">⚖️</span> Court Decisions & Litigation
             </h2>
           </div>
         </header>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
-          {/* Use durable official sources to avoid link rot; media pieces can be added when stable */}
+          {/* Michigan — Does v. Whitmer (order denying stay) */}
           <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
-            <h3 className="text-lg font-semibold">Texas — HB 1465 effective</h3>
-            <p className="mt-1 text-slate-700">To confirm the change and effective date, rely on the official legislature sources below (these don’t break behind paywalls or CMS changes).</p>
-            <blockquote className="mt-3 border-l-4 border-slate-300 pl-4 italic text-slate-800">
-              “HB 1465 adds invasive visual recording to the list of offenses requiring registration under Chapter 62, effective September 1, 2025.”
-            </blockquote>
-            <ul className="mt-3 list-disc pl-6 text-sm">
-              <li><a className="underline" href="https://capitol.texas.gov/billlookup/text.aspx?Bill=HB1465&LegSess=89R" target="_blank" rel="noreferrer">Texas Legislature — Bill text (all versions)</a></li>
-              <li><a className="underline" href="https://capitol.texas.gov/reports/Report.aspx?ID=passed&LegSess=89R" target="_blank" rel="noreferrer">Legislature report — Passed & effective dates</a></li>
-            </ul>
+            <h3 className="text-lg font-semibold">Michigan — <em>Does v. Whitmer</em> (E.D. Mich.) — Stay denied; ruling stands during appeal</h3>
+            <p><strong>In plain terms:</strong> The judge said it’s not in the public interest to keep enforcing parts of a law already found unconstitutional. The state hasn’t shown it’s likely to win on appeal, so the ruling remains in place.</p>
+            <div className="mt-3 rounded-xl bg-blue-50 text-blue-900 p-4">
+              <div className="font-medium">Docs & explainers</div>
+              <ul className="list-disc pl-6 space-y-1 text-sm">
+                <li><a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order denying stay</a></li>
+                <li><a className="underline" href="https://milawyersweekly.com/news/2025/07/11/michigan-sex-offender-registry-stay-denied/" target="_blank" rel="noreferrer">Michigan Lawyers Weekly summary</a></li>
+              </ul>
+            </div>
           </article>
         </div>
       </section>
 
-      {/* Rolling Watchlist */}
+      {/* Media */}
+      <section id="media" className="mt-4">
+        <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <span role="img" aria-label="newspaper">📰</span> Media coverage worth reading
+            </h2>
+          </div>
+        </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
+          <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Texas — Effective-date coverage of HB 1465: <a className="underline" href="https://www.kcentv.com/article/news/local/law-expanding-sex-offender-registry-texas/500-5208c095-3de0-4751-ba15-73245009642e" target="_blank" rel="noreferrer">KCEN</a> · <a className="underline" href="https://www.khou.com/article/news/local/texas/new-texas-laws-september-1-2025-crime-education/285-2974fa10-e304-4b4e-a756-2e99a21a5133" target="_blank" rel="noreferrer">KHOU</a></li>
+              <li>Michigan — Case posture recap: <a className="underline" href="https://milawyersweekly.com/news/2025/07/11/michigan-sex-offender-registry-stay-denied/" target="_blank" rel="noreferrer">Michigan Lawyers Weekly</a></li>
+            </ul>
+            <blockquote className="mt-4 border-l-4 border-slate-300 pl-4 italic text-slate-700">
+              “Clear rules and clear timelines help families comply — confusion doesn’t.” Use these articles alongside the official links above for full context.
+            </blockquote>
+          </article>
+        </div>
+      </section>
+      {/* Watchlist */}
       <section id="watchlist" className="mt-4 mb-12">
         <header className="bg-gradient-to-r from-slate-100 to-white border-y border-slate-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
@@ -372,13 +355,28 @@ export default function Update_2025_09_07(): JSX.Element {
             </h2>
           </div>
         </header>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <ul className="list-disc pl-6 space-y-1">
-            <li><strong>MI — <em>Does v. Whitmer</em></strong>: watch Sixth Circuit appeal activity and any legislative fixes. <a className="underline" href="https://www.aclumich.org/en/sora" target="_blank" rel="noreferrer">ACLU-MI SORA</a></li>
-            <li><strong>NY — S3113</strong>: monitor committee hearings/amendments. <a className="underline" href="https://assembly.state.ny.us/leg/?Text=Y&bn=S3113&sh=printbill&term=2025" target="_blank" rel="noreferrer">Bill page & text</a></li>
-            <li><strong>TX — HB 1465</strong>: look for DPS guidance updates. <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">TX DPS program</a></li>
-            <li><strong>WY — HB 0280</strong>: impacts on verification schedules and petition expectations. <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Session page</a></li>
-          </ul>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6">
+          <article className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <ul className="list-disc pl-6 space-y-1">
+              <li><strong>New York — S3113:</strong> Watch for committee hearing dates and amendments. <a className="underline" href="https://www.nysenate.gov/legislation/bills/2025/S3113" target="_blank" rel="noreferrer">Bill page</a></li>
+              <li><strong>Texas — HB 1465:</strong> Implementation & DPS guidance updates. <a className="underline" href="https://www.dps.texas.gov/section/crime-records/texas-sex-offender-registration-program" target="_blank" rel="noreferrer">DPS program</a></li>
+              <li><strong>Wyoming — HB 0280:</strong> Effects on verification cycles & petition expectations post-effective date. <a className="underline" href="https://www.wyoleg.gov/Legislation/2025/HB0280" target="_blank" rel="noreferrer">Session page</a></li>
+              <li><strong>Michigan — Does v. Whitmer:</strong> Track appeal activity and any legislative fixes. <a className="underline" href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      {/* Friendly AI assist note */}
+      <section className="py-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <h3 className="text-lg font-semibold flex items-center gap-2"><span role="img" aria-label="lab">🧪</span> How we track, vet, and curate</h3>
+            <p className="mt-2 text-slate-700">
+              We link <strong>primary sources</strong> (official bill pages, enrolled acts, court orders, agency sites) and add <strong>reputable media</strong> for context. We also use AI to scan nationwide dockets and calendars so fewer items slip through —
+              but AI can miss nuance. If something looks off, please tell us and we’ll fix it quickly.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -393,4 +391,3 @@ export default function Update_2025_09_07(): JSX.Element {
     </div>
   );
 }
-      
