@@ -1,280 +1,323 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SEO from '../../components/SEO';
 import { legislativeUpdates, LegislativeUpdateMeta } from '../../data/legislativeUpdates';
 
-// Auto-discover weekly update pages (relative to THIS file)
+// Auto-discover weekly pages under /resources/legislative-tracker
 const weeklyModules = import.meta.glob('./legislative-tracker/*.tsx');
 
+type Teasers = {
+  glance?: string[];
+  highlights?: { icon: string; title: string; url: string }[];
+} | null;
+
 export default function LegislativeTracker(): JSX.Element {
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const [copied, setCopied] = useState<string | null>(null);
+  const [latestTeasers, setLatestTeasers] = useState<Tezers>(null);
 
-  const items = useMemo(() => {
-    // Sort newest first by ISO date string YYYY-MM-DD
-    return [...legislativeUpdates].sort((a, b) => (a.date < b.date ? 1 : -1));
-  }, []);
-
+  // newest first
+  const items = useMemo(
+    () => [...legislativeUpdates].sort((a, b) => (a.date < b.date ? 1 : -1)),
+    []
+  );
   const latest = items[0];
   const archive = items.slice(1);
 
-  const handlePrint = () => window.print();
-
-  const copyText = async (id: string, text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 1600);
-    } catch {
-      // no-op
-    }
-  };
-
-  // Load teasers (ELI5 bullets + highlight cards) from latest weekly page
-  const [latestTeasers, setLatestTeasers] = useState<{
-    glance?: string[];
-    highlights?: { icon: string; title: string; url: string }[];
-  } | null>(null);
-
   useEffect(() => {
     if (!latest) return;
-    // IMPORTANT: slug must match the latest weekly page's file name (no ".tsx")
+    // try to import teasers from latest weekly page
     const importPath = `./legislative-tracker/${latest.slug}.tsx`;
     const importer = weeklyModules[importPath];
     if (importer) {
       importer().then((mod: any) => {
         setLatestTeasers(mod.teasers ?? null);
-      });
-    } else {
-      setLatestTeasers(null);
+      }).catch(() => setLatestTeasers(null));
     }
   }, [latest]);
 
+  const copyText = async (id: string, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(id);
+      setTimeout(() => setCopied(null), 1400);
+    } catch {/* no-op */}
+  };
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://thesolarproject.org/resources/legislative-tracker';
+
   return (
     <div className="bg-white">
-      <SEO 
+      <SEO
         title="Legislative Tracker & Advocacy Hub — The SOLAR Project"
-        description="Weekly highlights, plain-English explanations, and concrete actions on policy and cases shaping life on and after the registry."
-        keywords="legislative tracker, registry reform, reentry policy, court cases, testimony, SOLAR"
+        description="Weekly highlights, plain-language explanations, and direct actions on laws and cases that shape life on and after the registry."
+        keywords="legislative tracker, registry reform, court cases, testimony, SOLAR"
       />
 
-      {/* Hero / Header */}
-      <section className="relative overflow-hidden text-white">
-        <div className="bg-gradient-to-r from-slate-700/90 to-slate-600/90">
+      {/* Hero */}
+      <section className="relative text-white">
+        <div className="bg-gradient-to-r from-slate-800 to-slate-600">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="mb-3">
-              <Link to="/resources" className="inline-flex items-center gap-2 text-white/85 hover:underline print:hidden" aria-label="Back to Resources">
-                <span>←</span>
-                <span>Back to Resources</span>
-              </Link>
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 ring-1 ring-white/25 px-3 py-1 text-sm">
-              <span role="img" aria-label="newspaper">📰</span>
-              <span>Current Events & Legislative Updates</span>
-            </div>
+            <Link to="/resources" className="text-white/90 hover:underline print:hidden">← Back to Resources</Link>
             <h1 className="mt-3 text-3xl md:text-5xl font-bold">Legislative Tracker & Advocacy Hub</h1>
-            <p className="mt-3 max-w-3xl text-white/90">Weekly highlights, plain-English explanations, and concrete ways to act on the policies and cases that shape life on and after the registry.</p>
+            <p className="mt-3 max-w-3xl text-white/90">
+              Plain-language weekly updates with official links, context, and quick ways to act.
+            </p>
             <div className="mt-6 flex flex-wrap gap-3 print:hidden">
               {latest && (
                 <Link
                   to={`/resources/legislative-tracker/${latest.slug}`}
                   className="inline-flex items-center gap-2 rounded-2xl bg-white text-slate-800 px-4 py-2 font-medium shadow hover:shadow-md"
                 >
-                  <span role="img" aria-label="sparkles">✨</span>
-                  <span>Read this week’s full update</span>
+                  ✨ Read this week’s full update
                 </Link>
               )}
-              <button
-                onClick={handlePrint}
-                className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30"
-              >
-                <span role="img" aria-label="printer">🖨️</span>
-                <span>Print</span>
-              </button>
-              <a href="#archive" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30">
-                <span role="img" aria-label="file box">🗂️</span>
-                <span>Browse archive</span>
-              </a>
+              <a href="#glance" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30">🗓️ Glance</a>
+              <a href="#highlights" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30">⭐ Highlights</a>
+              <a href="#archive" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30">🗂️ Archive</a>
+              <a href="#glossary" className="inline-flex items-center gap-2 rounded-2xl bg-slate-900/20 text-white px-4 py-2 font-medium ring-1 ring-white/30 hover:bg-slate-900/30">📘 Glossary</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How to use */}
+      {/* How to use (accordion) */}
+      <section className="py-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <details className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <summary className="cursor-pointer text-lg font-semibold">🧭 How to use this page</summary>
+            <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
+              <li><strong>Start at “Glance”.</strong> 60-second overview of the week.</li>
+              <li><strong>Open any highlight</strong> to see what changed, why it matters, and what to do.</li>
+              <li><strong>Use the Archive</strong> to browse prior weeks and track trends.</li>
+            </ul>
+            <div className="mt-4 text-sm text-slate-600 flex flex-wrap gap-4">
+              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-blue-500" /> Info</span>
+              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-yellow-400" /> Reminder</span>
+              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-orange-500" /> Legal</span>
+              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-emerald-500" /> Resource</span>
+              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-rose-500" /> Urgent</span>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      {/* This Week at a Glance — dark gradient header */}
+      <section id="glance" className="mt-2">
+        <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">🗓️ This Week at a Glance</h2>
+          </div>
+        </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <ul className="grid gap-3 md:grid-cols-2">
+            {(latestTeasers?.glance ?? [
+              '🏛️ Federal — (loading latest)',
+              '🗺️ States — (loading latest)',
+              '⚖️ Cases — (loading latest)',
+              '📣 Action — (loading latest)',
+            ]).map((line, i) => (
+              <li key={i} className="rounded-xl ring-1 ring-slate-200 p-3 text-slate-800 bg-slate-50">{line}</li>
+            ))}
+          </ul>
+          {latest && (
+            <div className="mt-4">
+              <Link to={`/resources/legislative-tracker/${latest.slug}`} className="inline-flex items-center gap-2 text-slate-700 underline">
+                Read the full weekly update →
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+      {/* Highlights — dark gradient header */}
+      <section id="highlights" className="mt-4">
+        <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">⭐ Highlights</h2>
+          </div>
+        </header>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid gap-6 md:grid-cols-2">
+          {(latestTeasers?.highlights ?? []).map((h, idx) => (
+            <article key={idx} className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <span aria-hidden="true">{h.icon}</span> <a className="hover:underline text-slate-800" href={h.url} target="_blank" rel="noreferrer">{h.title}</a>
+              </h3>
+              <p className="mt-2 text-slate-700 text-sm">Open the weekly page for the plain-language summary, why it matters, and direct action links.</p>
+              {latest && (
+                <div className="mt-3">
+                  <Link to={`/resources/legislative-tracker/${latest.slug}#highlights`} className="inline-flex items-center gap-2 text-slate-700 underline">See details →</Link>
+                </div>
+              )}
+            </article>
+          ))}
+          {(!latestTeasers || (latestTeasers?.highlights ?? []).length === 0) && (
+            <div className="text-slate-600">Highlights will appear here as soon as the weekly page is loaded.</div>
+          )}
+        </div>
+      </section>
+
+      {/* Featured action (always visible) */}
+      <section className="mt-2">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl bg-slate-50 border border-slate-200 p-5 shadow-sm flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div className="text-slate-800">
+              <div className="font-semibold">📣 Featured action</div>
+              <p className="text-sm">Copy a short message and send it through the official portal. Personalize if you can.</p>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => copyText('script-feature', 'Hello — Please provide clear, plain-language guidance and timelines so families can comply without surprises. Thank you.')}
+                className="text-sm rounded-lg px-3 py-2 ring-1 ring-slate-300 hover:bg-slate-100"
+              >
+                {copied === 'script-feature' ? 'Copied!' : 'Copy script'}
+              </button>
+              {latest && (
+                <Link
+                  to={`/resources/legislative-tracker/${latest.slug}#highlights`}
+                  className="text-sm rounded-lg px-3 py-2 ring-1 ring-slate-300 hover:bg-slate-100"
+                >
+                  Go to this week’s actions
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Archive — dark gradient header */}
+      <section id="archive" className="mt-6">
+        <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">🗂️ Archive of Weekly Updates (Newest first)</h2>
+          </div>
+        </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid gap-4 md:grid-cols-2">
+            {items.map((u: LegislativeUpdateMeta) => (
+              <article key={u.slug} className="rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold">
+                    <Link to={`/resources/legislative-tracker/${u.slug}`} className="text-slate-800 hover:underline">
+                      {u.title}
+                    </Link>
+                  </h3>
+                  <p className="mt-1 text-slate-700 text-sm">{u.summary}</p>
+                </div>
+                <div className="mt-3 text-sm text-slate-500">{u.date}</div>
+              </article>
+            ))}
+            {items.length === 0 && (
+              <div className="text-slate-600">No updates yet.</div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Glossary — dark gradient header */}
+      <section id="glossary" className="mt-4">
+        <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">📘 Quick glossary</h2>
+          </div>
+        </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <dl className="grid gap-4 sm:grid-cols-2">
+            <div>
+              <dt className="font-medium text-slate-800">Residency ban</dt>
+              <dd className="text-slate-700">Rule limiting where a person may live (e.g., near schools or parks).</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-800">Retroactive</dt>
+              <dd className="text-slate-700">Applied <strong>after</strong> a case is over, covering conduct from the past.</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-800">Petition for relief</dt>
+              <dd className="text-slate-700">A request to a court to end or reduce registration duties after set criteria are met.</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-800">Supervised release</dt>
+              <dd className="text-slate-700">Post-prison federal supervision with conditions (e.g., monitoring, tech limits).</dd>
+            </div>
+            <div>
+              <dt className="font-medium text-slate-800">SORNA</dt>
+              <dd className="text-slate-700">Federal Sex Offender Registration and Notification Act — sets national standards.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      {/* How we track & vet (AI note) — dark gradient header */}
+      <section className="mt-2">
+        <header className="text-white bg-gradient-to-r from-slate-800 to-slate-600">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">🧪 How we track, vet, and curate</h2>
+          </div>
+        </header>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <p className="text-slate-700">
+              We link <strong>primary sources</strong> (official bill pages, enrolled acts, court orders, agency sites) and add <strong>reputable media</strong> for context.
+              We also use AI to scan nationwide dockets and calendars so fewer items slip through — but AI can miss nuance.
+              <strong> If something looks off, please tell us and we’ll fix it quickly.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+      {/* Sticky "Take Action" bar (desktop & mobile) */}
+      {latest && (
+        <div className="fixed inset-x-0 bottom-0 z-30 print:hidden">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-4">
+            <div className="rounded-2xl shadow-lg bg-white ring-1 ring-slate-200 p-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div className="text-slate-800">
+                <span className="font-semibold">🚀 Take action:</span> Visit this week’s page for scripts and official portals.
+              </div>
+              <div className="flex gap-2">
+                <Link
+                  to={`/resources/legislative-tracker/${latest.slug}#highlights`}
+                  className="rounded-xl px-3 py-2 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
+                >
+                  Open this week’s actions
+                </Link>
+                <button
+                  onClick={() => copyText('sticky-script', 'Hello — Please provide clear, plain-language guidance and timelines so families can comply without surprises. Thank you.')}
+                  className="rounded-xl px-3 py-2 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
+                >
+                  {copied === 'sticky-script' ? 'Copied!' : 'Copy script'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Social share */}
       <section className="py-8">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="compass">🧭</span> How to use this page</h2>
-            <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
-              <li><strong>Start at the top</strong>: “This Week at a Glance” gives you the short version in under a minute.</li>
-              <li><strong>Open the highlights</strong> you care about for the ELI5 summary, <em>why it matters</em>, and <em>what to do</em>.</li>
-              <li><strong>Browse the archive</strong> at the bottom for prior weeks and trendlines.</li>
-            </ul>
-            <div className="mt-4 text-sm text-slate-600">
-              <span className="inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-blue-500" aria-hidden="true"></span>🔵 info</span>
-              <span className="mx-3 inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-yellow-400" aria-hidden="true"></span>🟡 reminders</span>
-              <span className="mx-3 inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-orange-500" aria-hidden="true"></span>🟧 legal requirements</span>
-              <span className="mx-3 inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true"></span>🟩 reentry wins</span>
-              <span className="mx-3 inline-flex items-center gap-2"><span className="inline-block h-2 w-2 rounded-full bg-rose-500" aria-hidden="true"></span>🟥 urgent/risks</span>
+          <div className="rounded-2xl border border-slate-200 p-5 shadow-sm">
+            <h3 className="text-lg font-semibold">🔗 Share this hub</h3>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <a
+                className="rounded-lg ring-1 ring-slate-300 px-3 py-1 text-sm hover:bg-slate-50"
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent('SOLAR Legislative Tracker — verified weekly updates & actions')}`}
+                target="_blank" rel="noreferrer"
+              >
+                X / Twitter
+              </a>
+              <a
+                className="rounded-lg ring-1 ring-slate-300 px-3 py-1 text-sm hover:bg-slate-50"
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`}
+                target="_blank" rel="noreferrer"
+              >
+                Facebook
+              </a>
+              <a
+                className="rounded-lg ring-1 ring-slate-300 px-3 py-1 text-sm hover:bg-slate-50"
+                href={`mailto:?subject=${encodeURIComponent('SOLAR Legislative Tracker')}&body=${encodeURIComponent(shareUrl)}`}
+              >
+                Email
+              </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* This Week at a Glance (auto from latest teasers) */}
-      <section className="py-2" id="glance">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="calendar">🗓️</span> This Week at a Glance (ELI5)</h2>
-            <ul className="mt-3 space-y-2 text-slate-800">
-              {(latestTeasers?.glance ?? [
-                '🏛️ Federal — placeholder until teasers are loaded.',
-                '🗺️ States — placeholder until teasers are loaded.',
-                '⚖️ Cases — placeholder until teasers are loaded.',
-                '📣 Action — placeholder until teasers are loaded.',
-              ]).map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-            <blockquote className="mt-4 border-l-4 border-blue-400 pl-4 text-slate-700 italic">
-              🔵 <strong>Why this matters (30 seconds):</strong> Policy moves quickly; families live with the outcomes for years. We translate the legalese and give you direct actions that actually help.
-            </blockquote>
-          </div>
-        </div>
-      </section>
-      {/* Highlights (auto from latest teasers) */}
-      <section className="py-2" id="highlights">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h2 className="text-xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="star">⭐</span> Highlights
-            </h2>
-            <div className="mt-4 grid gap-6 md:grid-cols-3">
-              {(latestTeasers?.highlights ?? [
-                { icon: '🏛️', title: 'Example Federal Highlight', url: '#' },
-                { icon: '🏷️', title: 'Example State Highlight', url: '#' },
-                { icon: '⚖️', title: 'Example Case Highlight', url: '#' },
-              ]).map((h, i) => (
-                <article key={i} className="rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <span>{h.icon}</span> {h.title}
-                  </h3>
-                  {h.url && (
-                    <p className="mt-3">
-                      <a
-                        href={h.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-blue-600 hover:underline text-sm"
-                      >
-                        View source →
-                      </a>
-                    </p>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Practical Corner */}
-      <section className="py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="toolbox">🧰</span> Practical Corner (Always-on mini-guides)</h3>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2 text-slate-800">
-              <li className="rounded-xl ring-1 ring-slate-200 p-4">🔎 <strong>Find & track a bill</strong> in your state (step-by-step with screenshots).</li>
-              <li className="rounded-2xl ring-1 ring-slate-200 p-4">📨 <strong>Submit testimony</strong> in 10 minutes (template + copy button).</li>
-              <li className="rounded-2xl ring-1 ring-slate-200 p-4">🗣️ <strong>Call your legislator</strong> (30-second voicemail script).</li>
-              <li className="rounded-2xl ring-1 ring-slate-200 p-4">🧭 <strong>Moving to another state?</strong> Checklist for avoiding registration surprises.</li>
-              <li className="rounded-2xl ring-1 ring-slate-200 p-4">🧾 <strong>If you get a notice</strong> you don’t understand: what to do first.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Archive (auto from data) */}
-      <section id="archive" className="py-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="file box">🗂️</span> Archive of Weekly Updates (Newest first)</h3>
-            <ul className="mt-4 divide-y divide-slate-200">
-              {items.map((u: LegislativeUpdateMeta) => (
-                <li key={u.slug} className="py-3">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <div>
-                      <Link to={`/resources/legislative-tracker/${u.slug}`} className="font-medium text-slate-800 hover:underline">{u.title}</Link>
-                      <p className="text-sm text-slate-600 mt-1">{u.summary}</p>
-                    </div>
-                    <div className="text-sm text-slate-500">{u.date}</div>
-                  </div>
-                </li>
-              ))}
-              {items.length === 0 && (
-                <li className="py-3 text-slate-500">No updates yet.</li>
-              )}
-            </ul>
-          </div>
-        </div>
-      </section>
-      {/* How we track, vet, and curate sources (with AI disclosure) */}
-      <section className="py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2"><span role="img" aria-label="lab">🧪</span> How we track, vet, and curate sources</h3>
-            <p className="mt-2 text-slate-700">We rely on a mix of <strong>primary sources</strong> (bill text, committee agendas, court dockets, official press releases) and <strong>credible analysis</strong> (state agencies, legal reviews, academic research).</p>
-            <div className="mt-4 rounded-2xl bg-blue-50 text-blue-900 p-4">
-              <div className="font-medium">🔵 AI assist (friendly disclosure)</div>
-              <p className="mt-1">We also use AI tools to <strong>scan and organize legislative activity nationwide</strong>. This helps us spot bills and cases across 50 states and federal courts that we couldn’t realistically monitor on our own.</p>
-              <p className="mt-2">AI isn’t perfect — sometimes it misses nuance or includes less relevant items. We share it here anyway because it’s often a useful starting point.</p>
-              <blockquote className="mt-3 border-l-4 border-blue-400 pl-4 italic">“We don’t have the staff to monitor every statehouse and federal docket — but AI helps us bring the important threads together in one place, so families can stay informed without drowning in legalese.”</blockquote>
-              <p className="mt-3"><span className="font-medium">📣 Notice something off?</span> Please let us know so we can correct or clarify.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Glossary */}
-      <section className="py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-slate-200 p-6 shadow-sm">
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="book">📘</span> Quick glossary
-            </h3>
-            <dl className="mt-3 grid gap-4 sm:grid-cols-2">
-              <div>
-                <dt className="font-medium text-slate-800">Residency ban</dt>
-                <dd className="text-slate-700">Law restricting where someone may live (e.g., near schools).</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-800">Retroactive</dt>
-                <dd className="text-slate-700">Applied <strong>after</strong> a person’s case ended.</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-800">Amicus brief</dt>
-                <dd className="text-slate-700">Expert “friend of the court” memo to help a judge decide.</dd>
-              </div>
-              <div>
-                <dt className="font-medium text-slate-800">Committee</dt>
-                <dd className="text-slate-700">Small group of lawmakers that hears testimony and amends bills.</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      {/* Important reminders */}
-      <section className="py-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl bg-yellow-50 text-yellow-900 p-6 ring-1 ring-yellow-200">
-            <h3 className="text-xl font-semibold flex items-center gap-2">
-              <span role="img" aria-label="warning">🟨</span> Important reminders
-            </h3>
-            <ul className="mt-3 list-disc pl-6 space-y-1">
-              <li><strong>Laws vary by state.</strong> Always check your current state’s rules; don’t rely only on news coverage.</li>
-              <li><strong>Deadlines matter.</strong> Missed testimony windows or reporting dates can create problems fast.</li>
-              <li><strong>Document everything.</strong> If a policy harms you, specifics (dates, notices, denials) can be crucial later.</li>
-            </ul>
           </div>
         </div>
       </section>
@@ -283,11 +326,10 @@ export default function LegislativeTracker(): JSX.Element {
       <style>{`
         @media print {
           .print\\:hidden { display: none !important; }
-          .print\\:bg-white { background: white !important; }
-          .print\\:text-slate-900 { color: #0f172a !important; }
-          .print\\:shadow-none { box-shadow: none !important; }
+          a { text-decoration: none !important; color: #111 !important; }
+          .shadow-sm { box-shadow: none !important; }
         }
       `}</style>
     </div>
   );
-      }
+}
