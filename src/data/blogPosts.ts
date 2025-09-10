@@ -12,7 +12,33 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
+// Insert this object at the TOP of the exported array (newest-first):
 
+{
+  id: "first-do-no-harm-2025-09-09",
+  title: "First, Do No Harm — White Coats, Comfort Blankets, and the Betrayal of Trust",
+  excerpt:
+    "Doctors swore an oath. Institutions sold safety. Survivors tell the truth: abuse thrived in exam rooms while registry maps offered false comfort.",
+  author: "The SOLAR Project",
+  date: "2025-09-09",
+  readTime: "15 min",
+  category: "Investigative",
+  tags: [
+    "Larry Nassar",
+    "Robert Hadden",
+    "George Tyndall",
+    "James Heaps",
+    "Richard Strauss",
+    "Robert Anderson",
+    "Earl Bradley",
+    "Darius Paduch",
+    "Zhi Alan Cheng",
+    "Patricia Hill",
+    "medical sexual abuse",
+    "sex offender registry",
+    "SOLAR Project"  ],
+  path: "/blog/first-do-no-harm"
+  },
   {
   id: "when-everything-is-violent-2025-09-08",
   title: "When Everything Is Violent, Nothing Is Violent",
