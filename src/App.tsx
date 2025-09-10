@@ -62,6 +62,7 @@ import TenantRightsGuide from './pages/resources/TenantRightsGuide';
 import LegislativeTracker from './pages/resources/LegislativeTracker';
 import LegislativeUpdate_2025_09_06 from './pages/resources/legislative-tracker/2025-09-06';
 import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
+import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
 
 function App() {
   return (
@@ -128,6 +129,7 @@ function App() {
               <Route path="/blog/two-men-one-release-date" element={<TwoMenOneReleaseDate />} />
               <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />     
               <Route path="/blog/when-everything-is-violent" element={<WhenEverythingIsViolent />} />
+              <Route path="/blog/first-do-no-harm" element={<BlogPost_DoNoHarm />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
