@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Make links inside .prose unmistakable */
+.prose a {
+  text-decoration: underline;
+  color: #1d4ed8; /* Tailwind blue-700 */
+}
+.prose a:hover {
+  color: #1e40af; /* Tailwind blue-800 */
+}
