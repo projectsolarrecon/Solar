@@ -92,11 +92,10 @@ function Resources() {
           link: "/resources/employment-directory"
         },
         {
-  name: "Professional Licensing & Certification Paths for Registrants",
-  type: "Guide",
-  description:
-    "Step-by-step options for trades, CDL, IT, cosmetology, health-adjacent roles, and more — with offline alternatives, funding sources, and practical checklists.",
-  link: "/resources/professional-licensing"
+          name: "Professional Licensing & Certification Paths for Registrants",
+          type: "Guide",
+          description: "Step-by-step options for trades, CDL, IT, cosmetology, health-adjacent roles, and more — with offline alternatives, funding sources, and practical checklists.",
+          link: "/resources/professional-licensing"
         },
         {
           name: "Educational Opportunities",
