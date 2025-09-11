@@ -92,10 +92,11 @@ function Resources() {
           link: "/resources/employment-directory"
         },
         {
-          name: "Professional Licensing Guide",
-          type: "Guide",
-          description: "Information about professional licenses and certifications available to registry individuals.",
-          link: "#"
+  name: "Professional Licensing & Certification Paths for Registrants",
+  type: "Guide",
+  description:
+    "Step-by-step options for trades, CDL, IT, cosmetology, health-adjacent roles, and more — with offline alternatives, funding sources, and practical checklists.",
+  link: "/resources/professional-licensing"
         },
         {
           name: "Educational Opportunities",
