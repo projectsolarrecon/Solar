@@ -1,3 +1,25 @@
+@media print {
+  .no-print { display: none !important; }
+  .print\:py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .print\:py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  .print\:pb-4 { padding-bottom: 1rem !important; }
+  .print\:mb-8 { margin-bottom: 2rem !important; }
+  .print\:mb-6 { margin-bottom: 1.5rem !important; }
+  .print\:mt-8 { margin-top: 2rem !important; }
+  .print\:space-y-6 > * + * { margin-top: 1.5rem !important; }
+  .print\:text-2xl { font-size: 1.5rem !important; line-height: 2rem !important; }
+  .print\:text-sm { font-size: .875rem !important; line-height: 1.25rem !important; }
+  .print\:text-xs { font-size: .75rem !important; line-height: 1rem !important; }
+  .print\:w-8 { width: 2rem !important; }
+  .print\:h-8 { height: 2rem !important; }
+  .print\:text-base { font-size: 1rem !important; line-height: 1.5rem !important; }
+  .print\:p-6 { padding: 1.5rem !important; }
+  .print\:p-4 { padding: 1rem !important; }
+  .print\:grid-cols-1 { grid-template-columns: repeat(1,minmax(0,1fr)) !important; }
+  .print\:gap-4 { gap: 1rem !important; }
+  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  * { box-shadow: none !important; }
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
