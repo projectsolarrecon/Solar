@@ -63,6 +63,7 @@ import LegislativeTracker from './pages/resources/LegislativeTracker';
 import LegislativeUpdate_2025_09_06 from './pages/resources/legislative-tracker/2025-09-06';
 import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
 import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
+import CommunityTies from "./pages/blog/CommunityTies";
 
 function App() {
   return (
@@ -130,6 +131,7 @@ function App() {
               <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />     
               <Route path="/blog/when-everything-is-violent" element={<WhenEverythingIsViolent />} />
               <Route path="/blog/first-do-no-harm" element={<BlogPost_DoNoHarm />} />
+              <Route path="/blog/community-ties" element={<CommunityTies />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
