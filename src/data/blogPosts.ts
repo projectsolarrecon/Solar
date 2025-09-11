@@ -13,7 +13,18 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 // Insert this object at the TOP of the exported array (newest-first):
-
+{
+  id: "community-ties-2025-09-11",
+  title: "Community Ties: When Employers Become the Danger",
+  excerpt:
+    "From McDonald's to babysitting next door, employers often hold the power that enables abuse — yet the registry looks elsewhere.",
+  author: "The SOLAR Project",
+  date: "September 11, 2025",
+  readTime: "7 min read",
+  category: "Policy & Culture",
+  tags: ["sex offender registry", "employment", "youth safety", "corporate accountability"],
+  path: "/blog/community-ties",
+},
 {
   id: "first-do-no-harm-2025-09-09",
   title: "First, Do No Harm — White Coats, Comfort Blankets, and the Betrayal of Trust",
