@@ -197,7 +197,7 @@ export default function FirstDoNoHarm(): JSX.Element {
           <li><strong>CBS</strong> — Heaps 11-year sentence: <a href="https://www.cbsnews.com/news/ex-ucla-gynecologist-james-heaps-sexual-abuse-patients-11-year-sentence/" target="_blank" rel="noopener">Article</a></li>
           <li><strong>LA Times</strong> — Heaps settlements coverage: <a href="https://www.latimes.com/california/story/2023-04-26/full-coverage-of-former-ucla-gynecologist-james-heaps" target="_blank" rel="noopener">Coverage</a></li>
           <li><strong>AP</strong> — USC/Tyndall payout coverage: <a href="https://apnews.com/article/3b8b9e032d614f230a72e705c015f3d2" target="_blank" rel="noopener">Article</a></li>
-          <li><strong>The Guardian</strong> — Columbia/Hadden $750M (total > $1B): <a href="https://www.theguardian.com/us-news/2025/may/10/robert-hadden-sexual-assault-columbia-university-gynecologist" target="_blank" rel="noopener">Article</a></li>
+          <li><strong>The Guardian</strong> — Columbia/Hadden $750M (total &gt; $1B): <a href="https://www.theguardian.com/us-news/2025/may/10/robert-hadden-sexual-assault-columbia-university-gynecologist" target="_blank" rel="noopener">Article</a></li>
           <li><strong>AP</strong> — Paduch life sentence: <a href="https://apnews.com/article/ee959927300c581837b832c1fa36f564" target="_blank" rel="noopener">Article</a></li>
           <li><strong>PBS</strong> — Aly Raisman statement: <a href="https://www.pbs.org/newshour/show/aly-raisman-wins-her-self-worth-back-from-nassar" target="_blank" rel="noopener">Segment</a></li>
           <li><strong>RAINN</strong> — Children & Teens stats: <a href="https://www.rainn.org/statistics/children-and-teens" target="_blank" rel="noopener">RAINN</a></li>
