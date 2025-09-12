@@ -65,7 +65,7 @@ import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
 import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
 import CommunityTies from "./pages/blog/CommunityTies";
 import ProfessionalLicensingGuide from "./pages/resources/ProfessionalLicensingGuide";
-import ChildrenDisclosureToolkit from "./ChildrenDisclosureToolkit";
+import ChildrenDisclosureToolkit from "./pages/resources/ChildrenDisclosureToolkit";
 
 function App() {
   return (
