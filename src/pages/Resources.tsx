@@ -179,7 +179,7 @@ function Resources() {
          name: "Children & Disclosure + Relationship Rebuilding Toolkit",
          type: "Guide",
          description: "Warm, step-by-step scripts and tools for talking with children, managing family reactions, rebuilding trust, and sustaining resilience.",
-         link: "/resources/children-disclosure-toolkit",
+         link: "/resources/children-disclosure-toolkit"
         },
         {
           name: "Financial Support Strategies",
