@@ -65,6 +65,7 @@ import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
 import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
 import CommunityTies from "./pages/blog/CommunityTies";
 import ProfessionalLicensingGuide from "./pages/resources/ProfessionalLicensingGuide";
+import ChildrenDisclosureToolkit from "./ChildrenDisclosureToolkit";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
               <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
               <Route path="/resources/legislative-tracker/:slug" element={<WeeklyUpdateLoader />} />
               <Route path="/resources/professional-licensing" element={<ProfessionalLicensingGuide />} />
+              <Route path="/resources/children-disclosure-toolkit" element={<ChildrenDisclosureToolkit />} />
           
 
               {/* Blog Routes */}
