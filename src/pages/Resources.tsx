@@ -169,23 +169,17 @@ function Resources() {
       title: "Family & Supporter Resources",
       icon: "👨‍👩‍👧‍👦",
       resources: [
-      {
-  name: "Legislative Advocacy Guide",
-  type: "Guide",
-  description: "Step-by-step playbook for finding your officials, choosing phone/email, and making clear, respectful, evidence-based asks—includes templates and trusted sources.",
-  link: "/resources/legislative-advocacy-guide"
-},
         {
-          name: "Children & Disclosure Guide",
-          type: "Guide", 
-          description: "Age-appropriate strategies for talking to children about a family member's registry status and legal situation.",
-          link: "#"
+        name: "Legislative Advocacy Guide",
+        type: "Guide",
+        description: "Step-by-step playbook for finding your officials, choosing phone/email, and making clear, respectful, evidence-based asks—includes templates and trusted sources.",
+        link: "/resources/legislative-advocacy-guide"
         },
         {
-          name: "Relationship Rebuilding Toolkit",
-          type: "Toolkit",
-          description: "Resources for rebuilding trust and maintaining healthy relationships during and after legal proceedings.",
-          link: "#"
+         name: "Children & Disclosure + Relationship Rebuilding Toolkit",
+         type: "Guide",
+         description: "Warm, step-by-step scripts and tools for talking with children, managing family reactions, rebuilding trust, and sustaining resilience.",
+         link: "/resources/children-disclosure-toolkit",
         },
         {
           name: "Financial Support Strategies",
