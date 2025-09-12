@@ -1141,49 +1141,124 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
                 <a
                   href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/"
                   target="_blank"
-                  rel="noopener"
-                  className="text-blue-700 underline"
-                >
-                  Children of Incarcerated Parents Bill of Rights – Osborne Association
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.mstservices.com/what-is-mst"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-700 underline"
-                >
-                  Multisystemic Therapy (MST)
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://www.functionalfamilytherapy.com/"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-700 underline"
-                >
-                  Functional Family Therapy (FFT)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust"
-                  target="_blank"
-                  rel="noopener"
-                  className="text-blue-700 underline"
-                >
-                  APA – Rebuilding Trust
-                </a>
-              </li>
-            </ul>
-          </section>
-        </article>
-
-        <div className="mt-10">
-          <ShareBar />
-        </div>
-      </main>
+                  
+{/* Sources & Resources */}
+<section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12" id="sources-resources">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
+    <div className="flex items-center">
+      <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">📚</div>
+      <div>
+        <h2 className="text-2xl font-bold">Sources & Resources</h2>
+        <p className="text-slate-200">Trusted, family-friendly materials you can reference and share</p>
+      </div>
     </div>
-  );
-}
+  </div>
+
+  <div className="p-6">
+    <ul className="list-disc pl-6 space-y-2 text-slate-800">
+      <li>
+        <a
+          href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          American Academy of Pediatrics – Tips to Support Children When a Parent is in Prison
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          SAMHSA – 6 Guiding Principles of Trauma-Informed Approach
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          National Child Traumatic Stress Network – About Child Trauma
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://sesameworkshop.org/resources/coping-with-incarceration/"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Sesame Workshop – Coping With Incarceration
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Stop It Now! – Parents Talking to Children About Sexual Abuse
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.atsa.com/atsa-practice-guidelines"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Association for the Treatment and Prevention of Sexual Abuse (ATSA) – Practice Guidelines
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Children of Incarcerated Parents Bill of Rights – Osborne Association
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.mstservices.com/what-is-mst"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Multisystemic Therapy (MST)
+        </a>
+        {" "}and{" "}
+        <a
+          href="https://www.functionalfamilytherapy.com/"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          Functional Family Therapy (FFT)
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust"
+          target="_blank"
+          rel="noopener"
+          className="text-blue-700 underline"
+        >
+          American Psychological Association – Rebuilding Trust
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</article>
+</main>
+</div>
