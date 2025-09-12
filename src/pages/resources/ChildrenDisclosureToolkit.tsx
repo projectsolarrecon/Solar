@@ -1071,11 +1071,16 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
 
           <Divider />
                   
-{/* Sources & Resources */}
-<section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12" id="sources-resources">
+{/* START: Final Sources section (single, clean version) */}
+<section
+  className="bg-white rounded-lg shadow-lg overflow-hidden mb-12"
+  id="sources-resources"
+>
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
     <div className="flex items-center">
-      <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">📚</div>
+      <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
+        📚
+      </div>
       <div>
         <h2 className="text-2xl font-bold">Sources & Resources</h2>
         <p className="text-slate-200">Trusted, family-friendly materials you can reference and share</p>
@@ -1163,8 +1168,8 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
           className="text-blue-700 underline"
         >
           Multisystemic Therapy (MST)
-        </a>
-        {" "}and{" "}
+        </a>{" "}
+        and{" "}
         <a
           href="https://www.functionalfamilytherapy.com/"
           target="_blank"
@@ -1187,7 +1192,13 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
     </ul>
   </div>
 </section>
+{/* END: Final Sources section */}
 
 </article>
 </main>
 </div>
+);
+
+}
+
+export default ChildrenDisclosureToolkit;
