@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
-import HeaderBand from "../../components/solar/HeaderBand";
+import BandHeader from "../../components/solar/BandHeader";
 import SectionCard from "../../components/solar/SectionCard";
 import Callout from "../../components/solar/Callout";
 import Divider from "../../components/solar/Divider";
@@ -20,7 +20,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         keywords="children disclosure, registry, incarceration, supervision, family toolkit, relationship rebuilding, trauma-informed"
       />
 
-      <HeaderBand
+      <BandHeader
         badge="Family Toolkit"
         title="🌱 Children & Disclosure + Relationship Rebuilding Toolkit"
         subtitle="For families of an impacted individual in any stage: investigation, pretrial, incarceration, supervision, registry"
