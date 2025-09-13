@@ -990,6 +990,5 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         </section> {/* end: sources section */}
 
       </div> {/* end: content container */}
-    </div> {/* end: page wrapper */}
-  );
-}
+      );
+      }
