@@ -987,10 +987,10 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         </a>
       </li>
     </ul>
-    </section>
+    </div> {/* end: sources inner padding */}
+  </section> {/* end: sources section */}
 
-  </div> {/* end: content container */}
-
+</div> {/* end: content container */}
 </div> {/* end: page wrapper */}
 );
 }
