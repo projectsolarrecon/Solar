@@ -741,27 +741,157 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
         {/* ===== STEP 4 - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🤝 Step 4: Trust Rebuilding Toolkit</h2>
-            <p className="text-slate-100 mt-1">Small, steady, reliable acts rebuild safety over time.</p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🤝 Step 4: Trust Rebuilding Toolkit</h2>
+    <p className="text-slate-100 mt-1">
+      Small, steady, reliable acts rebuild safety and connection over time.
+    </p>
+  </div>
 
-          <p className="mb-4">Paste your Step 4 paragraphs here.</p>
+  <p className="mb-4">
+    Trust is not rebuilt through apologies alone — it is earned back in daily, consistent, reliable actions. This applies both
+    between partners and between parents and children. Kids especially watch for <em>patterns</em>, not promises. As the{" "}
+    <a className="text-blue-700 underline" href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust" target="_blank" rel="noopener noreferrer">
+      American Psychological Association
+    </a>{" "}
+    notes, repair comes from showing reliability in small ways, over and over again.
+  </p>
 
-          {/* Warm callout (sky) */}
-          <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>🧱</div>
-              <div>
-                <p className="font-semibold text-sky-900">Micro-Commitment</p>
-                <p className="text-sky-900/90">
-                  One promise a week, kept consistently, beats big speeches.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Universal Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🌍</span> Universal Guidance
+  </h3>
+  <ul className="space-y-4 mb-8">
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Keep Promises Small &amp; Concrete</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Say what you can do today, not in the future.</li>
+        <li><em>“I’ll call you at 7 pm.” → and then call at 7 pm.</em></li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Repair Missed Expectations Quickly</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>If you forget or fail, acknowledge it right away.</li>
+        <li><em>“I didn’t follow through. I see that hurt you. I’ll try again tomorrow.”</em></li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Consistency Beats Big Gestures</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>A daily routine (calls, letters, meals together) speaks louder than dramatic apologies.</li>
+        <li>Children especially trust what happens <em>repeatedly</em>.</li>
+      </ul>
+    </li>
+  </ul>
+
+  {/* Callout: Micro-Commitments */}
+  <div className="rounded-xl border border-sky-200 bg-sky-50 p-4 mb-8">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>🧱</div>
+      <div>
+        <p className="font-semibold text-sky-900">Micro-Commitments</p>
+        <p className="text-sky-900/90">
+          One small promise a week, kept consistently, restores trust more than one big apology.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Role-Based Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🎭</span> Role-Based Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2">
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Show up when you say you will — calls, letters, visits, routines.</li>
+        <li>Admit mistakes quickly; don’t hide or deflect.</li>
+        <li>Keep boundaries clear: no promises you can’t control (like legal outcomes).</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Children crave predictability: school routines, meals, bedtime rituals.</li>
+        <li>Mark calendars visibly so kids know when calls/visits will happen.</li>
+        <li>When something changes, explain it honestly: <em>“The visit was cancelled, but we’ll try again next week.”</em></li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Trust may take months or years to rebuild. Look for patterns, not words.</li>
+        <li>Encourage transparency without constant interrogation.</li>
+        <li>Celebrate small wins together: one week of consistency, one month of honest check-ins.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Model patience — trust is a marathon, not a sprint.</li>
+        <li>Support with consistent routines (rides, meals, childcare).</li>
+        <li>Back up parents’ anchor phrases with children: consistency across adults matters.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Timeline Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
+    <span aria-hidden>🕒</span> Timeline Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Start tiny: one reliable action a day (a check-in call, a meal together).</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Keep letters or drawings regular, even if short.</li>
+        <li>Ask kids to share one “rose &amp; thorn” of their day to stay emotionally connected.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Don’t overwhelm with promises; start with one shared meal or walk each week.</li>
+        <li>Expect setbacks; repair them quickly.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Anchor the family around traditions (Friday pizza, Sunday calls).</li>
+        <li>Advocacy and transparency with kids about stigma builds deeper trust.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Checklist */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>✅</span> Trust Rebuilding Checklist
+  </h3>
+  <ul className="space-y-2 text-slate-800">
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Make one small, specific promise you can keep this week.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Follow through, even if it feels trivial.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>If you slip, acknowledge it immediately and try again.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Track patterns of consistency over time — not just one-offs.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Celebrate small wins as a family to reinforce hope.</span></li>
+  </ul>
+</section>
 
         {/* ===== STEP 5 - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
