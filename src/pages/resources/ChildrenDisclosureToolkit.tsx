@@ -983,12 +983,13 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
       </a>
     </li>
   </ul>
-</section>
+  </section>
 
+  {/* Close article / main layout */}
 </article>
-</div> {/* inner container */}
+</div>  {/* content container */}
 </main>
-</div> {/* page wrapper */}
+</div>  {/* page wrapper */}
 );
 }
 
