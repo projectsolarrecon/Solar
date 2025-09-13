@@ -987,13 +987,10 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         </a>
       </li>
     </ul>
-  </div>
-</section>
-
-</article>
-</main>
-</div>
+    </section>
+  </div> {/* content container */}
 );
 }
 
 export default ChildrenDisclosureToolkit;
+        
