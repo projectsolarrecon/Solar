@@ -1045,16 +1045,49 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
         {/* ===== CONCLUSION - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🌟 Conclusion: A Path Forward</h2>
-            <p className="text-slate-100 mt-1">
-              Warmth, honesty, routines, and support carry families through the long journey.
-            </p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🌟 Conclusion: A Path Forward</h2>
+    <p className="text-slate-100 mt-1">
+      Warmth, honesty, routines, and support carry families through the long journey.
+    </p>
+  </div>
 
-          <p className="mb-4">Paste your conclusion paragraphs here.</p>
-        </section>
+  <p className="mb-4">
+    If you are reading this, it means you are committed to holding your family together in one of the hardest journeys
+    imaginable. That commitment alone is an act of love and resilience.
+  </p>
+
+  <p className="mb-4">
+    There are no perfect words. Disclosure may feel messy. Trust may take longer than you hoped. Family reactions may
+    surprise you. And resilience may sometimes feel like survival — but you are not alone. Families across the country adapt
+    and grow with the help of{" "}
+    <a
+      className="text-blue-700 underline"
+      href="https://sesameworkshop.org/resources/coping-with-incarceration"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Sesame Workshop’s caregiver tools
+    </a>{" "}
+    and{" "}
+    <a
+      className="text-blue-700 underline"
+      href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Stop It Now!’s family safety guides
+    </a>
+    .
+  </p>
+
+  <p className="mb-2">
+    🌅 There is life beyond this moment. It may look different from what you imagined, but it can still hold safety, joy,
+    dignity, and connection. With courage, love, and supportive community, your family can emerge not only surviving, but
+    stronger and wiser.
+  </p>
+</section>
 
         {/* ===== SOURCES & RESOURCES (blue background card) ===== */}
         <section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden">
