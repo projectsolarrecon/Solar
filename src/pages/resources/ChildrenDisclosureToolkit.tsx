@@ -845,150 +845,151 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         </section>
 
         {/* Conclusion */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🌟 Conclusion: A Path Forward</h2>
-            <p className="text-slate-100 mt-1">Warmth, honesty, routines, and support carry families through the long journey.</p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🌟 Conclusion: A Path Forward</h2>
+    <p className="text-slate-100 mt-1">Warmth, honesty, routines, and support carry families through the long journey.</p>
+  </div>
 
-          <p className="mb-4">
-            There are no perfect words. Disclosure may feel messy. Trust may take longer than you hoped. Family reactions may
-            surprise you. And resilience may sometimes feel like survival — but you are not alone.
-          </p>
-          <p className="mb-4">
-            Families across the country adapt and grow with the help of{" "}
-            <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration" target="_blank" rel="noopener">
-              Sesame Workshop’s caregiver tools
-            </a>{" "}
-            and{" "}
-            <a className="text-blue-700 underline" href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse" target="_blank" rel="noopener">
-              Stop It Now!’s family safety guides
-            </a>
-            . Children need your honesty, steadiness, and willingness to show up — again and again.
-          </p>
-          <p className="mb-2">
-            🌅 There is life beyond this moment. It may look different from what you imagined, but it can still hold safety, joy,
-            dignity, and connection. With courage, love, and supportive community, your family can emerge not only surviving, but
-            stronger and wiser.
-          </p>
-        </section>
-  
-        {/* Sources & Resources */}
-        <section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">📚</div>
-              <div>
-                <h2 className="text-2xl font-bold">Sources &amp; Resources</h2>
-                <p className="text-slate-200">Trusted, family-friendly materials you can reference and share</p>
-              </div>
-            </div>
-          </div>
-          <div className="p-6">
-            <ul className="list-disc pl-6 space-y-2 text-slate-800">
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  American Academy of Pediatrics – Tips to Support Children When a Parent is in Prison
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SAMHSA – 6 Guiding Principles of Trauma-Informed Approach
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  National Child Traumatic Stress Network – About Child Trauma
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://sesameworkshop.org/resources/coping-with-incarceration/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Sesame Workshop – Coping With Incarceration
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Stop It Now! – Parents Talking to Children About Sexual Abuse
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.atsa.com/atsa-practice-guidelines"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Association for the Treatment and Prevention of Sexual Abuse (ATSA) – Practice Guidelines
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Children of Incarcerated Parents Bill of Rights – Osborne Association
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.mstservices.com/what-is-mst"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Multisystemic Therapy (MST)
-                </a>{" "}
-                and{" "}
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.functionalfamilytherapy.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Functional Family Therapy (FFT)
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  American Psychological Association – Rebuilding Trust
-                </a>
-              </li>
-            </ul>
-          </div> {/* end: sources inner padding */}
-                </section> {/* end: sources section */}
+  <p className="mb-4">
+    There are no perfect words. Disclosure may feel messy. Trust may take longer than you hoped. Family reactions may
+    surprise you. And resilience may sometimes feel like survival — but you are not alone.
+  </p>
+  <p className="mb-4">
+    Families across the country adapt and grow with the help of{" "}
+    <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration" target="_blank" rel="noopener">
+      Sesame Workshop’s caregiver tools
+    </a>{" "}
+    and{" "}
+    <a className="text-blue-700 underline" href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse" target="_blank" rel="noopener">
+      Stop It Now!’s family safety guides
+    </a>
+    . Children need your honesty, steadiness, and willingness to show up — again and again.
+  </p>
+  <p className="mb-2">
+    🌅 There is life beyond this moment. It may look different from what you imagined, but it can still hold safety, joy,
+    dignity, and connection. With courage, love, and supportive community, your family can emerge not only surviving, but
+    stronger and wiser.
+  </p>
+</section>
 
-      </div> {/* end: content container */}
-    );
+{/* Sources & Resources */}
+<section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
+    <div className="flex items-center">
+      <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">📚</div>
+      <div>
+        <h2 className="text-2xl font-bold">Sources &amp; Resources</h2>
+        <p className="text-slate-200">Trusted, family-friendly materials you can reference and share</p>
+      </div>
+    </div>
+  </div>
+  <div className="p-6">
+    <ul className="list-disc pl-6 space-y-2 text-slate-800">
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          American Academy of Pediatrics – Tips to Support Children When a Parent is in Prison
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          SAMHSA – 6 Guiding Principles of Trauma-Informed Approach
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          National Child Traumatic Stress Network – About Child Trauma
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://sesameworkshop.org/resources/coping-with-incarceration/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Sesame Workshop – Coping With Incarceration
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Stop It Now! – Parents Talking to Children About Sexual Abuse
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.atsa.com/atsa-practice-guidelines"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Association for the Treatment and Prevention of Sexual Abuse (ATSA) – Practice Guidelines
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Children of Incarcerated Parents Bill of Rights – Osborne Association
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.mstservices.com/what-is-mst"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Multisystemic Therapy (MST)
+        </a>{" "}
+        and{" "}
+        <a
+          className="text-blue-700 underline"
+          href="https://www.functionalfamilytherapy.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Functional Family Therapy (FFT)
+        </a>
+      </li>
+      <li>
+        <a
+          className="text-blue-700 underline"
+          href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          American Psychological Association – Rebuilding Trust
+        </a>
+      </li>
+    </ul>
+  </div> {/* end: sources inner padding */}
+</section> {/* end: sources section */}
+
+</div> {/* end: content container */}
+</div> {/* end: page wrapper */}
+);
 }
