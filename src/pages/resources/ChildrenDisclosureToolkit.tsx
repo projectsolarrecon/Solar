@@ -1011,7 +1011,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
           </section>
 
         </div> {/* end: content container */}
-      </div> {/* end: page wrapper */}
-    </>
-  );
+        </main> {/* end: page wrapper */}
+      </>
+    );
 }
