@@ -308,27 +308,255 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
         {/* ===== STEP 2 - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">👶 Step 2: Disclosure to Children</h2>
-            <p className="text-slate-100 mt-1">Age-appropriate truth, safety, and reassurance.</p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">👶 Step 2: Disclosure to Children</h2>
+    <p className="text-slate-100 mt-1">
+      Age-appropriate truth, reassurance of safety and love, and many short conversations over time.
+    </p>
+  </div>
 
-          <p className="mb-4">Paste your Step 2 paragraphs here.</p>
+  <p className="mb-4">
+    Few moments feel as impossible as telling a child that a loved one is in legal trouble. Whether your child is three,
+    thirteen, or twenty-three, silence can be more frightening than honesty. Thoughtful disclosure gives children language
+    for what is happening, reassures them it isn’t their fault, and builds trust that adults will tell the truth — even when
+    it’s hard. The{" "}
+    <a className="text-blue-700 underline" href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx" target="_blank" rel="noopener noreferrer">
+      American Academy of Pediatrics
+    </a>{" "}
+    emphasizes clear, age-appropriate truth delivered simply.
+  </p>
 
-          {/* Warm callout (rose) */}
-          <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>💬</div>
-              <div>
-                <p className="font-semibold text-rose-900">Script Helper</p>
-                <p className="text-rose-900/90">
-                  Use this callout for short scripts or anchor phrases you want to highlight.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  <p className="mb-6">
+    Disclosure is a process — not a single talk. Your role is to offer age-appropriate truth, reassurance, and safety,
+    returning to the conversation as your child grows and as circumstances change.
+  </p>
+
+  {/* Universal Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🌍</span> Universal Guidance
+  </h3>
+  <ul className="space-y-4 mb-8">
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Prepare Yourself First</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Children mirror your emotional state. Practice with another adult before you speak to them.</li>
+        <li>Write it down; saying words aloud in private helps you spot heavy or confusing phrases.</li>
+      </ul>
+    </li>
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Choose the Right Moment</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Pick a quiet, private space. Turn off devices. Sit at their level if they’re young.</li>
+        <li>Avoid “drive-by disclosures” (e.g., in the car on the way to school).</li>
+      </ul>
+    </li>
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Keep It Simple, Honest, and Short</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Use one or two sentences at a time. Pause. Let them ask questions.</li>
+        <li>Answer what they ask, not what you fear they might ask.</li>
+      </ul>
+    </li>
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Reassure Safety and Love</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Say directly: <em>“You are safe.”</em> and <em>“You are loved.”</em></li>
+        <li>
+          Repeat often. The{" "}
+          <a className="text-blue-700 underline" href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma" target="_blank" rel="noopener noreferrer">
+            NCTSN
+          </a>{" "}
+          notes that repeated reassurance is vital during traumatic times.
+        </li>
+      </ul>
+    </li>
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Expect Reactions</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Tears, silence, anger, withdrawal, or laughter are all normal.</li>
+        <li>Don’t force a “right” reaction; give time and space.</li>
+      </ul>
+    </li>
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Return to the Conversation</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Preschool talks may last 30 seconds; teen talks may last an hour — both are valid.</li>
+        <li>Think of disclosure as planting seeds you’ll water over time.</li>
+      </ul>
+    </li>
+  </ul>
+
+  {/* Pro Tip callout */}
+  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-8">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>💡</div>
+      <div>
+        <p className="font-semibold text-amber-900">Pro Tip</p>
+        <p className="text-amber-900/90">
+          End each conversation with something grounding — a meal, a bedtime story, a walk. This signals that even after hard talks,
+          life goes on and safety remains.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Age-Appropriate Approaches & Scripts */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🗣️</span> Age-Appropriate Approaches &amp; Scripts
+  </h3>
+
+  <div className="grid gap-4 md:grid-cols-2">
+    {/* Preschool */}
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📚</span> Preschool (3–5 years)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Script: <em>“Daddy can’t live at home right now because he broke a rule. The helpers are making sure he learns how to do better. You are safe, and you are loved.”</em></li>
+        <li>Follow-up: <em>“This is a grown-up problem. You did nothing wrong.”</em></li>
+        <li>Keep it under 30 seconds; offer a hug, playtime, or drawing.</li>
+      </ul>
+    </div>
+
+    {/* Elementary */}
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🖍️</span> Elementary (6–10 years)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Script: <em>“Mom is in trouble because she broke an important rule. The people in charge want to make sure it doesn’t happen again. She still loves you, and we are keeping our family safe.”</em></li>
+        <li>Follow-up: <em>“I don’t have all the answers yet, but I’ll always tell you the truth in words you can understand.”</em></li>
+        <li>Be ready for repeated questions and say: <em>“That’s a good question. I’ll tell you when I know.”</em></li>
+      </ul>
+    </div>
+
+    {/* Middle School */}
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🎒</span> Middle School (11–13 years)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Script: <em>“Uncle made serious mistakes and has to follow special rules given by the court. You can ask me anything, and I’ll tell you the truth.”</em></li>
+        <li>Follow-up: <em>“Feeling embarrassed or angry is normal. You can always talk to me — even if your feelings change.”</em></li>
+        <li>Normalize: it’s okay to feel confused, upset, or angry.</li>
+      </ul>
+    </div>
+
+    {/* Teenagers */}
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📱</span> Teenagers (14–18 years)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Script: <em>“Your dad is on supervision because of choices he made that broke the law. That doesn’t change his love for you. We can talk about what this means for our family.”</em></li>
+        <li>Follow-up: <em>“You have a right to your feelings. I’ll listen without judgment.”</em></li>
+        <li>Allow space for anger or rejection; validate their feelings.</li>
+      </ul>
+    </div>
+
+    {/* Young Adults */}
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50 md:col-span-2">
+      <p className="font-medium mb-2"><span aria-hidden>🎓</span> Young Adults (18+)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Script: <em>“Here are the facts about the legal situation. You may have strong feelings, and that’s okay. Let’s keep talking openly about how this affects you and our family.”</em></li>
+        <li>Follow-up: <em>“If you’d like, I can connect you with resources or someone outside the family to talk to.”</em></li>
+        <li>Treat them as partners; offer articles, support groups, or therapy options.</li>
+      </ul>
+      <p className="mt-3 text-slate-700">
+        Child-friendly resources:{" "}
+        <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration/" target="_blank" rel="noopener noreferrer">
+          Sesame Workshop’s incarceration toolkit
+        </a>.
+      </p>
+    </div>
+  </div>
+
+  {/* Role-Based Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🎭</span> Role-Based Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2">
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>If you can’t be present, write a short message of love a caregiver can read aloud.</li>
+        <li>Keep it simple; share love, not guilt.</li>
+        <li>Don’t take anger or distance personally — it’s part of processing.</li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Agree on one script for consistency.</li>
+        <li>Expect to repeat the same words many times — repetition builds safety.</li>
+        <li>It’s okay to say, <em>“I don’t know yet, but I’ll find out.”</em></li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Don’t let your own anger spill into disclosure.</li>
+        <li>Reassure kids their feelings can be different from yours.</li>
+        <li>Practice active listening: reflect back what they say before correcting.</li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Support with calm presence, not probing questions.</li>
+        <li>Use the family’s chosen script if asked.</li>
+        <li>If unsure, redirect gently: <em>“That’s something your parents will talk to you about.”</em></li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Timeline Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
+    <span aria-hidden>🕒</span> Timeline Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Keep explanations minimal; focus on immediate safety and temporary changes.</li>
+        <li>Script: <em>“Dad isn’t home because adults are helping him with a problem. You are safe.”</em></li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Prepare kids for visits: uniforms, security, waiting rooms.</li>
+        <li>Use pre/post-visit rituals (draw before, ice cream after) to regulate emotions.</li>
+        <li>Be honest about limits: <em>“We may not be able to hug at visits, but we’ll still see each other.”</em></li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Explain new rules simply: <em>“Mom has to be home at 7 p.m. every night.”</em></li>
+        <li>Celebrate small routines returning (dinners, bedtime rituals).</li>
+        <li>Give space for fears that rules might be broken again; acknowledge without defensiveness.</li>
+      </ul>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Introduce what a registry means as children mature.</li>
+        <li>Frame it as one part of life: <em>“This is a rule we live with, but it doesn’t define who we are.”</em></li>
+        <li>With teens, talk openly about stigma and handling peers’ questions.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Disclosure Checklist (non-interactive) */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>✅</span> Disclosure Checklist
+  </h3>
+  <ul className="space-y-2 text-slate-800">
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Write down what you plan to say.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Choose a quiet, private setting.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Use short, age-appropriate explanations.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Reassure love and safety directly.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Expect questions — answer simply; don’t overexplain.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>End with a comforting, normal activity.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Revisit the conversation as kids grow.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Normalize all reactions (silence, tears, anger).</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Remind: <em>“This is not your fault.”</em></span></li>
+  </ul>
+</section>
 
         {/* ===== STEP 3 - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
