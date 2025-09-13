@@ -988,9 +988,11 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
       </li>
     </ul>
     </section>
-  </div> {/* content container */}
+
+  </div> {/* end: content container */}
+
+</div> {/* end: page wrapper */}
 );
 }
 
 export default ChildrenDisclosureToolkit;
-        
