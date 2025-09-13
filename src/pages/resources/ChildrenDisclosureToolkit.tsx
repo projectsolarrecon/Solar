@@ -185,7 +185,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
               <ul className="list-disc pl-6">
                 <li>Ground yourself before “helping.” Kids feel your state.</li>
                 <li>Do calming activities (walks, prayer, journaling) first.</li>
-                <li>Support without judgment; your calm presence > advice.</li>
+                <li>Support without judgment; your calm presence &gt; advice.</li>
               </ul>
             </div>
 
