@@ -894,27 +894,155 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
         {/* ===== STEP 5 - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🌄 Step 5: Ongoing Support &amp; Resilience</h2>
-            <p className="text-slate-100 mt-1">Build long-term routines, supports, and perspective.</p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🌄 Step 5: Ongoing Support &amp; Resilience</h2>
+    <p className="text-slate-100 mt-1">
+      Building long-term routines, support systems, and perspective so families can sustain healing.
+    </p>
+  </div>
 
-          <p className="mb-4">Paste your Step 5 paragraphs here.</p>
+  <p className="mb-4">
+    Healing after crisis is not a one-time event — it’s a long process of adaptation, patience, and care. Families facing
+    incarceration, supervision, or registry involvement often find themselves cycling through moments of stability, setbacks,
+    and renewal. Resilience means learning how to keep moving forward, even when progress is slow or uneven.
+  </p>
 
-          {/* Warm callout (violet) */}
-          <div className="mt-6 rounded-xl border border-violet-200 bg-violet-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>🌱</div>
-              <div>
-                <p className="font-semibold text-violet-900">Resilience Boost</p>
-                <p className="text-violet-900/90">
-                  Celebrate even tiny wins—momentum beats perfection.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Universal Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🌍</span> Universal Guidance
+  </h3>
+  <ul className="space-y-4 mb-8">
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Build Routines That Last</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Simple rituals (family meals, bedtime stories, weekly calls) create stability.</li>
+        <li>Consistency teaches children that life goes on, even with challenges.</li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Stay Connected to Support Systems</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Engage with trusted community: peer groups, faith communities, advocacy networks.</li>
+        <li>Isolation fuels shame — connection builds resilience.</li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Reframe the Family Story</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Talk about the journey as growth: “We went through hardship, and we learned how to be strong together.”</li>
+        <li>Give children language of hope and persistence, not just shame.</li>
+      </ul>
+    </li>
+  </ul>
+
+  {/* Callout: Resilience Boost */}
+  <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 mb-8">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>🌱</div>
+      <div>
+        <p className="font-semibold text-violet-900">Resilience Boost</p>
+        <p className="text-violet-900/90">
+          Celebrate even small wins — finishing a school project, keeping a bedtime routine, attending a visit. Momentum matters
+          more than perfection.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Role-Based Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🎭</span> Role-Based Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2">
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Use structure (check-ins, curfews, restrictions) as opportunities to demonstrate responsibility.</li>
+        <li>Model persistence: keep showing up even when trust is slow to return.</li>
+        <li>Set achievable goals: education, work, volunteering — progress builds credibility.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Protect household rhythms: school, chores, celebrations.</li>
+        <li>Give children stability through predictable rules and consistent care.</li>
+        <li>Advocate at school if children face stigma — normalize their experience with empathy.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Rebuild intimacy and partnership gradually; don’t expect instant repair.</li>
+        <li>Engage in joint planning: finances, routines, family goals.</li>
+        <li>Balance your own healing with family responsibilities — therapy or peer support can help.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Stay steady and present — children benefit from your calmness and continuity.</li>
+        <li>Support parents without judgment or gossip.</li>
+        <li>Step in with concrete help (rides, meals, babysitting) rather than advice.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Timeline Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
+    <span aria-hidden>🕒</span> Timeline Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Focus on basic survival and reassurance: “We are safe, we are together.”</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Use visits and letters as anchors for hope and connection.</li>
+        <li>Explain routines to children so they know what to expect during visits.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Expect stress in adjusting — create calm routines to ease transitions.</li>
+        <li>Mark milestones: first month home, first school year completed together.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Normalize new routines: neighbors, school staff, community organizations.</li>
+        <li>Advocacy and long-term planning help transform stigma into strength.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Checklist */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>✅</span> Ongoing Support Checklist
+  </h3>
+  <ul className="space-y-2 text-slate-800">
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Maintain at least one daily or weekly family routine.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Stay connected with a peer group or supportive community.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Reframe setbacks as learning, not failure.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Celebrate small wins to reinforce hope and progress.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Advocate for children in school and community settings.</span></li>
+  </ul>
+</section>
 
         {/* ===== CONCLUSION - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
