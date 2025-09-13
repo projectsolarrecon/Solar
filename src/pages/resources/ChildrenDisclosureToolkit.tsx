@@ -46,33 +46,82 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 
       {/* Main Content Container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-        {/* ===== INTRO - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🌟 Introduction</h2>
-            <p className="text-slate-100 mt-1">
-              Use this section for your opening context and framing.
-            </p>
-          </div>
+        {/* INTRO_START */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  {/* Section header */}
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🌟 Introduction</h2>
+    <p className="text-slate-100 mt-1">Warm, practical guidance for hard seasons—clear steps, gentle language, and real tools.</p>
+  </div>
 
-          <p className="mb-4">
-            {/* Paste your introduction paragraphs here. Keep plain paragraphs wrapped in <p className="mb-4">...</p> */}
+  {/* Lead paragraphs */}
+  <p className="mb-4">
+    When someone in your family is arrested, investigated, incarcerated, or placed on a registry, it can feel like
+    your entire world has been turned inside out. Overnight, the life you thought you knew changes — and suddenly you
+    are faced with impossible questions: <em>What do I tell my children? How do I face relatives or neighbors? How do
+    we keep moving forward?</em>
+  </p>
+
+  <p className="mb-4">
+    If you are reading this, you may feel fear, shame, confusion, or even anger. Please know: <strong>you are not
+    alone.</strong> Thousands of families walk this path every year, and while no two stories are the same, there are
+    safe, thoughtful ways to navigate these conversations and rebuild trust.
+  </p>
+
+  {/* Two-approach card list */}
+  <div className="grid gap-4 md:grid-cols-2 mb-6">
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <div className="flex items-start gap-3">
+        <span className="text-2xl" aria-hidden>📖</span>
+        <div>
+          <h3 className="font-semibold text-slate-800">Step-by-Step Guide</h3>
+          <p className="text-slate-700 text-sm">
+            Clear, age-appropriate strategies for talking with children and family.
           </p>
+        </div>
+      </div>
+    </div>
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <div className="flex items-start gap-3">
+        <span className="text-2xl" aria-hidden>🛠️</span>
+        <div>
+          <h3 className="font-semibold text-slate-800">Practical Toolkit</h3>
+          <p className="text-slate-700 text-sm">
+            Scripts, exercises, and resources to help you begin healing and reconnecting.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          {/* Warm callout example */}
-          <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>✨</div>
-              <div>
-                <p className="font-semibold text-amber-900">Pro Tip</p>
-                <p className="text-amber-900/90">
-                  Keep callouts like this for short, encouraging guidance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Note on language (warm callout) */}
+  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-6">
+    <div className="flex items-start gap-3">
+      <span className="text-xl" aria-hidden>🗣️</span>
+      <div>
+        <p className="text-slate-800">
+          <strong>Note on language:</strong> In this guide we use the term <em>“impacted individual”</em> to describe
+          the person at the center of the legal process — whether they are under investigation, incarcerated, on
+          supervision, or on the registry. It avoids labels like <em>“offender”</em> or <em>“accused”</em> that may not
+          apply at every stage, and keeps the focus on the person’s humanity.
+        </p>
+      </div>
+    </div>
+  </div>
 
+  {/* Gentle reassurance (mint callout) */}
+  <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+    <div className="flex items-start gap-3">
+      <span className="text-xl" aria-hidden>✨</span>
+      <p className="text-slate-800">
+        You do not have to get this perfect. What matters most is showing up with honesty, love, and consistency. With
+        patience and courage, families can move through even the most difficult circumstances together.
+      </p>
+    </div>
+  </div>
+</section>
+{/* INTRO_END */}
+        
         {/* ===== STEP 1 - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
           <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
