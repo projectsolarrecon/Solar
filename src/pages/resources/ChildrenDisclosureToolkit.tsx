@@ -559,27 +559,186 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
         {/* ===== STEP 3 - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">👨‍👩‍👧 Step 3: Managing Family Reactions</h2>
-            <p className="text-slate-100 mt-1">Boundaries, anchor phrases, and protecting kids from adult conversations.</p>
-          </div>
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">👨‍👩‍👧 Step 3: Managing Family Reactions &amp; Extended Network</h2>
+    <p className="text-slate-100 mt-1">
+      Sort your circle, use anchor phrases, and protect kids from adult conversations.
+    </p>
+  </div>
 
-          <p className="mb-4">Paste your Step 3 paragraphs here.</p>
+  <p className="mb-4">
+    Once the immediate shock settles, you may face a wider circle of reactions — from grandparents and siblings to coworkers
+    and neighbors. Some will help; others may judge. You are not required to share every detail. Your goal is to protect your
+    children and yourself while maintaining healthy connections where possible. The{" "}
+    <a className="text-blue-700 underline" href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/" target="_blank" rel="noopener noreferrer">
+      Children of Incarcerated Parents Bill of Rights
+    </a>{" "}
+    reminds us children have the right to be protected from shame and judgment — that starts with how adults handle their reactions.
+  </p>
 
-          {/* Warm callout (amber) */}
-          <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>🧭</div>
-              <div>
-                <p className="font-semibold text-amber-900">Anchor Phrase</p>
-                <p className="text-amber-900/90">
-                  Keep one short, repeatable line for tough moments.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Universal Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🌍</span> Universal Guidance
+  </h3>
+  <ul className="space-y-4 mb-8">
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Sort Your Circle</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li><em>Trusted helpers</em>: will support without judgment.</li>
+        <li><em>Practical contacts</em>: need limited info for childcare, school, logistics.</li>
+        <li><em>Not safe to share</em>: likely to gossip, criticize, or harm.</li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Create Anchor Phrases</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li><em>“It’s a difficult situation. We’re focused on keeping the kids safe.”</em></li>
+        <li><em>“We’re taking it one day at a time. Thank you for understanding.”</em></li>
+      </ul>
+      <p className="mt-2 text-slate-700">
+        Using pre-prepared scripts reduces anxiety and keeps messaging consistent — a strategy echoed by{" "}
+        <a className="text-blue-700 underline" href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse" target="_blank" rel="noopener noreferrer">
+          Stop It Now!
+        </a>.
+      </p>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Expect a Spectrum of Reactions</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Support: meals, rides, childcare, listening ears.</li>
+        <li>Stress: fear, anger, harsh judgment — more about their fears than your worth.</li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Protect Children from Adult Conversations</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>If adults argue or gossip near kids, step in calmly: <em>“We’re not discussing this around the kids.”</em></li>
+        <li>Never use children as messengers or mediators between adults.</li>
+      </ul>
+    </li>
+
+    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
+      <p className="font-medium mb-2">Find Your Allies</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Even one or two safe adults helps enormously.</li>
+        <li>Ask them to echo your anchor phrases so you’re not carrying the burden alone.</li>
+      </ul>
+    </li>
+  </ul>
+
+  {/* Tip callout */}
+  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-8">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>💡</div>
+      <div>
+        <p className="font-semibold text-amber-900">Boundary Reminder</p>
+        <p className="text-amber-900/90">
+          You don’t have to answer every question. Silence is a boundary. Try: <em>“That’s not something I can discuss.”</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* Role-Based Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>🎭</span> Role-Based Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2">
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Some relatives will feel anger or betrayal; don’t demand instant forgiveness.</li>
+        <li>Lead with accountability, not excuses: <em>“I know I caused pain. I’m working to do better.”</em></li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Stand firm when pressed for details: <em>“I won’t discuss specifics, but I appreciate your support.”</em></li>
+        <li>Your duty is your child’s stability — not satisfying curiosity.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Expect conflicting advice from your own family.</li>
+        <li>Use an anchor: <em>“I need time to make my own decisions. Please respect that.”</em></li>
+        <li>Don’t get pulled into defending your choices repeatedly.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4">
+      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Focus on actions, not opinions: bring meals, offer rides, read with kids.</li>
+        <li>Avoid pressuring parents for details or venting around children.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Timeline Guidance */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
+    <span aria-hidden>🕒</span> Timeline Guidance
+  </h3>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Limit sharing to essentials; focus on who must know.</li>
+        <li>Short phrases help: <em>“This is a legal matter. We’re focusing on the children.”</em></li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Prep relatives for visits (security, waiting). Ask them not to quiz kids after.</li>
+        <li>
+          Share child-friendly materials from{" "}
+          <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration/" target="_blank" rel="noopener noreferrer">
+            Sesame Workshop
+          </a>.
+        </li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Acknowledge trust concerns without defending every choice.</li>
+        <li>Limit exposure to relatives who can’t stay respectful around kids.</li>
+      </ul>
+    </div>
+
+    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
+      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
+      <ul className="list-disc pl-5 text-slate-700 space-y-1">
+        <li>Address stigma directly and focus on what you can control.</li>
+        <li>Invite supportive relatives into advocacy or education to reduce isolation.</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Managing Family Reactions Checklist */}
+  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
+    <span aria-hidden>✅</span> Managing Family Reactions Checklist
+  </h3>
+  <ul className="space-y-2 text-slate-800">
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Identify who truly needs to know details.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Create one anchor phrase and use it consistently.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Protect children from overhearing adult discussions.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Prepare supportive relatives before visits.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Expect both support and criticism.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Lean on one or two trusted allies for consistent messaging.</span></li>
+    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Accept that some relationships may shift — and that’s okay.</span></li>
+  </ul>
+</section>
 
         {/* ===== STEP 4 - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
