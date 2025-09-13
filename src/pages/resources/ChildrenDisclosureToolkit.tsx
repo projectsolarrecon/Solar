@@ -974,7 +974,6 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         >
           Functional Family Therapy (FFT)
         </a>
-      </li>
       <li>
         <a
           className="text-blue-700 underline"
@@ -986,10 +985,10 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         </a>
       </li>
     </ul>
-  </div>
-        </section>
-      </div>
-    </div>
+  </div> {/* end: sources inner padding */}
+</section> {/* end: sources section */}
+</div> {/* end: content container */}
+</div> {/* end: bg-white wrapper */}
   );
 }
 
