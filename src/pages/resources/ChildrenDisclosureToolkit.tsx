@@ -122,29 +122,222 @@ function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 {/* INTRO_END */}
         
-        {/* ===== STEP 1 - paste your prose here ===== */}
-        <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-            <h2 className="text-2xl font-bold">🧘 Step 1: Stabilize &amp; Ground Yourself</h2>
-            <p className="text-slate-100 mt-1">Settle your body and mind before big conversations.</p>
-          </div>
+        {/* STEP1_START */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
+  {/* Slate gradient header */}
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🧘 Step 1: Stabilize &amp; Ground Yourself</h2>
+    <p className="text-slate-100 mt-1">Put on your oxygen mask first—steady yourself so you can steady your family.</p>
+  </div>
 
-          {/* Replace these placeholders with your Step 1 content */}
-          <p className="mb-4">Paste your Step 1 paragraphs here.</p>
+  {/* Lead copy */}
+  <p className="mb-4">
+    When a crisis erupts, your body and mind may go into survival mode—racing thoughts, panic, exhaustion, or numbness.
+    Before you can support children, rebuild relationships, or make thoughtful decisions, steady yourself first.
+    Think of this as putting on your own oxygen mask before helping others.
+  </p>
+  <p className="mb-6">
+    This step is about <strong>finding your footing</strong>, so the storm around you doesn’t sweep you away.
+  </p>
 
-          {/* Warm callout (mint) */}
-          <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl" aria-hidden>🌿</div>
-              <div>
-                <p className="font-semibold text-emerald-900">Grounding</p>
-                <p className="text-emerald-900/90">
-                  Short, practical reminders or a one-minute exercise can go here.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+  {/* Universal Guidance */}
+  <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-6">
+    <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+      <span aria-hidden>🌍</span> Universal Guidance
+    </h3>
+    <ul className="space-y-3">
+      <li className="flex items-start gap-3">
+        <span aria-hidden>🌬️</span>
+        <div>
+          <p className="font-medium text-slate-800">Breathe and slow down</p>
+          <p className="text-slate-700 text-sm">
+            Your nervous system is likely on high alert. Inhale through your nose, hold for three seconds, exhale slowly. Repeat.
+            Even 60 seconds can lower panic—an approach aligned with{" "}
+            <a
+              className="text-blue-700 underline"
+              href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              trauma-informed care
+            </a>.
+          </p>
+        </div>
+      </li>
+
+      <li className="flex items-start gap-3">
+        <span aria-hidden>📝</span>
+        <div>
+          <p className="font-medium text-slate-800">Name the crisis, not just the feelings</p>
+          <p className="text-slate-700 text-sm">
+            Write a simple sentence with the facts (e.g., “My partner was arrested today.”). Facts reduce “what-if” spirals.
+          </p>
+        </div>
+      </li>
+
+      <li className="flex items-start gap-3">
+        <span aria-hidden>🍎</span>
+        <div>
+          <p className="font-medium text-slate-800">Ground in basics</p>
+          <p className="text-slate-700 text-sm">
+            Eat, hydrate, and sleep if you can. These are the foundation for bigger decisions. The{" "}
+            <a
+              className="text-blue-700 underline"
+              href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              National Child Traumatic Stress Network
+            </a>{" "}
+            notes that daily routine stability strongly anchors both children and adults.
+          </p>
+        </div>
+      </li>
+
+      <li className="flex items-start gap-3">
+        <span aria-hidden>🤝</span>
+        <div>
+          <p className="font-medium text-slate-800">Identify safe people</p>
+          <p className="text-slate-700 text-sm">
+            Call one person who won’t judge or gossip. If no one comes to mind, consider a helpline or local reentry/family services.
+          </p>
+        </div>
+      </li>
+
+      <li className="flex items-start gap-3">
+        <span aria-hidden>🛑</span>
+        <div>
+          <p className="font-medium text-slate-800">Avoid rash decisions</p>
+          <p className="text-slate-700 text-sm">
+            Delay big disclosures, money moves, or confrontations while you’re in shock. Focus on 24-hour survival blocks:
+            “What do I need to get through <em>today</em> safely?”
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  {/* Pro Tip callout */}
+  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-8">
+    <div className="flex items-start gap-3">
+      <span aria-hidden>💡</span>
+      <p className="text-slate-800">
+        <strong>Pro Tip:</strong> In the first 72 hours of a crisis, it’s normal to feel like you’re drowning.
+        Small acts of care—a shower, a walk, a phone call—are lifelines.
+      </p>
+    </div>
+  </div>
+
+  {/* Role-Based Self-Care */}
+  <div className="bg-sky-50 border border-sky-200 rounded-xl p-4 mb-6">
+    <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+      <span aria-hidden>🎭</span> Role-Based Self-Care
+    </h3>
+    <div className="grid md:grid-cols-2 gap-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800 mb-1">👤 For the Impacted Individual</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Use structure (facility rules, supervision) to anchor your day.</li>
+          <li>Write short affirmations or loving notes to family to calm your mind and offer reassurance.</li>
+          <li>If possible, request mental health support early (crisis counselors/chaplains are often available).</li>
+        </ul>
+      </div>
+
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800 mb-1">👪 For Parents/Guardians at Home</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Give yourself private space to cry, vent, or write.</li>
+          <li>Protect sleep—exhaustion fuels reactivity and poor decisions.</li>
+          <li>Set boundaries—you don’t owe explanations to everyone right now.</li>
+        </ul>
+      </div>
+
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800 mb-1">💞 For Spouses/Partners</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Grief and love can coexist—both are valid.</li>
+          <li>Process with a peer/therapist so kids aren’t carrying adult emotions.</li>
+          <li>Delay major decisions until you feel steadier.</li>
+        </ul>
+      </div>
+
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800 mb-1">👵 For Extended Family</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Ground yourself before helping—kids feel your emotional state.</li>
+          <li>Do calming activities (walks, prayer, journaling) before childcare or errands.</li>
+          <li>Support without judgment; your calm presence matters more than advice.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Timeline Guidance */}
+  <div className="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-8">
+    <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+      <span aria-hidden>🕒</span> Timeline Guidance
+    </h3>
+    <div className="grid md:grid-cols-2 gap-4">
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800">🚨 Early Stage (Arrest / Pre-Trial)</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Shock is highest—focus on immediate needs (food, housing, childcare, legal).</li>
+          <li>Limit news/social media; it fuels panic.</li>
+        </ul>
+      </div>
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800">⛓️ Incarceration Stage</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Build routine (set times for calls, letters, meals).</li>
+          <li>Create a support calendar to reduce isolation and overwhelm.</li>
+        </ul>
+      </div>
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800">🏠 Reentry / Supervision</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Expect stress spikes—ask “What’s in my control today?”</li>
+          <li>Rebuild household rhythms gradually; “normal” won’t return overnight.</li>
+        </ul>
+      </div>
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <p className="font-medium text-slate-800">📜 Registry / Long-Term</p>
+        <ul className="text-slate-700 text-sm space-y-1">
+          <li>Practice pacing—balance advocacy, parenting, and self-care to avoid burnout.</li>
+          <li>Normalize the new reality for yourself first; therapy/peer support can sustain resilience.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  {/* Checklist (interactive) */}
+  <div className="bg-teal-50 border border-teal-200 rounded-xl p-4">
+    <h3 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+      <span aria-hidden>✅</span> Self-Stabilization Checklist
+    </h3>
+    <ul className="space-y-2">
+      {[
+        { id: "s1-breathe", label: "Pause and take three deep breaths." },
+        { id: "s1-facts", label: "Write down the facts of what has happened." },
+        { id: "s1-care", label: "Eat, hydrate, and rest before making major decisions." },
+        { id: "s1-safe", label: "Identify one safe person to talk to." },
+        { id: "s1-boundaries", label: "Avoid oversharing or overexplaining until calmer." },
+        { id: "s1-goal", label: "Set one small goal for today (call lawyer, pick up kids, take a walk)." }
+      ].map((item) => (
+        <li key={item.id} className="flex items-start gap-3">
+          <input
+            id={item.id}
+            type="checkbox"
+            className="mt-1 h-4 w-4 rounded border-slate-300"
+            checked={!!checkedItems[item.id]}
+            onChange={() => toggleCheck(item.id)}
+          />
+          <label htmlFor={item.id} className="text-slate-800">{item.label}</label>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+{/* STEP1_END */}
 
         {/* ===== STEP 2 - paste your prose here ===== */}
         <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
