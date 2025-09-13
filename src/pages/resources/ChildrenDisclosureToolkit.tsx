@@ -1004,15 +1004,14 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
                     rel="noopener noreferrer"
                   >
                     American Psychological Association – Rebuilding Trust
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-        </div> {/* end: content container */}
-        </main> {/* end: page wrapper */}
-      </div> {/* end: bg-white root wrapper */}
-    );
+                </a>
+              </li>
+            </ul>
+          </div> {/* end: sources inner padding */}
+        </section> {/* end: sources section */}
+      </div> {/* end: content container */}
+    </div> {/* end: page wrapper */}
+  );
 }
+
 export default ChildrenDisclosureToolkit;
