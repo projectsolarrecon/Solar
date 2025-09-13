@@ -994,5 +994,3 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
 </div> {/* end: page wrapper */}
 );
 }
-
-export default ChildrenDisclosureToolkit;
