@@ -874,6 +874,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
 </section>
 
 {/* Sources & Resources */}
+{/* Sources & Resources */}
 <section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
     <div className="flex items-center">
@@ -884,6 +885,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
       </div>
     </div>
   </div>
+
   <div className="p-6">
     <ul className="list-disc pl-6 space-y-2 text-slate-800">
       <li>
@@ -964,8 +966,8 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
           rel="noopener noreferrer"
         >
           Multisystemic Therapy (MST)
-        </a>{" "}
-        and{" "}
+        </a>
+        <span>{" "}and{" "}</span>
         <a
           className="text-blue-700 underline"
           href="https://www.functionalfamilytherapy.com/"
@@ -974,6 +976,7 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
         >
           Functional Family Therapy (FFT)
         </a>
+      </li>
       <li>
         <a
           className="text-blue-700 underline"
@@ -987,9 +990,10 @@ export default function ChildrenDisclosureToolkit(): JSX.Element {
     </ul>
   </div> {/* end: sources inner padding */}
 </section> {/* end: sources section */}
+
 </div> {/* end: content container */}
 </div> {/* end: bg-white wrapper */}
-  );
+);
 }
 
 export default ChildrenDisclosureToolkit;
