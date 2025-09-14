@@ -170,10 +170,10 @@ function Resources() {
       icon: "👨‍👩‍👧‍👦",
       resources: [
         {
-        name: "Legislative Advocacy Guide",
-        type: "Guide",
-        description: "Step-by-step playbook for finding your officials, choosing phone/email, and making clear, respectful, evidence-based asks—includes templates and trusted sources.",
-        link: "/resources/legislative-advocacy-guide"
+         name: "The SOLAR Family & Allies Guide",
+         type: "Guide",
+         description: "Supporting a loved one through a sex-offense case—from arrest to reentry (and beyond). A grounded, action-oriented roadmap for families and allies, with scripts, checklists, and links.",
+         link: "/resources/family-support-guide"
         },
         {
          name: "Children & Disclosure + Relationship Rebuilding Toolkit",
