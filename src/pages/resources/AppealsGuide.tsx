@@ -324,6 +324,233 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
+        {/* ===== EVIDENCE & RECORDS ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">📁 Evidence &amp; Records: Getting What You Need</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    <ul className="list-disc pl-6 space-y-2">
+      <li>
+        <strong>Core case documents:</strong> docket sheet, final judgment, Presentence Report (PSR), and all relevant hearing/transcript dates (arraignment, motions, trial, sentencing).
+      </li>
+      <li>
+        <strong>Exhibits &amp; orders:</strong> make sure written rulings, objections, and admitted exhibits are in the record—or move to supplement if allowed.
+      </li>
+      <li>
+        <strong>Agency records:</strong> request classification letters, tier notices, parole/probation orders, and any violation or review decisions.
+      </li>
+      <li>
+        <strong>FOIA / public records:</strong> use federal FOIA or state open records laws for agency materials (police reports, policy memos, classification manuals).
+      </li>
+      <li>
+        <strong>Proof of everything:</strong> keep stamped copies, certificates of service, mail logs (prison mailbox rule), and receipts for transcript orders (AO-435).
+      </li>
+    </ul>
+  </div>
+
+  {/* Callout */}
+  <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>🗂️</div>
+      <div>
+        <p className="font-semibold text-amber-900">Organizer Tip</p>
+        <p className="text-amber-900/90">
+          Use one folder (physical or digital) per category—<em>Transcripts</em>, <em>Orders</em>, <em>Exhibits</em>, <em>Agency</em>. 
+          Put a simple index sheet in front so you (and any lawyer or clinic) can find key pages fast.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+        {/* ===== COMMON FORMS ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">✍️ Common Forms &amp; Where to Find Them</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    <ul className="list-disc pl-6 space-y-2">
+      <li>
+        <strong>Notice of Appeal:</strong> required to start most appeals 
+        (<a href="https://www.law.cornell.edu/rules/frap/rule_3" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP Rule 3–4</a>).
+      </li>
+      <li>
+        <strong>Motion for Extension of Time:</strong> if you can’t meet the original deadline 
+        (<a href="https://www.law.cornell.edu/rules/frap/rule_4" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP 4(b)(4)</a>).
+      </li>
+      <li>
+        <strong>IFP Application &amp; Financial Affidavit:</strong> request to waive fees and appoint counsel (28 U.S.C. § 1915).
+      </li>
+      <li>
+        <strong>AO-435 Transcript Order Form:</strong> used to order trial, hearing, or sentencing transcripts.
+      </li>
+      <li>
+        <strong>Registry relief petitions:</strong> such as California’s 
+        <a href="https://selfhelp.courts.ca.gov/jcc-form/CR-415" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline"> CR-415 (Petition to Terminate Sex Offender Registration)</a>.
+      </li>
+    </ul>
+  </div>
+
+  {/* Callout */}
+  <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>📄</div>
+      <div>
+        <p className="font-semibold text-sky-900">Practical Tip</p>
+        <p className="text-sky-900/90">
+          Ask the clerk for “pro se” or “self-represented” packets. Many courts provide 
+          pre-printed forms that you can fill in by hand if you don’t have internet or computer access.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+        {/* ===== SELF-ADVOCACY TIPS ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🛠 Self-Advocacy Tips</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    <ul className="list-disc pl-6 space-y-2">
+      <li>
+        <span className="font-semibold">Know the standard of review:</span> 
+        Whether it’s <em>de novo</em>, abuse of discretion, or plain error — this determines 
+        how closely the appellate court looks at your arguments.
+      </li>
+      <li>
+        <span className="font-semibold">Always cite the record:</span> point directly to the 
+        transcript page, exhibit, or order where the error occurred.
+      </li>
+      <li>
+        <span className="font-semibold">Limited internet?</span> Rely on courthouse terminals, 
+        public law libraries, or print resources for rules and case law.
+      </li>
+      <li>
+        <span className="font-semibold">Seek help:</span> Public defenders, appellate defender 
+        programs, law school clinics, or pro bono projects often assist with appeals.
+      </li>
+    </ul>
+  </div>
+
+  {/* Callout */}
+  <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>💡</div>
+      <div>
+        <p className="font-semibold text-amber-900">Strategy Reminder</p>
+        <p className="text-amber-900/90">
+          The appellate court only reviews what’s in the record. 
+          Every objection, filing, and motion you preserve now is ammunition later.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+        {/* ===== OFFLINE PLAYBOOK ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🏛 Offline Playbook (No Computer, Limited Phone)</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    <ul className="list-disc pl-6 space-y-2">
+      <li>
+        <span className="font-semibold">Clerk’s office:</span> ask for paper copies of 
+        forms, rules, and filing instructions.
+      </li>
+      <li>
+        <span className="font-semibold">Public law library:</span> print sample briefs, 
+        local rules, and case digests for reference.
+      </li>
+      <li>
+        <span className="font-semibold">If incarcerated:</span> request law library access; 
+        keep written proof of any denials or delays.
+      </li>
+    </ul>
+  </div>
+
+  {/* Callout */}
+  <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>📓</div>
+      <div>
+        <p className="font-semibold text-emerald-900">Access Matters</p>
+        <p className="text-emerald-900/90">
+          Even without internet, you can move your case forward — 
+          document obstacles and use physical resources to protect your rights.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+        {/* ===== ONE-PAGE TRIAGE SCRIPT ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🗒 One-Page “Triage” Script</h2>
+    <p className="text-slate-100 mt-1">Simple phrases you can use at the clerk’s office or in filings.</p>
+  </div>
+
+  {/* Callout with script lines */}
+  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>📝</div>
+      <div className="space-y-3">
+        <p className="font-semibold text-amber-900">Use these exact words if needed:</p>
+        <blockquote className="border-l-4 border-amber-300 pl-3 italic text-amber-900/90">
+          <p><strong>Today:</strong> “I’m filing a Notice of Appeal in case [number]. Please time-stamp my copy.”</p>
+          <p><strong>Also today:</strong> “Here is my IFP application and request for appointment of appellate counsel.”</p>
+          <p><strong>Within a week:</strong> “I am ordering transcripts (AO-435) for [dates] and designating the record.”</p>
+          <p><strong>If in custody:</strong> “I move for release pending appeal under FRAP 9 and 18 U.S.C. § 3143(b).”</p>
+          <p><strong>If registry/supervision involved:</strong> “I am seeking administrative review of my classification and preparing a petition for relief.”</p>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+        {/* ===== CONCLUSION ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">✅ Conclusion: Moving Forward with Realism and Hope</h2>
+    <p className="text-slate-100 mt-1">Appeals are technical and slow — but they preserve rights and open doors.</p>
+  </div>
+
+  <p className="mb-4 text-slate-800">
+    The appeals process is not easy. It is deadline-driven, highly technical, and often slow. Many appeals are denied, and the
+    standards of review can feel stacked against individuals. But appeals also serve a vital role in the justice system: they
+    correct errors, clarify the law, and sometimes open the door to freedom, reduced punishment, or relief from harsh collateral
+    consequences like supervision or registry.
+  </p>
+
+  <p className="mb-4 text-slate-800">
+    Even when outcomes are uncertain, <strong className="font-semibold text-slate-900">filing timely and properly preserves your rights.</strong> Sometimes, just
+    keeping an issue alive means it may benefit from future changes in the law. And beyond your individual case, pushing back
+    through appeals and post-conviction efforts contributes to a record of advocacy that can ripple outward to help others in
+    similar situations.
+  </p>
+
+  <p className="mb-4 text-slate-800">
+    If you are here because a door has just slammed shut, know this: other doors still exist. This guide is your map for finding
+    them. Use it step by step, stay organized, and don’t give up at the first “no.” Appeals are long fights, but they are also
+    acts of persistence — and persistence is often what makes change possible.
+  </p>
+
+  {/* Warm callout (violet) */}
+  <div className="mt-6 rounded-xl border border-violet-200 bg-violet-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>🌱</div>
+      <div>
+        <p className="font-semibold text-violet-900">Keep momentum, not perfection</p>
+        <p className="text-violet-900/90">
+          Calendar every deadline, save every receipt, and keep a one-page case log. Progress compounds — even when the answer
+          today is “not yet.”
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
         
 
         {/* ===== SOURCES & RESOURCES (blue card) ===== */}
