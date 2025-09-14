@@ -32,10 +32,10 @@ function Resources() {
           link: "#"
         },
         {
-          name: "Appeals Process Guide",
-          type: "Guide",
-          description: "Step-by-step guide to challenging registry placement and pursuing legal remedies.",
-          link: "#"
+         name: "SOLAR Appeals Guide",
+         type: "Guide",
+         description: "Step-by-step hand-holder for challenging convictions, sentences, supervision/registry decisions, and preserving future remedies.",
+         link: "/resources/appeals-guide"
         },
         {
           name: "Court Forms & Templates",
