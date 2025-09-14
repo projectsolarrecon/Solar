@@ -67,6 +67,7 @@ import CommunityTies from "./pages/blog/CommunityTies";
 import ProfessionalLicensingGuide from "./pages/resources/ProfessionalLicensingGuide";
 import ChildrenDisclosureToolkit from "./pages/resources/ChildrenDisclosureToolkit";
 import InsideTheHouse from "./pages/blog/InsideTheHouse";
+import AppealsGuide from "./pages/resources/AppealsGuide";
 
 function App() {
   return (
@@ -109,6 +110,7 @@ function App() {
               <Route path="/resources/legislative-tracker/:slug" element={<WeeklyUpdateLoader />} />
               <Route path="/resources/professional-licensing" element={<ProfessionalLicensingGuide />} />
               <Route path="/resources/children-disclosure-toolkit" element={<ChildrenDisclosureToolkit />} />
+              <Route path="/resources/appeals-guide" element={<AppealsGuide />} />
           
 
               {/* Blog Routes */}
