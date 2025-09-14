@@ -12,7 +12,18 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
-// Insert this object at the TOP of the exported array (newest-first):
+{
+    id: "inside-the-house-2025-09-14",
+    title: "The Call Is Coming from Inside the House",
+    excerpt:
+      "Family, proximity, and the myth that a map can save us. Why registries can’t protect children from the risks closest to home—and what real safety requires.",
+    author: "The SOLAR Project",
+    date: "September 14, 2025",
+    readTime: "8 min read",
+    category: "Investigative Series",
+    tags: ["registry", "child safety", "prevention", "family"],
+    path: "/inside-the-house",
+  },
 {
   id: "community-ties-2025-09-11",
   title: "Community Ties: When Employers Become the Danger",
