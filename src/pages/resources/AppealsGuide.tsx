@@ -196,6 +196,134 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
+        {/* ===== ROADMAP ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🗺️ The Roadmap (Why Each Step Matters &amp; How to Do It)</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    {/* Step 1 */}
+    <h3>1. Deadlines &amp; “tolling” basics</h3>
+    <p><strong>Why:</strong> Missed deadlines = lost appeal rights.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Understand FRAP 4(b) for criminal cases; other rules for civil or administrative.</li>
+      <li>Note when judgment is “entered” and when any post-trial motions (Rule 29, 33, etc.) are resolved.</li>
+      <li>Use prison mailbox rule if applicable.</li>
+      <li><strong>Offline:</strong> Ask clerk for local rule sheets; write down dates, keep a physical calendar.</li>
+    </ul>
+
+    {/* Callout */}
+    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+      <div className="flex items-start gap-3">
+        <div className="text-2xl" aria-hidden>⚠️</div>
+        <div>
+          <p className="font-semibold text-amber-900">Important</p>
+          <p className="text-amber-900/90">
+            What qualifies as “entry of judgment” varies; sometimes it's when the judge signs, sometimes when filed with clerk.
+            If you’re not sure, ask the clerk in writing and keep it in your file.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Step 2 */}
+    <h3 className="mt-8">2. File the Notice of Appeal</h3>
+    <p><strong>Why:</strong> It is the gateway; without it, appeal courts may refuse to hear you.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Complete notice indicating which decision you are appealing.</li>
+      <li>File with district/trial court clerk; keep stamped receipt.</li>
+      <li>If incarcerated, follow legal mail procedures and keep proof of deposit.</li>
+      <li><strong>Offline:</strong> Use available pro se forms; ask clerk whether a template is available.</li>
+    </ul>
+
+    {/* Step 3 */}
+    <h3 className="mt-8">3. Ask for appointed counsel &amp; fee waivers</h3>
+    <p><strong>Why:</strong> Appeals can be complex and costly.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Apply under FRAP 24 + statute. Include affidavit of finances.</li>
+      <li>Request transcript fee waiver under 28 U.S.C. § 753(f) if you cannot pay.</li>
+      <li><strong>Offline:</strong> Get IFP form from clerk; ask law library for sample completed forms.</li>
+    </ul>
+
+    {/* Step 4 */}
+    <h3 className="mt-8">4. Protect liberty &amp; conditions during appeal</h3>
+    <p><strong>Why:</strong> You might be stuck with harmful conditions while waiting.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Motion for release pending appeal (FRAP 9; § 3143(b)).</li>
+      <li>Motion to modify supervision conditions. Cite case law when possible.</li>
+      <li><strong>Offline:</strong> Draft simple motion, use clerk’s form, attach your reasons, request a hearing.</li>
+    </ul>
+
+    {/* Step 5 */}
+    <h3 className="mt-8">5. Build the record: transcripts &amp; exhibits</h3>
+    <p><strong>Why:</strong> Appellate courts can’t see what you didn’t enter into the record.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Order transcripts via AO-435; designate all the hearings you need.</li>
+      <li>Ensure rulings and objections are in writing or on record.</li>
+      <li><strong>Offline:</strong> Hand-deliver transcript order to court reporter; ask for clerk’s docket and indexed exhibits.</li>
+    </ul>
+
+    {/* Step 6 */}
+    <h3 className="mt-8">6. Brief the case clearly</h3>
+    <p><strong>Why:</strong> Your brief is how you persuade the appellate court.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>State issues clearly. For each: the legal standard of review, what went wrong, where in the record, and what relief you want.</li>
+      <li>Follow FRAP 28, local rules for formatting.</li>
+      <li><strong>Offline:</strong> Use printed sample briefs from appellate courts or public libraries.</li>
+    </ul>
+
+    {/* Step 7 */}
+    <h3 className="mt-8">7. After the decision: Rehearing, Mandate, &amp; Supreme Court</h3>
+    <p><strong>Why:</strong> Additional procedural options may extend or alter relief.</p>
+    <p><strong>How:</strong></p>
+    <ul>
+      <li>Panel rehearing or en banc under FRAP 40–41.</li>
+      <li>Supreme Court certiorari under Rule 13 (90 days).</li>
+      <li><strong>Offline:</strong> Request pro se guide from Supreme Court; find forms at clerk’s office.</li>
+    </ul>
+  </div>
+</section>
+        {/* ===== REGISTRY & SUPERVISION ===== */}
+<section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
+  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+    <h2 className="text-2xl font-bold">🔐 Registry &amp; Supervision: Special Paths</h2>
+  </div>
+
+  <div className="prose prose-slate max-w-none text-slate-800">
+    <ul>
+      <li>
+        <strong>Administrative classification challenges</strong> — hearing rights, notice, and internal review processes may be available depending on jurisdiction.
+      </li>
+      <li>
+        <strong>Tier termination petitions or statutory relief</strong> — some states allow petitions to reduce or terminate registration (e.g. California PC § 290.5 / Form CR-415).
+      </li>
+      <li>
+        <strong>Condition challenges</strong> — such as broad internet bans or GPS monitoring. These may be contested under constitutional arguments or statutory limits.
+      </li>
+    </ul>
+  </div>
+
+  {/* Callout */}
+  <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-4">
+    <div className="flex items-start gap-3">
+      <div className="text-2xl" aria-hidden>📌</div>
+      <div>
+        <p className="font-semibold text-sky-900">Tip</p>
+        <p className="text-sky-900/90">
+          Always keep copies of classification notices, supervision orders, and any correspondence with agencies. These documents are
+          essential for filing petitions or motions later.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
         
 
         {/* ===== SOURCES & RESOURCES (blue card) ===== */}
