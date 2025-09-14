@@ -22,7 +22,7 @@ export const allBlogPosts: BlogPost[] = [
     readTime: "8 min read",
     category: "Investigative Series",
     tags: ["registry", "child safety", "prevention", "family"],
-    path: "/inside-the-house",
+    path: "/blog/inside-the-house",
   },
 {
   id: "community-ties-2025-09-11",
