@@ -66,6 +66,7 @@ import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
 import CommunityTies from "./pages/blog/CommunityTies";
 import ProfessionalLicensingGuide from "./pages/resources/ProfessionalLicensingGuide";
 import ChildrenDisclosureToolkit from "./pages/resources/ChildrenDisclosureToolkit";
+import InsideTheHouse from "./pages/blog/InsideTheHouse";
 
 function App() {
   return (
@@ -136,6 +137,7 @@ function App() {
               <Route path="/blog/when-everything-is-violent" element={<WhenEverythingIsViolent />} />
               <Route path="/blog/first-do-no-harm" element={<BlogPost_DoNoHarm />} />
               <Route path="/blog/community-ties" element={<CommunityTies />} />
+              <Route path="/blog/inside-the-house" element={<InsideTheHouse />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
