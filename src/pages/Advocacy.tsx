@@ -178,7 +178,9 @@ function Advocacy() {
                   </svg>
                 </div>
                 <p className="text-lg text-gray-700 font-medium">
-                  At SOLAR — <strong>S</strong>ex <strong>O</strong>ffenses: <strong>L</strong>earning, <strong>A</strong>dvocacy, and <strong>R</strong>esources — we are <strong>S</strong>upporting, <strong>O</strong>rganizing, <strong>L</strong>eading, <strong>A</strong>dvancing, and <strong>R</strong>eforming. We believe:
+                  At SOLAR, we exist to <strong>Support, Organize, Lead, Advance, and Reform</strong> —
+        providing <strong>Sex Offense Learning, Advocacy, and Resources</strong> —
+        to realize a future of <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong>, and we believe:
                 </p>
               </div>
 
