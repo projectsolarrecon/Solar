@@ -325,6 +325,20 @@ Thank you for your work.`;
   </div>
 </section>
       {/* (end of weekly sections) */}
+      // Exported teasers consumed by the hub page
+export const teasers = {
+  glance: [
+    '✅ Texas — HB 1465 (invasive visual recording → registry) now in force (Sep 1).',
+    '📜 California — Sen. Rubio bill introduced to close a registration loophole; awaiting committee.',
+    '📜 Michigan — SB 424 filed to amend SORA sections; committee action pending.',
+    '⚖️ Courts — No new published decisions or agency rules changing registry policy this week.',
+  ],
+  highlights: [
+    { icon: '🟢', title: 'Texas — HB 1465 now active', url: 'https://capitol.texas.gov/' },
+    { icon: '🟡', title: 'California — Rubio bill introduced', url: 'https://leginfo.legislature.ca.gov/' },
+    { icon: '🔷', title: 'Michigan — SB 424 amends SORA', url: 'https://www.legislature.mi.gov/' },
+  ],
+};
       <div className="mt-10 flex gap-3">
         <button onClick={handlePrint} className="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm">
           Print
