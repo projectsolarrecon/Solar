@@ -14,7 +14,7 @@ type Teasers = {
 export default function LegislativeTracker(): JSX.Element {
   const navigate = useNavigate();
   const [copied, setCopied] = useState<string | null>(null);
-  const [latestTeasers, setLatestTeasers] = useState<Tezers>(null);
+  const [latestTeasers, setLatestTeasers] = useState<Teasers>(null);
 
   // newest first
   const items = useMemo(
