@@ -325,7 +325,15 @@ Thank you for your work.`;
   </div>
 </section>
       {/* (end of weekly sections) */}
-      // Exported teasers consumed by the hub page
+      <div className="mt-10 flex gap-3">
+        <button onClick={handlePrint} className="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm">
+          Print
+        </button>
+      </div>
+    </div>
+  );
+}
+// Exported teasers consumed by the hub page
 export const teasers = {
   glance: [
     '✅ Texas — HB 1465 (invasive visual recording → registry) now in force (Sep 1).',
@@ -339,11 +347,3 @@ export const teasers = {
     { icon: '🔷', title: 'Michigan — SB 424 amends SORA', url: 'https://www.legislature.mi.gov/' },
   ],
 };
-      <div className="mt-10 flex gap-3">
-        <button onClick={handlePrint} className="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm">
-          Print
-        </button>
-      </div>
-    </div>
-  );
-}
