@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
+  date: "September 14, 2025",
+  title: "Registry Reform Moves in California & Michigan; Texas Enacts New Visual Recording Registry Law",
+  slug: "2025-09-14",
+  summary: "CA bill targets a registration loophole, Michigan SB 424 amends SORA, and Texas HB 1465 (invasive visual recording) is now in force. Includes scripts and action tools.",
+},
+  {
   date: '2025-09-07',
   title: 'TX law takes effect; WY tightens verification; NY proposes school-zone ban; MI stay denied',
   slug: '2025-09-07',
