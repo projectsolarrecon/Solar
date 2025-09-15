@@ -68,20 +68,34 @@ export default function AppealsGuide(): JSX.Element {
       was correct, fair, or lawful.
     </p>
 
-    <p>
-      This guide is designed as a <strong>practical companion</strong>:
-    </p>
+    <p>This guide is designed as a <strong>practical companion</strong>:</p>
 
-    <ul className="list-disc pl-6 space-y-2">
-      <li>If you just received a ruling, start with the <strong>Quick-Start Checklist</strong> to protect immediate rights and deadlines.</li>
-      <li>If you’re still in earlier stages, use the <strong>Roadmap</strong> to preserve issues at arrest, arraignment, pretrial, trial, and sentencing.</li>
-      <li>If you are past conviction, see the <strong>Direct Appeal</strong>, <strong>Post-Conviction Relief</strong>, and <strong>Registry/Supervision</strong> sections to understand next steps.</li>
-      <li>Wherever possible, we’ve included <strong>embedded links</strong> to rules, cases, and forms, and suggested <strong>offline alternatives</strong> for those with limited internet access.</li>
+    {/* iconified list */}
+    <ul className="mt-3 space-y-3 not-prose">
+      <li className="flex gap-3">
+        <span className="select-none mt-0.5">⚡</span>
+        <span>If you just received a ruling, start with the <strong>Quick-Start Checklist</strong> to protect immediate rights and deadlines.</span>
+      </li>
+      <li className="flex gap-3">
+        <span className="select-none mt-0.5">🗺️</span>
+        <span>If you’re still in earlier stages, use the <strong>Roadmap</strong> to preserve issues at arrest, arraignment, pretrial, trial, and sentencing.</span>
+      </li>
+      <li className="flex gap-3">
+        <span className="select-none mt-0.5">📚</span>
+        <span>If you are past conviction, see the <strong>Direct Appeal</strong>, <strong>Post-Conviction Relief</strong>, and <strong>Registry/Supervision</strong> sections to understand next steps.</span>
+      </li>
+      <li className="flex gap-3">
+        <span className="select-none mt-0.5">🔗</span>
+        <span>Wherever possible, we’ve included <strong>embedded links</strong> to rules, cases, and forms, and suggested <strong>offline alternatives</strong> for those with limited internet access.</span>
+      </li>
     </ul>
   </div>
 
+  {/* subtle divider */}
+  <div className="my-6 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
   {/* Disclaimer callout */}
-  <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">
+  <div className="rounded-xl border border-rose-200 bg-rose-50 p-4">
     <div className="flex items-start gap-3">
       <div className="text-2xl" aria-hidden>🛑</div>
       <div>
@@ -96,80 +110,104 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== QUICK-START CHECKLIST ===== */}
+
+{/* ===== QUICK-START CHECKLIST ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">⚡ Quick-Start Checklist</h2>
     <p className="text-slate-100 mt-1">When a bad ruling just landed — protect deadlines, preserve rights, and set the table for appeal.</p>
   </div>
 
-  <div className="prose prose-slate max-w-none text-slate-800">
-    <ol className="list-decimal pl-6 space-y-3">
-      <li>
-        <strong>Write the deadline down — today.</strong>
+  {/* iconified steps instead of bare numbers */}
+  <div className="space-y-4">
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">⏰</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Write the deadline down — today.</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Federal criminal notice of appeal often due <strong>14 days</strong> from entry of judgment/order. (See <a className="text-blue-700 underline" href="https://www.law.cornell.edu/rules/frap/rule_4" target="_blank" rel="noopener noreferrer">FRAP 4(b)</a>.)</li>
           <li>If incarcerated, use the “prison mailbox rule” — keep proof of legal mail and postmark.</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>File a Notice of Appeal (or ask the clerk to help you file).</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">📨</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>File a Notice of Appeal (or ask the clerk to help you file).</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>File with the trial court clerk. Keep a copy and a stamped receipt.</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>Ask for counsel &amp; fee relief if needed.</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">🧾</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Ask for counsel &amp; fee relief if needed.</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Apply for <em>in forma pauperis</em> (IFP) and appointment of appellate counsel if eligible (<a className="text-blue-700 underline" href="https://www.law.cornell.edu/rules/frap/rule_24" target="_blank" rel="noopener noreferrer">FRAP 24</a>; 28 U.S.C. § 1915).</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>Preserve release options.</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">🛡️</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Preserve release options.</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Move for release pending appeal (<a className="text-blue-700 underline" href="https://www.law.cornell.edu/rules/frap/rule_9" target="_blank" rel="noopener noreferrer">FRAP 9</a>; 18 U.S.C. § 3143(b)).</li>
           <li>Photograph or document any conditions of release or restriction.</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>Order transcripts &amp; lock down the record.</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">🗂️</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Order transcripts &amp; lock down the record.</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Use AO-435 to order transcripts for all hearings/trial/sentencing.</li>
           <li>Designate exhibits, orders, motions, clerk’s minutes — everything you may cite.</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>Calendar the next wave of deadlines.</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">📅</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Calendar the next wave of deadlines.</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Briefing (<a className="text-blue-700 underline" href="https://www.law.cornell.edu/rules/frap/rule_28" target="_blank" rel="noopener noreferrer">FRAP 28</a>), responses, possible rehearing, and (if applicable) Supreme Court certiorari.</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>If registry or supervision is involved:</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">🔐</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>If registry or supervision is involved:</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Save classification letters, tier notices, and supervision condition orders.</li>
           <li>Research termination/relief processes (e.g., CA PC § 290.5 / Form CR-415).</li>
         </ul>
-      </li>
+      </div>
+    </div>
 
-      <li>
-        <strong>Offline action plan (if no internet or limited access):</strong>
+    <div className="flex gap-3">
+      <div className="text-xl mt-0.5 select-none">📵</div>
+      <div className="prose prose-slate max-w-none text-slate-800">
+        <p className="m-0"><strong>Offline action plan (if no internet or limited access):</strong></p>
         <ul className="list-disc pl-6 mt-1 space-y-1">
           <li>Go to the clerk’s office to get forms and ask where the notice of appeal is filed.</li>
           <li>Use public law libraries or courthouse terminals for record access.</li>
           <li>If incarcerated, request law library access; document any denials/obstacles.</li>
         </ul>
-      </li>
-    </ol>
+      </div>
+    </div>
   </div>
 
-  {/* Warm callouts */}
+  {/* subtle grid of micro-callouts */}
   <div className="mt-6 grid gap-4 md:grid-cols-2">
     <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
       <div className="flex items-start gap-3">
@@ -196,7 +234,8 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== ROADMAP ===== */}
+
+{/* ===== ROADMAP ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">🗺️ The Roadmap (Why Each Step Matters &amp; How to Do It)</h2>
@@ -204,18 +243,23 @@ export default function AppealsGuide(): JSX.Element {
 
   <div className="prose prose-slate max-w-none text-slate-800">
     {/* Step 1 */}
-    <h3>1. Deadlines &amp; “tolling” basics</h3>
-    <p><strong>Why:</strong> Missed deadlines = lost appeal rights.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Understand FRAP 4(b) for criminal cases; other rules for civil or administrative.</li>
-      <li>Note when judgment is “entered” and when any post-trial motions (Rule 29, 33, etc.) are resolved.</li>
-      <li>Use prison mailbox rule if applicable.</li>
-      <li><strong>Offline:</strong> Ask clerk for local rule sheets; write down dates, keep a physical calendar.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">📅</div>
+      <div className="flex-1">
+        <h3 className="m-0">1. Deadlines &amp; “tolling” basics</h3>
+        <p><strong>Why:</strong> Missed deadlines = lost appeal rights.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Understand FRAP 4(b) for criminal cases; other rules for civil or administrative.</li>
+          <li>Note when judgment is “entered” and when any post-trial motions (Rule 29, 33, etc.) are resolved.</li>
+          <li>Use prison mailbox rule if applicable.</li>
+          <li><strong>Offline:</strong> Ask clerk for local rule sheets; write down dates, keep a physical calendar.</li>
+        </ul>
+      </div>
+    </div>
 
     {/* Callout */}
-    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+    <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4 not-prose">
       <div className="flex items-start gap-3">
         <div className="text-2xl" aria-hidden>⚠️</div>
         <div>
@@ -228,84 +272,131 @@ export default function AppealsGuide(): JSX.Element {
       </div>
     </div>
 
+    {/* subtle divider */}
+    <div className="my-6 h-px bg-slate-200" />
+
     {/* Step 2 */}
-    <h3 className="mt-8">2. File the Notice of Appeal</h3>
-    <p><strong>Why:</strong> It is the gateway; without it, appeal courts may refuse to hear you.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Complete notice indicating which decision you are appealing.</li>
-      <li>File with district/trial court clerk; keep stamped receipt.</li>
-      <li>If incarcerated, follow legal mail procedures and keep proof of deposit.</li>
-      <li><strong>Offline:</strong> Use available pro se forms; ask clerk whether a template is available.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">📨</div>
+      <div className="flex-1">
+        <h3 className="m-0">2. File the Notice of Appeal</h3>
+        <p><strong>Why:</strong> It is the gateway; without it, appeal courts may refuse to hear you.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Complete notice indicating which decision you are appealing.</li>
+          <li>File with district/trial court clerk; keep stamped receipt.</li>
+          <li>If incarcerated, follow legal mail procedures and keep proof of deposit.</li>
+          <li><strong>Offline:</strong> Use available pro se forms; ask clerk whether a template is available.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="my-6 h-px bg-slate-200" />
 
     {/* Step 3 */}
-    <h3 className="mt-8">3. Ask for appointed counsel &amp; fee waivers</h3>
-    <p><strong>Why:</strong> Appeals can be complex and costly.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Apply under FRAP 24 + statute. Include affidavit of finances.</li>
-      <li>Request transcript fee waiver under 28 U.S.C. § 753(f) if you cannot pay.</li>
-      <li><strong>Offline:</strong> Get IFP form from clerk; ask law library for sample completed forms.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">🧾</div>
+      <div className="flex-1">
+        <h3 className="m-0">3. Ask for appointed counsel &amp; fee waivers</h3>
+        <p><strong>Why:</strong> Appeals can be complex and costly.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Apply under FRAP 24 + statute. Include affidavit of finances.</li>
+          <li>Request transcript fee waiver under 28 U.S.C. § 753(f) if you cannot pay.</li>
+          <li><strong>Offline:</strong> Get IFP form from clerk; ask law library for sample completed forms.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="my-6 h-px bg-slate-200" />
 
     {/* Step 4 */}
-    <h3 className="mt-8">4. Protect liberty &amp; conditions during appeal</h3>
-    <p><strong>Why:</strong> You might be stuck with harmful conditions while waiting.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Motion for release pending appeal (FRAP 9; § 3143(b)).</li>
-      <li>Motion to modify supervision conditions. Cite case law when possible.</li>
-      <li><strong>Offline:</strong> Draft simple motion, use clerk’s form, attach your reasons, request a hearing.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">🛡️</div>
+      <div className="flex-1">
+        <h3 className="m-0">4. Protect liberty &amp; conditions during appeal</h3>
+        <p><strong>Why:</strong> You might be stuck with harmful conditions while waiting.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Motion for release pending appeal (FRAP 9; § 3143(b)).</li>
+          <li>Motion to modify supervision conditions. Cite case law when possible.</li>
+          <li><strong>Offline:</strong> Draft simple motion, use clerk’s form, attach your reasons, request a hearing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="my-6 h-px bg-slate-200" />
 
     {/* Step 5 */}
-    <h3 className="mt-8">5. Build the record: transcripts &amp; exhibits</h3>
-    <p><strong>Why:</strong> Appellate courts can’t see what you didn’t enter into the record.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Order transcripts via AO-435; designate all the hearings you need.</li>
-      <li>Ensure rulings and objections are in writing or on record.</li>
-      <li><strong>Offline:</strong> Hand-deliver transcript order to court reporter; ask for clerk’s docket and indexed exhibits.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">🗂️</div>
+      <div className="flex-1">
+        <h3 className="m-0">5. Build the record: transcripts &amp; exhibits</h3>
+        <p><strong>Why:</strong> Appellate courts can’t see what you didn’t enter into the record.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Order transcripts via AO-435; designate all the hearings you need.</li>
+          <li>Ensure rulings and objections are in writing or on record.</li>
+          <li><strong>Offline:</strong> Hand-deliver transcript order to court reporter; ask for clerk’s docket and indexed exhibits.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="my-6 h-px bg-slate-200" />
 
     {/* Step 6 */}
-    <h3 className="mt-8">6. Brief the case clearly</h3>
-    <p><strong>Why:</strong> Your brief is how you persuade the appellate court.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>State issues clearly. For each: the legal standard of review, what went wrong, where in the record, and what relief you want.</li>
-      <li>Follow FRAP 28, local rules for formatting.</li>
-      <li><strong>Offline:</strong> Use printed sample briefs from appellate courts or public libraries.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">🧠</div>
+      <div className="flex-1">
+        <h3 className="m-0">6. Brief the case clearly</h3>
+        <p><strong>Why:</strong> Your brief is how you persuade the appellate court.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>State issues clearly. For each: the legal standard of review, what went wrong, where in the record, and what relief you want.</li>
+          <li>Follow FRAP 28, local rules for formatting.</li>
+          <li><strong>Offline:</strong> Use printed sample briefs from appellate courts or public libraries.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div className="my-6 h-px bg-slate-200" />
 
     {/* Step 7 */}
-    <h3 className="mt-8">7. After the decision: Rehearing, Mandate, &amp; Supreme Court</h3>
-    <p><strong>Why:</strong> Additional procedural options may extend or alter relief.</p>
-    <p><strong>How:</strong></p>
-    <ul>
-      <li>Panel rehearing or en banc under FRAP 40–41.</li>
-      <li>Supreme Court certiorari under Rule 13 (90 days).</li>
-      <li><strong>Offline:</strong> Request pro se guide from Supreme Court; find forms at clerk’s office.</li>
-    </ul>
+    <div className="flex gap-3">
+      <div className="text-xl mt-1 select-none">🔁</div>
+      <div className="flex-1">
+        <h3 className="m-0">7. After the decision: Rehearing, Mandate, &amp; Supreme Court</h3>
+        <p><strong>Why:</strong> Additional procedural options may extend or alter relief.</p>
+        <p><strong>How:</strong></p>
+        <ul className="list-disc pl-6">
+          <li>Panel rehearing or en banc under FRAP 40–41.</li>
+          <li>Supreme Court certiorari under Rule 13 (90 days).</li>
+          <li><strong>Offline:</strong> Request pro se guide from Supreme Court; find forms at clerk’s office.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
-        {/* ===== REGISTRY & SUPERVISION ===== */}
+
+{/* ===== REGISTRY & SUPERVISION ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">🔐 Registry &amp; Supervision: Special Paths</h2>
   </div>
 
   <div className="prose prose-slate max-w-none text-slate-800">
-    <ul>
-      <li>
-        <strong>Administrative classification challenges</strong> — hearing rights, notice, and internal review processes may be available depending on jurisdiction.
+    <ul className="space-y-2 not-prose">
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">📝</span>
+        <span><strong>Administrative classification challenges</strong> — hearing rights, notice, and internal review processes may be available depending on jurisdiction.</span>
       </li>
-      <li>
-        <strong>Tier termination petitions or statutory relief</strong> — some states allow petitions to reduce or terminate registration (e.g. California PC § 290.5 / Form CR-415).
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🎯</span>
+        <span><strong>Tier termination petitions or statutory relief</strong> — some states allow petitions to reduce or terminate registration (e.g. California PC § 290.5 / Form CR-415).</span>
       </li>
-      <li>
-        <strong>Condition challenges</strong> — such as broad internet bans or GPS monitoring. These may be contested under constitutional arguments or statutory limits.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">⚖️</span>
+        <span><strong>Condition challenges</strong> — such as broad internet bans or GPS monitoring. These may be contested under constitutional arguments or statutory limits.</span>
       </li>
     </ul>
   </div>
@@ -324,7 +415,8 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== EVIDENCE & RECORDS ===== */}
+
+{/* ===== EVIDENCE & RECORDS ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">📁 Evidence &amp; Records: Getting What You Need</h2>
@@ -364,31 +456,34 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== COMMON FORMS ===== */}
+
+{/* ===== COMMON FORMS ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">✍️ Common Forms &amp; Where to Find Them</h2>
   </div>
 
   <div className="prose prose-slate max-w-none text-slate-800">
-    <ul className="list-disc pl-6 space-y-2">
-      <li>
-        <strong>Notice of Appeal:</strong> required to start most appeals 
-        (<a href="https://www.law.cornell.edu/rules/frap/rule_3" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP Rule 3–4</a>).
+    <ul className="space-y-2 not-prose">
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">📝</span>
+        <span><strong>Notice of Appeal:</strong> required to start most appeals (<a href="https://www.law.cornell.edu/rules/frap/rule_3" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP Rule 3–4</a>).</span>
       </li>
-      <li>
-        <strong>Motion for Extension of Time:</strong> if you can’t meet the original deadline 
-        (<a href="https://www.law.cornell.edu/rules/frap/rule_4" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP 4(b)(4)</a>).
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">⏳</span>
+        <span><strong>Motion for Extension of Time:</strong> if you can’t meet the original deadline (<a href="https://www.law.cornell.edu/rules/frap/rule_4" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">FRAP 4(b)(4)</a>).</span>
       </li>
-      <li>
-        <strong>IFP Application &amp; Financial Affidavit:</strong> request to waive fees and appoint counsel (28 U.S.C. § 1915).
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">💵</span>
+        <span><strong>IFP Application &amp; Financial Affidavit:</strong> request to waive fees and appoint counsel (28 U.S.C. § 1915).</span>
       </li>
-      <li>
-        <strong>AO-435 Transcript Order Form:</strong> used to order trial, hearing, or sentencing transcripts.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🎧</span>
+        <span><strong>AO-435 Transcript Order Form:</strong> used to order trial, hearing, or sentencing transcripts.</span>
       </li>
-      <li>
-        <strong>Registry relief petitions:</strong> such as California’s 
-        <a href="https://selfhelp.courts.ca.gov/jcc-form/CR-415" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline"> CR-415 (Petition to Terminate Sex Offender Registration)</a>.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🔐</span>
+        <span><strong>Registry relief petitions:</strong> such as California’s <a href="https://selfhelp.courts.ca.gov/jcc-form/CR-415" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">CR-415 (Petition to Terminate Sex Offender Registration)</a>.</span>
       </li>
     </ul>
   </div>
@@ -407,30 +502,30 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== SELF-ADVOCACY TIPS ===== */}
+
+{/* ===== SELF-ADVOCACY TIPS ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">🛠 Self-Advocacy Tips</h2>
   </div>
 
   <div className="prose prose-slate max-w-none text-slate-800">
-    <ul className="list-disc pl-6 space-y-2">
-      <li>
-        <span className="font-semibold">Know the standard of review:</span> 
-        Whether it’s <em>de novo</em>, abuse of discretion, or plain error — this determines 
-        how closely the appellate court looks at your arguments.
+    <ul className="space-y-2 not-prose">
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🧭</span>
+        <span><span className="font-semibold">Know the standard of review:</span> Whether it’s <em>de novo</em>, abuse of discretion, or plain error — this determines how closely the appellate court looks at your arguments.</span>
       </li>
-      <li>
-        <span className="font-semibold">Always cite the record:</span> point directly to the 
-        transcript page, exhibit, or order where the error occurred.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🔎</span>
+        <span><span className="font-semibold">Always cite the record:</span> point directly to the transcript page, exhibit, or order where the error occurred.</span>
       </li>
-      <li>
-        <span className="font-semibold">Limited internet?</span> Rely on courthouse terminals, 
-        public law libraries, or print resources for rules and case law.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">📠</span>
+        <span><span className="font-semibold">Limited internet?</span> Rely on courthouse terminals, public law libraries, or print resources for rules and case law.</span>
       </li>
-      <li>
-        <span className="font-semibold">Seek help:</span> Public defenders, appellate defender 
-        programs, law school clinics, or pro bono projects often assist with appeals.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🤝</span>
+        <span><span className="font-semibold">Seek help:</span> Public defenders, appellate defender programs, law school clinics, or pro bono projects often assist with appeals.</span>
       </li>
     </ul>
   </div>
@@ -449,25 +544,26 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== OFFLINE PLAYBOOK ===== */}
+
+{/* ===== OFFLINE PLAYBOOK ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">🏛 Offline Playbook (No Computer, Limited Phone)</h2>
   </div>
 
   <div className="prose prose-slate max-w-none text-slate-800">
-    <ul className="list-disc pl-6 space-y-2">
-      <li>
-        <span className="font-semibold">Clerk’s office:</span> ask for paper copies of 
-        forms, rules, and filing instructions.
+    <ul className="space-y-2 not-prose">
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🏷️</span>
+        <span><span className="font-semibold">Clerk’s office:</span> ask for paper copies of forms, rules, and filing instructions.</span>
       </li>
-      <li>
-        <span className="font-semibold">Public law library:</span> print sample briefs, 
-        local rules, and case digests for reference.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🏛️</span>
+        <span><span className="font-semibold">Public law library:</span> print sample briefs, local rules, and case digests for reference.</span>
       </li>
-      <li>
-        <span className="font-semibold">If incarcerated:</span> request law library access; 
-        keep written proof of any denials or delays.
+      <li className="flex gap-3">
+        <span className="mt-0.5 select-none">🧱</span>
+        <span><span className="font-semibold">If incarcerated:</span> request law library access; keep written proof of any denials or delays.</span>
       </li>
     </ul>
   </div>
@@ -486,7 +582,8 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== ONE-PAGE TRIAGE SCRIPT ===== */}
+
+{/* ===== ONE-PAGE TRIAGE SCRIPT ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">🗒 One-Page “Triage” Script</h2>
@@ -510,7 +607,8 @@ export default function AppealsGuide(): JSX.Element {
     </div>
   </div>
 </section>
-        {/* ===== CONCLUSION ===== */}
+
+{/* ===== CONCLUSION ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 avoid-break">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
     <h2 className="text-2xl font-bold">✅ Conclusion: Moving Forward with Realism and Hope</h2>
@@ -552,7 +650,6 @@ export default function AppealsGuide(): JSX.Element {
   </div>
 </section>
         
-
         {/* ===== SOURCES & RESOURCES (blue card) ===== */}
         <section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
