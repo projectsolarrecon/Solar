@@ -1,3 +1,29 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import SEO from '../../../components/SEO';
+
+export default function LegislativeTracker_2025_09_14(): JSX.Element {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handlePrint = () => {
+    if (typeof window !== 'undefined') window.print();
+  };
+
+  const copy = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(text);
+      setTimeout(() => setCopied(null), 1200);
+    } catch {/* no-op */}
+  };
+
+  return (
+    <div className="bg-white">
+      <SEO
+        title="Legislative Tracker — Week of Sep 14, 2025 | SOLAR"
+        description="This Week at a Glance, Highlights, States, Court Decisions, Media, Watchlist, with inline action tools."
+      />
+
 {/* ===== WEEKLY TRACKER: 2025-09-14 (covers Sep 6–13, 2025) ===== */}
 <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
   <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
@@ -298,3 +324,12 @@ Thank you for your work.`;
     </ul>
   </div>
 </section>
+      {/* (end of weekly sections) */}
+      <div className="mt-10 flex gap-3">
+        <button onClick={handlePrint} className="px-3 py-2 rounded-lg bg-slate-800 text-white text-sm">
+          Print
+        </button>
+      </div>
+    </div>
+  );
+}
