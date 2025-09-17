@@ -68,6 +68,7 @@ import ProfessionalLicensingGuide from "./pages/resources/ProfessionalLicensingG
 import ChildrenDisclosureToolkit from "./pages/resources/ChildrenDisclosureToolkit";
 import InsideTheHouse from "./pages/blog/InsideTheHouse";
 import AppealsGuide from "./pages/resources/AppealsGuide";
+import SmallBusinessGuide from "./pages/resources/SmallBusinessGuide";
 
 function App() {
   return (
@@ -111,6 +112,7 @@ function App() {
               <Route path="/resources/professional-licensing" element={<ProfessionalLicensingGuide />} />
               <Route path="/resources/children-disclosure-toolkit" element={<ChildrenDisclosureToolkit />} />
               <Route path="/resources/appeals-guide" element={<AppealsGuide />} />
+              <Route path="/resources/small-business-guide" element={<SmallBusinessGuide />} />
           
 
               {/* Blog Routes */}
