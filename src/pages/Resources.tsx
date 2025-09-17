@@ -98,6 +98,12 @@ function Resources() {
           link: "/resources/professional-licensing"
         },
         {
+          name: "Small Business & Entrepreneurship Guide",
+          type: "Guide",
+          description: "Step-by-step, stigma-aware roadmap for registrants and families to overcome employment barriers through self-employment and entrepreneurship.",
+          link: "/resources/small-business-guide"
+        },
+        {
           name: "Educational Opportunities",
           type: "Directory",
           description: "Colleges, trade schools, and online programs accessible to individuals on the registry.",
