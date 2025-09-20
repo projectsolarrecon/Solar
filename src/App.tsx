@@ -69,7 +69,7 @@ import ChildrenDisclosureToolkit from "./pages/resources/ChildrenDisclosureToolk
 import InsideTheHouse from "./pages/blog/InsideTheHouse";
 import AppealsGuide from "./pages/resources/AppealsGuide";
 import SmallBusinessGuide from "./pages/resources/SmallBusinessGuide";
-import ResidencyRestrictionsHousing from "src/pages/blog/residency-restrictions-housing";
+import ResidencyRestrictionsHousing from "./pages/blog/residency-restrictions-housing";
 
 function App() {
   return (
