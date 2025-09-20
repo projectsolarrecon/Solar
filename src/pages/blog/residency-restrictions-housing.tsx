@@ -1,5 +1,7 @@
-import React from "react"; import { Link } from "react-router-dom"; import BlogLayout from "src/components/layouts/BlogLayout"; import { BandHeader, Callout, PullQuote, Divider, ShareBar } from "src/components/solar";
-
+import React from "react";
+import { Link } from "react-router-dom";
+import BlogLayout from "../../components/layouts/BlogLayout";
+import { BandHeader, Callout, PullQuote, Divider, ShareBar } from "../../components/solar";
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
 export default function ResidencyRestrictionsHousing(): JSX.Element { return ( <BlogLayout
