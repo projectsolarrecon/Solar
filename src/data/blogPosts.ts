@@ -12,6 +12,18 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
+  {
+  id: "residency-restrictions-housing-2025-09-20",
+  title: "How Residency Restrictions Undermine Housing Stability",
+  excerpt:
+    "Residency restrictions sound like safety policy—but they function like a housing ban, pushing people into instability without measurable safety gains.",
+  author: "The SOLAR Project",
+  date: "September 20, 2025",
+  readTime: "10 min read",
+  category: "Policy & Housing",
+  tags: ["residency restrictions", "housing stability", "homelessness", "reentry"],
+  path: "/blog/residency-restrictions-housing",
+},
 {
     id: "inside-the-house-2025-09-14",
     title: "The Call Is Coming from Inside the House",
