@@ -3,6 +3,7 @@ import GuideLayout from "../../components/layouts/GuideLayout";
 import SectionBand from "../../components/solar/SectionBand";
 import SectionCard from "../../components/solar/SectionCard";
 import Callout from "../../components/solar/Callout";
+import Checklist from "../../components/solar/Checklist";
 
 export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
   return (
@@ -18,9 +19,9 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
     >
       <SectionBand title="Quick Start" subtitle="60 seconds to act" emblem={1} />
       <SectionCard>
-        <Callout variant="reminder" title="Pro Tip" icon="💡">
-          Callout Works ✅
-        </Callout>
+        <Checklist storageKey="policy-alternatives-residency">
+          <li>Checklist Works ✅</li>
+        </Checklist>
       </SectionCard>
     </GuideLayout>
   );
