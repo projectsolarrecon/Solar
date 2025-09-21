@@ -70,6 +70,7 @@ import InsideTheHouse from "./pages/blog/InsideTheHouse";
 import AppealsGuide from "./pages/resources/AppealsGuide";
 import SmallBusinessGuide from "./pages/resources/SmallBusinessGuide";
 import ResidencyRestrictionsHousing from "./pages/blog/residency-restrictions-housing";
+import PolicyAlternativesResidencyRestrictions from "./pages/resources/policy-alternatives-residency-restrictions";
 
 function App() {
   return (
@@ -114,6 +115,7 @@ function App() {
               <Route path="/resources/children-disclosure-toolkit" element={<ChildrenDisclosureToolkit />} />
               <Route path="/resources/appeals-guide" element={<AppealsGuide />} />
               <Route path="/resources/small-business-guide" element={<SmallBusinessGuide />} />
+              <Route path="/resources/policy-alternatives-residency-restrictions" element={<PolicyAlternativesResidencyRestrictions />} />
           
 
               {/* Blog Routes */}
