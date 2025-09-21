@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import GuideLayout from "../../components/layouts/GuideLayout";
-import {
-  SectionBand,
-  SectionCard,
-  Callout,
-  Checklist,
-  SourcesOffline,
-  TOC,
-  ShareBar,
-} from "../../components/solar";
+
+// ⬇️ Bypass barrel: import concrete component files directly
+import SectionBand from "../../components/solar/SectionBand";
+import SectionCard from "../../components/solar/SectionCard";
+import Callout from "../../components/solar/Callout";
+import Checklist from "../../components/solar/Checklist";
+import SourcesOffline from "../../components/solar/SourcesOffline";
+import TOC from "../../components/solar/TOC";
+import ShareBar from "../../components/solar/ShareBar";
 
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
