@@ -32,7 +32,8 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       <SectionBand title="Quick Start" subtitle="60 seconds to act" emblem={1} />
       <SectionCard>
         <p>
-          Advocate for Housing First, individualized risk assessment, and repeal or narrowing of blanket exclusion zones. Pair with targeted supervision and services.
+          Advocate for Housing First, individualized risk assessment, and repeal or narrowing of blanket exclusion zones.
+          Pair with targeted supervision and services.
         </p>
         <Callout variant="reminder" title="Pro Tip" icon="💡">
           Focus on evidence: restrictions don’t reduce crime, but stable housing does.
@@ -43,7 +44,10 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       <SectionCard>
         <p>
           Research from the{" "}
-          <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">National Institute of Justice</a> shows no safety benefits from residency bans. Instead, they create homelessness and isolation, both linked to higher recidivism.
+          <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">
+            National Institute of Justice
+          </a>{" "}
+          shows no safety benefits from residency bans. Instead, they create homelessness and isolation, both linked to higher recidivism.
         </p>
         <Callout variant="warning" title="Risk" icon="⚠️">
           Broad exclusion zones can result in entire towns where returning citizens cannot legally live.
@@ -79,15 +83,21 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
         <ul className="list-disc pl-6">
           <li>
             National Institute of Justice —{" "}
-            <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">https://www.ojp.gov/pdffiles1/nij/222759.pdf</a>
+            <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">
+              https://www.ojp.gov/pdffiles1/nij/222759.pdf
+            </a>
           </li>
           <li>
             Prison Policy Initiative —{" "}
-            <a className={linkCls} href="https://www.prisonpolicy.org/reports/housing.html" target="_blank" rel="noopener">https://www.prisonpolicy.org/reports/housing.html</a>
+            <a className={linkCls} href="https://www.prisonpolicy.org/reports/housing.html" target="_blank" rel="noopener">
+              https://www.prisonpolicy.org/reports/housing.html
+            </a>
           </li>
           <li>
             U.S. Department of Justice, SMART Office —{" "}
-            <a className={linkCls} href="https://smart.ojp.gov/" target="_blank" rel="noopener">https://smart.ojp.gov/</a>
+            <a className={linkCls} href="https://smart.ojp.gov/" target="_blank" rel="noopener">
+              https://smart.ojp.gov/
+            </a>
           </li>
         </ul>
       </SectionCard>
@@ -96,7 +106,9 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       <SectionCard>
         <ul className="list-disc pl-6">
           <li>
-            <Link className={linkCls} to="/blog/residency-restrictions-housing">How Residency Restrictions Undermine Housing Stability (Blog)</Link>
+            <Link className={linkCls} to="/blog/residency-restrictions-housing">
+              How Residency Restrictions Undermine Housing Stability (Blog)
+            </Link>
           </li>
           <li>
             <Link className={linkCls} to="/resources/housing-first">Housing First (Resource Guide)</Link>
@@ -112,4 +124,4 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       </div>
     </GuideLayout>
   );
-              }
+}
