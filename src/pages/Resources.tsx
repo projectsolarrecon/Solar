@@ -68,6 +68,12 @@ function Resources() {
           link: "/resources/tenant-rights"
         },
         {
+          name: "Policy Alternatives to Residency Restrictions",
+          type: "Guide",
+          description: "Evidence-based strategies for safety and housing without exclusion zones.",
+          link: "/resources/policy-alternatives-residency-restrictions"
+        },
+        {
           name: "Emergency Housing Resources",
           type: "Directory",
           description: "List of emergency shelters and transitional housing programs that accept registry individuals.",
