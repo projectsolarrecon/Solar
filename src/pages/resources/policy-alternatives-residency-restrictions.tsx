@@ -1,6 +1,7 @@
 import React from "react";
 import GuideLayout from "../../components/layouts/GuideLayout";
-import SectionBand from "../../components/solar/SectionBand"; // only this one
+import SectionBand from "../../components/solar/SectionBand";
+import SectionCard from "../../components/solar/SectionCard";
 
 export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
   return (
@@ -15,7 +16,9 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       showTOC={false}
     >
       <SectionBand title="Quick Start" subtitle="60 seconds to act" emblem={1} />
-      <div style={{ padding: 24 }}>Band Works ✅</div>
+      <SectionCard>
+        <div>Card Works ✅</div>
+      </SectionCard>
     </GuideLayout>
   );
 }
