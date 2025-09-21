@@ -2,6 +2,7 @@ import React from "react";
 import GuideLayout from "../../components/layouts/GuideLayout";
 import SectionBand from "../../components/solar/SectionBand";
 import SectionCard from "../../components/solar/SectionCard";
+import Callout from "../../components/solar/Callout";
 
 export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
   return (
@@ -17,7 +18,9 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
     >
       <SectionBand title="Quick Start" subtitle="60 seconds to act" emblem={1} />
       <SectionCard>
-        <div>Card Works ✅</div>
+        <Callout variant="reminder" title="Pro Tip" icon="💡">
+          Callout Works ✅
+        </Callout>
       </SectionCard>
     </GuideLayout>
   );
