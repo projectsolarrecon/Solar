@@ -1,10 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import GuideLayout from "../../components/layouts/GuideLayout";
 
-// direct imports (no barrel)
+// Direct imports keep things simple/stable
 import SectionBand from "../../components/solar/SectionBand";
 import SectionCard from "../../components/solar/SectionCard";
 import Callout from "../../components/solar/Callout";
+import Checklist from "../../components/solar/Checklist";
+
+const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
 export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
   return (
@@ -31,13 +35,16 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
 
       <SectionBand title="Action Steps" emblem={2} />
       <SectionCard>
-        <ul className="list-disc pl-6">
-          <li>Review your state’s residency restriction laws</li>
-          <li>Map legal vs. restricted housing zones; quantify unit loss</li>
-          <li>Engage local officials with NIJ/DOJ evidence</li>
-          <li>Partner with reentry coalitions and housing providers</li>
-          <li>Advance repeal/reform and fund supportive housing</li>
-        </ul>
+        <Checklist
+          id="policy-alternatives-residency"
+          items={[
+            { id: "review-laws", label: <>Review your state’s residency restriction laws</> },
+            { id: "map-zones", label: <>Map legal vs. restricted housing zones; quantify unit loss</> },
+            { id: "engage-officials", label: <>Engage local officials with NIJ/DOJ evidence</> },
+            { id: "partner-reentry", label: <>Partner with reentry coalitions and housing providers</> },
+            { id: "advance-reform", label: <>Advance repeal/reform and fund supportive housing</> },
+          ]}
+        />
       </SectionCard>
 
       <SectionBand title="Data Sources" emblem="📚" />
@@ -46,7 +53,7 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
           <li>
             National Institute of Justice —{" "}
             <a
-              className="text-blue-700 underline underline-offset-2 hover:text-blue-900"
+              className={linkCls}
               href="https://www.ojp.gov/pdffiles1/nij/222759.pdf"
               target="_blank"
               rel="noopener"
@@ -57,7 +64,7 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
           <li>
             Prison Policy Initiative —{" "}
             <a
-              className="text-blue-700 underline underline-offset-2 hover:text-blue-900"
+              className={linkCls}
               href="https://www.prisonpolicy.org/reports/housing.html"
               target="_blank"
               rel="noopener"
@@ -68,13 +75,30 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
           <li>
             U.S. Department of Justice, SMART Office —{" "}
             <a
-              className="text-blue-700 underline underline-offset-2 hover:text-blue-900"
+              className={linkCls}
               href="https://smart.ojp.gov/"
               target="_blank"
               rel="noopener"
             >
               https://smart.ojp.gov/
             </a>
+          </li>
+        </ul>
+      </SectionCard>
+
+      <SectionBand title="Related Reading" emblem="🔗" />
+      <SectionCard>
+        <ul className="list-disc pl-6">
+          <li>
+            <Link className={linkCls} to="/blog/residency-restrictions-housing">
+              How Residency Restrictions Undermine Housing Stability (Blog)
+            </Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/resources/housing-first">Housing First (Resource Guide)</Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/blog/reentry-barriers">Breaking Down Reentry Barriers (Blog)</Link>
           </li>
         </ul>
       </SectionCard>
