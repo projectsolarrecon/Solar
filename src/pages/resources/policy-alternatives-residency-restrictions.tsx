@@ -1,19 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import GuideLayout from "../../components/layouts/GuideLayout";
 
-// ⬇️ Bypass barrel: import concrete component files directly
+// Import concrete component files directly (avoids barrel/index issues)
 import SectionBand from "../../components/solar/SectionBand";
 import SectionCard from "../../components/solar/SectionCard";
 import Callout from "../../components/solar/Callout";
 import Checklist from "../../components/solar/Checklist";
-import SourcesOffline from "../../components/solar/SourcesOffline";
-import TOC from "../../components/solar/TOC";
 import ShareBar from "../../components/solar/ShareBar";
 
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
 export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
+  // 🔴 Error banner snippet
+  useEffect(() => {
+    const handler = (e: ErrorEvent) => {
+      const div = document.createElement("div");
+      div.style.color = "white";
+      div.style.backgroundColor = "red";
+      div.style.padding = "1rem";
+      div.style.fontWeight = "bold";
+      div.innerText = `Runtime error: ${e.message}`;
+      document.body.prepend(div);
+    };
+    window.addEventListener("error", handler);
+    return () => window.removeEventListener("error", handler);
+  }, []);
+
   return (
     <GuideLayout
       title="Policy Alternatives to Residency Restrictions"
@@ -23,20 +36,18 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       readTime="15 min"
       badge="📘 RESOURCE GUIDE"
       lede="Residency restrictions don’t improve safety but do increase housing instability. This guide outlines better policy tools grounded in evidence."
-      showTOC={true}
+      showTOC={false} // disabled for now to avoid runtime issues
     >
-      <div className="mb-6">
-        <TOC />
-      </div>
-
       <SectionBand title="Quick Start" subtitle="60 seconds to act" emblem={1} />
       <SectionCard>
         <p>
-          Advocate for Housing First, individualized risk assessment, and repeal or narrowing of blanket exclusion zones.
-          Pair with targeted supervision and services.
+          Advocate for Housing First, individualized risk assessment, and repeal
+          or narrowing of blanket exclusion zones. Pair with targeted
+          supervision and services.
         </p>
         <Callout variant="reminder" title="Pro Tip" icon="💡">
-          Focus on evidence: restrictions don’t reduce crime, but stable housing does.
+          Focus on evidence: restrictions don’t reduce crime, but stable housing
+          does.
         </Callout>
       </SectionCard>
 
@@ -44,13 +55,20 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       <SectionCard>
         <p>
           Research from the{" "}
-          <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">
+          <a
+            className={linkCls}
+            href="https://www.ojp.gov/pdffiles1/nij/222759.pdf"
+            target="_blank"
+            rel="noopener"
+          >
             National Institute of Justice
           </a>{" "}
-          shows no safety benefits from residency bans. Instead, they create homelessness and isolation, both linked to higher recidivism.
+          shows no safety benefits from residency bans. Instead, they create
+          homelessness and isolation, both linked to higher recidivism.
         </p>
         <Callout variant="warning" title="Risk" icon="⚠️">
-          Broad exclusion zones can result in entire towns where returning citizens cannot legally live.
+          Broad exclusion zones can result in entire towns where returning
+          citizens cannot legally live.
         </Callout>
       </SectionCard>
 
@@ -63,7 +81,8 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
           <li>Investment in affordable housing and anti-discrimination protections</li>
         </ul>
         <Callout variant="success" title="Evidence-Based" icon="📊">
-          Cities using housing-first strategies report improved stability and lower re-offense rates compared to those with restrictive zoning.
+          Cities using housing-first strategies report improved stability and
+          lower re-offense rates compared to those with restrictive zoning.
         </Callout>
       </SectionCard>
 
@@ -83,19 +102,34 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
         <ul className="list-disc pl-6">
           <li>
             National Institute of Justice —{" "}
-            <a className={linkCls} href="https://www.ojp.gov/pdffiles1/nij/222759.pdf" target="_blank" rel="noopener">
+            <a
+              className={linkCls}
+              href="https://www.ojp.gov/pdffiles1/nij/222759.pdf"
+              target="_blank"
+              rel="noopener"
+            >
               https://www.ojp.gov/pdffiles1/nij/222759.pdf
             </a>
           </li>
           <li>
             Prison Policy Initiative —{" "}
-            <a className={linkCls} href="https://www.prisonpolicy.org/reports/housing.html" target="_blank" rel="noopener">
+            <a
+              className={linkCls}
+              href="https://www.prisonpolicy.org/reports/housing.html"
+              target="_blank"
+              rel="noopener"
+            >
               https://www.prisonpolicy.org/reports/housing.html
             </a>
           </li>
           <li>
             U.S. Department of Justice, SMART Office —{" "}
-            <a className={linkCls} href="https://smart.ojp.gov/" target="_blank" rel="noopener">
+            <a
+              className={linkCls}
+              href="https://smart.ojp.gov/"
+              target="_blank"
+              rel="noopener"
+            >
               https://smart.ojp.gov/
             </a>
           </li>
@@ -106,15 +140,22 @@ export default function PolicyAlternativesResidencyRestrictions(): JSX.Element {
       <SectionCard>
         <ul className="list-disc pl-6">
           <li>
-            <Link className={linkCls} to="/blog/residency-restrictions-housing">
+            <Link
+              className={linkCls}
+              to="/blog/residency-restrictions-housing"
+            >
               How Residency Restrictions Undermine Housing Stability (Blog)
             </Link>
           </li>
           <li>
-            <Link className={linkCls} to="/resources/housing-first">Housing First (Resource Guide)</Link>
+            <Link className={linkCls} to="/resources/housing-first">
+              Housing First (Resource Guide)
+            </Link>
           </li>
           <li>
-            <Link className={linkCls} to="/blog/reentry-barriers">Breaking Down Reentry Barriers (Blog)</Link>
+            <Link className={linkCls} to="/blog/reentry-barriers">
+              Breaking Down Reentry Barriers (Blog)
+            </Link>
           </li>
         </ul>
       </SectionCard>
