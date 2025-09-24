@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
+    date: "September 21, 2025",
+    title: "Maryland Audit Exposes Registry Gaps; California and Texas Push Changes",
+    slug: "2025-09-21",
+    summary: "Audit finds offenders in foster homes, CA bill closes loophole, TX law now in force. Michigan reforms pending.",
+  }, 
+  {
   date: "September 14, 2025",
   title: "Registry Reform Moves in California & Michigan; Texas Enacts New Visual Recording Registry Law",
   slug: "2025-09-14",
