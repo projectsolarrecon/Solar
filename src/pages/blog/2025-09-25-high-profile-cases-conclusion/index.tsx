@@ -11,3 +11,4 @@ import {
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
 export default function HighProfileCasesConclusion(): JSX.
+  }
