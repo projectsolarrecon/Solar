@@ -71,6 +71,7 @@ import AppealsGuide from "./pages/resources/AppealsGuide";
 import SmallBusinessGuide from "./pages/resources/SmallBusinessGuide";
 import ResidencyRestrictionsHousing from "./pages/blog/residency-restrictions-housing";
 import PolicyAlternativesResidencyRestrictions from "./pages/resources/policy-alternatives-residency-restrictions";
+import HighProfileCasesConclusion from "./pages/blog/2025-09-25-high-profile-cases-conclusion";
 
 function App() {
   return (
@@ -146,6 +147,7 @@ function App() {
               <Route path="/blog/community-ties" element={<CommunityTies />} />
               <Route path="/blog/inside-the-house" element={<InsideTheHouse />} />
               <Route path="/blog/residency-restrictions-housing" element={<ResidencyRestrictionsHousing />} />
+              <Route path="/blog/2025-09-25-high-profile-cases-conclusion" element={<HighProfileCasesConclusion />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
