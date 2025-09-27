@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
   {
+  date: "September 28, 2025",
+  title: "Registry Expansion in Texas, Oklahoma Residency Ruling, and Maryland Oversight Audit",
+  slug: "2025-09-28",
+  summary: "TX HB 1465 now enforced, OK Supreme Court upholds retroactive residency ban, and Maryland audit finds foster care registry oversight failures.",
+},
+  {
     date: "September 21, 2025",
     title: "Maryland Audit Exposes Registry Gaps; California and Texas Push Changes",
     slug: "2025-09-21",
