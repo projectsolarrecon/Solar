@@ -132,8 +132,9 @@ export default function AccountabilityWatch_2025_09_27() {
       summary: <>Accused of long-term abuse of a disabled child; arrested in Indiana on Louisiana warrants (counts include first-degree rape and kidnapping).</>,
       registry: "No prior registration noted",
       sources: [
-        { label: "Guardian", href: "https://www.theguardian.com/us-news/2025/sep/26/former-priest-official-arrested-louisiana" },
-        { label: "WWL-TV", href: "https://www.wwltv.com/" },
+        { label: "The Guardian coverage", href: "https://www.theguardian.com/us-news/2025/sep/26/louisiana-former-priest-arrested-rape-allegation" },
+        { label: "WDSU local report", href: "https://www.wdsu.com/article/new-orleans-minor-rape-priest-arrest/68082067" },
+        { label: "WWL-TV segment", href: "https://www.wwltv.com/video/news/crime/ex-louisiana-official-former-priest-arrested-for-sexual-abuse-of-disabled-child/289-9402150a-1d8d-4cf1-9153-7b6a68899adc" },
       ],
       emoji: "🏛️",
     },
@@ -146,8 +147,9 @@ export default function AccountabilityWatch_2025_09_27() {
       summary: <>Complaint alleges possession & distribution of CSAM; includes admissions referenced in the filing.</>,
       registry: "No prior registration noted",
       sources: [
-        { label: "SDNY Press", href: "https://www.justice.gov/usao-sdny" },
-        { label: "ABC7NY", href: "https://abc7ny.com/" },
+        { label: "SDNY press release", href: "https://www.justice.gov/usao-sdny/pr/manhattan-teacher-charged-possession-and-distribution-child-pornography" },
+        { label: "Criminal complaint (PDF)", href: "https://www.justice.gov/usao-sdny/media/1415021/dl?inline=" },
+        { label: "ABC7NY report", href: "https://abc7ny.com/post/1st-grade-nyc-public-school-teacher-christopher-ward-facing-child-porn-charges/17881361/" },
       ],
       emoji: "🏫",
     },
@@ -160,8 +162,9 @@ export default function AccountabilityWatch_2025_09_27() {
       summary: <>Arrest stems from Aug 20 incident; police allege unwanted sexual contact. Participation paused pending case.</>,
       registry: "No prior registration noted",
       sources: [
-        { label: "Spectrum News 1 KY", href: "https://spectrumnews1.com/ky/lexington" },
-        { label: "WHAS11", href: "https://www.whas11.com/" },
+        { label: "WKYT arrest report", href: "https://www.wkyt.com/2025/09/26/uk-football-player-arrested-sexual-abuse-charge/" },
+        { label: "WKYT follow-up: new details", href: "https://www.wkyt.com/2025/09/27/new-details-released-uk-football-players-sexual-abuse-case/" },
+        { label: "LEX18 coverage", href: "https://www.lex18.com/news/crime/21-year-old-arrested-in-connection-to-unwanted-sexual-contact-lexington-police-report" },
       ],
       emoji: "🏈",
     },
@@ -177,9 +180,10 @@ export default function AccountabilityWatch_2025_09_27() {
       summary: <>Agreed to plead guilty to 5 counts of distributing CSAM; prosecutors to dismiss 5 additional counts from the June 2025 indictment.</>,
       registry: "No prior registration noted",
       sources: [
-        { label: "DOJ / USAO-SC", href: "https://www.justice.gov/usao-sc/pr/west-columbia-man-indicted-distributing-child-sexual-abuse-material" },
-        { label: "AP", href: "https://apnews.com/" },
-        { label: "Live5 News", href: "https://www.live5news.com/" },
+        { label: "AP wire (details of plea)", href: "https://apnews.com/article/82684f0ad98755adb57107cae851d2fd" },
+        { label: "USAO-SC indictment page (June)", href: "https://www.justice.gov/usao-sc/pr/west-columbia-man-indicted-distributing-child-sexual-abuse-material" },
+        { label: "Live5 News local", href: "https://www.live5news.com/2025/09/26/former-sc-lawmaker-plead-guilty-child-porn-case-court-documents-state/" },
+        { label: "Spectrum News SC update", href: "https://spectrumlocalnews.com/sc/south-carolina/news/2025/09/26/south-carolina-rj-may-indictment" },
       ],
       emoji: "🏛️",
     },
@@ -192,8 +196,9 @@ export default function AccountabilityWatch_2025_09_27() {
       summary: <>Plea agreements accepted and some charges dismissed; local reporting says victims were not notified ahead of the hearing.</>,
       registry: "Registry status not mentioned",
       sources: [
-        { label: "KLTV", href: "https://www.kltv.com/" },
-        { label: "CBS19 Tyler", href: "https://www.cbs19.tv/" },
+        { label: "KLTV (victim notice issue)", href: "https://www.kltv.com/2025/09/26/victims-claim-they-werent-notified-about-plea-deal-tyler-doctor-accused-sex-crimes/" },
+        { label: "KLTV (sentencing details, 9/19)", href: "https://www.kltv.com/2025/09/19/tyler-doctor-gets-8-years-after-pleading-guilty-sex-crimes/" },
+        { label: "CBS19 (video)", href: "https://www.cbs19.tv/video/news/local/east-texas-doctor-gets-eight-years-behind-bars-for-sexually-assaulting-patients/501-8597bd2d-bc7f-4625-b97e-acd942d52d3f" },
       ],
       emoji: "🏥",
     },
@@ -271,4 +276,4 @@ export default function AccountabilityWatch_2025_09_27() {
       </div>
     </main>
   );
-            }
+      }
