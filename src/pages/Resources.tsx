@@ -242,11 +242,11 @@ function Resources() {
           link: "/resources/legislative-tracker"
          },
            {
-         name: "Accountability Watch (Weekly)",
-         type: "Series",
-         description: "Weekly roundup of verified arrests, charges, pleas, convictions, and sentencings involving public figures — with registry-status context.",
-         link: "/resources/accountability-watch/2025-09-27"
-         },
+          name: "Accountability Watch (Weekly)",
+          type: "Series",
+          description: "Weekly roundup of verified arrests, charges, pleas, convictions, and sentencings involving public figures — with registry-status context.",
+          link: "/resources/accountability-watch"
+        },
         {
           name: "Advocacy Wins & Updates",
           type: "News",
