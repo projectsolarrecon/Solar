@@ -1,9 +1,9 @@
 export type AccountabilityItem = {
-  date: string;            // "2025-09-27"
-  title: string;           // short title for cards/lists
-  slug: string;            // "2025-09-27"
-  summary: string;         // 1–2 sentence blurb
-  path: string;            // "/resources/accountability-watch/2025-09-27"
+  date: string;   // "2025-09-27"
+  title: string;  // "Week of Sep 21–27, 2025"
+  slug: string;   // "2025-09-27"
+  summary: string;
+  path: string;   // "/resources/accountability-watch/2025-09-27"
 };
 
 export const accountabilityWatch: AccountabilityItem[] = [
@@ -12,7 +12,8 @@ export const accountabilityWatch: AccountabilityItem[] = [
     title: "Week of Sep 21–27, 2025",
     slug: "2025-09-27",
     summary:
-      "RJ May plea on CSAM counts; arrests of ex-official/ex-priest Mark Ford; SDNY charges re: NYC teacher; UK RB Wilcox arrest; Haygood plea/dismissal controversy.",
+      "RJ May plea on CSAM counts; arrests of ex-official/ex-priest Mark Ford; SDNY charges (NYC teacher); UK RB Wilcox arrest; Haygood plea/dismissal controversy.",
     path: "/resources/accountability-watch/2025-09-27",
   },
+  // Newest-first: add future weeks ABOVE this line.
 ];
