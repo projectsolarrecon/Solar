@@ -16,6 +16,9 @@ import NotFound from "./pages/NotFound";
 // Auto-discover weekly pages under /resources/legislative-tracker
 import LegislativeTracker from './pages/resources/LegislativeTracker';
 const weeklyModules = import.meta.glob('./pages/resources/legislative-tracker/*.tsx');
+// Accountability Watch (param-routed)
+import AccountabilityWatchIndex from "./pages/resources/accountability-watch/Index";
+import AccountabilityWatchWeekly from "./pages/resources/accountability-watch/Weekly";
 
 // --- your blog + resource imports follow ---
 import RethinkingRegistry from './pages/blog/RethinkingRegistry';
@@ -90,6 +93,7 @@ function App() {
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog/political-theater" element={<PoliticalTheater />} />
+              
 
               {/* Resource Routes */}
               <Route path="/resources/know-your-rights" element={<KnowYourRights />} />
@@ -117,7 +121,9 @@ function App() {
               <Route path="/resources/appeals-guide" element={<AppealsGuide />} />
               <Route path="/resources/small-business-guide" element={<SmallBusinessGuide />} />
               <Route path="/resources/policy-alternatives-residency-restrictions" element={<PolicyAlternativesResidencyRestrictions />} />
-          
+              {/* Accountability Watch */}
+              <Route path="/resources/accountability-watch" element={<AccountabilityWatchIndex />} />
+              <Route path="/resources/accountability-watch/:date" element={<AccountabilityWatchWeekly />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
