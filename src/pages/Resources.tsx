@@ -235,12 +235,18 @@ function Resources() {
   title: "Current Events & Legislative Updates",
   icon: "📰",
   resources: [
-    {
-      name: "Legislative Tracker",
-      type: "Database",
-      description: "Real-time tracking of pending sex offense legislation, registry reform bills, and policy changes across all states.",
-      link: "/resources/legislative-tracker"
-    },
+         {
+          name: "Legislative Tracker",
+          type: "Database",
+          description: "Real-time tracking of pending sex offense legislation, registry reform bills, and policy changes across all states.",
+          link: "/resources/legislative-tracker"
+         },
+           {
+         name: "Accountability Watch (Weekly)",
+         type: "Series",
+         description: "Weekly roundup of verified arrests, charges, pleas, convictions, and sentencings involving public figures — with registry-status context.",
+         link: "/resources/accountability-watch/2025-09-27"
+         },
         {
           name: "Advocacy Wins & Updates",
           type: "News",
