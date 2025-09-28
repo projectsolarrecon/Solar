@@ -12,7 +12,19 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
- {
+  {
+  id: "classics-and-cancel-culture-2025-09-28",
+  title: "Classics and Cancel Culture. Registries and Red Carpets.",
+  excerpt:
+    "The double standard of sex crimes in pop culture — where ordinary people face registries, while celebrities still enjoy ovations.",
+  author: "The SOLAR Project",
+  date: "September 28, 2025",
+  readTime: "8 min read",
+  category: "Cultural Critique",
+  tags: ["cancel culture", "pop culture", "sex crimes", "hypocrisy", "registries"],
+  path: "/blog/classics-and-cancel-culture",
+},
+  {
   id: "high-profile-cases-conclusion",
   title: "The Registry Is Working Exactly as Designed",
   excerpt: "A concluding manifesto on SOLAR’s High-Profile Cases Analysis series, showing how the registry is a weapon of mass distraction—designed to miss the real danger while scapegoating those who’ve repaid their debt.",
@@ -22,18 +34,6 @@ export const allBlogPosts: BlogPost[] = [
   category: "Analysis",
   tags: ["registry", "policy", "high-profile", "conclusion"],
   path: "/blog/2025-09-25-high-profile-cases-conclusion"
-},
-  {
-  id: "residency-restrictions-housing-2025-09-20",
-  title: "How Residency Restrictions Undermine Housing Stability",
-  excerpt:
-    "Residency restrictions sound like safety policy—but they function like a housing ban, pushing people into instability without measurable safety gains.",
-  author: "The SOLAR Project",
-  date: "September 20, 2025",
-  readTime: "10 min read",
-  category: "Policy & Housing",
-  tags: ["residency restrictions", "housing stability", "homelessness", "reentry"],
-  path: "/blog/residency-restrictions-housing",
 },
 {
     id: "inside-the-house-2025-09-14",
