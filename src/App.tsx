@@ -75,7 +75,7 @@ import SmallBusinessGuide from "./pages/resources/SmallBusinessGuide";
 import ResidencyRestrictionsHousing from "./pages/blog/residency-restrictions-housing";
 import PolicyAlternativesResidencyRestrictions from "./pages/resources/policy-alternatives-residency-restrictions";
 import HighProfileCasesConclusion from "./pages/blog/2025-09-25-high-profile-cases-conclusion";
-import BlogPopCultureSexCrime from ".pages/blog/BlogPopCultureSexCrime";
+import BlogPopCultureSexCrime from "./pages/blog/BlogPopCultureSexCrime";
 
 function App() {
   return (
