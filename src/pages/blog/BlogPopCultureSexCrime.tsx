@@ -591,6 +591,414 @@ export default function BlogPopCultureSexCrime(): JSX.Element {
           </p>
         </Callout>
 
+<BandHeader title="Conclusion: Consistency or Hypocrisy" icon="⚖️" />
+
+        <p>
+          It’s easy to wave away the contradictions by saying,{" "}
+          <em>“That’s just a song”</em> or <em>“It’s only a movie or book.”</em>{" "}
+          But those cultural touchstones don’t vanish after the credits roll or
+          the pages close. They live on our bookshelves, in our libraries,
+          stream in our favorite playlists, and echo across generations. You
+          don’t delete <strong><em>Lolita</em></strong>,{" "}
+          <strong><em>Stray Cat Blues</em></strong>, or{" "}
+          <strong><em>Euphoria</em></strong> from your collection — you keep
+          them, share them, gift them. You don’t purge your DVD stack because{" "}
+          <strong><em>Pretty Baby</em></strong> or{" "}
+          <strong><em>Taxi Driver</em></strong> are uncomfortable; you revere
+          them, analyze them, quote them. Culture carries them forward.
+        </p>
+
+        <p>
+          And yet many of those same voices demand lifelong punishment for
+          others. They insist that a single online offense, often committed
+          without violence, merits permanent exile: a name on a registry,
+          exclusion from housing, careers, and community. They demand this while
+          their personal collections — the books, songs, films they call
+          favorites — bristle with celebrated works that romanticize or
+          normalize the very behavior society threatens to criminalize. That
+          isn’t justice — it’s hypocrisy dressed in moral posturing.
+        </p>
+
+        <p>
+          If society can overlook, excuse, or even fetishize depictions of
+          underage dynamics in literature, media, and music — and still hold
+          those works as foundational — then surely it can allow for nuance,
+          mercy, and distinction when it comes to real people. You cannot raise
+          your children on <strong><em>Lolita</em></strong> criticism, binge{" "}
+          <strong><em>Euphoria</em></strong> on weekends, or stream rock hits
+          with problematic lyrics, then turn around and demand that other human
+          beings never be forgiven, never be released, never be rehabilitated.
+          When your outrage is absolute only for the powerless but malleable for
+          the celebrated, your claimed moral clarity is a lie.
+        </p>
+
+        <p>
+          This is not a plea to erase harm or excuse wrongdoing. It is a demand
+          for intellectual honesty. If you are unwilling to strike these works
+          from your shelves, playlists, or streaming queues, then at least admit
+          you are willing to live with contradiction. Admit your outrage is
+          conditional. Admit that you are comfortable with grace for Lennons and
+          Jaggers, but mercilessness for the man next door.
+        </p>
+
+        <p>
+          And once you admit it, one question becomes impossible to avoid: why
+          does the red carpet always find room for forgiven artists, while
+          registries never make room for humanity? Until we face that
+          inconsistency, the only thing we’ve demonstrated is how art can be
+          celebrated without accountability — while people are condemned without
+          compassion.
+        </p>
+
+        <Callout variant="neutral" title="Pull Quote" icon="🧾">
+          <p>
+            “When your outrage is absolute only for the powerless but malleable
+            for the celebrated, your claimed moral clarity is a lie.”
+          </p>
+        </Callout>
+
+        <Callout variant="reminder" title="Consistency Reminder" icon="🟨">
+          <p>
+            If you refuse to keep <strong><em>Lolita</em></strong> off your
+            shelves, stream <strong><em>Euphoria</em></strong>, or own{" "}
+            <strong><em>Hot for Teacher</em></strong> on vinyl — yet support
+            lifetime registries for people for far less — you are not fighting
+            for morals. You are defending hypocrisy.
+          </p>
+        </Callout>
+
+        <Divider label="Data Sources" />
+
+        <BandHeader title="Sources" icon="📚" />
+        <ul className="list-disc pl-6 space-y-2">
+          <li>
+            <strong>Literature</strong>
+            <ul className="list-disc pl-6">
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.britannica.com/topic/Humbert-Humbert"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Britannica – Humbert Humbert (*Lolita*)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.sparknotes.com/lit/bravenew/summary/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  SparkNotes – Brave New World
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/A_Game_of_Thrones"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – A Game of Thrones (ages/adaptation)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.theatlantic.com/entertainment/archive/2017/09/stephen-king-it-review/539157/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  The Atlantic – Stephen King’s *It* (review)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://ew.com/movies/2017/09/08/it-movie-sex-scene/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Entertainment Weekly – *It* controversial scene
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.gradesaver.com/the-art-of-racing-in-the-rain/study-guide/character-list"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  GradeSaver – *The Art of Racing in the Rain*
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>Film & TV</strong>
+            <ul className="list-disc pl-6">
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.independent.co.uk/arts-entertainment/films/news/jodie-foster-taxi-driver-prostitute-b1982475.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Independent – Jodie Foster on *Taxi Driver*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/Pretty_Baby_(1978_film)"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – *Pretty Baby* (1978)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/The_Blue_Lagoon_(1980_film)"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – *The Blue Lagoon* (1980)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.latimes.com/entertainment-arts/movies/story/2023/04/03/brooke-shields-pretty-baby-documentary-childhood-sexualization"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Los Angeles Times – Brooke Shields reflections
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.vulture.com/2019/06/euphoria-hbo-review.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Vulture – HBO’s *Euphoria* critique
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.theguardian.com/film/2020/sep/14/cuties-review-netflixs-controversial-child-exploitation-film-is-bold-flawed-and-misunderstood"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Guardian – *Cuties* review
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.theguardian.com/film/2020/oct/07/netflix-indicted-by-texas-grand-jury-over-lewd-visual-material-in-cuties"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Guardian – *Cuties* legal fallout
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/Cuties"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – *Cuties*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.npr.org/2023/11/02/1209612367/priscilla-movie-sofia-coppola-elvis-presley"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  NPR – *Priscilla* (2023)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.theguardian.com/film/2021/dec/31/licorice-pizza-paul-thomas-anderson-alana-haim-cooper-hoffman"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Guardian – *Licorice Pizza* criticism
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>Slasher / Teen Tropes</strong>
+            <ul className="list-disc pl-6">
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://digitalcommons.unl.edu/englishfacpubs/108/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  UNL Digital Commons – Horror tropes essay
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://arxiv.org/ftp/arxiv/papers/1609/1609.06727.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  arXiv – Slasher film analysis
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <strong>Music</strong>
+            <ul className="list-disc pl-6">
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/I_Saw_Her_Standing_There"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – Beatles’ *I Saw Her Standing There*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://en.wikipedia.org/wiki/You%27re_Sixteen"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Wikipedia – Ringo Starr *You’re Sixteen*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://genius.com/The-rolling-stones-stray-cat-blues-lyrics"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Genius – Rolling Stones *Stray Cat Blues*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.rollingstone.com/movies/movie-reviews/the-dirt-motley-crue-netflix-review-813950/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Rolling Stone – *The Dirt* (Mötley Crüe)
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://ultimateclassicrock.com/van-halen-hot-for-teacher-video/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ultimate Classic Rock – Van Halen *Hot for Teacher*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://genius.com/Too-short-mack-attack-lyrics"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Genius – Too $hort *Mack Attack*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://firstamendment.mtsu.edu/article/luke-records-inc-v-navarro/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  First Amendment Encyclopedia – 2 Live Crew case
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.miamiherald.com/entertainment/celebrities/article260800567.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Miami Herald – 2 Live Crew reporting
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.billboard.com/music/rb-hip-hop/chris-brown-back-to-sleep-remix-6986050/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Billboard – Chris Brown *Back to Sleep*
+                </a>
+              </li>
+              <li>
+                <a
+                  className={linkCls}
+                  href="https://www.rollingstone.com/music/music-features/karol-g-2023-album-review-1234693970/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Rolling Stone – Karol G *+57*
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <BandHeader title="Related Reading" icon="🔗" />
+        <ul className="list-disc pl-6">
+          <li>
+            <Link className={linkCls} to="/blog/community-ties">
+              Community Ties
+            </Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/blog/legislative-reform">
+              Legislative Reform and Reality
+            </Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/blog/media-morality">
+              Media and Morality
+            </Link>
+          </li>
+        </ul>
+
+        <div className="mt-10">
+          <ShareBar />
+        </div>
+
         {/* Data Sources and Related Reading will be added at the end */}
       </article>
     </BlogLayout>
