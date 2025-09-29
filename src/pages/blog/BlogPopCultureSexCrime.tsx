@@ -394,6 +394,203 @@ export default function BlogPopCultureSexCrime(): JSX.Element {
           as art, it condemns in life as unforgivable.”
         </PullQuote>
 
+<BandHeader title="Music: When Lyrics Excuse What Life Condemns" icon="🎵" />
+
+        <p>
+          If literature rationalizes and film dramatizes, music sets hypocrisy
+          to a beat. Entire catalogs of celebrated songs build their mythology
+          on relationships, desire, or conquest involving very young people —
+          things that, in real life, would ruin careers or land people on
+          registries. Yet in melody and rhythm, they become timeless anthems.
+        </p>
+
+        <Callout variant="neutral" title="Pull Quote" icon="🎤">
+          <p>
+            “What would be scandalous in reality becomes celebrated when set to
+            music.”
+          </p>
+        </Callout>
+
+        <p>
+          The Beatles’ <strong><em>I Saw Her Standing There</em> (1963)</strong>{" "}
+          opens with Paul McCartney singing: <br />
+          <em>“Well, she was just seventeen, you know what I mean.”</em> <br />
+          The lyric is celebrated, sung at weddings, and never questioned{" "}
+          <a
+            className={linkCls}
+            href="https://www.britannica.com/topic/I-Saw-Her-Standing-There-by-the-Beatles"
+            target="_blank"
+            rel="noopener"
+          >
+            (Britannica)
+          </a>
+          .
+        </p>
+
+        <p>
+          Ringo Starr’s solo hit <strong><em>You’re Sixteen</em> (1973)</strong>{" "}
+          explicitly references age in the title and topped charts. Its
+          nostalgic reissue later featured a performance with then-15-year-old
+          Carrie Fisher, televised without controversy{" "}
+          <a
+            className={linkCls}
+            href="https://en.wikipedia.org/wiki/You%27re_Sixteen"
+            target="_blank"
+            rel="noopener"
+          >
+            (Wikipedia)
+          </a>
+          .
+        </p>
+
+        <p>
+          The Rolling Stones’ <strong><em>Stray Cat Blues</em> (1968)</strong>{" "}
+          goes further: <br />
+          <em>“I can see that you’re fifteen years old … but I don’t want your
+          I.D.”</em> <br />
+          That track, released on <em>Beggars Banquet</em>, is still celebrated
+          as part of their peak creative era{" "}
+          <a
+            className={linkCls}
+            href="https://genius.com/The-rolling-stones-stray-cat-blues-lyrics"
+            target="_blank"
+            rel="noopener"
+          >
+            (Genius Lyrics)
+          </a>
+          .
+        </p>
+
+        <Callout variant="info" title="Classic Rock Context" icon="📘">
+          <p>
+            Songs with openly underage themes remain in rotation on classic rock
+            radio, anthologized as “classics,” not condemned as scandal.
+          </p>
+        </Callout>
+
+        <p>
+          By the 1980s, glam metal leaned heavily into this mythology.{" "}
+          <strong>Mötley Crüe’s memoir *The Dirt*</strong> recounts encounters
+          with teenage fans — retold decades later in a Netflix biopic{" "}
+          <a
+            className={linkCls}
+            href="https://www.rollingstone.com/music/music-news/motley-crue-the-dirt-movie-netflix-696136/"
+            target="_blank"
+            rel="noopener"
+          >
+            (Rolling Stone)
+          </a>
+          . Warrant’s{" "}
+          <strong><em>Cherry Pie</em> (1990)</strong> and Poison’s{" "}
+          <strong><em>Talk Dirty to Me</em> (1987)</strong> turned adolescent
+          fantasy into MTV staples{" "}
+          <a
+            className={linkCls}
+            href="https://loudwire.com/rock-songs-that-would-not-fly-today/"
+            target="_blank"
+            rel="noopener"
+          >
+            (Loudwire)
+          </a>
+          . Even Van Halen’s{" "}
+          <strong><em>Hot for Teacher</em> (1984)</strong> staged its video in a
+          high school classroom, still a fixture on classic rock channels{" "}
+          <a
+            className={linkCls}
+            href="https://ultimateclassicrock.com/van-halen-hot-for-teacher/"
+            target="_blank"
+            rel="noopener"
+          >
+            (Ultimate Classic Rock)
+          </a>
+          .
+        </p>
+
+        <p>
+          In rap, Too $hort’s{" "}
+          <strong><em>Mack Attack</em> (1988)</strong> included the lyric: <br />
+          <em>“One young tender lost all hope …”</em> <br />
+          The slang “young tender” was common in late ’80s hip-hop to refer to
+          adolescent girls. Too $hort built his brand around this persona, and
+          his albums went platinum{" "}
+          <a
+            className={linkCls}
+            href="https://genius.com/Too-short-mack-attack-lyrics"
+            target="_blank"
+            rel="noopener"
+          >
+            (Genius Lyrics)
+          </a>
+          .
+        </p>
+
+        <p>
+          Meanwhile, <strong><em>2 Live Crew’s As Nasty As They Wanna Be</em>{" "}
+          (1989)</strong> triggered national outrage. Its single{" "}
+          <em>Me So Horny</em> became a hit while a federal judge declared the
+          album legally obscene — a ruling later overturned. Far from ending
+          their careers, the controversy fueled sales and secured their place in
+          music history{" "}
+          <a
+            className={linkCls}
+            href="https://www.miamiherald.com/news/local/community/miami-dade/article238224909.html"
+            target="_blank"
+            rel="noopener"
+          >
+            (Miami Herald)
+          </a>
+          .
+        </p>
+
+        <Callout variant="research" title="Comparison" icon="🔎">
+          <p>
+            <strong>Rock vs. Rap, Same Hypocrisy</strong>
+          </p>
+          <ul className="list-disc pl-6">
+            <li>Rock celebrated teenage groupie culture as glamour.</li>
+            <li>Rap was prosecuted in court for explicit lyrics.</li>
+            <li>
+              Both sold millions — proof outrage was selective, not absolute.
+            </li>
+          </ul>
+        </Callout>
+
+        <p>
+          Modern pop still plays with these themes.{" "}
+          <strong><em>Chris Brown’s Back to Sleep</em> (2015)</strong> drew
+          criticism for blurring lines of consent{" "}
+          <a
+            className={linkCls}
+            href="https://www.billboard.com/music/rb-hip-hop/chris-brown-back-to-sleep-remix-6986050/"
+            target="_blank"
+            rel="noopener"
+          >
+            (Billboard)
+          </a>
+          , and{" "}
+          <strong><em>Karol G’s +57</em> (2023)</strong> has been flagged in
+          Colombian commentary for glamorizing predatory dynamics{" "}
+          <a
+            className={linkCls}
+            href="https://www.rollingstone.com/music/music-features/karol-g-2023-album-review-1234693970/"
+            target="_blank"
+            rel="noopener"
+          >
+            (Rolling Stone)
+          </a>
+          .
+        </p>
+
+        <Callout variant="reminder" title="Chart Reality" icon="🏆">
+          <p>
+            These tracks aren’t hidden — they top charts, win airplay, and
+            define eras. <br />
+            If society can accept lyrics about underage relationships as “art,”
+            it cannot claim moral consistency while condemning ordinary people
+            to lifelong punishment for far less.
+          </p>
+        </Callout>
+
         {/* Data Sources and Related Reading will be added at the end */}
       </article>
     </BlogLayout>
