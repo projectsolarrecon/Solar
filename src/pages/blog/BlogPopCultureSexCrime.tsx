@@ -234,6 +234,166 @@ export default function BlogPopCultureSexCrime(): JSX.Element {
           context be branded, monitored, and ostracized for life.
         </p>
 
+<BandHeader title="Film & TV: Hollywood’s Double Standard" icon="🎬" />
+
+        <p>
+          If literature whispers hypocrisy, film and television project it in
+          high definition. Hollywood has often placed young characters — and
+          sometimes young performers — in situations with adult themes, then
+          framed those works as groundbreaking or prestigious. What would be
+          treated as criminal in everyday life has repeatedly been reframed as
+          “art” on the screen.
+        </p>
+
+        <p>
+          Take <strong><em>Taxi Driver</em> (1976)</strong>. Jodie Foster was
+          only <strong>12 years old</strong> when she played Iris, a runaway
+          child forced into prostitution. She has spoken about how unsettling
+          the role was{" "}
+          <a
+            className={linkCls}
+            href="https://www.independent.co.uk/arts-entertainment/films/news/jodie-foster-details-how-uncomfortable-it-was-playing-a-prostitute-aged-12-in-taxi-driver-a7040016.html"
+            target="_blank"
+            rel="noopener"
+          >
+            (Independent)
+          </a>
+          . The film was nominated for four Academy Awards and is now considered
+          a classic{" "}
+          <a
+            className={linkCls}
+            href="https://en.wikipedia.org/wiki/Taxi_Driver"
+            target="_blank"
+            rel="noopener"
+          >
+            (Wikipedia)
+          </a>
+          , yet its central portrayal involved placing an actual child into a
+          highly sexualized role.
+        </p>
+
+        <p>
+          Two years later, <strong><em>Pretty Baby</em> (1978)</strong> cast{" "}
+          <strong>11-year-old Brooke Shields</strong> as the daughter of a sex
+          worker in early 20th-century New Orleans. The film contained nudity
+          involving Shields, which has remained controversial for decades, but
+          it premiered at Cannes and was defended as art{" "}
+          <a
+            className={linkCls}
+            href="https://en.wikipedia.org/wiki/Pretty_Baby_(1978_film)"
+            target="_blank"
+            rel="noopener"
+          >
+            (Wikipedia)
+          </a>
+          .
+        </p>
+
+        <p>
+          In 1980, Shields starred in{" "}
+          <strong><em>The Blue Lagoon</em> (1980)</strong>. At{" "}
+          <strong>14 years old</strong>, she was presented as part of a
+          romance-drama survival story. The production relied on body doubles for
+          certain scenes, but Shields herself was still promoted as the central
+          object of desire{" "}
+          <a
+            className={linkCls}
+            href="https://www.latimes.com/entertainment-arts/story/2023-04-12/brooke-shields-blue-lagoon-director-sexual-awakening"
+            target="_blank"
+            rel="noopener"
+          >
+            (Los Angeles Times)
+          </a>
+          . The film earned nearly $60 million, proving that controversy could
+          be a commercial asset.
+        </p>
+
+        <Callout variant="warning" title="Genre Note" icon="🎥">
+          <p>
+            The <strong>slasher genre</strong> — from{" "}
+            <em>Halloween</em> (1978) to <em>Friday the 13th</em> (1980) and
+            countless sequels — often sexualized teenagers and then punished them
+            with death, creating the notorious “sex equals death” formula{" "}
+            <a
+              className={linkCls}
+              href="https://news.unl.edu/article/slicing-and-dicing-the-sociology-of-slasher-movies"
+              target="_blank"
+              rel="noopener"
+            >
+              (University of Nebraska)
+            </a>
+            .
+          </p>
+        </Callout>
+
+        <p>
+          Fast forward to the present:{" "}
+          <strong><em>Cuties</em> (*Mignonnes*, 2020)</strong> sparked global
+          backlash for its depiction of preteen girls in a dance troupe. Netflix
+          defended it as a critique of the sexualization of children in media,
+          and the film even won awards at Sundance, but its very existence
+          underlined the paradox{" "}
+          <a
+            className={linkCls}
+            href="https://www.theguardian.com/film/2020/sep/14/cuties-review-netflixs-controversial-child-exploitation-film-is-bold-flawed-and-misunderstood"
+            target="_blank"
+            rel="noopener"
+          >
+            (Guardian)
+          </a>
+          .
+        </p>
+
+        <p>
+          In <strong><em>Licorice Pizza</em> (2021)</strong>, the main plot
+          follows a romance between a <strong>15-year-old boy</strong> and a{" "}
+          <strong>25-year-old woman</strong>. Critics lauded its nostalgic tone,
+          and the film received three Academy Award nominations, including Best
+          Picture. Outside the frame of cinema, the same relationship would not
+          be met with applause.
+        </p>
+
+        <p>
+          Even biographical dramas reinforce selective outrage. Sofia Coppola’s{" "}
+          <strong><em>Priscilla</em> (2023)</strong> recounts how Elvis Presley
+          began his relationship with Priscilla when she was{" "}
+          <strong>14</strong>. The movie reignited discussion about Elvis’s
+          legacy, but his music, brand, and myth remain largely untouched{" "}
+          <a
+            className={linkCls}
+            href="https://www.npr.org/2023/11/02/1209612367/priscilla-movie-sofia-coppola-elvis-presley"
+            target="_blank"
+            rel="noopener"
+          >
+            (NPR)
+          </a>
+          .
+        </p>
+
+        <p>
+          And then there is prestige television. HBO’s{" "}
+          <strong><em>Euphoria</em> (2019–present)</strong> depicts high school
+          students — explicitly written as minors — in graphic sexual and
+          drug-related scenarios. The show is celebrated as fearless, even
+          decorated with Emmy Awards{" "}
+          <a
+            className={linkCls}
+            href="https://www.vulture.com/2019/06/euphoria-hbo-recap-episode-1-pilot.html"
+            target="_blank"
+            rel="noopener"
+          >
+            (Vulture)
+          </a>
+          , but its narrative fixation on minors would be treated very
+          differently outside of a TV script.
+        </p>
+
+        <PullQuote>
+          “These aren’t marginal works. They dominate award circuits, shape
+          careers, and enter the cultural canon. What society embraces on screen
+          as art, it condemns in life as unforgivable.”
+        </PullQuote>
+
         {/* Data Sources and Related Reading will be added at the end */}
       </article>
     </BlogLayout>
