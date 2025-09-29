@@ -18,7 +18,7 @@ export default function BlogPopCultureSexCrime(): JSX.Element {
       description="Exploring the hypocrisy of how pop culture celebrates depictions of sexual exploitation while punishing individuals with lifelong stigma."
       keywords="pop culture, hypocrisy, sex offenses, cancel culture, media criticism"
       date="Sep 29, 2025"
-      readTime="9 min"
+      readTime="12-15 min"
       badge="📝 BLOG"
       lede="From *Lolita* to *Euphoria*, our culture rewards art that depicts exploitation — even as it condemns individuals to registries for life. This post asks why we tolerate one and banish the other."
     >
