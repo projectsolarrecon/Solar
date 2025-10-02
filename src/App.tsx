@@ -76,6 +76,7 @@ import ResidencyRestrictionsHousing from "./pages/blog/residency-restrictions-ho
 import PolicyAlternativesResidencyRestrictions from "./pages/resources/policy-alternatives-residency-restrictions";
 import HighProfileCasesConclusion from "./pages/blog/2025-09-25-high-profile-cases-conclusion";
 import BlogPopCultureSexCrime from "./pages/blog/BlogPopCultureSexCrime";
+import WhySexOffenderRegistriesFailVictims from "./pages/blog/WhySexOffenderRegistriesFailVictims";
 
 function App() {
   return (
@@ -156,6 +157,10 @@ function App() {
               <Route path="/blog/residency-restrictions-housing" element={<ResidencyRestrictionsHousing />} />
               <Route path="/blog/2025-09-25-high-profile-cases-conclusion" element={<HighProfileCasesConclusion />} />
               <Route path="/blog/classics-and-cancel-culture" element={<BlogPopCultureSexCrime />} />
+<Route
+  path="/blog/why-sex-offender-registries-fail-victims"
+  element={<WhySexOffenderRegistriesFailVictims />}
+/>
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
