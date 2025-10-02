@@ -12,6 +12,14 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
+{
+  title: "Why Sex Offender Registries Fail Victims",
+  description: "Examining how public registries harm survivors, destabilize communities, and fail to prevent sexual violence.",
+  date: "Oct 2, 2025",
+  readTime: "12 min",
+  badge: "📝 BLOG",
+  path: "/blog/why-sex-offender-registries-fail-victims",
+},
  {
   id: "classics-and-cancel-culture-2025-09-28",
   title: "Classics and Cancel Culture. Registries and Red Carpets.",
