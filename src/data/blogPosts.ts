@@ -13,12 +13,15 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "why-sex-offender-registries-fail-victims",
   title: "Why Sex Offender Registries Fail Victims",
-  description: "Examining how public registries harm survivors, destabilize communities, and fail to prevent sexual violence.",
-  date: "Oct 2, 2025",
+  excerpt: "Sex offender registries promise safety but often fail survivors, families, and communities. This post examines why victims themselves are calling for change and what alternatives offer real healing.",
+  author: "SOLAR Project",
+  date: "2025-10-02",
   readTime: "12 min",
-  badge: "📝 BLOG",
-  path: "/blog/why-sex-offender-registries-fail-victims",
+  category: "Analysis",
+  tags: ["registry", "victims", "policy", "restorative justice"],
+  path: "/blog/why-sex-offender-registries-fail-victims"
 },
  {
   id: "classics-and-cancel-culture-2025-09-28",
