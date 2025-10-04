@@ -11,6 +11,12 @@ export type LegislativeUpdateMeta = {
 };
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
+{
+  date: "October 5, 2025",
+  title: "NY Pushes Statewide 1,500 ft Buffer; SMART FY 25 Grant Opens; Delaware Issues Enforcement Alert",
+  slug: "2025-10-05",
+  summary: "Rensselaer County spurs NY buffer proposal; SMART Office releases FY 25 SORNA grant NOFO; Delaware SOAR unit issues non-compliance alert.",
+},
   {
   date: "September 28, 2025",
   title: "Registry Expansion in Texas, Oklahoma Residency Ruling, and Maryland Oversight Audit",
