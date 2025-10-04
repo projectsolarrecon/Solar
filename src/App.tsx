@@ -78,6 +78,7 @@ import HighProfileCasesConclusion from "./pages/blog/2025-09-25-high-profile-cas
 import BlogPopCultureSexCrime from "./pages/blog/BlogPopCultureSexCrime";
 import WhySexOffenderRegistriesFailVictims from "./pages/blog/WhySexOffenderRegistriesFailVictims";
 import WelcomeToTheNeighborhood from "./pages/blog/welcome-to-the-neighborhood";
+import FollowTheMoney from "./pages/blog/FollowTheMoney";
 
 function App() {
   return (
@@ -166,6 +167,7 @@ function App() {
   path="/blog/welcome-to-the-neighborhood"
   element={<WelcomeToTheNeighborhood />}
 />
+<Route path="/blog/follow-the-money" element={<FollowTheMoney />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
