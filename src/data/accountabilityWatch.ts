@@ -7,7 +7,15 @@ export type AccountabilityItem = {
 };
 
 export const accountabilityWatch: AccountabilityItem[] = [
-  {
+ {
+  date: "2025-10-04",
+  title: "Week of Sep 28–Oct 4, 2025",
+  slug: "2025-10-04",
+  summary:
+    "Gateway founder Robert Morris guilty plea with registration; RJ May plea to 5 fed CSAM counts; Raleigh officer charged; NJ teacher charged; nightclub case tracked separately for severity.",
+  path: "/resources/accountability-watch/2025-10-04",
+},
+ {
     date: "2025-09-27",
     title: "Week of Sep 21–27, 2025",
     slug: "2025-09-27",
