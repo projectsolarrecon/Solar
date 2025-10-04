@@ -35,7 +35,7 @@ export default function WelcomeToTheNeighborhood(): JSX.Element {
           </em>
         </p>
 
-        <p>
+        <p className="mt-6">
           Imagine a world where a man who murdered a child in cold blood is quietly released back onto your street, no public registry to warn you – while another man, who never laid a hand on anyone but possessed illegal images, is imprisoned for over a decade and will be branded for life on a public list. This isn’t a dystopian novel; it’s reality in the American justice system. Violent offenders, including child killers, often serve surprisingly short prison terms and re-enter society with little fanfare, <strong>no requirement to register or notify the public</strong>, and minimal supervision. Meanwhile, non-violent federal sex offenders (like those convicted of possessing or sharing child sexual abuse material) face long prison sentences, lifetime supervised release, and permanent inclusion on sex offender registries. The contrast is jarring – and it raises uncomfortable questions about how we prioritize punishment and public safety.
         </p>
 
@@ -47,21 +47,22 @@ export default function WelcomeToTheNeighborhood(): JSX.Element {
         <Divider label="Pattern of Release" />
 
         <BandHeader title="Violent Offenders Released Early, No Public Registry" icon="⚖️" />
-        <p>
+
+        <p className="mt-6">
           <strong>Ronald Exantus (Kentucky)</strong> – In 2015, Exantus broke into a family’s home and stabbed 6-year-old Logan Tipton to death as the boy slept. He also attacked Logan’s father and sisters. A jury found Exantus “guilty but mentally ill” on assault charges (he was found not guilty by reason of insanity for the murder itself) and he received a 20-year sentence in 2018. Shockingly, Exantus was <strong>paroled after serving only about 7 years</strong> behind bars. Records show he was released on <strong>Oct 1, 2025</strong>, thanks to generous good-behavior and education credits. His mandatory parole supervision will end by <strong>June 18, 2026</strong>, at which point he walks free with no further oversight. There will be no requirement for Exantus to register on any public list after his sentence expires. As Logan’s outraged father put it, <em>“It just seems like a 6-year-old’s life is worth more than 10 years in prison”</em> – yet by next year, his child’s killer will be out of the system entirely.  
           <a className={linkCls} href="https://people.com/man-freed-after-killing-6-year-old-logan-tipton-11824076" target="_blank" rel="noopener">People / WLKY</a> |{" "}
           <a className={linkCls} href="https://www.wkyt.com/2025/10/02/expert-weighs-man-convicted-2015-stabbing-death-is-released-prison/" target="_blank" rel="noopener">WKYT</a> |{" "}
           <a className={linkCls} href="https://www.wlky.com/article/indiana-man-deadly-stabbing-kentucky-boy-prison/68808267" target="_blank" rel="noopener">WLKY local report</a>
         </p>
 
-        <p>
+        <p className="mt-6">
           <strong>Herbert David Brown III (California)</strong> – Brown beat his 22-month-old daughter, Lily, so badly that she died from a fractured skull and other injuries in 2013. He pleaded no contest to second-degree murder in 2015 and was sentenced to 15-to-life in prison. Under California’s parole system (enhanced by Proposition 57’s “rehabilitation” credits), Brown became eligible far earlier than 15 years. In October 2024, despite fierce objections from the local District Attorney and Lily’s grieving mother, a parole board <strong>granted Brown parole after about 12 years</strong> in custody. In April 2025, that decision was upheld – clearing the way for Brown’s release well before the minimum term of his sentence. Brown will <strong>not appear on any public offender registry</strong> after release. The local DA condemned the outcome as “shameful.”  
           <a className={linkCls} href="https://www.slocounty.ca.gov/departments/district-attorney/latest-news/2025/april/convicted-child-murderer-herbert-brown-iii-of-paso-robles-granted-parole-despite-family-and-district" target="_blank" rel="noopener">San Luis Obispo DA</a> |{" "}
           <a className={linkCls} href="https://www.ksby.com/news/local-news/person-who-killed-toddler-daughter-in-paso-robles-in-2013-granted-parole" target="_blank" rel="noopener">KSBY News</a> |{" "}
           <a className={linkCls} href="https://www.sanluisobispo.com/news/local/crime/article304993881.html" target="_blank" rel="noopener">The Tribune</a>
         </p>
 
-        <p>
+        <p className="mt-6">
           <strong>Jeffrey Powell (California)</strong> – In January 2013, while already on parole for prior offenses, Powell committed a <strong>home-invasion murder</strong>. He and accomplices kicked in the door of a Citrus Heights home in the middle of the night; Powell repeatedly stabbed 52-year-old Jack Swaim, who bled to death while his son and mother tried to save him. A jury convicted Powell in 2015 of second-degree murder and burglary; he received a <strong>16-years-to-life</strong> sentence. Yet in October 2023, after only about 10 years in prison, Powell was <strong>granted early parole</strong> – roughly a 40% reduction of his minimum term. California’s parole board approved his release in spite of Powell’s extensive prison misconduct (including leading a white-supremacist gang). By April 2024, the parole grant was finalized. Powell – an admittedly violent individual with a 23-year criminal history – is being freed with <strong>no requirement to register</strong> as a violent offender.  
           <a className={linkCls} href="https://www.abc10.com/article/news/crime/killer-citrus-heights-man-granted-early-parole/103-30d910dd-bdc5-4974-83a3-9b698bf45eb5" target="_blank" rel="noopener">ABC10</a> |{" "}
           <a className={linkCls} href="https://www.kcra.com/article/sacramento-early-parole-granted-home-invasion-murder/60652881" target="_blank" rel="noopener">KCRA News</a> |{" "}
