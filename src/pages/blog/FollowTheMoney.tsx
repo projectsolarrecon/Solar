@@ -49,7 +49,7 @@ export default function FollowTheMoney(): JSX.Element {
           sex-offense policy.
         </p>
 
-        <p>
+                <p className="mt-6">
           Registries, mandatory minimums, endless supervision, GPS ankle
           monitors, mandatory therapy, drug tests, polygraphs, and
           “accountability” apps—each layer is billed as protection for the
@@ -72,7 +72,7 @@ export default function FollowTheMoney(): JSX.Element {
           permanence.
         </p>
 
-        <p>
+                <p className="mt-6">
           This series follows the money—tracing how police unions, prison
           guards, prosecutors, private contractors, and treatment vendors shape
           narratives about <em>“predators”</em> and <em>“forever risk”</em> to
@@ -91,7 +91,7 @@ export default function FollowTheMoney(): JSX.Element {
           bureaucracies and vendors who profit from ongoing surveillance.
         </p>
 
-        <p>
+                <p className="mt-6">
           The turning point was the{" "}
           <strong>
             Adam Walsh Child Protection and Safety Act of 2006
@@ -115,7 +115,7 @@ export default function FollowTheMoney(): JSX.Element {
           ).
         </p>
 
-        <p>
+                <p className="mt-6">
           That penalty wasn’t symbolic: for many states, it meant millions in
           lost dollars. Even holdouts were eventually pushed into building
           larger registries and enforcement bureaucracies (
@@ -130,7 +130,7 @@ export default function FollowTheMoney(): JSX.Element {
           ).
         </p>
 
-        <p>
+                <p className="mt-6">
           Once SORNA took hold, the <strong>machinery multiplied.</strong>{" "}
           County sheriffs built <em>“sex-offender units.”</em> Probation and
           parole agencies expanded caseloads. Prosecutors found steady work
@@ -188,13 +188,13 @@ export default function FollowTheMoney(): JSX.Element {
           already built a <strong>punishment economy.</strong>
         </p>
 
-        <p>
+               <p className="mt-6"> 
           The 1980s <em>War on Drugs</em> expanded forfeiture powers and
           incentivized “policing for profit.” Over time, agencies learned that
           enforcement could also mean revenue.
         </p>
 
-        <p>
+                <p className="mt-6">
           In California, the prison-guards’ union—the{" "}
           <strong>California Correctional Peace Officers Association (CCPOA)</strong>
           —became a political powerhouse.
@@ -312,7 +312,7 @@ export default function FollowTheMoney(): JSX.Element {
           Money alone can’t sustain an empire of punishment—it needs a story.
         </p>
 
-        <p>
+                <p className="mt-6">
           The <strong>“stranger danger”</strong> myth, portraying unknown
           predators as the primary threat, remains politically potent. Yet
           research shows most abuse is committed by someone the victim knows (
@@ -327,7 +327,7 @@ export default function FollowTheMoney(): JSX.Element {
           ).
         </p>
 
-        <p>
+                <p className="mt-6">
           The companion myth is <strong>“forever risk.”</strong> Despite claims
           that “sex offenders always reoffend,” Department of Justice data show
           otherwise:
@@ -395,7 +395,7 @@ export default function FollowTheMoney(): JSX.Element {
           compliant—under threat of violation and reincarceration.
         </p>
 
-        <p>
+                <p className="mt-6">
           We’ll unpack these costs in{" "}
           <Link className={linkCls} to="/blog/follow-the-money-part2">
             Part 2 – Fees, Fines, and Families
@@ -417,7 +417,7 @@ export default function FollowTheMoney(): JSX.Element {
           toward expansion—not reform.
         </p>
 
-        <p>
+               <p className="mt-6"> 
           <strong>
             To understand this system, you can’t just study the laws. You have
             to follow the money.
