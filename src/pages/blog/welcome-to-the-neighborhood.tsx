@@ -87,7 +87,7 @@ export default function WelcomeToTheNeighborhood(): JSX.Element {
           Contrast the above with how the system treats non-violent <strong>federal sex offenders</strong>, particularly those involved in <strong>child sexual-abuse material (CSAM)</strong>. These offenses are serious, but they do not involve physical contact; often the crime is possessing or sharing illegal files online. Yet federal sentencing policy is extremely harsh.
         </p>
 
-        <p>
+        <p className="mt-6">
           According to the{" "}
           <a className={linkCls} href="https://www.ussc.gov/sites/default/files/pdf/research-and-publications/quick-facts/Child_Pornography_FY24.pdf" target="_blank" rel="noopener">
             U.S. Sentencing Commission Quick Facts (FY 2024)
