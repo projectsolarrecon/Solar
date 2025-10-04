@@ -13,6 +13,18 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "follow-the-money-2025-10-04",
+  title: "Follow the Money: How the Criminal Justice System Profits from Sex Offense Policy",
+  excerpt:
+    "Sex-offense policy isn’t just about public safety—it’s about profit. From federal grants to private contractors, unions, and supervision fees, this investigation exposes the economy built on endless punishment.",
+  author: "The SOLAR Project",
+  date: "October 4, 2025",
+  readTime: "14 min read",
+  category: "Justice & Policy",
+  tags: ["SORNA", "prison economy", "criminal justice reform", "registry", "private contracts", "union lobbying"],
+  path: "/blog/follow-the-money",
+},
+{
   id: "welcome-to-the-neighborhood-2025-10-04",
   title: "Welcome to the Neighborhood",
   excerpt:
