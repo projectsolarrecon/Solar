@@ -13,6 +13,18 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "welcome-to-the-neighborhood-2025-10-04",
+  title: "Welcome to the Neighborhood",
+  excerpt:
+    "When murderers walk free while non-violent offenders remain branded for life, something in our definition of justice has gone deeply wrong.",
+  author: "The SOLAR Project",
+  date: "October 4, 2025",
+  readTime: "12 min read",
+  category: "Justice & Sentencing",
+  tags: ["parole", "violent offenders", "sex offender registry", "justice disparity", "criminal reform"],
+  path: "/blog/welcome-to-the-neighborhood",
+},
+{
   id: "why-sex-offender-registries-fail-victims",
   title: "Why Sex Offender Registries Fail Victims",
   excerpt: "Sex offender registries promise safety but often fail survivors, families, and communities. This post examines why victims themselves are calling for change and what alternatives offer real healing.",
