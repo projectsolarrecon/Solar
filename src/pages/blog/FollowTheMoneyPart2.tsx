@@ -17,7 +17,7 @@ export default function FollowTheMoneyPart2(): JSX.Element {
       title="Fees, Fines, and Families: The Hidden Cost of “Compliance”"
       description="Part 2 of the Follow the Money series exposes the hidden financial burden of sex-offense supervision — how compliance fees and private contracts trap families in cycles of debt."
       keywords="sex offense policy, supervision fees, fines, probation, polygraph, criminal justice, rehabilitation, Follow the Money series"
-      date="Oct 4, 2025"
+      date="Oct 5, 2025"
       readTime="13 min"
       badge="📝 BLOG"
       lede="When justice becomes subscription-based, freedom is never free. Part 2 follows the money into the pockets of those who profit from 'compliance.'"
