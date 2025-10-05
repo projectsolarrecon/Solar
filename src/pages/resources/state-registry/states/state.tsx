@@ -1,16 +1,37 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+
+// Layout + SOLAR shell
+import GuideLayout from "../../../../components/layouts/GuideLayout";
+// If your barrel exports TOC from components/solar, this path is correct from a page:
+import { TOC } from "../../../../components/solar";
+
+// The content-only template we just updated
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
 
-// Auto-import all JSONs under /src/data/state-registry
+// Auto-import all JSONs
 const files = import.meta.glob("/src/data/state-registry/*.json", { eager: true });
 
 function getDataFor(code: string): StateRegistryData | null {
   const key = Object.keys(files).find((k) => k.endsWith(`/${code.toLowerCase()}.json`));
   if (!key) return null;
-  // Vite eager JSON modules expose default export
-  // @ts-ignore
+  // @ts-ignore Vite eager JSON modules
   return (files[key]?.default || files[key]) as StateRegistryData;
+}
+
+function fmtDate(iso?: string) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.valueOf())) return "";
+  return d.toLocaleDateString();
+}
+
+function pickLede(d?: StateRegistryData) {
+  // Prefer first plain-language summary bullet if present
+  const blurb = d?.plainLanguage?.atAGlance?.summary?.[0];
+  if (blurb && blurb.length > 0) return blurb;
+  // Fallback lede
+  return `Plain-language guide to ${d?.state ?? "this state"}’s registration requirements, deadlines, and restrictions with citations.`;
 }
 
 export default function StateRegistryStatePage() {
@@ -40,6 +61,28 @@ export default function StateRegistryStatePage() {
     );
   }
 
-  // (Temporarily removed Zod validation to unblock deploy)
-  return <StateRegistryTemplate data={data} />;
+  const title = `${data.state} Registry Rules`;
+  const description = `${data.state} registration requirements, restrictions, deadlines, travel/visitor rules, resources, and citations.`;
+  const date = fmtDate(data.lastReviewedUTC);
+  const lede = pickLede(data);
+
+  return (
+    <GuideLayout
+      title={title}
+      description={description}
+      keywords={`${data.state}, registry, SORNA, deadlines, restrictions, relief paths`}
+      date={date || undefined}
+      readTime="12 min"
+      badge="📘 STATE GUIDE"
+      lede={lede}
+      showTOC={true}
+    >
+      <div className="mb-6">
+        {/* If your TOC requires anchors, your Section headings in the template will appear. */}
+        <TOC />
+      </div>
+
+      <StateRegistryTemplate data={data} />
+    </GuideLayout>
+  );
 }
