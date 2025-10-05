@@ -14,7 +14,7 @@ export interface PlainLanguageBlurb {
   summary?: string[];
   watchOuts?: string[];
   edgeCases?: string[];
-  confidence?: "high" | "medium" | "needs-review";
+  validationNote?: string;
   citations?: string[];
   reviewedBy?: string;
   reviewedUTC?: string;
@@ -22,7 +22,7 @@ export interface PlainLanguageBlurb {
 
 export interface StateRegistryData {
   state: string;
-  lastReviewedUTC: string; // ISO
+  lastReviewedUTC: string;
   atAGlance: {
     mustRegister?: string;
     initialDeadline?: string;
@@ -43,8 +43,8 @@ export interface StateRegistryData {
   residencyPresence?: string;
   employmentEducationInternet?: string[];
   publicWebsiteExposure?: string[];
-  travelInterstate?: string[];     // interstate move/relocation
-  visitingTraveling?: string[];    // NEW: short stays, hotels, temporary work/school
+  travelInterstate?: string[];
+  visitingTraveling?: string[];
   complianceEnforcement?: string;
   reliefPaths?: string[];
   specialPopulations?: string[];
@@ -67,9 +67,7 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
-  plainLanguage?: {
-    [sectionKey: string]: PlainLanguageBlurb;
-  };
+  plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
 export default function StateRegistryTemplate({ data }: { data: StateRegistryData }) {
@@ -77,13 +75,18 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
-      {/* 1) At-a-Glance */}
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
         <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
           <li><SafeText text={d.atAGlance?.mustRegister || "—"} /></li>
-          {d.atAGlance?.initialDeadline && <li><strong>Initial deadline:</strong> <SafeText text={d.atAGlance.initialDeadline} /></li>}
-          {d.atAGlance?.verificationCadence && <li><strong>Verification:</strong> <SafeText text={d.atAGlance.verificationCadence} /></li>}
-          {d.atAGlance?.primaryMethod && <li><strong>Primary method:</strong> <SafeText text={d.atAGlance.primaryMethod} /></li>}
+          {d.atAGlance?.initialDeadline && (
+            <li><strong>Initial deadline:</strong> <SafeText text={d.atAGlance.initialDeadline} /></li>
+          )}
+          {d.atAGlance?.verificationCadence && (
+            <li><strong>Verification:</strong> <SafeText text={d.atAGlance.verificationCadence} /></li>
+          )}
+          {d.atAGlance?.primaryMethod && (
+            <li><strong>Primary method:</strong> <SafeText text={d.atAGlance.primaryMethod} /></li>
+          )}
           {Array.isArray(d.atAGlance?.topGotchas) &&
             d.atAGlance!.topGotchas!.map((g, i) => (
               <li key={i}>⚠️ <SafeText text={g} /></li>
@@ -94,11 +97,21 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
           <div className="mt-3">
             <h3 className="font-semibold text-slate-800">Official Links</h3>
             <ul className="list-disc pl-6 text-slate-700 space-y-1">
-              {d.atAGlance.officialLinks.statuteIndex && <li><a className="underline" href={d.atAGlance.officialLinks.statuteIndex} target="_blank" rel="noopener">Statutes</a></li>}
-              {d.atAGlance.officialLinks.adminRules && <li><a className="underline" href={d.atAGlance.officialLinks.adminRules} target="_blank" rel="noopener">Admin Rules</a></li>}
-              {d.atAGlance.officialLinks.statePoliceRegistry && <li><a className="underline" href={d.atAGlance.officialLinks.statePoliceRegistry} target="_blank" rel="noopener">Registry Portal</a></li>}
-              {d.atAGlance.officialLinks.formsPortal && <li><a className="underline" href={d.atAGlance.officialLinks.formsPortal} target="_blank" rel="noopener">Forms</a></li>}
-              {d.atAGlance.officialLinks.publicWebsite && <li><a className="underline" href={d.atAGlance.officialLinks.publicWebsite} target="_blank" rel="noopener">Public Website</a></li>}
+              {d.atAGlance.officialLinks.statuteIndex && (
+                <li><a className="underline" href={d.atAGlance.officialLinks.statuteIndex} target="_blank" rel="noopener">Statutes</a></li>
+              )}
+              {d.atAGlance.officialLinks.adminRules && (
+                <li><a className="underline" href={d.atAGlance.officialLinks.adminRules} target="_blank" rel="noopener">Admin Rules</a></li>
+              )}
+              {d.atAGlance.officialLinks.statePoliceRegistry && (
+                <li><a className="underline" href={d.atAGlance.officialLinks.statePoliceRegistry} target="_blank" rel="noopener">Registry Portal</a></li>
+              )}
+              {d.atAGlance.officialLinks.formsPortal && (
+                <li><a className="underline" href={d.atAGlance.officialLinks.formsPortal} target="_blank" rel="noopener">Forms</a></li>
+              )}
+              {d.atAGlance.officialLinks.publicWebsite && (
+                <li><a className="underline" href={d.atAGlance.officialLinks.publicWebsite} target="_blank" rel="noopener">Public Website</a></li>
+              )}
             </ul>
           </div>
         )}
@@ -141,7 +154,6 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
         <PlainBox pl={d.plainLanguage?.travelInterstate} />
       </Card>
 
-      {/* NEW */}
       <Card title="Visiting or Traveling in the State" icon={<Plane className="w-6 h-6 text-sky-600" />}>
         <RichList items={d.visitingTraveling} />
         <PlainBox pl={d.plainLanguage?.visitingTraveling} />
@@ -212,22 +224,9 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
             <RichList items={d.checklistsScripts?.movingOutChecklist} />
           </div>
         </div>
-        {d.checklistsScripts?.recordsRequestTemplate && (
-          <div className="mt-4">
-            <h3 className="font-semibold text-slate-800">Records Request Template</h3>
-            <Pre>{d.checklistsScripts.recordsRequestTemplate}</Pre>
-          </div>
-        )}
-        {d.checklistsScripts?.reliefPetitionOutline && (
-          <div className="mt-4">
-            <h3 className="font-semibold text-slate-800">Relief Petition Outline</h3>
-            <Pre>{d.checklistsScripts.reliefPetitionOutline}</Pre>
-          </div>
-        )}
         <PlainBox pl={d.plainLanguage?.checklistsScripts} title="Tips for using these checklists" />
       </Card>
 
-      {/* Citations */}
       <section className="border-t border-slate-200 pt-6">
         <h2 className="text-xl font-semibold text-slate-800 flex items-center">
           <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
@@ -240,6 +239,17 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
           <p className="mt-2 text-slate-600">—</p>
         )}
       </section>
+
+      <footer className="mt-8 text-xs text-slate-500 border-t border-slate-200 pt-4">
+        <p>
+          🤝 This guide was created from official legal sources and checked with the help of AI-assisted research.
+          We strive for accuracy and clarity — if you spot something that seems off or out of date, please let us know
+          so we can correct it for everyone.
+        </p>
+        <p className="mt-2 italic">
+          Informational only; not legal advice.
+        </p>
+      </footer>
     </div>
   );
 }
@@ -272,21 +282,12 @@ function RichList({ items }: { items?: string[] }) {
   );
 }
 
-function Pre({ children }: { children?: string }) {
-  if (!children) return <P text="—" />;
-  return <pre className="mt-2 whitespace-pre-wrap bg-slate-50 rounded-lg p-3 border border-slate-100">{children}</pre>;
-}
-
 function PlainBox({ pl, title = "What this means in practice" }: { pl?: PlainLanguageBlurb; title?: string }) {
   if (!pl || (!pl.summary && !pl.watchOuts && !pl.edgeCases)) return null;
   return (
     <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-slate-800">{title}</h3>
-        <div className="text-xs text-slate-500">
-          {pl.confidence ? `Confidence: ${pl.confidence}` : null}
-          {pl.reviewedBy ? ` • Reviewed by ${pl.reviewedBy}` : null}
-        </div>
       </div>
       {Array.isArray(pl.summary) && pl.summary.length > 0 && (
         <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
@@ -314,6 +315,9 @@ function PlainBox({ pl, title = "What this means in practice" }: { pl?: PlainLan
           Sources: {pl.citations.join("; ")}
         </p>
       )}
+      {pl.validationNote && (
+        <p className="mt-2 text-xs text-slate-400 italic">{pl.validationNote}</p>
+      )}
       {(pl.reviewedUTC || pl.reviewedBy) && (
         <p className="mt-1 text-xs text-slate-400">
           {pl.reviewedUTC ? `Reviewed ${new Date(pl.reviewedUTC).toLocaleDateString()}` : ""}
@@ -323,22 +327,13 @@ function PlainBox({ pl, title = "What this means in practice" }: { pl?: PlainLan
   );
 }
 
-/**
- * SafeText — super-light Markdown link support for [text](https://url)
- * - Escapes all HTML
- * - Only converts http/https links inside [text](url) patterns into <a>
- */
 function SafeText({ text = "" }: { text?: string }) {
   const escape = (s: string) =>
-    s
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const withLinks = escape(text).replace(
     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-    (_m, label, url) => `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(label)}</a>`
+    (_m, label, url) =>
+      `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(label)}</a>`
   );
-
   return <span dangerouslySetInnerHTML={{ __html: withLinks }} />;
 }
