@@ -18,9 +18,14 @@ export default function LegislativeTracker(): JSX.Element {
 
   // newest first
   const items = useMemo(
-    () => [...legislativeUpdates].sort((a, b) => (a.date < b.date ? 1 : -1)),
-    []
-  );
+  () =>
+    [...legislativeUpdates].sort((a, b) => {
+      const keyA = a.slug ?? a.date;
+      const keyB = b.slug ?? b.date;
+      return keyB.localeCompare(keyA);
+    }),
+  []
+);
   const latest = items[0];
   const archive = items.slice(1);
 
