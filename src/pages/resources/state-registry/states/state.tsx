@@ -1,15 +1,15 @@
 import React from "react";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
+import { StateRegistryDataSchema } from "../../../../data/state-registry/schema";
 
-// Glob-import every JSON in this folder at build time (Vite)
+// Auto-import all JSONs under /src/data/state-registry
 const files = import.meta.glob("/src/data/state-registry/*.json", { eager: true });
 
 function getDataFor(code: string): StateRegistryData | null {
-  // Expect files named like /src/data/state-registry/ny.json, ca.json, etc.
   const key = Object.keys(files).find((k) => k.endsWith(`/${code.toLowerCase()}.json`));
   if (!key) return null;
-  // Vite eager JSON modules expose the default export
+  // Vite eager JSON modules expose default export
   // @ts-ignore
   return (files[key]?.default || files[key]) as StateRegistryData;
 }
@@ -20,8 +20,32 @@ export default function StateRegistryStatePage() {
   const data = getDataFor(code);
 
   if (!code || !data) {
-    // If no matching JSON, kick back to hub (or render a friendly 404)
-    return <Navigate to="/resources/state-registry" replace />;
+    return (
+      <div className="min-h-screen bg-slate-50">
+        <header className="bg-gradient-to-r from-slate-800 to-slate-600 text-white py-10 px-6 rounded-b-3xl shadow-md">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-3xl font-bold">State not found</h1>
+            <p className="mt-2 text-slate-200">We haven’t published this state yet.</p>
+          </div>
+        </header>
+        <main className="max-w-3xl mx-auto p-6">
+          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <p className="text-slate-700">
+              Go back to the{" "}
+              <a className="underline" href="/resources/state-registry">Registry Rules hub</a>{" "}
+              and pick a published state.
+            </p>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Validate JSON shape (dev-friendly)
+  const parsed = StateRegistryDataSchema.safeParse(data);
+  if (!parsed.success) {
+    console.warn(`[StateRegistry] Invalid JSON for "${code}":`, parsed.error.flatten());
+    // Render a gentle notice but still attempt to show what we can
   }
 
   return <StateRegistryTemplate data={data} />;
