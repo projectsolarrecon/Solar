@@ -18,7 +18,7 @@ export const allBlogPosts: BlogPost[] = [
   excerpt:
     "Part 2 of the Follow the Money series reveals how supervision fees, therapy costs, and endless 'compliance' payments create an industry of perpetual punishment—funded by the families themselves.",
   author: "The SOLAR Project",
-  date: "October 4, 2025",
+  date: "October 5, 2025",
   readTime: "13 min read",
   category: "Justice & Policy",
   tags: ["supervision fees", "probation", "polygraph", "criminal justice reform", "Follow the Money series"],
