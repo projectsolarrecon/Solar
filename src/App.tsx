@@ -80,6 +80,7 @@ import WhySexOffenderRegistriesFailVictims from "./pages/blog/WhySexOffenderRegi
 import WelcomeToTheNeighborhood from "./pages/blog/welcome-to-the-neighborhood";
 import FollowTheMoney from "./pages/blog/FollowTheMoney";
 import CommunityIntegrationGuide from "./pages/resources/community-integration-tips";
+import FollowTheMoneyPart2 from "./pages/blog/FollowTheMoneyPart2";
 
 function App() {
   return (
@@ -173,6 +174,7 @@ function App() {
   element={<WelcomeToTheNeighborhood />}
 />
 <Route path="/blog/follow-the-money" element={<FollowTheMoney />} />
+<Route path="/blog/follow-the-money-part2" element={<FollowTheMoneyPart2 />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
