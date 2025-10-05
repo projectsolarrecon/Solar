@@ -79,6 +79,7 @@ import BlogPopCultureSexCrime from "./pages/blog/BlogPopCultureSexCrime";
 import WhySexOffenderRegistriesFailVictims from "./pages/blog/WhySexOffenderRegistriesFailVictims";
 import WelcomeToTheNeighborhood from "./pages/blog/welcome-to-the-neighborhood";
 import FollowTheMoney from "./pages/blog/FollowTheMoney";
+import CommunityIntegrationGuide from "./pages/resources/community-integration-tips";
 
 function App() {
   return (
@@ -128,6 +129,10 @@ function App() {
               {/* Accountability Watch */}
               <Route path="/resources/accountability-watch" element={<AccountabilityWatchIndex />} />
               <Route path="/resources/accountability-watch/:date" element={<AccountabilityWatchWeekly />} />
+<Route
+  path="/resources/community-integration-tips"
+  element={<CommunityIntegrationGuide />}
+/>
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
