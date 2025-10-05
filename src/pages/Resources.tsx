@@ -164,10 +164,10 @@ function Resources() {
           link: "/resources/financial-planning-guide"
         },
         {
-          name: "Community Integration Tips",
-          type: "Guide",
-          description: "Practical advice for rebuilding relationships and becoming an active community member.",
-          link: "#"
+        name: "Community Integration Tips",
+        type: "Guide",
+        description: "Practical advice for rebuilding relationships and becoming an active community member.",
+        link: "/resources/community-integration-tips"
         }
       ]
     },
