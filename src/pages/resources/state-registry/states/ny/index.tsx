@@ -1,183 +1,227 @@
 import React from "react";
+import {
+  MapPin,
+  FileText,
+  Clock,
+  AlertTriangle,
+  BookOpen,
+  CheckCircle,
+  GraduationCap,
+  Globe,
+  Database,
+  Plane,
+  Shield,
+  Users,
+  DollarSign,
+  Gavel,
+  ListChecks,
+  Link as LinkIcon,
+  Quote,
+} from "lucide-react";
 
 export default function NYRegistryPage() {
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      {/* ---------------- HERO ---------------- */}
-      <h1 className="text-4xl font-bold text-slate-800">
-        New York Registry Rules
-      </h1>
-      <p className="mt-2 text-slate-600 italic">
-        Last reviewed: <span className="font-semibold">—</span>
-      </p>
+    <div className="min-h-screen bg-slate-50">
+      {/* ---------- HERO ---------- */}
+      <header className="bg-gradient-to-r from-slate-800 to-slate-600 text-white py-10 px-6 rounded-b-3xl shadow-md print:bg-none print:shadow-none">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl font-bold tracking-tight">New York Registry Rules</h1>
+          <p className="mt-2 text-slate-200 text-lg">
+            Registration Requirements &amp; Restrictions
+          </p>
+          <p className="mt-2 text-slate-300 text-sm italic">
+            Last reviewed: <span className="font-semibold">—</span>
+          </p>
+        </div>
+      </header>
 
-      {/* ---------------- AT A GLANCE ---------------- */}
-      <section className="mt-8 p-6 bg-blue-50 rounded-2xl">
-        <h2 className="text-2xl font-semibold text-slate-800">At a Glance</h2>
-        <ul className="mt-4 list-disc pl-6 text-slate-700">
-          <li>Who must register</li>
-          <li>Initial deadlines</li>
-          <li>Verification cadence</li>
-          <li>Primary registration authority</li>
-          <li>Top “gotchas”</li>
-          <li>Official links (statutes, forms, registry)</li>
-        </ul>
-      </section>
+      {/* ---------- BODY ---------- */}
+      <main className="max-w-5xl mx-auto px-6 py-10 space-y-8 print:py-6">
+        {/* 1) At-a-Glance */}
+        <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
+          <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
+            <li>Who must register</li>
+            <li>Initial deadlines</li>
+            <li>Verification cadence</li>
+            <li>Primary registration authority</li>
+            <li>Top “gotchas”</li>
+            <li>Official links (statutes, forms, registry)</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- WHO MUST REGISTER & DURATION ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Who Must Register &amp; Duration
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Explain covered offenses, tiering scheme, registration duration by
-          tier, and juvenile applicability.
-        </p>
-      </section>
+        {/* 2) Who Must Register & Duration */}
+        <Card title="Who Must Register & Duration" icon={<BookOpen className="w-6 h-6 text-slate-600" />}>
+          <p className="text-slate-700">
+            Explain covered offenses, tiering scheme, duration by tier, and juvenile applicability.
+            Include when the clock starts/stops (incarceration vs. release).
+          </p>
+        </Card>
 
-      {/* ---------------- DEADLINES & REPORTING ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Deadlines &amp; Reporting Triggers
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Initial registration timing, move/employer/vehicle updates, online
-          identifiers, and temporary travel reporting.
-        </p>
-      </section>
+        {/* 3) Deadlines & Reporting Triggers */}
+        <Card title="Deadlines & Reporting Triggers" icon={<Clock className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Initial registration timing on release/arrival</li>
+            <li>Move / address change / temporary lodging thresholds</li>
+            <li>Employer / school / vehicle updates</li>
+            <li>Online identifiers and phones/devices</li>
+            <li>In-state short stays vs. out-of-state travel notifications</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- VERIFICATION ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Verification &amp; In-Person Requirements
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Frequency, location, documentation, and required fees.
-        </p>
-      </section>
+        {/* 4) Verification & In-Person Requirements */}
+        <Card title="Verification & In-Person Requirements" icon={<Shield className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Frequency (e.g., annual / semiannual / quarterly)</li>
+            <li>Where to report (sheriff / police / central office)</li>
+            <li>Documents and proof required (ID, lease, utility, etc.)</li>
+            <li>Fees and payment methods; hardship waivers if any</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- RESIDENCY / PRESENCE RESTRICTIONS ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Residency, Presence, &amp; Loitering Restrictions
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Include distances, zones, exemptions, and court limitations.
-        </p>
-      </section>
+        {/* 5) Residency, Presence, & Loitering Restrictions */}
+        <Card title="Residency, Presence, & Loitering Restrictions" icon={<MapPin className="w-6 h-6 text-slate-600" />}>
+          <p className="text-slate-700">
+            Summarize any statewide distances/zones, local ordinances (if relevant), carve-outs, and court rulings that
+            limit or enjoin enforcement. Note definitions for “reside,” “loiter,” “child safety zone,” etc.
+          </p>
+        </Card>
 
-      {/* ---------------- EMPLOYMENT / EDUCATION / INTERNET ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Employment, Education, &amp; Internet Use
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Summarize restrictions, disclosure requirements, and special license
-          or profession issues.
-        </p>
-      </section>
+        {/* 6) Employment, Education, & Internet Use */}
+        <Card title="Employment, Education, & Internet Use" icon={<GraduationCap className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Prohibited roles/locations; license boards with special rules</li>
+            <li>On-campus rules for students; practicum/clinical limits</li>
+            <li>Social media / online identifier reporting; bans if any</li>
+            <li>Disclosure requirements to employers or schools</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- PUBLIC WEBSITE EXPOSURE ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Public Website Exposure
-        </h2>
-        <p className="mt-3 text-slate-700">
-          What gets listed, when removal or suppression is possible.
-        </p>
-      </section>
+        {/* 7) Public Website Exposure */}
+        <Card title="Public Website Exposure" icon={<Database className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>What data is public (photo, aliases, vehicles, employer, etc.)</li>
+            <li>When removal or suppression is possible and how</li>
+            <li>Juvenile / Level 1 practices if different</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- TRAVEL & INTERSTATE ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Travel &amp; Interstate Moves
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Explain notification rules, temporary stays, and IML passport impacts.
-        </p>
-      </section>
+        {/* 8) Travel & Interstate Moves */}
+        <Card title="Travel & Interstate Moves" icon={<Plane className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Before-you-move checklist; notification windows</li>
+            <li>Temporary visits thresholds (days/nights) triggering registration</li>
+            <li>Interstate compact quirks; dual registration traps</li>
+            <li>International travel notes (IML passport marking/30-day notices)</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- COMPLIANCE & ENFORCEMENT ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Compliance &amp; Enforcement
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Common violations, typical penalties, and examples from case law.
-        </p>
-      </section>
+        {/* 9) Compliance & Enforcement */}
+        <Card title="Compliance & Enforcement" icon={<AlertTriangle className="w-6 h-6 text-yellow-600" />}>
+          <p className="text-slate-700">
+            Common violations (strict-liability issues), typical charges/penalties, and notable case interpretations.
+            Call out “gotcha” scenarios (e.g., late online identifier update).
+          </p>
+        </Card>
 
-      {/* ---------------- RELIEF PATHS ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">Relief Paths</h2>
-        <p className="mt-3 text-slate-700">
-          Outline early termination, re-tiering, or removal petitions, with
-          citation placeholders.
-        </p>
-      </section>
+        {/* 10) Relief Paths */}
+        <Card title="Relief Paths" icon={<CheckCircle className="w-6 h-6 text-emerald-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Early termination / re-tiering (standards &amp; timelines)</li>
+            <li>Petitions to modify / remove; burdens of proof</li>
+            <li>Juvenile sealing / youthful offender considerations</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- SPECIAL POPULATIONS ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Special Populations
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Juveniles, students, unhoused, disabled, military, etc.
-        </p>
-      </section>
+        {/* 11) Special Populations */}
+        <Card title="Special Populations" icon={<Users className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Juveniles and youthful adjudications</li>
+            <li>Students (K-12 and higher ed), campus housing rules</li>
+            <li>Unhoused persons, disability accommodations</li>
+            <li>Military members and base housing/PCS issues</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- COSTS & FEES ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">Costs &amp; Fees</h2>
-        <p className="mt-3 text-slate-700">
-          Registration fees, verification costs, and known waivers.
-        </p>
-      </section>
+        {/* 12) Costs & Payments */}
+        <Card title="Costs & Payments" icon={<DollarSign className="w-6 h-6 text-slate-600" />}>
+          <ul className="list-disc pl-6 text-slate-700 space-y-1">
+            <li>Registration/verification fees; monitoring costs</li>
+            <li>Waivers/hardship standards if any</li>
+            <li>Accepted payment methods; receipts requirements</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- RECENT CHANGES ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Recent Changes &amp; Litigation
-        </h2>
-        <p className="mt-3 text-slate-700">
-          Add new or pending bills, court cases, and AG opinions affecting
-          enforceability.
-        </p>
-      </section>
+        {/* 13) Recent Changes & Litigation */}
+        <Card title="Recent Changes & Litigation" icon={<Gavel className="w-6 h-6 text-slate-600" />}>
+          <p className="text-slate-700">
+            List statutory changes (with effective dates), AG opinions, and appellate cases in the last 3–5 years that
+            affect enforceability. Keep entries short with deep links and pin-cites.
+          </p>
+        </Card>
 
-      {/* ---------------- CHECKLISTS ---------------- */}
-      <section className="mt-10 p-6 bg-yellow-50 rounded-2xl">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Compliance Checklists &amp; Scripts
-        </h2>
-        <ul className="mt-3 list-disc pl-6 text-slate-700">
-          <li>New arrival 30-day checklist</li>
-          <li>Moving out checklist</li>
-          <li>Records request template</li>
-          <li>Relief petition starter</li>
-        </ul>
-      </section>
+        {/* 14) Compliance Checklists & Scripts */}
+        <Card title="Compliance Checklists & Scripts" icon={<ListChecks className="w-6 h-6 text-amber-600" />}>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-slate-800">New Arrival: First 30 Days</h3>
+              <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
+                <li>Get ID, confirm address docs, schedule verification</li>
+                <li>Report employer/school, vehicles, online identifiers</li>
+                <li>Save receipts and proof of submission</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold text-slate-800">Moving Out / Traveling</h3>
+              <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
+                <li>Advance notice to current authority</li>
+                <li>Arrival notice to destination state (if required)</li>
+                <li>Keep a copy of all notices while in transit</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-4">
+            <h3 className="font-semibold text-slate-800">Templates</h3>
+            <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
+              <li>Records request (statute citations + requested fields)</li>
+              <li>Relief petition starter outline</li>
+            </ul>
+          </div>
+        </Card>
 
-      {/* ---------------- RESOURCES ---------------- */}
-      <section className="mt-10">
-        <h2 className="text-2xl font-semibold text-slate-800">
-          Official Links &amp; Resources
-        </h2>
-        <ul className="mt-3 list-disc pl-6 text-slate-700">
-          <li>State police / registry portal</li>
-          <li>Forms and instructions</li>
-          <li>Legal aid / advocacy contacts</li>
-        </ul>
-      </section>
+        {/* 15) Official Links & Resources */}
+        <Card title="Official Links & Resources" icon={<LinkIcon className="w-6 h-6 text-indigo-600" />}>
+          <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
+            <li>Statutes &amp; Administrative Rules (deep links)</li>
+            <li>State police/AG registry portal and forms</li>
+            <li>Public registry site (if applicable)</li>
+            <li>Legal aid, advocacy orgs, reentry supports</li>
+          </ul>
+        </Card>
 
-      {/* ---------------- CITATIONS ---------------- */}
-      <section className="mt-10 border-t border-slate-200 pt-6">
-        <h2 className="text-xl font-semibold text-slate-800">Citations</h2>
-        <ul className="mt-3 list-disc pl-6 text-slate-700">
-          <li>Ala. Code § 15-20A-10(b)(3)</li>
-          <li>State v. X, 412 So.3d (2024)</li>
-        </ul>
-      </section>
+        {/* 16) Citations */}
+        <section className="border-t border-slate-200 pt-6">
+          <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+            <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
+          </h2>
+          <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
+            <li>N.Y. Corr. Law § 168-a et seq. (deep link to specific subsection)</li>
+            <li>Example Case, 123 N.Y.3d 456 (Year) (pin-cite)</li>
+          </ul>
+        </section>
+      </main>
     </div>
+  );
+}
+
+/* ---------- Helper Card Component ---------- */
+function Card({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 print:border-none print:shadow-none">
+      <h2 className="flex items-center text-2xl font-semibold text-slate-800 mb-3">
+        {icon}
+        <span className="ml-2">{title}</span>
+      </h2>
+      <div className="text-slate-700">{children}</div>
+    </section>
   );
 }
