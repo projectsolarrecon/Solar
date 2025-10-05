@@ -13,6 +13,18 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "follow-the-money-part2-2025-10-04",
+  title: "Fees, Fines, and Families: The Hidden Cost of “Compliance”",
+  excerpt:
+    "Part 2 of the Follow the Money series reveals how supervision fees, therapy costs, and endless 'compliance' payments create an industry of perpetual punishment—funded by the families themselves.",
+  author: "The SOLAR Project",
+  date: "October 4, 2025",
+  readTime: "13 min read",
+  category: "Justice & Policy",
+  tags: ["supervision fees", "probation", "polygraph", "criminal justice reform", "Follow the Money series"],
+  path: "/blog/follow-the-money-part2",
+},
+{
   id: "follow-the-money-2025-10-04",
   title: "Follow the Money: How the Criminal Justice System Profits from Sex Offense Policy",
   excerpt:
