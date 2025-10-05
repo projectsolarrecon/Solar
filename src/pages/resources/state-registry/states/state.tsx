@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, Navigate } from "react-router-dom";
-import StateRegistryTemplate, { StateRegistryData } from "@/components/solar/StateRegistryTemplate";
+import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
 
 // Glob-import every JSON in this folder at build time (Vite)
 const files = import.meta.glob("/src/data/state-registry/*.json", { eager: true });
