@@ -81,6 +81,8 @@ import WelcomeToTheNeighborhood from "./pages/blog/welcome-to-the-neighborhood";
 import FollowTheMoney from "./pages/blog/FollowTheMoney";
 import CommunityIntegrationGuide from "./pages/resources/community-integration-tips";
 import FollowTheMoneyPart2 from "./pages/blog/FollowTheMoneyPart2";
+import StateRegistryHub from "./pages/resources/state-registry";
+import NYRegistryPage from "./pages/resources/state-registry/states/ny";
 
 function App() {
   return (
@@ -134,6 +136,8 @@ function App() {
   path="/resources/community-integration-tips"
   element={<CommunityIntegrationGuide />}
 />
+<Route path="/resources/state-registry" element={<StateRegistryHub />} />
+<Route path="/resources/state-registry/states/ny" element={<NYRegistryPage />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
