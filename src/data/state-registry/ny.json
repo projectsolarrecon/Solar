@@ -1,0 +1,94 @@
+{
+  "state": "New York",
+  "lastReviewedUTC": "2025-10-05T00:00:00Z",
+  "atAGlance": {
+    "mustRegister": "Adults and certain juveniles with qualifying sex offenses under N.Y. Corr. Law §168-a.",
+    "initialDeadline": "Typically at release or within a short window upon arrival; details vary by tier/venue.",
+    "verificationCadence": "Annually or as otherwise required by level; photo updates on schedule.",
+    "primaryMethod": "In-person with designated local law enforcement authority.",
+    "topGotchas": [
+      "Temporary lodging can trigger reporting even if you do not consider it a 'move'.",
+      "Online identifiers often require rapid updates when changed.",
+      "Vehicle, employer, and school changes each have their own deadlines."
+    ],
+    "officialLinks": {
+      "statuteIndex": "#",
+      "adminRules": "#",
+      "statePoliceRegistry": "#",
+      "formsPortal": "#",
+      "publicWebsite": "#"
+    }
+  },
+  "whoMustRegister": "Explain covered offenses, tiering scheme, duration by tier, and juvenile applicability. Include start/stop rules for duration.",
+  "deadlinesReporting": [
+    "Initial registration window after release/arrival",
+    "Address change and temporary lodging thresholds",
+    "Employer/school reporting deadlines",
+    "Online identifier/phone/device updates",
+    "Out-of-state travel and in-state short-stay rules"
+  ],
+  "verificationInPerson": [
+    "Frequency (annual/biannual/quarterly) and photo updates",
+    "Where to appear (sheriff/police/central office)",
+    "Documents needed (ID, lease, utilities, etc.)",
+    "Fees and any hardship waiver info"
+  ],
+  "residencyPresence": "Summarize distances/zones, local ordinances, carve-outs, and limiting case law. Define 'reside', 'loiter', 'child safety zone'.",
+  "employmentEducationInternet": [
+    "Prohibited roles/locations; licensing boards with special rules",
+    "On-campus rules for students; practicum/clinical placements",
+    "Social media/online identifier reporting; bans if any",
+    "Employer/school disclosure requirements"
+  ],
+  "publicWebsiteExposure": [
+    "What data is public (photo, aliases, vehicles, employer, etc.)",
+    "Removal/suppression pathways and standards",
+    "Juvenile/Level 1 differences"
+  ],
+  "travelInterstate": [
+    "Before-you-move checklist; advance notice windows",
+    "Temporary visit thresholds that trigger registration",
+    "Interstate compact quirks and dual-registration traps",
+    "International travel and IML notes"
+  ],
+  "complianceEnforcement": "Common strict-liability violations; typical charges/penalties; notable interpretations from cases. Highlight 'gotcha' scenarios.",
+  "reliefPaths": [
+    "Early termination/re-tiering (standards and timelines)",
+    "Petitions to modify or remove; burden of proof",
+    "Juvenile sealing/youthful offender options"
+  ],
+  "specialPopulations": [
+    "Juveniles and youthful adjudications",
+    "Students (K–12 and higher ed), campus housing",
+    "Unhoused and disability accommodations",
+    "Military/base housing/PCS"
+  ],
+  "costs": [
+    "Registration/verification fees; monitoring costs",
+    "Waivers/hardship standards if any",
+    "Accepted payment methods; receipt requirements"
+  ],
+  "recentChangesLitigation": [],
+  "checklistsScripts": {
+    "newArrivalChecklist": [
+      "Get ID; confirm address docs; schedule verification",
+      "Report employer/school, vehicles, online identifiers",
+      "Save proof of submission and receipts"
+    ],
+    "movingOutChecklist": [
+      "Give advance notice to current authority",
+      "Notify destination state on arrival if required",
+      "Carry copies of notices while traveling"
+    ],
+    "recordsRequestTemplate": "To: [Agency]. Re: Public records request for registry procedure documents (statutes, rules, forms, guidance). Please provide ...",
+    "reliefPetitionOutline": "Caption, parties, jurisdiction; facts; statutory criteria; evidence; requested relief; proposed order."
+  },
+  "resources": {
+    "legalAid": [{ "name": "Example Legal Aid", "link": "#" }],
+    "advocacy": [{ "name": "Example Advocacy Org", "link": "#" }],
+    "reentry": [{ "name": "Example Reentry Resource", "link": "#" }]
+  },
+  "citations": [
+    "N.Y. Corr. Law § 168-a et seq."
+  ]
+}
