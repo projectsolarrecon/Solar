@@ -2,13 +2,13 @@
   "state": "Vermont",
   "lastReviewedUTC": "2025-10-05T18:00:00Z",
   "atAGlance": {
-    "mustRegister": "People convicted of Vermont registrable offenses and people with **comparable out-of-state/federal/military** convictions who live, work, or study in VT (see [13 V.S.A. §5407](https://legislature.vermont.gov/statutes/section/13/167/05407) and definitions in [§5401](https://legislature.vermont.gov/statutes/section/13/167/05401)).",
-    "initialDeadline": "Move-ins / workers / students: register within **10 days** of establishing presence; visitors: **10 consecutive days** or **30 days/year** triggers a duty (see [§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "verificationCadence": "Annually (within 10 days after birthday); **SVP** verify **every 90 days** ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "primaryMethod": "Central registry via VCIC (mail/phone). Photo & fingerprints at VT State Police when instructed ([VCIC: VT registrants](https://vcic.vermont.gov/sor/vermont-registrants), [VCIC: out-of-state](https://vcic.vermont.gov/sor/out-of-state)).",
+    "mustRegister": "People convicted of Vermont registrable offenses and people with comparable out-of-state, federal, or military convictions who live, work, or study in VT (see [13 V.S.A. §5407](https://legislature.vermont.gov/statutes/section/13/167/05407) and definitions in [§5401](https://legislature.vermont.gov/statutes/section/13/167/05401)).",
+    "initialDeadline": "Move-ins, workers, or students: register within 10 days of establishing presence; visitors: 10 consecutive days or 30 days per year triggers a duty (see [§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "verificationCadence": "Annually (return verification within 10 days after birthday). Sexually Violent Predators verify every 90 days ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "primaryMethod": "Central registry via VCIC (mail/phone). Photo and fingerprints at VT State Police when instructed ([VCIC: Vermont registrants](https://vcic.vermont.gov/sor/vermont-registrants), [VCIC: out-of-state](https://vcic.vermont.gov/sor/out-of-state)).",
     "topGotchas": [
-      "Report address/employment/school/name changes within **3 days** (address = **36 hours** if high-risk) ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407), [§5411b(c)](https://legislature.vermont.gov/statutes/section/13/167/05411b)).",
-      "Knowing failure to comply is a **felony** ([§5409](https://legislature.vermont.gov/statutes/section/13/167/05409)).",
+      "Report address, employment, school, or legal name changes within 3 days; high-risk address changes within 36 hours ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407), [§5411b(c)](https://legislature.vermont.gov/statutes/section/13/167/05411b)).",
+      "Knowing failure to comply is a felony ([§5409](https://legislature.vermont.gov/statutes/section/13/167/05409)).",
       "Not all registrants are on the public website; posting depends on offense/risk ([§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a))."
     ],
     "officialLinks": {
@@ -18,53 +18,53 @@
     }
   },
 
-  "whoMustRegister": "Adults convicted of listed sex offenses (e.g., [§3252](https://legislature.vermont.gov/statutes/section/13/72/03252) sexual assault; [§3253](https://legislature.vermont.gov/statutes/section/13/72/03253) aggravated sexual assault; [§2601](https://legislature.vermont.gov/statutes/section/13/67/02601) lewd & lascivious; [§2602](https://legislature.vermont.gov/statutes/section/13/67/02602) with a child; Ch. 64 child-exploitation) and **comparable** out-of-state/federal/military convictions (see [§5401](https://legislature.vermont.gov/statutes/section/13/167/05401)). Move-ins, workers, and students from out of state must register ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)). Youth cases kept in juvenile court generally do **not** register.",
-  
+  "whoMustRegister": "Adults convicted of listed sex offenses (for example, [§3252](https://legislature.vermont.gov/statutes/section/13/72/03252) sexual assault; [§3253](https://legislature.vermont.gov/statutes/section/13/72/03253) aggravated sexual assault; [§2601](https://legislature.vermont.gov/statutes/section/13/67/02601) lewd and lascivious conduct; [§2602](https://legislature.vermont.gov/statutes/section/13/67/02602) with a child; Chapter 64 child-exploitation) and comparable out-of-state, federal, or military convictions (see [§5401](https://legislature.vermont.gov/statutes/section/13/167/05401)). Move-ins, workers, and students from out of state must register ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)). Youth cases kept in juvenile court generally do not register.",
+
   "deadlinesReporting": [
-    "Initial report (out-of-state conviction moving to or working/studying in VT): within **10 days** ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "Annual verification: sign/return within **10 days after birthday** ([§5407(e)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "Changes (address, employment, post-secondary school, legal name): within **3 days**; **high-risk** address change within **36 hours** ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407), [§5411b(c)](https://legislature.vermont.gov/statutes/section/13/167/05411b))."
+    "Initial report for out-of-state conviction moving to or working/studying in VT: within 10 days ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Annual verification: sign and return within 10 days after birthday ([§5407(e)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Changes (address, employment, post-secondary school, legal name): within 3 days; high-risk address change within 36 hours ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407), [§5411b(c)](https://legislature.vermont.gov/statutes/section/13/167/05411b))."
   ],
 
   "verificationInPerson": [
-    "VCIC mails verification around birthday; registrant must sign/return within 10 days ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "**SVP** verify **every 90 days** ([§5407(e)(2)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "VCIC may require updated photo; photo/fingerprints done at VT State Police when instructed ([VCIC out-of-state steps](https://vcic.vermont.gov/sor/out-of-state))."
+    "VCIC mails verification around birthday; registrant must sign and return within 10 days ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Sexually Violent Predators verify every 90 days ([§5407(e)(2)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "VCIC may require updated photo; photo and fingerprints are done at VT State Police when instructed ([VCIC out-of-state steps](https://vcic.vermont.gov/sor/out-of-state))."
   ],
 
-  "residencyPresence": "No **statewide** residency or loitering zones in statute; individualized limits may be imposed by probation/parole while under supervision. Local ordinances are uncommon but check your municipality. State law itself does **not** impose buffer zones.",
+  "residencyPresence": "No statewide residency or loitering zones in statute. Individualized limits may be imposed by probation or parole while under supervision. Local ordinances are uncommon but check your municipality. State law itself does not impose buffer zones.",
 
   "employmentEducationInternet": [
-    "Report employment or post-secondary school changes within **3 days** ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "Public site does not display employer details; supervision may add job-specific limits case-by-case ([§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a))."
+    "Report employment or post-secondary school changes within 3 days ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Public site does not display employer details; supervision may add job-specific limits case by case ([§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a))."
   ],
 
   "publicWebsiteExposure": [
-    "Internet posting criteria set by statute/court; higher-risk and specified offenses are posted ([§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a)).",
-    "Public listing shows photo, offense, and **town** (not street address). Victim identity is never disclosed."
+    "Internet posting criteria are set by statute and the court; higher-risk and specified offenses are posted ([§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a)).",
+    "Public listing shows photo, offense, and town (not street address). Victim identity is never disclosed."
   ],
 
   "travelInterstate": [
-    "Moving out of VT: notify VCIC and register in the new state within **3 days** of establishing residence ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "International travel: follow federal IML **21-day** advance notice via your local registry (contact VCIC for VT procedure)."
+    "Moving out of VT: notify VCIC and register in the new state within 3 days of establishing residence ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "International travel: follow federal International Megan’s Law 21-day advance notice via your local registry (contact [VCIC](https://vcic.vermont.gov/sor) for VT procedure)."
   ],
 
   "visitingTraveling": [
-    "Visitors with out-of-state convictions must register if present **10 consecutive days** or **30 days total/year** ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "Short hotel stays under these thresholds do **not** trigger VT registration; still follow your **home state’s** travel-notice rules.",
-    "Homeless/transient must provide specific location details and follow VCIC check-in arrangements (see [VCIC](https://vcic.vermont.gov/sor/out-of-state))."
+    "Visitors with out-of-state convictions must register if present 10 consecutive days or 30 days total in a year ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Short hotel stays under these thresholds do not trigger VT registration; still follow your home state’s travel-notice rules.",
+    "Homeless or transient individuals must provide specific location details and follow VCIC check-in arrangements (see [VCIC guidance](https://vcic.vermont.gov/sor/out-of-state))."
   ],
 
-  "complianceEnforcement": "Knowing failure to comply is a felony: up to **2 years** (first) or **5 years** (subsequent) and fines; sentences can run consecutively ([§5409](https://legislature.vermont.gov/statutes/section/13/167/05409)).",
+  "complianceEnforcement": "Knowing failure to comply is a felony: up to 2 years (first) or 5 years (subsequent) and fines; sentences can run consecutively ([§5409](https://legislature.vermont.gov/statutes/section/13/167/05409)).",
 
   "reliefPaths": [
-    "Standard registration term is **10 years** after completion of sentence/supervision; certain offenses/designations are **lifetime** ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-    "Lifetime registrants may petition after **10 years** to end **public posting** if no longer high-risk ([§5411](https://legislature.vermont.gov/statutes/section/13/167/05411))."
+    "Standard registration term is 10 years after completion of sentence and supervision; certain offenses or designations are lifetime ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+    "Lifetime registrants may petition after 10 years to end public posting if no longer high-risk ([§5411](https://legislature.vermont.gov/statutes/section/13/167/05411))."
   ],
 
   "specialPopulations": [
-    "High-risk designation (DOC) increases duties; **noncompliant high-risk** have 30-day in-person check-ins and added requirements ([§5411b](https://legislature.vermont.gov/statutes/section/13/167/05411b), [§5411d](https://legislature.vermont.gov/statutes/section/13/167/05411d)).",
-    "**SVP** verify quarterly; additional disclosure rules apply ([§5407(e)(2)](https://legislature.vermont.gov/statutes/section/13/167/05407))."
+    "High-risk designation (DOC) increases duties; noncompliant high-risk have 30-day in-person check-ins and added requirements ([§5411b](https://legislature.vermont.gov/statutes/section/13/167/05411b), [§5411d](https://legislature.vermont.gov/statutes/section/13/167/05411d)).",
+    "Sexually Violent Predators verify quarterly and may face additional disclosure rules ([§5407(e)(2)](https://legislature.vermont.gov/statutes/section/13/167/05407))."
   ],
 
   "costs": [
@@ -74,14 +74,14 @@
   "recentChangesLitigation": [],
 "checklistsScripts": {
     "newArrivalChecklist": [
-      "Within **10 days** of arrival to live/work/study: contact VCIC; submit packet ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407), [VCIC](https://vcic.vermont.gov/sor/out-of-state)).",
-      "Complete photo/fingerprints at VTSP as directed.",
-      "Calendar your **birthday-month** verification (return within 10 days) ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407))."
+      "Within 10 days of arrival to live, work, or study: contact VCIC and submit the packet ([§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407), [VCIC](https://vcic.vermont.gov/sor/out-of-state)).",
+      "Complete photo and fingerprints at VT State Police as directed.",
+      "Calendar your birthday-month verification and return it within 10 days ([§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407))."
     ],
     "movingOutChecklist": [
       "Notify VCIC of new address and departure date.",
-      "Register in your new state within **3 days** of establishing residence ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
-      "Confirm VT shows you as moved; keep proof."
+      "Register in your new state within 3 days of establishing residence ([§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407)).",
+      "Confirm Vermont shows you as moved; keep dated proof."
     ],
     "recordsRequestTemplate": "",
     "reliefPetitionOutline": ""
@@ -93,21 +93,21 @@
     ],
     "advocacy": [],
     "reentry": [
-      { "name": "Community Justice Centers (CoSA & reentry)", "link": "https://doc.vermont.gov/community-justice-centers" }
+      { "name": "Community Justice Centers (CoSA and reentry)", "link": "https://doc.vermont.gov/community-justice-centers" }
     ]
   },
 
   "citations": [
     "[13 V.S.A. §5401 (definitions)](https://legislature.vermont.gov/statutes/section/13/167/05401)",
-    "[13 V.S.A. §5407 (report/verify duties; thresholds; SVP 90-day)](https://legislature.vermont.gov/statutes/section/13/167/05407)",
+    "[13 V.S.A. §5407 (reporting, verification, thresholds, SVP 90-day)](https://legislature.vermont.gov/statutes/section/13/167/05407)",
     "[13 V.S.A. §5409 (penalties)](https://legislature.vermont.gov/statutes/section/13/167/05409)",
     "[13 V.S.A. §5411 (public-posting relief petitions)](https://legislature.vermont.gov/statutes/section/13/167/05411)",
     "[13 V.S.A. §5411a (internet posting rules)](https://legislature.vermont.gov/statutes/section/13/167/05411a)",
     "[13 V.S.A. §5411b (high-risk designation)](https://legislature.vermont.gov/statutes/section/13/167/05411b)",
     "[13 V.S.A. §5411d (noncompliant high-risk duties)](https://legislature.vermont.gov/statutes/section/13/167/05411d)",
     "[VCIC: Vermont registrants](https://vcic.vermont.gov/sor/vermont-registrants)",
-    "[VCIC: Out-of-state registrants moving/working/studying in VT](https://vcic.vermont.gov/sor/out-of-state)",
-    "[VT public SOR site](https://www.communitynotification.com/cap_office_disclaimer.php?office=55275)"
+    "[VCIC: Out-of-state registrants moving, working, or studying in VT](https://vcic.vermont.gov/sor/out-of-state)",
+    "[Vermont public SOR website](https://www.communitynotification.com/cap_office_disclaimer.php?office=55275)"
   ],
 
   "badges": {
@@ -119,43 +119,62 @@
   "plainLanguage": {
     "atAGlance": {
       "summary": [
-        "Most registrants complete **10 years** after supervision; some offenses/designations are **lifetime**.",
-        "Updates are fast: **3 days** for changes; annual verification by birthday; SVP verify **quarterly**."
+        "Most registrants complete 10 years after supervision; some offenses or designations are lifetime.",
+        "Updates are fast: 3 days for changes; annual verification near your birthday; SVP verify every 90 days."
       ],
       "watchOuts": [
-        "Visitors hitting **10 consecutive** or **30/year** must register.",
-        "Not everyone appears on the public site; posting depends on offense/risk."
+        "Visitors who reach 10 consecutive days or 30 total days in a year must register.",
+        "Not everyone appears on the public site; posting depends on offense and risk."
       ],
-      "validationNote": "Cross-checked against Vermont statutes and VCIC pages using AI-assisted research. Tell us if something needs an update."
+      "validationNote": "Cross-checked against [§5407](https://legislature.vermont.gov/statutes/section/13/167/05407), [§5401](https://legislature.vermont.gov/statutes/section/13/167/05401), and [VCIC guidance](https://vcic.vermont.gov/sor) using AI-assisted research. Please contact SOLAR if you find something outdated."
     },
     "deadlinesReporting": {
       "summary": [
-        "Put two reminders on your calendar: your **move/visit threshold** and your **birthday-month** verification window."
+        "Set reminders for your move/visit threshold and your birthday-month verification window."
       ],
       "watchOuts": [
-        "High-risk address changes are due within **36 hours**.",
-        "Changing college enrollment counts as a **school change** and must be reported within **3 days**."
+        "High-risk address changes are due within 36 hours.",
+        "Changing college enrollment counts as a school change and must be reported within 3 days."
       ],
-      "validationNote": "Derived from §5407 and §5411b; confirmed with VCIC guidance."
+      "validationNote": "Derived from [§5407](https://legislature.vermont.gov/statutes/section/13/167/05407) and [§5411b](https://legislature.vermont.gov/statutes/section/13/167/05411b); confirmed with [VCIC](https://vcic.vermont.gov/sor)."
+    },
+    "verificationInPerson": {
+      "summary": [
+        "Expect a mailed verification each year; return it within 10 days. SVPs verify quarterly.",
+        "VCIC may ask for an updated photo and direct you to VT State Police."
+      ],
+      "validationNote": "See [§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407) and [VCIC](https://vcic.vermont.gov/sor/vermont-registrants)."
     },
     "visitingTraveling": {
       "summary": [
-        "Short hotel trips under **10 straight days** (and under **30 total/year**) generally **don’t** trigger VT registration.",
-        "Your **home state** may still require advance travel notice—follow those rules too."
+        "Short hotel trips under 10 straight days and under 30 total days per year generally do not trigger VT registration.",
+        "Your home state may still require advance travel notice; follow those rules too."
       ],
-      "validationNote": "Thresholds come from §5407; procedures from VCIC’s out-of-state page."
+      "validationNote": "Thresholds from [§5407(a)(1)](https://legislature.vermont.gov/statutes/section/13/167/05407); procedures from [VCIC out-of-state](https://vcic.vermont.gov/sor/out-of-state)."
     },
     "residencyPresence": {
       "summary": [
-        "Vermont has **no statewide residency ban**; supervision can add **case-by-case** limits while you’re on probation/parole."
+        "Vermont has no statewide residency ban; supervision can add case-by-case limits while you are on probation or parole."
       ],
-      "validationNote": "Confirmed by absence of statutory zones and VCIC FAQ."
+      "validationNote": "Confirmed by the absence of statutory zones and [VCIC](https://vcic.vermont.gov/sor) materials."
+    },
+    "employmentEducationInternet": {
+      "summary": [
+        "Report work and school changes within 3 days; posting rules do not list your employer on the public site."
+      ],
+      "validationNote": "See [§5407(d)](https://legislature.vermont.gov/statutes/section/13/167/05407) and [§5411a](https://legislature.vermont.gov/statutes/section/13/167/05411a)."
     },
     "complianceEnforcement": {
       "summary": [
-        "Missing a deadline can become a **new felony**; keep copies of what you submit and note dates sent/received."
+        "Missing a deadline can become a new felony; keep copies and date-stamped proof of submissions."
       ],
-      "validationNote": "See §5409."
+      "validationNote": "See [§5409](https://legislature.vermont.gov/statutes/section/13/167/05409)."
+    },
+    "reliefPaths": {
+      "summary": [
+        "Most complete 10 years; lifetime registrants can petition after 10 years to end public posting if no longer high-risk."
+      ],
+      "validationNote": "See [§5407(e)](https://legislature.vermont.gov/statutes/section/13/167/05407) and [§5411](https://legislature.vermont.gov/statutes/section/13/167/05411)."
     }
   }
 }
