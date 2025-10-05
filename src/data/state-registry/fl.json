@@ -1,0 +1,153 @@
+{
+  "state": "Florida",
+  "lastReviewedUTC": "2025-10-05T00:00:00Z",
+
+  "atAGlance": {
+    "mustRegister": "Persons meeting Florida’s sexual offender definition (F.S. 943.0435) or court-designated sexual predators (F.S. 775.21). Out-of-state designations generally carry over when establishing residence/presence.",
+    "initialDeadline": "Within 48 hours: register in person with the county sheriff; then within 48 hours obtain/update a compliant DL/ID at DHSMV (F.S. 322.141(3)).",
+    "verificationCadence": "Offenders: twice yearly (birth month + 6 months). Predators: quarterly. Some offenders must verify quarterly based on offense list.",
+    "primaryMethod": "In person at sheriff + in person at DHSMV for ID; many ongoing changes may be reported online to FDLE or in person.",
+    "topGotchas": [
+      "International travel requires 21-day notice to the sheriff.",
+      "‘Transient’ status triggers a 30-day reporting cycle.",
+      "Changes to vehicles, phone numbers, employment, higher-ed status, emails, and internet identifiers generally due within 48 hours."
+    ],
+    "officialLinks": {
+      "statuteIndex": "https://www.flsenate.gov/Laws/Statutes/2024/943.0435",
+      "adminRules": "https://offender.fdle.state.fl.us/offender/sops/floridaLaw.jsf",
+      "statePoliceRegistry": "https://offender.fdle.state.fl.us/",
+      "formsPortal": "https://offender.fdle.state.fl.us/offender/sops/faq.jsf",
+      "publicWebsite": "https://offender.fdle.state.fl.us/offender/sops/home.jsf"
+    }
+  },
+
+  "whoMustRegister": "Persons meeting ‘sexual offender’ criteria in F.S. 943.0435(1)(h) (in-state convictions; similar out-of-state offenses/designations upon residence/presence; certain juvenile adjudications; supervision transfers) and those designated ‘sexual predator’ under F.S. 775.21.",
+
+  "deadlinesReporting": [
+    "Initial sheriff registration within 48 hours after establishing permanent/temporary/transient residence, release, or qualifying conviction if not in DOC/DJJ custody. (F.S. 943.0435(2))",
+    "DHSMV DL/ID update within 48 hours after sheriff registration. (F.S. 943.0435(3); 322.141(3))",
+    "Name/residential address changes: report to DHSMV within 48 hours; if unable, report to sheriff. (F.S. 943.0435(4)(a))",
+    "Vacating residence without new one: report to sheriff within 48 hours; transient: report within 48 hours of becoming transient, then every 30 days. (F.S. 943.0435(4)(b))",
+    "Moving out of Florida to establish residence: report intent to sheriff at least 48 hours before leaving. International travel: report at least 21 days before departure. (F.S. 943.0435(7))",
+    "Report within 48 hours: vehicles, phone numbers, employment, higher-ed status, email addresses, and internet identifiers. (F.S. 943.0435(4)(e))"
+  ],
+
+  "verificationInPerson": [
+    "Offenders: reregister in person during birth month AND the 6th month after. (F.S. 943.0435(14)(a))",
+    "Quarterly reregistration applies if offense is in 943.0435(14)(b). (F.S. 943.0435(14)(b))",
+    "Predators: quarterly (birthday month and every third month). (F.S. 775.21)"
+  ],
+
+  "residencyPresence": "No single statewide distance restriction is in the registration statutes; some localities have ordinances on residency/presence or loitering near child-focused locations. Court rulings may limit/preempt local rules—check local codes and case law.",
+
+  "employmentEducationInternet": [
+    "Report higher-ed enrollment/volunteer/employment, including campus info. (F.S. 943.0435(2)(b)2, (14)(c)2)",
+    "Employment changes due within 48 hours (online or in person). (F.S. 943.0435(4)(e)2)",
+    "Register email addresses and internet identifiers within 48 hours after use; if under DOC/DJJ, report before using. (F.S. 943.0435(4)(e)1)"
+  ],
+
+  "publicWebsiteExposure": [
+    "FDLE public site lists offenders and predators; predators receive enhanced community notification. (F.S. 943.043; 775.21(7))",
+    "DL/ID markings: ‘SEXUAL PREDATOR’ (predators) or ‘943.0435, F.S.’ (offenders). (F.S. 322.141(3))"
+  ],
+
+  "travelInterstate": [
+    "Out-of-state move: report in person to sheriff at least 48 hours before departing to establish residence elsewhere. (F.S. 943.0435(7))",
+    "International travel: report at least 21 days before departure with itinerary details. (F.S. 943.0435(7))"
+  ],
+
+  "complianceEnforcement": "Failure to register, update DL/ID, report changes, or comply with verification can be a felony (often third degree; some second degree). Altering/possessing DL/ID without required markings is unlawful. (F.S. 943.0435(9); 322.212(5)(c))",
+
+  "reliefPaths": [
+    "Offenders: lifetime registration by default; removal is limited and must satisfy state and federal criteria. (F.S. 943.0435(11))",
+    "Predators: lifetime designation unless conviction is set aside or full pardon; removal requires meeting statutory criteria and court action. (F.S. 775.21)"
+  ],
+
+  "specialPopulations": [
+    "Transient/houseless: report status and re-report every 30 days. (F.S. 943.0435(4)(b)2)",
+    "Under DOC/DJJ supervision: some updates must be made through DOC/DJJ before use (e.g., internet identifiers). (F.S. 943.0435(4)(e)1)"
+  ],
+
+  "costs": [
+    "Registrant is responsible for DHSMV fees for required DL/ID issuance/renewal. (F.S. 943.0435(3)(b); 775.21(6)(f)2)"
+  ],
+
+  "recentChangesLitigation": [
+    {
+      "type": "statute",
+      "bill": "Ch. 2024-84 (and related 2024 updates)",
+      "session": "2024 Florida Session",
+      "effective": "2024",
+      "summary": "Recent amendments updated reporting mechanics and cross-references; verify current text for deadlines.",
+      "link": "https://www.flsenate.gov/Laws/Statutes/2024/943.0435"
+    }
+  ],
+
+  "checklistsScripts": {
+    "newArrivalChecklist": [
+      "Within 48 hours: register at sheriff; then update DL/ID at DHSMV.",
+      "Within 48 hours: report vehicles, phones, employment, higher-ed, emails, internet IDs.",
+      "Calendar your reregistration cadence (twice yearly or quarterly).",
+      "For international travel, calendar the 21-day notice."
+    ],
+    "movingOutChecklist": [
+      "At least 48 hours BEFORE leaving FL to establish residence elsewhere: report intent to sheriff with destination details.",
+      "If plans change and you remain in FL, report that in person within 48 hours of the stated departure date.",
+      "If transient during the move, follow 30-day transient reporting."
+    ]
+  },
+
+  "resources": {
+    "legalAid": [
+      { "name": "FDLE – Florida Laws & Info", "link": "https://offender.fdle.state.fl.us/offender/sops/floridaLaw.jsf" },
+      { "name": "FDLE – FAQ", "link": "https://offender.fdle.state.fl.us/offender/sops/faq.jsf" }
+    ],
+    "advocacy": [
+      { "name": "Florida Action Committee (FAC)", "link": "https://floridaactioncommittee.org" }
+    ],
+    "reentry": [
+      { "name": "Florida DOC – Reentry Services", "link": "https://www.dc.state.fl.us/comm/reentry.html" }
+    ]
+  },
+
+  "citations": [
+    "F.S. 943.0435 — offender definitions; initial registration; 48-hour change reporting; transient 30-day; 21-day international notice; reregistration cadence.",
+    "F.S. 775.21 — sexual predator designation; registration; quarterly reregistration; community notification.",
+    "F.S. 322.141(3) — DL/ID markings; F.S. 322.212(5)(c) — offenses relating to altered/missing markings.",
+    "FDLE overview pages: Laws & Information; FAQ."
+  ],
+
+  "badges": {
+    "verificationQuarterly": true,
+    "lifetimePossible": true,
+    "residencyZones": false
+  },
+
+  "plainLanguage": {
+    "atAGlance": {
+      "summary": [
+        "Expect two stops: sheriff registration and DMV for a marked ID.",
+        "Put your re-registration months on a calendar so you don’t miss the window."
+      ],
+      "watchOuts": [
+        "‘Transient’ status requires check-ins every 30 days.",
+        "Vehicles, phone numbers, school/work, emails and online IDs all have short 48-hour clocks."
+      ],
+      "confidence": "high",
+      "citations": ["F.S. 943.0435", "F.S. 322.141(3)"],
+      "reviewedBy": "SOLAR editor",
+      "reviewedUTC": "2025-10-05T00:00:00Z"
+    },
+    "deadlinesReporting": {
+      "summary": [
+        "Most changes are due within 48 hours; international trips need 21 days’ notice.",
+        "Moving out? Tell the sheriff 48 hours before you leave to establish residence elsewhere."
+      ],
+      "watchOuts": [
+        "If you can’t reach DMV immediately, you still owe the sheriff report—don’t wait."
+      ],
+      "confidence": "high",
+      "citations": ["F.S. 943.0435(4)", "F.S. 943.0435(7)"]
+    }
+  }
+}
