@@ -26,10 +26,10 @@ function Resources() {
           link: "/resources/know-your-rights"
         },
         {
-          name: "Registry Requirements by State",
-          type: "Database",
-          description: "State-by-state breakdown of registration requirements, restrictions, and compliance information.",
-          link: "#"
+         name: "Registry Rules by State",
+         type: "Guide Hub",
+         description: "State-by-state registration requirements, restrictions, compliance steps, and relief paths.",
+         link: "/resources/state-registry"
         },
         {
          name: "SOLAR Appeals Guide",
