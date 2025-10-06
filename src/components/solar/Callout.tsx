@@ -25,6 +25,7 @@ export default function Callout({
   children: React.ReactNode;
 }) {
   const styles = CALLOUT_STYLES[variant] ?? CALLOUT_STYLES.info;
+
   return (
     <div className={`my-6 rounded-xl ring-1 p-4 md:p-5 ${styles}`}>
       {(title || icon) && (
@@ -33,7 +34,16 @@ export default function Callout({
           {title}
         </div>
       )}
-      <div className="prose prose-slate max-w-none">{children}</div>
+
+      {/* This block safely renders both JSX and raw HTML strings */}
+      <div
+        className="prose prose-slate max-w-none"
+        dangerouslySetInnerHTML={
+          typeof children === "string" ? { __html: children } : undefined
+        }
+      >
+        {typeof children !== "string" ? children : null}
+      </div>
     </div>
   );
 }
