@@ -1,94 +1,67 @@
 {
   "state": "New York",
-  "lastReviewedUTC": "2025-10-05T00:00:00Z",
+  "lastReviewedUTC": "2025-10-06T00:00:00Z",
   "atAGlance": {
-    "mustRegister": "Adults and certain juveniles with qualifying sex offenses under N.Y. Corr. Law §168-a.",
-    "initialDeadline": "Typically at release or within a short window upon arrival; details vary by tier/venue.",
-    "verificationCadence": "Annually or as otherwise required by level; photo updates on schedule.",
-    "primaryMethod": "In-person with designated local law enforcement authority.",
+    "mustRegister": "People convicted of qualifying sex offenses under New York law or comparable out-of-state/federal convictions.",
+    "initialDeadline": "Within 10 days of release, sentencing, or establishing residence in New York.",
+    "verificationCadence": "Annually, with address verification mailed by DCJS.",
+    "primaryMethod": "Mail-in verification with supplemental in-person updates as required.",
     "topGotchas": [
-      "Temporary lodging can trigger reporting even if you do not consider it a 'move'.",
-      "Online identifiers often require rapid updates when changed.",
-      "Vehicle, employer, and school changes each have their own deadlines."
+      "Registration must occur even if your case was from another state.",
+      "Failure to return the annual form is treated as a felony offense."
     ],
     "officialLinks": {
-      "statuteIndex": "#",
-      "adminRules": "#",
-      "statePoliceRegistry": "#",
-      "formsPortal": "#",
-      "publicWebsite": "#"
+      "statuteIndex": "https://www.nysenate.gov/legislation/laws/COR/168",
+      "adminRules": "https://www.criminaljustice.ny.gov/nsor/",
+      "statePoliceRegistry": "https://www.criminaljustice.ny.gov/nsor/",
+      "formsPortal": "https://www.criminaljustice.ny.gov/nsor/",
+      "publicWebsite": "https://www.criminaljustice.ny.gov/SomsSUBDirectory/search_index.jsp"
     }
   },
-  "whoMustRegister": "Explain covered offenses, tiering scheme, duration by tier, and juvenile applicability. Include start/stop rules for duration.",
-  "deadlinesReporting": [
-    "Initial registration window after release/arrival",
-    "Address change and temporary lodging thresholds",
-    "Employer/school reporting deadlines",
-    "Online identifier/phone/device updates",
-    "Out-of-state travel and in-state short-stay rules"
-  ],
-  "verificationInPerson": [
-    "Frequency (annual/biannual/quarterly) and photo updates",
-    "Where to appear (sheriff/police/central office)",
-    "Documents needed (ID, lease, utilities, etc.)",
-    "Fees and any hardship waiver info"
-  ],
-  "residencyPresence": "Summarize distances/zones, local ordinances, carve-outs, and limiting case law. Define 'reside', 'loiter', 'child safety zone'.",
-  "employmentEducationInternet": [
-    "Prohibited roles/locations; licensing boards with special rules",
-    "On-campus rules for students; practicum/clinical placements",
-    "Social media/online identifier reporting; bans if any",
-    "Employer/school disclosure requirements"
-  ],
-  "publicWebsiteExposure": [
-    "What data is public (photo, aliases, vehicles, employer, etc.)",
-    "Removal/suppression pathways and standards",
-    "Juvenile/Level 1 differences"
-  ],
-  "travelInterstate": [
-    "Before-you-move checklist; advance notice windows",
-    "Temporary visit thresholds that trigger registration",
-    "Interstate compact quirks and dual-registration traps",
-    "International travel and IML notes"
-  ],
-  "complianceEnforcement": "Common strict-liability violations; typical charges/penalties; notable interpretations from cases. Highlight 'gotcha' scenarios.",
-  "reliefPaths": [
-    "Early termination/re-tiering (standards and timelines)",
-    "Petitions to modify or remove; burden of proof",
-    "Juvenile sealing/youthful offender options"
-  ],
-  "specialPopulations": [
-    "Juveniles and youthful adjudications",
-    "Students (K–12 and higher ed), campus housing",
-    "Unhoused and disability accommodations",
-    "Military/base housing/PCS"
-  ],
-  "costs": [
-    "Registration/verification fees; monitoring costs",
-    "Waivers/hardship standards if any",
-    "Accepted payment methods; receipt requirements"
-  ],
+  "whoMustRegister": "New York’s Sex Offender Registration Act (SORA) requires registration for specified sexual offenses defined in Article 130 of the Penal Law and certain other qualifying crimes. Comparable federal or out-of-state convictions also trigger registration when a person resides, works, or attends school in New York.",
+  "plainLanguage": {
+    "atAGlance": {
+      "summary": [
+        "New York’s registry program is operated by the Division of Criminal Justice Services (DCJS). Registration levels are assigned by a court at sentencing, not by DCJS.",
+        "Registrants must update information promptly and verify annually by mail. Some higher-level offenders must report in person."
+      ],
+      "validationNote": "🕒 Full legal and practical details for New York are still being compiled. This placeholder reflects general SORA framework only and will be expanded with citations and plain-language interpretation soon. Verified official source: <a href='https://www.criminaljustice.ny.gov/nsor/' target='_blank' rel='noopener'>DCJS Sex Offender Registry</a>."
+    },
+    "whoMustRegister": {
+      "summary": [
+        "New York distinguishes three risk levels (1 – low, 2 – moderate, 3 – high). Only Level 2 and 3 appear on the public website.",
+        "People convicted elsewhere who move to or work in New York generally must register within 10 days."
+      ],
+      "validationNote": "📘 This is a temporary summary pending a detailed plain-language review and statutory analysis."
+    }
+  },
+  "deadlinesReporting": [],
+  "verificationInPerson": [],
+  "residencyPresence": "",
+  "employmentEducationInternet": [],
+  "publicWebsiteExposure": [],
+  "travelInterstate": [],
+  "visitingTraveling": [],
+  "complianceEnforcement": "",
+  "reliefPaths": [],
+  "specialPopulations": [],
+  "costs": [],
   "recentChangesLitigation": [],
   "checklistsScripts": {
-    "newArrivalChecklist": [
-      "Get ID; confirm address docs; schedule verification",
-      "Report employer/school, vehicles, online identifiers",
-      "Save proof of submission and receipts"
-    ],
-    "movingOutChecklist": [
-      "Give advance notice to current authority",
-      "Notify destination state on arrival if required",
-      "Carry copies of notices while traveling"
-    ],
-    "recordsRequestTemplate": "To: [Agency]. Re: Public records request for registry procedure documents (statutes, rules, forms, guidance). Please provide ...",
-    "reliefPetitionOutline": "Caption, parties, jurisdiction; facts; statutory criteria; evidence; requested relief; proposed order."
+    "newArrivalChecklist": [],
+    "movingOutChecklist": [],
+    "recordsRequestTemplate": "",
+    "reliefPetitionOutline": ""
   },
   "resources": {
-    "legalAid": [{ "name": "Example Legal Aid", "link": "#" }],
-    "advocacy": [{ "name": "Example Advocacy Org", "link": "#" }],
-    "reentry": [{ "name": "Example Reentry Resource", "link": "#" }]
+    "legalAid": [],
+    "advocacy": [],
+    "reentry": []
   },
-  "citations": [
-    "N.Y. Corr. Law § 168-a et seq."
-  ]
+  "citations": [],
+  "badges": {
+    "residencyZones": false,
+    "lifetimePossible": true,
+    "verificationQuarterly": false
+  }
 }
