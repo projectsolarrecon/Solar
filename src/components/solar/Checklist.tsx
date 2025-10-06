@@ -1,26 +1,31 @@
 import React from "react";
 
-type Item = { id: string; label: React.ReactNode };
+type Item = { id: string; label: React.ReactNode | string };
 
 export default function Checklist({ id, items }: { id: string; items: Item[] }) {
   const key = `checklist:${id}`;
   const [checked, setChecked] = React.useState<Record<string, boolean>>({});
 
   React.useEffect(() => {
-    try { const raw = localStorage.getItem(key); if (raw) setChecked(JSON.parse(raw)); } catch {}
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw) setChecked(JSON.parse(raw));
+    } catch {}
   }, [key]);
 
   const toggle = (itemId: string) => {
-    setChecked(prev => {
+    setChecked((prev) => {
       const next = { ...prev, [itemId]: !prev[itemId] };
-      try { localStorage.setItem(key, JSON.stringify(next)); } catch {}
+      try {
+        localStorage.setItem(key, JSON.stringify(next));
+      } catch {}
       return next;
     });
   };
 
   return (
     <ul className="space-y-3 text-gray-700">
-      {items.map(item => (
+      {items.map((item) => (
         <li key={item.id} className="flex items-start">
           <input
             type="checkbox"
@@ -31,9 +36,19 @@ export default function Checklist({ id, items }: { id: string; items: Item[] }) 
           />
           <label
             htmlFor={`${id}-${item.id}`}
-            className={`cursor-pointer ${checked[item.id] ? "line-through text-gray-500" : ""}`}
+            className={`cursor-pointer ${
+              checked[item.id] ? "line-through text-gray-500" : ""
+            }`}
           >
-            {item.label}
+            {/* Render strings containing <a> tags as real HTML */}
+            {typeof item.label === "string" ? (
+              <span
+                dangerouslySetInnerHTML={{ __html: item.label }}
+                className="prose prose-slate max-w-none"
+              />
+            ) : (
+              item.label
+            )}
           </label>
         </li>
       ))}
