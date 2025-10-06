@@ -1,153 +1,206 @@
 {
   "state": "Florida",
-  "lastReviewedUTC": "2025-10-05T00:00:00Z",
+  "lastReviewedUTC": "2025-10-06T18:00:00Z",
 
   "atAGlance": {
-    "mustRegister": "Persons meeting Florida’s sexual offender definition (F.S. 943.0435) or court-designated sexual predators (F.S. 775.21). Out-of-state designations generally carry over when establishing residence/presence.",
-    "initialDeadline": "Within 48 hours: register in person with the county sheriff; then within 48 hours obtain/update a compliant DL/ID at DHSMV (F.S. 322.141(3)).",
-    "verificationCadence": "Offenders: twice yearly (birth month + 6 months). Predators: quarterly. Some offenders must verify quarterly based on offense list.",
-    "primaryMethod": "In person at sheriff + in person at DHSMV for ID; many ongoing changes may be reported online to FDLE or in person.",
+    "mustRegister": "Adults convicted of qualifying sexual offenses (or out-of-state/federal equivalents) who live, work, or study in Florida must register. Core duties and definitions are in <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/Sections/0943.0435.html\" target=\"_blank\" rel=\"noopener\">Fla. Stat. §943.0435</a> (sexual offenders) and <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a> (sexual predators).",
+    "initialDeadline": "Within 48 hours of establishing residence, employment, or school in FL, report in person to the sheriff (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>; predators see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>).",
+    "verificationCadence": "Sexual offenders: re-register twice per year (birth month + 6 months later). Some offenses require quarterly re-registration. Sexual predators: quarterly. (See <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>; <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435(14)</a>; <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21(8)</a>).",
+    "primaryMethod": "In-person with county sheriff; additional updates via FDLE online system where allowed. Driver license/ID update required within 48 hours after initial registration (see DHSMV/FDLE notice).",
     "topGotchas": [
-      "International travel requires 21-day notice to the sheriff.",
-      "‘Transient’ status triggers a 30-day reporting cycle.",
-      "Changes to vehicles, phone numbers, employment, higher-ed status, emails, and internet identifiers generally due within 48 hours."
+      "“Temporary residence” includes vacation/business stays of <em>3 or more days in the aggregate in a calendar year</em>—this can trigger registration (see definition in <a href=\"https://www.flhouse.gov/Statutes/2025/0775.21/\" target=\"_blank\" rel=\"noopener\">§775.21(2)</a>).",
+      "Transient (homeless) offenders must report in person every 30 days while transient (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>; predators: <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>).",
+      "Driver license/ID must display “SEXUAL PREDATOR” or “943.0435, F.S.” designation and be obtained/updated within 48 hours after initial registration (see <a href=\"https://www.miamidade.gov/police/library/fdle-notice-of-sexual-predator-and-sexual-offender-obligations.pdf\" target=\"_blank\" rel=\"noopener\">FDLE/DHSMV notice</a>)."
     ],
     "officialLinks": {
-      "statuteIndex": "https://www.flsenate.gov/Laws/Statutes/2024/943.0435",
-      "adminRules": "https://offender.fdle.state.fl.us/offender/sops/floridaLaw.jsf",
-      "statePoliceRegistry": "https://offender.fdle.state.fl.us/",
-      "formsPortal": "https://offender.fdle.state.fl.us/offender/sops/faq.jsf",
-      "publicWebsite": "https://offender.fdle.state.fl.us/offender/sops/home.jsf"
+      "statuteIndex": "https://www.leg.state.fl.us/STATUTES/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/0943.html",
+      "statePoliceRegistry": "https://offender.fdle.state.fl.us/offender/sops/home.jsf",
+      "publicWebsite": "https://offender.fdle.state.fl.us/offender/sops/neighborhoodSearch.jsf"
     }
   },
 
-  "whoMustRegister": "Persons meeting ‘sexual offender’ criteria in F.S. 943.0435(1)(h) (in-state convictions; similar out-of-state offenses/designations upon residence/presence; certain juvenile adjudications; supervision transfers) and those designated ‘sexual predator’ under F.S. 775.21.",
+  "whoMustRegister": "Persons meeting the ‘sexual offender’ definition in <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a> or designated as ‘sexual predator’ under <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>, including those with out-of-state, federal, or military convictions that are similar or who were required to register elsewhere.",
 
   "deadlinesReporting": [
-    "Initial sheriff registration within 48 hours after establishing permanent/temporary/transient residence, release, or qualifying conviction if not in DOC/DJJ custody. (F.S. 943.0435(2))",
-    "DHSMV DL/ID update within 48 hours after sheriff registration. (F.S. 943.0435(3); 322.141(3))",
-    "Name/residential address changes: report to DHSMV within 48 hours; if unable, report to sheriff. (F.S. 943.0435(4)(a))",
-    "Vacating residence without new one: report to sheriff within 48 hours; transient: report within 48 hours of becoming transient, then every 30 days. (F.S. 943.0435(4)(b))",
-    "Moving out of Florida to establish residence: report intent to sheriff at least 48 hours before leaving. International travel: report at least 21 days before departure. (F.S. 943.0435(7))",
-    "Report within 48 hours: vehicles, phone numbers, employment, higher-ed status, email addresses, and internet identifiers. (F.S. 943.0435(4)(e))"
+    "Initial in-person registration with the sheriff within 48 hours of establishing a permanent, temporary, or transient residence; employment; or school in FL (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+    "Obtain/renew FL driver license or ID card with required designation within 48 hours after initial registration (see <a href=\"https://www.miamidade.gov/police/library/fdle-notice-of-sexual-predator-and-sexual-offender-obligations.pdf\" target=\"_blank\" rel=\"noopener\">FDLE/DHSMV notice</a>).",
+    "Report changes (name, residence—permanent/temporary/transient, employment, school, vehicles, phone numbers, emails, internet identifiers) within 48 hours (some items may be via FDLE online system) (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+    "Transient status: after establishing, report every 30 days in person while transient (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>; predators see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>)."
   ],
 
   "verificationInPerson": [
-    "Offenders: reregister in person during birth month AND the 6th month after. (F.S. 943.0435(14)(a))",
-    "Quarterly reregistration applies if offense is in 943.0435(14)(b). (F.S. 943.0435(14)(b))",
-    "Predators: quarterly (birthday month and every third month). (F.S. 775.21)"
+    "Sexual offenders: reregister twice per year (birth month and the 6th month thereafter) or quarterly for specified offenses (see <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>; <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435(14)</a>).",
+    "Sexual predators: quarterly reregistration (see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21(8)</a>).",
+    "Sheriff sets reporting days/times; bring ID and any updated info (vehicles, online identifiers, etc.)."
   ],
 
-  "residencyPresence": "No single statewide distance restriction is in the registration statutes; some localities have ordinances on residency/presence or loitering near child-focused locations. Court rulings may limit/preempt local rules—check local codes and case law.",
+  "residencyPresence": "Statewide residency restriction: certain persons whose victim was < 16 may not reside within 1,000 feet of any school, child care facility, park, or playground (see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html\" target=\"_blank\" rel=\"noopener\">§775.215</a>). Local ordinances may impose stricter distances.",
 
   "employmentEducationInternet": [
-    "Report higher-ed enrollment/volunteer/employment, including campus info. (F.S. 943.0435(2)(b)2, (14)(c)2)",
-    "Employment changes due within 48 hours (online or in person). (F.S. 943.0435(4)(e)2)",
-    "Register email addresses and internet identifiers within 48 hours after use; if under DOC/DJJ, report before using. (F.S. 943.0435(4)(e)1)"
+    "Report employment and post-secondary school info and changes within 48 hours (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+    "Register emails and internet identifiers (and corresponding site/app) within 48 hours of use or change (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+    "Job/volunteer restrictions may apply via supervision terms or local rules even if not set by statewide statute."
   ],
 
   "publicWebsiteExposure": [
-    "FDLE public site lists offenders and predators; predators receive enhanced community notification. (F.S. 943.043; 775.21(7))",
-    "DL/ID markings: ‘SEXUAL PREDATOR’ (predators) or ‘943.0435, F.S.’ (offenders). (F.S. 322.141(3))"
+    "FDLE publicly lists offenders/predators with photo, addresses, and identifiers; listings generally remain even after moving out of state (see <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>).",
+    "Neighborhood search and other tools are available (see <a href=\"https://offender.fdle.state.fl.us/offender/sops/neighborhoodSearch.jsf\" target=\"_blank\" rel=\"noopener\">FDLE search</a>)."
   ],
 
   "travelInterstate": [
-    "Out-of-state move: report in person to sheriff at least 48 hours before departing to establish residence elsewhere. (F.S. 943.0435(7))",
-    "International travel: report at least 21 days before departure with itinerary details. (F.S. 943.0435(7))"
+    "If moving out of FL, notify and complete required updates before departure; if plans change and you remain in FL, you must report in person within 48 hours (see <a href=\"https://law.justia.com/codes/florida/2010/TitleXLVII/chapter943/943_0435.html\" target=\"_blank\" rel=\"noopener\">historical §943.0435(8)</a>; current duties in <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+    "International travel: provide 21-day advance notice under International Megan’s Law via your registering agency (coordinate with your sheriff/FDLE)."
   ],
 
-  "complianceEnforcement": "Failure to register, update DL/ID, report changes, or comply with verification can be a felony (often third degree; some second degree). Altering/possessing DL/ID without required markings is unlawful. (F.S. 943.0435(9); 322.212(5)(c))",
+  "visitingTraveling": [
+    "“Temporary residence” includes vacation/business stays of 3 or more days in the aggregate in a calendar year; reaching that threshold triggers Florida registration duties (see definition cross-referenced in <a href=\"https://www.flhouse.gov/Statutes/2025/0775.21/\" target=\"_blank\" rel=\"noopener\">§775.21(2)</a> and FDLE guidance).",
+    "Hotel nights count toward the 3-day aggregate threshold. Keep proof of dates.",
+    "Your home state may still require pre-travel notice even for short trips—comply with both states’ rules."
+  ],
+
+  "complianceEnforcement": "Failure to register/reregister/update as required is a felony (penalties vary by subsection and priors). Noncompliance while transient can trigger separate violations (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
 
   "reliefPaths": [
-    "Offenders: lifetime registration by default; removal is limited and must satisfy state and federal criteria. (F.S. 943.0435(11))",
-    "Predators: lifetime designation unless conviction is set aside or full pardon; removal requires meeting statutory criteria and court action. (F.S. 775.21)"
+    "Florida registration is generally for life. Some limited relief may exist only if the underlying conviction is vacated/pardoned or criteria met for removal under specific provisions (see <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>)."
   ],
 
   "specialPopulations": [
-    "Transient/houseless: report status and re-report every 30 days. (F.S. 943.0435(4)(b)2)",
-    "Under DOC/DJJ supervision: some updates must be made through DOC/DJJ before use (e.g., internet identifiers). (F.S. 943.0435(4)(e)1)"
+    "Transient (homeless): must report every 30 days while transient (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>; predators see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>).",
+    "Juveniles tried as adults may be required to register; juvenile adjudications follow separate statutes not covered here."
   ],
 
   "costs": [
-    "Registrant is responsible for DHSMV fees for required DL/ID issuance/renewal. (F.S. 943.0435(3)(b); 775.21(6)(f)2)"
+    "Florida statutes do not set a uniform state registration fee; standard DHSMV fees apply for the required driver license/ID with designation. Some counties may assess administrative fees—confirm locally."
   ],
 
-  "recentChangesLitigation": [
-    {
-      "type": "statute",
-      "bill": "Ch. 2024-84 (and related 2024 updates)",
-      "session": "2024 Florida Session",
-      "effective": "2024",
-      "summary": "Recent amendments updated reporting mechanics and cross-references; verify current text for deadlines.",
-      "link": "https://www.flsenate.gov/Laws/Statutes/2024/943.0435"
-    }
-  ],
+  "recentChangesLitigation": [],
 
   "checklistsScripts": {
     "newArrivalChecklist": [
-      "Within 48 hours: register at sheriff; then update DL/ID at DHSMV.",
-      "Within 48 hours: report vehicles, phones, employment, higher-ed, emails, internet IDs.",
-      "Calendar your reregistration cadence (twice yearly or quarterly).",
-      "For international travel, calendar the 21-day notice."
+      "Within 48 hours of arrival to live, work, or study: register in person with the county sheriff (see <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>).",
+      "Within 48 hours after initial registration: obtain or update your FL driver license/ID with required designation (see <a href=\"https://www.miamidade.gov/police/library/fdle-notice-of-sexual-predator-and-sexual-offender-obligations.pdf\" target=\"_blank\" rel=\"noopener\">FDLE/DHSMV notice</a>).",
+      "Calendar your reregistration months (birth month and 6 months later; or quarterly if applicable) and set reminders."
     ],
     "movingOutChecklist": [
-      "At least 48 hours BEFORE leaving FL to establish residence elsewhere: report intent to sheriff with destination details.",
-      "If plans change and you remain in FL, report that in person within 48 hours of the stated departure date.",
-      "If transient during the move, follow 30-day transient reporting."
-    ]
+      "Notify the sheriff/FDLE of your move and comply with destination state registration.",
+      "If plans change and you remain in FL, report in person within 48 hours to update your intent (see <a href=\"https://law.justia.com/codes/florida/2010/TitleXLVII/chapter943/943_0435.html\" target=\"_blank\" rel=\"noopener\">historical §943.0435(8)</a>).",
+      "Keep stamped/dated proof of all submissions."
+    ],
+    "recordsRequestTemplate": "",
+    "reliefPetitionOutline": ""
   },
 
   "resources": {
     "legalAid": [
-      { "name": "FDLE – Florida Laws & Info", "link": "https://offender.fdle.state.fl.us/offender/sops/floridaLaw.jsf" },
-      { "name": "FDLE – FAQ", "link": "https://offender.fdle.state.fl.us/offender/sops/faq.jsf" }
+      { "name": "FDLE Sex Offender/Predator Registry (official)", "link": "https://offender.fdle.state.fl.us/offender/sops/home.jsf" }
     ],
-    "advocacy": [
-      { "name": "Florida Action Committee (FAC)", "link": "https://floridaactioncommittee.org" }
-    ],
+    "advocacy": [],
     "reentry": [
-      { "name": "Florida DOC – Reentry Services", "link": "https://www.dc.state.fl.us/comm/reentry.html" }
+      { "name": "Florida Department of Corrections – Reentry", "link": "https://www.dc.state.fl.us/comm/reentry.html" }
     ]
   },
 
   "citations": [
-    "F.S. 943.0435 — offender definitions; initial registration; 48-hour change reporting; transient 30-day; 21-day international notice; reregistration cadence.",
-    "F.S. 775.21 — sexual predator designation; registration; quarterly reregistration; community notification.",
-    "F.S. 322.141(3) — DL/ID markings; F.S. 322.212(5)(c) — offenses relating to altered/missing markings.",
-    "FDLE overview pages: Laws & Information; FAQ."
+    "<a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">Fla. Stat. §943.0435 (sexual offenders: registration, updates, reregistration)</a>",
+    "<a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">Fla. Stat. §775.21 (sexual predators; quarterly; definitions incl. temporary residence)</a>",
+    "<a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html\" target=\"_blank\" rel=\"noopener\">Fla. Stat. §775.215 (statewide 1,000-ft residency restriction for certain offenses with victims < 16)</a>",
+    "<a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ: lifetime registration; biannual vs. quarterly reregistration</a>",
+    "<a href=\"https://www.miamidade.gov/police/library/fdle-notice-of-sexual-predator-and-sexual-offender-obligations.pdf\" target=\"_blank\" rel=\"noopener\">FDLE/DHSMV notice: 48-hour driver license/ID requirement & designations</a>"
   ],
 
   "badges": {
-    "verificationQuarterly": true,
+    "residencyZones": true,
     "lifetimePossible": true,
-    "residencyZones": false
+    "verificationQuarterly": true
   },
 
   "plainLanguage": {
     "atAGlance": {
       "summary": [
-        "Expect two stops: sheriff registration and DMV for a marked ID.",
-        "Put your re-registration months on a calendar so you don’t miss the window."
+        "Florida’s timelines are short and the definition of “temporary residence” is broad—short trips can trigger registration.",
+        "Plan for two in-person check-ins per year (or quarterly depending on your offense/designation)."
       ],
       "watchOuts": [
-        "‘Transient’ status requires check-ins every 30 days.",
-        "Vehicles, phone numbers, school/work, emails and online IDs all have short 48-hour clocks."
+        "The 3-day aggregate rule for temporary residence can sneak up on vacationers and business travelers.",
+        "Driver license/ID update is due within 48 hours after initial registration and must carry a designation."
       ],
-      "confidence": "high",
-      "citations": ["F.S. 943.0435", "F.S. 322.141(3)"],
-      "reviewedBy": "SOLAR editor",
-      "reviewedUTC": "2025-10-05T00:00:00Z"
+      "validationNote": "Confirmed with <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>, <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21</a>, <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>, and DHSMV/FDLE notice. Content validated with the help of AI; please contact SOLAR if you find something outdated."
     },
     "deadlinesReporting": {
       "summary": [
-        "Most changes are due within 48 hours; international trips need 21 days’ notice.",
-        "Moving out? Tell the sheriff 48 hours before you leave to establish residence elsewhere."
+        "Register in person with the sheriff within 48 hours of establishing residence, job, or school in Florida.",
+        "Update changes (address types, name, employment, school, vehicles, phones, emails, internet IDs) within 48 hours."
       ],
       "watchOuts": [
-        "If you can’t reach DMV immediately, you still owe the sheriff report—don’t wait."
+        "Transient status requires in-person reporting every 30 days until you establish a permanent/temporary residence.",
+        "Missing the DHSMV ID update after initial registration can itself be charged."
       ],
-      "confidence": "high",
-      "citations": ["F.S. 943.0435(4)", "F.S. 943.0435(7)"]
+      "validationNote": "See <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a> and <a href=\"https://www.miamidade.gov/police/library/fdle-notice-of-sexual-predator-and-sexual-offender-obligations.pdf\" target=\"_blank\" rel=\"noopener\">FDLE/DHSMV notice</a>."
+    },
+    "verificationInPerson": {
+      "summary": [
+        "You’ll reregister either twice yearly or quarterly in person, based on offense/designation.",
+        "Sheriffs set reporting windows—show up with ID and any changes ready to file."
+      ],
+      "watchOuts": [
+        "Mark your calendar for your birth-month window and the 6-month mark (or every 3 months).",
+        "Keep stamped receipts; each missed window can be a separate charge."
+      ],
+      "validationNote": "Derived from <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435(14)</a> and <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>; predators see <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.21.html\" target=\"_blank\" rel=\"noopener\">§775.21(8)</a>."
+    },
+    "visitingTraveling": {
+      "summary": [
+        "Vacation or business in Florida totaling 3+ days in a calendar year counts as a temporary residence and can trigger in-state registration.",
+        "Hotel nights count; keep clear records of dates."
+      ],
+      "watchOuts": [
+        "Your home state may require travel notice before you leave—comply with both states.",
+        "If your plans change (you stay longer or decide to move), re-contact the sheriff immediately to stay compliant."
+      ],
+      "validationNote": "“Temporary residence” definition referenced in <a href=\"https://www.flhouse.gov/Statutes/2025/0775.21/\" target=\"_blank\" rel=\"noopener\">§775.21(2)</a> and reflected in FDLE practice."
+    },
+    "residencyPresence": {
+      "summary": [
+        "If the victim was under 16 for certain listed offenses, Florida law bars living within 1,000 feet of schools, parks, playgrounds, or child-care facilities.",
+        "Many cities/counties add stricter distances."
+      ],
+      "watchOuts": [
+        "Measure property-line to property-line; mapping tools can help but confirm with local law enforcement.",
+        "Leases can be voided if found non-compliant—get a compliance check before signing."
+      ],
+      "validationNote": "See <a href=\"https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html\" target=\"_blank\" rel=\"noopener\">§775.215</a>."
+    },
+    "employmentEducationInternet": {
+      "summary": [
+        "Report job and school details within 48 hours; register emails and internet identifiers within 48 hours of use/change.",
+        "Schools and many employers will verify status; proactively confirm your obligations before starting."
+      ],
+      "watchOuts": [
+        "If self-employed or gig-based, you must still report the business and locations.",
+        "Universities consider ‘enrolled’ broadly—course adds/drops and campus changes can trigger updates."
+      ],
+      "validationNote": "Reporting scope and timelines in <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>."
+    },
+    "complianceEnforcement": {
+      "summary": [
+        "Failure to register/reregister/update within the windows can be charged as a felony.",
+        "Non-compliance can affect eligibility for relief elsewhere and may stack if repeated."
+      ],
+      "watchOuts": [
+        "Keep dated/stamped proof of every submission and any mailed forms.",
+        "If you miss a deadline, appear in person immediately and document it."
+      ],
+      "validationNote": "Penalties described across <a href=\"https://www.flsenate.gov/Laws/Statutes/2024/943.0435\" target=\"_blank\" rel=\"noopener\">§943.0435</a>."
+    },
+    "reliefPaths": {
+      "summary": [
+        "Florida is generally lifetime; meaningful relief usually requires court action on the conviction (vacatur/pardon) or specific statutory criteria."
+      ],
+      "watchOuts": [
+        "Online removal from FDLE is limited; moving out of Florida does not remove your FDLE entry.",
+        "If denied, ask what documentation would change the outcome before re-submitting."
+      ],
+      "validationNote": "See <a href=\"https://offender.fdle.state.fl.us/offender/sops/faq.jsf\" target=\"_blank\" rel=\"noopener\">FDLE FAQ</a>."
     }
   }
 }
