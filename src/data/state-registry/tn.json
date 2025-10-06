@@ -1,8 +1,9 @@
+
 {
   "state": "Tennessee",
   "lastReviewedUTC": "2025-10-06T18:00:00Z",
   "atAGlance": {
-    "mustRegister": "Anyone convicted of a qualifying sexual offense (or equivalent from another jurisdiction) who lives, works, or studies in Tennessee must register within 48 hours of establishing residence, employment, or enrollment. See [TCA §40-39-203](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/).",
+    "mustRegister": "Anyone convicted of a qualifying sexual offense (or equivalent from another jurisdiction) who lives, works, or studies in Tennessee must register within 48 hours of establishing residence, employment, or enrollment. See <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-203</a>.",
     "initialDeadline": "48 hours to register after establishing presence (excluding weekends and holidays).",
     "verificationCadence": "Violent sexual offenders: quarterly (March, June, September, December). Other sexual offenders: annually within 7 days before or after birthday.",
     "primaryMethod": "In-person reporting with local law enforcement; data entered into the TBI registry. Fingerprints, palm prints, and photographs required.",
@@ -19,7 +20,7 @@
     }
   },
 
-  "whoMustRegister": "Individuals convicted of any qualifying sexual offense listed under [TCA §40-39-202(20)](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-202/), including offenses against minors, sexual battery, rape, child exploitation, and federal or out-of-state equivalents.",
+  "whoMustRegister": "Individuals convicted of any qualifying sexual offense listed under <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-202/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-202(20)</a>, including offenses against minors, sexual battery, rape, child exploitation, and federal or out-of-state equivalents.",
 
   "deadlinesReporting": [
     "Register within 48 hours of residence, job, or school change.",
@@ -81,22 +82,31 @@
 
   "resources": {
     "legalAid": [
-      { "name": "Tennessee Bureau of Investigation SOR Unit", "link": "https://www.tn.gov/tbi/divisions/cjis-division/tennessee-sex-offender-registry.html" }
+      {
+        "name": "Tennessee Bureau of Investigation SOR Unit",
+        "link": "https://www.tn.gov/tbi/divisions/cjis-division/tennessee-sex-offender-registry.html"
+      }
     ],
     "advocacy": [
-      { "name": "NARSOL Tennessee Affiliate", "link": "https://narsol.org/affiliate/tennessee/" }
+      {
+        "name": "NARSOL Tennessee Affiliate",
+        "link": "https://narsol.org/affiliate/tennessee/"
+      }
     ],
     "reentry": [
-      { "name": "Tennessee Department of Correction Reentry Programs", "link": "https://www.tn.gov/correction" }
+      {
+        "name": "Tennessee Department of Correction Reentry Programs",
+        "link": "https://www.tn.gov/correction"
+      }
     ]
   },
 
   "citations": [
-    "[TCA §40-39-201 et seq.](https://law.justia.com/codes/tennessee/title-40/chapter-39/)",
-    "[TCA §40-39-203 (registration and verification)](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/)",
-    "[TCA §40-39-204 (violations)](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-204/)",
-    "[TCA §40-39-207 (duration of registration)](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-207/)",
-    "[TCA §40-39-211 (residency and employment restrictions)](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-211/)"
+    "<a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-201 et seq.</a>",
+    "<a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">§40-39-203 (Registration & Verification)</a>",
+    "<a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-204/\" target=\"_blank\" rel=\"noopener\">§40-39-204 (Violations)</a>",
+    "<a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-207/\" target=\"_blank\" rel=\"noopener\">§40-39-207 (Duration of Registration)</a>",
+    "<a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-211/\" target=\"_blank\" rel=\"noopener\">§40-39-211 (Residency & Employment Restrictions)</a>"
   ],
 
   "badges": {
@@ -104,18 +114,94 @@
     "lifetimePossible": true,
     "verificationQuarterly": true
   },
-
-  "plainLanguage": {
-    "summary": [
-      "Tennessee’s registry system is among the strictest in the U.S., with tight deadlines and broad definitions of residence.",
-      "Visitors or new residents should err on the side of caution and register promptly to avoid felony penalties."
-    ],
-    "watchOuts": [
-      "48-hour and 3-day update windows are unforgiving.",
-      "Homeless or transient individuals must check in monthly."
-    ],
-    "validationNote": "Verified with [TCA §40-39-203](https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/) and [TBI SOR Unit](https://www.tn.gov/tbi/divisions/cjis-division/tennessee-sex-offender-registry.html). Please contact SOLAR if updates or corrections are needed."
-  },
-
-  "disclaimer": "This guide summarizes Tennessee’s sex offender registry laws in accessible language. It is not legal advice. Statutes change often—always verify with the Tennessee Bureau of Investigation or an attorney. Content validated with the help of AI; let us know if you believe something is inaccurate."
+"plainLanguage": {
+    "atAGlance": {
+      "summary": [
+        "Tennessee uses very short timelines. Forty-eight hours means two business days at most (weekends and legal holidays don’t count). Register or update in person with the local sheriff or police, and bring ID.",
+        "If you visit or move to Tennessee and meet the presence thresholds, plan to register rather than risk a felony charge."
+      ],
+      "watchOuts": [
+        "Missing a 48-hour update for an address, job, or school change can trigger arrest. Put these deadlines in your phone calendar.",
+        "Creating or changing an email, screen name, or social handle must be reported within three days. That is a separate rule from the 48-hour changes."
+      ],
+      "validationNote": "Verified with <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-203</a> and <a href=\"https://www.tn.gov/tbi/divisions/cjis-division/tennessee-sex-offender-registry.html\" target=\"_blank\" rel=\"noopener\">TBI Sex Offender Registry</a>. Content validated with the help of AI; please contact SOLAR if you find something outdated."
+    },
+    "deadlinesReporting": {
+      "summary": [
+        "Register within 48 hours of establishing residence, employment, or school enrollment. Report any change in those items within 48 hours as well.",
+        "Report new or changed emails, usernames, or online identifiers within three days."
+      ],
+      "watchOuts": [
+        "Homeless status requires monthly, in-person reporting. If you obtain housing, update within 48 hours.",
+        "If you are moving out of Tennessee, provide your new address at least 48 hours before departure."
+      ],
+      "validationNote": "See <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-203</a> (deadlines and reporting windows)."
+    },
+    "verificationInPerson": {
+      "summary": [
+        "Violent sexual offenders verify quarterly (March, June, September, December). Other sexual offenders verify annually within a seven-day window around their birthday.",
+        "Expect fingerprints and a new photo as needed; bring state-issued ID."
+      ],
+      "watchOuts": [
+        "Fees (up to $150) may be due at verification; indigent status may reduce other ID costs but not the verification fee.",
+        "If you miss a quarterly or annual appointment, call the registering agency immediately and appear in person to mitigate consequences."
+      ],
+      "validationNote": "Intervals and procedures summarized from <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-203</a> and <a href=\"https://www.tn.gov/tbi/divisions/cjis-division/tennessee-sex-offender-registry.html\" target=\"_blank\" rel=\"noopener\">TBI guidance</a>."
+    },
+    "visitingTraveling": {
+      "summary": [
+        "Primary residence is established after five consecutive days in Tennessee. Secondary residence is met at 14 days in a year or four days in a month.",
+        "If you meet a threshold, register within 48 hours at the local sheriff or police department. For international travel, give 21 days’ notice when possible."
+      ],
+      "watchOuts": [
+        "Hotel stays count toward presence thresholds. Keep records of check-in/checkout dates.",
+        "Your home state may require advance travel notice even if Tennessee does not for very short trips."
+      ],
+      "validationNote": "Presence thresholds and duties drawn from <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-203</a> and TBI practice; international travel expectations align with federal International Megan’s Law."
+    },
+    "residencyPresence": {
+      "summary": [
+        "If the victim was under 18, Tennessee imposes 1,000-foot buffers around schools, parks, playgrounds, and childcare facilities for residence and work.",
+        "All registrants are prohibited from living within 1,000 feet of the victim or the victim’s immediate family."
+      ],
+      "watchOuts": [
+        "Measure from property line to property line; a site that seems far enough may still be within 1,000 feet.",
+        "Local rules or probation/parole conditions can be stricter than the statute."
+      ],
+      "validationNote": "See <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-211/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-211</a> (residency/employment restrictions)."
+    },
+    "employmentEducationInternet": {
+      "summary": [
+        "Do not work or volunteer in roles with direct, unsupervised contact with minors if your victim was a minor.",
+        "Report any change in employment or student status within 48 hours; report new online identifiers within three days."
+      ],
+      "watchOuts": [
+        "Some roles are categorically prohibited (for example, performing to attract children, ice-cream truck vending).",
+        "Schools and many employers will run checks; confirm compliance before accepting a role."
+      ],
+      "validationNote": "Restrictions and reporting windows drawn from <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-211/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-211</a> and <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-203/\" target=\"_blank\" rel=\"noopener\">§40-39-203</a>."
+    },
+    "complianceEnforcement": {
+      "summary": [
+        "Non-compliance is a Class E felony with mandatory minimum jail time that increases for repeat violations.",
+        "Any period of non-compliance pauses eligibility timelines for removal from the registry."
+      ],
+      "watchOuts": [
+        "Each day late can be a separate offense in some contexts.",
+        "Keep dated proof of submissions (receipt, certified mail, stamped forms) to resolve disputes."
+      ],
+      "validationNote": "Penalties and tolling summarized from <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-204/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-204</a> and <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-207/\" target=\"_blank\" rel=\"noopener\">§40-39-207</a>."
+    },
+    "reliefPaths": {
+      "summary": [
+        "Sexual offenders (non-violent) may apply to TBI for removal after 10 years of clean compliance from completion of sentence.",
+        "Violent sexual offenders and repeat offenders are lifetime registrants with no early removal."
+      ],
+      "watchOuts": [
+        "Any disqualifying new offense or documented non-compliance will result in denial.",
+        "If denied for non-compliance (not a new offense), you may reapply after five years."
+      ],
+      "validationNote": "Process and eligibility from <a href=\"https://law.justia.com/codes/tennessee/title-40/chapter-39/part-2/section-40-39-207/\" target=\"_blank\" rel=\"noopener\">TCA §40-39-207</a> and TBI practice."
+    }
+  }
 }
