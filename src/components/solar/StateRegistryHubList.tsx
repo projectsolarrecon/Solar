@@ -71,7 +71,8 @@ export default function StateRegistryHubList(): JSX.Element {
             return (
               <Link
                 key={name}
-                to={`/resources/state-registry/states/${slug}`}
+                // NEW (uses JSON filename code, e.g., "fl", "tn")
+to={`/resources/state-registry/states/${hit.code}`}
                 className="block bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md p-3 transition hover:bg-slate-50"
               >
                 <div className="flex items-center justify-between">
