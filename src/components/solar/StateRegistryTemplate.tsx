@@ -282,58 +282,98 @@ function RichList({ items }: { items?: string[] }) {
   );
 }
 
-function PlainBox({ pl, title = "What this means in practice" }: { pl?: PlainLanguageBlurb; title?: string }) {
+function PlainBox({
+  pl,
+  title = "What this means in practice",
+}: {
+  pl?: PlainLanguageBlurb;
+  title?: string;
+}) {
   if (!pl || (!pl.summary && !pl.watchOuts && !pl.edgeCases)) return null;
+
   return (
     <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-slate-800">{title}</h3>
       </div>
+
       {Array.isArray(pl.summary) && pl.summary.length > 0 && (
         <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
-          {pl.summary.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
+          {pl.summary.map((s, i) => (
+            <li key={i}>
+              <SafeText text={s} />
+            </li>
+          ))}
         </ul>
       )}
+
       {Array.isArray(pl.watchOuts) && pl.watchOuts.length > 0 && (
         <>
           <p className="mt-3 font-medium text-slate-800">Watch-outs</p>
           <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
-            {pl.watchOuts.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
+            {pl.watchOuts.map((s, i) => (
+              <li key={i}>
+                <SafeText text={s} />
+              </li>
+            ))}
           </ul>
         </>
       )}
+
       {Array.isArray(pl.edgeCases) && pl.edgeCases.length > 0 && (
         <>
           <p className="mt-3 font-medium text-slate-800">Edge cases</p>
           <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
-            {pl.edgeCases.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
+            {pl.edgeCases.map((s, i) => (
+              <li key={i}>
+                <SafeText text={s} />
+              </li>
+            ))}
           </ul>
         </>
       )}
+
       {Array.isArray(pl.citations) && pl.citations.length > 0 && (
         <p className="mt-3 text-xs text-slate-500">
           Sources: {pl.citations.join("; ")}
         </p>
       )}
+
       {pl.validationNote && (
-        <p className="mt-2 text-xs text-slate-400 italic">{pl.validationNote}</p>
+        <p
+          className="mt-2 text-xs text-slate-400 italic"
+          dangerouslySetInnerHTML={{ __html: pl.validationNote }}
+        />
       )}
+
       {(pl.reviewedUTC || pl.reviewedBy) && (
         <p className="mt-1 text-xs text-slate-400">
-          {pl.reviewedUTC ? `Reviewed ${new Date(pl.reviewedUTC).toLocaleDateString()}` : ""}
+          {pl.reviewedUTC
+            ? `Reviewed ${new Date(pl.reviewedUTC).toLocaleDateString()}`
+            : ""}
         </p>
       )}
     </div>
   );
 }
 
+/* ---------- SafeText helper ---------- */
 function SafeText({ text = "" }: { text?: string }) {
+  // If text already includes HTML anchor tags, render them directly
+  if (text.includes("<a ")) {
+    return <span dangerouslySetInnerHTML={{ __html: text }} />;
+  }
+
+  // Otherwise, handle Markdown-style [label](url) syntax
   const escape = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const withLinks = escape(text).replace(
     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
     (_m, label, url) =>
-      `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(label)}</a>`
+      `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(
+        label
+      )}</a>`
   );
+
   return <span dangerouslySetInnerHTML={{ __html: withLinks }} />;
 }
