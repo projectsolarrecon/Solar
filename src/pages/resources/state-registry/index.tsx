@@ -129,6 +129,7 @@ export default function RegistryHub(): JSX.Element {
             Notify your registry agency before traveling; most require in-state notice, and federal
             law requires advance notice abroad.
           </li>
+          <li>Keep copies/receipts for every submission and update.</li>
         </ul>
 
         <div className="mt-5 grid md:grid-cols-2 gap-5">
@@ -158,45 +159,140 @@ export default function RegistryHub(): JSX.Element {
         </div>
       </SectionCard>
 
-      {/* INTERSTATE TRANSFERS */}
+      {/* INTERSTATE MOVES & SUPERVISION TRANSFERS */}
       <SectionCard>
         <SectionBand title="Moving Between States (Interstate Transfers)" emblem="🚚" />
         <div className="prose prose-slate max-w-none space-y-4 leading-relaxed">
           <p>
-            Moves while on probation or parole are handled through the{" "}
+            If you are under supervision (probation/parole), interstate moves are handled through the{" "}
             <a href="https://interstatecompact.org/" target="_blank" rel="noopener">
               Interstate Compact for Adult Offender Supervision (ICAOS)
             </a>
-            . If you’re not under supervision, you still must comply with registration in both the
-            origin and destination states.
+            . ICAOS governs how supervision transfers work across all 50 states, DC, and territories.
+            If you’re not under supervision, you still must comply with registration rules in both
+            the origin and destination states.
           </p>
         </div>
         <Callout variant="reminder" title="Before You Move">
           <ul className="space-y-2 text-slate-700 leading-snug">
-            <li>Confirm exit procedures with your current registry agency.</li>
-            <li>Verify arrival deadlines and forms for your new state.</li>
-            <li>Keep proof of communication and registration actions.</li>
+            <li>Contact your current registering agency to confirm exit steps and deadlines.</li>
+            <li>Confirm the destination state’s initial registration window and documents needed.</li>
+            <li>Bring proof of housing/employment if requested.</li>
           </ul>
+        </Callout>
+        <Callout variant="info" title="Learn More">
+          <p className="leading-relaxed">
+            About the Compact:{" "}
+            <a
+              href="https://compacts.csg.org/compact/interstate-compact-for-adult-offender-supervision/"
+              target="_blank"
+              rel="noopener"
+            >
+              CSG — ICAOS Overview
+            </a>{" "}
+            · Official site:{" "}
+            <a href="https://interstatecompact.org/" target="_blank" rel="noopener">
+              interstatecompact.org
+            </a>
+            .
+          </p>
         </Callout>
       </SectionCard>
 
-      {/* ADVOCACY */}
+      {/* QUICK PRACTICAL CHECKLISTS */}
       <SectionCard>
-        <SectionBand title="Advocacy, Legal Aid & Reentry" emblem="🤝" />
+        <SectionBand title="Quick Checklists" emblem="📋" />
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="font-semibold text-slate-800">Travel / Vacation</h3>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700 leading-relaxed">
+              <li>Check if your destination state has a short-stay registration trigger.</li>
+              <li>
+                For international trips, ask your registering agency about IML notice requirements
+                and timing. See{" "}
+                <a
+                  href="https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  State Dept — IML
+                </a>
+                .
+              </li>
+              <li>
+                Keep itinerary copies and confirmations; document all contacts with agencies (dates,
+                times, names).
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-semibold text-slate-800">Address / Job / School Changes</h3>
+            <ul className="list-disc pl-6 space-y-2 text-slate-700 leading-relaxed">
+              <li>Know your state’s deadline (some are 48–72 hours).</li>
+              <li>Update internet identifiers if your email/usernames change.</li>
+              <li>Retain stamped receipts or delivery tracking for any mailed forms.</li>
+            </ul>
+          </div>
+        </div>
+        <Callout variant="neutral" title="Documentation Tip">
+          <p className="leading-relaxed">
+            Create a simple “compliance folder” (paper or cloud) with copies of every registry action
+            and verification. It’s invaluable if questions arise later.
+          </p>
+        </Callout>
+      </SectionCard>
+
+      {/* DATA & RESEARCH */}
+      <SectionCard>
+        <SectionBand title="Data & Research" emblem="📈" />
+        <Callout variant="research" title="Big Picture">
+          <div className="prose prose-slate max-w-none space-y-4 leading-relaxed">
+            <p>
+              National research from the{" "}
+              <a
+                href="https://www.ussc.gov/research/research-reports/recidivism-federal-offenders-released-2010"
+                target="_blank"
+                rel="noopener"
+              >
+                U.S. Sentencing Commission
+              </a>{" "}
+              and{" "}
+              <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener">
+                Bureau of Justice Statistics
+              </a>{" "}
+              provides context on reoffending, supervision outcomes, and registry system design.
+            </p>
+            <p>
+              For legal baselines and the latest federal rule updates, see DOJ’s SORNA pages and the
+              2021 Federal Register rule:{" "}
+              <a
+                href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act"
+                target="_blank"
+                rel="noopener"
+              >
+                SORNA Registration Requirements (Final Rule)
+              </a>
+              .
+            </p>
+          </div>
+        </Callout>
+      </SectionCard>
+
+      {/* NATIONAL ADVOCACY & SUPPORT */}
+      <SectionCard>
+        <SectionBand title="Advocacy, Legal Aid & Reentry (National)" emblem="🤝" />
         <div className="grid md:grid-cols-2 gap-5">
           <Callout variant="info" title="Legal & Policy">
             <ul className="space-y-2 text-slate-700 leading-snug">
               <li>
                 <a href="https://www.narsol.org/" target="_blank" rel="noopener">
-                  NARSOL
-                </a>{" "}
-                — Rational reform advocacy & education.
+                  NARSOL — National Association for Rational Sexual Offense Laws
+                </a>
               </li>
               <li>
                 <a href="https://all4consolaws.org/" target="_blank" rel="noopener">
-                  ACSOL
-                </a>{" "}
-                — Litigation & policy reform.
+                  ACSOL — Alliance for Constitutional Sex Offense Laws
+                </a>
               </li>
               <li>
                 <a href="https://www.nacdl.org/registry" target="_blank" rel="noopener">
@@ -205,16 +301,23 @@ export default function RegistryHub(): JSX.Element {
               </li>
             </ul>
           </Callout>
-
           <Callout variant="success" title="Reentry & Support">
             <ul className="space-y-2 text-slate-700 leading-snug">
               <li>
-                <a href="https://nationalreentryresourcecenter.org/" target="_blank" rel="noopener">
-                  National Reentry Resource Center
+                <a
+                  href="https://nationalreentryresourcecenter.org/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  National Reentry Resource Center (NRRC)
                 </a>
               </li>
               <li>
-                <a href="https://www.hudexchange.info/programs/reentry/" target="_blank" rel="noopener">
+                <a
+                  href="https://www.hudexchange.info/programs/reentry/"
+                  target="_blank"
+                  rel="noopener"
+                >
                   HUD Reentry Housing Toolkit
                 </a>
               </li>
@@ -222,7 +325,7 @@ export default function RegistryHub(): JSX.Element {
                 <a href="https://fortunesociety.org/" target="_blank" rel="noopener">
                   The Fortune Society
                 </a>{" "}
-                &{" "}
+                ·{" "}
                 <a href="https://www.prisonfellowship.org/" target="_blank" rel="noopener">
                   Prison Fellowship
                 </a>
@@ -232,11 +335,12 @@ export default function RegistryHub(): JSX.Element {
         </div>
       </SectionCard>
 
-      {/* FOOTER */}
+      {/* FOOTER / DISCLAIMER */}
       <footer className="mt-8 text-xs text-slate-500 border-t border-slate-200 pt-4 leading-relaxed">
         <p>
           🤝 This hub blends official sources with AI-assisted research for clarity and accessibility.
-          We strive for accuracy and empathy — if you see something out of date, please let us know.
+          We strive for accuracy and empathy — if you see something out of date, please let us know
+          so we can correct it for everyone.
         </p>
         <p className="mt-2 italic">Informational only; not legal advice.</p>
       </footer>
