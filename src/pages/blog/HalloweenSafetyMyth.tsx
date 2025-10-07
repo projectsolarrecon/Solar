@@ -44,8 +44,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     </Callout>
 
     <Divider label="III. The Policy Zoo (Real Ordinances in Real Places)" />
-    <BandHeader title="The Policy Zoo (Real Ordinances in Real Places)" icon="🏛️" />
-    <p className="mt-6">
+   <p className="mt-6">
   The following real-world ordinances illustrate how Halloween-specific “safety”
   laws have spread across the country, often forcing registrants to darken homes,
   post warning signs, or stay inside under threat of arrest. These policies are
@@ -128,7 +127,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     >
       CDCR 2024 release
     </a>
-    ) (
+    ), (
     <a
       className={linkCls}
       href="https://www.cdcr.ca.gov/news/2017/10/23/cdcr-empowers-families-against-sex-offenders/"
@@ -137,7 +136,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     >
       CDCR 2017 release
     </a>
-    ) (
+    ), (
     <a
       className={linkCls}
       href="https://www.kcra.com/article/halloween-sex-offenders-operation-boo/29652067"
@@ -146,7 +145,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     >
       KCRA coverage
     </a>
-    ) (
+    ), (
     <a
       className={linkCls}
       href="https://www.latimes.com/local/california/la-me-1018-offender-20151018-story.html"
@@ -155,7 +154,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     >
       Los Angeles Times
     </a>
-    ) (
+    ), (
     <a
       className={linkCls}
       href="https://abc30.com/post/operation-boo-parole-agents-make-sex-offender-parolees-are-compliance-halloween/15494666/"
@@ -198,13 +197,14 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     Services imposes Halloween curfews (5:30–9 p.m.), stay-inside orders, lights-off,
     and candy bans (
     <a
-  className={linkCls}
-  href="https://ppp.sc.gov/news/halloween-curfew-announced-sex-offenders-probation-and-parole"
-  target="_blank"
-  rel="noopener"
->
-  SCDPPPS press release
-</a>).
+      className={linkCls}
+      href="https://ppp.sc.gov/news/halloween-curfew-announced-sex-offenders-probation-and-parole"
+      target="_blank"
+      rel="noopener"
+    >
+      SCDPPPS press release
+    </a>
+    ).
   </li>
 
   <li>
@@ -214,11 +214,16 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     <a
       className={linkCls}
       href="https://www.findlaw.com/criminal/criminal-charges/halloween-sex-offender-laws.html"
-      target="_blank" rel="noopener">FindLaw survey</a>).
+      target="_blank"
+      rel="noopener"
+    >
+      FindLaw survey
+    </a>
+    ).
   </li>
 </ul>
 
-<p className=\"mt-6\">
+<p className="mt-6">
   These laws show a national pattern of symbolic enforcement—rules designed to
   visually display “safety” rather than reduce measurable risk. In every case, the
   supposed threat (a trick-or-treat assault by a registrant) has never been observed,
