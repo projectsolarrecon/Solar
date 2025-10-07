@@ -213,7 +213,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     in legal and advocacy coverage (
     <a
       className={linkCls}
-      href=\"https://www.findlaw.com/criminal/criminal-charges/halloween-sex-offender-laws.html\"
+      href="https://www.findlaw.com/criminal/criminal-charges/halloween-sex-offender-laws.html"
       target=\"_blank\" rel=\"noopener\">FindLaw survey</a>).
   </li>
 </ul>
