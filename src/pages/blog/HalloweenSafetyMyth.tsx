@@ -44,6 +44,7 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     </Callout>
 
     <Divider label="III. The Policy Zoo (Real Ordinances in Real Places)" />
+<BandHeader title="The Policy Zoo (Real Ordinances in Real Places)" icon="🏛️" />
    <p className="mt-6">
   The following real-world ordinances illustrate how Halloween-specific “safety”
   laws have spread across the country, often forcing registrants to darken homes,
