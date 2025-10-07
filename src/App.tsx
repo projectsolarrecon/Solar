@@ -83,6 +83,7 @@ import CommunityIntegrationGuide from "./pages/resources/community-integration-t
 import FollowTheMoneyPart2 from "./pages/blog/FollowTheMoneyPart2";
 import StateRegistryHub from "./pages/resources/state-registry";
 import StateRegistryStatePage from "./pages/resources/state-registry/states/state";
+import HalloweenSafetyMyth from "./pages/blog/HalloweenSafetyMyth";
 
 function App() {
   return (
@@ -185,6 +186,10 @@ function App() {
 />
 <Route path="/blog/follow-the-money" element={<FollowTheMoney />} />
 <Route path="/blog/follow-the-money-part2" element={<FollowTheMoneyPart2 />} />
+<Route
+  path="/blog/halloween-safety-myth"
+  element={<HalloweenSafetyMyth />}
+/>
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
