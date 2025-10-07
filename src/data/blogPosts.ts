@@ -13,6 +13,26 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "halloween-safety-myth-2025-10-07",
+  title: "Trick or Treat: How America’s Halloween ‘safety’ rituals trick the public with fear",
+  excerpt:
+    "Halloween inspires an entire industry of ‘safety’ laws that tell registrants to turn off lights, post signs, and stay indoors — but none of it prevents harm. The real danger on October 31 isn’t who’s on the registry, it’s who’s on the road.",
+  author: "The SOLAR Project",
+  date: "October 7, 2025",
+  readTime: "9 min read",
+  category: "Justice & Policy",
+  tags: [
+    "Halloween safety",
+    "registry laws",
+    "First Amendment",
+    "NHTSA",
+    "drunk driving",
+    "public policy",
+    "civil rights",
+  ],
+  path: "/blog/halloween-safety-myth",
+},
+{
   id: "follow-the-money-part2-2025-10-04",
   title: "Fees, Fines, and Families: The Hidden Cost of “Compliance”",
   excerpt:
