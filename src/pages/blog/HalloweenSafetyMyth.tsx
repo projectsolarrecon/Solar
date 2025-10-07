@@ -198,9 +198,13 @@ lede="The scariest part of Halloween isn’t who’s on the registry — it’s 
     Services imposes Halloween curfews (5:30–9 p.m.), stay-inside orders, lights-off,
     and candy bans (
     <a
-      className={linkCls}
-      href="https://ppp.sc.gov/news/halloween-curfew-announced-sex-offenders-probation-and-parole"
-      target=\"_blank\" rel=\"noopener\">SCDPPPS press release</a>).
+  className={linkCls}
+  href="https://ppp.sc.gov/news/halloween-curfew-announced-sex-offenders-probation-and-parole"
+  target="_blank"
+  rel="noopener"
+>
+  SCDPPPS press release
+</a>).
   </li>
 
   <li>
