@@ -61,7 +61,7 @@ export interface StateRegistryData {
     advocacy?: { name: string; link: string }[];
     reentry?: { name: string; link: string }[];
   };
-  citations?: string[];
+  citations?: Array<string | { label: string; url: string }>;
   badges?: {
     residencyZones?: boolean;
     lifetimePossible?: boolean;
