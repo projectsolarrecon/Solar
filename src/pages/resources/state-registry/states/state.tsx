@@ -1,87 +1,52 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-
-// Layout + SOLAR shell
 import GuideLayout from "../../../../components/layouts/GuideLayout";
-// If your barrel exports TOC from components/solar, this path is correct from a page:
-import { TOC } from "../../../../components/solar";
-
-// The content-only template we just updated
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
 
-// Auto-import all JSONs
-const files = import.meta.glob("/src/data/state-registry/*.json", { eager: true });
+const modules = import.meta.glob("../../../../data/state-registry/*.{ts,json}", { eager: true });
 
-function getDataFor(code: string): StateRegistryData | null {
-  const key = Object.keys(files).find((k) => k.endsWith(`/${code.toLowerCase()}.json`));
-  if (!key) return null;
-  // @ts-ignore Vite eager JSON modules
-  return (files[key]?.default || files[key]) as StateRegistryData;
-}
+export default function StateRegistryStatePage(): JSX.Element {
+  const { "*": maybeParam } = useParams(); // works for nested routes
+  // your route likely ends with /states/:code
+  const code = (maybeParam || "").split("/").pop()?.toLowerCase() || "";
 
-function fmtDate(iso?: string) {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.valueOf())) return "";
-  return d.toLocaleDateString();
-}
+  // Try to match filename {code}.ts or {code}.json
+  const match = Object.entries(modules).find(([p]) =>
+    p.toLowerCase().endsWith(`/data/state-registry/${code}.ts`) ||
+    p.toLowerCase().endsWith(`/data/state-registry/${code}.json`)
+  );
 
-function pickLede(d?: StateRegistryData) {
-  // Prefer first plain-language summary bullet if present
-  const blurb = d?.plainLanguage?.atAGlance?.summary?.[0];
-  if (blurb && blurb.length > 0) return blurb;
-  // Fallback lede
-  return `Plain-language guide to ${d?.state ?? "this state"}’s registration requirements, deadlines, and restrictions with citations.`;
-}
-
-export default function StateRegistryStatePage() {
-  const params = useParams();
-  const code = (params.state || "").toLowerCase();
-  const data = getDataFor(code);
-
-  if (!code || !data) {
+  if (!match) {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <header className="bg-gradient-to-r from-slate-800 to-slate-600 text-white py-10 px-6 rounded-b-3xl shadow-md">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl font-bold">State not found</h1>
-            <p className="mt-2 text-slate-200">We haven’t published this state yet.</p>
-          </div>
-        </header>
-        <main className="max-w-3xl mx-auto p-6">
-          <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
-            <p className="text-slate-700">
-              Go back to the{" "}
-              <a className="underline" href="/resources/state-registry">Registry Rules hub</a>{" "}
-              and pick a published state.
-            </p>
-          </div>
-        </main>
-      </div>
+      <GuideLayout
+        title="State Guide — Coming Soon"
+        description="This state guide is not yet available."
+        keywords="registry, coming soon"
+        date=""
+        readTime=""
+        badge="⏳ COMING SOON"
+        lede="We’re working on this state guide. Check back shortly."
+        showTOC={false}
+      >
+        <p className="text-slate-700">If you need help now, visit the National Hub for federal rules and resources.</p>
+      </GuideLayout>
     );
   }
 
-  const title = `${data.state} Registry Rules`;
-  const description = `${data.state} registration requirements, restrictions, deadlines, travel/visitor rules, resources, and citations.`;
-  const date = fmtDate(data.lastReviewedUTC);
-  const lede = pickLede(data);
+  const mod = match[1] as any;
+  const data = (mod.default ?? mod) as StateRegistryData;
 
   return (
     <GuideLayout
-      title={title}
-      description={description}
-      keywords={`${data.state}, registry, SORNA, deadlines, restrictions, relief paths`}
-      date={date || undefined}
-      readTime="12 min"
-      badge="📘 STATE GUIDE"
-      lede={lede}
+      title={`${data.state} — Registry Rules`}
+      description={`Plain-language guide to ${data.state} sex offense registration duties with official citations.`}
+      keywords={`${data.state} registry, SORNA, registration deadlines, verification, restrictions`}
+      date={new Date(data.lastReviewedUTC || Date.now()).toLocaleDateString()}
+      readTime=""
+      badge="📍 STATE GUIDE"
+      lede={`Official-source summary for ${data.state}.`}
       showTOC={true}
     >
-      <div className="mb-6">
-        {/* If your TOC requires anchors, your Section headings in the template will appear. */}
-        <TOC />
-      </div>
-
       <StateRegistryTemplate data={data} />
     </GuideLayout>
   );
