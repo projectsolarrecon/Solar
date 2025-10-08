@@ -24,25 +24,21 @@ function toSlug(name: string) {
 export default function StateRegistryHubList(): JSX.Element {
   const [search, setSearch] = useState("");
 
-  // ✅ Updated glob import to load BOTH .ts and .json files
-  const files = import.meta.glob<StateFile>("../../data/state-registry/*.{ts,json}", { eager: true });
+  // ✅ Only load files named like "fl.ts" or "fl.json" (two lowercase letters)
+  const files = import.meta.glob<StateFile>("../../data/state-registry/[a-z][a-z].{ts,json}", { eager: true });
 
-  // ✅ Updated logic to handle TS default exports as well as raw JSON
   const liveMap = useMemo(() => {
     const map = new Map<string, { lastReviewedUTC?: string; code: string }>();
     for (const [path, mod] of Object.entries(files)) {
-      const raw = (mod as any);
-      const data = (raw?.default ?? raw) as StateFile; // Handles both TS and JSON
+      const raw = mod as any;
+      const data = (raw?.default ?? raw) as StateFile; // TS default export or raw JSON
       if (!data?.state) continue;
-
-      // Extract the filename code (e.g., "fl" from ".../fl.ts" or ".../fl.json")
-      const code = path.split("/").pop()!.replace(/\.(ts|json)$/i, "");
+      const code = path.split("/").pop()!.replace(/\.(ts|json)$/i, ""); // "fl"
       map.set(data.state, { lastReviewedUTC: data.lastReviewedUTC, code });
     }
     return map;
   }, [files]);
 
-  // Filter by search
   const filtered = ALL_STATES.filter((name) =>
     name.toLowerCase().includes(search.toLowerCase())
   );
@@ -65,10 +61,8 @@ export default function StateRegistryHubList(): JSX.Element {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
         {filtered.map((name) => {
           const hit = liveMap.get(name);
-          const slug = toSlug(name);
 
           if (hit) {
-            // LIVE card with link
             return (
               <Link
                 key={name}
@@ -90,7 +84,6 @@ export default function StateRegistryHubList(): JSX.Element {
             );
           }
 
-          // Coming soon (no link)
           return (
             <div
               key={name}
