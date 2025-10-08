@@ -24,24 +24,25 @@ function toSlug(name: string) {
 export default function StateRegistryHubList(): JSX.Element {
   const [search, setSearch] = useState("");
 
-  // 1) Import every JSON in /src/data/state-registry at build time
-  //    NOTE: this path is relative to THIS file: src/components/solar/StateRegistryHubList.tsx
-  const files = import.meta.glob<StateFile>("../../data/state-registry/*.json", { eager: true });
+  // ✅ Updated glob import to load BOTH .ts and .json files
+  const files = import.meta.glob<StateFile>("../../data/state-registry/*.{ts,json}", { eager: true });
 
-  // 2) Build a quick lookup: state name -> { lastReviewedUTC, codeFromFilename }
+  // ✅ Updated logic to handle TS default exports as well as raw JSON
   const liveMap = useMemo(() => {
     const map = new Map<string, { lastReviewedUTC?: string; code: string }>();
     for (const [path, mod] of Object.entries(files)) {
-      const data = (mod as any) as StateFile; // JSON modules load as the parsed object
+      const raw = (mod as any);
+      const data = (raw?.default ?? raw) as StateFile; // Handles both TS and JSON
       if (!data?.state) continue;
-      // Extract "fl" from ".../fl.json"
-      const code = path.split("/").pop()!.replace(".json", "");
+
+      // Extract the filename code (e.g., "fl" from ".../fl.ts" or ".../fl.json")
+      const code = path.split("/").pop()!.replace(/\.(ts|json)$/i, "");
       map.set(data.state, { lastReviewedUTC: data.lastReviewedUTC, code });
     }
     return map;
   }, [files]);
 
-  // 3) Filter the full list by search
+  // Filter by search
   const filtered = ALL_STATES.filter((name) =>
     name.toLowerCase().includes(search.toLowerCase())
   );
@@ -71,8 +72,7 @@ export default function StateRegistryHubList(): JSX.Element {
             return (
               <Link
                 key={name}
-                // NEW (uses JSON filename code, e.g., "fl", "tn")
-to={`/resources/state-registry/states/${hit.code}`}
+                to={`/resources/state-registry/states/${hit.code}`}
                 className="block bg-white border border-slate-200 rounded-lg shadow-sm hover:shadow-md p-3 transition hover:bg-slate-50"
               >
                 <div className="flex items-center justify-between">
