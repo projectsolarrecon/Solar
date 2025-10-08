@@ -271,17 +271,57 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
       </Card>
 
       <section className="border-t border-slate-200 pt-6">
-        <h2 className="text-xl font-semibold text-slate-800 flex items-center">
-          <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
-        </h2>
-        {Array.isArray(d.citations) && d.citations.length > 0 ? (
-          <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
-            {d.citations.map((c, i) => <li key={i}><SafeText text={c} /></li>)}
-          </ul>
-        ) : (
-          <p className="mt-2 text-slate-600">—</p>
-        )}
-      </section>
+  <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+    <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
+  </h2>
+
+  {Array.isArray(d.citations) && d.citations.length > 0 ? (
+    <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
+      {d.citations.map((c: any, i: number) => {
+        // String URL → clickable link
+        if (typeof c === "string") {
+          return (
+            <li key={i}>
+              <a
+                href={c}
+                target="_blank"
+                rel="noopener"
+                className="underline hover:text-blue-700 break-words"
+              >
+                {c}
+              </a>
+            </li>
+          );
+        }
+
+        // Object { label, url } → clickable labeled link
+        if (c && typeof c === "object" && "url" in c) {
+          return (
+            <li key={i}>
+              <a
+                href={c.url}
+                target="_blank"
+                rel="noopener"
+                className="underline hover:text-blue-700 break-words"
+              >
+                {c.label ?? c.url}
+              </a>
+            </li>
+          );
+        }
+
+        // Fallback (defensive)
+        return (
+          <li key={i}>
+            <SafeText text={String(c)} />
+          </li>
+        );
+      })}
+    </ul>
+  ) : (
+    <p className="mt-2 text-slate-600">—</p>
+  )}
+</section>
 
       <footer className="mt-8 text-xs text-slate-500 border-t border-slate-200 pt-4">
         <p>
