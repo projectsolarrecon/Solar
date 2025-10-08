@@ -111,15 +111,39 @@ export default {
     ]
   },
   "citations": [
-    "https://www.scstatehouse.gov/code/t23c003.php",
-    "https://www.sled.sc.gov/",
-    "https://scor.sled.sc.gov/",
-    "https://www.sled.sc.gov/sor_removal",
-    "https://www.scstatehouse.gov/sess124_2021-2022/sj22/20220615.htm",
-    "https://smart.ojp.gov/sorna/sorna-implementation-status/south-carolina.pdf",
-    "https://www.scstatehouse.gov/sess125_2023-2024/appropriations2023/tap1b.htm",
-    "https://www.scstatehouse.gov/coderegs/Chapter%2073.pdf"
-  ],
+  {
+    "label": "S.C. Code §23-3-430 et seq. (Sex Offender Registry)",
+    "url": "https://www.scstatehouse.gov/code/t23c003.php"
+  },
+  {
+    "label": "South Carolina Law Enforcement Division (SLED)",
+    "url": "https://www.sled.sc.gov/"
+  },
+  {
+    "label": "SLED Public Registry Search (SCOR)",
+    "url": "https://scor.sled.sc.gov/"
+  },
+  {
+    "label": "SLED Registry Removal Form",
+    "url": "https://www.sled.sc.gov/sor_removal"
+  },
+  {
+    "label": "Act No. 221 (2022 Legislative Update)",
+    "url": "https://www.scstatehouse.gov/sess124_2021-2022/sj22/20220615.htm"
+  },
+  {
+    "label": "DOJ SMART Review (Nov. 2024)",
+    "url": "https://smart.ojp.gov/sorna/sorna-implementation-status/south-carolina.pdf"
+  },
+  {
+    "label": "FY 2023-24 Budget Proviso 62.10",
+    "url": "https://www.scstatehouse.gov/sess125_2023-2024/appropriations2023/tap1b.htm"
+  },
+  {
+    "label": "Administrative Rules, Chapter 73",
+    "url": "https://www.scstatehouse.gov/coderegs/Chapter%2073.pdf"
+  }
+],
   "badges": {
     "residencyZones": true,
     "lifetimePossible": true,
