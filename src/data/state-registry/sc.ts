@@ -69,8 +69,21 @@ export default {
     "Administrative removal application fee (to SLED): $250, non-refundable, by money order/cashier’s check. See <a href='https://www.sled.sc.gov/sor_removal' target='_blank' rel='noopener'>SLED SOR Removal</a>."
   ],
   "recentChangesLitigation": [
-    "2022: Act No. 221 created tiers, added administrative and judicial removal processes, adjusted public disclosure, and added several reporting refinements. See <a href='https://www.scstatehouse.gov/sess124_2021-2022/sj22/20220615.htm' target='_blank' rel='noopener'>Senate Journal 6/15/2022 (Act 221)</a>.",
-    "2024 DOJ SMART review notes SC’s tiered, lifetime-by-default scheme with tier-based removal eligibility. See <a href='https://smart.ojp.gov/sorna/sorna-implementation-status/south-carolina.pdf' target='_blank' rel='noopener'>DOJ SMART (Nov. 1, 2024)</a>."
+    {
+      "type": "statute",
+      "bill": "Act No. 221",
+      "session": "2022",
+      "effective": "June 15, 2022",
+      "summary": "Created tiering, added administrative/judicial removal, adjusted disclosure, and refined reporting.",
+      "link": "https://www.scstatehouse.gov/sess124_2021-2022/sj22/20220615.htm"
+    },
+    {
+      "type": "rule",
+      "cite": "DOJ SMART State Profile — South Carolina",
+      "effective": "Nov. 1, 2024",
+      "summary": "Federal review reflecting South Carolina’s tiered scheme and removal processes.",
+      "link": "https://smart.ojp.gov/sorna/sorna-implementation-status/south-carolina.pdf"
+    }
   ],
   "checklistsScripts": {
     "newArrivalChecklist": [
