@@ -9,10 +9,13 @@ const modules = import.meta.glob("../../../../data/state-registry/[a-z][a-z].{ts
 export default function StateRegistryStatePage(): JSX.Element {
   const params = useParams();
 
-  // ✅ Support both route styles:
-  // - /resources/state-registry/states/:code  => params.code
-  // - wildcard-based routes                  => params["*"]
-  const rawParam = (params as any)?.code ?? (params as any)?.["*"] ?? "";
+  // Your route is :state, so prefer that. (Also fall back to :code or wildcard just in case.)
+  const rawParam =
+    (params as any)?.state ??
+    (params as any)?.code ??
+    (params as any)?.["*"] ??
+    "";
+
   const code = String(rawParam).split("/").pop()?.toLowerCase() || "";
 
   // Try to match filename {code}.ts or {code}.json
@@ -33,7 +36,9 @@ export default function StateRegistryStatePage(): JSX.Element {
         lede="We’re working on this state guide. Check back shortly."
         showTOC={false}
       >
-        <p className="text-slate-700">If you need help now, visit the National Hub for federal rules and resources.</p>
+        <p className="text-slate-700">
+          If you need help now, visit the National Hub for federal rules and resources.
+        </p>
       </GuideLayout>
     );
   }
