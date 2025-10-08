@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import GuideLayout from "../../../../components/layouts/GuideLayout";
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
 
-const modules = import.meta.glob("../../../../data/state-registry/*.{ts,json}", { eager: true });
+// ✅ Only pick up files like "fl.ts" or "fl.json" — excludes schema.ts automatically
+const modules = import.meta.glob("../../../../data/state-registry/[a-z][a-z].{ts,json}", { eager: true });
 
 export default function StateRegistryStatePage(): JSX.Element {
-  const { "*": maybeParam } = useParams(); // works for nested routes
-  // your route likely ends with /states/:code
-  const code = (maybeParam || "").split("/").pop()?.toLowerCase() || "";
+  const params = useParams();
+  const code = (params["*"] || "").split("/").pop()?.toLowerCase() || "";
 
   // Try to match filename {code}.ts or {code}.json
   const match = Object.entries(modules).find(([p]) =>
