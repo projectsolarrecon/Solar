@@ -3,12 +3,17 @@ import { useParams } from "react-router-dom";
 import GuideLayout from "../../../../components/layouts/GuideLayout";
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
 
-// ✅ Only pick up files like "fl.ts" or "fl.json" — excludes schema.ts automatically
+// Only pick up real state data files like "fl.ts" or "fl.json" (excludes schema.ts)
 const modules = import.meta.glob("../../../../data/state-registry/[a-z][a-z].{ts,json}", { eager: true });
 
 export default function StateRegistryStatePage(): JSX.Element {
   const params = useParams();
-  const code = (params["*"] || "").split("/").pop()?.toLowerCase() || "";
+
+  // ✅ Support both route styles:
+  // - /resources/state-registry/states/:code  => params.code
+  // - wildcard-based routes                  => params["*"]
+  const rawParam = (params as any)?.code ?? (params as any)?.["*"] ?? "";
+  const code = String(rawParam).split("/").pop()?.toLowerCase() || "";
 
   // Try to match filename {code}.ts or {code}.json
   const match = Object.entries(modules).find(([p]) =>
