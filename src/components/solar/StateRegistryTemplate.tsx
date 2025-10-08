@@ -182,27 +182,70 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
       <Card title="Recent Changes & Litigation" icon={<Gavel className="w-6 h-6 text-slate-600" />}>
         {Array.isArray(d.recentChangesLitigation) && d.recentChangesLitigation.length > 0 ? (
           <ul className="list-disc pl-6 text-slate-700 space-y-1">
-            {d.recentChangesLitigation.map((rc, i) => {
-              if ("name" in rc) {
+            {d.recentChangesLitigation.map((rc: any, i: number) => {
+              // If the item is a simple string, just render it safely.
+              if (typeof rc === "string") {
                 return (
                   <li key={i}>
-                    <strong>Case:</strong> <SafeText text={`${rc.name} — ${rc.court} (${rc.date}) — ${rc.holding}`} />{" "}
-                    {rc.link && <a className="underline" href={rc.link} target="_blank" rel="noopener">link</a>}
+                    <SafeText text={rc} />
                   </li>
                 );
               }
-              if ("bill" in rc) {
-                return (
-                  <li key={i}>
-                    <strong>Statute:</strong> <SafeText text={`${rc.bill} — ${rc.session}; effective ${rc.effective}. ${rc.summary}`} />{" "}
-                    {rc.link && <a className="underline" href={rc.link} target="_blank" rel="noopener">link</a>}
-                  </li>
-                );
+
+              // If it's an object, try to format based on known shapes.
+              if (rc && typeof rc === "object") {
+                // Case item
+                if ("name" in rc) {
+                  return (
+                    <li key={i}>
+                      <strong>Case:</strong>{" "}
+                      <SafeText text={`${rc.name} — ${rc.court ?? ""} ${rc.date ? `(${rc.date})` : ""}${rc.holding ? ` — ${rc.holding}` : ""}`} />{" "}
+                      {rc.link && (
+                        <a className="underline" href={rc.link} target="_blank" rel="noopener">
+                          link
+                        </a>
+                      )}
+                    </li>
+                  );
+                }
+                // Statute item
+                if ("bill" in rc) {
+                  return (
+                    <li key={i}>
+                      <strong>Statute:</strong>{" "}
+                      <SafeText
+                        text={`${rc.bill}${rc.session ? ` — ${rc.session}` : ""}${rc.effective ? `; effective ${rc.effective}` : ""}${rc.summary ? `. ${rc.summary}` : ""}`}
+                      />{" "}
+                      {"link" in rc && rc.link && (
+                        <a className="underline" href={rc.link} target="_blank" rel="noopener">
+                          link
+                        </a>
+                      )}
+                    </li>
+                  );
+                }
+                // Rule or generic object
+                if ("cite" in rc || "summary" in rc || "effective" in rc) {
+                  return (
+                    <li key={i}>
+                      <strong>{"cite" in rc ? "Rule:" : "Update:"}</strong>{" "}
+                      <SafeText
+                        text={`${rc.cite ? `${rc.cite}; ` : ""}${rc.effective ? `effective ${rc.effective}. ` : ""}${rc.summary ?? ""}`}
+                      />{" "}
+                      {"link" in rc && rc.link && (
+                        <a className="underline" href={rc.link} target="_blank" rel="noopener">
+                          link
+                        </a>
+                      )}
+                    </li>
+                  );
+                }
               }
+
+              // Fallback: render whatever it is
               return (
                 <li key={i}>
-                  <strong>Rule:</strong> <SafeText text={`${(rc as any).cite}; effective ${(rc as any).effective}. ${(rc as any).summary}`} />{" "}
-                  {"link" in (rc as any) && (rc as any).link && <a className="underline" href={(rc as any).link} target="_blank" rel="noopener">link</a>}
+                  <SafeText text={String(rc)} />
                 </li>
               );
             })}
