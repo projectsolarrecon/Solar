@@ -1,155 +1,97 @@
-const d = {
+export default {
   state: "New York",
-  lastReviewedUTC: "2025-10-09T00:00:00Z",
+  lastReviewedUTC: "2025-10-09T12:00:00Z",
 
   atAGlance: {
-    mustRegister: "**Who must register:** Persons convicted of registerable sex offenses under **Correction Law Article 6-C (SORA)**, and persons with equivalent out-of-state convictions. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-a\" target=\"_blank\" rel=\"noopener\">N.Y. Correction Law § 168­a</a>",
-    initialDeadline: "**Initial deadline:** Register at sentencing or at least **10 calendar days before release/discharge**. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-c\" target=\"_blank\" rel=\"noopener\">§ 168-c(2)</a>",
-    verificationCadence: "**Verification cadence:** Level 3/designated offenders must personally verify **every 90 days**; Level 1 & 2 must personally appear for updated photographs every 3 years. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-f\" target=\"_blank\" rel=\"noopener\">§ 168-f(2)(b-2),(b-3)</a>",
-    primaryMethod: "**Primary method:** In-person registration or verification via local law enforcement; changes reported in writing to DCJS/LEO.",
+    mustRegister: "**Who:** Individuals convicted of registerable offenses (in NY or comparable out-of-state/federal/military offenses) and certain nonresident workers/students; see [Correction Law Art. 6-C](https://www.nysenate.gov/legislation/laws/COR/A6-C).",
+    initialDeadline: "**Deadline:** Register before release or at sentencing; movers to NY must notify DCJS within **10 days** of establishing residence; see [§ 168-f](https://www.nysenate.gov/legislation/laws/COR/168-F) and DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+    verificationCadence: "**Verification:** Annual mail verification for all; **Level 3 / ‘sexual predator’** address verification **every 90 days** in person; photos: Levels 1–2 every **3 years**, Level 3 **annually**; see [§ 168-f](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    primaryMethod: "**Method:** Mail-back annual form to DCJS; required in-person photo updates at local law enforcement per schedule; Level 3 also verifies address in person every 90 days; see [§ 168-f](https://www.nysenate.gov/legislation/laws/COR/168-F).",
     topGotchas: [
-      "Designation as sexual predator / sexually violent / predicate overrides many relief paths.",
-      "Out-of-state equivalent offenses may trigger registration under SORA. <a href=\"https://oadnyc.org/sex-offenses/\" target=\"_blank\" rel=\"noopener\">OADNYC on out-of-state registration</a>",
-      "Petition for risk level modification or removal is limited by statute (e.g. two-year wait). <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-o\" target=\"_blank\" rel=\"noopener\">§ 168-o</a>"
+      "All changes (address, employment, school, internet identifiers) must be reported within **10 days**; see [§ 168-f(3)–(4)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+      "Level 3/‘sexual predator’: **90-day** in-person address verification; see [§ 168-f(3)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+      "Nonresident workers/students may need to register; see [definitions](https://www.nysenate.gov/legislation/laws/COR/168-A).",
+      "No statewide residency bans once off supervision; some **parole/probation** cases face school-grounds limits; see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm) and [Penal Law § 65.10(4-a)](https://www.nysenate.gov/legislation/laws/PEN/65.10).",
+      "Missing mail-back/photo windows is a crime; first failure is a class **E felony**; see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm)."
     ],
     officialLinks: {
-      statuteIndex: "https://www.criminaljustice.ny.gov/nsor/claws.htm",
-      adminRules: undefined,
-      statePoliceRegistry: undefined,
-      formsPortal: undefined,
-      publicWebsite: "https://www.criminaljustice.ny.gov/nsor/"
+      statuteIndex: "https://www.nysenate.gov/legislation/laws/COR/A6-C",
+      statePoliceRegistry: "https://www.criminaljustice.ny.gov/nsor/",
+      publicWebsite: "https://doccs.ny.gov/sex-offender-registry"
     }
   },
 
-  whoMustRegister: "**Who must register:** Under *Correction Law Article 6-C*, any person convicted in NY of a listed sex offense must register. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-a\" target=\"_blank\" rel=\"noopener\">§ 168-a</a> Those convicted outside NY must register if their offense is equivalent or if they are required to register elsewhere. <a href=\"https://oadnyc.org/sex-offenses/\" target=\"_blank\" rel=\"noopener\">Out-of-state registration rules</a>",
+  whoMustRegister: "**Who:** Persons convicted of a registerable sex offense, and out-of-state/federal/military offenders deemed registerable; certain nonresident workers/students present in NY also fall under SORA; see [Art. 6-C](https://www.nysenate.gov/legislation/laws/COR/A6-C) and DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+
   deadlinesReporting: [
-    "**Initial registration deadline:** At sentencing or at least **10 calendar days prior to release/discharge/parole**. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-c\" target=\"_blank\" rel=\"noopener\">§ 168-c(2)</a>",
-    "**Change of address / status:** Report any change of address, enrollment, employment, or educational institution within **10 calendar days**. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-j\" target=\"_blank\" rel=\"noopener\">§ 168-j(1)</a>"
+    "**Initial:** Register before release or at sentencing; movers to NY must notify DCJS within **10 days** of establishing residence; see [§ 168-f(1), (7)](https://www.nysenate.gov/legislation/laws/COR/168-F) and DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+    "**Annual mailer:** Sign and return the DCJS verification form within **10 days** of receipt; see [§ 168-f(2)(a)–(b)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    "**Changes:** Report changes of residence, employment, school, vehicles, and **internet identifiers** within **10 days**; see [§ 168-f(3)–(4)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    "**Photos:** Level 3 – appear annually; Levels 1–2 – every 3 years; see [§ 168-f(2)(b-2),(b-3)](https://www.nysenate.gov/legislation/laws/COR/168-F)."
   ],
+
   verificationInPerson: [
-    "**Level 3 / designated offenders:** Personal verification every 90 days with LEO. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-f\" target=\"_blank\" rel=\"noopener\">§ 168-f(2)</a>",
-    "**Level 1 & 2:** Provide updated photograph every 3 years in person. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-f\" target=\"_blank\" rel=\"noopener\">§ 168-f(2)(b-3)</a>"
+    "**Level 3 / ‘sexual predator’:** Personally verify address every **90 days** with local law enforcement; see [§ 168-f(3)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    "**Photographs:** Appear at local law enforcement for updated photo (Level 3 annually; Levels 1–2 every 3 years); see [§ 168-f(2)(b-2),(b-3)](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    "**If confined:** In-person duties are suspended while incarcerated; see [§ 168-f](https://www.nysenate.gov/legislation/laws/COR/168-F)."
   ],
-  residencyPresence: "**Residency / presence rule:** A sex offender who establishes residence in NY (or moves) must register within 10 days. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-k\" target=\"_blank\" rel=\"noopener\">§ 168-k(1)</a>",
+
+  residencyPresence: "**Residency:** SORA itself imposes **no statewide residency bans**; local ordinances are **pre-empted** (*People v. Diack*, 2015). Individuals on supervision may face school-grounds limits under [Penal Law § 65.10(4-a)](https://www.nysenate.gov/legislation/laws/PEN/65.10) and Exec. Law § 259-c(14); see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+
   employmentEducationInternet: [
-    "**Employment / education / Internet identifiers:** Must report employer, school, or institution and any residence in such institution. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-c\" target=\"_blank\" rel=\"noopener\">§ 168-c(1)</a>",
-    "Change in status (employment, enrollment) must be reported within 10 days. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-j\" target=\"_blank\" rel=\"noopener\">§ 168-j(4)</a>"
+    "**Employment/school:** Provide employer address (Levels 2–3) and higher-ed status; report any change within **10 days**; see [§ 168-f(4)](https://www.nysenate.gov/legislation/laws/COR/168-F) and DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+    "**Internet identifiers (e-STOP):** Disclose email/screen names and update within **10 days**; authorized entities may receive identifiers; see [§ 168-a(18)](https://www.nysenate.gov/legislation/laws/COR/168-A) and [§ 168-b](https://www.nysenate.gov/legislation/laws/COR/168-B), plus DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm)."
   ],
+
   publicWebsiteExposure: [
-    "Only **Level 2 and Level 3** offenders are in the public Subdirectory on the registry website. <a href=\"https://www.criminaljustice.ny.gov/nsor/\" target=\"_blank\" rel=\"noopener\">NYS Sex Offender Registry (public)› Info</a>",
-    "Level 1 registrants exist in the registry but are not publicly listed with full details. <a href=\"https://www.criminaljustice.ny.gov/nsor/\" target=\"_blank\" rel=\"noopener\">Registry site</a>"
+    "**Levels on web:** Levels **2–3** appear on the public subdirectory (with photo/address); Level **1** not posted; see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm) and public [search page](https://doccs.ny.gov/sex-offender-registry).",
+    "**Higher-ed disclosure:** Attendance/employment/residence at higher-ed institutions may be included; see [§ 168-q](https://www.nysenate.gov/legislation/laws/COR/168-Q)."
   ],
+
   travelInterstate: [
-    "**Moving into NY:** Must notify DCJS within 10 days. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-k\" target=\"_blank\" rel=\"noopener\">§ 168-k(1)</a>",
-    "If traveling short-term (< 10 days) generally no registration, unless residence is established."
+    "**Moving out:** Notify DCJS of new address within **10 days** and comply with the new state’s law; see [§ 168-j](https://www.nysenate.gov/legislation/laws/COR/168-J).",
+    "**Short travel:** Brief visits without residence/work/school generally do not trigger registration; thresholds apply for nonresident workers/students (see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm))."
   ],
+
   visitingTraveling: [
-    "Visits shorter than 10 days typically do not require registration in NY.",
-    "Longer or repeated stays may be deemed residence requiring registration under § 168-k."
+    "**Nonresident worker/student:** Out-of-state residents employed or studying in NY must register and keep DCJS updated within **10 days**; see [§ 168-a](https://www.nysenate.gov/legislation/laws/COR/168-A) and [§ 168-f](https://www.nysenate.gov/legislation/laws/COR/168-F).",
+    "**Visitors:** Temporary travel without NY residence/work/school normally does not create duties; verify requirements if on supervision (see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm))."
   ],
-  complianceEnforcement: "**Enforcement / Penalties:** Failure to register, verify, or timely report changes is a **Class E felony** on first offense; **Class D felony** for subsequent violations. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-t\" target=\"_blank\" rel=\"noopener\">§ 168-t</a>",
+
+  complianceEnforcement: "**Penalties:** Failure to register/verify/update is a crime (Class E felony first, Class D felony subsequent); see [§ 168-t](https://www.nysenate.gov/legislation/laws/COR/168-T) and DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+
   reliefPaths: [
-    "**Risk level modification:** Sex offender may petition court annually to reduce level. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-o\" target=\"_blank\" rel=\"noopener\">§ 168-o</a>",
-    "**Removal / relief:** Level 2 non-designated offenders may petition for removal after 30 years. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-h\" target=\"_blank\" rel=\"noopener\">§ 168-h(2)</a>"
+    "**Level 1:** 20 years unless designated sexual predator/sexually violent/predicate; see [§ 168-h(1)](https://www.nysenate.gov/legislation/laws/COR/168-H).",
+    "**Level 2:** After 30 years (no designation), may petition for termination; see [§ 168-o(1)](https://www.nysenate.gov/legislation/laws/COR/168-O).",
+    "**Modification:** Levels 2–3 may petition yearly to lower risk level; see [§ 168-o(2)](https://www.nysenate.gov/legislation/laws/COR/168-O)."
   ],
+
   specialPopulations: [
-    "Designation as **sexual predator, sexually violent, predicate** triggers **lifetime** registration regardless of level. <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-h\" target=\"_blank\" rel=\"noopener\">§ 168-h(2)</a>",
-    "Juvenile offenders ≥ age 13 may fall under SORA depending on statute and court determination."
+    "**Juveniles:** Youthful-offender/juvenile-delinquent findings don’t trigger SORA; juvenile offender convictions do; see DCJS [FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+    "**Supervised:** Parole/probation can add school-grounds restrictions under [Penal Law § 65.10(4-a)](https://www.nysenate.gov/legislation/laws/PEN/65.10).",
+    "**Homeless:** Address rules adapted by courts; see *People v. Allen* ([PDF opinion](https://www.nycourts.gov/courts/ad1/calendar/List_Word/2023/02_Feb/02/PDF/People%20%20v%20%20Corey%20Allen%20%282019-2895%20Opn.%29.pdf))."
   ],
+
   costs: [
-    "There is a **$10 fee** for registering address or status changes per § 168-c(4). <a href=\"https://www.criminaljustice.ny.gov/nsor/claws.htm#168-c\" target=\"_blank\" rel=\"noopener\">§ 168-c(4)</a>",
-    "Court fees may apply for petitions or motion filings (per local rules)."
+    "**Change fee:** $10 per address/education update; see [§ 168-b(8)](https://www.nysenate.gov/legislation/laws/COR/168-B).",
+    "**Court surcharges:** Separate criminal fees may apply; see [CourtHelp guide](https://www.nycourts.gov/courthelp/criminal/surchargesFees.shtml)."
   ],
 
   recentChangesLitigation: [
-    {
-      type: "statute",
-      bill: "S7830 (2025)",
-      session: "2025",
-      effective: "if passed",
-      summary: "Would address constitutional concerns regarding homeless sex offenders and registration obligations.",
-      link: "https://www.nysenate.gov/legislation/bills/2025/S7830"
-    }
+    { type: "case", name: "People v. Diack", court: "N.Y. Court of Appeals", date: "2015-02-17", holding: "Local residency restrictions preempted by state law.", link: "https://law.justia.com/cases/new-york/court-of-appeals/2015/1.html" },
+    { type: "statute", bill: "Ch. 67 (2008 e-STOP)", session: "2008", effective: "2008-04-28", summary: "Added internet identifier requirements.", link: "https://www.criminaljustice.ny.gov/nsor/faq.htm" },
+    { type: "rule", cite: "Correction Law §§ 168-f, 168-h", effective: "current through 2025", summary: "Maintains quarterly Level 3 checks and photo schedule." }
   ],
-
-  checklistsScripts: {
-    newArrivalChecklist: [
-      "Within 10 days of moving to NY, register with DCJS if duty triggered",
-      "Notify local law enforcement of your address, employer, school",
-      "Find schedule for in-person verification with local LEO"
-    ],
-    movingOutChecklist: [
-      "Notify local LE of departure address",
-      "Report new address to DCJS and jurisdiction",
-      "Ensure continuing registration compliance in new location"
-    ],
-    recordsRequestTemplate: "To: [Agency]\nSubject: Request for Sex Offender Registration Record\nI hereby request my sex offender registration record under SORA (Article 6-C), including level, designation, and history of modifications.",
-    reliefPetitionOutline: "1. Current level & designation\n2. Years registered without incident\n3. Evidence of rehabilitation & low risk\n4. Legal arguments under § 168-o / § 168-h\n5. Request for relief or reduction"
-  },
-
-  resources: {
-    legalAid: [
-      { name: "NY CourtHelp – Sex Offender Registry", link: "https://www.nycourts.gov/courthelp/criminal/sexOffenderRegistry.shtml" }
-    ],
-    advocacy: [
-      { name: "OADNYC – Sex Offense Representation", link: "https://oadnyc.org/sex-offenses/" }
-    ],
-    reentry: []
-  },
 
   citations: [
-    { label: "NYS SORA statute (Correction Law Art. 6-C)", url: "https://www.criminaljustice.ny.gov/nsor/claws.htm" },
-    { label: "SORA definitions § 168-a", url: "https://www.nysenate.gov/legislation/laws/COR/168-A" },
-    { label: "NYS Sex Offender Registry official site", url: "https://www.criminaljustice.ny.gov/nsor/" },
-    { label: "NY CourtHelp registry info", url: "https://www.nycourts.gov/courthelp/criminal/sexOffenderRegistry.shtml" },
-    { label: "S7830 2025 bill", url: "https://www.nysenate.gov/legislation/bills/2025/S7830" }
+    { label: "Correction Law, Article 6-C (SORA)", url: "https://www.nysenate.gov/legislation/laws/COR/A6-C" },
+    { label: "§ 168-f — Duties to Register/Verify", url: "https://www.nysenate.gov/legislation/laws/COR/168-F" },
+    { label: "§ 168-k — Moves into NY", url: "https://www.nysenate.gov/legislation/laws/COR/168-K" },
+    { label: "§ 168-t — Penalties", url: "https://www.nysenate.gov/legislation/laws/COR/168-T" },
+    { label: "Penal Law § 65.10(4-a) — Supervision Conditions", url: "https://www.nysenate.gov/legislation/laws/PEN/65.10" },
+    { label: "DCJS — SORA FAQ", url: "https://www.criminaljustice.ny.gov/nsor/faq.htm" },
+    { label: "People v. Diack (2015)", url: "https://law.justia.com/cases/new-york/court-of-appeals/2015/1.html" }
   ],
 
-  badges: {
-    residencyZones: false,
-    lifetimePossible: true,
-    verificationQuarterly: true
-  },
-
-  plainLanguage: {
-    whoMustRegister: {
-      summary: [
-        "If you are convicted of a listed sex offense in NY or elsewhere (if equivalent), you must register under SORA.",
-        "Out-of-state convictions may still trigger a registration duty in NY."
-      ],
-      watchOuts: [
-        "Designation (sexual predator, etc.) often eliminates relief paths."
-      ],
-      citations: [
-        "https://www.criminaljustice.ny.gov/nsor/claws.htm#168-a",
-        "https://oadnyc.org/sex-offenses/"
-      ],
-      reviewedBy: "Expert",
-      reviewedUTC: "2025-10-09T00:00:00Z"
-    },
-    deadlinesReporting: {
-      summary: [
-        "Register at sentencing or before release; report any changes within 10 days."
-      ],
-      watchOuts: [
-        "Missing the 10-day window on relocation or status change violates law."
-      ],
-      citations: [
-        "https://www.criminaljustice.ny.gov/nsor/claws.htm#168-c",
-        "https://www.criminaljustice.ny.gov/nsor/claws.htm#168-j"
-      ],
-      reviewedBy: "Expert",
-      reviewedUTC: "2025-10-09T00:00:00Z"
-    }
-  },
-
-  overview: "",
-  requirements: "",
-  residency: "",
-  employment: "",
-  travel: "",
-  removal: "",
-  tierNotes: "",
-  validationNote: ""
-} as const;
-export default d;
+  badges: { residencyZones: false, lifetimePossible: true, verificationQuarterly: true }
+};
