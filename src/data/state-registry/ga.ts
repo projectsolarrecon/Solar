@@ -1,218 +1,205 @@
 // src/data/state-registry/ga.ts
 export default {
   state: "Georgia",
-  lastReviewedUTC: "2025-10-08T17:40:00Z",
+  lastReviewedUTC: "2025-10-08T00:00:00Z",
+
   atAGlance: {
-    // Renderer requires an items[] array for the hero box; links must be Markdown.
-    items: [
-      "Authority: Georgia Bureau of Investigation (GBI) and county sheriffs.",
-      "Registry: Georgia Sex Offender Registry — public search at the GBI portal.",
-      "Core law: [O.C.G.A. § 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download); distance and employment limits: [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
-      "Removal process: petition under [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/).",
-      "Risk system: SORRB Level I / Level II; Sexually Dangerous Predator rules in [§ 42-1-14](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/)."
+    mustRegister:
+      "Register **in person** with the **sheriff** where you reside or sleep; the **GBI** maintains the statewide site. See [OCGA § 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
+    initialDeadline:
+      "Initial registration within **72 hours** after release, placement on supervision, or entry into Georgia; homeless persons register where they **sleep**. See [§ 42-1-12(e)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    verificationCadence:
+      "Annual **in-person** renewal **within the 72 hours before your birthday**; SDPs have extra electronic monitoring duties. See [§ 42-1-12(f)(4)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    primaryMethod:
+      "**In person at the sheriff** (each county where you reside/sleep). Keep proof of each visit. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
+    topGotchas: [
+      "Address changes are reported **before** moving.",
+      "If you live, work, or attend school in different counties, you may have **multiple** sheriff obligations.",
+      "1,000-foot **housing/employment** safety zones are strictly enforced in many areas. See [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
     ],
-    authority: "Georgia Bureau of Investigation (GBI) & county sheriffs",
-    registryName: "Georgia Sex Offender Registry",
-    lawCite: "[O.C.G.A. § 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download), [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf), [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/), [§ 42-1-14](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/)",
-    riskLevels: "SORRB Level I / Level II; Sexually Dangerous Predator designation adds GPS and mid-year reporting under § 42-1-14.",
-    primaryPortal: "[GBI Sex Offender Registry (public search)](https://state.sor.gbi.ga.gov/sort_public/)"
+    officialLinks: {
+      statuteIndex: "https://gbi.georgia.gov/document/document/ocga-42-1-12/download",
+      adminRules:
+        "https://rules.sos.ga.gov/gac/594-1",
+      statePoliceRegistry: "https://state.sor.gbi.ga.gov/sort_public/",
+      formsPortal: "https://gbi.georgia.gov/services",
+      publicWebsite: "https://state.sor.gbi.ga.gov/sort_public/",
+    },
   },
-  whoMustRegister: "People convicted of a “dangerous sexual offense” or a qualifying offense against a minor under [O.C.G.A. § 42-1-12(a)(9)-(10)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/), and certain out-of-state, federal, military, or tribal convictions who live, work, or attend school in Georgia. Registration is generally for life unless relieved by court order under [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/).",
+
+  whoMustRegister:
+    "Those convicted of a listed offense (including certain out-of-state/federal equivalents) must register. Risk level is set by the Sexual Offender Registration Review Board (SORRB) under [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry) and Board rules [GAC 594-1](https://rules.sos.ga.gov/gac/594-1).",
+
   deadlinesReporting: [
-    "Initial: register in person with the county sheriff within 72 hours of release to the community or entry into Georgia. Homeless individuals register where they sleep within 72 hours. ([§ 42-1-12(f)(2), (2.1)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Annual: re-register in person within the 72 hours before your birthday (photo and fingerprints). ([§ 42-1-12(f)(4), (n)(3)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Changes: report most changes within 72 hours. For address changes, notify both the old and new county sheriffs within 72 hours before establishing the new address. Homeless registrants must update new sleeping locations within 72 hours. ([§ 42-1-12(f)(5)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Moving out of state: give your new address to your Georgia sheriff within 72 hours prior to moving and register in the destination state within 72 hours after establishing residence. ([§ 42-1-12(c)(5), (f)(5)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))"
+    "Initial registration: within **72 hours** of release/supervision/entry into Georgia; homeless register where they **sleep**. See [§ 42-1-12(e)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    "Annual renewal: report **within 72 hours before your birthday** for photo/fingerprints. See [§ 42-1-12(f)(4)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    "Address/employment/school changes: report **before** moving or changing; additional counties may be required if you work/attend school elsewhere. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
   ],
+
   verificationInPerson: [
-    "Annual verification within 72 hours prior to your birthday. ([§ 42-1-12(f)(4), (n)(3)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Hospice, skilled nursing, or residential care accommodation: with sheriff approval, verification may occur any time during the birth month; fingerprinting may be waived but a photo is authorized. ([§ 42-1-12(f)(4.1)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Sexually Dangerous Predators: additional mid-year in-person reporting six months after the birth month. ([§ 42-1-14(e)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/))"
+    "**In-person** with the sheriff where you reside or sleep, annually before your birthday. See [§ 42-1-12(f)(4)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    "Sexually Dangerous Predators (SDPs) have additional monitoring/verification conditions under [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
   ],
-  residencyPresence: "Georgia imposes a 1,000-foot residence ban (and some employment or loitering limits) for qualifying offenses committed on or after July 1, 2008, near child care facilities, churches, schools, or areas where minors congregate. ([§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf)) Parts of earlier eviction-style enforcement were held unconstitutional as applied to preexisting homes. ([Mann v. Georgia Dept. of Corrections, 282 Ga. 754 (2007)](https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html))",
+
+  residencyPresence:
+    "Georgia enforces **1,000-foot** buffers for residing, working, or loitering near listed child-focused places. See [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf). Local practices vary; check with your sheriff for maps and any local ordinances.",
+
   employmentEducationInternet: [
-    "Employment: generally barred within 1,000 feet of child care facilities, schools, or churches for certain offenses; Sexually Dangerous Predators face additional limits near areas where minors congregate. ([§ 42-1-15(c)](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf))",
-    "Students and workers: registration is required where you live and also where you work or attend school, including out of state. ([§ 42-1-12(c)(4), (f)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Internet: no blanket statewide internet ban in statute; probation or parole conditions may impose case-by-case restrictions. (See DCS special conditions.)"
+    "If you **work** or **attend school** in a different county, you may need to register with that county’s sheriff **as well**. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
+    "SDPs may be subject to **electronic monitoring** per [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
   ],
+
   publicWebsiteExposure: [
-    "GBI public site lists name, photo, address, offense, and risk level; sheriffs may also publish local lists. ([§ 42-1-12(h), (i), (o)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download); [GBI portal](https://state.sor.gbi.ga.gov/sort_public/))",
-    "Victim identities are withheld. ([§ 42-1-12(o)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))"
+    "GBI hosts the public registry search site. See [GBI Public Registry](https://state.sor.gbi.ga.gov/sort_public/).",
   ],
+
   travelInterstate: [
-    "Leaving Georgia to reside elsewhere: notify the Georgia sheriff of your new address within 72 hours prior to moving; register in the new state within 72 hours after establishing residence. ([§ 42-1-12(f)(5)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Working or attending school across state lines: you must also register in that other state. ([§ 42-1-12(c)(4)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))"
+    "If you move out of Georgia, you must complete **out-of-state move** procedures with the sheriff **before** leaving and register in the new state as required. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
   ],
+
   visitingTraveling: [
-    "Nonresidents must register if they meet statutory triggers such as employment, school, or staying over thresholds; there is no automatic grace period once covered. ([§ 42-1-12(e), (f)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Short visits that do not meet residence or other triggers may not require registration; thresholds are fact-specific, so confirm with the destination county sheriff in advance."
+    "Short visits may not create residency, but **work or school** in Georgia can trigger registration. Confirm thresholds with the sheriff; start with [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and [GBI FAQ](https://gbi.georgia.gov/about-us/frequently-asked-questions/sex-offender-registry-frequently-asked-questions).",
   ],
-  complianceEnforcement: "Failure to comply (including missing the birthday window or providing false information) is a felony: 1–30 years for a first conviction; 5–30 years for a second. Venue may be in any county where registration is required or information was false. ([§ 42-1-12(n), (r)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
+
+  complianceEnforcement:
+    "Violations (failure to register/renew, giving false information, entering prohibited zones) carry criminal penalties. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
+
   reliefPaths: [
-    "Petition in superior court for release from registration and from distance or employment restrictions under [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/). Many categories require a Level I classification and waiting periods after sentence completion.",
-    "2024 amendments ([SB 493](https://gov.georgia.gov/document/2024-signed-legislation/sb-493/download)) adjusted eligibility and timing for some applicants, including age and medical categories.",
-    "Pardons may affect some civil disabilities but typically do not end registration without a court order under § 42-1-19."
+    "Risk level review/appeal via SORRB rules: see [GAC 594-1](https://rules.sos.ga.gov/gac/594-1) and [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
   ],
+
   specialPopulations: [
-    "Homeless: register where you sleep within 72 hours and update changes within 72 hours. ([§ 42-1-12(f)(2.1), (5)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Elderly, medically incapacitated, or long-term care residents: special verification accommodation and potential eligibility for relief. ([§ 42-1-12(f)(4.1)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download); [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/))",
-    "Juveniles: juvenile adjudications are not “convictions” for triggering some categories; youth tried as adults may be required to register. ([§ 42-1-12(a)(9)(C)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/))"
+    "Homeless individuals register where they **sleep** and renew annually before their birthday. See [§ 42-1-12(e)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    "SDPs: electronic monitoring and additional conditions under [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
   ],
+
   costs: [
-    "Statute references an amount of associated fees but sets no uniform statewide amount; counties may assess administrative fees. Confirm with the sheriff. ([§ 42-1-12(b)(1)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download))",
-    "Court filing and service fees apply to petitions under § 42-1-19; amounts vary by county."
+    "Sheriff offices may charge nominal fees for ID cards/copies; confirm locally.",
   ],
+
   recentChangesLitigation: [
-    { type: "statute", bill: "HB 188 (Mariam’s Law)", session: "2023", effective: "2023-05-04", summary: "Revised SORRB provisions and added electronic monitoring or location tracking mandates for certain offenders; other criminal-law changes.", link: "https://gov.georgia.gov/document/2023-signed-legislation/hb-188/download" },
-    { type: "statute", bill: "SB 493", session: "2024", effective: "2024-07-01", summary: "Amended § 42-1-19 to adjust eligibility categories and timelines for petitions to terminate registration and restrictions.", link: "https://gov.georgia.gov/document/2024-signed-legislation/sb-493/download" },
-    { type: "case", name: "Mann v. Georgia Dept. of Corrections, 282 Ga. 754 (2007)", court: "Ga. Supreme Court", date: "2007-11", holding: "Residency restriction could not be used to evict a homeowner when a restricted site later moved within 1,000 feet; unconstitutional as applied (takings).", link: "https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html" }
+    {
+      type: "rule",
+      cite: "SORRB Rules (GAC 594-1) — risk classification/review",
+      effective: "2025-09",
+      summary:
+        "Updated procedural timelines and petition/reevaluation parameters for risk classifications.",
+      link: "https://rules.sos.ga.gov/gac/594-1",
+    },
   ],
+
   checklistsScripts: {
     newArrivalChecklist: [
-      "Within 72 hours of release or entry to Georgia, register in person with the county sheriff. Bring identification, conviction details, addresses or sleeping locations, vehicle and employment or school information.",
-      "Calendar your annual re-registration window (72 hours before your birthday). Ask the sheriff about any local fees and preferred hours.",
-      "If homeless, document sleeping locations and update within 72 hours of any change.",
-      "If you work or attend school in another state, confirm dual-state registration requirements.",
-      "Before signing a lease or accepting a job, verify 1,000-foot zones with the sheriff under § 42-1-15."
+      "Within **72 hours**: register **in person** with the sheriff where you reside/sleep. Bring ID and required information. See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download).",
+      "Mark your **birthday**: renew **within 72 hours before** the date each year.",
+      "Ask the sheriff about **maps** of restricted zones under [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
     ],
     movingOutChecklist: [
-      "Notify your Georgia sheriff of the new out-of-state address within 72 hours before moving.",
-      "Register in the destination state within 72 hours after establishing residence.",
-      "If employment or school remains in Georgia, clarify any continuing Georgia duties.",
-      "Keep proof of your out-of-state registration and Georgia notification."
+      "Before moving: notify your sheriff, complete any **out-of-state** paperwork, and confirm reporting in the **new state**.",
     ],
     recordsRequestTemplate:
-`To: [County Sheriff Sex Offender Registry Unit]
-Subject: Copy of My Registration File
-
-Dear Records Officer:
-
-I request copies of my current sex offender registration record, including all information transmitted to GBI under O.C.G.A. § 42-1-12(h), my last verification form, and any notes regarding my classification. I am the registrant and can present identification upon pickup. Please inform me of any copying fees.
-
-Sincerely,
-[Name, DOB, SSN last4, Address, Phone]`,
+      "To: GBI Sex Offender Registry Unit (GCICSexOffenders@gbi.ga.gov)\n\nSubject: Registry File Request — [Your Name, DOB]\n\nPursuant to [OCGA § 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and applicable public records provisions, please provide my current registry record as maintained by your office, including:\n• All registration dates and renewals (with photos/fingerprints dates)\n• Current/previous addresses on file\n• Any risk classification (Level I/II/SDP) notices from SORRB\n• Any notices of violations or pending actions\n\nI am attaching a copy of my government ID. Please advise of any fees and the preferred method of payment.\n\nThank you.",
     reliefPetitionOutline:
-`IN THE SUPERIOR COURT OF [COUNTY], STATE OF GEORGIA
-Petition under O.C.G.A. § 42-1-19 for Release from Registration and Restrictions
-
-1. Jurisdiction and venue.
-2. Background: offense and sentence; completion dates for incarceration and supervision.
-3. Eligibility path: cite § 42-1-19(a) category; include Level I classification and waiting period if required.
-4. Evidence: treatment and compliance; risk assessment; letters of support; housing and employment plan; lack of subsequent offenses.
-5. Relief requested: terminate registration and distance or employment restrictions; or partial relief.
-6. Service: District Attorney and sheriffs as required by § 42-1-19(b).
-7. Proposed order.
-
-Attach: exhibits; SORRB documents; proof of age or disability if applicable.`
+      "1) Identify current classification and date of SORRB notice under [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).\n2) Cite SORRB rules for review/reevaluation (see [GAC 594-1](https://rules.sos.ga.gov/gac/594-1)).\n3) Attach treatment/compliance documentation; show absence of disqualifying conduct.\n4) File in the appropriate court if judicial review is available; serve parties per rules.\n5) Request order granting relief (reclassification/conditions) consistent with statute and rules.",
   },
+
   resources: {
     legalAid: [
-      { name: "Atlanta Legal Aid Society", link: "https://atlantalegalaid.org/home/" },
-      { name: "Georgia Legal Services Program (GLSP)", link: "https://www.glsp.org/need-help/" }
+      { name: "GBI Sex Offender Registry — Contacts", link: "https://gbi.georgia.gov/contacts/sex-offender-registry" },
     ],
     advocacy: [
-      { name: "Sexual Offender Risk Review Board (SORRB)", link: "https://sorrb.georgia.gov/" }
+      { name: "DOJ SMART — Case Law/Policy Context", link: "https://smart.ojp.gov/sorna/current-law/case-law/ii-locally-enacted-sex-offender-requirements" },
     ],
     reentry: [
-      { name: "GBI Sex Offender Registry — public search", link: "https://state.sor.gbi.ga.gov/sort_public/" },
-      { name: "DCS Special Conditions of Supervision", link: "https://dcs.georgia.gov/felony-supervision/adult-felony-probation-supervision/sex-offender-special-conditions-supervision" }
-    ]
+      { name: "GBI Public Registry Search", link: "https://state.sor.gbi.ga.gov/sort_public/" },
+    ],
   },
+
   citations: [
-    { label: "O.C.G.A. § 42-1-12 (official PDF via GBI)", url: "https://gbi.georgia.gov/document/document/ocga-42-1-12/download" },
-    { label: "O.C.G.A. § 42-1-15 (residency and employment restrictions, PDF)", url: "https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf" },
-    { label: "O.C.G.A. § 42-1-19 (petition for removal)", url: "https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/" },
-    { label: "O.C.G.A. § 42-1-14 (Sexually Dangerous Predator; GPS; mid-year reporting)", url: "https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/" },
-    { label: "GBI — Public Registry Portal", url: "https://state.sor.gbi.ga.gov/sort_public/" },
-    { label: "GBI — Registry Services and Contacts", url: "https://gbi.georgia.gov/services/georgia-sex-offender-registry" },
-    { label: "DCS — Sex Offender Special Conditions of Supervision", url: "https://dcs.georgia.gov/felony-supervision/adult-felony-probation-supervision/sex-offender-special-conditions-supervision" },
-    { label: "Mann v. Georgia Dept. of Corrections (Ga. 2007)", url: "https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html" },
-    { label: "HB 188 (2023) — Signed Act", url: "https://gov.georgia.gov/document/2023-signed-legislation/hb-188/download" },
-    { label: "SB 493 (2024) — Signed Act", url: "https://gov.georgia.gov/document/2024-signed-legislation/sb-493/download" }
+    { label: "OCGA § 42-1-12 (GBI PDF)", url: "https://gbi.georgia.gov/document/document/ocga-42-1-12/download" },
+    { label: "OCGA § 42-1-12 (Justia)", url: "https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/" },
+    { label: "OCGA § 42-1-15 (PDF)", url: "https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf" },
+    { label: "§ 42-1-14 — SORRB / SDPs", url: "https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry" },
+    { label: "SORRB Rules (GAC 594-1)", url: "https://rules.sos.ga.gov/gac/594-1" },
+    { label: "GBI Registry — Public Site", url: "https://state.sor.gbi.ga.gov/sort_public/" },
+    { label: "GBI Registry — Services", url: "https://gbi.georgia.gov/services" },
+    { label: "GBI Registry — Contacts", url: "https://gbi.georgia.gov/contacts/sex-offender-registry" }
   ],
+
   badges: {
     residencyZones: true,
     lifetimePossible: true,
     verificationQuarterly: false
   },
-  // Plain-language boxes: links allowed; remove bold markup (renderer escapes bold).
+
   plainLanguage: {
     atAGlance: {
       summary: [
-        "Register with the county sheriff; the GBI maintains the statewide site.",
-        "Most people register for life unless a court ends it under § 42-1-19.",
-        "Annual in-person check-in is due within the 72 hours before your birthday.",
-        "Sexually Dangerous Predators have extra mid-year reporting and GPS rules."
+        "Register **in person** with the sheriff; the **GBI** runs the statewide site.",
+        "Most people renew **annually** within the **72 hours before your birthday**.",
+        "SDPs have extra monitoring under § 42-1-14.",
       ],
       watchOuts: [
-        "Address changes must be reported before moving to the new address.",
-        "One-thousand-foot housing and job zones are strictly enforced in many areas.",
-        "If you work or go to school in another state, you may have to register there too."
+        "Report address changes **before** you move.",
+        "Working or studying in another county can create **extra** sheriff visits.",
+        "1,000-foot safety zones are strictly enforced in some counties.",
       ],
-      edgeCases: [
-        "Homeless individuals register where they sleep and must update promptly.",
-        "Hospice or nursing-home residents can verify during their birth month with approval.",
-        "Visitors who trigger Georgia’s thresholds have to register; there is no automatic grace period."
-      ],
-      validationNote: "Sources: [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download), [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf), [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/), [§ 42-1-14](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/), [GBI portal](https://state.sor.gbi.ga.gov/sort_public/).",
-      citations: [],
-      reviewedBy: "SOLAR research team",
-      reviewedUTC: "2025-10-08T17:40:00Z"
+      validationNote:
+        "See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) (registration/renewal) and [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf) (zones).",
+      reviewedUTC: "2025-10-08T00:00:00Z",
     },
     deadlinesReporting: {
       summary: [
-        "Register in person within 72 hours of release or entry to Georgia.",
-        "Re-register every year within 72 hours before your birthday.",
-        "Report most changes within 72 hours; report address changes to both sheriffs before moving."
+        "Initial registration within **72 hours**; homeless register where they **sleep**.",
+        "Renew each year **within 72 hours before your birthday**.",
+        "Report changes **before** they happen.",
       ],
-      watchOuts: [
-        "Missing your birthday window is a felony.",
-        "If moving out of Georgia, notify Georgia before moving and register promptly in the new state."
+      validationNote:
+        "See [§ 42-1-12(e), (f)(4)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/).",
+    },
+    verificationInPerson: {
+      summary: [
+        "Go to the sheriff where you reside/sleep for the annual renewal.",
+        "SDPs have additional monitoring responsibilities.",
       ],
-      edgeCases: [
-        "Homeless registrants must update sleeping locations within 72 hours.",
-        "Sexually Dangerous Predators have an extra in-person report six months after the birth month."
-      ],
-      validationNote: "See [§ 42-1-12(f), (n)](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and [§ 42-1-14(e)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-14/).",
-      citations: [],
-      reviewedBy: "SOLAR research team",
-      reviewedUTC: "2025-10-08T17:40:00Z"
+      validationNote:
+        "See [§ 42-1-12(f)(4)](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-12/) and [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
     },
     residencyPresence: {
       summary: [
-        "Georgia bans living within 1,000 feet of schools, churches, child care, or areas where minors congregate for covered offenses.",
-        "If a restricted site moves in after you lawfully established residence, earlier eviction-style enforcement was struck down as applied."
+        "Georgia enforces **1,000-foot** buffers around child-focused places.",
+        "Local practice varies; ask your sheriff for maps.",
       ],
-      watchOuts: [
-        "Measurements can be technical; ask the sheriff to measure and document.",
-        "Employment and loitering limits also apply in many places."
-      ],
-      edgeCases: [
-        "Older offense dates and special housing setups can change which subsections apply."
-      ],
-      validationNote: "See [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf) and [Mann (2007)](https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html).",
-      citations: [],
-      reviewedBy: "SOLAR research team",
-      reviewedUTC: "2025-10-08T17:40:00Z"
+      validationNote: "See [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
     },
-    reliefPaths: {
+    employmentEducationInternet: {
       summary: [
-        "You can petition to end registration and distance or job bans if you meet [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/) criteria.",
-        "Many applicants must show a Level I classification and a waiting period after sentence completion.",
-        "2024 changes in SB 493 added and clarified eligibility routes for some groups."
+        "Working or attending school in another county may require **extra registration**.",
+        "SDPs: electronic monitoring rules may apply.",
       ],
-      watchOuts: [
-        "File in the correct county and serve the District Attorney and sheriffs as § 42-1-19 requires.",
-        "If denied, a waiting period to refile often applies."
+      validationNote:
+        "See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and [§ 42-1-14](https://gbi.georgia.gov/42-1-14-state-sexual-offender-registry).",
+    },
+    visitingTraveling: {
+      summary: [
+        "Short visits might not create residence, but **work/school** in Georgia can trigger duties.",
       ],
-      edgeCases: [
-        "Out-of-state convictions and pardons have special rules; relief still usually needs a court order.",
-        "Medical or age-based routes may affect timing."
+      validationNote:
+        "Start with [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and [GBI FAQ](https://gbi.georgia.gov/about-us/frequently-asked-questions/sex-offender-registry-frequently-asked-questions).",
+    },
+    complianceEnforcement: {
+      summary: [
+        "Violations carry criminal penalties; SDPs face electronic monitoring requirements.",
       ],
-      validationNote: "See [§ 42-1-19](https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-19/) and [SB 493 (2024)](https://gov.georgia.gov/document/2024-signed-legislation/sb-493/download).",
-      citations: [],
-      reviewedBy: "SOLAR research team",
-      reviewedUTC: "2025-10-08T17:40:00Z"
-    }
-  }
+      validationNote:
+        "See [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download), [§ 42-1-15](https://state.sor.gbi.ga.gov/sort_public/42-1-15.pdf).",
+    },
+    checklistsScripts: {
+      summary: [
+        "Use the checklists to meet the 72-hour windows and keep receipts of notices.",
+      ],
+      validationNote:
+        "Procedures pulled from [§ 42-1-12](https://gbi.georgia.gov/document/document/ocga-42-1-12/download) and GBI materials cited above.",
+    },
+  },
 };
