@@ -256,19 +256,43 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
         <PlainBox pl={d.plainLanguage?.recentChangesLitigation} />
       </Card>
 
-      <Card title="Compliance Checklists & Scripts" icon={<ListChecks className="w-6 h-6 text-amber-600" />}>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-slate-800">New Arrival: First 30 Days</h3>
-            <RichList items={d.checklistsScripts?.newArrivalChecklist} />
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-800">Moving Out / Traveling</h3>
-            <RichList items={d.checklistsScripts?.movingOutChecklist} />
-          </div>
+     <Card title="Compliance Checklists & Scripts" icon={<ListChecks className="w-6 h-6 text-amber-600" />}>
+  <div className="grid md:grid-cols-2 gap-6">
+    <div>
+      <h3 className="font-semibold text-slate-800">New Arrival: First 30 Days</h3>
+      <RichList items={d.checklistsScripts?.newArrivalChecklist} />
+    </div>
+    <div>
+      <h3 className="font-semibold text-slate-800">Moving Out / Traveling</h3>
+      <RichList items={d.checklistsScripts?.movingOutChecklist} />
+    </div>
+  </div>
+
+  {/* ⬇️ Add this optional block */}
+  {(d.checklistsScripts?.recordsRequestTemplate || d.checklistsScripts?.reliefPetitionOutline) && (
+    <div className="mt-6 space-y-6">
+      {d.checklistsScripts?.recordsRequestTemplate && (
+        <div>
+          <h3 className="font-semibold text-slate-800">Records Request Template</h3>
+          <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
+            <SafeText text={d.checklistsScripts.recordsRequestTemplate} />
+          </pre>
         </div>
-        <PlainBox pl={d.plainLanguage?.checklistsScripts} title="Tips for using these checklists" />
-      </Card>
+      )}
+      {d.checklistsScripts?.reliefPetitionOutline && (
+        <div>
+          <h3 className="font-semibold text-slate-800">Relief Petition Outline</h3>
+          <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
+            <SafeText text={d.checklistsScripts.reliefPetitionOutline} />
+          </pre>
+        </div>
+      )}
+    </div>
+  )}
+  {/* ⬆️ End added block */}
+
+  <PlainBox pl={d.plainLanguage?.checklistsScripts} title="Tips for using these checklists" />
+</Card>
 
       <section className="border-t border-slate-200 pt-6">
   <h2 className="text-xl font-semibold text-slate-800 flex items-center">
@@ -365,15 +389,8 @@ function RichList({ items }: { items?: string[] }) {
   );
 }
 
-function PlainBox({
-  pl,
-  title = "What this means in practice",
-}: {
-  pl?: PlainLanguageBlurb;
-  title?: string;
-}) {
-  if (!pl || (!pl.summary && !pl.watchOuts && !pl.edgeCases)) return null;
-
+function PlainBox({ pl, title = "What this means in practice" }: { pl?: PlainLanguageBlurb; title?: string }) {
+  if (!pl || (!pl.summary && !pl.watchOuts && !pl.edgeCases && !pl.validationNote && !pl.citations)) return null;
   return (
     <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
       <div className="flex items-center justify-between">
@@ -382,11 +399,7 @@ function PlainBox({
 
       {Array.isArray(pl.summary) && pl.summary.length > 0 && (
         <ul className="mt-2 list-disc pl-6 text-slate-700 space-y-1">
-          {pl.summary.map((s, i) => (
-            <li key={i}>
-              <SafeText text={s} />
-            </li>
-          ))}
+          {pl.summary.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
         </ul>
       )}
 
@@ -394,11 +407,7 @@ function PlainBox({
         <>
           <p className="mt-3 font-medium text-slate-800">Watch-outs</p>
           <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
-            {pl.watchOuts.map((s, i) => (
-              <li key={i}>
-                <SafeText text={s} />
-              </li>
-            ))}
+            {pl.watchOuts.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
           </ul>
         </>
       )}
@@ -407,33 +416,34 @@ function PlainBox({
         <>
           <p className="mt-3 font-medium text-slate-800">Edge cases</p>
           <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
-            {pl.edgeCases.map((s, i) => (
-              <li key={i}>
-                <SafeText text={s} />
-              </li>
-            ))}
+            {pl.edgeCases.map((s, i) => <li key={i}><SafeText text={s} /></li>)}
           </ul>
         </>
       )}
 
       {Array.isArray(pl.citations) && pl.citations.length > 0 && (
         <p className="mt-3 text-xs text-slate-500">
-          Sources: {pl.citations.join("; ")}
+          <span className="font-medium">Sources:&nbsp;</span>
+          {pl.citations.map((c, i) => (
+            <span key={i}>
+              <SafeText text={c} />
+              {i < pl.citations!.length - 1 ? "; " : ""}
+            </span>
+          ))}
         </p>
       )}
 
       {pl.validationNote && (
-        <p
-          className="mt-2 text-xs text-slate-400 italic"
-          dangerouslySetInnerHTML={{ __html: pl.validationNote }}
-        />
+        <p className="mt-2 text-xs text-slate-500 italic">
+          <SafeText text={pl.validationNote} />
+        </p>
       )}
 
       {(pl.reviewedUTC || pl.reviewedBy) && (
         <p className="mt-1 text-xs text-slate-400">
-          {pl.reviewedUTC
-            ? `Reviewed ${new Date(pl.reviewedUTC).toLocaleDateString()}`
-            : ""}
+          {pl.reviewedUTC ? `Reviewed ${new Date(pl.reviewedUTC).toLocaleDateString()}` : ""}
+          {pl.reviewedUTC && pl.reviewedBy ? " — " : ""}
+          {pl.reviewedBy ?? ""}
         </p>
       )}
     </div>
