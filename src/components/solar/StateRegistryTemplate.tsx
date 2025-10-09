@@ -442,21 +442,29 @@ function PlainBox({
 
 /* ---------- SafeText helper ---------- */
 function SafeText({ text = "" }: { text?: string }) {
-  // If text already includes HTML anchor tags, render them directly
-  if (text.includes("<a ")) {
-    return <span dangerouslySetInnerHTML={{ __html: text }} />;
-  }
-
-  // Otherwise, handle Markdown-style [label](url) syntax
+  // Escape HTML first
   const escape = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  const withLinks = escape(text).replace(
-    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+
+  let out = escape(text);
+
+  // Markdown links: allow optional space between ] and (
+  out = out.replace(
+    /\[([^\]]+)\]\s*\((https?:\/\/[^\s)]+)\)/g,
     (_m, label, url) =>
-      `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(
-        label
-      )}</a>`
+      `<a class="underline" target="_blank" rel="noopener" href="${url}">${escape(label)}</a>`
   );
 
-  return <span dangerouslySetInnerHTML={{ __html: withLinks }} />;
+  // Auto-link bare URLs (not already in an <a>)
+  out = out.replace(
+    /(?<!["'=\]])\bhttps?:\/\/[^\s)]+/g,
+    (url) => `<a class="underline" target="_blank" rel="noopener" href="${url}">${url}</a>`
+  );
+
+  // **bold** and *italic*
+  out = out
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+
+  return <span dangerouslySetInnerHTML={{ __html: out }} />;
 }
