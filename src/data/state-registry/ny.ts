@@ -115,8 +115,8 @@ export default {
     { label: "Correction Law, Article 6-C (SORA)", url: "https://www.nysenate.gov/legislation/laws/COR/A6-C" },
     { label: "§ 168-f — Duties to Register/Verify", url: "https://www.nysenate.gov/legislation/laws/COR/168-F" },
     { label: "§ 168-k — Moves into NY", url: "https://www.nysenate.gov/legislation/laws/COR/168-K" },
-    { label: "§ 168-t — Penalties", url: "https://www.nysenate.gov/legislation/laws/COR/168-T"
-{ label: "Penal Law § 65.10(4-a) — Supervision Conditions", url: "https://www.nysenate.gov/legislation/laws/PEN/65.10" },
+  { label: "§ 168-t — Penalties", url: "https://www.nysenate.gov/legislation/laws/COR/168-T" },
+    { label: "Penal Law § 65.10(4-a) — Supervision Conditions", url: "https://www.nysenate.gov/legislation/laws/PEN/65.10" },
     { label: "DCJS — SORA FAQ", url: "https://www.criminaljustice.ny.gov/nsor/faq.htm" },
     { label: "People v. Diack (2015)", url: "https://law.justia.com/cases/new-york/court-of-appeals/2015/1.html" }
   ],
