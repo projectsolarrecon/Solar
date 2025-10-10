@@ -84,6 +84,7 @@ import FollowTheMoneyPart2 from "./pages/blog/FollowTheMoneyPart2";
 import StateRegistryHub from "./pages/resources/state-registry";
 import StateRegistryStatePage from "./pages/resources/state-registry/states/state";
 import HalloweenSafetyMyth from "./pages/blog/HalloweenSafetyMyth";
+import FollowTheMoneyPart3 from "./pages/blog/FollowTheMoneyPart3";
 
 function App() {
   return (
@@ -190,6 +191,7 @@ function App() {
   path="/blog/halloween-safety-myth"
   element={<HalloweenSafetyMyth />}
 />
+<Route path="/blog/follow-the-money-part-3" element={<FollowTheMoneyPart3 />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
