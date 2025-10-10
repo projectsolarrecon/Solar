@@ -69,7 +69,7 @@ export default {
     "Failure to pay within statutory timelines can be enforced separately. See [MSP Procedure Manual](https://public.powerdms.com/MSP1917/documents/1991614)."
   ],
   // (continued — full reliefPaths, recentChangesLitigation, checklistsScripts, resources, citations, badges, and plainLanguage sections as provided above)
-},
+};
 recentChangesLitigation: [
     {
       type: "statute",
