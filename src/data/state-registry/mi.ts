@@ -68,9 +68,8 @@ export default {
     "$50 **initial** and **annual** registration fee; indigency waiver under [MCL 28.725b](https://legislature.mi.gov/Search/PAMCLSearch?PANumber=202&PAYear=2020) and [MCL 28.725a(6)](https://www.legislature.mi.gov/documents/mcl/pdf/mcl-28-725a-amended.pdf); see MSP form notice ([RI-004A](https://content.govdelivery.com/attachments/MIMSP/2024/10/21/file_attachments/3039882/RI-004A.pdf)).",
     "Failure to pay within statutory timelines can be enforced separately. See [MSP Procedure Manual](https://public.powerdms.com/MSP1917/documents/1991614)."
   ],
-  // (continued — full reliefPaths, recentChangesLitigation, checklistsScripts, resources, citations, badges, and plainLanguage sections as provided above)
-};
-recentChangesLitigation: [
+
+  recentChangesLitigation: [
     {
       type: "statute",
       bill: "HB 5679 (2020 PA 295)",
@@ -110,7 +109,7 @@ recentChangesLitigation: [
       "After relocating, comply with the new state's registration laws."
     ],
     recordsRequestTemplate: "To: Michigan State Police, Sex Offender Registry Unit — I request a copy of my full registry record, verification schedule, and fee status under **MCL 28.728**. Include my listed information, verification history, and any pending updates. (Provide full name, DOB, SID/MDOC number, current address, and copy of ID.) Send to address below. Reference: [MSP SOR page](https://www.michigan.gov/msp/divisions/cjic/sex-offenders).",
-    reliefPetitionOutline: "File a petition under **[MCL 28.728c]** (e.g., Tier I after 10 years, juvenile provisions, Romeo & Juliet). Attach proof of supervision completion, treatment compliance, clean record, and proposed order for removal under **[MCL 28.728d]**. Provide notice to the prosecutor. See [SCAO MC 406a instructions](https://www.courts.michigan.gov/siteassets/forms/scao-approved/instmc406a.pdf)."
+    reliefPetitionOutline: "File a petition under **[MCL 28.728c](https://www.legislature.mi.gov/(S(ytg1qf5m5j0))/mileg.aspx?page=getObject&objectname=mcl-28-728c)** (e.g., Tier I after 10 years, juvenile provisions, Romeo & Juliet). Attach proof of supervision completion, treatment compliance, clean record, and proposed order for removal under **[MCL 28.728d](https://www.legislature.mi.gov/(S(ytg1qf5m5j0))/mileg.aspx?page=getObject&objectname=mcl-28-728d)**. Provide notice to the prosecutor. See [SCAO MC 406a instructions](https://www.courts.michigan.gov/siteassets/forms/scao-approved/instmc406a.pdf)."
   },
 
   resources: {
