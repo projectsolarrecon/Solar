@@ -13,6 +13,17 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "follow-the-money-part-3",
+  title: "Shackled for Profit: How Surveillance Became the New Prison Wall",
+  excerpt: "The state has outsourced supervision to private industry — and turned freedom into a subscription model with people as the product.",
+  author: "SOLAR Project",
+  date: "2025-10-10",
+  readTime: "13 min read",
+  category: "Investigations",
+  tags: ["criminal justice", "privatization", "sex offense policy", "electronic monitoring", "surveillance"],
+  path: "/blog/follow-the-money-part-3"
+},
+{
   id: "halloween-safety-myth-2025-10-07",
   title: "Trick or Treat: How America’s Halloween ‘safety’ rituals trick the public with fear",
   excerpt:
