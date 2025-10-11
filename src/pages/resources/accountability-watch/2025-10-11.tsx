@@ -37,14 +37,26 @@ function StageBadge({ stage }: { stage: string }) {
 }
 
 function RegistryChip({ status }: { status: string }) {
-  // Emerald (green) = "not mentioned" ≈ "no prior registration noted"
-  const tone =
-    status === "Previously registered"
-      ? "bg-rose-50 text-rose-900 ring-rose-200"
-      : "bg-emerald-50 text-emerald-900 ring-emerald-200";
-  return <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${tone}`}>Registry: {status}</span>;
-}
+  let label = status;
+  let tone = "bg-slate-50 text-slate-900 ring-slate-200";
 
+  if (
+    status === "No prior registration noted" ||
+    status === "Registry status not mentioned"
+  ) {
+    // default → treat "not mentioned" as "no prior registration noted"
+    label = "No prior registration noted";
+    tone = "bg-emerald-50 text-emerald-900 ring-emerald-200";
+  } else if (status === "Previously registered") {
+    tone = "bg-rose-50 text-rose-900 ring-rose-200";
+  }
+
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${tone}`}>
+      Registry: {label}
+    </span>
+  );
+}
 function PullQuote({ children }: { children: React.ReactNode }) {
   return (
     <blockquote className="mt-4 rounded-xl border-l-4 border-slate-300 bg-slate-50 p-4 text-slate-800">
