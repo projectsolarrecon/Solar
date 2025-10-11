@@ -205,10 +205,147 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
         </div>
       </section>
 
-      {/* ===== STATES / COURTS / MEDIA / WATCHLIST ===== */}
+      {/* ===== STATES / COURT DECISIONS / MEDIA / WATCHLIST ===== */}
       <section className="mt-8 space-y-8 text-slate-800">
-        {/* Courts and Watchlist parts follow identical to previous version, all links visible */}
-        {/* … (identical body from previous completion preserved for brevity) … */}
+        {/* STATES */}
+        <div id="states">
+          <h3 className="text-xl font-semibold">States</h3>
+          <div className="mt-4 space-y-6">
+            {/* Florida */}
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="font-semibold">Florida — HB 1351 Implementation & Oversight</p>
+              <p className="text-sm">
+                With HB 1351 now in effect as of Oct 1, Florida’s FDLE must coordinate quarterly verifications for sexual predators and annual verifications for offenders, plus manage new 48-hour reporting requirements for employment, vehicle, and in-state travel addresses. 
+                <a href="https://www.flsenate.gov/Session/Bill/2025/1351" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Bill status
+                </a>{' '}
+                |{' '}
+                <a href="https://www.flgov.com/eog/news/press/2025/governor-ron-desantis-signs-legislation-protect-children-against-sexual-crimes" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Governor press release
+                </a>
+              </p>
+            </div>
+
+            {/* Michigan */}
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="font-semibold">Michigan — Post-Does Legislative Strategy</p>
+              <p className="text-sm">
+                Following the July 2025 denial of a stay in <em>Does v. Whitmer</em>, the Michigan Senate advanced a registry-reform bill intended to align SORA 2021 with constitutional limits (retroactivity, out-of-state disparity). 
+                <a href="https://clearinghouse.net/case/45874/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Clearinghouse case summary
+                </a>{' '}
+                |{' '}
+                <a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  District court opinion
+                </a>
+              </p>
+            </div>
+
+            {/* California */}
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+              <p className="font-semibold">California — SB 384 Tiering & Removal Claims</p>
+              <p className="text-sm">
+                Media posts have suggested renewed changes to registry removal under SB 384; in fact, the 2021 law already established three-tier (10/20/lifetime) durations and petition processes. Verify any proposed amendments via official record. 
+                <a href="https://oag.ca.gov/system/files/media/sb384-registrant-faqs.pdf" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  OAG FAQ
+                </a>{' '}
+                |{' '}
+                <a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=201720180SB384" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Legislative text
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* COURT DECISIONS & LITIGATION */}
+        <div id="courts">
+          <h3 className="text-xl font-semibold">Court Decisions & Litigation</h3>
+          <div className="mt-4 space-y-6">
+            <div className="rounded-xl border border-sky-200 bg-sky-50 p-4">
+              <p className="font-semibold">Does v. Whitmer / Michigan SORA Challenge</p>
+              <p className="text-sm">
+                On July 11, 2025, the Eastern District of Michigan denied the state’s stay motion, leaving unconstitutional SORA provisions unenforceable pending appeal. 
+                <a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Full order
+                </a>{' '}
+                |{' '}
+                <a href="https://www.aclumich.org/en/what-you-need-know-about-does-iii" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  ACLU Michigan explainer
+                </a>{' '}
+                |{' '}
+                <a href="https://clearinghouse.net/case/45874/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Clearinghouse record
+                </a>
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-sky-200 bg-sky-50 p-4">
+              <p className="font-semibold">Payette Man Sentenced — Federal Sex Offense & Registry Requirement</p>
+              <p className="text-sm">
+                Heath Adams of Payette, Idaho was sentenced to 30 years in federal prison for producing child sexual abuse material, plus lifetime supervised release and mandatory sex offender registration. 
+                <a href="https://www.justice.gov/usao-id/pr/payette-man-sentenced-30-years-federal-prison-producing-child-sexual-abuse-material" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  DOJ press release
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* MEDIA & EDITORIALS */}
+        <div id="media">
+          <h3 className="text-xl font-semibold">Media & Editorials</h3>
+          <div className="mt-4 space-y-6">
+            <div className="rounded-xl border border-slate-200 p-4">
+              <p className="font-semibold">Maryland Matters — Child Placement Audit Coverage</p>
+              <p className="text-sm">
+                The audit revealed placement and screening failures involving registered offenders within guardian or foster homes. SOLAR could offer policy commentary on registry data checks and child safety protocols. 
+                <a href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  Read coverage
+                </a>
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 p-4">
+              <p className="font-semibold">Georgia Sweep Media Reports (WALB / Now Habersham)</p>
+              <p className="text-sm">
+                Georgia’s Operation Watchful Eye X garnered broad coverage as sheriffs completed verification sweeps ahead of Halloween. SOLAR may prepare infographics comparing enforcement outcomes statewide. 
+                <a href="https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  News story
+                </a>{' '}
+                |{' '}
+                <a href="https://www.walb.com/2025/10/09/operation-watchful-eye-x-results-announced/" target="_blank" rel="noreferrer" className="text-blue-600 underline">
+                  WALB coverage
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* WATCHLIST */}
+        <div id="watchlist">
+          <h3 className="text-xl font-semibold">Watchlist (carry-forward + new)</h3>
+          <ul className="list-disc pl-5 mt-2 space-y-2 text-slate-800">
+            <li>
+              Michigan Does appeal timeline in Sixth Circuit — monitor briefs and potential decision impact on retroactivity doctrine.
+            </li>
+            <li>
+              Michigan registry reform bill — watch House vote and implementation rules once enacted.
+            </li>
+            <li>
+              California SB 384 — confirm whether “new tier changes” reported online represent actual amendments or re-summarized 2021 law.
+            </li>
+            <li>
+              Florida HB 1351 — early implementation data (verification counts, funding needs, agency feedback).
+            </li>
+            <li>
+              Registry enforcement operations nationwide — anticipate Halloween and holiday sweeps reports.
+            </li>
+            <li>
+              DOJ SMART Office — potential fall guidance or grants for registry modernization and SORNA compliance updates.
+            </li>
+          </ul>
+        </div>
       </section>
 
       {/* SEO Note */}
