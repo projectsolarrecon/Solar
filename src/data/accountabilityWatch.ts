@@ -7,6 +7,14 @@ export type AccountabilityItem = {
 };
 
 export const accountabilityWatch: AccountabilityItem[] = [
+{
+  date: "2025-10-11",
+  title: "Week of Oct 5–11, 2025",
+  slug: "2025-10-11",
+  summary:
+    "NC Rep. Brockman charged ($1.05M bond); Chamber SVP Bardunias charged in federal enticement sting; Louisville teacher Hinds charged (PSC/CSAM); Oregon physician Farley pleads not guilty to felony sex-abuse counts.",
+  path: "/resources/accountability-watch/2025-10-11",
+},
  {
   date: "2025-10-04",
   title: "Week of Sep 28–Oct 4, 2025",
