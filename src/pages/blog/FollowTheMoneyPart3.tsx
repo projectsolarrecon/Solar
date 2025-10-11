@@ -40,7 +40,7 @@ export default function FollowTheMoneyPart3(): JSX.Element {
           You’re out, but not free. A black plastic cuff hums against your ankle — a reminder that freedom now comes with a monthly service plan. 
           Step outside your “geo-zone,” let the battery die, or hit a rural dead spot, and a silent alarm goes off somewhere in a sheriff’s office or private call center.
         </p>
-        <p>
+                <p className="mt-6">
           When you call the help line, a vendor representative — not a law-enforcement officer — tells you it’s “probably user error.” 
           This is the modern face of American punishment: the public duty of supervision <strong>outsourced</strong> to private companies whose shareholders expect growth. 
           Law enforcement is no longer a civic function; it’s a <strong>service contract</strong>, awarded to whoever promises the biggest savings and the smallest headlines.
@@ -74,11 +74,11 @@ export default function FollowTheMoneyPart3(): JSX.Element {
           The same hardware and software appear in probation and parole offices nationwide. 
           The government pays the vendors; the vendors bill the people wearing the shackles.
         </p>
-        <p>
+                <p className="mt-6">
           Daily “user fees” average <strong>$5–$15</strong>, adding up to hundreds per month — more than many spend on food. 
           A missed payment is a violation. The punishment becomes self-funding.
         </p>
-        <p>
+                <p className="mt-6">
           The{" "}
           <a
             className={linkCls}
@@ -155,7 +155,7 @@ export default function FollowTheMoneyPart3(): JSX.Element {
             (ACLU, 2023)
           </a>
         </p>
-        <p>
+                <p className="mt-6">
           Still, governments buy it. It sounds futuristic, and more importantly, it <strong>sounds cheap.</strong>
         </p>
         <Callout variant="info" title="Data Exploitation" icon="💾">
@@ -192,7 +192,7 @@ export default function FollowTheMoneyPart3(): JSX.Element {
             (Criminology & Public Policy, 2021)
           </a>
         </p>
-        <p>
+                <p className="mt-6">
           False alerts, dead batteries, or cell dead zones all become “evidence” of noncompliance. 
           Every glitch creates paperwork — and paperwork means billable hours.
         </p>
@@ -220,7 +220,7 @@ export default function FollowTheMoneyPart3(): JSX.Element {
             (SEC 10-K, 2024)
           </a>
         </p>
-        <p>
+                <p className="mt-6">
           That’s not a justice system. That’s a <strong>subscription model with people as the product.</strong>  
           The more fear you sell, the more budgets grow.
         </p>
