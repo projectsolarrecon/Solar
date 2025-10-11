@@ -38,11 +38,17 @@ export default function FollowTheMoneyPart3(): JSX.Element {
         <BandHeader title="🚨 The Prison Without Bars" icon="🔒" />
         <p>
           You’re out, but not free. A black plastic cuff hums against your ankle — a reminder that freedom now comes with a monthly service plan. 
+        </p>
+                <p className="mt-6">
           Step outside your “geo-zone,” let the battery die, or hit a rural dead spot, and a silent alarm goes off somewhere in a sheriff’s office or private call center.
         </p>
                 <p className="mt-6">
           When you call the help line, a vendor representative — not a law-enforcement officer — tells you it’s “probably user error.” 
+        </p>
+                <p className="mt-6">
           This is the modern face of American punishment: the public duty of supervision <strong>outsourced</strong> to private companies whose shareholders expect growth. 
+        </p>
+                <p className="mt-6">
           Law enforcement is no longer a civic function; it’s a <strong>service contract</strong>, awarded to whoever promises the biggest savings and the smallest headlines.
         </p>
 
