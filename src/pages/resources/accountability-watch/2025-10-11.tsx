@@ -3,6 +3,14 @@ import { Helmet } from "react-helmet";
 import { Scale, Shield, FileText, Quote } from "lucide-react";
 import ShareBar from "../../../components/solar/ShareBar";
 
+// ===== Teaser highlights (TOP-LEVEL EXPORT) =====
+export const teaserHighlights = [
+  "NC Rep. Cecil Brockman charged; ~$1.05M bond; next court Nov 13.",
+  "Chamber SVP Peter Bardunias charged in federal enticement sting; hearing Oct 27.",
+  "Louisville teacher Brian Hinds charged in PSC CSAM case.",
+  "OR physician David Farley pleads not guilty; $500k bail.",
+];
+
 // ----- UI Bits -----
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -37,14 +45,11 @@ function StageBadge({ stage }: { stage: string }) {
 }
 
 function RegistryChip({ status }: { status: string }) {
+  // Green for “not mentioned” -> render as "No prior registration noted"
   let label = status;
   let tone = "bg-slate-50 text-slate-900 ring-slate-200";
 
-  if (
-    status === "No prior registration noted" ||
-    status === "Registry status not mentioned"
-  ) {
-    // default → treat "not mentioned" as "no prior registration noted"
+  if (status === "No prior registration noted" || status === "Registry status not mentioned") {
     label = "No prior registration noted";
     tone = "bg-emerald-50 text-emerald-900 ring-emerald-200";
   } else if (status === "Previously registered") {
@@ -57,6 +62,7 @@ function RegistryChip({ status }: { status: string }) {
     </span>
   );
 }
+
 function PullQuote({ children }: { children: React.ReactNode }) {
   return (
     <blockquote className="mt-4 rounded-xl border-l-4 border-slate-300 bg-slate-50 p-4 text-slate-800">
@@ -126,14 +132,6 @@ function CaseRow({
 // ----- Page (Week of Oct 5–11, 2025) -----
 export default function AccountabilityWatch_2025_10_11() {
   const pageTitle = "Accountability Watch — Week of Oct 5–11, 2025 | SOLAR";
-
-export const teaserHighlights = [
-  // keep these short (2–4 items ideal)
-  "NC Rep. Cecil Brockman charged; ~$1.05M bond; next court Nov 13.",
-  "Chamber SVP Peter Bardunias charged in federal enticement sting; hearing Oct 27.",
-  "Louisville teacher Brian Hinds charged in PSC CSAM case.",
-  "OR physician David Farley pleads not guilty; $500k bail.",
-];
 
   // 1) At a Glance
   const atAGlance = [
