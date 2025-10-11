@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "October 12, 2025",
+  title: "Michigan SORA stay denied; Florida HB 1351 effective; Georgia registry sweep; Maryland audit uncovers oversight issues",
+  slug: "2025-10-12",
+  summary: "A federal judge denied Michigan’s stay motion in *Does v. Whitmer*, Florida’s HB 1351 becomes enforceable with expanded verification and reporting requirements, Georgia’s statewide registry sweep led to dozens of arrests and warrants, and a Maryland audit reveals children placed where registered offenders reside.",
+},
+{
   date: "October 5, 2025",
   title: "NY Pushes Statewide 1,500 ft Buffer; SMART FY 25 Grant Opens; Delaware Issues Enforcement Alert",
   slug: "2025-10-05",
