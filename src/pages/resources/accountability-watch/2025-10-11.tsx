@@ -37,12 +37,11 @@ function StageBadge({ stage }: { stage: string }) {
 }
 
 function RegistryChip({ status }: { status: string }) {
+  // Emerald (green) = "not mentioned" ≈ "no prior registration noted"
   const tone =
     status === "Previously registered"
       ? "bg-rose-50 text-rose-900 ring-rose-200"
-      : status === "No prior registration noted"
-      ? "bg-emerald-50 text-emerald-900 ring-emerald-200"
-      : "bg-slate-50 text-slate-900 ring-slate-200";
+      : "bg-emerald-50 text-emerald-900 ring-emerald-200";
   return <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${tone}`}>Registry: {status}</span>;
 }
 
