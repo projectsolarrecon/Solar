@@ -127,6 +127,14 @@ function CaseRow({
 export default function AccountabilityWatch_2025_10_11() {
   const pageTitle = "Accountability Watch — Week of Oct 5–11, 2025 | SOLAR";
 
+export const teaserHighlights = [
+  // keep these short (2–4 items ideal)
+  "NC Rep. Cecil Brockman charged; ~$1.05M bond; next court Nov 13.",
+  "Chamber SVP Peter Bardunias charged in federal enticement sting; hearing Oct 27.",
+  "Louisville teacher Brian Hinds charged in PSC CSAM case.",
+  "OR physician David Farley pleads not guilty; $500k bail.",
+];
+
   // 1) At a Glance
   const atAGlance = [
     "NC state legislator Cecil Brockman charged; judge sets ~$1.05M bond; next court Nov 13.",
