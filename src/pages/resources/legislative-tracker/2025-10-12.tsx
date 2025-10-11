@@ -24,7 +24,7 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
     <div className="bg-white">
       <SEO
         title="Legislative Tracker — Week of Oct 4–10, 2025 | SOLAR"
-        description="This Week at a Glance, Highlights, States, Court Decisions, Media, Watchlist, with inline action tools."
+        description="This week at a glance: court rulings, new laws in Florida, enforcement sweeps, audits, and registry litigation."
       />
 
       {/* ===== WEEKLY TRACKER: 2025-10-12 (covers Oct 4–10, 2025) ===== */}
@@ -33,7 +33,7 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
         <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
           <h2 className="text-2xl font-bold">📅 This Week at a Glance (Oct 4–10, 2025)</h2>
           <p className="text-slate-100 mt-1">
-            A federal sentencing order, a Michigan SORA stay decision, Florida’s new verification law, Georgia registry sweep, and Maryland audit revelations.
+            A federal judge denies Michigan’s stay in Does; Florida’s HB 1351 goes live; Georgia’s registry sweep yields arrests & warrants; Maryland audit uncovers state oversight gaps.
           </p>
         </div>
 
@@ -43,7 +43,8 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
             <p className="font-semibold text-emerald-900">✅ Now in force</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-emerald-900/90">
               <li>
-                <span className="font-medium">FL HB 1351</span> takes effect Oct 1, requiring quarterly address verifications for predators and expanded reporting duties. 0
+                <span className="font-medium">Florida HB 1351</span> is effective Oct 1, mandating quarterly address verifications for sexual predators and annual verifications for offenders — plus expanded reporting duties.  
+                (<a href="https://www.flsenate.gov/Session/Bill/2025/1351" target="_blank" rel="noreferrer">bill summary / status</a>)  
               </li>
             </ul>
           </div>
@@ -53,10 +54,10 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
             <p className="font-semibold text-amber-900">🕒 Moving / Introduced</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-amber-900/90">
               <li>
-                Michigan legislature’s registry update bill (post-Does) — after Senate passage, final enactment is still pending.
+                Michigan’s post-Does registry reform bill (after *Does III*) — passed in the Senate, awaiting House concurrence & Governor’s signature.
               </li>
               <li>
-                California’s SB 384 registry. Press reports claim further changes/amendments; verification in official bill record needed.
+                California’s SB 384 registry reporting in press — verify whether this is a new amendment or reprint of existing tiering structure.
               </li>
             </ul>
           </div>
@@ -66,13 +67,15 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
             <p className="font-semibold text-sky-900">⚖️ Courts / Agencies</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-sky-900/90">
               <li>
-                Federal court denied Michigan’s motion to stay registry-invalidating portions of SORA 2021 pending appeal. 1
+                The U.S. District Court (E.D. Mich) denied Michigan’s motion to stay portions of the *Does III* judgment.  
+                (<a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Opinion & Order denying stay</a>)  
               </li>
               <li>
-                U.S. Marshals publish a 2025 Fact Sheet on coordination in sex offender registration enforcement.
+                U.S. Marshals Service publishes its 2025 Sex Offender Investigations Fact Sheet (coordination, enforcement). 
               </li>
               <li>
-                Maryland audit reveals children placed in homes with registered sex offenders and a foster home employing a convicted offender. 2
+                Maryland audit discloses that state children were placed in guardianship homes with registered sex offenders, and a group foster home employed a convicted offender whose status was not detected.  
+                (<a href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/" target="_blank" rel="noreferrer">Maryland Matters coverage</a>)  
               </li>
             </ul>
           </div>
@@ -80,10 +83,10 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <div className="rounded-lg border border-slate-200 p-4">
-            <p className="text-sm text-slate-700"><span className="font-semibold">Gaps this week:</span> Final ruling in Michigan Does appellate posture remains uncertain; California registry reform claims remain unverified at legislative sources.</p>
+            <p className="text-sm text-slate-700"><span className="font-semibold">Gaps this week:</span> The Michigan appellate posture remains ambiguous; and California registry reform claims lack verification in official legislative sources.</p>
           </div>
           <div className="rounded-lg border border-slate-200 p-4">
-            <p className="text-sm text-slate-700"><span className="font-semibold">What’s ahead:</span> Watch Michigan appeal timing, California bill movement, Florida implementation challenges, and enforcement sweep announcements in other states.</p>
+            <p className="text-sm text-slate-700"><span className="font-semibold">What’s ahead:</span> Watch Michigan’s appellate briefs/ruling, California SB 384 activity, early implementation of Florida’s new verification rules, and more enforcement sweep announcements nationwide.</p>
           </div>
         </div>
       </section>
@@ -92,7 +95,7 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
       <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 mt-8" id="highlights">
         <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
           <h2 className="text-2xl font-bold">⭐ Highlights</h2>
-          <p className="text-slate-100 mt-1">Five items frame this week. Details and action tools below.</p>
+          <p className="text-slate-100 mt-1">Five developments stand out—dive deeper and take action. Tools below help with replication or constituent engagement.</p>
         </div>
 
         <div className="space-y-6 text-slate-800">
@@ -100,72 +103,151 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
             <p className="font-semibold">🧑‍⚖️ Court — Michigan SORA Stay Denied</p>
             <p className="text-sm">
-              On July 11, 2025, the U.S. District Court for the Eastern District of Michigan denied the state’s request to stay portions of the judgment in *Doe A v. Whitmer* (Does III), which had found certain retroactive registration expansions and out-of-state conviction disparities unconstitutional. 3  
-              The case remains on appeal.  
+              On July 11, 2025, the U.S. District Court for the Eastern District of Michigan denied Michigan’s motion to stay portions of the *Does III* decision, rejecting the state’s attempt to pause enforcement while appeal proceeds.  
+              (<a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">Order denying stay (Dkt. 192)</a>, see legal analysis)  
             </p>
-            <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-              <a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm">
-                View opinion
+            <div className="mt-2 flex flex-wrap gap-2 print:hidden">
+              <a
+                href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
+              >
+                Read the opinion
               </a>
+              <button
+                onClick={() =>
+                  copy(
+                    `Hello, I’m a constituent in Michigan (or potential stakeholder). I’m concerned about ongoing registry litigation and ask your office: What is your current position on aligning SORA 2021 with the Does III judgment, and will you support a clear path for removal or relief for affected individuals?`
+                  )
+                }
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
+              >
+                Copy call/email script
+              </button>
             </div>
+            <textarea id="SCRIPT-MICH-DOES" className="sr-only" readOnly value={`Hello, I’m a constituent in Michigan (or potential stakeholder). I’m concerned about ongoing registry litigation and ask your office: What is your current position on aligning SORA 2021 with the Does III judgment, and will you support a clear path for removal or relief for affected individuals?`} />
           </div>
 
           {/* Highlight 2 */}
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <p className="font-semibold">🏛️ Legislation — Florida HB 1351 Comes Into Force</p>
+            <p className="font-semibold">🏛️ Legislation — Florida HB 1351 Enforcement Begins</p>
             <p className="text-sm">
-              Effective October 1, 2025, Florida’s HB 1351 strengthens reporting and verification: sexual predators must report employment details, vehicle and Internet identifiers, and in-state travel residences within 48 hours; local law enforcement must conduct quarterly address verifications for predators and annual verifications for offenders. 4  
+              Effective October 1, 2025, HB 1351 enacts robust reforms: controllers must verify address quarterly for predators (annual for offenders), registrants must report employment/vehicle/travel/residence changes within 48 hours, and local law enforcement must conduct verifications.  
+              (<a href="https://www.flsenate.gov/Session/Bill/2025/1351" target="_blank" rel="noreferrer">Florida Senate summary & status</a>)  
             </p>
-            <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-              <a href="https://www.flsenate.gov/Session/Bill/2025/1351" target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm">
-                Bill text / summary
+            <div className="mt-2 flex flex-wrap gap-2 print:hidden">
+              <a
+                href="https://www.flsenate.gov/Session/Bill/2025/1351"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
+              >
+                View bill status
               </a>
+              <button
+                onClick={() =>
+                  copy(
+                    `As a concerned constituent in Florida, I support HB 1351’s goals of better tracking and accountability. Please share your plan for resourcing local law enforcement verification. Will you ensure budget allocations and audit reporting to monitor compliance?`
+                  )
+                }
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
+              >
+                Copy comment request / advocacy script
+              </button>
             </div>
+            <textarea id="SCRIPT-FL-1351" className="sr-only" readOnly value={`As a concerned constituent in Florida, I support HB 1351’s goals of better tracking and accountability. Please share your plan for resourcing local law enforcement verification. Will you ensure budget allocations and audit reporting to monitor compliance?`} />
           </div>
 
           {/* Highlight 3 */}
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <p className="font-semibold">🚔 Enforcement — Georgia Operation Watchful Eye Sweep</p>
+            <p className="font-semibold">🚔 Enforcement — Georgia Operation Watchful Eye Sweeps</p>
             <p className="text-sm">
-              During Georgia’s tenth annual *Operation Watchful Eye*, 87 sheriffs’ offices executed over 9,600 residence verifications, resulting in 48 arrests of sex offenders and issuance of 235 warrants for registry violations. 5  
-              The concentrated sweep runs ahead of Halloween, reaffirming statewide registry enforcement capacity.
+              In the 2025 *Operation Watchful Eye*, Georgia’s law enforcement agencies conducted statewide verification sweeps. Multiple news outlets report **48 arrests** and **235 warrants** for registry violations across counties. (<a href="https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/" target="_blank" rel="noreferrer">news coverage</a>)  
+              These sweeps typically intensify ahead of Halloween to enforce compliance.  
             </p>
-            <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-              <a href="https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/" target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm">
-                News report
+            <div className="mt-2 flex flex-wrap gap-2 print-hidden">
+              <a
+                href="https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
+              >
+                Read media report
               </a>
+              <button
+                onClick={() =>
+                  copy(
+                    `Hello, I understand your office conducts registration verification sweeps like “Operation Watchful Eye.” Could you share data from recent sweeps (number of verifications, arrests, warrants)? Also, how do you evaluate cost vs. recidivism outcomes?`
+                  )
+                }
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
+              >
+                Copy inquiry / oversight script
+              </button>
             </div>
+            <textarea id="SCRIPT-GA-SWEEP" className="sr-only" readOnly value={`Hello, I understand your office conducts registration verification sweeps like “Operation Watchful Eye.” Could you share data from recent sweeps (number of verifications, arrests, warrants)? Also, how do you evaluate cost vs. recidivism outcomes?`} />
           </div>
 
           {/* Highlight 4 */}
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <p className="font-semibold">⚖️ Sentencing — Payette, Idaho Man to 30 Years + Registry</p>
+            <p className="font-semibold">⚖️ Sentencing — Idaho Defendant to 30 Years + Registration</p>
             <p className="text-sm">
-              Heath Adams of Payette, Idaho, was sentenced to 30 years in federal prison for producing child sexual abuse material, along with lifetime supervised release and a sex offender registration requirement. 6  
+              Heath Adams, of Payette, Idaho, received a 30-year federal prison sentence for producing child sexual abuse material. He will also be subject to lifetime supervised release plus sex offender registration.  
+              (<a href="https://www.justice.gov/usao-id/pr/payette-man-sentenced-30-years-federal-prison-producing-child-sexual-abuse-material" target="_blank" rel="noreferrer">DOJ press release</a>)  
             </p>
-            <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-              <a href="https://www.justice.gov/usao-id/pr/payette-man-sentenced-30-years-federal-prison-producing-child-sexual-abuse-material" target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm">
-                DOJ press release
+            <div className="mt-2 flex flex-wrap gap-2 print:hidden">
+              <a
+                href="https://www.justice.gov/usao-id/pr/payette-man-sentenced-30-years-federal-prison-producing-child-sexual-abuse-material"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
+              >
+                See DOJ release
               </a>
+              <button
+                onClick={() =>
+                  copy(
+                    `Thank you for imposing a strong sentence in this federal case. To improve registry policy, would you support expanding post-conviction review processes, risk-based tiering, or pathways to relief where constitutional concerns exist?`
+                  )
+                }
+                className="inline-flex items-centered gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
+              >
+                Copy policy request script
+              </button>
             </div>
+            <textarea id="SCRIPT-ID-SENTENCE" className="sr-only" readOnly value={`Thank you for imposing a strong sentence in this federal case. To improve registry policy, would you support expanding post-conviction review processes, risk-based tiering, or pathways to relief where constitutional concerns exist?`} />
           </div>
 
           {/* Highlight 5 */}
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-            <p className="font-semibold">📊 Audit / Oversight — Maryland Admission of Placement Issues</p>
+            <p className="font-semibold">📊 Audit / Oversight — Maryland Placement & Oversight Gaps</p>
             <p className="text-sm">
-              A 70-page audit by Maryland’s Office of Legislative Audits reveals that, over years, some state children were placed in guardianship homes where registered sex offenders lived, and that a group foster home employed a convicted sex offender whose record was not flagged. 7  
+              A 2025 audit by Maryland’s Office of Legislative Audits flagged that over multiple years, children were placed in guardianship or foster homes with registered sex offenders, and a group home employed a convicted offender whose record had not been flagged.  
+              (<a href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/" target="_blank" rel="noreferrer">audit coverage</a>)  
+              The findings pose serious questions about interagency checks, placement protocols, and registry-data audit functions.
             </p>
-            <div className="mt-3 flex flex-wrap gap-2 print:hidden">
-              <a href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/" target="_blank" rel="noreferrer"
-                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm">
-                Audit report coverage
+            <div className="mt-2 flex flex-wrap gap-2 print-hidden">
+              <a
+                href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
+              >
+                Review audit coverage
               </a>
+              <button
+                onClick={() =>
+                  copy(
+                    `The Maryland audit draws alarming conclusions on child placement oversight. Could your office publish a plan to audit registry-data integrity, interagency screening checks, and improvement timelines?`
+                  )
+                }
+                className="inline-flex items-centered gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
+              >
+                Copy oversight request script
+              </button>
             </div>
+            <textarea id="SCRIPT-MD-AUDIT" className="sr-only" readOnly value={`The Maryland audit draws alarming conclusions on child placement oversight. Could your office publish a plan to audit registry-data integrity, interagency screening checks, and improvement timelines?`} />
           </div>
         </div>
       </section>
@@ -178,28 +260,28 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
           <div className="mt-4 space-y-6">
             {/* Florida */}
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-              <p className="font-semibold">Florida: HB 1351 Implementation & Challenges</p>
+              <p className="font-semibold">Florida: HB 1351 Implementation & Oversight</p>
               <p className="text-sm">
-                With HB 1351 now effective as of Oct 1, law enforcement must begin quarterly address verification for sexual predators and annual verification for offenders; registrants must report employment, Internet identifiers, vehicles, and in-state travel residences within 48 hours. 8  
-                Key implementation questions: how sheriff offices will schedule verifications, system capacity at FDLE/SHO, data integration with DMV, and compliance enforcement.
+                With HB 1351 now live, Florida’s FDLE must build or update reporting infrastructure (e.g. in-state travel residence, employer data, vehicle data) and coordinate with local sheriffs for verification workflows. (<a href="https://www.flgov.com/eog/news/press/2025/governor-ron-desantis-signs-legislation-protect-children-against-sexual-crimes" target="_blank" rel="noreferrer">Governor’s press release</a>)  
+                Key questions: how agencies will fund verifications, audit compliance, and manage registrant volume.
               </p>
             </div>
 
             {/* Michigan */}
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-              <p className="font-semibold">Michigan: Post-Does Legislative Next Steps</p>
+              <p className="font-semibold">Michigan: Post-Does Legislative Strategy</p>
               <p className="text-sm">
-                After the district court’s partial judgment (Does III) and the denial of a stay on July 11, 2025, the Michigan Senate passed a registry reform bill intended to align law with the court ruling (e.g. removing retroactive burdens, narrowing out-of-state disparity). 9  
-                However, the bill still must pass the House and be signed; expect implementation guidance, transitional relief, and compliance rules once enacted.
+                Following *Does III* and stay-denial, the Michigan Senate passed a registry reform bill intended to align statute with the court’s constitutional constraints (removing retroactivity, narrowing disparity). (<a href="https://clearinghouse.net/case/45874/" target="_blank" rel="noreferrer">Clearinghouse summary</a>)  
+                The text may require transitional relief, removal pathways, and administrative rules once enacted.
               </p>
             </div>
 
             {/* California */}
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-              <p className="font-semibold">California: SB 384 Tiering & Petition for Removal</p>
+              <p className="font-semibold">California: SB 384 Tiering & Removal Claims</p>
               <p className="text-sm">
-                Media reports have suggested new changes or loosenings to registry removal under SB 384, but the core law — which created a three-tier system (10, 20, lifetime) and allowed petition after minimum period — actually became effective January 1, 2021. 10  
-                It’s essential to verify whether current reports refer to amendments or misinterpretations of existing structure.
+                Recent reporting suggests SB 384 may change the registry tier system or expand removal eligibility. Note: California’s existing law already implements a three-tier structure and some removal petitions under defined conditions (in effect since 2021). (<a href="https://oag.ca.gov/system/files/media/sb384-registrant-faqs.pdf" target="_blank" rel="noreferrer">OAG FAQ on SB 384</a>)  
+                We must check the official legislative amendments for real changes beyond media summaries.
               </p>
             </div>
           </div>
@@ -212,8 +294,8 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
             <div className="rounded-xl border border-sky-200 bg-sky-50 p-4">
               <p className="font-semibold">Does v. Whitmer / Michigan SORA Challenge</p>
               <p className="text-sm">
-                The E.D. Mich court’s July 11, 2025 order denied Michigan’s stay request, allowing certain invalidated SORA 2021 provisions (retroactive extensions, out-of-state disparity) to remain blocked while appeal proceeds. 11  
-                Plaintiffs continue to pursue appellate review, and future decisions may affect other states’ retroactivity challenges.
+                The July 11, 2025 denial of Michigan’s stay motion (E.D. Mich) keeps significant parts of the *Does III* decision live while appeal proceeds. (<a href="https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/" target="_blank" rel="noreferrer">district court’s order</a>)  
+                Plaintiffs have already sought relief in the Sixth Circuit — any appellate decision could affect registry retroactivity doctrine nationwide. (<a href="https://www.aclumich.org/en/what-you-need-know-about-does-iii" target="_blank" rel="noreferrer">ACLU Michigan explainer</a>)
               </p>
             </div>
           </div>
@@ -225,12 +307,14 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
           <div className="mt-4 space-y-4">
             <div className="rounded-xl border border-slate-200 p-4">
               <p className="text-sm">
-                The Maryland audit has drawn commentary in *Maryland Matters* on systemic background checks and child welfare oversight. SOLAR could offer op-eds or a policy brief on registry data audits, interagency safeguards, and best practices for guardian placement screening. 12  
+                The Maryland audit story has sparked commentary in <em>Maryland Matters</em> around interagency oversight and registry data practices. SOLAR could pitch a guest essay or policy memo on registry-audit methodology, interjurisdictional data checks, or safer placement protocols.  
+                (<a href="https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/" target="_blank" rel="noreferrer">audit story</a>)
               </p>
             </div>
             <div className="rounded-xl border border-slate-200 p-4">
               <p className="text-sm">
-                Georgia sweep coverage (e.g. *Now Habersham*) emphasizes public safety messaging around Halloween; opportunity for SOLAR to provide infographics on efficacy of verification sweeps, comparative data across states, or model protocols for sheriffs. 13  
+                Coverage of Georgia’s sweeps (e.g., <em>Now Habersham</em>) emphasizes public safety messaging ahead of Halloween; SOLAR might offer infographics showing sweep efficacy and compliance trajectories across states.  
+                (<a href="https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/" target="_blank" rel="noreferrer">sweep coverage</a>)
               </p>
             </div>
           </div>
@@ -241,19 +325,19 @@ export default function LegislativeTracker_2025_10_12(): JSX.Element {
           <h3 className="text-xl font-semibold">Watchlist (carry-forward + new)</h3>
           <ul className="list-disc pl-5 mt-2 space-y-2 text-slate-800">
             <li>
-              Michigan Does appellate briefs and timeline; any decision could set a national precedent on retroactivity.
+              Michigan Does appellate briefs and timeline — any Sixth Circuit ruling could become a national benchmark.
             </li>
             <li>
-              Michigan registry reform bill: track full text, amendments, House vote, and implementation roll-out.
+              Implementation details of Michigan registry reform bill (amendments, administrative rules, funding).
             </li>
             <li>
-              California registry reform: confirm whether recent media reports reflect new bills, amendments, or misconceptions.
+              Whether SB 384 in California introduces new tiering or removal expansion (vs. reinterpretation of existing law).
             </li>
             <li>
-              Early implementation metrics for Florida HB 1351: verifications conducted, compliance rates, system glitches, funding needs.
+              Early metrics for Florida HB 1351: how many verifications conducted, compliance rates, reported difficulties, and agency reports.
             </li>
             <li>
-              Potential registry enforcement sweeps in other states (especially near Halloween), and any federal DOJ/SMART grant announcements relating to registry modernization.
+              Additional registry enforcement sweeps in states (especially around Halloween), and any DOJ/SMART grant or federal guidance releases concerning registry modernization.
             </li>
           </ul>
         </div>
@@ -290,10 +374,30 @@ export const teasers = {
     '🚔 Georgia sweep: 48 arrests, 235 warrants',
   ],
   highlights: [
-    { icon: '🧑‍⚖️', title: 'Mich SORA stay denied — appeal continues', url: '' },
-    { icon: '🏛️', title: 'Florida’s HB 1351 enforcement begins', url: '' },
-    { icon: '🚔', title: 'Georgia registry sweep nets arrests & warrants', url: '' },
-    { icon: '⚖️', title: 'Idaho man sentenced to 30 years + required registration', url: '' },
-    { icon: '📊', title: 'Maryland audit: children placed in homes with registered offenders', url: '' },
+    {
+      icon: '🧑‍⚖️',
+      title: 'Mich SORA stay denied — appeal continues',
+      url: 'https://law.justia.com/cases/federal/district-courts/michigan/miedce/2%3A2022cv10209/359651/192/',
+    },
+    {
+      icon: '🏛️',
+      title: 'Florida’s HB 1351 enforcement begins',
+      url: 'https://www.flsenate.gov/Session/Bill/2025/1351',
+    },
+    {
+      icon: '🚔',
+      title: 'Georgia registry sweep nets arrests & warrants',
+      url: 'https://nowhabersham.com/sheriffs-sweep-nets-arrests-warrants-in-sex-offender-checks/',
+    },
+    {
+      icon: '⚖️',
+      title: 'Idaho man sentenced to 30 years + registration',
+      url: 'https://www.justice.gov/usao-id/pr/payette-man-sentenced-30-years-federal-prison-producing-child-sexual-abuse-material',
+    },
+    {
+      icon: '📊',
+      title: 'Maryland audit: children placed in homes with registered offenders',
+      url: 'https://marylandmatters.org/2025/09/17/state-may-have-put-children-in-homes-where-registered-sex-offenders-lived/',
+    },
   ],
 };
