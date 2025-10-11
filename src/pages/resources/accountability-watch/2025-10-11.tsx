@@ -145,7 +145,7 @@ export default function AccountabilityWatch_2025_10_11() {
       name: "Peter Bardunias",
       role: "Senior VP, Capital Region Chamber of Commerce",
       jurisdiction: "Federal (USAO – Northern District of New York)",
-      stage: "Arrested / Charged (criminal complaint)",
+      stage: "Arrested / Charged",
       date: "Oct 7–10, 2025",
       summary: <>Allegedly attempted to entice a person he believed was 15; explicit/violent messages; arrested after traveling to meet; detention hearing now set for <em>Oct 27</em>. Chamber mission emphasizes community safety & prosperity—making this charge notably contradictory for a senior officer.</>,
       registry: "Registry status not mentioned",
