@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { accountabilityWatch } from "../../../data/accountabilityWatch";
 import { Helmet } from "react-helmet";
-import { ShieldAlert, Gavel, FileWarning, ArrowRight, Link as LinkIcon } from "lucide-react";
+import { ShieldAlert, Gavel, FileWarning, ArrowRight, Link as LinkIcon, Newspaper } from "lucide-react";
 import ShareBar from "../../../components/solar/ShareBar";
 
 function Chip({ children }: { children: React.ReactNode }) {
@@ -44,6 +44,29 @@ function Callout({
 export default function AccountabilityWatchIndex() {
   const pageTitle = "Accountability Watch (Weekly) | SOLAR";
 
+  // ---- Auto teaser: dynamically import the most recent weekly file and read its exported highlights ----
+  // We assume accountabilityWatch is sorted DESC (newest first). If not, sort by date here.
+  const latest = accountabilityWatch?.[0];
+  const [teaser, setTeaser] = React.useState<string[] | null>(null);
+
+  React.useEffect(() => {
+    if (!latest?.slug) return;
+    // Import all weekly modules in this folder (YYYY-MM-DD.tsx)
+    const modules = import.meta.glob("./*.tsx");
+    const path = `./${latest.slug}.tsx`;
+
+    if (modules[path]) {
+      modules[path]().then((m: any) => {
+        // Prefer an explicit export, fallback to atAGlance if present
+        const items: string[] =
+          m?.teaserHighlights ??
+          m?.atAGlance ??
+          [];
+        setTeaser(items.slice(0, 4)); // show up to 4 bullets
+      }).catch(() => setTeaser(null));
+    }
+  }, [latest?.slug]);
+
   return (
     <main className="min-h-screen bg-slate-50">
       <Helmet>
@@ -71,9 +94,11 @@ export default function AccountabilityWatchIndex() {
             Who’s Making News for Sex Offenses — and Why It Matters
           </h1>
           <p className="mt-2 max-w-3xl text-sm text-slate-200">
-            We surface arrests, charges, pleas, convictions, and sentencings involving people in positions of trust or
-            influence—using court filings and reputable reporting. We also note <strong>registry status</strong> to show how often new
-            cases involve <strong>non-registrants</strong>, underscoring the limits of registry-centric policy.
+            <strong>Accountability Watch</strong> tracks verified arrests, charges, pleas, convictions, and sentencings involving
+            <em> people in positions of public trust or influence</em>—politicians, law enforcement, corrections staff, educators,
+            coaches, clergy, healthcare professionals, executives, nonprofit and community leaders, and other public-facing figures.
+            We tag <strong>registry status</strong> to show how often new cases involve <strong>non-registrants</strong>, underscoring that prevention
+            requires more than public registries.
           </p>
 
           <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-500/40 via-slate-200/40 to-slate-500/40" />
@@ -115,7 +140,28 @@ export default function AccountabilityWatchIndex() {
         </div>
       </section>
 
-      {/* Latest weeks */}
+      {/* This Week (auto teaser) */}
+      {latest && teaser && teaser.length > 0 && (
+        <section className="mx-auto max-w-5xl px-4 pb-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-2 flex items-center gap-2 text-slate-700">
+              <Newspaper className="h-5 w-5" />
+              <h2 className="text-lg font-semibold">This Week: {latest.title}</h2>
+            </div>
+            <ul className="m-0 list-disc pl-5 text-slate-800">
+              {teaser.map((t, i) => <li key={i} className="mb-1">{t}</li>)}
+            </ul>
+            <Link
+              to={latest.path}
+              className="mt-3 inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-white hover:bg-slate-800"
+            >
+              Open latest update <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Recent Weeks */}
       <section className="mx-auto max-w-5xl px-4 pb-12">
         <h2 className="mb-3 text-lg font-semibold text-slate-900">Recent Weeks</h2>
         <ul className="grid gap-3">
