@@ -188,7 +188,7 @@ export default function Home(): JSX.Element {
     {/* Stronger overlay for readability */}
     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/30"></div>
   </div>
-  
+
   {/* Content */}
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-10">
     <div className="text-center">
@@ -202,6 +202,7 @@ export default function Home(): JSX.Element {
         to realize a future of <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
       </p>
 
+      {/* Primary CTAs */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link
           to="/blog"
@@ -221,6 +222,43 @@ export default function Home(): JSX.Element {
         >
           View Resources
         </Link>
+      </div>
+
+      {/* Core Tools (second row, smaller buttons) */}
+      <div className="mt-5 text-center">
+        <div className="text-slate-200/90 text-xs tracking-wide uppercase mb-3">
+          Core Tools
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-3">
+          <Link
+            to="/resources/state-registry-hub"
+            aria-label="Check your state's registry rules"
+            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
+                       bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base"
+          >
+            Check Your State’s Registry Rules
+          </Link>
+
+          <Link
+            to="/resources/legislative-tracker"
+            aria-label="Track new laws and bills"
+            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
+                       bg-indigo-600 text-white hover:bg-indigo-500 text-sm md:text-base"
+          >
+            Track New Laws & Bills
+          </Link>
+
+          <Link
+            to="/resources/accountability-watch"
+            aria-label="Explore the registry of the unregistered"
+            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
+                       border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm
+                       text-sm md:text-base"
+          >
+            Explore the Registry of the Unregistered
+          </Link>
+        </div>
       </div>
     </div>
   </div>
