@@ -137,7 +137,7 @@ export default {
         "Temporary visits can trigger duties after 14 business days or 30 days/year.",
         "Not everyone appears on the CBI website, but you must still register."
       ],
-      validationNote: "Summarized from C.R.S. §§16-22-103, 16-22-108 and CBI public pages.",
+      validationNote: "Summarized from [C.R.S. §16-22-103](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-103/), [§16-22-108](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-108/) and [CBI public pages](https://cbi.colorado.gov/sections/investigations/sex-offender-registration-unit).",
       reviewedUTC: "2025-10-12T00:00:00Z"
     },
     deadlinesReporting: {
@@ -149,7 +149,7 @@ export default {
         "DOC discharge without supervision requires next-business-day registration.",
         "College work/enrollment triggers extra reporting."
       ],
-      validationNote: "See C.R.S. §16-22-108(1)–(4)."
+      validationNote: "See [C.R.S. §16-22-108](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-108/) (subsections (1)–(4))."
     },
     verificationInPerson: {
       summary: [
@@ -159,7 +159,7 @@ export default {
       watchOuts: [
         "Limited medical waiver exists for in-person **re-registration** only."
       ],
-      validationNote: "See C.R.S. §16-22-108(1)–(2),(6)."
+      validationNote: "See [C.R.S. §16-22-108](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-108/) (subsections (1)–(2),(6))."
     },
     residencyPresence: {
       summary: [
@@ -169,7 +169,7 @@ export default {
       watchOuts: [
         "Parole/probation housing rules can still apply if under supervision."
       ],
-      validationNote: "Checked Larimer County guidance and absence of statewide statute."
+      validationNote: "Checked [Larimer County guidance](https://www.larimer.gov/sites/default/files/uploads/2017/facts.pdf) and absence of statewide statute."
     },
     complianceEnforcement: {
       summary: [
@@ -179,7 +179,7 @@ export default {
       watchOuts: [
         "Keep receipts and proof of timely visits."
       ],
-      validationNote: "See C.R.S. §18-3-412.5."
+      validationNote: "See [C.R.S. §18-3-412.5](https://law.justia.com/codes/colorado/title-18/article-3/part-4/section-18-3-412-5/)."
     },
     reliefPaths: {
       summary: [
@@ -190,7 +190,7 @@ export default {
         "SVPs and certain offenses remain lifetime with no relief.",
         "File in the correct court and notify required agencies."
       ],
-      validationNote: "See C.R.S. §§16-22-113 and 16-22-103(4); *People in Interest of T.B.* (2021)."
+      validationNote: "See [C.R.S. §16-22-113](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-113/) and [§16-22-103(4)](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-103/); *People in Interest of T.B.* (2021) ([opinion](https://law.justia.com/cases/colorado/supreme-court/2021/19sc690.html))."
     },
     whoMustRegister: {
       summary: [
@@ -200,14 +200,14 @@ export default {
       watchOuts: [
         "Temporary resident is counted in **business days** for the 14-day rule."
       ],
-      validationNote: "See C.R.S. §§16-22-103 and 16-22-102(1.7)(c)."
+      validationNote: "See [C.R.S. §16-22-103](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-103/) and [§16-22-102(1.7)(c)](https://www.lpdirect.net/casb/crs/16-22-102.html)."
     },
     checklistsScripts: {
       summary: [
         "Follow the arrival/move checklists and keep stamped copies.",
         "Use the template to request your CBI record before filing for relief."
       ],
-      validationNote: "Based on C.R.S. §§16-22-108, 16-22-110 and JDF 460i instructions."
+      validationNote: "Based on [C.R.S. §16-22-108](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-108/), [§16-22-110](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-110/) and [JDF 460i instructions](https://www.coloradojudicial.gov/sites/default/files/2023-07/JDF460i.pdf)."
     }
   }
 };
