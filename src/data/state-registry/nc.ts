@@ -215,6 +215,6 @@ plainLanguage: {
       "Any new registrable offense resets or blocks relief."
     ],
     validationNote: "See [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf), [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf), and [G.S. 14-208.12B](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12B.pdf)."
+    }
   }
-}
-}
+};
