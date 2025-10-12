@@ -13,6 +13,17 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "follow-the-money-part-4",
+  title: "Cashing In on Captivity: How America Turned Incarceration into a Growth Industry",
+  excerpt: "From $8 prison phone calls to billion-dollar private prison contracts, America has transformed captivity itself into an engine of profit — monetizing every moment of human contact behind bars.",
+  author: "SOLAR Project",
+  date: "2025-10-12",
+  readTime: "10 min read",
+  category: "Investigations",
+  tags: ["mass incarceration", "prison telecoms", "private prisons", "commissary", "exploitation"],
+  path: "/blog/follow-the-money-part-4"
+},
+{
   id: "follow-the-money-part-3",
   title: "Shackled for Profit: How Surveillance Became the New Prison Wall",
   excerpt: "The state has outsourced supervision to private industry — and turned freedom into a subscription model with people as the product.",
