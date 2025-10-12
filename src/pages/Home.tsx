@@ -232,7 +232,7 @@ export default function Home(): JSX.Element {
 
         <div className="flex flex-wrap justify-center gap-3">
           <Link
-            to="/resources/state-registry-hub"
+            to="/resources/state-registry"
             aria-label="Check your state's registry rules"
             className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
                        bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base"
