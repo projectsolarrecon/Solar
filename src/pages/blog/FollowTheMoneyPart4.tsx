@@ -28,7 +28,7 @@ export default function FollowTheMoneyPart4(): JSX.Element {
           A mother sits by the phone, waiting for her son’s fifteen-minute call.  
           He worked an entire day in the prison kitchen to afford it.
         </p>
-        <p>
+                        <p className="mt-6">
           Every beep is billable; she hears his exhaustion and the meter running.  
           Each second is priced. Each silence is profit.
         </p>
@@ -47,13 +47,14 @@ export default function FollowTheMoneyPart4(): JSX.Element {
         <p>
           Telecom companies didn’t stumble into the prison business — <strong>they built it.</strong>
         </p>
-        <p>
+                        <p className="mt-6">
           Three giants — <strong>Securus</strong>, <strong>ViaPath (GTL)</strong>, and <strong>ICSolutions</strong> — control nearly the entire market.  
           Their contracts guarantee <em>commission payments</em> to correctional agencies, often <strong>40–65%</strong> of every dollar billed.  
           (<a className={linkCls} href="https://liberalarts.temple.edu/sites/liberalarts/files/documents/prisonphones.pdf" target="_blank" rel="noopener">Temple University Study</a>)
         </p>
-        <p>
-          The more families pay, the more agencies profit.  
+        
+                        <p className="mt-6">
+  The more families pay, the more agencies profit.  
           Before the <strong>FCC 2024 vote</strong> to cap rates at 6¢ per minute, some jails charged 14¢ a minute;  
           a 15-minute call that should cost 90¢ ran <strong>$8.15</strong>.  
           (<a className={linkCls} href="https://www.prisonpolicy.org/blog/2024/07/18/fcc-vote/" target="_blank" rel="noopener">Prison Policy Initiative</a>)
@@ -65,7 +66,7 @@ export default function FollowTheMoneyPart4(): JSX.Element {
           Vendors intentionally restrict lines, narrow call windows, and throttle capacity to keep demand high.  
           Scarcity is the business model.
         </p>
-        <p>
+                        <p className="mt-6">
           Registrants under supervision see the same scheme: paid <em>secure messaging</em>, GPS data uploads,  
           check-in apps with monthly fees. Connection isn’t criminalized — it’s <strong>commodified and exploited.</strong>
         </p>
@@ -83,18 +84,18 @@ export default function FollowTheMoneyPart4(): JSX.Element {
           (<a className={linkCls} href="https://www.gao.gov/assets/t-ggd-94-8.pdf" target="_blank" rel="noopener">GAO Report</a>)
         </p>
 
-        <p>
+                        <p className="mt-6">
           Wages froze. Prices did not.  
           A bar of soap that costs $1 outside sells for $3 inside. A ramen packet: 80¢.
         </p>
 
-        <p>
+                        <p className="mt-6">
           The <strong>Inmate Trust Fund</strong>, created to benefit inmates, now pays <strong>652 BOP staff positions</strong> — roughly  
           <strong>$82 million</strong> in salary and benefits, according to Senator Grassley’s 2022 oversight letter.  
           (<a className={linkCls} href="https://www.grassley.senate.gov/download/grassley-to-bureau-of-prisons_-commissary-trust-fund" target="_blank" rel="noopener">Grassley Letter</a>)
         </p>
 
-        <p>
+                       <p className="mt-6"> 
           That isn’t rehabilitation — it’s <strong>revenue extraction.</strong>
         </p>
 
@@ -113,14 +114,14 @@ export default function FollowTheMoneyPart4(): JSX.Element {
         <p>
           Tablets were sold as progress — <em>“a classroom in every cell.”</em> Instead, they became jukeboxes.
         </p>
-        <p>
+                        <p className="mt-6">
           In most systems, the “free” tablets offer no accredited courses or therapy modules —  
           just <strong>$7 movies</strong>, <strong>$2 songs</strong>, and pay-per-minute games. Every tap is a toll.
         </p>
-        <p>
+                       <p className="mt-6"> 
           Libraries shrink; classrooms close. The pitch was modernization. The result is <strong>monetization.</strong>
         </p>
-        <p>
+                        <p className="mt-6">
           Education works — and they know it. A <strong>RAND meta-analysis</strong> found that people who receive education while incarcerated  
           are <strong>43%</strong> less likely to reoffend.  
           (<a className={linkCls} href="https://www.rand.org/pubs/research_reports/RR266.html" target="_blank" rel="noopener">RAND Study</a>)
@@ -156,22 +157,22 @@ export default function FollowTheMoneyPart4(): JSX.Element {
           (<a className={linkCls} href="https://investors.geogroup.com/news-releases/news-release-details/geo-group-reports-fourth-quarter-and-full-year-2024-results" target="_blank" rel="noopener">GEO Report</a>)
         </p>
 
-        <p>
+                        <p className="mt-6">
           Their contracts guarantee <strong>minimum occupancy rates</strong> and pay penalties if beds go empty.  
           (<a className={linkCls} href="https://ciceroinstitute.org/research/aligning-profit-with-outcomes-in-private-prison-procurement/" target="_blank" rel="noopener">Ciceró Institute</a>)
         </p>
 
-        <p>
+                        <p className="mt-6">
           They spent over <strong>$3 million in 2024 on lobbying</strong>, mostly targeting sentencing and detention policy.  
           (<a className={linkCls} href="https://www.opensecrets.org/news/2025/04/private-prison-companies-positioned-to-benefit-from-increased-deportations" target="_blank" rel="noopener">OpenSecrets</a>)
         </p>
 
-        <p>
+                        <p className="mt-6">
           For companies like these, <strong>sex-offense convictions are the perfect product line:</strong> low-risk, low-cost, long-term.  
           Educated, non-violent, unlikely to riot — cheap to house, expensive to release.
         </p>
 
-        <p>
+                        <p className="mt-6">
           Their financial statements warn investors that sentencing reform could  
           <em>“adversely affect results.”</em>
         </p>
@@ -207,7 +208,7 @@ export default function FollowTheMoneyPart4(): JSX.Element {
           It keeps the machine fed and the public complacent.
         </p>
 
-        <p>
+                       <p className="mt-6"> 
           Until someone cuts the cash cord, the machinery will keep humming —  
           feeding on the poor, the powerless, and anyone too despised to defend.
         </p>
