@@ -109,112 +109,107 @@ export default {
       "Register in the new state per that state’s law and keep NC proof of notice."
     ],
     recordsRequestTemplate: "To the Sheriff: Please provide a complete copy of my **sex-offender registration file**, including registration forms, photographs, verification mailings/receipts, and change-of-information notices kept under **[G.S. 14-208.7](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf)** and **[G.S. 14-208.9/-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html)** for my record. I request any public records listed in **[G.S. 14-208.10](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.10.pdf)**. If reproduction or search fees apply, please advise the total cost before processing. This request is made under the **North Carolina Public Records Act**.",
+    reliefPetitionOutline: "File in **Superior Court** under [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf) after **10 years** on the standard registry with no subsequent registrable offense; attach proof of initial NC registration date, compliance history, and any risk-reduction evidence; serve per statute; note **lifetime** categories under [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf) are ineligible."
+  },
 
-reliefPetitionOutline: "File a verified **Petition for Termination of Registration Requirement** in **Superior Court** under [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf) after at least **10 consecutive years** on the registry without a subsequent reportable conviction. Include your registration start date, proof of continuous compliance, and a certified criminal record check. Serve the petition on the district attorney and local sheriff. Note that **recidivists, aggravated offenders, and sexually violent predators** under [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf) are **not eligible** for removal.",
+  resources: {
+    legalAid: [
+      { name: "UNC School of Government – Relief & Termination Overview", link: "https://www.sog.unc.edu/resources/microsites/relief-criminal-conviction/termination-registration-and-related-obligations" }
+    ],
+    advocacy: [
+      { name: "NCSBI – Registry Portal (Public Search & Info)", link: "https://sexoffender.ncsbi.gov/" }
+    ]
+  },
 
-resources: {
-  legalAid: [
-    { name: "UNC School of Government – Relief from a Criminal Conviction (Sex-Offender Registry)", link: "https://www.sog.unc.edu/resources/microsites/relief-criminal-conviction/termination-registration-and-related-obligations" },
-    { name: "Legal Aid of North Carolina", link: "https://www.legalaidnc.org/" }
+  citations: [
+    { label: "Article 27A (Sex Offender & Public Protection)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_14/Article_27A.html" },
+    { label: "G.S. 14-208.7 (Registration; deadlines; online IDs)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf" },
+    { label: "G.S. 14-208.9 (Report changes; moving; online IDs)", url: "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html" },
+    { label: "G.S. 14-208.9A (Semiannual verification)", url: "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html" },
+    { label: "G.S. 14-208.24 (90-day verification for Part 3)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf" },
+    { label: "G.S. 14-208.11 (Failure offenses; Class F)", url: "https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf" },
+    { label: "G.S. 14-208.16 (Residential restrictions 1,000 ft)", url: "https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html" },
+    { label: "G.S. 14-208.18 (Premises restrictions)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.18.pdf" },
+    { label: "G.S. 14-208.23 (Lifetime categories)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf" },
+    { label: "G.S. 14-208.12A (Petition to terminate after 10 years)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf" },
+    { label: "G.S. 14-208.12B (Judicial determination – out-of-state/federal)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12B.pdf" },
+    { label: "G.S. 14-208.15(b) (Public Internet access to registry)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-208.15.html" },
+    { label: "NCSBI Registry – About / FAQ", url: "https://sexoffender.ncsbi.gov/about.aspx" }
   ],
-  advocacy: [
-    { name: "NCSBI – North Carolina Sex Offender Registry", link: "https://sexoffender.ncsbi.gov/" },
-    { name: "NC Justice Center – Reentry Resources", link: "https://www.ncjustice.org/issues/criminal-justice/reentry/" }
-  ],
-  reentry: [
-    { name: "NC Department of Public Safety – Reentry Programs", link: "https://www.ncdps.gov/our-organization/adult-correction/reentry-programs-and-services" }
-  ]
-},
 
-citations: [
-  { label: "Article 27A (Sex Offender & Public Protection Registration Programs)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_14/Article_27A.html" },
-  { label: "G.S. 14-208.7 (Initial registration and deadlines)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf" },
-  { label: "G.S. 14-208.9 (Reporting changes)", url: "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html" },
-  { label: "G.S. 14-208.9A (Semiannual verification)", url: "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html" },
-  { label: "G.S. 14-208.24 (Quarterly verification for Part 3 offenders)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf" },
-  { label: "G.S. 14-208.11 (Failure to register or verify)", url: "https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf" },
-  { label: "G.S. 14-208.16 (Residential restrictions within 1,000 feet of schools)", url: "https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html" },
-  { label: "G.S. 14-208.18 (Premises restrictions)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.18.pdf" },
-  { label: "G.S. 14-208.23 (Lifetime registration categories)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf" },
-  { label: "G.S. 14-208.12A (Petition to terminate registration)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf" },
-  { label: "G.S. 14-208.12B (Judicial determination of registration requirement)", url: "https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12B.pdf" },
-  { label: "G.S. 14-208.15 (Statewide Internet registry)", url: "https://www.ncleg.net/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-208.15.html" },
-  { label: "NCSBI Sex Offender Registry FAQ", url: "https://sexoffender.ncsbi.gov/faq.aspx" }
-],
+  badges: {
+    residencyZones: true,
+    lifetimePossible: true,
+    verificationQuarterly: true
+  },
 
-badges: {
-  residencyZones: true,
-  lifetimePossible: true,
-  verificationQuarterly: true
-},
-
-plainLanguage: {
-  atAGlance: {
-    summary: [
-      "Register **in person** with the sheriff and keep information up to date.",
-      "Most people verify **twice yearly**; lifetime categories verify **every 90 days**.",
-      "Avoid living within **1,000 ft** of schools or child-care centers.",
-      "Some people are on the registry **for life**."
-    ],
-    watchOuts: [
-      "Report address changes within **3 business days**.",
-      "Report new online IDs within **10 days**.",
-      "Notify the sheriff before moving out of state."
-    ],
-    validationNote: "Based on [G.S. 14-208.7](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf), [G.S. 14-208.9](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html), [G.S. 14-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html), [G.S. 14-208.24](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf), [G.S. 14-208.16](https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html), [G.S. 14-208.18](https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.18.pdf), and [NCSBI FAQ](https://sexoffender.ncsbi.gov/faq.aspx).",
-    reviewedUTC: "2025-10-12T04:00:00Z"
-  },
-  deadlinesReporting: {
-    summary: [
-      "You must register promptly after release or arrival in North Carolina.",
-      "Changes to address, school, work, or online accounts must be reported quickly.",
-      "Moving out of NC requires advance notice to your sheriff."
-    ],
-    watchOuts: [
-      "If you move to another county, notify both old and new sheriffs."
-    ],
-    validationNote: "Drawn from [G.S. 14-208.7](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf) and [G.S. 14-208.9](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html)."
-  },
-  verificationInPerson: {
-    summary: [
-      "Twice a year you’ll get a mail form to verify in person.",
-      "Lifetime offenders verify every 90 days."
-    ],
-    watchOuts: [
-      "Failure to verify is a felony."
-    ],
-    validationNote: "Based on [G.S. 14-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html), [G.S. 14-208.24](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf), and [G.S. 14-208.11](https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf)."
-  },
-  residencyPresence: {
-    summary: [
-      "Your listing is public on the state registry.",
-      "Residency restrictions apply within 1,000 ft of certain facilities."
-    ],
-    watchOuts: [
-      "Check local zoning ordinances for tighter limits."
-    ],
-    validationNote: "See [G.S. 14-208.10](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.10.pdf), [G.S. 14-208.15](https://www.ncleg.net/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-208.15.html), and [G.S. 14-208.16](https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html)."
-  },
-  complianceEnforcement: {
-    summary: [
-      "Missing deadlines or giving false info can bring felony charges.",
-      "Helping someone hide is also a felony."
-    ],
-    watchOuts: [
-      "Arrest orders can issue after missed verifications."
-    ],
-    validationNote: "See [G.S. 14-208.11](https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf) and [G.S. 14-208.11A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.11A.pdf)."
-  },
-  reliefPaths: {
-    summary: [
-      "Most can **petition after 10 years** for removal.",
-      "Lifetime categories cannot end registration.",
-      "Out-of-state cases can ask a judge to decide if registration applies."
-    ],
-    watchOuts: [
-      "Any new registrable offense resets or blocks relief."
-    ],
-    validationNote: "See [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf), [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf), and [G.S. 14-208.12B](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12B.pdf)."
+  plainLanguage: {
+    atAGlance: {
+      summary: [
+        "Register **in person** with the sheriff and keep info updated.",
+        "Most people verify **twice a year**; some verify **every 90 days**.",
+        "Do not live within **1,000 ft** of schools/child-care centers.",
+        "Some categories are **lifetime** with 90-day checks."
+      ],
+      watchOuts: [
+        "Report address changes **within 3 business days**.",
+        "Report new online IDs **within 10 days**.",
+        "Notify the sheriff **before** moving out of NC."
+      ],
+      validationNote: "Summarized from [G.S. 14-208.7](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf), [G.S. 14-208.9](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html), [G.S. 14-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html), [G.S. 14-208.24](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf), [G.S. 14-208.16](https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html), [G.S. 14-208.18](https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.18.pdf), and [NCSBI FAQ](https://sexoffender.ncsbi.gov/faq.aspx).",
+      reviewedUTC: "2025-10-12T04:00:00Z"
+    },
+    deadlinesReporting: {
+      summary: [
+        "Initial registration has **short windows** after release/arrival.",
+        "Changes (address, school/work, online IDs) have strict **3-day/10-day** rules.",
+        "Leaving NC to live elsewhere requires **advance notice**."
+      ],
+      watchOuts: [
+        "Moving counties has an **extra 10-day** notice to the new county."
+      ],
+      validationNote: "See [G.S. 14-208.7](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf) and [G.S. 14-208.9](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9.html)."
+    },
+    verificationInPerson: {
+      summary: [
+        "Expect a mailed form twice a year; take it to the sheriff **within 3 business days**.",
+        "If in the lifetime categories, expect **90-day** verification."
+      ],
+      watchOuts: [
+        "Missing verification can be charged as a **felony**."
+      ],
+      validationNote: "See [G.S. 14-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html), [G.S. 14-208.24](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf), and [G.S. 14-208.11](https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf)."
+    },
+    residencyPresence: {
+      summary: [
+        "Your info is public and searchable on the **state registry**.",
+        "Residency restrictions apply within 1,000 ft of certain facilities."
+      ],
+      watchOuts: [
+        "Residential **1,000-ft** zones apply statewide."
+      ],
+      validationNote: "See [G.S. 14-208.10](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.10.pdf), [G.S. 14-208.15](https://www.ncleg.net/EnactedLegislation/Statutes/HTML/BySection/Chapter_14/GS_14-208.15.html), and [G.S. 14-208.16](https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html)."
+    },
+    complianceEnforcement: {
+      summary: [
+        "Failing to register, verify, or report changes can be a **Class F felony**.",
+        "Helping someone evade duties can be a **Class H felony**."
+      ],
+      watchOuts: [
+        "Arrest orders may issue on missed verifications."
+      ],
+      validationNote: "See [G.S. 14-208.11](https://www.ncleg.gov/enactedlegislation/statutes/pdf/bysection/chapter_14/gs_14-208.11.pdf) and [G.S. 14-208.11A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.11A.pdf)."
+    },
+    reliefPaths: {
+      summary: [
+        "Most registrants can **petition after 10 years** to end a 30-year term.",
+        "**Lifetime** categories **cannot** terminate.",
+        "If your duty flows from an **out-of-state/federal** case, you can seek a court **determination**."
+      ],
+      watchOuts: [
+        "A later registrable conviction blocks termination."
+      ],
+      validationNote: "See [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf), [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf), and [G.S. 14-208.12B](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12B.pdf)."
     }
   }
 };
