@@ -39,9 +39,10 @@ export default {
     "**Weekly in-person** check-ins if lacking a primary address (unless an approved alternative). [§ 243.166, subd. 3a(e)–(f)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "Committed SDPA/SPP registrants who lack a primary address must re-provide full info at least **every three months**. [§ 243.166, subd. 3a(g)](https://www.revisor.mn.gov/statutes/cite/243.166)."
   ],
-  residencyPresence: "Minnesota has **no statewide residency-restriction zones** in the registration statute. Presence limits may be imposed case-by-case via supervision or community-notification rules. See data-privacy and notification framework in [§ 243.166, subd. 7](https://www.revisor.mn.gov/statutes/cite/243.166) and [DOC Community Notification](https://mn.gov/doc/community-supervision/community-notification/)."
-],
-employmentEducationInternet: [
+
+  residencyPresence: "Minnesota has **no statewide residency-restriction zones** in the registration statute. Presence limits may be imposed case-by-case via supervision or community-notification rules. See data-privacy and notification framework in [§ 243.166, subd. 7](https://www.revisor.mn.gov/statutes/cite/243.166) and [DOC Community Notification](https://mn.gov/doc/community-supervision/community-notification/).",
+
+  employmentEducationInternet: [
     "Report the **address of employment** and **school enrollment**; update within **5 days** of changes. [§ 243.166, subd. 3(c); 4a(4)–(5)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "Provide **phone numbers** and **vehicle** details; Minnesota law does **not** require reporting internet identifiers in § 243.166. See [§ 243.166, subd. 4a(6)–(8)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "If you **work/attend school in MN** but live elsewhere, you **must register in MN within 5 days** and also register in the other state. [§ 243.166, subd. 3(c)–(d)](https://www.revisor.mn.gov/statutes/cite/243.166)."
