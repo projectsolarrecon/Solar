@@ -99,7 +99,7 @@ export default {
     ],
     recordsRequestTemplate: "Subject: Public Records Request – SORB Records\n\nTo: SORB Records Access Officer\n\nI request records under G.L. c.66, §10 regarding: [describe]. Please provide electronic copies and advise of any fees in advance. Thank you.\n\nName:\nContact:\n\n(Use the SORB public records page at https://www.mass.gov/public-records-for-the-sex-offender-registry-board.)",
     reliefPetitionOutline: "1) Caption and jurisdiction under **§178G** and **803 CMR 1.30–1.31**; 2) Procedural posture and level; 3) Offense-free period and risk-reduction evidence; 4) Treatment, housing, employment; 5) Legal standard (**clear and convincing**); 6) Requested relief (termination or reclassification); 7) Exhibits."
-  ],
+  },
 resources: {
     legalAid: [
       { name: "Committee for Public Counsel Services – SORB", link: "https://www.publiccounsel.net/pc/sorb-law/" },
