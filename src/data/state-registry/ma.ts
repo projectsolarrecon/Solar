@@ -48,7 +48,8 @@ export default {
     "Level **3** offenders and **Level 2 classified after July 12, 2013** appear on SORB’s public site; earlier Level 2 data available only via police or SORI request ([SORB](https://www.mass.gov/orgs/sex-offender-registry-board)).",
     "Public may also request info via [SORI request](https://www.mass.gov/how-to/request-sex-offender-registry-information-sori)."
   ],
-travelInterstate: [
+
+  travelInterstate: [
     "Notify SORB **10 days before** leaving MA ([§178E(i)](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178E)).",
     "Out-of-state workers or students in MA must register; extended visits meeting **secondary address** thresholds trigger registration ([§178C](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178C))."
   ],
@@ -71,8 +72,63 @@ travelInterstate: [
   ],
 
   costs: [
-    "**$75 annual fee**, hardship waiver available ([Mass.gov](https://www.mass.gov/how-to/register-as-a-sex-offender)).",
+    "**$75 annual fee**, hardship waiver available ([Mass.gov](https://www.mass.gov/how-to/register-as-a-sex-offender); [§178Q](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178q)).",
     "Online payments may include **card fees** ([payment portal](https://www.ncourt.com/x-press/x-onlinepayments.aspx?Juris=65FF9521-645B-48E5-956E-1D2502D7E939))."
+  ],
+
+  recentChangesLitigation: [
+    { type: "rule", cite: "803 CMR 1.00", effective: "2025-04-25", summary: "Comprehensive SORB regulation update; confirms procedures for classification, dissemination, and relief motions.", link: "https://www.mass.gov/doc/803-cmr-1-sex-offender-registry-board-registration-classification-and-dissemination/download" },
+    { type: "case", name: "Moe v. Sex Offender Registry Board, 467 Mass. 598", court: "Mass. SJC", date: "2014-01-10", holding: "Bars internet publication of Level 2 offenders **classified on or before July 12, 2013**.", link: "https://law.justia.com/cases/massachusetts/supreme-court/volumes/467/467mass598.html" },
+    { type: "statute", bill: "§178Q (fee) – ongoing", session: "codified", effective: "current", summary: "Maintains **$75 annual fee** for finally classified registrants, with hardship waiver authority.", link: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178q" }
+  ],
+
+  checklistsScripts: {
+    newArrivalChecklist: [
+      "Confirm you must register under [§§178C–178Q](https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q).",
+      "Register **within 2 days** of moving to MA (use local police for Level 2/3; mail to SORB for Level 1) ([how to register](https://www.mass.gov/how-to/register-as-a-sex-offender)).",
+      "List all **secondary addresses** (≥14 days/year or ≥4 days/month), including any out-of-state stays ([§178C](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178C)).",
+      "Report work and school information; give **10 days’ prior** notice for changes ([§178E](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178E)).",
+      "Calendar verification cadence (annual / **45-day SVP** / **30-day homeless**) ([§178F; §178F½](https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q)).",
+      "Pay **$75 fee** or request hardship waiver ([§178Q](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178q)).",
+      "Keep copies of forms, receipts, and proof of mailing/appearance."
+    ],
+    movingOutChecklist: [
+      "File **10 days’ prior** notice to SORB before leaving MA ([§178E(i)](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178E)).",
+      "Verify destination-state requirements and deadlines.",
+      "Return any local verification cards; keep proof of notices."
+    ],
+    recordsRequestTemplate: "Subject: Public Records Request – SORB Records\n\nTo: SORB Records Access Officer\n\nI request records under G.L. c.66, §10 regarding: [describe]. Please provide electronic copies and advise of any fees in advance. Thank you.\n\nName:\nContact:\n\n(Use the SORB public records page at https://www.mass.gov/public-records-for-the-sex-offender-registry-board.)",
+    reliefPetitionOutline: "1) Caption and jurisdiction under **§178G** and **803 CMR 1.30–1.31**; 2) Procedural posture and level; 3) Offense-free period and risk-reduction evidence; 4) Treatment, housing, employment; 5) Legal standard (**clear and convincing**); 6) Requested relief (termination or reclassification); 7) Exhibits."
+  ],
+resources: {
+    legalAid: [
+      { name: "Committee for Public Counsel Services – SORB", link: "https://www.publiccounsel.net/pc/sorb-law/" },
+      { name: "MassLegalServices – SORB Motions/Guides", link: "https://www.masslegalservices.org/content/sorb-early-termination-or-reclassification-request-information-sample-motions-and-sample" }
+    ],
+    advocacy: [
+      { name: "Massachusetts SORB (public information/contacts)", link: "https://www.mass.gov/orgs/sex-offender-registry-board" }
+    ],
+    reentry: [
+      { name: "Bay State Re-Entry – How to Register", link: "https://baystatereentrynetwork.org/index.php/how-to-register-as-a-sex-offender/" }
+    ]
+  },
+
+  citations: [
+    { label: "Statutes Index (M.G.L. c. 6, §§178C–178Q)", url: "https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q" },
+    { label: "Definitions – §178C", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178C" },
+    { label: "Registration & Notices – §178E", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178E" },
+    { label: "Annual Verification (mail) – §178F", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178F" },
+    { label: "In-Person Verification, SVP/Homeless – §178F½", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178F%201~2" },
+    { label: "Termination/Lifetime – §178G", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178G" },
+    { label: "Criminal Penalties – §178H", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178H" },
+    { label: "Fee – §178Q", url: "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178q" },
+    { label: "803 CMR 1.00 (2025 update)", url: "https://www.mass.gov/doc/803-cmr-1-sex-offender-registry-board-registration-classification-and-dissemination/download" },
+    { label: "Mass.gov – Who has to register", url: "https://www.mass.gov/info-details/who-has-to-register-as-a-sex-offender" },
+    { label: "Mass.gov – Register as a sex offender (fee & methods)", url: "https://www.mass.gov/how-to/register-as-a-sex-offender" },
+    { label: "Mass.gov – Levels of sex offenders (public website rules)", url: "https://www.mass.gov/info-details/levels-of-sex-offenders" },
+    { label: "SORI request (public access)", url: "https://www.mass.gov/how-to/request-sex-offender-registry-information-sori" },
+    { label: "SORB Audit (2023)", url: "https://www.mass.gov/doc/audit-of-the-sex-offender-registry-board/download" },
+    { label: "Moe v. SORB, 467 Mass. 598 (2014)", url: "https://law.justia.com/cases/massachusetts/supreme-court/volumes/467/467mass598.html" }
   ],
 
   badges: {
@@ -92,7 +148,8 @@ travelInterstate: [
         "Staying **≥14 days/year** or **≥4 days/month** triggers a reportable address.",
         "Not registering or verifying is a **crime**."
       ],
-      validationNote: "Based on current [M.G.L. c.6 §§178C–178Q](https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q) and [803 CMR 1.00](https://www.mass.gov/doc/803-cmr-1-sex-offender-registry-board-registration-classification-and-dissemination/download)."
+      validationNote: "Based on current [M.G.L. c.6 §§178C–178Q](https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q) and [803 CMR 1.00](https://www.mass.gov/doc/803-cmr-1-sex-offender-registry-board-registration-classification-and-dissemination/download).",
+      reviewedUTC: "2025-10-13T05:00:00Z"
     },
     deadlinesReporting: {
       summary: [
@@ -127,6 +184,13 @@ travelInterstate: [
         "You can seek **early termination** after 10 years offense-free."
       ],
       validationNote: "Per [§178G](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178G) and [803 CMR 1.30–1.31](https://www.law.cornell.edu/regulations/massachusetts/803-CMR-1-30)."
+    },
+    checklistsScripts: {
+      summary: [
+        "First 30 days: register, list secondary addresses, set verification cadence, and handle the fee/waiver.",
+        "Moving out / traveling: give **10 days’ prior** notice and check the destination state’s rules."
+      ],
+      validationNote: "Follow the steps on [Register](https://www.mass.gov/how-to/register-as-a-sex-offender) and statutory notices in [§178E](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178E)."
     }
   }
 };
