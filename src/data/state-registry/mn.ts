@@ -54,51 +54,197 @@ export default {
     "BCA may publicly list **non-compliant** offenders (30+ days) to help locate them. [§ 243.166, subd. 7a](https://www.revisor.mn.gov/statutes/cite/243.166)."
   ],
 
-  complianceEnforcement: "Failure to register or giving false information is a **felony** with a **mandatory minimum** prison term and can extend registration by **5 years**. Level 3 violators face **10 years** of conditional release. See [§ 243.166, subd. 5, 5a & 6(b)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+  travelInterstate: [
+    "Give **5-day prior notice** before moving out of Minnesota and **notify the new state’s** registration agency. [§ 243.166, subd. 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "If you **work or attend school** in another state, you must **also register there**. [§ 243.166, subd. 3(d)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "If living out of state, Minnesota **suspends** your MN duties once BCA confirms your address through verification; duties **reactivate** if you return before your term ends. [§ 243.166, subd. 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166)."
+  ],
+
+  visitingTraveling: [
+    "If you **lack a primary address** and enter a new MN jurisdiction, you must register **within 24 hours**; then **weekly** in person. [§ 243.166, subd. 3a(c), (e)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "Report **secondary addresses** in Minnesota and promptly update changes. [§ 243.166, subd. 4a & 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166)."
+  ],
+
+  complianceEnforcement: "Failure to register or giving false information is a **felony** with a **mandatory minimum** prison term (subject to limited departure) and can extend registration by **5 years**. Level 3 violators face **10 years** of conditional release. See [§ 243.166, subd. 5, 5a & 6(b)](https://www.revisor.mn.gov/statutes/cite/243.166).",
 
   reliefPaths: [
     "Most terms are **10 years (or longer of supervision)**; certain convictions, repeat offenses, or civil commitment require **lifetime** registration. [§ 243.166, subd. 6(a), (d)](https://www.revisor.mn.gov/statutes/cite/243.166).",
-    "Courts **may not modify** the duty to register; relief usually requires the term to expire or undoing the predicate conviction. [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166)."
+    "Courts **may not modify** the duty to register in the sentence; relief generally requires the term to expire or undoing the predicate (e.g., vacatur). See [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "Risk-level appeals under [§ 244.052](https://www.revisor.mn.gov/statutes/cite/244.052) **do not** terminate registry duty.",
+    "Executive clemency/expungement rarely changes registration unless the underlying basis is removed; consult counsel."
   ],
 
-  badges: { residencyZones: false, lifetimePossible: true, verificationQuarterly: false },
+  specialPopulations: [
+    "**Homeless/no primary address**: register **within 24 hours** and then report **weekly in person**; some may get an approved alternative plan. [§ 243.166, subd. 3a](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "**Students/workers from out of state**: must register in MN **within 5 days**. [§ 243.166, subd. 3(c)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "**Civilly committed (SDP/SPP)**: enhanced verification and potential **lifetime** duty. [§ 243.166, subd. 1b(c); 3a(g); 6(d)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+    "**Healthcare admissions**: facilities receive **fact sheets** and may distribute them to residents/staff. [§ 243.166, subd. 4b](https://www.revisor.mn.gov/statutes/cite/243.166)."
+  ],
+
+  costs: [
+    "Minnesota law sets **no routine registration fee** in § 243.166; costs may arise for travel, mail, or supervision conditions. Confirm any local procedures with **local law enforcement** or [BCA POR](https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants)."
+  ],
+recentChangesLitigation: [
+    { type: "statute", bill: "2024 c 123 art 7 (amendments to § 243.166)", session: "93rd Leg., 2024", effective: "2024-08-01 (varies by section)", summary: "Amended multiple subdivisions, including Subd. 6 (registration period) and added Subd. 4d (guardians/conservators authority).", link: "https://www.revisor.mn.gov/statutes/cite/243.166" },
+    { type: "case", name: "Franklin v. Evans", court: "Minn. Supreme Court", date: "2023-06-28", holding: "Continuing-violation doctrine does not toll limitations for civil challenge to POR; discusses § 243.166 framework.", link: "https://law.justia.com/cases/minnesota/supreme-court/2023/a21-1378.html" },
+    { type: "rule", cite: "DOC Community Notification practice", effective: "Ongoing", summary: "DOC publishes Level 3 and certain public-notification cases; registry data otherwise private.", link: "https://mn.gov/doc/community-supervision/community-notification/" }
+  ],
+
+  checklistsScripts: {
+    newArrivalChecklist: [
+      "Get your **court/BCA notice** and read the **duty to register**. [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166).",
+      "If on supervision, **contact your agent immediately**; if not, **report to local law enforcement** where you live.",
+      "List your **primary** and **secondary** addresses and gather required info (vehicles, phones, employment/school). [§ 243.166, subd. 4a](https://www.revisor.mn.gov/statutes/cite/243.166).",
+      "If moving: submit **5-day prior written notice**. [§ 243.166, subd. 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+      "Calendar your **birth-month** in-person verification and the **10-day** return window for the annual BCA letter. [§ 243.166, subd. 4(e)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+      "If you lack a primary address: **register within 24 hours**; plan for **weekly** reports. [§ 243.166, subd. 3a](https://www.revisor.mn.gov/statutes/cite/243.166)."
+    ],
+    movingOutChecklist: [
+      "Give **5-day prior notice** of the out-of-state move to your agent or registering authority. [§ 243.166, subd. 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166).",
+      "Contact the **new state’s** registry to confirm **when/where** to report.",
+      "Keep copies of your notice and any **proof of registration** in the new state.",
+      "Watch mail at your last MN address until BCA confirms your **new-state** address via verification; MN duty can **reactivate** if you return. [§ 243.166, subd. 3(b)](https://www.revisor.mn.gov/statutes/cite/243.166)."
+    ],
+    recordsRequestTemplate: "To: BCA Predatory Offender Registration Unit, 1430 Maryland Ave. E., St. Paul, MN 55106.\n\nI am registered under Minn. Stat. § 243.166. Please mail to my **primary address on file** the following: (1) my current registration information; (2) verification-letter status/dates for the past two years; and (3) any noted noncompliance flags. I understand BCA cannot respond by phone or email and will only respond by mail. See [BCA Registrant Info](https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants).",
+    reliefPetitionOutline: "Minnesota law provides **no general early-termination** petition. Relief typically requires: (1) confirming the **correct term** under [§ 243.166, subd. 6](https://www.revisor.mn.gov/statutes/cite/243.166); (2) litigating that the predicate **does not trigger** § 243.166 (charge-based disputes under subd. 1b); (3) post-conviction or collateral relief **vacating/overturning** the qualifying basis; or (4) clemency. Courts **may not modify** the duty in sentencing. See [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166)."
+  },
+
+  resources: {
+    legalAid: [
+      { name: "Minnesota Public Defender – Postconviction/Appeals", link: "https://www.pubdef.state.mn.us" },
+      { name: "Innocence Project of Minnesota (charge-based issues)", link: "https://www.ipmn.org" }
+    ],
+    advocacy: [
+      { name: "ACLU of Minnesota", link: "https://www.aclu-mn.org" }
+    ],
+    reentry: [
+      { name: "MN DOC Reentry Services", link: "https://mn.gov/doc/community-supervision/" },
+      { name: "BCA POR – Registrant Info & Mail-only Contact", link: "https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants" }
+    ]
+  },
+
+  citations: [
+    { label: "Minn. Stat. § 243.166 (2024)", url: "https://www.revisor.mn.gov/statutes/cite/243.166" },
+    { label: "Minn. Stat. § 243.167 (Other Offenses/Out-of-state triggers)", url: "https://www.revisor.mn.gov/statutes/cite/243.167" },
+    { label: "Minn. Stat. § 244.052 (Risk Leveling/Community Notification)", url: "https://www.revisor.mn.gov/statutes/cite/244.052" },
+    { label: "BCA – Predatory Offender Registry (Registrant Info)", url: "https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants" },
+    { label: "DOC – Community Notification & Level 3 Search", url: "https://mn.gov/doc/community-supervision/community-notification/" },
+    { label: "DOC Public Registrant Search (Level 3/public-notification)", url: "https://coms.doc.state.mn.us/publicregistrantsearch" }
+  ],
+
+  badges: {
+    residencyZones: false,
+    lifetimePossible: true,
+    verificationQuarterly: false
+  },
 
   plainLanguage: {
     atAGlance: {
       summary: [
-        "Minnesota uses **charge-based** registration; even a plea to a different charge from the same case can trigger registration.",
+        "Minnesota uses **charge-based** registration. Even a plea to a different offense from the same incident can still require registering.",
         "Tell authorities **5 days before** you move. If you’re **homeless**, register within **24 hours** and then **weekly**.",
-        "Each year you’ll get a **mail** verification and must also check in **in person** during your **birth month**."
+        "Each year you’ll get a **mail** verification and must also do an **in-person** check during your **birth month**."
       ],
       watchOuts: [
-        "Missing a letter or check-in adds **5 years**.",
-        "Only some people are public online; most registry data is private."
+        "Missing a letter or birth-month check can **add 5 years**.",
+        "Only some people are listed online; most registry data is **not public**."
       ],
-      validationNote: "Validated against Minn. Stat. §243.166, §243.167, and BCA/DOC official sources.",
+      validationNote: "Verified against [Minn. Stat. § 243.166](https://www.revisor.mn.gov/statutes/cite/243.166), [§ 243.167](https://www.revisor.mn.gov/statutes/cite/243.167), [BCA Registrant Info](https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants), and [DOC Community Notification](https://mn.gov/doc/community-supervision/community-notification/).",
       reviewedUTC: "2025-10-13T22:00:00Z"
+    },
+    whoMustRegister: {
+      summary: [
+        "You must register if convicted of a listed offense **or** another offense from the same case facts.",
+        "Out-of-state, federal, and military cases that match also trigger MN registration."
+      ],
+      watchOuts: [
+        "Being required to register in another state can trigger MN duties if you live, work, or study here."
+      ],
+      validationNote: "See [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166#subd.1b) and [§ 243.167](https://www.revisor.mn.gov/statutes/cite/243.167)."
     },
     deadlinesReporting: {
       summary: [
-        "Give written notice 5 days before moving.",
-        "No fixed address? Register within **24 hours**; then **weekly**.",
-        "Return BCA’s yearly letter within **10 days**.",
-        "Report job/school changes within **5 days**."
+        "Give written notice **5 days before** you move.",
+        "No fixed address? Register in **24 hours**, then **weekly**.",
+        "Return BCA’s yearly letter in **10 days** and go in during your **birth month**.",
+        "Report job/school within **5 days**."
       ],
-      validationNote: "§243.166 subd.3–4."
+      watchOuts: ["Keep proof of mailing and keep your address current; late updates can extend your term by **5 years**."],
+      validationNote: "See [§ 243.166, subd. 3, 3a, 4(e), and 4a](https://www.revisor.mn.gov/statutes/cite/243.166)."
+    },
+    verificationInPerson: {
+      summary: [
+        "Go in during your **birth month** for verification and a photo.",
+        "If homeless, expect **weekly** in-person check-ins unless an alternative is approved."
+      ],
+      watchOuts: ["Missing these can be a **felony** and add **5 years**."],
+      validationNote: "See [§ 243.166, subd. 3a(e)–(f)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.3a) and [§ 243.166, subd. 4(e)(3)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.4)."
+    },
+    residencyPresence: {
+      summary: [
+        "There’s **no statewide residency ban** in the statute.",
+        "Agents or local rules may add limits."
+      ],
+      watchOuts: ["Community-notification practices can increase scrutiny, especially for **Level 3**."],
+      validationNote: "See [§ 243.166, subd. 7](https://www.revisor.mn.gov/statutes/cite/243.166#subd.7) and [DOC Community Notification](https://mn.gov/doc/community-supervision/community-notification/)."
+    },
+    employmentEducationInternet: {
+      summary: [
+        "Report employment and school addresses and keep them current.",
+        "Internet identifiers are **not** listed in § 243.166."
+      ],
+      validationNote: "See [§ 243.166, subd. 3(c)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.3) and [§ 243.166, subd. 4a(4)–(8)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.4a)."
+    },
+    publicWebsiteExposure: {
+      summary: [
+        "Most registry data is **private**.",
+        "DOC posts **Level 3** and certain public-notification cases."
+      ],
+      validationNote: "See [§ 243.166, subd. 7 & 7a](https://www.revisor.mn.gov/statutes/cite/243.166#subd.7) and [DOC Search](https://coms.doc.state.mn.us/publicregistrantsearch)."
+    },
+    travelInterstate: {
+      summary: [
+        "Tell MN **5 days before** moving out; register in the new state.",
+        "If you work/study across state lines, you may need to register **in both places**."
+      ],
+      validationNote: "See [§ 243.166, subd. 3(b)–(d)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.3)."
+    },
+    visitingTraveling: {
+      summary: [
+        "If homeless and in a new MN jurisdiction, you must **register within 24 hours** and then **weekly**."
+      ],
+      validationNote: "See [§ 243.166, subd. 3a(c), (e)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.3a)."
     },
     complianceEnforcement: {
       summary: [
-        "Failure to register is a felony.",
-        "Noncompliance adds 5 years to your term."
+        "Failure to register is a **felony** with prison time.",
+        "Noncompliance can add **5 years** to your registration term."
       ],
-      validationNote: "§243.166 subd.5–6."
+      watchOuts: ["Level 3 violations can add **10 years** of conditional release."],
+      validationNote: "See [§ 243.166, subd. 5, 5a, and 6(b)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.5)."
     },
     reliefPaths: {
       summary: [
-        "Standard duty lasts 10 years or longer of supervision.",
-        "Certain convictions require lifetime registration."
+        "Most people register **10 years** (or as long as supervision lasts).",
+        "Some must register for **life**.",
+        "Courts **can’t shorten** your duty at sentencing."
       ],
-      validationNote: "§243.166 subd.6."
+      watchOuts: ["Early exit generally requires undoing the basis (e.g., post-conviction relief)."],
+      validationNote: "See [§ 243.166, subd. 6(a), (d)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.6) and [§ 243.166, subd. 1b](https://www.revisor.mn.gov/statutes/cite/243.166#subd.1b)."
+    },
+    specialPopulations: {
+      summary: [
+        "Homeless registrants report **weekly** unless an alternative is approved.",
+        "Civilly committed individuals may face **lifetime** duty and added checks."
+      ],
+      validationNote: "See [§ 243.166, subd. 3a](https://www.revisor.mn.gov/statutes/cite/243.166#subd.3a) and [§ 243.166, subd. 6(d)](https://www.revisor.mn.gov/statutes/cite/243.166#subd.6)."
+    },
+    checklistsScripts: {
+      summary: [
+        "Use the arrival and moving checklists to plan notices, weekly reports (if homeless), and birth-month verification.",
+        "Use the records request template to get your file from BCA by mail."
+      ],
+      validationNote: "Based on [§ 243.166](https://www.revisor.mn.gov/statutes/cite/243.166) and [BCA/DOC guidance](https://dps.mn.gov/divisions/bca/bca-divisions/investigative-services/specialized-investigative-services/predatory-crimes/por/por-information-registrants)."
     }
   }
 };
