@@ -156,86 +156,160 @@ export default {
   plainLanguage: {
     atAGlance: {
       summary: [
-        "Nevada uses offense-based tiers tied to how often you check in.",
-        "If you’re in Nevada 48+ hours (or start work/school), you must register within 48 hours."
+        "Nevada uses **offense-based tiers** with set check-in schedules; duties apply to residents, workers, and students; see [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/) and the 48-hour start in [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "DMV ties driver’s license/ID renewal to compliance; see [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/)."
       ],
       watchOuts: [
-        "DMV won’t renew your license/ID if you’re not compliant.",
-        "Keep proof of every visit and mailed/hand-delivered update."
+        "Presence **48+ hours** in a county or city triggers local registration within **48 hours**; see [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "Missed deadlines or false info are felonies; see [NRS 179D.550](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-550/)."
       ],
-      validationNote: "Summarized from [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/), [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/), and DMV rule at [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/).",
+      validationNote: "Derived from [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/), [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/), and [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/).",
       reviewedUTC: "2025-10-13T00:00:00Z"
     },
+
+    whoMustRegister: {
+      summary: [
+        "People with a qualifying **sexual offense** or **crime against a child** must register while residing in Nevada or when present as a worker/student; see [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/).",
+        "Out-of-state convictions count if substantially similar under Nevada law; initial clock runs from **presence** or **employment/school** start; see [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/)."
+      ],
+      watchOuts: [
+        "Multiple jurisdictions can require registration at once (home county, work county, school city); verify locally using [RCCD](https://www.rccd.nv.gov/about/sex-offender-registry-community-notification/)."
+      ],
+      validationNote: "Summarizes [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/) and [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/)."
+    },
+
     deadlinesReporting: {
       summary: [
-        "Initial: 48 hours once present 48+ hours (or start work/school).",
-        "Updates: name/residence/employment/student changes within 3 business days.",
-        "Moves/extended stays: 48-hour notice."
+        "Initial registration: within **48 hours** once present **48+ hours** or upon becoming a worker/student; see [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "Updates: name, residence, employment, or student status within **3 business days**; see [NRS 179D.447](https://nevada.public.law/statutes/nrs_179d.447).",
+        "Moves and extended stays: **48-hour** notice and updated itinerary; see [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
       ],
       watchOuts: [
-        "Missing these windows is chargeable as a felony.",
-        "If a short stay becomes long, the 48-hour move rule applies."
+        "Business days exclude weekends/holidays; do not wait—get a **dated receipt** from the sheriff/metro/police.",
+        "If a short visit turns long, the **48-hour** move rules can apply; see [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
       ],
-      validationNote: "See [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.447](https://nevada.public.law/statutes/nrs_179d.447), and [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
+      validationNote: "Based on [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.447](https://nevada.public.law/statutes/nrs_179d.447), and [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
     },
+
     verificationInPerson: {
       summary: [
-        "Tier I yearly; Tier II every 180 days; Tier III every 90 days.",
-        "Bring ID; agencies may update photo and sometimes collect new prints."
+        "Verification schedule: **Tier I annually**, **Tier II every 180 days**, **Tier III every 90 days**; see [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/).",
+        "Bring government ID; the agency updates **photo** and may retake **fingerprints/palm prints**; see AG guidance ([PDF](https://ag.nv.gov/uploadedFiles/agnvgov/Content/Publications/2019-07%20Final.pdf))."
       ],
       watchOuts: [
-        "Some agencies set print schedules or random re-prints.",
-        "Ask for your next due date in writing."
+        "Agencies can schedule prints at their discretion; always ask for your **next due date** in writing."
       ],
-      validationNote: "Based on [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/) and AG guidance ([Mar. 25, 2020](https://ag.nv.gov/uploadedFiles/agnvgov/Content/Publications/2019-07%20Final.pdf))."
+      validationNote: "See [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/) and the NV Attorney General guidance ([Mar. 25, 2020](https://ag.nv.gov/uploadedFiles/agnvgov/Content/Publications/2019-07%20Final.pdf))."
     },
+
     residencyPresence: {
       summary: [
-        "No blanket statewide residency ban in Chapter 179D.",
-        "Parole, probation, or lifetime supervision can add location rules."
+        "Chapter 179D has **no blanket statewide residency ban**; posting and community-notification are governed in Chapter 179B; see [NRS 179B.250](https://law.justia.com/codes/nevada/chapter-179b/statute-179b-250/).",
+        "Supervision (parole/probation or lifetime supervision) may restrict where you can live or go; see [NRS 213.1243](https://law.justia.com/codes/nevada/chapter-213/statute-213-1243/)."
       ],
       watchOuts: [
-        "Always read your supervision conditions; violations are separate crimes.",
-        "Local ordinances can exist; verify with your agency."
+        "Local conditions and **court orders** control; written confirmation is safest."
       ],
-      validationNote: "See [NRS 213.1243](https://law.justia.com/codes/nevada/chapter-213/statute-213-1243/) for lifetime supervision conditions; Chapter 179D contains no general residency ban."
+      validationNote: "Confirmed against [NRS 213.1243](https://law.justia.com/codes/nevada/chapter-213/statute-213-1243/) and absence of residency zones in Chapter 179D."
     },
+
+    employmentEducationInternet: {
+      summary: [
+        "Nonresidents who **work** or **attend school** in Nevada must register **within 48 hours** where they work/study; see [NRS 179D.460(4)](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "Report changes in employment or student status within **3 business days**; see [NRS 179D.447](https://nevada.public.law/statutes/nrs_179d.447)."
+      ],
+      watchOuts: [
+        "Multiple worksites or campuses can mean multiple agencies; verify with [RCCD](https://www.rccd.nv.gov/fees-forms/)."
+      ],
+      validationNote: "Summarizes [NRS 179D.460(4)](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/) and [NRS 179D.447](https://nevada.public.law/statutes/nrs_179d.447)."
+    },
+
+    publicWebsiteExposure: {
+      summary: [
+        "Nevada maintains a statewide **public website** for community notification; see [NRS 179B.250](https://law.justia.com/codes/nevada/chapter-179b/statute-179b-250/) and portal at [nvsexoffenders.gov](https://www.nvsexoffenders.gov/).",
+        "Website scope varies by tier and victim age; general public posting includes **Tier II and III**, and some **Tier I** where the victim is a minor; see [NRS 179B.250](https://law.justia.com/codes/nevada/chapter-179b/statute-179b-250/)."
+      ],
+      watchOuts: [
+        "Misuse of registry data (harassment/employment decisions) is restricted; penalties outlined in [NRS 179B.270–.290](https://law.justia.com/codes/nevada/chapter-179b/)."
+      ],
+      validationNote: "Based on [NRS 179B.250](https://law.justia.com/codes/nevada/chapter-179b/statute-179b-250/) and [NRS 179B.270–.290](https://law.justia.com/codes/nevada/chapter-179b/)."
+    },
+
+    travelInterstate: {
+      summary: [
+        "If moving out of Nevada or changing primary address for school/work, give **48-hour** notice and details; see [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/).",
+        "You must remain compliant while present in Nevada or while a Nevada-based worker/student; see duration rules at [NRS 179D.490](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/)."
+      ],
+      watchOuts: [
+        "Destination states have different rules; check their statutes before arrival."
+      ],
+      validationNote: "Key duties in [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/) and ongoing duration in [NRS 179D.490](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/)."
+    },
+
+    visitingTraveling: {
+      summary: [
+        "Visitors present **48+ hours** in a Nevada county/city must register **within 48 hours** with the local agency; see [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "If a short trip extends or address plans change, update promptly; see [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
+      ],
+      watchOuts: [
+        "Hotels, friends’ homes, or temporary rentals count as a **residence** for duty purposes when thresholds are met."
+      ],
+      validationNote: "Summarizes thresholds in [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/) and notifications in [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
+    },
+
     complianceEnforcement: {
       summary: [
-        "First failure generally a Category D felony; repeat within 7 years is Category C.",
-        "Police must act to correct noncompliance; DMV will not renew noncompliant IDs."
+        "Failure to register, verify, or update is a **Category D felony**; a subsequent offense within 7 years is a **Category C felony**; see [NRS 179D.550](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-550/).",
+        "DMV will not issue/renew a license or ID if you’re not compliant; see [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/)."
       ],
       watchOuts: [
-        "Keep receipts and copies; strict timelines leave little margin.",
-        "Providing false info is also a felony."
+        "Always keep **stamped receipts** and copies of forms; they are your proof if questioned.",
+        "Providing **false information** is separately chargeable; see [NRS 179D.550](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-550/)."
       ],
       validationNote: "See [NRS 179D.550](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-550/) and [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/)."
     },
+
     reliefPaths: {
       summary: [
-        "Tier I can seek a 5-year reduction after 10 compliant years with other conditions met.",
-        "Tier II is 25 years; Tier III is life (juvenile adjudications may have a path)."
+        "Duration: **Tier I 15 years**, **Tier II 25 years**, **Tier III life**; limited juvenile exceptions; see [NRS 179D.490](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/).",
+        "Tier I may petition to reduce by **5 years** after **10 consecutive compliant years** with other conditions met; see [NRS 179D.490(3)–(4)](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/)."
       ],
       watchOuts: [
-        "Reduction is not automatic; you must petition the district court.",
-        "Any new felony/sexual offense or noncompliance resets eligibility."
+        "No automatic reduction—**petition** the district court; new offenses or violations can defeat eligibility.",
+        "Lifetime supervision changes use a different process; see [NRS 213.1243](https://law.justia.com/codes/nevada/chapter-213/statute-213-1243/)."
       ],
-      validationNote: "Summarized from [NRS 179D.490](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/)."
+      validationNote: "Relief summarized from [NRS 179D.490](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-490/) and supervision modifications in [NRS 213.1243](https://law.justia.com/codes/nevada/chapter-213/statute-213-1243/)."
     },
-    whoMustRegister: {
+
+    specialPopulations: {
       summary: [
-        "Qualifying convictions since 1956 trigger duties while present, residing, or working/studying in Nevada."
+        "Out-of-state **students/workers** must register in the Nevada jurisdiction of attendance/employment within **48 hours**; see [NRS 179D.460(4)](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/).",
+        "Certain **juvenile** adjudications can be tiered under Nevada’s AWA scheme; see RCCD background ([AB 579 summary](https://www.rccd.nv.gov/siteassets/content/resources/advisorycommittee/2016/AB579.pdf))."
       ],
       watchOuts: [
-        "Out-of-state convictions count if equivalent under Nevada law."
+        "School-based placements and internships count; coordinate early with campus police and the local sheriff."
       ],
-      validationNote: "See [NRS 179D.441](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-441/) and [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/)."
+      validationNote: "See [NRS 179D.460(4)](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/) and RCCD AB 579 materials."
     },
+
+    costs: {
+      summary: [
+        "Local agencies may charge admin or fingerprint fees; see RCCD **Fees/Forms** page ([RCCD](https://www.rccd.nv.gov/fees-forms/)).",
+        "DMV license/ID renewal is **annual** for registrants; standard DMV fees apply; see [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/) and [DMV guidance](https://dmv.nv.gov/dlso.htm)."
+      ],
+      watchOuts: [
+        "Bring **exact payment** and ID to avoid repeat trips; some agencies have limited hours."
+      ],
+      validationNote: "Fees and forms via [RCCD](https://www.rccd.nv.gov/fees-forms/) and DMV renewal rule in [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/)."
+    },
+
     checklistsScripts: {
       summary: [
-        "Register quickly, keep proofs, and calendar your next due dates and DMV renewal."
+        "Register quickly, keep **receipts**, and calendar both your **next verification** and **DMV** renewal.",
+        "If moving, file the **48-hour** notice and keep copies; see [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/)."
       ],
-      validationNote: "Checklist steps align with [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/), and [NRS 483.283](https://law.justia.com/codes/nevada/chapter-483/statute-483-283/)."
+      validationNote: "Aligned with [NRS 179D.460](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-460/), [NRS 179D.480](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-480/), and [NRS 179D.470](https://law.justia.com/codes/nevada/chapter-179d/statute-179d-470/).",
+      reviewedUTC: "2025-10-13T00:00:00Z"
     }
   }
 };
