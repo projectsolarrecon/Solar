@@ -32,14 +32,13 @@ export default {
     "Report employment/school info **within 5 days** of starting. [§ 243.166, subd. 3(c), 4a](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "Return the mailed verification form to BCA **within 10 days**. [§ 243.166, subd. 4(e)(2)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "Have **in-person** verification/photo with local law enforcement **during your birth month**. [§ 243.166, subd. 4(e)(3)](https://www.revisor.mn.gov/statutes/cite/243.166)."
-  
+  ],
 
   verificationInPerson: [
     "**Birth-month** in-person verification and photo with local law enforcement. [§ 243.166, subd. 4(e)(3)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "**Weekly in-person** check-ins if lacking a primary address (unless an approved alternative). [§ 243.166, subd. 3a(e)–(f)](https://www.revisor.mn.gov/statutes/cite/243.166).",
     "Committed SDPA/SPP registrants who lack a primary address must re-provide full info at least **every three months**. [§ 243.166, subd. 3a(g)](https://www.revisor.mn.gov/statutes/cite/243.166)."
   ],
-
   residencyPresence: "Minnesota has **no statewide residency-restriction zones** in the registration statute. Presence limits may be imposed case-by-case via supervision or community-notification rules. See data-privacy and notification framework in [§ 243.166, subd. 7](https://www.revisor.mn.gov/statutes/cite/243.166) and [DOC Community Notification](https://mn.gov/doc/community-supervision/community-notification/)."
 ],
 employmentEducationInternet: [
