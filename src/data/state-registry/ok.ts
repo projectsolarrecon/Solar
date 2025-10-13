@@ -208,7 +208,39 @@ export default {
         "Habitual/aggravated offenders face park entry bans.",
         "Courts have allowed retroactive application of the park rule."
       ],
-      complianceEnforcement: {
+      validationNote: "See [57 O.S. § 590](https://law.justia.com/codes/oklahoma/title-57/section-57-590/), [§ 590.1](https://law.justia.com/codes/oklahoma/title-57/section-57-590-1/), [21 O.S. § 1125](https://law.justia.com/codes/oklahoma/title-21/section-21-1125/), and recent case coverage in [Donaldson v. El Reno](https://nondoc.com/2025/02/07/divided-oklahoma-supreme-court-rules-sex-offender-residency-restriction-can-be-retroactive/)."
+    },
+    publicWebsiteExposure: {
+      summary: [
+        "ODOC publishes an online registry that is searchable by the public.",
+        "What shows online depends on the law and DOC policy."
+      ],
+      watchOuts: [
+        "Even after court relief, DOC needs the **certified order** to update the public website."
+      ],
+      validationNote: "Public portal and publication authority in [§ 584(I)](https://law.justia.com/codes/oklahoma/title-57/section-57-584/) and [ODOC SOR site](https://sors.doc.ok.gov/)."
+    },
+    travelInterstate: {
+      summary: [
+        "If you work or study out of state beyond the thresholds, you must register there too.",
+        "Moving out requires **10 days’ prior notice** to DOC and local police."
+      ],
+      watchOuts: [
+        "Other states’ clocks can be shorter; check before travel."
+      ],
+      validationNote: "Cross-border duties in [§ 583(F)(3), (5)–(6)](https://law.justia.com/codes/oklahoma/title-57/section-57-583/)."
+    },
+    visitingTraveling: {
+      summary: [
+        "Visitors must register in Oklahoma **within 2 days** once stay/work/school thresholds are met.",
+        "Within-state stays of **7 consecutive** or **14 in 60** days trigger local registration in that jurisdiction."
+      ],
+      watchOuts: [
+        "Spouses of OK residents living out of state have a special **2-day** rule when entering Oklahoma."
+      ],
+      validationNote: "Visitor thresholds and local-jurisdiction rules in [§ 583(A)–(B), (H)](https://law.justia.com/codes/oklahoma/title-57/section-57-583/)."
+    },
+    complianceEnforcement: {
       summary: [
         "Most violations of SORA are felonies with up to **5 years** and $5,000 fines.",
         "Residency-zone violations carry 1–3 years and up to $3,000 fines."
