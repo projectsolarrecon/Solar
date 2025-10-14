@@ -1,3 +1,4 @@
+// —PART 1—
 export default {
   state: "Connecticut",
   lastReviewedUTC: "2025-10-14T00:00:00Z",
@@ -15,6 +16,7 @@ export default {
     ],
     officialLinks: {
       statuteIndex: "https://www.cga.ct.gov/2024/sup/chap_969.htm",
+      adminRules: "https://portal.ct.gov/despp/division-of-state-police/sex-offender-registry",
       statePoliceRegistry: "https://portal.ct.gov/despp/division-of-state-police",
       formsPortal: "https://portal.ct.gov/despp/forms-and-resources",
       publicWebsite: "https://portal.ct.gov/despp/services/connecticut-state-police-csp"
@@ -63,7 +65,7 @@ export default {
   complianceEnforcement: "**Penalties:** Failure to register/verify or to report required changes is a **Class D felony**; failure tied to “without undue delay” becomes chargeable if the delay **continues for 5 business days**; police are directed to seek a warrant if verification is not returned; see [§54-251(e)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-251/), [§54-253(e)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-253/) & [§54-257(c)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-257/).",
 
   reliefPaths: [
-    "**Court exemptions from registration (limited):** Court may **exempt** certain offenses if **not required for public safety** (e.g., §53a-71(a)(1) with offender under 19; certain §53a-73a( a )(2) and §53a-189a offenses); see [§54-251(b)–(c)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-251/).",
+    "**Court exemptions from registration (limited):** Court may **exempt** certain offenses if **not required for public safety** (e.g., §53a-71(a)(1) with offender under 19; certain §53a-73a(a)(2) and §53a-189a offenses); see [§54-251(b)–(c)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-251/).",
     "**Restrict public dissemination:** Eligible cohorts may petition to **restrict dissemination to law enforcement only**; see [§54-255(b)–(c)](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-255/).",
     "**Note:** Connecticut otherwise provides **no general removal** mechanism from the registry under current law; see Sentencing Commission overview ([proposal PDF](https://ctsentencingcommission.org/wp-content/uploads/2018/03/AN-ACT-CONCERNING-THE-RECOMMENDATIONS-OF-THE-CONNECTICUT-SENTENCING-COMMISSION-WITH-RESPECT-TO-THE-SEX-OFFENDER-REGISTRY.pdf))."
   ],
@@ -141,7 +143,7 @@ export default {
     { label: "§54-258 — Public availability; immunity; notices", url: "https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-258/" },
     { label: "§54-255 — Restrict dissemination (law-enforcement only) in narrow cases", url: "https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-255/" },
     { label: "DESPP Advisement Form DPS-694-C-3 (11/28/23)", url: "https://portal.ct.gov/-/media/despp/despp/forms/sex-offender-registry-forms/dps-694-c-3-advisement-of-registration-requirement.pdf" },
-    { label: "OLR Bill Analysis — PA 23-193 (address verification by fax/email)", url: "https://www.cga.ct.gov/2023/ba/pdf/2023SB-00969-R01-BA.pdf" },
+    { label: "OLR Bill Analysis — PA 23-193 (fax/email verification)", url: "https://www.cga.ct.gov/2023/ba/pdf/2023SB-00969-R01-BA.pdf" },
     { label: "OLR Report — Sexual Offender Registration & Housing (2020-R-0337)", url: "https://www.cga.ct.gov/2020/rpt/pdf/2020-R-0337.pdf" },
     { label: "SCOTUS — Connecticut Dept. of Public Safety v. Doe (2003)", url: "https://supreme.justia.com/cases/federal/us/538/1/" }
   ],
@@ -151,7 +153,7 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
-
+// —PART 2—
   plainLanguage: {
     atAGlance: {
       summary: [
@@ -173,7 +175,9 @@ export default {
       watchOuts: [
         "Courts can **exempt** some offenses (limited) or **restrict public posting** in specific situations."
       ],
-      deadlinesReporting: {
+      validationNote: "See [§54-251](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-251/), [§54-252](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-252/), [§54-254](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-254/), and [§54-253](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-253/)."
+    },
+    deadlinesReporting: {
       summary: [
         "Register **within 3 days** of release (DOC may set earlier).",
         "Out-of-state convictions: register **without undue delay** on residing in CT.",
