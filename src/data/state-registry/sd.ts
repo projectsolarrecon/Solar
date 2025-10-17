@@ -334,5 +334,6 @@ plainLanguage: {
     ],
     validationNote:
       "Agency contacts and search live at [sor.sd.gov](https://sor.sd.gov/). Petition statutes begin at [22-24B-17](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-17/)."
-  }
-}
+   }
+ }
+};
