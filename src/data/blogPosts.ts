@@ -13,6 +13,18 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "follow-the-money-part-5",
+  title: "Follow the Money, Part 5 — The Keepers of the Keys",
+  excerpt:
+    "Unions, prosecutors, politicians, and vendors have built a self-sustaining punishment economy — where sex-offense policy isn’t an accident of fear, but its most profitable product.",
+  author: "SOLAR Project",
+  date: "2025-10-17",
+  readTime: "13 min read",
+  category: "Investigations",
+  tags: ["punishment economy", "registry reform", "mass incarceration", "private prisons", "political incentives"],
+  path: "/blog/follow-the-money-part-5",
+},
+{
   id: "follow-the-money-part-4",
   title: "Cashing In on Captivity: How America Turned Incarceration into a Growth Industry",
   excerpt: "From $8 prison phone calls to billion-dollar private prison contracts, America has transformed captivity itself into an engine of profit — monetizing every moment of human contact behind bars.",
