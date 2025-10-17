@@ -195,7 +195,7 @@ function App() {
 />
 <Route path="/blog/follow-the-money-part-3" element={<FollowTheMoneyPart3 />} />
 <Route path="/blog/follow-the-money-part-4" element={<FollowTheMoneyPart4 />} />
-<Route path="/blog/follow-the-money-part5" element={<FollowTheMoneyPart5 />} />
+<Route path="/blog/follow-the-money-part-5" element={<FollowTheMoneyPart5 />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
