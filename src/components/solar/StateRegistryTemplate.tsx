@@ -82,6 +82,15 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
+
+  // ✅ NEW: add this block
+  highlights?: {
+    residency?: string;
+    presence?: string;
+    duration?: string;
+    tiering?: string;
+  };
+
   plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
