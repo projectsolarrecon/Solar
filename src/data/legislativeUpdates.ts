@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "October 19, 2025",
+  title: "Audit Findings, Fee Lawsuit & Compliance Operations Mark This Week",
+  slug: "2025-10-19",
+  summary: "West Virginia faces a federal challenge over registry fees, Michigan’s audit reveals oversight flaws, and federal compliance sweeps intensify enforcement.",
+},
+{
   date: "October 12, 2025",
   title: "Michigan SORA stay denied; Florida HB 1351 effective; Georgia registry sweep; Maryland audit uncovers oversight issues",
   slug: "2025-10-12",
