@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "what-good-is-the-registry",
+  title: "What Good Is the Registry?",
+  excerpt:
+    "If it can’t stop first-time offenders, doesn’t cut repeat offending beyond tools we already use, and makes communities less stable, what exactly is it doing?",
+  author: "SOLAR Project",
+  date: "2025-10-18",
+  readTime: "12 min read",
+  category: "Policy Analysis",
+  tags: [
+    "registry reform",
+    "public safety",
+    "recidivism",
+    "criminal justice",
+    "policy evidence"
+  ],
+  path: "/blog/what-good-is-the-registry",
+},
+{
   id: "follow-the-money-part-5",
   title: "Follow the Money, Part 5 — The Keepers of the Keys",
   excerpt:
