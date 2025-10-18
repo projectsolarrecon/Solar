@@ -87,6 +87,7 @@ import HalloweenSafetyMyth from "./pages/blog/HalloweenSafetyMyth";
 import FollowTheMoneyPart3 from "./pages/blog/FollowTheMoneyPart3";
 import FollowTheMoneyPart4 from "./pages/blog/FollowTheMoneyPart4";
 import FollowTheMoneyPart5 from "./pages/blog/FollowTheMoneyPart5";
+import WhatGoodistheRegistry from "./pages/blog/WhatGoodistheRegistry";
 
 function App() {
   return (
@@ -196,6 +197,8 @@ function App() {
 <Route path="/blog/follow-the-money-part-3" element={<FollowTheMoneyPart3 />} />
 <Route path="/blog/follow-the-money-part-4" element={<FollowTheMoneyPart4 />} />
 <Route path="/blog/follow-the-money-part-5" element={<FollowTheMoneyPart5 />} />
+<Route path="/blog/what-good-is-the-registry"
+  element={<WhatGoodistheRegistry />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
