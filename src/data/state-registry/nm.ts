@@ -156,9 +156,16 @@ export default {
   ],
 
   badges: {
-    residencyZones: false,
+    residencyZones: true,
     lifetimePossible: true,
     verificationQuarterly: true
+  },
+
+  highlights: {
+    residency: "Residents register with the county sheriff within **five business days** of release, arrival, or relocation per [§ 29-11A-4(B)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/).",
+    presence: "Non-residents who work or study in NM—and visitors exceeding DPS stay thresholds—must register within five business days; see [§ 29-11A-4(D)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/) and [DPS LERB](https://www.dps.nm.gov/law-enforcement-records-bureau/).",
+    duration: "Statute sets **10 years (semiannual)** vs. **life (quarterly)** by offense lists; see [§ 29-11A-4(L)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/) and [§ 29-11A-5(D)–(F)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-5/).",
+    tiering: "No numeric tiers—**List D** requires quarterly-for-life and **List E** semiannual-for-10-years, with repeats converting to life; see [§ 29-11A-4(L)–(M)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/) and [§ 29-11A-5(D)–(E)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-5/)."
   },
 
   plainLanguage: {
