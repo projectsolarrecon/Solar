@@ -5,6 +5,21 @@ import {
   Gavel, ListChecks, Quote
 } from "lucide-react";
 
+// ✅ New helper (right here)
+function DurationLine({ html }: { html?: string }) {
+  if (!html) return null;
+  const withLinks = html.replace(
+    /\[(.*?)\]\((.*?)\)/g,
+    '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>'
+  );
+  return (
+    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+      <strong>Duration:</strong>{" "}
+      <span dangerouslySetInnerHTML={{ __html: withLinks }} />
+    </p>
+  );
+}
+
 export type RecentChange =
   | { type: "case"; name: string; court: string; date: string; holding: string; link?: string }
   | { type: "statute"; bill: string; session: string; effective: string; summary: string; link?: string }
