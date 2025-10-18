@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import GuideLayout from "../../../../components/layouts/GuideLayout";
 import StateRegistryTemplate, { StateRegistryData } from "../../../../components/solar/StateRegistryTemplate";
+import HighlightsCard from "../../../../components/solar/HighlightsCard"; // ✅ NEW
 
 // ✅ Use a root-absolute glob so Vite always finds your files in any env
 //    This will include ONLY two-letter codes (e.g., "sc.ts" or "sc.json") and skip schema.ts
@@ -79,6 +80,9 @@ export default function StateRegistryStatePage(): JSX.Element {
       lede={`Official-source summary for ${data.state}.`}
       showTOC={true}
     >
+      {/* ✅ NEW: Top-of-page highlights (auto-hides if the state file has no `highlights`) */}
+      <HighlightsCard highlights={(data as any).highlights} />
+
       <StateRegistryTemplate data={data as StateRegistryData} />
     </GuideLayout>
   );
