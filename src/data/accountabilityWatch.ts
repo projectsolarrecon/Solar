@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-10-18",
+  title: "Week of Oct 12–18, 2025",
+  slug: "2025-10-18",
+  summary:
+    "CA educator arrests; Lincoln officer arrest; former NE deputy convicted; former NC missionary pastor arrested on NC warrants; SA Catholic school coach rearrested.",
+  path: "/resources/accountability-watch/2025-10-18",
+},
+{
   date: "2025-10-11",
   title: "Week of Oct 5–11, 2025",
   slug: "2025-10-11",
