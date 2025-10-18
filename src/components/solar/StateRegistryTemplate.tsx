@@ -135,9 +135,15 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
       </Card>
 
       <Card title="Who Must Register & Duration" icon={<BookOpen className="w-6 h-6 text-slate-600" />}>
-        <P text={d.whoMustRegister} />
-        <PlainBox pl={d.plainLanguage?.whoMustRegister} />
-      </Card>
+  {/* Existing section for whoMustRegister */}
+  <P text={d.whoMustRegister} />
+
+  {/* ✅ New: show the duration line if the state has one */}
+  <DurationLine html={d.highlights?.duration} />
+
+  {/* Existing plain-language box */}
+  <PlainBox pl={d.plainLanguage?.whoMustRegister} />
+</Card>
 
       <Card title="Deadlines & Reporting Triggers" icon={<Clock className="w-6 h-6 text-slate-600" />}>
         <RichList items={d.deadlinesReporting} />
