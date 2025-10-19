@@ -141,6 +141,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "Registrants may not reside within **3,000 feet** of schools, child-care facilities, licensed child-caring agencies, or youth recreation areas, with narrow grandfathering, per [§ 45-33-25(4)](https://law.justia.com/codes/mississippi/title-45/chapter-33/section-45-33-25/).",
+    presence: "Being **on school property** or at certain places where minors congregate is restricted unless a listed exception applies, per [§ 45-33-26](https://law.justia.com/codes/mississippi/title-45/chapter-33/section-45-33-26/).",
+    duration: "Registration lasts **15/25/life** depending on tier, with petitions to remove available only after the applicable minimum and subject to disqualifiers, per [§ 45-33-47(2)–(4)](https://law.justia.com/codes/mississippi/title-45/chapter-33/section-45-33-47/).",
+    tiering: "Mississippi uses **Tier 1/2/3** classifications tied to offense severity and victim factors, setting duration at **15/25/lifetime**, per [§ 45-33-47(2)(b)–(d)](https://law.justia.com/codes/mississippi/title-45/chapter-33/section-45-33-47/) and agency portal [MS DPS Registry](https://state.sor.dps.ms.gov/)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
