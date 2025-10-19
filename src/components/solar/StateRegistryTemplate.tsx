@@ -4,22 +4,7 @@ import {
   GraduationCap, Database, Plane, Shield, Users, DollarSign,
   Gavel, ListChecks, Quote
 } from "lucide-react";
-import HighlightsCard from "./HighlightsCard"; // ✅ add this
-
-// (Optional helper you already had; fine to keep)
-function DurationLine({ html }: { html?: string }) {
-  if (!html) return null;
-  const withLinks = html.replace(
-    /\[(.*?)\]\((.*?)\)/g,
-    '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>'
-  );
-  return (
-    <p className="mt-2 text-sm leading-relaxed text-slate-700">
-      <strong>Duration:</strong>{" "}
-      <span dangerouslySetInnerHTML={{ __html: withLinks }} />
-    </p>
-  );
-}
+import HighlightsCard from "./HighlightsCard"; // ✅ single source of truth
 
 export type RecentChange =
   | { type: "case"; name: string; court: string; date: string; holding: string; link?: string }
@@ -83,15 +68,12 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
-
-  // ✅ keep this; the component reads from it
   highlights?: {
     residency?: string;
     presence?: string;
     duration?: string;
     tiering?: string;
   };
-
   plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
@@ -100,7 +82,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
-      {/* ✅ render the reusable component once */}
+      {/* ✅ Render once, via component */}
       <HighlightsCard highlights={d.highlights} />
 
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
