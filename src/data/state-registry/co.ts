@@ -126,6 +126,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Colorado imposes **no statewide residency-distance restrictions** for registrants; any limits come from supervision conditions or local ordinances ([Larimer County fact sheet](https://www.larimer.gov/sites/default/files/uploads/2017/facts.pdf)).",
+    presence: "State law has **no statewide safety-zone/loitering bans** for registrants; any location limits are set case-by-case by courts/parole or local rules ([C.R.S. art. 22 index](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/) • [CBI SOR Unit](https://cbi.colorado.gov/sections/investigations/sex-offender-registration-unit)).",
+    duration: "Most register annually and **SVPs** quarterly, with petitions to discontinue allowed after offense-based waiting periods in [C.R.S. §16-22-113](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-113/) and juvenile automatic-termination rules in [§16-22-103(4)](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-103/).",
+    tiering: "Colorado has **no formal tier levels**; *sexually violent predators* register for life with quarterly verification while others are annual with petition windows under [§16-22-113](https://law.justia.com/codes/colorado/title-16/offenders-registration/article-22/section-16-22-113/)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
