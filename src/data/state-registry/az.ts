@@ -131,11 +131,11 @@ export default {
   },
 
   highlights: {
-    residency: "Only **Level 3 offenders** convicted of a *dangerous crime against children* may not live within **1,000 feet** of a school or child-care facility; see [A.R.S. § 13-3727](https://www.azleg.gov/ars/13/03727.htm).",
-    presence: "Arizona does **not** impose general loitering or presence zones; the 1,000-ft rule applies only to certain Level 3 DCAC offenders; see [A.R.S. § 13-3727](https://www.azleg.gov/ars/13/03727.htm).",
-  duration: "Registration lasts **for life** unless a court grants termination for qualifying youthful offenders or specific petitions; see [A.R.S. § 13-3821(G)](https://www.azleg.gov/legtext/56Leg/2R/laws/0057.pdf) and [A.R.S. § 13-3826](https://www.azleg.gov/legtext/53Leg/2R/bills/hb2309p.pdf)."
-    tiering: "Arizona uses **Levels 1–3** for risk-based community notification; Levels 2–3 appear publicly under [A.R.S. § 13-3825](https://www.azleg.gov/legtext/56Leg/2R/laws/0057.pdf) and [AZ DPS Sex Offender Compliance](https://www.azdps.gov/content/basic-page/106)."
-  },
+  residency: "Only **Level 3 offenders** convicted of a *dangerous crime against children* may not live within **1,000 feet** of a school or child-care facility; see [A.R.S. § 13-3727](https://www.azleg.gov/ars/13/03727.htm).",
+  presence: "Arizona does **not** impose general loitering or presence zones; the 1,000-ft rule applies only to certain Level 3 DCAC offenders; see [A.R.S. § 13-3727](https://www.azleg.gov/ars/13/03727.htm).",
+  duration: "Registration lasts **for life** unless a court grants termination for qualifying youth or specific petitions; see [A.R.S. § 13-3821(G)](https://www.azleg.gov/legtext/56Leg/2R/laws/0057.pdf) and [A.R.S. § 13-3826](https://www.azleg.gov/legtext/53Leg/2R/bills/hb2309p.pdf).",
+  tiering: "Arizona uses **Levels 1–3** for risk-based community notification; Levels 2–3 appear publicly under [A.R.S. § 13-3825](https://www.azleg.gov/legtext/56Leg/2R/laws/0057.pdf) and [AZ DPS Sex Offender Compliance](https://www.azdps.gov/content/basic-page/106).",
+},
 
   plainLanguage: {
     atAGlance: {
