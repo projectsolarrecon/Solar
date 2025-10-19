@@ -139,6 +139,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "**Level 3–4** may not reside within *2,000 feet* of schools, parks, youth centers, or daycares (**Level 4** also churches) under [§ 5-14-128](https://law.justia.com/codes/arkansas/title-5/subtitle-2/chapter-14/subchapter-1/section-5-14-128/).", 
+    presence: "**Level 3–4** face **school-campus entry** bans with narrow supervised parent/guardian exceptions per [§ 5-14-132](https://law.justia.com/codes/arkansas/title-5/subtitle-2/chapter-14/subchapter-1/section-5-14-132/).", 
+    duration: "Registration can be **lifetime** for specified categories; others may petition to terminate after **15 years** offense-free under [§ 12-12-919](https://law.justia.com/codes/arkansas/title-12/subtitle-2/chapter-12/subchapter-9/section-12-12-919/).", 
+    tiering: "Risk **Levels 1–4** are set through SOAC/SOCNA’s evaluation protocol with 5-year reassessment rights per [§ 12-12-917](https://law.justia.com/codes/arkansas/title-12/subtitle-2/chapter-12/subchapter-9/section-12-12-917/) and the [SOAC program page](https://doc.arkansas.gov/sex-offender-assessment-committee-soac/)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
