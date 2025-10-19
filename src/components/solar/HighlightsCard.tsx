@@ -10,6 +10,22 @@ interface HighlightsProps {
   };
 }
 
+// Minimal, safe-ish markdown rendering: escape → links → bold → italic
+function mdToHtml(input = ""): string {
+  const escape = (s: string) =>
+    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  let out = escape(input);
+  out = out.replace(
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    (_m, label, url) =>
+      `<a href="${url}" target="_blank" rel="noopener" class="underline">${escape(label)}</a>`
+  );
+  out = out
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  return out;
+}
+
 /**
  * SOLAR HighlightsCard
  * Displays short summary lines at top of each state registry page.
@@ -29,23 +45,20 @@ const HighlightsCard: React.FC<HighlightsProps> = ({ highlights }) => {
 
   if (items.length === 0) return null;
 
-  // Amber, dark text, compact; links rendered from Markdown
-  const renderLinks = (s: string) =>
-    s.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>');
-
   return (
-    <div className="bg-amber-50 border border-amber-200 rounded-2xl shadow-sm p-4 sm:p-5 mb-6 print:bg-white">
-      <h2 className="text-base sm:text-lg font-semibold mb-2 text-slate-900">
+    <div className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 text-white rounded-2xl shadow-md p-4 sm:p-6 mt-4 mb-6 print:bg-none print:text-black print:shadow-none">
+      <h2 className="text-lg font-semibold mb-3 text-white print:text-slate-900">
         Key Highlights
       </h2>
-      <ul className="space-y-2.5">
+      <ul className="space-y-3">
         {items.map(({ label, icon, text }, idx) => (
           <li key={idx} className="flex items-start gap-2">
-            <div className="mt-0.5 text-amber-700">{icon}</div>
-            <div className="text-sm leading-relaxed text-slate-800">
-              <span className="font-semibold">{label}:</span>{" "}
+            <div className="mt-1 text-slate-100 print:text-slate-900">{icon}</div>
+            <div className="text-sm leading-snug">
+              <span className="font-medium">{label}: </span>
               <span
-                dangerouslySetInnerHTML={{ __html: renderLinks(text!) }}
+                className="text-slate-100 print:text-slate-900"
+                dangerouslySetInnerHTML={{ __html: mdToHtml(text!) }}
               />
             </div>
           </li>
