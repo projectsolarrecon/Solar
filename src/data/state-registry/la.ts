@@ -145,6 +145,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Under **Louisiana state law**, anyone convicted of a qualifying offense involving a **minor victim** or designated as a **sexually violent predator** may not **reside within 1,000 feet** of schools, parks, daycares, playgrounds, or similar child-focused facilities as defined in [R.S. 14:91.2](https://legis.la.gov/Legis/Law.aspx?d=71998); local parishes or municipalities may enforce but cannot create stricter distance or additional residency limits.",
+    presence: "Those same classifications are barred from **being present within 1,000 feet** of the same protected sites while on supervised release or registration status under [R.S. 14:91.2](https://legis.la.gov/Legis/Law.aspx?d=71998); these statewide rules are exclusive and override conflicting local ordinances.",
+    duration: "Registration continues for **15 years** from the date of initial Louisiana registration, may be **reduced to 10 years** upon petition with a clean record, or may be imposed **for life** when classified as **aggravated**, **sexually violent predator**, or certain **child-victim** offenses under [R.S. 15:544](https://legis.la.gov/Legis/Law.aspx?d=79749).",
+    tiering: "Louisiana’s **classification system** is offense-based rather than numeric: *aggravated* offenders verify **quarterly**, *child-victim* offenders **semi-annually**, and others **annually** under [R.S. 15:542.1.1](https://legis.la.gov/Legis/Law.aspx?d=452030); these categories also determine **notification radius**, **relief eligibility**, and **lifetime designations** per [R.S. 15:544](https://legis.la.gov/Legis/Law.aspx?d=79749), rather than following federal SORNA tiers."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
