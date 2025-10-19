@@ -99,6 +99,59 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
+
+      {/* ✅ Key Highlights Card (accessible amber theme) */}
+      {d.highlights && (
+        <div className="bg-amber-50 dark:bg-amber-100/80 border border-amber-200 rounded-2xl shadow-sm p-5">
+          <div className="flex items-center gap-2 mb-3">
+            <AlertTriangle className="w-6 h-6 text-amber-600" />
+            <h2 className="font-semibold text-slate-900 text-lg">Key Highlights</h2>
+          </div>
+
+          <ul className="space-y-3 text-slate-800 leading-relaxed">
+            {d.highlights?.residency && (
+              <li className="flex items-start gap-2">
+                <MapPin className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Residency Restrictions:</strong>{" "}
+                  <SafeText text={d.highlights.residency} />
+                </span>
+              </li>
+            )}
+
+            {d.highlights?.presence && (
+              <li className="flex items-start gap-2">
+                <Shield className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Presence / Proximity Rules:</strong>{" "}
+                  <SafeText text={d.highlights.presence} />
+                </span>
+              </li>
+            )}
+
+            {d.highlights?.duration && (
+              <li className="flex items-start gap-2">
+                <Clock className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Duration of Registration:</strong>{" "}
+                  <SafeText text={d.highlights.duration} />
+                </span>
+              </li>
+            )}
+
+            {d.highlights?.tiering && (
+              <li className="flex items-start gap-2">
+                <Database className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <span>
+                  <strong>Tiering / Level System:</strong>{" "}
+                  <SafeText text={d.highlights.tiering} />
+                </span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
+
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
         <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
           <li><SafeText text={d.atAGlance?.mustRegister || "—"} /></li>
