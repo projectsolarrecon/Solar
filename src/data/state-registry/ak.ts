@@ -177,6 +177,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "No statewide residency-distance rule appears in [AS 12.63](https://www.akleg.gov/basis/statutes.asp#12.63); check any local ordinances before leasing or moving.",
+    presence: "Registration is due the **next working day** after becoming physically present in Alaska or upon conviction if not incarcerated, per [AS 12.63.010(a)](https://www.akleg.gov/basis/statutes.asp#12.63.010).",
+    duration: "Duty lasts **15 years** (annual verification) or **lifetime** (quarterly) based on offense history under [AS 12.63.020](https://www.akleg.gov/basis/statutes.asp#12.63.020) and [13 AAC 09.030](https://www.touchngo.com/lglcntr/akstats/aac/title13/chapter009/section030.htm).",
+    tiering: "Alaska does **not** use federal Tier I–III; duration is offense-count driven under [AS 12.63.020](https://www.akleg.gov/basis/statutes.asp#12.63.020)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
