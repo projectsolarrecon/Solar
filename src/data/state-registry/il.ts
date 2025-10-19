@@ -123,6 +123,13 @@ citations: [
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Illinois law bars certain offenders from **residing or loitering within 500 feet** of schools, parks, playgrounds, or facilities serving minors if the victim was under 18; see [720 ILCS 5/11-9.3](https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=072000050K11-9.3). Some municipalities impose **stricter local ordinances** expanding distances up to 1,000 feet or adding park zones, which remain enforceable unless inconsistent with state law.",
+    presence: "Registrants with minor victims may not be **present at or near schools, day cares, or public parks** without written permission and face limits on entering or remaining in child-centered areas such as pools or playgrounds; see [720 ILCS 5/11-9.4-1](https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=072000050K11-9.4-1). Local ordinances may further restrict loitering near such facilities or at public events for children.",
+    duration: "Standard registration lasts **10 years after discharge** from custody or supervision, while **lifetime registration** applies to sexual predators, sexually dangerous or violent persons, and certain repeat or aggravated convictions; see [730 ILCS 150/7](https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=073001500K7). Duration does not pause during incarceration for unrelated offenses.",
+    tiering: "Illinois does **not use numbered tiers** but classifies individuals as *sex offenders*, *sexual predators*, or *juvenile registrants*, each with specific reporting frequencies and durations; see [730 ILCS 150/2](https://www.ilga.gov/legislation/ilcs/fulltext.asp?DocName=073001500K2) and [Illinois State Police SOR Unit](https://isp.illinois.gov/Sor/OffenderRegistration?nt=1). These categories govern verification timing rather than federal Tier I–III levels."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
