@@ -167,6 +167,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Kentucky bars registrants from living within **1,000 feet** of schools, playgrounds, or daycare centers; state law preempts stricter local ordinances, though some municipalities still list redundant zones; see [KRS §17.545(1)](https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=49845), [OAG 10-005 (2010)](https://apps.legislature.ky.gov/law/kar/2024/oag10-005.pdf), and [Commonwealth v. Baker, 295 S.W.3d 437 (Ky. 2009)](https://casetext.com/case/commonwealth-v-baker-15).",
+  presence: "Presence near schools, parks, or daycares is restricted for individuals with offenses involving minors or while under supervision; see [KRS §17.545(2)](https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=49845).",
+  duration: "Registration lasts **20 years** or **life**, depending on statutory classification; see [KRS §17.520(2)](https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=49840).",
+  tiering: "Kentucky uses **two classifications**—20-year and lifetime—that determine registration length, verification frequency (**annual** vs. **every 90 days**), and relief eligibility; see [KRS §17.520](https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=49840) and [KSP Registry Portal](https://kspsor.ky.gov/Pages/default.aspx)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
