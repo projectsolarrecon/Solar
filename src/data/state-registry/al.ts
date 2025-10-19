@@ -156,7 +156,7 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
-{ 
+
   highlights: {
     residency: "No residence within 2,000 feet of a school or childcare facility, and not at a former victim’s residence, with narrow exceptions; see [§15-20A-11](https://al.elaws.us/code/15-20a-11).",
     presence: "Loitering within 500 feet of child-focused places and entry onto K-12 property are tightly restricted and may require school notice; see [§15-20A-17](https://al.elaws.us/code/15-20a-17).",
