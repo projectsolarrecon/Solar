@@ -149,6 +149,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Kansas has **no statewide residency restrictions** for registered offenders, and **local governments are prohibited** from creating their own distance or zoning rules under [K.S.A. 22-4913](https://ksrevisor.gov/statutes/chapters/ch22/022_049_0013.html).",
+    presence: "KORA imposes **no statewide loitering or presence limits** near schools, parks, or child-care sites; any such restrictions arise only from **court supervision or parole conditions** ([K.S.A. 22-4905](https://ksrevisor.gov/statutes/chapters/ch22/022_049_0005.html)).",
+    duration: "Registration lasts **15 years, 25 years, or life** depending on the conviction type and prior history, as defined in [K.S.A. 22-4906](https://ksrevisor.gov/statutes/chapters/ch22/022_049_0006.html); a second conviction or specified lifetime offense extends the duty permanently.",
+    tiering: "**Kansas uses offense categories instead of numeric tiers:** • *Sex offenders* must report **in person four times per year**, have **no relief mechanism**, and appear on the **public KBI website**. • *Violent offenders* report **quarterly but may use one certified-letter update per year**, with **no removal process**. • *Drug offenders* report **quarterly**, may petition for **relief after five years** under [K.S.A. 22-4908](https://ksrevisor.gov/statutes/chapters/ch22/022_049_0008.html), and are also listed on the **KBI registry** ([KBI Registry Portal](https://www.kbi.ks.gov/registeredoffender/))."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
