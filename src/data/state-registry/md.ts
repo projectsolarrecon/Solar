@@ -137,6 +137,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "**Maryland law sets no statewide distance limits**, and **Title 11, Subtitle 7** contains *no residency or proximity ban* on where registrants may live; however, **some local jurisdictions** (especially counties or municipalities) have adopted their own housing-distance ordinances near schools or child-care centers—always confirm locally ([Subtitle 7 index](https://law.justia.com/codes/maryland/criminal-procedure/title-11/subtitle-7/) · [DPSCS Registry](https://dpscs.maryland.gov/onlineservs/socem/default.shtml)).",
+    presence: "**School and child-care presence is prohibited** for covered registrants under [§11-722](https://law.justia.com/codes/maryland/criminal-procedure/title-11/subtitle-7/section-11-722/); entering or loitering on those properties is a criminal offense.",
+    duration: "**Registration lasts 15 / 25 / life years** by tier, with *Tier I* eligible for **10-year reduction** upon meeting treatment and supervision conditions ([§11-707](https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gcp&section=11-707&enactments=false)).",
+    tiering: "**Offense-based tiers (I / II / III and SVP)** determine both verification frequency (semiannual / quarterly) and total duration; classification and obligations appear in [§11-704](https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gcp&section=11-704&enactments=false) and [§11-707](https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gcp&section=11-707&enactments=false)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
