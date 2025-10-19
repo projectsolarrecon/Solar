@@ -5,7 +5,7 @@ import {
   Gavel, ListChecks, Quote
 } from "lucide-react";
 
-// ✅ New helper (right here)
+// ✅ Helper to render a one-line “Duration” with Markdown links
 function DurationLine({ html }: { html?: string }) {
   if (!html) return null;
   const withLinks = html.replace(
@@ -82,6 +82,15 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
+
+  // ✅ New: highlights block used by DurationLine and (optionally) a top highlights card
+  highlights?: {
+    residency?: string;
+    presence?: string;
+    duration?: string;
+    tiering?: string;
+  };
+
   plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
@@ -136,6 +145,10 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
       <Card title="Who Must Register & Duration" icon={<BookOpen className="w-6 h-6 text-slate-600" />}>
         <P text={d.whoMustRegister} />
+
+        {/* ✅ Inject one-line duration pulled from highlights, if provided */}
+        <DurationLine html={d.highlights?.duration} />
+
         <PlainBox pl={d.plainLanguage?.whoMustRegister} />
       </Card>
 
@@ -198,18 +211,11 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
         {Array.isArray(d.recentChangesLitigation) && d.recentChangesLitigation.length > 0 ? (
           <ul className="list-disc pl-6 text-slate-700 space-y-1">
             {d.recentChangesLitigation.map((rc: any, i: number) => {
-              // If the item is a simple string, just render it safely.
               if (typeof rc === "string") {
-                return (
-                  <li key={i}>
-                    <SafeText text={rc} />
-                  </li>
-                );
+                return <li key={i}><SafeText text={rc} /></li>;
               }
 
-              // If it's an object, try to format based on known shapes.
               if (rc && typeof rc === "object") {
-                // Case item
                 if ("name" in rc) {
                   return (
                     <li key={i}>
@@ -223,7 +229,6 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
                     </li>
                   );
                 }
-                // Statute item
                 if ("bill" in rc) {
                   return (
                     <li key={i}>
@@ -239,7 +244,6 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
                     </li>
                   );
                 }
-                // Rule or generic object
                 if ("cite" in rc || "summary" in rc || "effective" in rc) {
                   return (
                     <li key={i}>
@@ -257,7 +261,6 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
                 }
               }
 
-              // Fallback: render whatever it is
               return (
                 <li key={i}>
                   <SafeText text={String(rc)} />
@@ -271,96 +274,91 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
         <PlainBox pl={d.plainLanguage?.recentChangesLitigation} />
       </Card>
 
-     <Card title="Compliance Checklists & Scripts" icon={<ListChecks className="w-6 h-6 text-amber-600" />}>
-  <div className="grid md:grid-cols-2 gap-6">
-    <div>
-      <h3 className="font-semibold text-slate-800">New Arrival: First 30 Days</h3>
-      <RichList items={d.checklistsScripts?.newArrivalChecklist} />
-    </div>
-    <div>
-      <h3 className="font-semibold text-slate-800">Moving Out / Traveling</h3>
-      <RichList items={d.checklistsScripts?.movingOutChecklist} />
-    </div>
-  </div>
-
-  {/* ⬇️ Add this optional block */}
-  {(d.checklistsScripts?.recordsRequestTemplate || d.checklistsScripts?.reliefPetitionOutline) && (
-    <div className="mt-6 space-y-6">
-      {d.checklistsScripts?.recordsRequestTemplate && (
-        <div>
-          <h3 className="font-semibold text-slate-800">Records Request Template</h3>
-          <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
-            <SafeText text={d.checklistsScripts.recordsRequestTemplate} />
-          </pre>
+      <Card title="Compliance Checklists & Scripts" icon={<ListChecks className="w-6 h-6 text-amber-600" />}>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 className="font-semibold text-slate-800">New Arrival: First 30 Days</h3>
+            <RichList items={d.checklistsScripts?.newArrivalChecklist} />
+          </div>
+          <div>
+            <h3 className="font-semibold text-slate-800">Moving Out / Traveling</h3>
+            <RichList items={d.checklistsScripts?.movingOutChecklist} />
+          </div>
         </div>
-      )}
-      {d.checklistsScripts?.reliefPetitionOutline && (
-        <div>
-          <h3 className="font-semibold text-slate-800">Relief Petition Outline</h3>
-          <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
-            <SafeText text={d.checklistsScripts.reliefPetitionOutline} />
-          </pre>
-        </div>
-      )}
-    </div>
-  )}
-  {/* ⬆️ End added block */}
 
-  <PlainBox pl={d.plainLanguage?.checklistsScripts} title="Tips for using these checklists" />
-</Card>
+        {(d.checklistsScripts?.recordsRequestTemplate || d.checklistsScripts?.reliefPetitionOutline) && (
+          <div className="mt-6 space-y-6">
+            {d.checklistsScripts?.recordsRequestTemplate && (
+              <div>
+                <h3 className="font-semibold text-slate-800">Records Request Template</h3>
+                <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
+                  <SafeText text={d.checklistsScripts.recordsRequestTemplate} />
+                </pre>
+              </div>
+            )}
+            {d.checklistsScripts?.reliefPetitionOutline && (
+              <div>
+                <h3 className="font-semibold text-slate-800">Relief Petition Outline</h3>
+                <pre className="mt-2 whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm text-slate-800">
+                  <SafeText text={d.checklistsScripts.reliefPetitionOutline} />
+                </pre>
+              </div>
+            )}
+          </div>
+        )}
+
+        <PlainBox pl={d.plainLanguage?.checklistsScripts} title="Tips for using these checklists" />
+      </Card>
 
       <section className="border-t border-slate-200 pt-6">
-  <h2 className="text-xl font-semibold text-slate-800 flex items-center">
-    <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
-  </h2>
+        <h2 className="text-xl font-semibold text-slate-800 flex items-center">
+          <Quote className="w-5 h-5 mr-2 text-slate-600" /> Citations
+        </h2>
 
-  {Array.isArray(d.citations) && d.citations.length > 0 ? (
-    <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
-      {d.citations.map((c: any, i: number) => {
-        // String URL → clickable link
-        if (typeof c === "string") {
-          return (
-            <li key={i}>
-              <a
-                href={c}
-                target="_blank"
-                rel="noopener"
-                className="underline hover:text-blue-700 break-words"
-              >
-                {c}
-              </a>
-            </li>
-          );
-        }
+        {Array.isArray(d.citations) && d.citations.length > 0 ? (
+          <ul className="mt-3 list-disc pl-6 text-slate-700 space-y-1">
+            {d.citations.map((c: any, i: number) => {
+              if (typeof c === "string") {
+                return (
+                  <li key={i}>
+                    <a
+                      href={c}
+                      target="_blank"
+                      rel="noopener"
+                      className="underline hover:text-blue-700 break-words"
+                    >
+                      {c}
+                    </a>
+                  </li>
+                );
+              }
 
-        // Object { label, url } → clickable labeled link
-        if (c && typeof c === "object" && "url" in c) {
-          return (
-            <li key={i}>
-              <a
-                href={c.url}
-                target="_blank"
-                rel="noopener"
-                className="underline hover:text-blue-700 break-words"
-              >
-                {c.label ?? c.url}
-              </a>
-            </li>
-          );
-        }
+              if (c && typeof c === "object" && "url" in c) {
+                return (
+                  <li key={i}>
+                    <a
+                      href={c.url}
+                      target="_blank"
+                      rel="noopener"
+                      className="underline hover:text-blue-700 break-words"
+                    >
+                      {c.label ?? c.url}
+                    </a>
+                  </li>
+                );
+              }
 
-        // Fallback (defensive)
-        return (
-          <li key={i}>
-            <SafeText text={String(c)} />
-          </li>
-        );
-      })}
-    </ul>
-  ) : (
-    <p className="mt-2 text-slate-600">—</p>
-  )}
-</section>
+              return (
+                <li key={i}>
+                  <SafeText text={String(c)} />
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className="mt-2 text-slate-600">—</p>
+        )}
+      </section>
 
       <footer className="mt-8 text-xs text-slate-500 border-t border-slate-200 pt-4">
         <p>
