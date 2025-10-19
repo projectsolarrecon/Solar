@@ -4,7 +4,21 @@ import {
   GraduationCap, Database, Plane, Shield, Users, DollarSign,
   Gavel, ListChecks, Quote
 } from "lucide-react";
-import HighlightsCard from "./HighlightsCard"; // <-- same folder as this file
+
+// ✅ New helper (right here)
+function DurationLine({ html }: { html?: string }) {
+  if (!html) return null;
+  const withLinks = html.replace(
+    /\[(.*?)\]\((.*?)\)/g,
+    '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>'
+  );
+  return (
+    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+      <strong>Duration:</strong>{" "}
+      <span dangerouslySetInnerHTML={{ __html: withLinks }} />
+    </p>
+  );
+}
 
 export type RecentChange =
   | { type: "case"; name: string; court: string; date: string; holding: string; link?: string }
@@ -68,12 +82,6 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
-  highlights?: {
-    residency?: string;
-    presence?: string;
-    duration?: string;
-    tiering?: string;
-  };
   plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
@@ -82,9 +90,6 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
-      {/* Render highlights exactly once via component */}
-      <HighlightsCard highlights={d.highlights} />
-
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
         <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
           <li><SafeText text={d.atAGlance?.mustRegister || "—"} /></li>
@@ -130,15 +135,9 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
       </Card>
 
       <Card title="Who Must Register & Duration" icon={<BookOpen className="w-6 h-6 text-slate-600" />}>
-  {/* Existing section for whoMustRegister */}
-  <P text={d.whoMustRegister} />
-
-  {/* ✅ New: show the duration line if the state has one */}
-  <DurationLine html={d.highlights?.duration} />
-
-  {/* Existing plain-language box */}
-  <PlainBox pl={d.plainLanguage?.whoMustRegister} />
-</Card>
+        <P text={d.whoMustRegister} />
+        <PlainBox pl={d.plainLanguage?.whoMustRegister} />
+      </Card>
 
       <Card title="Deadlines & Reporting Triggers" icon={<Clock className="w-6 h-6 text-slate-600" />}>
         <RichList items={d.deadlinesReporting} />
