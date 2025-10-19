@@ -4,7 +4,7 @@ import {
   GraduationCap, Database, Plane, Shield, Users, DollarSign,
   Gavel, ListChecks, Quote
 } from "lucide-react";
-import HighlightsCard from "./HighlightsCard"; // ✅ single source of truth
+import HighlightsCard from "./HighlightsCard"; // <-- same folder as this file
 
 export type RecentChange =
   | { type: "case"; name: string; court: string; date: string; holding: string; link?: string }
@@ -82,7 +82,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
-      {/* ✅ Render once, via component */}
+      {/* Render highlights exactly once via component */}
       <HighlightsCard highlights={d.highlights} />
 
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
