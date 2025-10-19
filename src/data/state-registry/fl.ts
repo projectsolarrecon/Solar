@@ -106,6 +106,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Florida’s statewide rule bans residence within **1,000 feet** of schools, parks, or playgrounds for certain offenders under [Fla. Stat. § 775.215](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html); however, **local ordinances often impose much greater distances**, sometimes up to 2,500 feet or more—confirm with county or city code enforcement.",
+  presence: "State law has **no general statewide proximity restrictions**, but many municipalities add **loitering or park-entry bans** near child-focused areas; see [FDLE Registry Guidance](https://offender.fdle.state.fl.us/offender/sops/home.jsf) for local contact links.",
+  duration: "Registration is generally **for life**, and Florida provides **no broad removal mechanism**; limited relief may apply only to certain youthful or out-of-state cases under [Fla. Stat. § 943.04354](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/Sections/0943.04354.html).",
+  tiering: "Florida operates a **single-tier system**—all qualifying registrants follow the same schedule and verification rules under [Fla. Stat. § 943.0435](https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/Sections/0943.0435.html)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
