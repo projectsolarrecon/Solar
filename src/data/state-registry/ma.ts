@@ -137,6 +137,13 @@ resources: {
     verificationQuarterly: false
   },
 
+  highlights: {
+    residency: "Massachusetts has **no statewide residency restrictions** in *M.G.L. c. 6, §§178C–178Q*, and the **Sex Offender Registry Board (SORB)** has stated that **local municipalities may not impose additional blanket residency bans** conflicting with state law or constitutional protections ([M.G.L. c. 6, §§178C–178Q](https://www.mass.gov/lists/mass-general-laws-c6-ssss-178c-178q); [Doe v. Lynn, 472 Mass. 521 (2015)](https://law.justia.com/cases/massachusetts/supreme-court/2015/sjc-11823.html)).",
+    presence: "There are **no statewide presence limits** on entering schools, parks, or public areas; any restrictions arise only through **probation, parole, or individualized court orders** ([§178H](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178H)).",
+    duration: "Registration lasts **20 years for most individuals**, starting after final discharge from custody or supervision, and continues for **life** if classified as a sexually violent predator, designated lifetime, or with multiple qualifying convictions ([§178G](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178G)).",
+    tiering: "Tier level affects **public access and relief eligibility**: only **Level 2 and Level 3** appear publicly; **Level 3** generally face stricter maintenance and review, while **Level 1** offenders may qualify for earlier termination under SORB review rules ([§178K](https://malegislature.gov/Laws/GeneralLaws/PartI/TitleII/Chapter6/Section178K); [803 CMR 1.30–1.31](https://www.law.cornell.edu/regulations/massachusetts/803-CMR-1-30))."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
