@@ -6,16 +6,11 @@ import {
 } from "lucide-react";
 
 // ✅ Helper to render a one-line “Duration” with Markdown links
-function DurationLine({ html }: { html?: string }) {
-  if (!html) return null;
-  const withLinks = html.replace(
-    /\[(.*?)\]\((.*?)\)/g,
-    '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>'
-  );
+function DurationLine({ text }: { text?: string }) {
+  if (!text) return null;
   return (
     <p className="mt-2 text-sm leading-relaxed text-slate-700">
-      <strong>Duration:</strong>{" "}
-      <span dangerouslySetInnerHTML={{ __html: withLinks }} />
+      <SafeText text={`**Duration:** ${text}`} />
     </p>
   );
 }
@@ -147,7 +142,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
         <P text={d.whoMustRegister} />
 
         {/* ✅ Inject one-line duration pulled from highlights, if provided */}
-        <DurationLine html={d.highlights?.duration} />
+        <DurationLine text={d.highlights?.duration} />
 
         <PlainBox pl={d.plainLanguage?.whoMustRegister} />
       </Card>
