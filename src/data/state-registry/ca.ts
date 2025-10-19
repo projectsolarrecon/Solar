@@ -125,6 +125,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "California imposes **no statewide residency zones**, but parole or probation may set distance limits near schools or parks; see [Penal Code § 290](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?article=&chapter=5.5.&division=&lawCode=PEN&part=1.&title=9.) and [CDCR Parole—Registration Requirements](https://www.cdcr.ca.gov/parole/registration-requirements/).",
+    presence: "State law has **no general presence or loitering ban**, though supervised individuals may face specific conditions under [Penal Code § 3053.8](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=3053.8.) and related parole rules.",
+    duration: "Registrants must update annually within **five working days** of their birthday; transients every **30 days**; and sexually violent predators every **90 days** under [Penal Code §§ 290.011–290.012](https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?chapter=5.5.&lawCode=PEN).",
+    tiering: "California’s **three-tier system** assigns 10-year (Tier 1), 20-year (Tier 2), or lifetime (Tier 3) registration, with petition relief available under [Penal Code § 290.5](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=290.5.) and tier criteria defined by DOJ and [SB 384](https://oag.ca.gov/sex-offender-reg/sb384)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
