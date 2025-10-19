@@ -143,6 +143,14 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
+
+highlights: {
+  residency: "Michigan has **no statewide residency bans**; prior 1,000-ft ‘student safety zones’ were *repealed on March 24 2021*, and **local governments may not impose their own** zones or registries — see [MCL 28.733–.736 (repealed)](https://www.legislature.mi.gov/Home/RenderDoc?objectName=mcl-28-733) and [MCL 28.728(14)](https://www.legislature.mi.gov/Laws/MCL?objectName=mcl-28-728).",
+  presence: "There are **no statewide presence or loitering restrictions** after repeal of the school-zone rules; courts and the Attorney General have confirmed that **cities and counties cannot enforce additional proximity limits** — see *People v. Betts*, 507 Mich 527 (2021).",
+  duration: "Registration lasts **15 years (Tier I)**, **25 years (Tier II)**, or **life (Tier III)** per [MCL 28.725(11)–(13)](https://www.legislature.mi.gov/documents/mcl/pdf/mcl-28-725-amended.pdf); Tier I may petition for removal after 10 years under [MCL 28.728c](https://www.courts.michigan.gov/49c811/siteassets/publications/benchbooks/sabb/sabbresponsivehtml5.zip/SABB/Ch_9_SORA/Petition_to_Discontinue_Registration.htm).",
+  tiering: "Tiers differ by **duration, verification frequency, and public exposure**: Tier I = annual (Jan 1–15) / 15 yrs / generally non-public; Tier II = semi-annual (Jan & Jul) / 25 yrs / public; Tier III = quarterly (Jan–Apr–Jul–Oct) / lifetime / public — see [MCL 28.725a(3)](https://www.legislature.mi.gov/documents/mcl/pdf/mcl-28-725a-amended.pdf) and [MCL 28.728(4)](https://zeus-milenia.legislature.mi.gov/Laws/MCL?objectName=mcl-28-728)."
+},
+
 plainLanguage: {
     atAGlance: {
       summary: [
