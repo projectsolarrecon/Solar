@@ -163,7 +163,7 @@ export default {
     duration: "Register and verify in person during the birth month and every three months thereafter for life unless court relief applies; see [§15-20A-10(f)](https://al.elaws.us/code/15-20a-10).",
     tiering: "Alabama has no SORNA-style tiers; a single lifetime scheme with quarterly verification governs (juvenile nuances apart); see [§15-20A-10](https://al.elaws.us/code/15-20a-10)."
   }
-}
+},
 
   plainLanguage: {
     atAGlance: {
