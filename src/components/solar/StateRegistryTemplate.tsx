@@ -4,21 +4,7 @@ import {
   GraduationCap, Database, Plane, Shield, Users, DollarSign,
   Gavel, ListChecks, Quote
 } from "lucide-react";
-
-// ✅ New helper (right here)
-function DurationLine({ html }: { html?: string }) {
-  if (!html) return null;
-  const withLinks = html.replace(
-    /\[(.*?)\]\((.*?)\)/g,
-    '<a href="$2" target="_blank" rel="noopener" class="underline">$1</a>'
-  );
-  return (
-    <p className="mt-2 text-sm leading-relaxed text-slate-700">
-      <strong>Duration:</strong>{" "}
-      <span dangerouslySetInnerHTML={{ __html: withLinks }} />
-    </p>
-  );
-}
+import HighlightsCard from "./HighlightsCard";
 
 export type RecentChange =
   | { type: "case"; name: string; court: string; date: string; holding: string; link?: string }
@@ -82,15 +68,12 @@ export interface StateRegistryData {
     lifetimePossible?: boolean;
     verificationQuarterly?: boolean;
   };
-
-  // ✅ NEW: highlights support
   highlights?: {
     residency?: string;
     presence?: string;
     duration?: string;
     tiering?: string;
   };
-
   plainLanguage?: { [sectionKey: string]: PlainLanguageBlurb };
 }
 
@@ -99,58 +82,8 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
   return (
     <div className="space-y-8">
-
-      {/* ✅ Key Highlights (compact amber version with slate text) */}
-      {d.highlights && (
-        <div className="bg-amber-50 dark:bg-amber-100/80 border border-amber-200 rounded-2xl shadow-sm p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600" />
-            <h2 className="font-semibold text-slate-900 text-base">Key Highlights</h2>
-          </div>
-
-          <ul className="space-y-2 text-slate-800 leading-relaxed text-sm">
-            {d.highlights?.residency && (
-              <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
-                <span>
-                  <strong>Residency Restrictions:</strong>{" "}
-                  <SafeText text={d.highlights.residency} />
-                </span>
-              </li>
-            )}
-
-            {d.highlights?.presence && (
-              <li className="flex items-start gap-2">
-                <Shield className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
-                <span>
-                  <strong>Presence / Proximity Rules:</strong>{" "}
-                  <SafeText text={d.highlights.presence} />
-                </span>
-              </li>
-            )}
-
-            {d.highlights?.duration && (
-              <li className="flex items-start gap-2">
-                <Clock className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
-                <span>
-                  <strong>Duration of Registration:</strong>{" "}
-                  <SafeText text={d.highlights.duration} />
-                </span>
-              </li>
-            )}
-
-            {d.highlights?.tiering && (
-              <li className="flex items-start gap-2">
-                <Database className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
-                <span>
-                  <strong>Tiering / Level System:</strong>{" "}
-                  <SafeText text={d.highlights.tiering} />
-                </span>
-              </li>
-            )}
-          </ul>
-        </div>
-      )}
+      {/* ✅ Single HighlightsCard component */}
+      <HighlightsCard highlights={d.highlights} />
 
       <Card title="At a Glance" icon={<FileText className="w-6 h-6 text-blue-600" />}>
         <ul className="mt-1 list-disc pl-6 text-slate-700 space-y-1">
