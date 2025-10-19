@@ -138,6 +138,13 @@ recentChangesLitigation: [
     verificationQuarterly: false
   },
 
+highlights: {
+  residency: "Minnesota’s registration law does **not impose residential restrictions**, but **Level 3** individuals often face housing limits through *supervision conditions* or local ordinances—see [Minn. Stat. § 243.166](https://www.revisor.mn.gov/statutes/cite/243.166).",
+  presence: "State law sets **no uniform presence zones**, but **community notification** under [Minn. Stat. § 244.052](https://www.revisor.mn.gov/statutes/cite/244.052) allows public alerts and meetings for higher levels; some localities add *school or park* exclusion zones via supervision terms.",
+  duration: "Registration lasts **10 years or longer of supervision**, extending to **lifetime** for repeat, violent, or civilly committed offenders—see [Minn. Stat. § 243.166, subd. 6](https://www.revisor.mn.gov/statutes/cite/243.166#subd.6).",
+  tiering: "**Level 1**: notification limited to law enforcement; **Level 2**: agencies and specific groups (schools, childcare); **Level 3**: full public notice, meetings, and online listing via [DOC Public Search](https://coms.doc.state.mn.us/publicregistrantsearch) per [§ 244.052, subd. 4–4b](https://www.revisor.mn.gov/statutes/cite/244.052#subd.4)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
