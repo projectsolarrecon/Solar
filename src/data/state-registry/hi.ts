@@ -116,6 +116,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "**No statewide distance-based residency bans** in Chapter 846E; any limits typically come from supervision orders, not statute ([HRS ch. 846E](https://capitolwebsite.azurewebsites.net/hrscurrent/Vol14_Ch0701-0853/HRS0846E/HRS_0846E-.htm)).",
+    presence: "**No blanket presence/loitering exclusion zones** in Chapter 846E; verify supervision terms before entering sensitive areas like schools ([HRS ch. 846E](https://capitolwebsite.azurewebsites.net/hrscurrent/Vol14_Ch0701-0853/HRS0846E/HRS_0846E-.htm)).",
+    duration: "**Tier 1: 10 years; Tier 2: 25 years; Tier 3/repeat: lifetime**, with a *40-year* petition route and tolling for noncompliance ([HRS §846E-10](https://data.capitol.hawaii.gov/hrscurrent/Vol14_Ch0701-0853/HRS0846E/HRS_0846E-0010.htm)).",
+    tiering: "**Three offense-based tiers (1–3)** define minimum registration periods and petition timing rather than risk scoring ([HRS §846E-10](https://data.capitol.hawaii.gov/hrscurrent/Vol14_Ch0701-0853/HRS0846E/HRS_0846E-0010.htm))."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
