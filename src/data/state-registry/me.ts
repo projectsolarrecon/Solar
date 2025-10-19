@@ -174,6 +174,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Maine has **no statewide residency bans**; towns may adopt narrow ordinances under [30-A §3014](https://legislature.maine.gov/statutes/30-a/title30-Asec3014.html) restricting residence near schools or parks for certain child-related offenses—check local codes and supervision terms.",
+  presence: "There is **no general state-level presence restriction**; only **sexual contact in a restricted zone** (e.g., school, park, daycare) is criminal under [17-A §261](https://legislature.maine.gov/statutes/17-a/title17-Asec261.html), punishable as Class C (or B if prior or child < 12). Local loitering bans may apply by ordinance.",
+  duration: "Registration lasts **10 years (Tier I)**, **25 years (Tier II)**, or **life (Tier III)** from the first Maine registration, with **credit** for verified prior registration elsewhere and pauses during incarceration or out-of-state domicile; see [34-A §11285](https://legislature.maine.gov/statutes/34-a/title34-Asec11285.html).",
+  tiering: "Tiers in [34-A §11273](https://legislature.maine.gov/statutes/34-a/title34-Asec11273.html) set both **duration** and **verification cadence**—Tier I annual, Tier II semi-annual, Tier III quarterly—and control what data appear publicly per [§11281(7)](https://mainelegislature.org/legis/bills/getPDF.asp?item=3&paper=HP0773&snum=127)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
