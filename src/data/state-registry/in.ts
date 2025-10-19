@@ -127,6 +127,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "SVPs and offenders against children may not reside within *1,000 feet* of school property, youth program centers, or public parks, and may not establish a residence within *1 mile* of the victim; see [IC 35-42-4-11](https://law.justia.com/codes/indiana/title-35/article-42/chapter-4/section-35-42-4-11/).", 
+    presence: "A **serious sex offender** (including SVPs) generally may not **enter** school property except narrow statutory exceptions, and employment/volunteering near schools, youth program centers, and parks is barred; see [IC 35-42-4-14](https://law.justia.com/codes/indiana/title-35/article-42/chapter-4/section-35-42-4-14/) and [IC 35-42-4-11](https://law.justia.com/codes/indiana/title-35/article-42/chapter-4/section-35-42-4-11/).", 
+    duration: "Registration lasts **10 years** by default, but **lifetime** for SVPs and specified offenses or when lifetime applies from another jurisdiction; see [IC 11-8-8-19](https://law.justia.com/codes/indiana/title-11/article-8/chapter-8/section-11-8-8-19/) and the [IDOC Registry](https://www.in.gov/idoc/sex-and-violent-offender-registry/).", 
+    tiering: "Indiana uses **category designations** (Sex Offender/Offender Against Children/**SVP**) rather than tiers; verification is **annual** or **every 90 days** for SVPs; see [IC 11-8-8-14](https://law.justia.com/codes/indiana/title-11/article-8/chapter-8/section-11-8-8-14/)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
