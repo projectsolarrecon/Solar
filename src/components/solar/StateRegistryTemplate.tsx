@@ -83,7 +83,7 @@ export interface StateRegistryData {
     verificationQuarterly?: boolean;
   };
 
-  // ✅ NEW: add this block
+  // ✅ NEW: highlights support
   highlights?: {
     residency?: string;
     presence?: string;
@@ -100,18 +100,18 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
   return (
     <div className="space-y-8">
 
-      {/* ✅ Key Highlights Card (accessible amber theme) */}
+      {/* ✅ Key Highlights (compact amber version with slate text) */}
       {d.highlights && (
-        <div className="bg-amber-50 dark:bg-amber-100/80 border border-amber-200 rounded-2xl shadow-sm p-5">
-          <div className="flex items-center gap-2 mb-3">
-            <AlertTriangle className="w-6 h-6 text-amber-600" />
-            <h2 className="font-semibold text-slate-900 text-lg">Key Highlights</h2>
+        <div className="bg-amber-50 dark:bg-amber-100/80 border border-amber-200 rounded-2xl shadow-sm p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <AlertTriangle className="w-5 h-5 text-amber-600" />
+            <h2 className="font-semibold text-slate-900 text-base">Key Highlights</h2>
           </div>
 
-          <ul className="space-y-3 text-slate-800 leading-relaxed">
+          <ul className="space-y-2 text-slate-800 leading-relaxed text-sm">
             {d.highlights?.residency && (
               <li className="flex items-start gap-2">
-                <MapPin className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <MapPin className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
                 <span>
                   <strong>Residency Restrictions:</strong>{" "}
                   <SafeText text={d.highlights.residency} />
@@ -121,7 +121,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
             {d.highlights?.presence && (
               <li className="flex items-start gap-2">
-                <Shield className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <Shield className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
                 <span>
                   <strong>Presence / Proximity Rules:</strong>{" "}
                   <SafeText text={d.highlights.presence} />
@@ -131,7 +131,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
             {d.highlights?.duration && (
               <li className="flex items-start gap-2">
-                <Clock className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <Clock className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
                 <span>
                   <strong>Duration of Registration:</strong>{" "}
                   <SafeText text={d.highlights.duration} />
@@ -141,7 +141,7 @@ export default function StateRegistryTemplate({ data }: { data: StateRegistryDat
 
             {d.highlights?.tiering && (
               <li className="flex items-start gap-2">
-                <Database className="w-5 h-5 mt-1 text-amber-600 shrink-0" />
+                <Database className="w-4 h-4 mt-[2px] text-amber-600 shrink-0" />
                 <span>
                   <strong>Tiering / Level System:</strong>{" "}
                   <SafeText text={d.highlights.tiering} />
