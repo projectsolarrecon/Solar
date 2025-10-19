@@ -10,16 +10,20 @@ interface HighlightsProps {
   };
 }
 
-// Minimal, safe-ish markdown rendering: escape → links → bold → italic
+/* ---------- Markdown helper (safe for trusted text) ---------- */
 function mdToHtml(input = ""): string {
   const escape = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   let out = escape(input);
+  // links
   out = out.replace(
     /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
     (_m, label, url) =>
-      `<a href="${url}" target="_blank" rel="noopener" class="underline">${escape(label)}</a>`
+      `<a href="${url}" target="_blank" rel="noopener" class="underline hover:text-amber-700">${escape(
+        label
+      )}</a>`
   );
+  // bold and italic
   out = out
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/\*([^*]+)\*/g, "<em>$1</em>");
@@ -27,15 +31,12 @@ function mdToHtml(input = ""): string {
 }
 
 /**
- * SOLAR HighlightsCard
- * Displays short summary lines at top of each state registry page.
- * (residency / presence / duration / tiering)
+ * SOLAR HighlightsCard — amber theme, bold/italic/links supported
  */
 const HighlightsCard: React.FC<HighlightsProps> = ({ highlights }) => {
   if (!highlights) return null;
 
   const { residency, presence, duration, tiering } = highlights;
-
   const items = [
     { label: "Residency Restrictions", icon: <MapPin className="w-4 h-4" />, text: residency },
     { label: "Presence / Proximity Rules", icon: <Info className="w-4 h-4" />, text: presence },
@@ -46,21 +47,18 @@ const HighlightsCard: React.FC<HighlightsProps> = ({ highlights }) => {
   if (items.length === 0) return null;
 
   return (
-    <div className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 text-white rounded-2xl shadow-md p-4 sm:p-6 mt-4 mb-6 print:bg-none print:text-black print:shadow-none">
-      <h2 className="text-lg font-semibold mb-3 text-white print:text-slate-900">
-        Key Highlights
-      </h2>
-      <ul className="space-y-3">
+    <div className="bg-amber-50 border border-amber-200 rounded-2xl shadow-sm p-4 sm:p-5 mt-4 mb-6 print:bg-white print:text-black print:shadow-none">
+      <h2 className="text-lg font-semibold mb-3 text-slate-900">Key Highlights</h2>
+      <ul className="space-y-2">
         {items.map(({ label, icon, text }, idx) => (
           <li key={idx} className="flex items-start gap-2">
-            <div className="mt-1 text-slate-100 print:text-slate-900">{icon}</div>
-            <div className="text-sm leading-snug">
-              <span className="font-medium">{label}: </span>
-              <span
-                className="text-slate-100 print:text-slate-900"
-                dangerouslySetInnerHTML={{ __html: mdToHtml(text!) }}
-              />
-            </div>
+            <div className="mt-1 text-amber-700">{icon}</div>
+            <div
+              className="text-sm leading-snug text-slate-800"
+              dangerouslySetInnerHTML={{
+                __html: `<span class="font-medium text-slate-900">${label}:</span> ${mdToHtml(text!)}`,
+              }}
+            />
           </li>
         ))}
       </ul>
