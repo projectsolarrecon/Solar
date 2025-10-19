@@ -143,6 +143,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Idaho law sets **no statewide distance-based residency zones**, but **cities and counties may impose their own local limits**; examples include [Garden City § 4-18-3](https://www.codepublishing.com/ID/GardenCity/html/GardenCity04/GardenCity0418.html) restricting residences near schools and child areas.",
+    presence: "State law restricts **being on or loitering near school property** without permission under [§ 18-8329](https://legislature.idaho.gov/statutesrules/idstat/title18/t18ch83/sect-18-8329/); **local ordinances** may expand presence limits around parks or childcare zones.",
+    duration: "Registration is **lifetime**, with eligibility to petition for removal after *10 years* for certain non-recidivists under [§ 18-8310](https://legislature.idaho.gov/statutesrules/idstat/title18/t18ch83/sect-18-8310/).",
+    tiering: "Idaho has **no formal tiering system**; a legacy *violent sexual predator* designation requires **quarterly verification** per [§ 18-8307](https://legislature.idaho.gov/statutesrules/idstat/title18/t18ch83/sect-18-8307/) and [IDAPA 11.10.03](https://adminrules.idaho.gov/rules/2024%20Archive/11/111003.pdf)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
