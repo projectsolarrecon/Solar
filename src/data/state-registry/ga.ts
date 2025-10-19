@@ -132,6 +132,13 @@ export default {
     verificationQuarterly: false
   },
 
+highlights: {
+  residency: "Georgia imposes **1,000-foot** residency bans from schools, childcare facilities, churches, and similar places, and **local ordinances** may add zones if consistent with state law and not banishment; see [O.C.G.A. § 42-1-15](https://law.justia.com/codes/georgia/2024/title-42/chapter-1/article-2/section-42-1-15/) and _Mann v. Ga. Dep’t of Corr._, 282 Ga. 754 (2007) ([opinion](https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html)).",
+  presence: "Presence/employment limits within **1,000 feet** of child-focused areas apply statewide, and **local governments** may layer compatible rules subject to constitutional limits; see [O.C.G.A. § 42-1-16](https://law.justia.com/codes/georgia/2024/title-42/chapter-1/article-2/section-42-1-16/) and _Mann_ ([opinion](https://law.justia.com/cases/georgia/supreme-court/2007/s07a1043-1.html)).",
+  duration: "Registration continues **10 years, life, or until judicial removal** depending on level and compliance; see [O.C.G.A. § 42-1-12(g)](https://law.justia.com/codes/georgia/2024/title-42/chapter-1/article-2/section-42-1-12/).",
+  tiering: "**SORRB** assigns Level I (low risk, may petition after 10 years), Level II (moderate risk, lifetime unless court relief), and Level III (sexually dangerous predator, lifetime with quarterly verification); see [SORRB Rules 183-1-2-.02](https://rules.sos.ga.gov/gac/183-1-2-.02) and [O.C.G.A. § 42-1-12(a)(10)](https://law.justia.com/codes/georgia/2024/title-42/chapter-1/article-2/section-42-1-12/)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
