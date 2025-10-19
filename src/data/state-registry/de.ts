@@ -132,6 +132,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Delaware law sets **no statewide residency restrictions**; however, **local laws or supervision terms** may govern where a registrant can live; see [11 Del. C. § 4121](https://delcode.delaware.gov/title11/c041/sc03/index.html).",
+    presence: "The state imposes **no general proximity restrictions** near schools, parks, or child areas; **municipal ordinances or probation rules** may establish their own limits; see [11 Del. C. § 4121](https://delcode.delaware.gov/title11/c041/sc03/index.html).",
+    duration: "Registration lasts **15 years for Tier I**, **25 years for Tier II**, and **life for Tier III**, unless shortened by court order; see [11 Del. C. § 4121(e)](https://delcode.delaware.gov/title11/c041/sc03/index.html).",
+    tiering: "Delaware’s **Tier I–III system** ties offense severity to verification frequency and duration—**annual, semiannual, or quarterly**; see [11 Del. C. § 4121](https://delcode.delaware.gov/title11/c041/sc03/index.html) and [Delaware State Police Registry](https://sexoffender.dsp.delaware.gov)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
