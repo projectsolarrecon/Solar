@@ -153,6 +153,14 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
+{
+  highlights: {
+    residency: "Connecticut has **no statewide residency restrictions**; housing limits may arise through **probation, parole, or local ordinances** per [OLR Report 2020-R-0337](https://www.cga.ct.gov/2020/rpt/pdf/2020-R-0337.pdf).",
+    presence: "The state imposes **no statewide presence limits**, but some municipalities have enacted **Child Safety Zone (CSZ)** ordinances restricting registrants from entering or lingering near **schools, parks, and playgrounds**; such local laws must not conflict with state statutes and are occasionally **legally contested** per [OLR Report 2020-R-0337](https://www.cga.ct.gov/2020/rpt/pdf/2020-R-0337.pdf).",
+    duration: "**10 years** for nonviolent and minor-victim offenses under [§54-251](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-251/) and [§54-254](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-254/); **lifetime** for sexually violent offenses under [§54-252](https://law.justia.com/codes/connecticut/title-54/chapter-969/section-54-252/).",
+    tiering: "CT uses an **offense-based classification**, not risk tiers; duration and duties set by [Chapter 969](https://www.cga.ct.gov/2024/sup/chap_969.htm) and enforced by [DESPP Sex Offender Registry Unit](https://portal.ct.gov/despp/division-of-state-police/sex-offender-registry)."
+  },
+
 // —PART 2—
   plainLanguage: {
     atAGlance: {
