@@ -183,6 +183,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Local governments in Iowa **may not add stricter residency limits**; the state law fully governs where registrants can live. Those convicted of an aggravated offense against a minor cannot **reside within 2,000 feet** of a school or child care facility, with narrow exceptions (e.g., pre-2002 residence, hospital care). [Iowa Code §692A.114](https://www.legis.iowa.gov/docs/code/692A.114.pdf)",
+    presence: "Offenders with crimes involving minors face **state-level exclusion and loitering bans** at child-focused places like schools, parks, libraries, and fairs; cities and counties **cannot expand these zones** beyond the statute. [Iowa Code §692A.113](https://www.legis.iowa.gov/docs/code/692A.113.pdf)",
+    duration: "Registration typically lasts **10 years**, but can be **lifetime** for sexually violent predators, repeat offenses, or aggravated crimes; violations can *extend by 10 years*. Duration is set by offense type, not tier. [Iowa Code §692A.106](https://www.legis.iowa.gov/docs/code/692A.106.pdf)",
+    tiering: "Tiers affect only **verification frequency** and **modification eligibility**—not duty scope or duration. Tier I verifies annually, Tier II every six months, Tier III quarterly; higher tiers must also wait longer before seeking early termination under §692A.128. [Iowa Code §692A.108](https://www.legis.iowa.gov/docs/code/692A.108.pdf)"
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
