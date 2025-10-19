@@ -153,7 +153,7 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
-{
+
   highlights: {
     residency: "Connecticut has **no statewide residency restrictions**; housing limits may arise through **probation, parole, or local ordinances** per [OLR Report 2020-R-0337](https://www.cga.ct.gov/2020/rpt/pdf/2020-R-0337.pdf).",
     presence: "The state imposes **no statewide presence limits**, but some municipalities have enacted **Child Safety Zone (CSZ)** ordinances restricting registrants from entering or lingering near **schools, parks, and playgrounds**; such local laws must not conflict with state statutes and are occasionally **legally contested** per [OLR Report 2020-R-0337](https://www.cga.ct.gov/2020/rpt/pdf/2020-R-0337.pdf).",
