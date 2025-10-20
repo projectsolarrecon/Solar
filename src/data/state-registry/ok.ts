@@ -154,6 +154,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "State law **preempts local ordinances**; cities may enforce but not expand the **statewide 2,000-ft ban** from schools, parks, and childcare sites; see [57 O.S. § 590](https://law.justia.com/codes/oklahoma/title-57/section-57-590/) and [AGO 2011-12](https://www.oscn.net/applications/oscn/deliverdocument.asp?citeid=462741).", 
+    presence: "Habitual or aggravated offenders are barred from *entering or loitering* in park **zones of safety**, with local enforcement limited to state-defined areas; see [21 O.S. § 1125](https://law.justia.com/codes/oklahoma/title-21/section-21-1125/) and [57 O.S. § 590](https://law.justia.com/codes/oklahoma/title-57/section-57-590/).", 
+    duration: "Registration lasts **15 / 25 years / life** by level (1 / 2 / 3), with *possible* Level 1 removal after 10 compliant years; see [57 O.S. § 583(D)–(E)](https://law.justia.com/codes/oklahoma/title-57/section-57-583/).", 
+    tiering: "Tier level controls only **duration and verification frequency** (annual / semiannual / 90-day); no change to zones or deadlines; see [57 O.S. § 584(A)(5)](https://law.justia.com/codes/oklahoma/title-57/section-57-584/) and [ODOC OP-020307](https://oklahoma.gov/content/dam/ok/en/doc/documents/policy/section-02/op020307.pdf)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
