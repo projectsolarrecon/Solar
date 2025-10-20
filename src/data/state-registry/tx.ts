@@ -153,6 +153,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Texas enforces **1,000-foot residential exclusion zones** near schools, playgrounds, and child-care facilities under [Tex. Code Crim. Proc. art. 62.301](https://statutes.capitol.texas.gov/Docs/CR/htm/CR.62.htm#62.301), and municipalities may add local zones under [Tex. Local Gov’t Code § 341.906](https://statutes.capitol.texas.gov/Docs/LG/htm/LG.341.htm#341.906).",
+  presence: "Certain individuals may not **loiter or be present** near places where children gather as restricted by [Tex. Code Crim. Proc. art. 62.102](https://statutes.capitol.texas.gov/Docs/CR/htm/CR.62.htm#62.102).",
+  duration: "Registration is **either 10 years or for life**, depending on the offense; see [Tex. Code Crim. Proc. art. 62.101](https://statutes.capitol.texas.gov/Docs/CR/htm/CR.62.htm#62.101).",
+  tiering: "Texas has a **two-level framework**: 10-year registrants must verify **annually**, while lifetime registrants must verify **every 90 days**; see [Tex. Code Crim. Proc. arts. 62.058 & 62.101](https://statutes.capitol.texas.gov/Docs/CR/htm/CR.62.htm) and the [DPS Sex Offender Registry Overview](https://www.dps.texas.gov/section/crime-records-service/sex-offender-registry-program)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
