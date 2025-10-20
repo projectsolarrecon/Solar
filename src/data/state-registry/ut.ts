@@ -182,6 +182,13 @@ export default {
     verificationQuarterly: false
   },
 
+  highlights: {
+    residency: "Utah state law does **not set fixed distance rules** for where registrants may live; any restrictions arise from **case-specific court or supervision conditions** under [§77-27-21.7](https://le.utah.gov/xcode/Title77/Chapter27/C77-27-S21.7_2024070120240501.pdf).",
+    presence: "The state imposes **no general statewide presence or proximity bans**, but a judge or supervision officer may restrict certain places through *protected-area* or *child-presence* orders under [§77-27-21.7](https://le.utah.gov/xcode/Title77/Chapter27/C77-27-S21.7_2024070120240501.pdf) and [§77-27-21.8](https://le.utah.gov/xcode/Title77/Chapter27/C77-27-S21.8_2024070120240501.pdf).",
+    duration: "Registration lasts **10 years** for standard offenses and **lifetime** for listed offenses, with removal possible under [§77-41-112](https://le.utah.gov/xcode/Title77/Chapter41/C77-41-S112_2024070120240501.pdf).",
+    tiering: "Utah uses a **two-level system**—10-year or lifetime—defined by offense category in [§77-41-106](https://law.justia.com/codes/utah/title-77/chapter-41/section-106/); both follow the same semi-annual reporting in [§77-41-105](https://le.utah.gov/xcode/Title77/Chapter41/C77-41-S105_2024070120240501.pdf)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
