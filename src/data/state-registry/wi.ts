@@ -155,6 +155,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Wisconsin has **no statewide residency restrictions**, but cities and villages can pass their own **local ordinances** creating 'child safety zones' that restrict living near schools, parks, or daycare centers — see *State v. Adams*, 2019 WI App 52 and [§301.46](https://docs.legis.wisconsin.gov/document/statutes/301.46).",
+    presence: "The state only restricts being **on school grounds** without **advance notice**; there is no statewide 'distance buffer' law — see [§301.475](https://docs.legis.wisconsin.gov/statutes/statutes/301/475).",
+    duration: "Most people must stay on the registry for **15 years after completing supervision**, but some cases require **lifetime registration**, especially repeat or Chapter 980 cases — see [§301.45(5m)](https://docs.legis.wisconsin.gov/document/statutes/301.45%285m%29).",
+    tiering: "Wisconsin does **not use tiers** like other states; instead, it sets **two verification levels** — once per year for most, and **every 90 days** for lifetime registrants — under [§301.45(4)(a)](https://docs.legis.wisconsin.gov/document/statutes/301.45%284%29%28a%29). These levels only affect how often people verify, **not what is shown on the public website**."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
