@@ -142,6 +142,13 @@ export default {
     verificationQuarterly: false
   },
 
+  highlights: {
+    residency: "Oregon has **no statewide residency restriction** for all registrants; only the **Department of Corrections** or **PSRB** may impose *individualized residence limits* for supervised **Level 3 or SVDO** offenders under [OAR 291-202-0040](https://secure.sos.state.or.us/oard/viewSingleRule.action?ruleVrsnRsn=42687). Local governments **cannot create their own zones** per [ORS 163A.045](https://oregon.public.law/statutes/ors_163a.045).",
+    presence: "Only *SVDO* or **Level 3** offenders are barred from **child-congregation areas** without written approval under [ORS 163.476](https://oregon.public.law/statutes/ors_163.476); Oregon law does **not** authorize local presence bans.",
+    duration: "Registration is **lifetime** unless formally relieved or reclassified by the Board or PSRB, per [ORS 163A.125](https://oregon.public.law/statutes/ors_163a.125) and [OAR Div. 400](https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=4015).",
+    tiering: "Oregon’s **Level 1–3** system governs both **public posting** and **relief eligibility**—only Level 3 appears online under [ORS 163A.215](https://oregon.public.law/statutes/ors_163a.215), and only Level 1 may seek full removal; Levels 2-3 may seek reclassification; assessments and classifications follow [ORS 163A.100](https://oregon.public.law/statutes/ors_163a.100) and [OAR 255-085](https://secure.sos.state.or.us/oard/displayDivisionRules.action?selectedDivision=795)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
