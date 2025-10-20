@@ -144,6 +144,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Washington has **no residency exclusion restrictions**; proximity limits arise *only* through individual supervision orders or local ordinances that do not conflict with RCW. Local governments **may not impose broader bans** because registration and community notification are governed exclusively by state law; see [RCW 4.24.550](https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.550) and [RCW 9.94A.703](https://app.leg.wa.gov/rcw/default.aspx?cite=9.94A.703).",
+  presence: "Washington has **no automatic statewide presence or proximity restrictions**. Presence near schools or childcare facilities may be restricted **only when ordered by the court or DOC**, not by local ordinance; see [RCW 4.24.550](https://app.leg.wa.gov/rcw/default.aspx?cite=4.24.550).",
+  duration: "Registration continues **10 or 15 crime-free years** depending on offense class; certain Class A and out-of-state equivalents are **lifetime** unless relieved by court order; see [RCW 9A.44.140](https://app.leg.wa.gov/rcw/default.aspx?cite=9A.44.140) and [RCW 9A.44.142](https://app.leg.wa.gov/rcw/default.aspx?cite=9A.44.142).",
+  tiering: "Washington uses **Level I–III classifications** that affect only **public notification and verification cadence**, not extra penalties. Level I = annual mail check; Level II = semiannual; Level III = quarterly or more; see [RCW 9A.44.135](https://app.leg.wa.gov/rcw/default.aspx?cite=9A.44.135) and [WASPC Registry](https://www.waspc.org/sex-offender-information)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
