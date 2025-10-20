@@ -153,6 +153,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Nevada has **no blanket statewide residency bans**, but **Tier III offenders** under _lifetime supervision_ cannot live within **1,000 ft of schools, parks, or child-care facilities** without written approval; see [NRS 213.1243(5)](https://www.leg.state.nv.us/NRS/NRS-213.html#NRS213Sec1243) and [NRS 213.1255](https://www.leg.state.nv.us/NRS/NRS-213.html#NRS213Sec1255).",
+  presence: "Presence restrictions apply mainly to those on **parole, probation, or lifetime supervision**, barring them from entering schools or child-oriented areas within **500 ft** unless expressly permitted; see [NRS 213.1243(4)](https://www.leg.state.nv.us/NRS/NRS-213.html#NRS213Sec1243) and [NRS 213.1245](https://www.leg.state.nv.us/NRS/NRS-213.html#NRS213Sec1245).",
+  duration: "Registration lasts **15 years (Tier I)**, **25 years (Tier II)**, or **life (Tier III)**, with limited early-removal after 10 years for Tier I or 25 years for certain juveniles; see [NRS 179D.490](https://www.leg.state.nv.us/NRS/NRS-179D.html#NRS179DSec490).",
+  tiering: "Nevada’s **three-tier system** defines not only duration and verification cadence—**Tier I: annual / 15 yrs; Tier II: semiannual / 25 yrs; Tier III: quarterly / life**—but also governs **public registry visibility (Tiers II–III listed online, Tier I often not)**, **eligibility for early termination (Tier I and some juveniles only)**, and **supervision intensity under lifetime supervision for Tier III**; see [NRS 179D.113–117](https://www.leg.state.nv.us/NRS/NRS-179D.html#NRS179DSec113) and [NRS 179D.490](https://www.leg.state.nv.us/NRS/NRS-179D.html#NRS179DSec490)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
