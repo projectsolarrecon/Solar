@@ -139,6 +139,13 @@ visitingTraveling: [
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Pennsylvania has **no statewide residency-distance restrictions** in SORNA; **SVP group homes are limited to five occupants** per site. Local ordinances cannot impose independent zones (e.g., near schools or parks) because the state’s registry law fully occupies the field. The Pennsylvania Supreme Court struck down county bans in *Fross v. County of Allegheny*, 20 A.3d 1193 (Pa. 2011), confirming statewide preemption. [42 Pa.C.S. § 9799.25(f)](https://www.palegis.us/statutes/consolidated/view-statute?chapter=097.&div=00.&section=099.&subsctn=025.&ttl=42&txtType=HTM) [Fross v. County of Allegheny](https://casetext.com/case/fross-v-county-of-allegheny)",
+    presence: "There are **no statewide presence or proximity restrictions** in statute—registrants are not barred from schools, parks, or public spaces by law. However, **parole or probation conditions** can impose individual geographic limits. Municipalities cannot create their own exclusion zones under *Fross v. County of Allegheny*. [PSP Megan’s Law FAQ](https://www.meganslaw.psp.pa.gov/InformationalPages/FAQ) [Fross v. County of Allegheny](https://casetext.com/case/fross-v-county-of-allegheny)",
+    duration: "Duration is set by tier: **Tier I – 15 years**, **Tier II – 25 years**, **Tier III and SVP – lifetime**. For pre-2012 Subchapter I cases, duration is **10 years or lifetime** depending on the offense. Duration affects only how long a person must remain registered. [42 Pa.C.S. § 9799.15(a)](https://law.justia.com/codes/pennsylvania/title-42/chapter-97/section-9799-15/)",
+    tiering: "**Tiers affect only duration and verification frequency**, not housing, supervision, or disclosure. Tier I verifies annually, Tier II semiannually, Tier III/SVP quarterly. Assignment is based on offense tables and court SVP determinations. [42 Pa.C.S. § 9799.14](https://www.legis.state.pa.us/WU01/LI/LI/CT/HTM/42/00.097.099.014..HTM) [PSP Registration Details](https://www.meganslaw.psp.pa.gov/InformationalPages/Registration)"
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
