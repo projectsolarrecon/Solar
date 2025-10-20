@@ -185,6 +185,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "Rhode Island law **preempts local ordinances**, meaning cities and towns **cannot impose their own residency or presence restrictions** on registrants. The only statewide limit is that most registrants may not **reside within 300 feet of a school**, while the former 1,000-foot Level-III rule was *struck down* in federal court ([§ 11-37.1-10(c)](https://law.justia.com/codes/rhode-island/title-11/chapter-11-37-1/section-11-37-1-10/), [Chapdelaine v. Neronha](https://law.justia.com/cases/federal/district-courts/rhode-island/ridce/1%3A2015cv00450/39486/101/)).",
+    presence: "There is **no general statewide presence ban** for schools, parks, or similar zones. Conditions limiting presence usually arise from **probation, parole, or local supervision terms**, not statute. Registry oversight and verification remain under the **Rhode Island State Police (RISOR)** and the **Attorney General’s office** ([RISOR portal](https://risp.ri.gov/safety-education/sex-offenders), [§ 11-37.1-7](https://webserver.rilegislature.gov/Statutes/TITLE11/11-37.1/11-37.1-7.htm)).",
+    duration: "Registration continues for **10 years after completion of sentence** unless the person qualifies as a **sexually violent predator, recidivist, or aggravated offender**, which triggers **lifetime registration** under [§ 11-37.1-4](https://codes.findlaw.com/ri/title-11-criminal-offenses/ri-gen-laws-sect-11-37-1-4/). Duration is fixed by statute and **not shortened by tier assignment**.",
+    tiering: "Risk levels **I, II, and III** are assigned by the **Sex Offender Board of Review** and reviewed by courts. Levels determine **notification scope** (Level I limited, Level II moderate, Level III broad/public) and **verification frequency** (annual vs. quarterly) under [§§ 11-37.1-12–13](https://webserver.rilegislature.gov/Statutes/TITLE11/11-37.1/11-37.1-13.htm) and [Parole Board Guidelines](https://paroleboard.ri.gov/media/11/download). Tiering does **not control registration duration**, but it drives **how often verification is required** and **what information becomes public**."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
