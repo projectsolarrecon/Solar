@@ -176,6 +176,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Only **high-risk** offenders are barred from living within **500 feet** of K-12 schools per [N.D.C.C. § 12.1-32-15(13)](https://ndlegis.gov/cencode/t12-1c32.pdf); cities may try to add rules, but state law controls and local limits risk being **preempted**.",
+    presence: "Being **on K-12 school property** is restricted—with narrow exceptions for voting or meetings—by [N.D.C.C. § 12.1-20-25](https://ndlegis.gov/cencode/t12-1c20.pdf); low/moderate risk offenders otherwise have no statewide presence bans unless a **court order or probation** adds them.",
+    duration: "Registration lasts **15 years (low)**, **25 years (moderate)**, or **lifetime (high or specified offenses)** under [§ 12.1-32-15(8)](https://ndlegis.gov/cencode/t12-1c32.pdf); duration may extend if new convictions occur or if compliance lapses.",
+    tiering: "Risk levels (**low/moderate/high**)—set by the Attorney General under [§ 12.1-32-15(12)](https://ndlegis.gov/cencode/t12-1c32.pdf)—govern **duration, verification frequency, residency limits, and public-notification scope**; full criteria in the AG’s [Risk Guidelines](https://sexoffender.nd.gov/Content/Documents/Risk-Assessment-Community-Notification-Guidelines.pdf)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
