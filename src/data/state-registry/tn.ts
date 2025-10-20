@@ -130,6 +130,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Residency within 1,000 feet of schools, daycare centers, parks, or similar child-focused areas is prohibited for certain registrants; **local governments cannot impose stricter rules** under state preemption; see [Tenn. Code Ann. §§ 40-39-211, 40-39-217](https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=95e454b4-5c2f-42e1-9a6d-0e617b8a62a1&nodeid=ABGAAAABGAAA&level=4).",
+  presence: "Being present on or loitering near school grounds, childcare facilities, or public parks where children are present is restricted; **municipalities cannot expand these limits** beyond state law; see [Tenn. Code Ann. §§ 40-39-211, 40-39-217](https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=44f4b64c-5536-4a5f-88a2-586ff05da3e1&nodeid=ABGAAAABFAAA&level=4).",
+  duration: "Registration lasts **for life** unless eligible for removal after 10 years for certain offenses; see [Tenn. Code Ann. § 40-39-207](https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=6f8f04b4-f7cf-4da7-9e72-01b496ce6a3f&nodeid=ABGAAAABDAAA&nodepath=%2FROOT%2FABG%2FABGAAAABD%2FABGAAAABDAAA&level=4).",
+  tiering: "Tennessee does not use formal tier levels; verification frequency depends on **offense type**—violent or sexual offenses determine annual vs. quarterly reporting; see [Tenn. Code Ann. § 40-39-204](https://advance.lexis.com/documentpage/?pdmfid=1000516&crid=88a22657-6b47-4f9b-913b-908188e4a273&nodeid=ABGAAAABCAAA&nodepath=%2FROOT%2FABG%2FABGAAAABC%2FABGAAAABCAAA&level=4)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
