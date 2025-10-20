@@ -143,6 +143,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "Virginia law sets **no general residency exclusion zones** for all registrants, but people convicted of specific child-related offenses **may not live within 500 feet** of schools, licensed day-care centers, or certain park boundaries used for school activities; this restriction is automatic under [Va. Code § 18.2-370.3](https://law.lis.virginia.gov/vacode/title18.2/chapter8/section18.2-370.3/).", 
+    presence: "Only certain offenders, mainly **Tier III** or those convicted under §§ 18.2-370 through 18.2-370.5, are **barred from entering school or day-care property and buses** except for specific lawful purposes (e.g., voting, child’s education meeting), per [Va. Code § 18.2-370.5](https://law.lis.virginia.gov/vacode/title18.2/chapter8/section18.2-370.5/).", 
+    duration: "**Tier I** registrants may petition for removal after **15 years**, **Tier II** after **25 years**, if compliant and without disqualifying convictions; **Tier III**, murder, and multiple qualifying convictions require **lifetime registration**. See [Va. Code §§ 9.1-908–910](https://law.lis.virginia.gov/vacode/title9.1/chapter9/).", 
+    tiering: "Virginia assigns **Tier I/II/III** levels based on offense severity; Tiers I–II verify **annually** and can eventually seek removal, while Tier III and murder verify **every 90 days** for life under [Va. Code § 9.1-904](https://law.lis.virginia.gov/vacode/title9.1/chapter9/section9.1-904/)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
