@@ -143,6 +143,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Registrants may not live within **1,000 ft** of a school or child-care center; this rule is statewide and local governments may not add their own zones; see [G.S. 14-208.16](https://www.ncleg.net/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.16.html).",
+  presence: "Certain registrants are barred from *being on or near* school, child-care, and child-focused premises; see [G.S. 14-208.18](https://www.ncleg.net/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.18.pdf).",
+  duration: "Standard registration lasts **30 years** with the option to petition for termination after **10 years**; *recidivists, aggravated offenders, and sexually violent predators* register **for life** under [G.S. 14-208.7(a)](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.7.pdf), [G.S. 14-208.12A](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.12a.pdf), and [G.S. 14-208.23](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.23.pdf).",
+  tiering: "North Carolina uses **category-based** levels: standard registrants verify **twice yearly**, while *recidivists, aggravated offenders, and SVPs* verify **every 90 days** under [G.S. 14-208.9A](https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-208.9a.html) and [G.S. 14-208.24](https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_14/GS_14-208.24.pdf)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
