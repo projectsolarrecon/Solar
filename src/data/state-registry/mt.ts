@@ -146,7 +146,7 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
-{
+
   highlights: {
     residency: "Only **Level 3 (high-risk)** sexual offenders are barred from living within **300 feet** of schools, day-care centers, playgrounds, and parks where minors congregate, with limited grandfathering for prior residences; see [§45-5-513](https://archive.legmt.gov/bills/mca/title_0450/chapter_0050/part_0050/section_0130/0450-0050-0050-0130.html). Local jurisdictions may not **enact stricter residency bans** beyond state law, but probation or parole conditions can temporarily add site-specific restrictions.",
     presence: "Level 3 offenders may not **work or loiter** within 300 feet of child-centric areas or a former victim’s residence and may face additional supervision restrictions; see [§45-5-513](https://archive.legmt.gov/bills/mca/title_0450/chapter_0050/part_0050/section_0130/0450-0050-0050-0130.html).",
