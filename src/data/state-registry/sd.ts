@@ -180,6 +180,9 @@ badges: {
   lifetimePossible: true,
   verificationQuarterly: false
 },
+ highlights: { 
+residency: "Local governments **cannot impose additional restrictions**; South Dakota’s registry and community safety zone laws are **statewide and preemptive**. Registrants may not **establish or reside** within a *500-ft community safety zone* (around schools, public parks, playgrounds, and pools) except as allowed by statute. See [SDCL 22-24B-23](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-23/) and the preemption clause at [SDCL 22-24B-25](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-25/).", presence: "Loitering in a **community safety zone** or **public library** is prohibited unless covered by a listed exception. The rule applies uniformly statewide, per [SDCL 22-24B-24](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-24/).", duration: "Registration periods are fixed by tier—**Tier I (5 years)**, **Tier II (25 years)**, and **Tier III (lifetime)**—with uniform **semiannual in-person verification** regardless of tier. See [SDCL 22-24B-2.1](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-2-1/) and [SDCL 22-24B-7](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-7/).", tiering: "South Dakota’s **three-tier system** affects only **duration** and **frequency**, not reporting content. **Tier I (5 yrs)**, **Tier II (25 yrs)**, and **Tier III (lifetime)** are defined in [SDCL 22-24B-2.1](https://law.justia.com/codes/south-dakota/title-22/chapter-24b/section-22-24b-2-1/) and verified on the [DCI Registry Portal](https://sor.sd.gov/). All provisions are **statutorily codified and publicly verifiable** through the South Dakota Division of Criminal Investigation." 
+},
 
 plainLanguage: {
   atAGlance: {
