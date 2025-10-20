@@ -135,6 +135,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Nebraska has **no statewide residency ban**; municipalities may restrict “sexual predators” from living **within 500 ft** of schools/child care under [§ 29-4017](https://nebraskalegislature.gov/laws/statutes.php?statute=29-4017).",
+    presence: "There are **no statewide presence/loitering zones**; confirm any local rules while meeting SORA duties in [SORA index](https://nebraskalegislature.gov/laws/statutes.php?statute=29-4001) and the [NSP Registry](https://statepatrol.nebraska.gov/services/sex-offender-registry).",
+    duration: "**15, 25, or life** by offense category (**Tier I/II/III**), and a 15-year registrant may seek **early termination after *10 compliant years post-discharge*** under [§ 29-4005](https://nebraskalegislature.gov/laws/statutes.php?statute=29-4005) and the [NSP Registry](https://statepatrol.nebraska.gov/services/sex-offender-registry).",
+    tiering: "Tiers are offense-based in [§ 29-4005](https://nebraskalegislature.gov/laws/statutes.php?statute=29-4005) and control **verification cadence**—annual/**semiannual**/**quarterly**—per [§ 29-4006](https://nebraskalegislature.gov/laws/statutes.php?statute=29-4006) and public posting practices noted by the [NSP Registry](https://statepatrol.nebraska.gov/services/sex-offender-registry)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
