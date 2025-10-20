@@ -174,6 +174,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Under *R.C. 2950.034*, a registrant may not **establish residence** within 1,000 feet of any school or specified childcare site, and the Ohio Supreme Court has held that this statute **preempts all local ordinances**—cities and counties may not add their own distance or location bans; see [R.C. 2950.034](https://codes.ohio.gov/ohio-revised-code/section-2950.034) and *State ex rel. Ohio ACLU v. Cleveland*, 2015-Ohio-5347.",
+    presence: "Ohio law contains **no general statewide ban** on presence or loitering near schools, parks, or other places; any such limits apply only as **conditions of supervision or parole**, not under Chapter 2950; see [R.C. 2950](https://codes.ohio.gov/ohio-revised-code/chapter-2950) and [Ohio AG SORN Guide](https://www.ohioattorneygeneral.gov/Files/Law-Enforcement/Law-Enforcement-Gateway/2018-Guide-to-Ohio-SORN-Laws.aspx).",
+    duration: "Registration lasts **15 years for Tier I**, **25 years for Tier II**, and **life for Tier III**, with time tolled during any violation or absconding; see [R.C. 2950.07](https://codes.ohio.gov/ohio-revised-code/section-2950.07).",
+    tiering: "Tiers in Ohio determine only **duration, verification frequency, and community notification**—Tier I verifies yearly, Tier II every 180 days, Tier III every 90 days, and only Tier III triggers neighborhood mailings; see [R.C. 2950.01](https://codes.ohio.gov/ohio-revised-code/section-2950.01), [R.C. 2950.06](https://codes.ohio.gov/ohio-revised-code/section-2950.06), and [R.C. 2950.11](https://codes.ohio.gov/ohio-revised-code/section-2950.11)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
