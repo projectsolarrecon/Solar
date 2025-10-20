@@ -143,6 +143,13 @@ badges: {
     verificationQuarterly: true,
   },
 
+highlights: {
+  residency: "New York has **no statewide or local post-supervision residency ban**; local ordinances are **preempted** under [People v. Diack](https://law.justia.com/cases/new-york/court-of-appeals/2015/1.html); SARA’s **1,000-foot school rule** applies only as a supervision condition; see [Executive Law §259-c(14)](https://www.nysenate.gov/legislation/laws/EXC/259-C).",
+  presence: "While on parole or probation, certain Level 3 or child-victim offenders must avoid school grounds or child-care facilities without written permission; see [Penal Law §65.10(4-a)](https://www.nysenate.gov/legislation/laws/PEN/65.10) and [Executive Law §259-c(14)](https://www.nysenate.gov/legislation/laws/EXC/259-C).",
+  duration: "Registration lasts **20 years** for Level 1 and **life** for Level 2, Level 3, or designated offenders, with narrow judicial relief possible after 30 years; see [Correction Law §168-h](https://www.nysenate.gov/legislation/laws/COR/168-H) and [DCJS FAQ](https://www.criminaljustice.ny.gov/nsor/faq.htm).",
+  tiering: "Risk levels **1–3** set by the [Board of Examiners of Sex Offenders](https://www.criminaljustice.ny.gov/nsor/) and courts determine **verification cadence**, **public website visibility**, and **registration duration**; Levels 2–3 appear on the public [NY Sex Offender Registry](https://www.criminaljustice.ny.gov/nsor/) with photo and address, while Level 1 remains law-enforcement only. Tiering follows the *Candice’s Law* framework for risk-based management and notification; see [Correction Law §168-l](https://www.nysenate.gov/legislation/laws/COR/168-L) and [DCJS Risk Levels](https://www.criminaljustice.ny.gov/nsor/risk_levels.htm)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
