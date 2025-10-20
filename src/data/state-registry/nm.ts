@@ -161,6 +161,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "New Mexico has **no statewide residency ban** in statute; any limits typically stem from supervision conditions or local rules—see the state’s review by the [New Mexico Sentencing Commission](https://nmsc.unm.edu/reports/2007/Residency%20Restrictions.pdf).",
+  presence: "There are **no statewide presence/proximity zones** in statute; courts or supervision terms may add case-specific limits—see the [New Mexico Sentencing Commission analysis](https://nmsc.unm.edu/reports/2007/Residency%20Restrictions.pdf).",
+  duration: "Registration is **for life** for offenses listed in § 29-11A-5(D) and **10 years** for offenses listed in § 29-11A-5(E); see [N.M. Stat. § 29-11A-5](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-5/).",
+  tiering: "New Mexico **does not use named tiers**; verification is **every 90 days** for life-category registrants and **every 6 months** for 10-year registrants—see [N.M. Stat. § 29-11A-4(L)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/)."
+},
+
   highlights: {
     residency: "Residents register with the county sheriff within **five business days** of release, arrival, or relocation per [§ 29-11A-4(B)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/).",
     presence: "Non-residents who work or study in NM—and visitors exceeding DPS stay thresholds—must register within five business days; see [§ 29-11A-4(D)](https://law.justia.com/codes/new-mexico/chapter-29/article-11a/section-29-11a-4/) and [DPS LERB](https://www.dps.nm.gov/law-enforcement-records-bureau/).",
