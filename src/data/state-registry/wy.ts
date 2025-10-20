@@ -134,6 +134,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: {
+    residency: "Under *Wyo. Stat. § 6-2-320(a)–(b)* [School restrictions](https://law.justia.com/codes/wyoming/title-6/chapter-2/article-3/section-6-2-320/), adults required to register **may not reside within 1,000 feet of a school** unless a statutory exception applies. Local governments **cannot create additional residency zones** beyond this statewide rule.",
+    presence: "State law at *§ 6-2-320(b)–(d)* [Presence rules](https://law.justia.com/codes/wyoming/title-6/chapter-2/article-3/section-6-2-320/) limits being on or near school property, with exceptions for voting, parental duties, or preapproved purposes. **Municipalities may not impose separate presence bans**, though individual **school districts may set internal campus policies** for safety.",
+    duration: "The registration duty is **lifetime** unless a district court grants termination after **10 or 25 years** depending on offense level, as authorized under *Wyo. Stat. § 7-19-304* [Termination standards](https://law.justia.com/codes/wyoming/title-7/chapter-19/article-3/section-7-19-304/).",
+    tiering: "Wyoming uses three verification levels—**annual (g)**, **every 6 months (h)**, and **every 3 months (j)**—that determine **reporting frequency only**, not public posting or duration; see *Wyo. Stat. § 7-19-302(g)–(j)* [Verification tiers](https://law.justia.com/codes/wyoming/title-7/chapter-19/article-3/section-7-19-302/)."
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
