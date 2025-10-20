@@ -107,6 +107,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "Vermont has **no statewide residency restrictions** on where registrants may live once supervision ends. Cities and towns are **not authorized** under state law to create local buffer zones or residency bans; any attempted municipal ordinance would likely be **preempted** by [13 V.S.A. Chapter 167](https://legislature.vermont.gov/statutes/chapter/13/167) and overseen by the [Vermont Department of Public Safety](https://vsp.vermont.gov/sexoffender).",
+  presence: "There are **no statewide presence or proximity restrictions** (e.g., near schools, parks, or childcare facilities). Any site-specific restrictions apply **only as individual supervision conditions** under probation, parole, or furlough; see [13 V.S.A. § 5407](https://legislature.vermont.gov/statutes/section/13/167/05407) and related Department of Corrections guidance.",
+  duration: "Registry duration depends on classification: **10 years** for most qualifying convictions, or **lifetime** for aggravated sexual assault, multiple convictions, or failure to comply; see [13 V.S.A. § 5407(f)](https://legislature.vermont.gov/statutes/section/13/167/05407).",
+  tiering: "Vermont operates a **two-tier system** distinguishing **10-year** versus **lifetime** registrants. Tier level affects only **how long** registration lasts—not the **reporting frequency**, which remains **annual in-person verification** for all; see [VSP Sex Offender Registry](https://vsp.vermont.gov/sexoffender) and [VCIC Registry FAQ](https://vcic.vermont.gov/sex-offender-registry)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
