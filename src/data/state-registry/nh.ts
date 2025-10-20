@@ -138,6 +138,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "New Hampshire has **no statewide residency-distance ban** under *[RSA 651-B](https://law.justia.com/codes/new-hampshire/title-lxii/chapter-651-b/)*, though local ordinances or supervision terms may impose limits.", 
+    presence: "There is **no statewide school or presence zone restriction** in *[RSA 651-B](https://law.justia.com/codes/new-hampshire/title-lxii/chapter-651-b/)*; confirm any added rules via the [NH NSOR Portal](https://business.nh.gov/nsor/).", 
+    duration: "**Tier I** registers for 10 years, **Tier II/III** for life (with limited relief options); see *[RSA 651-B:6](https://law.justia.com/codes/new-hampshire/title-lxii/chapter-651-b/section-651-b-6/)*.", 
+    tiering: "Tiers affect **duration, frequency, and public listing** — Tier I/II report semi-annually, Tier III quarterly and always public; only Tier I/II may petition for removal per *[RSA 651-B:4–7](https://law.justia.com/codes/new-hampshire/title-lxii/chapter-651-b/)* and the [NH NSOR Portal](https://business.nh.gov/nsor/)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
