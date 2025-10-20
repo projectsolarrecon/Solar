@@ -146,6 +146,13 @@ export default {
     lifetimePossible: true,
     verificationQuarterly: true
   },
+{
+  highlights: {
+    residency: "Only **Level 3 (high-risk)** sexual offenders are barred from living within **300 feet** of schools, day-care centers, playgrounds, and parks where minors congregate, with limited grandfathering for prior residences; see [§45-5-513](https://archive.legmt.gov/bills/mca/title_0450/chapter_0050/part_0050/section_0130/0450-0050-0050-0130.html). Local jurisdictions may not **enact stricter residency bans** beyond state law, but probation or parole conditions can temporarily add site-specific restrictions.",
+    presence: "Level 3 offenders may not **work or loiter** within 300 feet of child-centric areas or a former victim’s residence and may face additional supervision restrictions; see [§45-5-513](https://archive.legmt.gov/bills/mca/title_0450/chapter_0050/part_0050/section_0130/0450-0050-0050-0130.html).",
+    duration: "Registration continues for **life** unless relief is granted (Level 1 may petition after 10 years, Level 2 after 25 years). Violent offenders generally register for **10 years**, per [§46-23-506](https://law.justia.com/codes/montana/title-46/chapter-23/part-5/section-46-23-506/).",
+    tiering: "Montana assigns Levels **1–3** under [§46-23-509](https://law.justia.com/codes/montana/title-46/chapter-23/part-5/section-46-23-509/) and [DOJ Tier Guidance](https://dojmt.gov/sexual-or-violent-offender-registry/offender-types-and-tier-levels/): Level 1 is **low risk** (annual verification, minimal public notice), Level 2 is **moderate risk** (verification every 180 days, broader disclosure), and Level 3 is **high risk** (quarterly verification, full online publication, community notification, and 300-foot residency and employment limits)."
+  },
 
   plainLanguage: {
     atAGlance: {
