@@ -152,6 +152,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "Certain offenders may not reside within **1,000 feet** of a school, child-care facility, or a victim’s residence (**property-line to property-line**); see [RSMo § 566.147](https://revisor.mo.gov/main/OneSection.aspx?section=566.147).", 
+    presence: "Presence/loitering within **500 feet** of schools, child-care facilities, and specified child-focused venues is restricted with narrow exceptions and parent-permission procedures; see [RSMo § 566.148](https://revisor.mo.gov/main/OneSection.aspx?section=566.148), [RSMo § 566.149](https://revisor.mo.gov/main/OneSection.aspx?section=566.149), [RSMo § 566.150](https://revisor.mo.gov/main/OneSection.aspx?section=566.150).", 
+    duration: "Registration lasts **15 years (Tier I)**, **25 years (Tier II)**, or **life (Tier III)** with limited clean-record reductions and court petitions; see [RSMo § 589.400](https://revisor.mo.gov/main/OneSection.aspx?section=589.400), [RSMo § 589.401](https://revisor.mo.gov/main/OneSection.aspx?section=589.401).", 
+    tiering: "Three-tier system with **annual** (Tier I), **semiannual** (Tier II), or **every 90 days** (Tier III) in-person verification; see [RSMo § 589.414](https://revisor.mo.gov/main/OneSection.aspx?section=589.414)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
