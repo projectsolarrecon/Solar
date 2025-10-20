@@ -151,6 +151,13 @@ export default {
     verificationQuarterly: true
   },
 
+highlights: {
+  residency: "New Jersey has **no statewide residency restrictions** for registrants; local limits were *preempted* by state law in [Galloway (N.J. 2009)](https://law.justia.com/cases/new-jersey/supreme-court/2009/a-64-08-opn.html), and all residence matters fall under [NJSP Megan’s Law](https://www.nj.gov/njsp/sex-offender-registry/megans-law.shtml).",
+  presence: "There are **no state proximity or loitering zones** tied to Megan’s Law; any limits usually arise from **individual parole or probation terms**, while notification rules come from [NJSP Megan’s Law](https://www.nj.gov/njsp/sex-offender-registry/megans-law.shtml).",
+  duration: "Registration continues **for life** unless ended by court after **15 years offense-free** with proof of no danger; repeat or barred offenses remain **permanent** under [2C:7-2(f)–(g)](https://law.justia.com/codes/new-jersey/title-2c/section-2c-7-2/).",
+  tiering: "New Jersey assigns **Tier 1 (low)**, **Tier 2 (moderate)**, and **Tier 3 (high)** risk levels under the Attorney General’s *Megan’s Law Guidelines*; these tiers decide **who receives community notice** and **who appears online**. Tier 3 registrants are posted to the Internet Registry, Tier 2 may appear depending on risk factors, and Tier 1 are **not publicly listed** but may be disclosed to law enforcement and select organizations. Rules and publication standards appear in [AG Guidelines (2007)](https://www.nj.gov/oag/dcj/megan/meganguidelines-2-07.pdf) and [2C:7-13](https://law.justia.com/codes/new-jersey/title-2c/section-2c-7-13/)."
+},
+
   plainLanguage: {
     atAGlance: {
       summary: [
