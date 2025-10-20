@@ -149,6 +149,14 @@ export default {
     "lifetimePossible": true,
     "verificationQuarterly": true
   },
+
+highlights: {
+  residency: "State law bars residence within **1,000 feet** of schools, daycare centers, parks, or playgrounds; some localities have adopted additional distance limits, though these must not conflict with [S.C. Code § 23-3-535](https://www.scstatehouse.gov/code/t23c003.php).",
+  presence: "Presence restrictions apply near child-focused areas under [§ 23-3-535(B)](https://www.scstatehouse.gov/code/t23c003.php); local governments may not impose broader criminal curfews inconsistent with state law.",
+  duration: "Registration is **for life** unless a court orders removal under [S.C. Code § 23-3-460(E)](https://www.scstatehouse.gov/code/t23c003.php).",
+  tiering: "South Carolina uses **no tier or level system**; all registrants verify **twice yearly** regardless of offense; see [S.C. Code § 23-3-460(C)](https://www.scstatehouse.gov/code/t23c003.php)."
+},
+
   "plainLanguage": {
     "atAGlance": {
       "summary": [
