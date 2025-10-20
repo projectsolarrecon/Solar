@@ -150,6 +150,13 @@ export default {
     verificationQuarterly: true
   },
 
+  highlights: { 
+    residency: "West Virginia imposes **no statewide residence-distance restrictions** under Article 12; check any local rules, while community notice is governed by [WV Code §15-12-5](https://code.wvlegislature.gov/15-12-5/).", 
+    presence: "The statute creates **no statewide proximity-based presence/exclusion zones** (schools, parks, etc.), and registration duties arise without **location bans** under [WV Code §15-12-2](https://code.wvlegislature.gov/15-12-2/) and the WVSP [Registry Portal](https://apps.wv.gov/StatePolice/SexOffender/).", 
+    duration: "Registration lasts **10 years** for eligible offenses and **for life** when statutory criteria apply (e.g., offense involving a *minor*, prior qualifying conviction, or **SVP**), per [WV Code §15-12-4](https://code.wvlegislature.gov/15-12-4/).", 
+    tiering: "WV does **not use SORNA tiers**; classification is **Sexually Violent Predator** (court finding) versus other registrants with reporting cadence (**quarterly** vs annual) under [WV Code §15-12-2a](https://code.wvlegislature.gov/15-12-2a/) and [§15-12-10](https://code.wvlegislature.gov/15-12-10/)." 
+  },
+
   plainLanguage: {
     atAGlance: {
       summary: [
