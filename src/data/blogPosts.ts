@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "fifty-laws-zero-logic",
+  title: "Fifty Laws, Zero Logic: How America’s Registry System Punishes Obedience",
+  excerpt:
+    "Fifty state registries were meant to unify public safety — instead, they turned compliance into a life sentence. Geography, not conduct, now defines who is free and who is still serving time.",
+  author: "SOLAR Project",
+  date: "2025-10-24",
+  readTime: "13 min read",
+  category: "Policy Analysis",
+  tags: [
+    "registry reform",
+    "constitutional law",
+    "residency restrictions",
+    "criminal justice",
+    "civil rights"
+  ],
+  path: "/blog/fifty-laws-zero-logic",
+},
+{
   id: "what-good-is-the-registry",
   title: "What Good Is the Registry?",
   excerpt:
