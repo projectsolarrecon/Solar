@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "October 26, 2025",
+  title: "Federal SORNA Duty Ruling and Arkansas Halloween Restrictions Dominate Registry News",
+  slug: "2025-10-26",
+  summary: "9th Circuit affirms federal registration duty in U.S. v. McGee as Arkansas launches pre-Halloween presence-zone enforcement and DOJ leads D.C. compliance sweep.",
+},
+{
   date: "October 19, 2025",
   title: "Audit Findings, Fee Lawsuit & Compliance Operations Mark This Week",
   slug: "2025-10-19",
