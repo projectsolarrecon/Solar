@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-10-25",
+  title: "Week of Oct 19–25, 2025",
+  slug: "2025-10-25",
+  summary:
+    "Intrafamilial abuse dominated: AZ 334-year sentence; CT household-access arrest; SC ICAC arrest. Fewer formal public-figure cases this week.",
+  path: "/resources/accountability-watch/2025-10-25",
+},
+{
   date: "2025-10-18",
   title: "Week of Oct 12–18, 2025",
   slug: "2025-10-18",
