@@ -2,29 +2,6 @@ import SEO from "../components/SEO";
 import { Link } from "react-router-dom";
 
 function About() {
-  const values = [
-    {
-      title: "Dignity",
-      description: "Every person deserves to be treated with respect and dignity, regardless of their past.",
-      icon: "👥"
-    },
-    {
-      title: "Justice",
-      description: "We advocate for fair treatment and constitutional rights for all individuals.",
-      icon: "⚖️"
-    },
-    {
-      title: "Education",
-      description: "Knowledge is power. We provide accurate information to help people make informed decisions.",
-      icon: "📚"
-    },
-    {
-      title: "Support",
-      description: "No one should navigate the legal system alone. We connect people with resources and community.",
-      icon: "🤝"
-    }
-  ];
-
   return (
     <div className="bg-white">
       <SEO 
@@ -44,10 +21,15 @@ function About() {
         <h2>Our Impact</h2>
         <p>Making a difference in the lives of individuals and families through reform.</p>
       </section>
-      <section id="cta">
-        <h2>Get Involved</h2>
-        <Link to="/contact" className="bg-slate-600 text-white px-8 py-3 rounded-lg text-lg font-semibold">Join the Advocacy Network</Link>
-        <Link to="/resources" className="border-2 border-slate-600 text-slate-600 px-8 py-3 rounded-lg text-lg font-semibold">Explore Reentry Guides</Link>
+      <section id="cta" className="flex flex-wrap items-center justify-center gap-4 py-8 text-center">
+        <h2 className="w-full text-2cl font-semibold mb-2">Get Involved</h2>
+        <Link
+          to="/contact"
+          className="bg-slate-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate(700) transition"
+        >
+          Join the Advocacy Network
+        </Link>
+        <Link to="/resources" className="border-2 border-slate-600 text-slate-600 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition">Explore Reentry Guides</Link>
       </section>
     </div>
   );
