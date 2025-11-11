@@ -11,7 +11,9 @@ export const accountabilityWatch: AccountabilityItem[] = [
   date: "2025-11-08",
   title: "Two Week Update, Weeks of Oct 26–Nov 8, 2025",
   slug: "2025-11-08",
-  summary: "Educators, law enforcement, clergy, and youth leaders charged or sentenced for sexual offenses; several cases highlight failures of oversight and registry ineffectiveness."
+  path: "/resources/accountability-watch/2025-11-08",
+  summary:
+    "Educators, law enforcement, clergy, and youth leaders charged or sentenced for sexual offenses; several cases highlight failures of oversight and registry ineffectiveness."
 },
 {
   date: "2025-10-25",
