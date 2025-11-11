@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 2, 2025",
+  title: "Colorado Court Weighs Lifetime Registration; Texas County Issues Halloween Advisory",
+  slug: "2025-11-02",
+  summary: "Colorado Supreme Court reviews whether lifetime registration is punitive; El Paso County (TX) releases Halloween safety advisory.",
+},
+{
   date: "October 26, 2025",
   title: "Federal SORNA Duty Ruling and Arkansas Halloween Restrictions Dominate Registry News",
   slug: "2025-10-26",
