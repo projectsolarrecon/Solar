@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 9, 2025",
+  title: "Illinois Clean Slate Act Advances; Texas Updates Registration Guidance",
+  slug: "2025-11-09",
+  summary: "Illinois Clean Slate Act heads to governor; Texas issues 10-year registration guidance; Cicero Institute highlights SORNA compliance trends.",
+},
+{
   date: "November 2, 2025",
   title: "Colorado Court Weighs Lifetime Registration; Texas County Issues Halloween Advisory",
   slug: "2025-11-02",
