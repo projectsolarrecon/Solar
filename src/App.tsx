@@ -89,6 +89,7 @@ import FollowTheMoneyPart4 from "./pages/blog/FollowTheMoneyPart4";
 import FollowTheMoneyPart5 from "./pages/blog/FollowTheMoneyPart5";
 import WhatGoodistheRegistry from "./pages/blog/WhatGoodistheRegistry";
 import FiftyLawsZeroLogic from "./pages/blog/FiftyLawsZeroLogic";
+import CommunityReintegration from "./pages/blog/CommunityReintegration";
 
 function App() {
   return (
@@ -202,6 +203,8 @@ function App() {
   element={<WhatGoodistheRegistry />} />
 <Route path="/blog/fifty-laws-zero-logic"
   element={<FiftyLawsZeroLogic />} />
+<Route path="/blog/community-reintegration"
+  element={<CommunityReintegration />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
