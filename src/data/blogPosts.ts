@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "community-reintegration",
+  title: "Finding Your Place Again: Belonging, Safety, and Community After a Sexual-Offense Conviction",
+  excerpt:
+    "Freedom is not the same as belonging. This compassionate, evidence-based guide explores how people with sexual-offense convictions can rebuild safety, connection, and community under restrictive conditions.",
+  author: "SOLAR Project",
+  date: "2025-11-14",
+  readTime: "17 min read",
+  category: "Reentry & Belonging",
+  tags: [
+    "reentry",
+    "community",
+    "belonging",
+    "registry",
+    "restorative justice"
+  ],
+  path: "/blog/community-reintegration",
+},
+{
   id: "fifty-laws-zero-logic",
   title: "Fifty Laws, Zero Logic: How America’s Registry System Punishes Obedience",
   excerpt:
