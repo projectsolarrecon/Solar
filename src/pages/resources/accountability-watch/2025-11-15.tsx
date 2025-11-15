@@ -1,21 +1,21 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { Scale, Shield, FileText, Quote, Info } from "lucide-react";
+import { Scale, Shield, FileText, Quote, Info, Gavel } from "lucide-react";
 import ShareBar from "../../../components/solar/ShareBar";
 
 /** =========================
  *  Teaser highlights (TOP-LEVEL EXPORT)
- * ========================= */
+ *  ========================= */
 export const teaserHighlights = [
-  "Lead: Army OB-GYN lawsuit alleges secret recordings of patients during gynecologic exams at Fort Hood.",
-  "TX teacher/coach indicted on CSAM production involving students.",
-  "TN physician pleads guilty to sexual exploitation of minor and international trafficking of boys.",
-  "MI assistant principal bound over for trial after alleged sexual assault of 14-year-old student.",
+  "Former Celina ISD teacher/coach federally indicted on child-exploitation counts (Elliott).",
+  "Austin physician pleads guilty in federal court to sexually exploiting a minor (Sobash).",
+  "Pediatric ER nurse at a children’s hospital charged with child sexual abuse material (Hjemdahl-Monsen).",
+  "Fort Cavazos Army OB-GYN accused in civil suit of secretly filming patients during exams (McGraw).",
 ];
 
 /** =========================
- *  Utility Components (matching prior styling)
- * ========================= */
+ *  Utility Components
+ *  ========================= */
 function Badge({ children }: { children: React.ReactNode }) {
   return (
     <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold ring-1 ring-white/50 backdrop-blur">
@@ -24,7 +24,15 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Section({ title, children, icon }: { title: string; children: React.ReactNode; icon?: React.ReactNode }) {
+function Section({
+  title,
+  children,
+  icon,
+}: {
+  title: string;
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}) {
   return (
     <section className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <h2 className="mb-3 flex items-center gap-2 text-lg font-semibold text-slate-900">
@@ -39,26 +47,31 @@ function Section({ title, children, icon }: { title: string; children: React.Rea
 function StageBadge({ stage }: { stage: string }) {
   const map: Record<string, string> = {
     "Arrested / Charged": "bg-rose-50 text-rose-900 ring-rose-200",
-    "Arrested / Indicted (Federal)": "bg-indigo-50 text-indigo-900 ring-indigo-200",
     "Federal charges unsealed": "bg-indigo-50 text-indigo-900 ring-indigo-200",
     "Plea / case update": "bg-amber-50 text-amber-900 ring-amber-200",
     "Convicted": "bg-violet-50 text-violet-900 ring-violet-200",
     "Sentenced": "bg-emerald-50 text-emerald-900 ring-emerald-200",
-    "Civil lawsuit filed": "bg-cyan-50 text-cyan-900 ring-cyan-200",
+    "Civil lawsuit filed": "bg-sky-50 text-sky-900 ring-sky-200",
   };
   const cls = map[stage] ?? "bg-slate-50 text-slate-900 ring-slate-200";
-  return <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${cls}`}>{stage}</span>;
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${cls}`}>
+      {stage}
+    </span>
+  );
 }
 
 function RegistryChip({ status }: { status: string }) {
   let label = status;
   let tone = "bg-slate-50 text-slate-900 ring-slate-200";
+
   if (status === "No prior registration noted" || status === "Registry status not mentioned") {
     label = "No prior registration noted";
     tone = "bg-emerald-50 text-emerald-900 ring-emerald-200";
   } else if (status === "Previously registered") {
     tone = "bg-rose-50 text-rose-900 ring-rose-200";
   }
+
   return (
     <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ring ${tone}`}>
       Registry: {label}
@@ -76,6 +89,8 @@ function PullQuote({ children }: { children: React.ReactNode }) {
     </blockquote>
   );
 }
+
+type SourceLink = { label: string; href: string };
 
 function CaseRow({
   name,
@@ -95,19 +110,23 @@ function CaseRow({
   date: string;
   summary: React.ReactNode;
   registry: string;
-  sources: { label: string; href: string }[];
+  sources: SourceLink[];
   emoji?: string;
 }) {
   return (
     <div className="rounded-xl border border-slate-200 p-4 hover:shadow-sm">
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-600">
-        <span className="font-semibold text-slate-900">{emoji ?? "🧾"} {name}</span>
+        <span className="font-semibold text-slate-900">
+          {emoji ?? "🧾"} {name}
+        </span>
         <span>— {role}</span>
         <span className="ml-auto whitespace-nowrap">{date}</span>
       </div>
       <div className="mt-1 text-sm text-slate-600">
         <div className="flex flex-wrap items-center gap-2">
-          <span><span className="font-medium">Jurisdiction:</span> {jurisdiction}</span>
+          <span>
+            <span className="font-medium">Jurisdiction:</span> {jurisdiction}
+          </span>
           <StageBadge stage={stage} />
           <RegistryChip status={registry} />
         </div>
@@ -134,139 +153,71 @@ function CaseRow({
 
 /** =========================
  *  Page (Week of Nov 9–15, 2025)
- * ========================= */
+ *  ========================= */
 export default function AccountabilityWatch_2025_11_15() {
   const pageTitle = "Accountability Watch — Week of Nov 9–15, 2025 | SOLAR";
 
   const atAGlance = [
-    "Lead story: Civil class-action filed against Army OB-GYN alleging secret recordings of patients during gynecologic exams; suspension in October underscores institutional failure even before arrest.",
-    "Educators, coaches, and healthcare professionals dominated this week’s cases — individuals with high trust and access to minors or vulnerable populations.",
-    "Multiple cases show registry status not publicly noted prior to first offense, reinforcing that public registries do not prevent initial abuse.",
-    "Institutional oversight (schools, hospitals, churches, law enforcement) arises again as a key vulnerability rather than just offender-monitoring.",
-  ];
-
-  const civilAdmin = [
-    {
-      name: "Army OB-GYN (per complaint)",
-      role: "Military physician — Army hospital",
-      jurisdiction: "Federal (civil suit)",
-      stage: "Civil lawsuit filed",
-      date: "Nov 11, 2025",
-      summary: (
-        <>
-          A civil class-action alleges the physician secretly recorded dozens of female patients during intimate exams.
-          The hospital reportedly suspended him in October; no public arrest yet. <strong>Why we included this:</strong> the lawsuit
-          and suspension combined indicate credible allegations and institutional accountability failures — even though no arrest, the scope and access speak to systemic risk.
-        </>
-      ),
-      registry: "No prior registration noted",
-      sources: [
-        {
-          label: "NBC News investigation",
-          href: "https://www.nbcnews.com/news/investigations/army-gynecologist-took-secret-videos-patients-intimate-exams-lawsuit-s-rcna242846",
-        },
-      ],
-      emoji: "🏥",
-    },
+    "Former Celina ISD teacher and coach federally indicted on child-exploitation offenses after a prior local grooming investigation.",
+    "Austin physician pleads guilty in federal court to sexually exploiting a Tennessee minor in a hotel room.",
+    "Pediatric ER nurse at a children’s hospital charged with child sexual abuse material after law-enforcement search.",
+    "Army OB-GYN at Fort Cavazos (Fort Hood) accused in a civil suit of secretly recording patients during intimate exams, with prior complaints allegedly ignored.",
+    "Once again, none of the featured cases involves someone flagged ahead of time by a public registry; the failure is systemic, not a matter of dots on a map.",
   ];
 
   const newArrestsCharges = [
     {
       name: "William Caleb Elliott",
-      role: "Former teacher/coach (Celina ISD, TX)",
-      jurisdiction: "E.D. Tex. (Federal)",
-      stage: "Indicted",
-      date: "Nov 14, 2025",
+      role: "Former Celina ISD teacher & coach",
+      jurisdiction: "Eastern District of Texas / Collin County, TX",
+      stage: "Arrested / Charged",
+      date: "Nov 6–8, 2025",
       summary: (
         <>
-          Indicted on seven counts of CSAM production and one count of attempted production involving students; highlights teacher-coach access to minors.
+          Federal indictment alleges Elliott possessed child sexual abuse material and attempted to coerce a minor.
+          Coverage notes he previously faced a local grooming allegation in Celina ISD but was allowed to resign
+          quietly before the federal case emerged.
         </>
       ),
-      registry: "No prior registration noted",
+      registry: "Registry status not mentioned",
       sources: [
         {
-          label: "DOJ E.D. Tex. press release",
-          href: "https://www.justice.gov/usao-edtx/pr/former-celina-isd-teacher-indicted-seven-counts-child-pornography",
+          label: "USAO–EDTX press release",
+          href: "https://www.justice.gov/usao-edtx/pr/former-elementary-school-teacher-indicted-child-exploitation-offenses",
+        },
+        {
+          label: "CBS Texas – Celina ISD fallout",
+          href: "https://www.cbsnews.com/texas/news/celina-isd-trust-building-after-federal-child-sex-abuse-arrest/",
+        },
+        {
+          label: "Dallas Morning News coverage",
+          href: "https://www.dallasnews.com/news/crime/2025/11/07/former-celina-isd-teacher-and-coach-faces-federal-child-sex-abuse-charges/",
         },
       ],
       emoji: "🏫",
     },
     {
-      name: "Philip Taylor Sobash",
-      role: "Physician (Austin, TX)",
-      jurisdiction: "M.D. Tenn. (Federal)",
-      stage: "Plea / case update",
-      date: "Nov 13, 2025",
-      summary: (
-        <>
-          Physician admitted guilt to sexual exploitation of a minor and international trafficking of boys; sentencing scheduled for 2026.
-        </>
-      ),
-      registry: "No prior registration noted",
-      sources: [
-        {
-          label: "DOJ M.D. Tenn. press release",
-          href: "https://www.justice.gov/usao-mdtn/pr/austin-physician-pleads-guilty-sexual-exploitation-minor",
-        },
-      ],
-      emoji: "🩺",
-    },
-    {
-      name: "Jerome Younger",
-      role: "Assistant principal, Detroit Public Schools",
-      jurisdiction: "Macomb County, MI (State)",
+      name: "Erik Hjemdahl-Monsen",
+      role: "Pediatric ER nurse, Oishei Children’s Hospital",
+      jurisdiction: "Western District of New York / Buffalo, NY",
       stage: "Arrested / Charged",
-      date: "Nov 14, 2025",
+      date: "Nov 12–13, 2025",
       summary: (
         <>
-          Bound over to circuit court on 1st- and 2nd-degree CSC charges; alleged sexual assault of a 14-year-old student.
+          Federal complaint charges Hjemdahl-Monsen with receiving and possessing child sexual abuse material. DOJ
+          says investigators traced online activity to his home; hospital administrators say he has been removed
+          from duty and patients are being notified.
         </>
       ),
-      registry: "No prior registration noted",
+      registry: "Registry status not mentioned",
       sources: [
         {
-          label: "ClickOnDetroit report",
-          href: "https://www.clickondetroit.com/news/2025/11/14/assistant-principal-charged-sexual-conduct-student-detroit-public-schools/",
+          label: "USAO–WDNY press release",
+          href: "https://www.justice.gov/usao-wdny/pr/pediatric-emergency-nurse-charged-child-pornography-offenses",
         },
-      ],
-      emoji: "🧑‍🏫",
-    },
-    {
-      name: "Donald Aaron Axtell",
-      role: "Youth pastor (Excelsior Springs Baptist Church, MO)",
-      jurisdiction: "Clay County, MO (State)",
-      stage: "Arrested / Charged",
-      date: "Nov 14, 2025",
-      summary: (
-        <>
-          Youth pastor charged with statutory rape, statutory sodomy and furnishing pornography to a minor in church youth-group context.
-        </>
-      ),
-      registry: "No prior registration noted",
-      sources: [
         {
-          label: "KCTV5 Kansas City",
-          href: "https://www.kctv5.com/news/missouri/youth-pastor-charged-with-sex-crimes-involving-minor/article_5fa0e910-6a27-11ee-8f3d-bb9b7f3dfc33.html",
-        },
-      ],
-      emoji: "⛪",
-    },
-    {
-      name: "Dr. Christopher David Olenek",
-      role: "Physician (Vero Beach, FL)",
-      jurisdiction: "Indian River County, FL (State)",
-      stage: "Arrested / Charged",
-      date: "Nov 14, 2025",
-      summary: (
-        <>
-          Arrested amid investigation of inappropriate sexual conduct involving at least eight female patients; license review underway.
-        </>
-      ),
-      registry: "No prior registration noted",
-      sources: [
-        {
-          label: "WPBF 25 News",
-          href: "https://www.wpbf.com/article/vero-beach-physician-arrested-for-sexual-battery-on-patients/43297743",
+          label: "WKBW Buffalo – local report",
+          href: "https://www.wkbw.com/news/local-news/pediatric-er-nurse-at-oishei-childrens-hospital-accused-of-possessing-child-sexual-abuse-material",
         },
       ],
       emoji: "🏥",
@@ -275,113 +226,110 @@ export default function AccountabilityWatch_2025_11_15() {
 
   const pleasUpdates = [
     {
-      name: "Erik Hjemdahl-Monsen",
-      role: "Former ER nurse (Oishei Children’s Hospital, NY)",
-      jurisdiction: "W.D. N.Y. (Federal)",
-      stage: "Sentenced",
-      date: "Nov 14, 2025",
+      name: "Dr. Philip Taylor Sobash",
+      role: "Austin-based physician",
+      jurisdiction: "Middle District of Tennessee",
+      stage: "Plea / case update",
+      date: "Nov 7, 2025",
       summary: (
         <>
-          Received 72 months in federal prison for possession of CSAM involving a prepubescent child; followed by 10 years supervised release.
+          Sobash pleaded guilty in federal court to <em>sexual exploitation of a minor</em> after arranging to meet a
+          Tennessee minor in a Murfreesboro hotel and recording sexual abuse. Prosecutors say he faces a mandatory
+          minimum 15-year sentence; sentencing is set for early 2026.
         </>
       ),
-      registry: "No prior registration noted",
+      registry: "Registry status not mentioned",
       sources: [
         {
-          label: "DOJ W.D. N.Y. press release",
-          href: "https://www.justice.gov/usao-wdny/pr/former-children-s-hospital-nurse-sentenced-72-months-child-pornography-offense",
+          label: "USAO–MDTN press release",
+          href: "https://www.justice.gov/usao-mdtn/pr/austin-texas-physician-pleads-guilty-sexual-exploitation-minor",
+        },
+        {
+          label: "WSMV Nashville coverage",
+          href: "https://www.wsmv.com/2025/11/07/austin-doctor-pleads-guilty-sexually-exploiting-minor-murfreesboro-hotel/",
         },
       ],
-      emoji: "👩‍⚕️",
+      emoji: "🩺",
     },
     {
       name: "Aaron Thomas Carrado",
-      role: "Gym owner/coach (“Strength in Christ”), CO",
-      jurisdiction: "El Paso County, CO (State)",
+      role: "Owner/trainer, Strength in Christ Athletes gym",
+      jurisdiction: "23rd Judicial District, Douglas County, CO",
       stage: "Sentenced",
       date: "Nov 13, 2025",
       summary: (
         <>
-          Sentenced to 76 years to life for serial sexual assaults of teen athletes; coach-athlete trust relationship central.
+          A Douglas County judge sentenced Carrado to <em>76 years to life</em> in prison after a jury convicted him on
+          12 counts, including multiple counts of sexual assault on a child by one in a position of trust. Prosecutors
+          say he abused elite teen athletes he coached at his Christian-branded gym over several years.
         </>
       ),
-      registry: "No prior registration noted",
+      registry: "Registry status not mentioned",
       sources: [
         {
-          label: "KKTV 11 News",
-          href: "https://www.kktv.com/2025/11/13/coach-sentenced-76-years-serial-sexual-assault-teens/",
+          label: "23rd Judicial DA – conviction release (PDF)",
+          href: "https://coda23.gov/wp-content/uploads/2025/08/Carrrado-Sentencing.pdf",
+        },
+        {
+          label: "Denver7 – sentencing update",
+          href: "https://www.denver7.com/news/local-news/parker-personal-trainer-found-guilty-of-sexually-assaulting-2-young-athletes",
+        },
+        {
+          label: "CBS Colorado report",
+          href: "https://www.cbsnews.com/colorado/news/colorado-personal-trainer-convicted-sexual-assault-child/",
         },
       ],
       emoji: "🏋️",
     },
+  ];
+
+  const civilCases = [
     {
-      name: "Jessica Bergmann",
-      role: "Teacher & soccer coach (Washington Middle School, IL)",
-      jurisdiction: "DuPage County, IL (State)",
-      stage: "Charged",
-      date: "Nov 10, 2025",
+      name: "Maj. Blaine McGraw",
+      role: "Army OB-GYN, Carl R. Darnall Army Medical Center (Fort Cavazos/Fort Hood)",
+      jurisdiction: "Federal civil suit / Fort Cavazos (Killeen, TX) & prior duty stations",
+      stage: "Civil lawsuit filed",
+      date: "Complaint filed Nov 10, 2025",
       summary: (
         <>
-          Teacher and youth coach charged with criminal sexual assault and aggravated sexual abuse of a former student; coach/mentor role flagged.
+          A civil lawsuit alleges McGraw secretly recorded intimate videos of patients during gynecological exams and
+          sexually exploited women in his care. Reporting notes prior complaints at Fort Cavazos and earlier posts
+          (including Hawaii) that did not lead to timely removal from practice.
         </>
       ),
-      registry: "No prior registration noted",
+      registry: "Registry status not mentioned",
       sources: [
         {
-          label: "Chicago Sun-Times",
-          href: "https://chicago.suntimes.com/2025/11/10/teacher-charged-sexual-assault-former-student-dupage/",
+          label: "NBC News investigation",
+          href: "https://www.nbcnews.com/news/investigations/army-gynecologist-took-secret-videos-patients-intimate-exams-lawsuit-s-rcna242846",
+        },
+        {
+          label: "Hilliard Law – plaintiff firm summary",
+          href: "https://www.hilliard-law.com/blog/2025/november/suspended-fort-hood-army-doctor-accused-of-sexua/",
+        },
+        {
+          label: "Ground News coverage summary",
+          href: "https://ground.news/article/army-gynecologist-took-secret-videos-of-patients-during-intimate-exams-lawsuit-says_73c3bf",
         },
       ],
-      emoji: "⚽",
-    },
-    {
-      name: "Teresa Whalin",
-      role: "Teacher (Ranch View Middle School, CO)",
-      jurisdiction: "Douglas County, CO (State)",
-      stage: "Arrested / Charged",
-      date: "Nov 12, 2025",
-      summary: (
+      emoji: "🎖️",
+      whyIncluded: (
         <>
-          Arrested on suspicion of sexual assault by person in position of trust, internet exploitation, and stalking a child; bond set at $50,000.
+          <strong>Why we included this:</strong> McGraw’s case shows an institution that allegedly kept a doctor in
+          uniform and in exam rooms despite repeated complaints. The women harmed were never going to be “protected” by
+          a registry search — only by systems that take early reports seriously and remove predators from positions of
+          power.
         </>
       ),
-      registry: "No prior registration noted",
-      sources: [
-        {
-          label: "CBS Colorado",
-          href: "https://www.cbsnews.com/colorado/news/douglas-county-teacher-arrested-sexual-assault-child-trust/",
-        },
-      ],
-      emoji: "📘",
-    },
-    {
-      name: "Matthew McGinley",
-      role: "Former worship pastor & teacher (Fort Collins, CO)",
-      jurisdiction: "Larimer County, CO (State)",
-      stage: "Arrested / Charged",
-      date: "Nov 12, 2025",
-      summary: (
-        <>
-          Charged with felony sexual assault of a minor while in a position of trust (teacher/pastor); church and district investigating.
-        </>
-      ),
-      registry: "No prior registration noted",
-      sources: [
-        {
-          label: "Coloradoan",
-          href: "https://www.coloradoan.com/story/news/2025/11/12/former-fort-collins-pastor-teacher-charged-sexual-assault-minor/76344123007/",
-        },
-      ],
-      emoji: "🛐",
     },
   ];
 
   const watchlist = [
-    "Army OB-GYN lead: monitor for criminal referral, DoD action and institutional change.",
-    "Detroit district case: assistant principal Jerome Younger arraignment Nov 24 — track plea/outcome.",
-    "Florida Vero Beach physician: medical board decision and any criminal indictment.",
-    "Missouri youth pastor case: additional counts / victims and church accountability response.",
-    "Colorado teacher/coach arrests: district licensing review and broader coach-athlete vulnerability.",
+    "Elliott (EDTX/Celina ISD): watch for superseding indictment, plea talks, and Celina ISD transparency about prior grooming concerns.",
+    "Sobash (MDTN): track sentencing date and any medical-licensing board actions in Texas and Tennessee.",
+    "Hjemdahl-Monsen (WDNY): monitor for indictment, additional counts, and how Oishei and Kaleida Health notify affected families.",
+    "Carrado (CO): follow any post-sentence motions and civil suits from former athletes.",
+    "McGraw (Army OB-GYN): watch for parallel criminal investigation outcomes and additional civil claims from prior duty stations.",
   ];
 
   return (
@@ -390,15 +338,16 @@ export default function AccountabilityWatch_2025_11_15() {
         <title>{pageTitle}</title>
         <meta
           name="description"
-          content="Weekly roundup of verified arrests, charges, pleas, convictions and civil filings involving individuals in positions of trust or authority – educators, clergy, coaches, doctors, law-enforcement and institutional leaders."
+          content="Weekly Accountability Watch roundup of arrests, pleas, sentencings, and civil suits involving people in positions of trust or household authority, with registry-status context."
         />
       </Helmet>
 
+      {/* Hero */}
       <header className="relative isolate overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <div className="mx-auto max-w-5xl px-4 py-10 sm:py-12">
           <div className="mb-3 flex items-center justify-between gap-3">
             <Badge>🧭 Accountability Watch • Weekly</Badge>
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-200/90">
+            <div className="hidden items-center gap-2 text-xs text-slate-200/90 sm:flex">
               <Scale className="h-4 w-4" /> Verified sources • <Shield className="h-4 w-4" /> Registry context
             </div>
           </div>
@@ -414,19 +363,26 @@ export default function AccountabilityWatch_2025_11_15() {
       </header>
 
       <div className="mx-auto max-w-5xl px-4 pb-16">
-        <Section title="At a Glance" icon={<FileText className="h-5 w-5 text-slate-500" />}>
-          <ul className="list-disc pl-5 text-sm">{atAGlance.map((a, i) => <li key={i}>{a}</li>)}</ul>
-          <PullQuote>
-            We tag registry status to document how often new cases involve people <strong>not previously registered</strong> — because registration alone cannot stop first-time offending by authority or access figures.
-          </PullQuote>
-        </Section>
+        <div className="mt-6 flex items-start gap-2 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
+          <Info className="mt-0.5 h-4 w-4 text-slate-500" />
+          <p className="m-0">
+            This week’s cases span public schools, hospitals, private gyms, and the U.S. Army health system. In every
+            instance, the harm flowed from <em>access and unchecked authority</em> — not from a stranger flagged on a
+            registry map.
+          </p>
+        </div>
 
-        <Section title="Civil / Administrative Actions" icon={<FileText className="h-5 w-5 text-cyan-500" />}>
-          <div className="grid gap-3">
-            {civilAdmin.map((c, i) => (
-              <CaseRow key={i} {...c} />
+        <Section title="At a Glance" icon={<FileText className="h-5 w-5 text-slate-500" />}>
+          <ul className="m-0 list-disc pl-5">
+            {atAGlance.map((a, i) => (
+              <li key={i}>{a}</li>
             ))}
-          </div>
+          </ul>
+          <PullQuote>
+            We tag registry status to document how often new cases involve people{" "}
+            <strong>not previously registered</strong> — evidence that real prevention comes from accountability inside
+            schools, hospitals, churches, and agencies, not from public shaming lists.
+          </PullQuote>
         </Section>
 
         <Section title="New Arrests & Charges" icon={<Shield className="h-5 w-5 text-rose-500" />}>
@@ -438,22 +394,53 @@ export default function AccountabilityWatch_2025_11_15() {
         </Section>
 
         <Section title="Pleas / Convictions / Sentencings" icon={<Scale className="h-5 w-5 text-amber-500" />}>
-          <div classItem="grid gap-3">
+          <div className="grid gap-3">
             {pleasUpdates.map((c, i) => (
               <CaseRow key={i} {...c} />
             ))}
           </div>
         </Section>
 
+        <Section
+          title="Civil Suits & Institutional Accountability"
+          icon={<Gavel className="h-5 w-5 text-sky-600" />}
+        >
+          <div className="grid gap-3">
+            {civilCases.map((c, i) => (
+              <div key={i} className="space-y-2">
+                <CaseRow
+                  name={c.name}
+                  role={c.role}
+                  jurisdiction={c.jurisdiction}
+                  stage={c.stage}
+                  date={c.date}
+                  summary={c.summary}
+                  registry={c.registry}
+                  sources={c.sources}
+                  emoji={c.emoji}
+                />
+                <div className="rounded-lg bg-sky-50 p-3 text-xs text-sky-900">
+                  {c.whyIncluded}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
         <Section title="Watchlist" icon={<FileText className="h-5 w-5 text-slate-500" />}>
-          <ul className="list-disc pl-5 text-sm">{watchlist.map((w, i) => <li key={i}>{w}</li>)}</ul>
+          <ul className="m-0 list-disc pl-5">
+            {watchlist.map((w, i) => (
+              <li key={i}>{w}</li>
+            ))}
+          </ul>
         </Section>
 
         <div className="mt-6 rounded-xl border-l-4 border-amber-400 bg-amber-50 p-4 text-sm text-amber-900">
           <p className="font-semibold">Disclaimer</p>
           <p className="mt-1">
-            All defendants are presumed innocent unless and until proven guilty in a court of law. Registry status reflects what’s publicly
-            reported in official documents or mainstream coverage; an absence of mention does not guarantee non-registration.
+            All defendants are presumed innocent unless and until proven guilty in a court of law. Registry status
+            reflects what’s publicly reported in official documents or mainstream coverage; absence of mention is not
+            definitive. Civil allegations are reported from complaints and news coverage and may be disputed in court.
           </p>
         </div>
       </div>
