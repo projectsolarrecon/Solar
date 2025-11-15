@@ -183,15 +183,15 @@ export default function AccountabilityWatch_2025_11_15() {
       sources: [
         {
           label: "USAO–EDTX press release",
-          href: "https://www.justice.gov/usao-edtx/pr/former-elementary-school-teacher-indicted-child-exploitation-offenses",
+          href: "https://www.justice.gov/usao-edtx/pr/former-celina-teachercoach-charged-production-child-pornography-eastern-district-texas",
         },
         {
           label: "CBS Texas – Celina ISD fallout",
-          href: "https://www.cbsnews.com/texas/news/celina-isd-trust-building-after-federal-child-sex-abuse-arrest/",
+          href: "https://www.cbsnews.com/texas/news/celina-isd-football-coach-sexual-misconduct-civil-lawsuits/",
         },
         {
           label: "Dallas Morning News coverage",
-          href: "https://www.dallasnews.com/news/crime/2025/11/07/former-celina-isd-teacher-and-coach-faces-federal-child-sex-abuse-charges/",
+          href: "https://easttexasradio.com/former-celina-teacher-coach-now-faces-federal-charges/",
         },
       ],
       emoji: "🏫",
@@ -213,11 +213,11 @@ export default function AccountabilityWatch_2025_11_15() {
       sources: [
         {
           label: "USAO–WDNY press release",
-          href: "https://www.justice.gov/usao-wdny/pr/pediatric-emergency-nurse-charged-child-pornography-offenses",
+          href: "https://www.justice.gov/usao-wdny/pr/springville-nurse-arrested-charged-possession-and-distribution-child-pornography",
         },
         {
           label: "WKBW Buffalo – local report",
-          href: "https://www.wkbw.com/news/local-news/pediatric-er-nurse-at-oishei-childrens-hospital-accused-of-possessing-child-sexual-abuse-material",
+          href: "https://www.wkbw.com/news/local-news/nurse-who-worked-at-oishei-childrens-hospital-facing-child-pornography-charges",
         },
       ],
       emoji: "🏥",
@@ -242,11 +242,11 @@ export default function AccountabilityWatch_2025_11_15() {
       sources: [
         {
           label: "USAO–MDTN press release",
-          href: "https://www.justice.gov/usao-mdtn/pr/austin-texas-physician-pleads-guilty-sexual-exploitation-minor",
+          href: "https://www.justice.gov/usao-mdtn/pr/texas-man-pleads-guilty-sexual-exploitation-minor",
         },
         {
           label: "WSMV Nashville coverage",
-          href: "https://www.wsmv.com/2025/11/07/austin-doctor-pleads-guilty-sexually-exploiting-minor-murfreesboro-hotel/",
+          href: "https://www.wsmv.com/2025/11/13/texas-physician-pleads-guilty-using-sugar-daddy-site-exploit-victims-including-tn-girl/",
         },
       ],
       emoji: "🩺",
@@ -301,7 +301,7 @@ export default function AccountabilityWatch_2025_11_15() {
       sources: [
         {
           label: "NBC News investigation",
-          href: "https://www.nbcnews.com/news/investigations/army-gynecologist-took-secret-videos-patients-intimate-exams-lawsuit-s-rcna242846",
+          href: "https://www.nbcnews.com/news/investigations/army-gynecologist-took-secret-videos-patients-during-intimate-exams-lawsuit-s-rcna242846",
         },
         {
           label: "Hilliard Law – plaintiff firm summary",
