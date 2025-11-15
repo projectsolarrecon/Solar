@@ -318,10 +318,10 @@ export default function AccountabilityWatch_2025_11_15() {
       date: "Nov 13, 2025",
       summary: (
         <>
-          Sobash pleaded guilty in federal court to charges related to the exploitation of a minor and financing sex
-          trafficking involving boys overseas. According to court filings, he admitted paying for abuse livestreams and
-          directing specific acts. Sentencing is set for 2026.
-        </>
+  Sobash pleaded guilty in federal court to sexual exploitation of a minor after arranging to meet a Tennessee minor in a
+  Murfreesboro hotel room and recording the abuse. Prosecutors say he faces a mandatory minimum sentence, with
+  sentencing scheduled for early 2026.
+</>
       ),
       registry: "No prior registration noted",
       sources: [
