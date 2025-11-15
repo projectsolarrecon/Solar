@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 16, 2025",
+  title: "Arizona Court Upholds Lifetime Registration; Massachusetts Conducts Enforcement Sweep",
+  slug: "2025-11-16",
+  summary: "Federal court in Arizona sustains lifetime registration and online-identifier rules; Massachusetts announces Operation Firewall, arresting 56 including 7 for registration violations.",
+},
+{
   date: "November 9, 2025",
   title: "Illinois Clean Slate Act Advances; Texas Updates Registration Guidance",
   slug: "2025-11-09",
