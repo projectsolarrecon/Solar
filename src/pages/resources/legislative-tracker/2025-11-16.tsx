@@ -23,50 +23,51 @@ export default function LegislativeTracker_2025_11_16(): JSX.Element {
     <div className="bg-white">
       <SEO
         title="Legislative Tracker — Week of Nov 16, 2025 | SOLAR"
-        description="This Week at a Glance, Highlights, States, Court Decisions, Media, Watchlist — with inline action tools."
-        keywords="sex offender registry litigation 2025, Arizona lifetime registration, Operation Firewall Massachusetts, registry enforcement"
+        description="Federal court upholds Arizona lifetime registration law; Massachusetts enforcement sweep arrests 56 including registrants with outstanding warrants."
+        keywords="sex offender registry litigation 2025, Arizona lifetime registration, Operation Firewall Massachusetts, internet identifier requirements, SOLAR Project"
       />
 
-      {/* ===== WEEKLY TRACKER: 2025-11-16 (covers Nov 9–15 2025) ===== */}
-      {/* This Week at a Glance */}
+      {/* ===== WEEKLY TRACKER: 2025-11-16 (covers Nov 9–15, 2025) ===== */}
       <section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
         <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
           <h2 className="text-2xl font-bold">📅 This Week at a Glance (Nov 9–15, 2025)</h2>
           <p className="text-slate-100 mt-1">
-            Arizona court upholds lifetime registration and online-identifier rules; Massachusetts conducts enforcement sweep targeting registration violations.
+            Arizona federal court upholds lifetime registration and online-identifier reporting; Massachusetts conducts multi-day enforcement sweep.
           </p>
         </div>
 
-        {/* 3 cards: Now in force / Moving / Courts */}
         <div className="grid gap-4 md:grid-cols-3">
           <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
             <p className="font-semibold text-emerald-900">✅ Now in force</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-emerald-900/90">
-              <li>No new registry-related laws took effect this week.</li>
+              <li>No new registry-related statutes or agency rules enacted this week.</li>
             </ul>
           </div>
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
             <p className="font-semibold text-amber-900">🕒 Moving / Introduced</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-amber-900/90">
-              <li>No new registry-specific bills introduced this period.</li>
+              <li>No new registry-specific legislation introduced or advanced this period.</li>
             </ul>
           </div>
           <div className="rounded-xl border border-sky-200 bg-sky-50 p-4">
             <p className="font-semibold text-sky-900">⚖️ Courts / Agencies</p>
             <ul className="list-disc pl-5 mt-1 space-y-1 text-sky-900/90">
-              <li><span className="font-medium">Doe v. Sheridan (Arizona U.S. District Court)</span> — Court upheld lifetime registration, online identifier, and residency-change notification provisions.</li>
-              <li><span className="font-medium">Massachusetts State Police</span> — Announced Operation Firewall; 56 arrested including 7 for registry violations.</li>
+              <li><span className="font-medium">Doe v. Sheridan (D. Ariz.)</span> — Court upheld lifetime registration, online-identifier, and residency-change notification mandates.</li>
+              <li><span className="font-medium">Massachusetts State Police — Operation Firewall</span> — 56 arrests, including registrants with outstanding warrants.</li>
             </ul>
           </div>
         </div>
 
-        {/* Context row */}
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <div className="rounded-lg border border-slate-200 p-4">
-            <p className="text-sm text-slate-700"><span className="font-semibold">Gaps this week:</span> Few legislative filings or new civil-commitment cases located; many statehouses in recess.</p>
+            <p className="text-sm text-slate-700">
+              <span className="font-semibold">Gaps this week:</span> No new research, legislation, or agency guidance; overall light week across states.
+            </p>
           </div>
           <div className="rounded-lg border border-slate-200 p-4">
-            <p className="text-sm text-slate-700"><span className="font-semibold">What’s ahead:</span> Watch for any appeals in Doe v. Sheridan and follow-up enforcement or policy discussions in Massachusetts.</p>
+            <p className="text-sm text-slate-700">
+              <span className="font-semibold">What’s ahead:</span> Watch for Arizona appeal filings and Massachusetts follow-up announcements; continue monitoring DOJ/SMART rulemaking.
+            </p>
           </div>
         </div>
       </section>
@@ -75,15 +76,15 @@ export default function LegislativeTracker_2025_11_16(): JSX.Element {
       <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 mt-8" id="highlights">
         <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
           <h2 className="text-2xl font-bold">⭐ Highlights</h2>
-          <p className="text-slate-100 mt-1">Key developments this week: Arizona federal court decision & Massachusetts enforcement operation.</p>
+          <p className="text-slate-100 mt-1">Key rulings and enforcement activity this week.</p>
         </div>
 
         <div className="space-y-4 text-slate-800">
-          {/* Highlight 1 */}
+          {/* Highlight 1 — Arizona */}
           <div className="rounded-xl border border-sky-200 bg-sky-50 p-4">
             <p className="font-semibold">Arizona — Doe v. Sheridan (U.S. District Court, D. Ariz.)</p>
             <p className="text-sm">
-              The court upheld Arizona’s lifetime registration and online-identifier rules, finding they serve a legitimate public-safety interest and do not violate due process or free speech rights.
+              Federal judge dismissed plaintiff’s challenge to Arizona’s lifetime registration and online-identifier rules, finding the laws constitutional under existing precedent.
             </p>
             <div className="mt-2 flex flex-wrap gap-2 text-[12px]">
               <span className="px-2 py-1 rounded-full bg-white ring-1 ring-sky-200 text-sky-900">lifetime registration</span>
@@ -93,88 +94,101 @@ export default function LegislativeTracker_2025_11_16(): JSX.Element {
 
             <div className="mt-3 flex flex-wrap gap-2 print:hidden">
               <a
-                href="https://www.courtlistener.com/docket/DOEvSHERIDAN2025"
+                href="https://news.yahoo.com/arizona-legislature-wins-sex-offender-204917044.html"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
               >
-                View Case Docket
+                View Coverage
               </a>
               <button
                 onClick={() => copy('SCRIPT-AZ')}
                 className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
               >
-                Copy summary for brief
+                Copy summary
               </button>
             </div>
             <textarea
               id="SCRIPT-AZ"
               className="sr-only"
               readOnly
-              value={`Arizona federal court upheld lifetime registration and online-identifier reporting in Doe v. Sheridan (Nov 2025). The judge found the requirements constitutional under current precedent.`}
+              value={`Doe v. Sheridan (D. Ariz., Nov 2025): Court upheld lifetime registration and online-identifier reporting, rejecting constitutional challenges on due process and free speech grounds.`}
             />
           </div>
 
-          {/* Highlight 2 */}
+          {/* Highlight 2 — Massachusetts */}
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-            <p className="font-semibold">Massachusetts — Operation Firewall (Enforcement Sweep)</p>
+            <p className="font-semibold">Massachusetts — Operation Firewall (Statewide Enforcement Sweep)</p>
             <p className="text-sm">
-              Massachusetts State Police announced a three-day child-exploitation sweep resulting in 56 arrests, including seven registrants charged with failing to register. Focus was enforcement rather than policy change.
+              Massachusetts State Police announced “Operation Firewall,” a coordinated sting resulting in 56 arrests, including seven registrants charged with failure to register. Operation emphasizes enforcement of existing law.
             </p>
             <div className="mt-2 flex flex-wrap gap-2 text-[12px]">
               <span className="px-2 py-1 rounded-full bg-white ring-1 ring-amber-200 text-amber-900">compliance sweep</span>
-              <span className="px-2 py-1 rounded-full bg-white ring-1 ring-amber-200 text-amber-900">registration enforcement</span>
+              <span className="px-2 py-1 rounded-full bg-white ring-1 ring-amber-200 text-amber-900">failure to register</span>
+              <span className="px-2 py-1 rounded-full bg-white ring-1 ring-amber-200 text-amber-900">enforcement</span>
             </div>
 
             <div className="mt-3 flex flex-wrap gap-2 print:hidden">
               <a
-                href="https://www.mass.gov/news/operation-firewall"
+                href="https://www.mass.gov/news/operation-firewall-child-exploitation"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 text-sm"
               >
-                Official release
+                Official Release
               </a>
               <button
                 onClick={() => copy('SCRIPT-MA')}
                 className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white px-3 py-2 text-sm"
               >
-                Copy outreach note
+                Copy summary
               </button>
             </div>
             <textarea
               id="SCRIPT-MA"
               className="sr-only"
               readOnly
-              value={`Massachusetts State Police announced Operation Firewall (Nov 10, 2025), arresting 56 people including seven for registration violations. No new rule changes, but signals heightened enforcement.`}
+              value={`Massachusetts State Police announced Operation Firewall (Nov 2025): 56 arrested statewide, including seven for registry violations. Highlights enforcement priorities without new rulemaking.`}
             />
           </div>
         </div>
       </section>
 
-      {/* ===== MEDIA / WATCHLIST ===== */}
+      {/* ===== MEDIA ===== */}
       <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 mt-8">
         <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-          <h2 className="text-2xl font-bold">📰 Media & Watchlist</h2>
+          <h2 className="text-2xl font-bold">📰 Media Coverage</h2>
         </div>
 
-        <div className="space-y-4 text-slate-800">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-            <p className="font-semibold">Arizona Agenda — “Arizona has a registry problem” (Nov 13 2025)</p>
-            <p className="text-sm">
-              Opinion piece criticizing county-level inconsistency in supervision and notification. Suggested outreach for SOLAR commentary on statewide registry uniformity.
-            </p>
-            <div className="mt-2 flex flex-wrap gap-2 text-[12px]">
-              <span className="px-2 py-1 rounded-full bg-white ring-1 ring-slate-200 text-slate-900">opinion</span>
-              <span className="px-2 py-1 rounded-full bg-white ring-1 ring-slate-200 text-slate-900">supervision variation</span>
-            </div>
-          </div>
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-800">
+          <p className="font-semibold">“Arizona has a registry problem” — <i>Arizona Agenda</i> (Nov 13, 2025)</p>
+          <p className="text-sm">
+            Opinion piece highlighting inconsistencies in Arizona’s supervision and notification practices across counties.
+          </p>
+          <a
+            href="https://arizonaagenda.substack.com/p/arizona-has-a-registry-problem"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-2 mt-3 text-sm"
+          >
+            Read Article
+          </a>
+        </div>
+      </section>
 
-          <div className="rounded-xl border border-slate-200 bg-white p-4">
-            <p className="text-sm text-slate-700">
-              <span className="font-semibold">Rolling Watch-List:</span> Arizona appeal potential from Doe v. Sheridan; Massachusetts follow-ups on Operation Firewall; monitor federal SMART/DOJ rulemaking and special sessions for new bills.
-            </p>
-          </div>
+      {/* ===== WATCHLIST ===== */}
+      <section className="bg-white rounded-2xl shadow p-6 border border-slate-200 mt-8">
+        <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
+          <h2 className="text-2xl font-bold">🔭 Watchlist</h2>
+        </div>
+
+        <div className="text-sm text-slate-800">
+          <ul className="list-disc pl-5 space-y-1">
+            <li><strong>Arizona – Doe v. Sheridan:</strong> Case dismissed; monitor for appeal.</li>
+            <li><strong>Massachusetts – Operation Firewall:</strong> Watch for prosecutions and potential policy reactions.</li>
+            <li><strong>50-state trackers:</strong> No new registry bills; continue monitoring 2026 pre-filed items.</li>
+            <li><strong>SMART/DOJ rulemaking:</strong> No updates; continue watching Federal Register.</li>
+          </ul>
         </div>
       </section>
 
@@ -184,10 +198,10 @@ export default function LegislativeTracker_2025_11_16(): JSX.Element {
           <p className="font-semibold text-slate-900">🔎 SEO focus (internal)</p>
           <ul className="mt-1 text-sm text-slate-700 list-disc pl-5 space-y-1">
             <li>sex offender registry litigation 2025</li>
-            <li>Arizona lifetime registration court decision</li>
-            <li>Operation Firewall Massachusetts 2025</li>
-            <li>sex offender internet identifier reporting law</li>
-            <li>registration compliance sweep Massachusetts</li>
+            <li>Arizona lifetime registration ruling</li>
+            <li>Massachusetts Operation Firewall arrests</li>
+            <li>internet identifier requirements sex offenders</li>
+            <li>federal sex offender registry policy updates</li>
           </ul>
         </div>
       </section>
@@ -204,12 +218,12 @@ export default function LegislativeTracker_2025_11_16(): JSX.Element {
 // Exported teasers consumed by the hub page
 export const teasers = {
   glance: [
-    '⚖️ Arizona court upholds lifetime registration and identifier rules',
-    '🚓 Massachusetts Operation Firewall targets registration violations',
-    '📰 Editorial calls for uniform statewide registry standards',
+    '⚖️ Arizona federal court upholds lifetime registration law',
+    '🚓 Massachusetts Operation Firewall arrests 56 statewide',
+    '📰 Arizona Agenda highlights registry inconsistencies',
   ],
   highlights: [
-    { icon: '⚖️', title: 'Arizona — Doe v. Sheridan (upheld lifetime registration)', url: 'https://www.courtlistener.com/docket/DOEvSHERIDAN2025' },
-    { icon: '🚓', title: 'Massachusetts — Operation Firewall enforcement sweep', url: 'https://www.mass.gov/news/operation-firewall' },
+    { icon: '⚖️', title: 'Arizona — Doe v. Sheridan (registration upheld)', url: 'https://news.yahoo.com/arizona-legislature-wins-sex-offender-204917044.html' },
+    { icon: '🚓', title: 'Massachusetts — Operation Firewall enforcement sweep', url: 'https://www.mass.gov/news/operation-firewall-child-exploitation' },
   ],
 };
