@@ -8,6 +8,13 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-11-15",
+  title: "Accountability Watch — Week of Nov 9–15, 2025",
+  slug: "2025-11-15",
+  path: "/resources/accountability-watch/2025-11-15",
+  summary: "Lead story: Army OB-GYN civil lawsuit alleges secret recordings of patients during exams; plus high-impact cases among educators, coaches, clergy and physicians.",
+},
+{
   date: "2025-11-08",
   title: "Two Week Update, Weeks of Oct 26–Nov 8, 2025",
   slug: "2025-11-08",
