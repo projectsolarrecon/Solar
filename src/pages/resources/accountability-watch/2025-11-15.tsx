@@ -470,14 +470,81 @@ export default function AccountabilityWatch_2025_11_15() {
             </div>
           </div>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Week of Nov 9–15, 2025</h1>
-          <p className="mt-2 max-w-3xl text-sm text-slate-200">
+         <p className="mt-2 max-w-3xl text-sm text-slate-200">
             Civil and criminal cases involving people in positions of trust and authority. All defendants are presumed
             innocent unless and until proven guilty in a court of law. Registry status reflects what’s publicly reported
             in official documents or mainstream coverage; absence of mention is not definitive. Civil allegations are
             reported from complaints and news coverage and may be disputed in court.
           </p>
+          <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-500/40 via-slate-200/40 to-slate-500/40" />
+          <div className="mt-4">
+            <ShareBar />
+          </div>
         </div>
       </header>
+
+      {/* Body */}
+      <div className="mx-auto max-w-5xl px-4 pb-16">
+        <div className="mt-6 flex items-start gap-2 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
+          <Info className="mt-0.5 h-4 w-4 text-slate-500" />
+          <p className="m-0">
+            This week’s Accountability Watch focuses on cases where access and authority — not stranger danger —
+            created the risk: schools, churches, medical settings, youth sports, and the military health system.
+            None of these stories were prevented by a public registry search.
+          </p>
+        </div>
+
+        <Section title="At a Glance" icon={<FileText className="h-5 w-5 text-slate-500" />}>
+          <ul className="m-0 list-disc pl-5">
+            {atAGlance.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+          <PullQuote>
+            Our goal is not to sensationalize individual cases, but to highlight patterns: institutions that ignore
+            early warnings and laws that focus on maps of former offenders instead of real-time accountability
+            for people in power.
+          </PullQuote>
+        </Section>
+
+        <Section
+          title="Civil Actions & Institutional Accountability"
+          icon={<FileText className="h-5 w-5 text-slate-500" />}
+        >
+          <div className="grid gap-3">
+            {civilActions.map((c, i) => (
+              <CaseRow key={i} {...c} />
+            ))}
+          </div>
+        </Section>
+
+        <Section title="New Arrests & Charges" icon={<Shield className="h-5 w-5 text-rose-500" />}>
+          <div className="grid gap-3">
+            {newArrestsCharges.map((c, i) => (
+              <CaseRow key={i} {...c} />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          title="Pleas, Convictions, and Sentencings"
+          icon={<Scale className="h-5 w-5 text-amber-500" />}
+        >
+          <div className="grid gap-3">
+            {pleasConvictions.map((c, i) => (
+              <CaseRow key={i} {...c} />
+            ))}
+          </div>
+        </Section>
+
+        <Section title="Watchlist" icon={<FileText className="h-5 w-5 text-slate-500" />}>
+          <ul className="m-0 list-disc pl-5">
+            {watchlist.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </Section>
+      </div>
     </main>
   );
 }
