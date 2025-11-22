@@ -10,7 +10,8 @@ export const teaserHighlights = [
   "Army OB-GYN sued for allegedly secretly recording patients during intimate exams at Fort Cavazos/Fort Hood.",
   "Former Houston police captain federally indicted on child exploitation and enticement charges.",
   "Member of the extremist “764” network federally charged with sexual exploitation of minors.",
-  "Trump-pardoned Jan. 6 participant arrested on serious child sexual abuse charges in Florida.",
+  "Trump-pardoned Jan. 6 participant arrested on serious child-sex-abuse charges in Florida.",
+  "House Ethics Committee opens investigative subcommittee into Rep. Cory Mills over alleged misconduct.",
 ];
 
 /** =========================
@@ -49,6 +50,7 @@ function StageBadge({ stage }: { stage: string }) {
     "Civil lawsuit filed": "bg-sky-50 text-sky-900 ring-sky-200",
     "Arrested / Charged": "bg-rose-50 text-rose-900 ring-rose-200",
     Indicted: "bg-indigo-50 text-indigo-900 ring-indigo-200",
+    "Investigative subcommittee opened": "bg-indigo-50 text-indigo-900 ring-indigo-200",
     Convicted: "bg-violet-50 text-violet-900 ring-violet-200",
     Sentenced: "bg-emerald-50 text-emerald-900 ring-emerald-200",
   };
@@ -168,6 +170,7 @@ export default function AccountabilityWatch_2025_11_22() {
     "A former U.S. embassy employee was convicted of sexually abusing minors overseas — showing how diplomatic housing and institutional roles, not registries, create access.",
     "A former Houston police captain was federally indicted on child-exploitation and enticement counts.",
     "A member of the extremist “764” online network was federally charged with sexual exploitation of children and cyberstalking.",
+    "The House Ethics Committee opened an investigative subcommittee into Rep. Cory Mills over alleged sexual misconduct and dating violence.",
     "A Trump-pardoned Jan. 6 participant was arrested on serious child-sex-abuse charges — illustrating that predation is not confined to people on registries.",
     "Across all confirmed cases this week, no defendant had a prior registration status noted — continuing the pattern that registries do not prevent first-time offending.",
   ];
@@ -200,9 +203,57 @@ export default function AccountabilityWatch_2025_11_22() {
       emoji: "🏥",
       whyIncluded: (
         <>
-          A classic institutional-accountability case: dozens of alleged victims inside a closed military-medical system
-          where <em>no public registry lookup could have warned anyone</em>. Real safety depends on internal oversight and
+          A classic institutional-accountability case: alleged harm inside a closed military-medical system where{" "}
+          <em>no public registry lookup could have warned anyone</em>. Real safety depends on internal oversight and
           patient protections, not stranger-danger lists.
+        </>
+      ),
+    },
+  ];
+
+  const politicalMisconduct = [
+    {
+      name: "Rep. Cory Mills",
+      role: "Member of the U.S. House of Representatives (Florida)",
+      jurisdiction: "U.S. House Committee on Ethics",
+      stage: "Investigative subcommittee opened",
+      date: "Nov 19–20, 2025",
+      summary: (
+        <>
+          The House Ethics Committee unanimously formed an investigative subcommittee to examine allegations that Rep.
+          Mills engaged in sexual misconduct and dating violence, along with claims concerning undisclosed gifts,
+          misuse of official resources, and possible campaign-finance violations. The action follows an October ruling
+          in Florida granting a protective order to an ex-girlfriend after a judge found “reasonable cause” to fear
+          imminent danger.
+        </>
+      ),
+      registry: "No prior registration noted",
+      sources: [
+        {
+          label: "House Ethics Committee press release",
+          href: "https://ethics.house.gov/press-releases/statement-of-the-chairman-and-ranking-member-of-the-committee-on-ethics-regarding-representative-cory-mills-2/",
+        },
+        {
+          label: "AP News coverage",
+          href: "https://apnews.com/article/cory-mills-censure-ethics-committee-nancy-macy-787891b9b1968701d684015b8ab256aa",
+        },
+        {
+          label: "Politico – protective order",
+          href: "https://www.politico.com/news/2025/10/14/cory-mills-restraining-order-florida-00608307",
+        },
+        {
+          label: "CBS News – scope of investigation",
+          href: "https://www.cbsnews.com/news/nancy-mace-cory-mills-censure-house-ethics-committee/",
+        },
+      ] as SourceLink[],
+      emoji: "🏛️",
+      whyIncluded: (
+        <>
+          Mills is a sitting member of Congress with national influence and legislative power. Allegations of sexual
+          misconduct and dating violence involving a federal lawmaker show why public registries have no predictive or
+          preventive value here: people with institutional status and insulation fall entirely outside the registry’s
+          scope until after harm occurs. This case underscores the need for real oversight inside power structures, not
+          reliance on public lists.
         </>
       ),
     },
@@ -319,6 +370,7 @@ export default function AccountabilityWatch_2025_11_22() {
 
   const watchlist: string[] = [
     "McGraw (Army OB-GYN): watch for any public charging decisions, DoD/Army licensing actions, and broader reforms to military medical oversight.",
+    "Mills (U.S. House): track Ethics Committee findings, potential sanctions, and whether patterns of abuse-of-power are substantiated.",
     "Edwards (Houston PD): follow detention/bond decisions and Houston PD’s internal accountability response.",
     "Madison (“764” network): track additional network members or related cases as digital forensics proceed.",
     "Johnson (Jan. 6): monitor for additional victims and how courts treat the use of a presidential pardon in grooming narratives.",
@@ -331,7 +383,7 @@ export default function AccountabilityWatch_2025_11_22() {
         <title>{pageTitle}</title>
         <meta
           name="description"
-          content="Weekly roundup of verified arrests, charges, convictions, and civil actions involving people in positions of trust, influence, or institutional authority, with registry-status context."
+          content="Weekly roundup of verified arrests, charges, convictions, civil actions, and political misconduct involving people in positions of trust, influence, or institutional authority, with registry-status context."
         />
       </Helmet>
 
@@ -346,8 +398,9 @@ export default function AccountabilityWatch_2025_11_22() {
           </div>
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">Week of Nov 16–22, 2025</h1>
           <p className="mt-2 max-w-3xl text-sm text-slate-200">
-            Weekly roundup of arrests, charges, convictions, and civil actions involving people in positions of trust,
-            influence, or institutional authority — plus cases that show how risk extends far beyond the registry.
+            Weekly roundup of arrests, charges, convictions, civil actions, and institutional or political misconduct
+            involving people in positions of trust, influence, or authority — plus cases that show how risk extends far
+            beyond the registry.
           </p>
           <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-500/40 via-slate-200/40 to-slate-500/40" />
           <div className="mt-4">
@@ -373,15 +426,26 @@ export default function AccountabilityWatch_2025_11_22() {
             ))}
           </ul>
           <PullQuote>
-            We tag registry status to document how often new cases involve people{" "}
-            <strong>not previously registered</strong> — evidence that real prevention requires confronting institutional
-            access and power, not just expanding public registries.
+            We tag registry status to document how often new cases involve people <strong>not previously registered</strong>{" "}
+            — evidence that real prevention requires confronting institutional access and power, not just expanding public
+            registries.
           </PullQuote>
         </Section>
 
         <Section title="Civil / Administrative Actions" icon={<Scale className="h-5 w-5 text-sky-500" />}>
           <div className="grid gap-3">
             {civilActions.map((c, i) => (
+              <CaseRow key={i} {...c} />
+            ))}
+          </div>
+        </Section>
+
+        <Section
+          title="Institutional & Political Misconduct"
+          icon={<Scale className="h-5 w-5 text-indigo-500" />}
+        >
+          <div className="grid gap-3">
+            {politicalMisconduct.map((c, i) => (
               <CaseRow key={i} {...c} />
             ))}
           </div>
