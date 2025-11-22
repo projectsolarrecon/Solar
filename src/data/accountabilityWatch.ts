@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-11-22",
+  title: "Accountability Watch — Week of Nov 16–22, 2025",
+  slug: "2025-11-22",
+  path: "/resources/accountability-watch/2025-11-22",
+  summary:
+    "Army OB-GYN lawsuit leads; former Houston police captain indicted; extremist “764” network member charged; Trump-pardoned Jan. 6 participant arrested; embassy-housing conviction underscores institutional access risks registries cannot detect.",
+},
+{
   date: "2025-11-15",
   title: "Accountability Watch — Week of Nov 9–15, 2025",
   slug: "2025-11-15",
