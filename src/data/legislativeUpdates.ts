@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 22, 2025",
+  title: "Weekly Registry & Policy Update – Arizona Court Upholds Registry; Congress Advances Epstein Files Transparency Act",
+  slug: "2025-11-23",
+  summary: "Arizona federal court sustains the state registry law while Congress passes a transparency bill on Epstein-related DOJ files. Includes watch-list and SEO terms.",
+},
+{
   date: "November 16, 2025",
   title: "Arizona Court Upholds Lifetime Registration; Massachusetts Conducts Enforcement Sweep",
   slug: "2025-11-16",
