@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "children-we-dont-protect-part1",
+  title: "THE CHILDREN WE DON’T PROTECT: How Los Angeles Defunded Its Anti-Trafficking Unit While Expanding a Registry That Saves No One",
+  excerpt:
+    "Part I of II: The Kiddie Stroll — an unflinching look at how Los Angeles dismantled its anti-trafficking unit while maintaining a billion-dollar registry system that saves no one. A data-rich, evidence-based exposé on misplaced priorities and moral failure.",
+  author: "SOLAR Project",
+  date: "2025-11-22",
+  readTime: "19 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "trafficking",
+    "child protection",
+    "registry reform",
+    "public policy",
+    "Los Angeles"
+  ],
+  path: "/blog/children-we-dont-protect-part1",
+},
+{
   id: "community-reintegration",
   title: "Finding Your Place Again: Belonging, Safety, and Community After a Sexual-Offense Conviction",
   excerpt:
