@@ -90,6 +90,7 @@ import FollowTheMoneyPart5 from "./pages/blog/FollowTheMoneyPart5";
 import WhatGoodistheRegistry from "./pages/blog/WhatGoodistheRegistry";
 import FiftyLawsZeroLogic from "./pages/blog/FiftyLawsZeroLogic";
 import CommunityReintegration from "./pages/blog/CommunityReintegration";
+import ChildrenWeDontProtectPart1 from './pages/blog/ChildrenWeDontProtectPart1';
 
 function App() {
   return (
@@ -205,6 +206,7 @@ function App() {
   element={<FiftyLawsZeroLogic />} />
 <Route path="/blog/community-reintegration"
   element={<CommunityReintegration />} />
+<Route path="/blog/children-we-dont-protect-part1" element={<ChildrenWeDontProtectPart1 />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
