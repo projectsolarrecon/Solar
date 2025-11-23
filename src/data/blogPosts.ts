@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-cases-we-dont-investigate",
+  title: "THE CASES WE DON’T INVESTIGATE: How the Federal Government Pulled Thousands of Agents Off Child Protection and Cybercrime",
+  excerpt:
+    "Part II of II: The Federal Collapse — a revealing investigation into how Homeland Security reassigned its child-exploitation agents to immigration duty, gutting America’s child-protection capacity while preserving the illusion of safety through registries and rhetoric.",
+  author: "SOLAR Project",
+  date: "2025-11-23",
+  readTime: "14 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "child protection",
+    "federal policy",
+    "registry reform",
+    "immigration enforcement",
+    "Homeland Security"
+  ],
+  path: "/blog/the-cases-we-dont-investigate",
+},
+{
   id: "children-we-dont-protect-part1",
   title: "THE CHILDREN WE DON’T PROTECT: How Los Angeles Defunded Its Anti-Trafficking Unit While Expanding a Registry That Saves No One",
   excerpt:
