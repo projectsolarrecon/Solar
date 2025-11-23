@@ -282,6 +282,33 @@ export default function AccountabilityWatch_2025_11_22() {
       ] as SourceLink[],
       emoji: "👮",
     },
+{
+  name: "Alexander Steven Back",
+  role: "ICE employee (Twin Cities)",
+  jurisdiction: "Bloomington, MN — State / Local (MN BCA sting)",
+  stage: "Arrested / Charged",
+  date: "Nov 18, 2025",
+  summary: (
+    <>
+      Arrested as one of <strong>16 men</strong> in a Bloomington child-sex-trafficking sting run by the Minnesota
+      Bureau of Criminal Apprehension. Identified in charging documents and media reports as an
+      <strong>Immigration and Customs Enforcement (ICE)</strong> employee. Charges include soliciting a minor for
+      commercial sex and related trafficking offenses. No prior sex-offense history noted.
+      <br />
+      <em>Why Included:</em> A federal law-enforcement employee using institutional legitimacy to facilitate
+      exploitation — a clear authority-role case that public registries cannot predict or prevent. Underscores that
+      serious child-sex offenses overwhelmingly involve <strong>non-registrants</strong>, including government personnel.
+    </>
+  ),
+  registry: "No prior registration noted",
+  sources: [
+    {
+      label: "MPR News (deep report)",
+      href: "https://www.mprnews.org/story/2025/11/18/twin-cities-ice-employee-among-16-arrested-in-child-sex-trafficking-sting"
+    }
+  ],
+  emoji: "🧊"
+},
     {
       name: "Erik Lee Madison",
       role: "Alleged member of extremist network “764”",
