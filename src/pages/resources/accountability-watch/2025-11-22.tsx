@@ -294,10 +294,6 @@ export default function AccountabilityWatch_2025_11_22() {
       Bureau of Criminal Apprehension. Identified in charging documents and media reports as an
       <strong>Immigration and Customs Enforcement (ICE)</strong> employee. Charges include soliciting a minor for
       commercial sex and related trafficking offenses. No prior sex-offense history noted.
-      <br />
-      <em>Why Included:</em> A federal law-enforcement employee using institutional legitimacy to facilitate
-      exploitation — a clear authority-role case that public registries cannot predict or prevent. Underscores that
-      serious child-sex offenses overwhelmingly involve <strong>non-registrants</strong>, including government personnel.
     </>
   ),
   registry: "No prior registration noted",
