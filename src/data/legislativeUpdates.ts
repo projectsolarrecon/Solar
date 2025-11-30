@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 30, 2025",
+  title: "Cohen’s SORNA Sentencing and New York’s Level-3 Upward Departure",
+  slug: "2025-11-30",
+  summary: "Federal and New York appellate courts expand registry-related penalty reach; major constitutional challenges remain pending.",
+},
+{
   date: "November 22, 2025",
   title: "Weekly Registry & Policy Update – Arizona Court Upholds Registry; Congress Advances Epstein Files Transparency Act",
   slug: "2025-11-23",
