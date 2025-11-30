@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-11-29",
+  title: "Accountability Watch — Week of Nov 23–29, 2025",
+  slug: "2025-11-29",
+  path: "/resources/accountability-watch/2025-11-29",
+  summary:
+    "Celina ISD teacher-coach federally indicted with 39 alleged victims; vice-principal arrested across state lines; multiple teachers sentenced or charged in school-based authority cases; LDS lay leader arrested on federal exploitation charges; megachurch sued for alleged failure to report known abuse concerns.",
+},
+{
   date: "2025-11-22",
   title: "Accountability Watch — Week of Nov 16–22, 2025",
   slug: "2025-11-22",
