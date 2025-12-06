@@ -12,6 +12,12 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "December 7, 2025",
+  title: "Epstein Transparency Orders Begin; Clean Slate Coverage Exposes Registrants’ Exclusion",
+  slug: "2025-12-07",
+  summary: "Federal judge orders Epstein grand-jury transcripts released under new law as Congress presses DOJ; Illinois Clean Slate Act coverage highlights registrant exclusions.",
+},
+{
   date: "November 30, 2025",
   title: "Cohen’s SORNA Sentencing and New York’s Level-3 Upward Departure",
   slug: "2025-11-30",
