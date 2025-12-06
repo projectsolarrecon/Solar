@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2025-12-06",
+  title: "Accountability Watch — Week of Nov 30–Dec 6, 2025",
+  slug: "2025-12-06",
+  path: "/resources/accountability-watch/2025-12-06",
+  summary:
+    "Florida teacher receives 135-year sentence; multiple educators charged or sentenced across Minnesota, Pennsylvania, Colorado, Nevada, and Louisiana; law-enforcement officers in Missouri, Texas, and New Jersey accused or convicted of sexualized misconduct under color of authority; civil suits expand against Celina ISD and Sierra Canyon School. Across cases, risk emerged inside authority roles rather than through registry warnings.",
+},
+{
   date: "2025-11-29",
   title: "Accountability Watch — Week of Nov 23–29, 2025",
   slug: "2025-11-29",
