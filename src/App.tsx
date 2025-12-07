@@ -92,6 +92,7 @@ import FiftyLawsZeroLogic from "./pages/blog/FiftyLawsZeroLogic";
 import CommunityReintegration from "./pages/blog/CommunityReintegration";
 import ChildrenWeDontProtectPart1 from './pages/blog/ChildrenWeDontProtectPart1';
 import TheCasesWeDontInvestigate from './pages/blog/TheCasesWeDontInvestigate';
+import WhatPrisonIsActuallyLike from "./pages/blog/what-prison-is-actually-like";
 
 function App() {
   return (
@@ -209,6 +210,8 @@ function App() {
   element={<CommunityReintegration />} />
 <Route path="/blog/children-we-dont-protect-part1" element={<ChildrenWeDontProtectPart1 />} />
 <Route path="/blog/the-cases-we-dont-investigate" element={<TheCasesWeDontInvestigate />} />
+<Route path="/blog/what-prison-is-actually-like"
+  element={<WhatPrisonIsActuallyLike />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
