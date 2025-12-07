@@ -13,6 +13,25 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "what-prison-is-actually-like",
+  title: "What Prison Is Actually Like for People with Sex-Offense Convictions",
+  excerpt:
+    "A grounded, direct narrative for first-timers and their families—dispelling fear-driven myths and describing the real, day-to-day experience of prison life for people with sex-offense convictions.",
+  author: "SOLAR Project",
+  date: "2025-12-07",
+  readTime: "20 min read",
+  category: "Incarceration & Reality",
+  tags: [
+    "prison life",
+    "sex-offense",
+    "first-time offenders",
+    "incarceration",
+    "family support",
+    "federal prison"
+  ],
+  path: "/blog/what-prison-is-actually-like",
+},
+{
   id: "the-cases-we-dont-investigate",
   title: "THE CASES WE DON’T INVESTIGATE: How the Federal Government Pulled Thousands of Agents Off Child Protection and Cybercrime",
   excerpt:
