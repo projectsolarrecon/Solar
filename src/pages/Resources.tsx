@@ -141,6 +141,36 @@ function Resources() {
         }
       ]
     },
+{
+  title: "Incarceration",
+  icon: "⛓️",
+  resources: [
+    {
+      name: "Prison Do’s & Don’ts for Sex-Offense Convictions",
+      type: "Guide",
+      description: "Evidence-based, stigma-aware survival guide for staying safe, navigating daily life, and understanding the unwritten prison rules for individuals with sex-offense convictions.",
+      link: "/resources/prison-dos-and-donts"
+    },
+    {
+      name: "SOTP, Designation, and Safety in the BOP",
+      type: "Guide",
+      description: "How sex-offense history affects BOP designation, security scoring, treatment programs, safety planning, and institutional movement — with strategies for self-advocacy and harm reduction.",
+      link: "#"
+    },
+    {
+      name: "Prison Communication, Mail, Visits & Monitoring",
+      type: "Guide",
+      description: "How communication, mail, phones, visits, money transfers, and approved contacts work in prison — including monitoring rules and special restrictions for sex-offense cases.",
+      link: "#"
+    },
+    {
+      name: "Prison Discipline, Infractions & Common Pitfalls",
+      type: "Guide",
+      description: "Understanding disciplinary codes, sanctions, and common traps — plus how to avoid violations and navigate the process if charged with an infraction.",
+      link: "#"
+        }
+      ]
+    },
     {
       title: "Reentry & Reintegration",
       icon: "🔄",
