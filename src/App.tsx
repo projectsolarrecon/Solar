@@ -93,6 +93,7 @@ import CommunityReintegration from "./pages/blog/CommunityReintegration";
 import ChildrenWeDontProtectPart1 from './pages/blog/ChildrenWeDontProtectPart1';
 import TheCasesWeDontInvestigate from './pages/blog/TheCasesWeDontInvestigate';
 import WhatPrisonIsActuallyLike from "./pages/blog/what-prison-is-actually-like";
+import Prison_Dos_and_Donts_Guide from './pages/resources/Prison_Dos_and_Donts_Guide';
 
 function App() {
   return (
@@ -154,6 +155,7 @@ function App() {
   path="/resources/state-registry/states/:state"
   element={<StateRegistryStatePage />}
 />
+<Route path="/resources/prison-dos-and-donts" element={<Prison_Dos_and_Donts_Guide />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
