@@ -146,11 +146,11 @@ function Resources() {
   icon: "⛓️",
   resources: [
     {
-      name: "Prison Do’s & Don’ts for Sex-Offense Convictions",
-      type: "Guide",
-      description: "Evidence-based, stigma-aware survival guide for staying safe, navigating daily life, and understanding the unwritten prison rules for individuals with sex-offense convictions.",
-      link: "/resources/prison-dos-and-donts"
-    },
+  name: "Prison Dos & Don’ts Guide",
+  type: "Guide",
+  description: "A comprehensive, plain-language survival guide for people with sex-offense convictions and their families, covering safety, daily life, and reentry preparation.",
+  link: "/resources/prison-dos-and-donts"
+},
     {
       name: "SOTP, Designation, and Safety in the BOP",
       type: "Guide",
