@@ -8,6 +8,7 @@ import {
   Checklist,
   SourcesOffline,
   TOC,
+  ShareBar,
 } from "../../components/solar";
 
 const linkCls =
