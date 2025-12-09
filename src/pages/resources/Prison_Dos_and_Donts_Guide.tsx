@@ -805,12 +805,19 @@ export default function PrisonDosAndDontsGuide(): JSX.Element {
             </p>
 
             <ul className="list-disc pl-6 space-y-2">
-              <li>DOJ PREA Final Rule (full standards):{" "}
-                <a
-                  href="https://www.federalregister.gov/documents/2012/06/20/2012-12427/national-standards-to-prevent-detect-and-respond-to-prison-rape
-</a>
-              . PREA applies to everyone: staff, contractors, and incarcerated people.
-            </ul>
+  <li>
+    DOJ PREA Final Rule (full standards):{" "}
+    <a
+      href="https://www.federalregister.gov/documents/2012/06/20/2012-12427/national-standards-to-prevent-detect-and-respond-to-prison-rape"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-700 underline hover:text-blue-900"
+    >
+      Federal Register – PREA Standards
+    </a>
+    . PREA applies to everyone: staff, contractors, and incarcerated people.
+  </li>
+</ul>
 
             <h3 className="text-lg font-semibold">Hard DOs</h3>
             <ul className="list-disc pl-6 space-y-2">
