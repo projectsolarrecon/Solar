@@ -13,6 +13,26 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "understanding-risk-levels",
+  title: "Understanding “Risk Levels” on the Sex Offender Registry: What They Really Mean — and Don’t Mean",
+  excerpt:
+    "An explainer on how risk levels are created, why they differ so dramatically between states, and what they really mean for daily life under registration systems.",
+  author: "SOLAR Project",
+  date: "2025-12-12",
+  readTime: "11 min read",
+  category: "Policy & Reform",
+  tags: [
+    "sex offender registry",
+    "risk assessment",
+    "SORNA",
+    "public safety",
+    "recidivism",
+    "classification systems",
+    "criminal justice reform"
+  ],
+  path: "/blog/understanding-risk-levels",
+},
+{
   id: "what-prison-is-actually-like",
   title: "What Prison Is Actually Like for People with Sex-Offense Convictions",
   excerpt:
