@@ -1,5 +1,6 @@
 import BlogLayout from "../../components/layouts/BlogLayout";
-import { Callout, PullQuote, Divider } from "../../components/solar";
+import { BandHeader, Callout, PullQuote, Divider } from "../../components/solar";
+import { Link } from "react-router-dom";
 
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
@@ -16,7 +17,7 @@ export default function UnderstandingRiskLevels() {
     >
       <article>
 
-        {/* Intro */}
+        {/* --- INTRO --- */}
         <p className="mt-6">
           Risk assessments and classification tiers shape where a person can live, how they are supervised, whether they appear online, and how long they must remain on the registry. Yet despite their enormous influence, most people — including those forced to live under them — don’t understand what these labels actually mean.
         </p>
@@ -27,20 +28,24 @@ export default function UnderstandingRiskLevels() {
 
         <Divider />
 
-        {/* Section 1 */}
-        <h1 className="mt-6">1. Risk Levels Were Supposed to Be Scientific — But They Mostly Aren’t</h1>
-
+        {/* SECTION 1 */}
+        <BandHeader title="1. Risk Levels Were Supposed to Be Scientific — But They Mostly Aren’t" icon="📊" />
         <p className="mt-6">
           When lawmakers created classification systems in the 1990s and 2000s, they claimed they were building a scientific way to identify people who might pose ongoing danger.  
           But most current systems are <strong>not scientific at all</strong> — and some aren’t even based on risk.
         </p>
 
-        <h2 className="mt-6">A. The federal system (SORNA) is offense-based, not risk-based</h2>
+        <h3 className="mt-6">A. The federal system (SORNA) is offense-based, not risk-based</h3>
+        <p className="mt-6">
+          The federal Sex Offender Registration and Notification Act (SORNA) assigns Tier I, II, or III <strong>solely based on the conviction statute</strong>, not on personal characteristics, treatment progress, or any actuarial risk tool.
+        </p>
 
         <p className="mt-6">
-          The federal Sex Offender Registration and Notification Act (SORNA) assigns Tier I, II, or III <strong>solely based on the conviction statute</strong>, not on personal characteristics, treatment progress, or any actuarial risk tool.  
           The DOJ SMART Office is explicit: SORNA tiers are “offense-based, not risk-based.”  
-          Source: <a className={linkCls} href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/sorna-ic-guide.pdf" target="_blank" rel="noopener noreferrer">SMART Office Guide to SORNA</a> 0
+          Source:{" "}
+          <a className={linkCls} href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/sorna-ic-guide.pdf" target="_blank" rel="noopener noreferrer">
+            SMART Office Guide to SORNA
+          </a>
         </p>
 
         <p className="mt-6">
@@ -48,232 +53,248 @@ export default function UnderstandingRiskLevels() {
           It means Congress put their <strong>statute</strong> in the Tier III bucket — nothing more.
         </p>
 
-        {/* Callout Box */}
-        <Callout variant="info" className="mt-6">
-          <strong>📘 What SORNA Actually Does — and Doesn’t Do</strong>
-          <p className="mt-2">
+        <Callout variant="info" title="📘 What SORNA Actually Does — and Doesn’t Do">
+          <p>
             Most people assume federal SORNA controls their registration level, their housing, and whether they appear online. It doesn’t.
           </p>
-
-          <h3 className="mt-4 font-semibold">What SORNA <em>does</em>:</h3>
+          <h4 className="mt-4 font-semibold">What SORNA <em>does</em>:</h4>
           <ul className="list-disc list-inside mt-2">
-            <li>Sets **baseline federal standards** for how states should register people</li>
-            <li>Defines **Tier I, II, III** using statutes — not risk</li>
+            <li>Sets baseline federal standards for how states should register people</li>
+            <li>Defines Tier I, II, III using statutes — not risk</li>
             <li>Specifies minimum durations (15 / 25 / lifetime)</li>
             <li>Requires jurisdictions to share information</li>
-            <li>Applies to **states, tribes, territories, and federal agencies**</li>
+            <li>Applies to states, tribes, territories, and federal agencies</li>
           </ul>
 
-          <h3 className="mt-4 font-semibold">What SORNA <em>does NOT</em> do:</h3>
+          <h4 className="mt-4 font-semibold">What SORNA <em>does NOT</em> do:</h4>
           <ul className="list-disc list-inside mt-2">
-            <li><strong>SORNA does not force states to adopt its tiers.</strong> States can — and many do — ignore SORNA’s classification model. Source: <a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">CRS Report R43954</a> 1</li>
-            <li><strong>SORNA does not override state law.</strong> Your state tier, relief eligibility, housing rules, and posting rules come from **state law**, not SORNA.</li>
-            <li><strong>SORNA does not determine public posting.</strong> SORNA does not require states to place everyone online.</li>
-            <li><strong>SORNA does not impose residency restrictions.</strong> Federal law says nothing about where you can live — those rules are 100% state/local.</li>
-            <li><strong>SORNA does not control probation or parole.</strong></li>
-            <li><strong>SORNA tiers don’t automatically follow you across states.</strong></li>
-            <li><strong>SORNA does not apply directly to individuals.</strong> It governs jurisdictions, not people.</li>
+            <li>SORNA does not force states to adopt its tiers. Source:{" "}
+              <a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">
+                CRS Report R43954
+              </a>
+            </li>
+            <li>SORNA does not override state law. Your state tier, relief eligibility, housing rules, and posting rules come from state law, not SORNA.</li>
+            <li>SORNA does not determine public posting.</li>
+            <li>SORNA does not impose residency restrictions.</li>
+            <li>SORNA does not control probation or parole.</li>
+            <li>SORNA tiers don’t automatically follow you across states.</li>
+            <li>SORNA does not apply directly to individuals — it governs jurisdictions, not people.</li>
           </ul>
 
           <p className="mt-4">
-            <strong>Bottom line:</strong> Your day-to-day experience is shaped by **state law**, not SORNA — and the two systems often contradict each other.
+            <strong>Bottom line:</strong> Your day-to-day experience is shaped by state law, not SORNA — and the two systems often contradict each other.
           </p>
         </Callout>
 
-        <PullQuote className="mt-6">
-          “Your risk level often reflects your ZIP code more than your actual risk.”
-        </PullQuote>
+        <PullQuote>“Your risk level often reflects your ZIP code more than your actual risk.”</PullQuote>
 
         <Divider />
 
-        {/* Section 2 */}
-        <h1 className="mt-6">2. What Risk Levels Actually Control in Daily Life</h1>
-
+        {/* SECTION 2 */}
+        <BandHeader title="2. What Risk Levels Actually Control in Daily Life" icon="🏠" />
         <p className="mt-6">
           Risk classifications dictate some of the most important aspects of daily living for people on the registry.
         </p>
 
-        <h2 className="mt-6">A. How long you must register</h2>
-
-        <p className="mt-6">
-          SORNA sets federal minimums:
-        </p>
+        <h3 className="mt-6">A. How long you must register</h3>
         <ul className="list-disc list-inside mt-2">
           <li><strong>Tier I:</strong> 15 years</li>
           <li><strong>Tier II:</strong> 25 years</li>
           <li><strong>Tier III:</strong> Lifetime</li>
         </ul>
         <p className="mt-2">
-          Source: <a className={linkCls} href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" target="_blank" rel="noopener noreferrer">SORNA Final Rule (Federal Register, 2021)</a> 
+          Source:{" "}
+          <a className={linkCls} href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" target="_blank" rel="noopener noreferrer">
+            SORNA Final Rule (Federal Register, 2021)
+          </a>
         </p>
 
         <p className="mt-6">
-          But states routinely create **longer durations** or systems that ignore SORNA entirely.
+          But states routinely create longer durations or systems that ignore SORNA entirely.
         </p>
 
-        <h2 className="mt-6">B. Whether you appear on the public website</h2>
-
+        <h3 className="mt-6">B. Whether you appear on the public website</h3>
         <p className="mt-6">
-          Some states list everyone, others list only certain levels. There is **no national standard**, and being “high risk” is not necessarily what places you online.
+          Some states list everyone, others list only certain levels. There is no national standard, and being “high risk” is not necessarily what places you online.
         </p>
         <p className="mt-2">
-          The National Institute of Justice found mixed evidence on effectiveness of public-notification systems for reducing sexual reoffending. Source: <a className={linkCls} href="https://nij.ojp.gov/library/publications/evaluating-effectiveness-sex-offender-registration-and-notification-policies" target="_blank" rel="noopener noreferrer">NIJ: Evaluating Effectiveness</a> 3
+          Source:{" "}
+          <a className={linkCls} href="https://nij.ojp.gov/library/publications/evaluating-effectiveness-sex-offender-registration-and-notification-policies" target="_blank" rel="noopener noreferrer">
+            NIJ: Evaluating Effectiveness
+          </a>
         </p>
 
-        <h2 className="mt-6">C. Housing restrictions and residency zones</h2>
-
+        <h3 className="mt-6">C. Housing restrictions and residency zones</h3>
         <p className="mt-6">
           Residency bans are one of the most damaging impacts of classification systems.
         </p>
         <p className="mt-2">
-          California research found residency restrictions increased homelessness without demonstrating reductions in sexual reoffending. Source: <a className={linkCls} href="https://casomb.org/index.cfm?pid=1232" target="_blank" rel="noopener noreferrer">CASOMB Reports</a> 4
+          Sources:{" "}
+          <a className={linkCls} href="https://casomb.org/docs/Residence_Paper_Final.pdf" target="_blank" rel="noopener noreferrer">
+            CASOMB: Residence Restrictions (2011)
+          </a>{" "}
+          and{" "}
+          <a className={linkCls} href="https://www.prisonlegalnews.org/media/publications/california_sex_offender_management_board_homeless_sex_offender_report_2008.pdf" target="_blank" rel="noopener noreferrer">
+            CASOMB: Homelessness Report (2008)
+          </a>
         </p>
 
-        <h2 className="mt-6">D. Supervision intensity</h2>
-        <p className="mt-6">
-          Higher tiers often determine GPS monitoring, frequency of probation visits, polygraphs, curfews, internet restrictions, and treatment intensity — conditions that often remain unchanged even as actual risk declines.
-        </p>
-
-        <h2 className="mt-6">E. Employment and family life</h2>
-        <p className="mt-6">
-          Risk levels influence whether employers hire you, whether landlords rent to you, whether you can live with children, and whether neighbors will harass you — reshaping your whole ecosystem.
-        </p>
-
-        <Callout variant="info" className="mt-6">
-          **“A risk label doesn’t just follow you — it rearranges your whole life.”**
-        </Callout>
+        <Callout variant="info">“A risk label doesn’t just follow you — it rearranges your whole life.”</Callout>
 
         <Divider />
 
-        {/* Section 3 */}
-        <h1 className="mt-6">3. Why Risk Scores Are Often Misleading or Wrong</h1>
-
-        <h2 className="mt-6">A. Group predictions ≠ individual predictions</h2>
+        {/* SECTION 3 */}
+        <BandHeader title="3. Why Risk Scores Are Often Misleading or Wrong" icon="⚖️" />
+        <h3 className="mt-6">A. Group predictions ≠ individual predictions</h3>
         <p className="mt-6">
-          Tools like Static-99R were designed to predict how groups behave — not to reliably predict individual future behavior. Source: <a className={linkCls} href="https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sttc-2016/index-en.aspx" target="_blank" rel="noopener noreferrer">Static-99R Coding Rules (Public Safety Canada)</a> 5
+          Static-99R was designed to predict how groups behave — not individuals. Source:{" "}
+          <a className={linkCls} href="https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sttc-2016/index-en.aspx" target="_blank" rel="noopener noreferrer">
+            Static-99R Coding Rules
+          </a>
         </p>
 
-        <h2 className="mt-6">B. One point can change your life</h2>
+        <h3 className="mt-6">B. One point can change your life</h3>
         <p className="mt-6">
-          A tiny numerical difference in score can shift someone into a “high-risk” category — even when real-world risk differences are negligible.
+          A tiny numerical difference in score can shift someone into a “high-risk” category — even when the real-world risk difference is negligible.
         </p>
 
-        <h2 className="mt-6">C. Risk drops sharply over time</h2>
+        <h3 className="mt-6">C. Risk drops sharply over time</h3>
         <p className="mt-6">
-          Research shows that after 10–15 years offense-free, sexual reoffense risk declines dramatically and aligns with other felony groups. Source: <a className={linkCls} href="https://www.sentencingproject.org/policy-brief/responding-to-crimes-of-a-sexual-nature-what-we-really-want-is-no-more-victims/" target="_blank" rel="noopener noreferrer">Sentencing Project: What We Really Want Is No More Victims</a> 6
+          Desistance research shows that after 10–15 years offense-free, reoffense risk declines dramatically. Source:{" "}
+          <a className={linkCls} href="https://www.sentencingproject.org/policy-brief/responding-to-crimes-of-a-sexual-nature-what-we-really-want-is-no-more-victims/" target="_blank" rel="noopener noreferrer">
+            The Sentencing Project (2024)
+          </a>
         </p>
 
-        <h2 className="mt-6">D. Some tools overpredict the “high-risk” category</h2>
+        <h3 className="mt-6">D. Some tools overpredict the “high-risk” category</h3>
         <p className="mt-6">
-          Many actuarial tools trend toward predicting high risk even when evidence suggests otherwise, amplifying restrictive outcomes beyond actual comparative risk. 7
+          Minnesota DOC found MnSOST-3.1 overpredicted reoffense in its highest category. Source:{" "}
+          <a className={linkCls} href="https://mn.gov/doc/assets/MnSOST3-1DOCReport_tcm1089-272835.pdf" target="_blank" rel="noopener noreferrer">
+            MnSOST-3.1 Technical Report
+          </a>
         </p>
 
-        <Callout variant="info" className="mt-6">
-          **“Risk isn’t a lifetime identity — it changes, and the science proves it.”**
-        </Callout>
+        <PullQuote>“Risk isn’t a lifetime identity — it changes, and the science proves it.”</PullQuote>
 
         <Divider />
 
-        {/* Section 4 */}
-        <h1 className="mt-6">4. State vs. Federal: Why Your Risk Level Changes When You Move</h1>
-
+        {/* SECTION 4 */}
+        <BandHeader title="4. State vs. Federal: Why Your Risk Level Changes When You Move" icon="🧭" />
+        <ul className="list-disc list-inside mt-6">
+          <li>“I was Level 1, now I’m Level 3.”</li>
+          <li>“Why did my duration increase?”</li>
+          <li>“Why am I online here but not there?”</li>
+        </ul>
         <p className="mt-6">
-          People are often confused when moving states:  
-          “I was Level 1, now I’m Level 3.”  
-          “Why did my duration increase?”  
-          “Why am I online here but not there?”
+          The answer: state and federal systems operate independently. Source:{" "}
+          <a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">
+            CRS R43954
+          </a>
         </p>
-
-        <p className="mt-6">
-          The answer: **state and federal systems operate independently.**  
-          The Congressional Research Service confirms states decide their own posting rules, durations, and tier applications. Source: <a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">CRS R43954</a> 8
-        </p>
-
-        <Callout variant="info" className="mt-6">
-          **“Cross a state line and your ‘risk level’ may change — even though *you* haven’t.”**
-        </Callout>
+        <PullQuote>“Cross a state line and your ‘risk level’ may change — even though you haven’t.”</PullQuote>
 
         <Divider />
 
-        {/* Section 5 */}
-        <h1 className="mt-6">5. The Real-World Consequences: Housing, Stability & Safety</h1>
-
-        <h2 className="mt-6">A. Homelessness is the most documented outcome</h2>
+        {/* SECTION 5 */}
+        <BandHeader title="5. The Real-World Consequences: Housing, Stability & Safety" icon="🏚️" />
+        <h3 className="mt-6">A. Homelessness is the most documented outcome</h3>
         <p className="mt-6">
-          California analysis found residency bans correlated with dramatically higher homelessness among registrants. Source: <a className={linkCls} href="https://casomb.org/index.cfm?pid=1232" target="_blank" rel="noopener noreferrer">CASOMB Homelessness Reports</a> 9
+          CASOMB found an 800% increase in homelessness among registrants after residency bans were enacted. Source:{" "}
+          <a className={linkCls} href="https://www.prisonlegalnews.org/media/publications/california_sex_offender_management_board_homeless_sex_offender_report_2008.pdf" target="_blank" rel="noopener noreferrer">
+            CASOMB: Homelessness Report (2008)
+          </a>
         </p>
-
+        <h3 className="mt-6">B. High-risk labels often create instability, not safety</h3>
         <p className="mt-6">
-          Homelessness leads to instability, probation violations, mental-health struggles, social isolation, and greater difficulty maintaining employment — factors linked to higher general recidivism rather than increased safety.
+          People labeled “high-risk” often endure harassment, housing limits, and job discrimination — instability reduces public safety.
         </p>
-
-        <h2 className="mt-6">B. High-risk labels often create instability, not safety</h2>
+        <h3 className="mt-6">C. Families are caught in the blast radius</h3>
         <p className="mt-6">
-          People labeled “high-risk” often face community alerts, harassment, severe housing limits, and job discrimination — fueling instability rather than safety.
+          Partners and children often face landlord rejections, loss of housing, and social harassment.
         </p>
-
-        <h2 className="mt-6">C. Families are caught in the blast radius</h2>
-        <p className="mt-6">
-          Partners and children often face landlord rejection, housing loss, social harassment, investigation scrutiny, and difficulty maintaining family unity.
-        </p>
-
-        <Callout variant="info" className="mt-6">
-          **“Unstable people don’t make safer communities — stable people do.”**
-        </Callout>
+        <PullQuote>“Unstable people don’t make safer communities — stable people do.”</PullQuote>
 
         <Divider />
 
-        {/* Section 6 */}
-        <h1 className="mt-6">6. What the Research Really Says About Reoffending</h1>
-
-        <p className="mt-6">
-          Broad research reviews find that most people released for sexual offenses are not rearrested for another sexual offense, and registries do not consistently improve public safety outcomes. 10
+        {/* SECTION 6 */}
+        <BandHeader title="6. What the Research Really Says About Reoffending" icon="📈" />
+        <ul className="list-disc list-inside mt-6">
+          <li>92.3% of people released for a sexual offense were not rearrested for another sexual offense</li>
+          <li>People with sexual convictions had lower overall recidivism than most other felony groups</li>
+        </ul>
+        <p className="mt-2">
+          Source:{" "}
+          <a className={linkCls} href="https://www.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14" target="_blank" rel="noopener noreferrer">
+            BJS Recidivism Study (2005–2014)
+          </a>
         </p>
-
-        <Callout variant="info" className="mt-6">
-          **“The data is clear: most people with sexual convictions do *not* reoffend.”**
-        </Callout>
+        <p className="mt-6">
+          A 25-year meta-analysis reached similar conclusions. Source:{" "}
+          <a className={linkCls} href="https://www.prisonlegalnews.org/media/publications/The_Effectiveness_of_Sex_Offender_Registration_and_Notification_Sept._2021.pdf" target="_blank" rel="noopener noreferrer">
+            Zgoba & Mitchell Meta-analysis (2021)
+          </a>
+        </p>
+        <PullQuote>“The data is clear: most people with sexual convictions do not reoffend.”</PullQuote>
 
         <Divider />
 
-        {/* Section 7 */}
-        <h1 className="mt-6">7. What People Should Actually Expect</h1>
-
-        <ul className="list-disc list-inside mt-2">
+        {/* SECTION 7 */}
+        <BandHeader title="7. What People Should Actually Expect" icon="💡" />
+        <ul className="list-disc list-inside mt-6">
           <li>Your classification may not reflect who you are.</li>
           <li>Your level may change if you move states.</li>
           <li>Downward movement is uncommon.</li>
           <li>Stability matters far more than any actuarial score.</li>
           <li>A full life is still possible.</li>
         </ul>
-
-        <Callout variant="info" className="mt-6">
-          **“A risk score is not your future — your stability is.”**
-        </Callout>
+        <PullQuote>“A risk score is not your future — your stability is.”</PullQuote>
 
         <Divider />
 
-        {/* Section 8 */}
-        <h1 className="mt-6">8. Bottom Line</h1>
-
+        {/* SECTION 8 */}
+        <BandHeader title="8. Bottom Line" icon="✅" />
         <p className="mt-6">
-          Risk classifications were marketed as public safety tools. Today they often overstate danger, ignore desistance, create homelessness, destabilize families, vary widely, mismatch science, and function more as punishment than prevention. A safer system emphasizes stability, support, and evidence — not static labels.
+          Risk classifications were originally marketed as public-safety tools. But today they often overstate danger, ignore desistance, create homelessness, destabilize families, vary wildly between states, mismatch the science, and function as punishment, not prevention. A safer, saner system would emphasize stability, support, and evidence — not static labels or distorted predictions.
         </p>
+<Divider />
 
-        {/* Sources */}
-        <Callout variant="info" className="mt-8">
-          <strong>Sources</strong>
-          <ul className="list-disc list-inside mt-2">
-            <li><a className={linkCls} href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/sorna-ic-guide.pdf" target="_blank" rel="noopener noreferrer">Guide to SORNA (SMART Office)</a></li>
-            <li><a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">CRS Report R43954</a></li>
-            <li><a className={linkCls} href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" target="_blank" rel="noopener noreferrer">SORNA Final Rule (Federal Register)</a></li>
-            <li><a className={linkCls} href="https://nij.ojp.gov/library/publications/evaluating-effectiveness-sex-offender-registration-and-notification-policies" target="_blank" rel="noopener noreferrer">NIJ: Evaluating Effectiveness</a></li>
-            <li><a className={linkCls} href="https://casomb.org/index.cfm?pid=1232" target="_blank" rel="noopener noreferrer">CASOMB: Residence & Homelessness Reports</a></li>
-            <li><a className={linkCls} href="https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sttc-2016/index-en.aspx" target="_blank" rel="noopener noreferrer">Static-99R Coding Rules (Public Safety Canada)</a></li>
-            <li><a className={linkCls} href="https://www.sentencingproject.org/policy-brief/responding-to-crimes-of-a-sexual-nature-what-we-really-want-is-no-more-victims/" target="_blank" rel="noopener noreferrer">Sentencing Project Policy Brief</a></li>
-            <li><a className={linkCls} href="https://en.wikipedia.org/wiki/Sex_offender_registries_in_the_United_States" target="_blank" rel="noopener noreferrer">Sex Offender Registries in the United States (Wikipedia)</a></li>
-          </ul>
-        </Callout>
+        {/* DATA SOURCES */}
+        <BandHeader title="Data Sources" icon="📚" />
+        <ul className="list-disc pl-6 mt-4">
+          <li><a className={linkCls} href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/sorna-ic-guide.pdf" target="_blank" rel="noopener noreferrer">SMART Office Guide to SORNA</a></li>
+          <li><a className={linkCls} href="https://www.everycrsreport.com/reports/R43954.html" target="_blank" rel="noopener noreferrer">Congressional Research Service R43954</a></li>
+          <li><a className={linkCls} href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" target="_blank" rel="noopener noreferrer">SORNA Final Rule (Federal Register)</a></li>
+          <li><a className={linkCls} href="https://nij.ojp.gov/library/publications/evaluating-effectiveness-sex-offender-registration-and-notification-policies" target="_blank" rel="noopener noreferrer">NIJ: Evaluating Effectiveness</a></li>
+          <li><a className={linkCls} href="https://casomb.org/docs/Residence_Paper_Final.pdf" target="_blank" rel="noopener noreferrer">CASOMB: Residence Restrictions (2011)</a></li>
+          <li><a className={linkCls} href="https://www.prisonlegalnews.org/media/publications/california_sex_offender_management_board_homeless_sex_offender_report_2008.pdf" target="_blank" rel="noopener noreferrer">CASOMB: Homelessness Report (2008)</a></li>
+          <li><a className={linkCls} href="https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sttc-2016/index-en.aspx" target="_blank" rel="noopener noreferrer">Static-99R Coding Rules (Public Safety Canada)</a></li>
+          <li><a className={linkCls} href="https://mn.gov/doc/assets/MnSOST3-1DOCReport_tcm1089-272835.pdf" target="_blank" rel="noopener noreferrer">MnSOST-3.1 Technical Report</a></li>
+          <li><a className={linkCls} href="https://www.sentencingproject.org/policy-brief/responding-to-crimes-of-a-sexual-nature-what-we-really-want-is-no-more-victims/" target="_blank" rel="noopener noreferrer">The Sentencing Project (2024)</a></li>
+          <li><a className={linkCls} href="https://www.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14" target="_blank" rel="noopener noreferrer">BJS Recidivism Study (2005–2014)</a></li>
+          <li><a className={linkCls} href="https://www.prisonlegalnews.org/media/publications/The_Effectiveness_of_Sex_Offender_Registration_and_Notification_Sept._2021.pdf" target="_blank" rel="noopener noreferrer">Zgoba & Mitchell Meta-analysis (2021)</a></li>
+        </ul>
+
+        <Divider />
+
+        {/* RELATED READING */}
+        <BandHeader title="Related Reading" icon="🔗" />
+        <ul className="list-disc pl-6 mt-4">
+          <li>
+            <Link className={linkCls} to="/blog/hidden-costs-registries">
+              The Hidden Costs of Registries
+            </Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/blog/what-prison-is-actually-like">
+              What Prison Is Actually Like for People with Sex-Offense Convictions
+            </Link>
+          </li>
+          <li>
+            <Link className={linkCls} to="/blog/community-ties">
+              Building Community Ties After Incarceration
+            </Link>
+          </li>
+        </ul>
 
       </article>
     </BlogLayout>
