@@ -13,6 +13,28 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-safety-illusion",
+  title:
+    "The Safety Illusion: What Uber’s Background Checks Reveal About Who We Actually Protect — and Who We Don’t",
+  excerpt:
+    "Uber’s background check scandal exposes a deeper truth: our most visible safety systems often protect perception more than people. This post unpacks how registry policies and exclusion regimes create the illusion of safety while leaving real risk unaddressed.",
+  author: "SOLAR Project",
+  date: "2026-01-07",
+  readTime: "9 min read",
+  category: "Policy & Reform",
+  tags: [
+    "Uber",
+    "background checks",
+    "sexual violence",
+    "sex offender registry",
+    "safety theater",
+    "violence prevention",
+    "policy reform",
+    "risk assessment"
+  ],
+  path: "/blog/the-safety-illusion",
+},
+{
   id: "understanding-risk-levels",
   title: "Understanding “Risk Levels” on the Sex Offender Registry: What They Really Mean — and Don’t Mean",
   excerpt:
