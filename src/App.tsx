@@ -95,6 +95,7 @@ import TheCasesWeDontInvestigate from './pages/blog/TheCasesWeDontInvestigate';
 import WhatPrisonIsActuallyLike from "./pages/blog/what-prison-is-actually-like";
 import Prison_Dos_and_Donts_Guide from './pages/resources/Prison_Dos_and_Donts_Guide';
 import UnderstandingRiskLevels from "./pages/blog/understanding-risk-levels";
+import TheSafetyIllusion from './pages/blog/TheSafetyIllusion';
 
 function App() {
   return (
@@ -216,6 +217,8 @@ function App() {
 <Route path="/blog/what-prison-is-actually-like"
   element={<WhatPrisonIsActuallyLike />} />
 <Route path="/blog/understanding-risk-levels" element={<UnderstandingRiskLevels />} />
+<Route path="/blog/the-safety-illusion"
+  element={<TheSafetyIllusion />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
