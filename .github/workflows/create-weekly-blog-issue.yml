@@ -19,15 +19,39 @@ jobs:
             const today = new Date().toISOString().slice(0, 10);
             const title = `[Weekly Blog]: ${today}`;
             const body = `
-            This issue was created automatically for the weekly SOLAR blog post.
+            ## Purpose
+
+            This issue was created automatically for this week's core SOLAR blog post.
+
+            Target cadence:
+            - publish at least **one** blog post this weekend
+            - optional second post only if there is a strong angle or easy win
+
+            ## Use this structure
 
             Use the **Weekly Blog Post** issue form structure when filling this out.
 
-            Suggested focus:
-            - one strong weekly post
-            - evidence-based
-            - authoritative links
-            - connect to existing SOLAR content
+            ## SOLAR editorial checklist
+
+            - Choose one clear angle
+            - Use authoritative sources where possible
+            - Link to existing SOLAR pages or guides where relevant
+            - Keep the tone evidence-based, sharp, and readable
+            - Prioritize one strong post over two weaker ones
+
+            ## Publishing path reminder
+
+            Current canonical blog workflow:
+            1. Create/update the page file in \`src/pages/blog/\`
+            2. Add the route in \`src/App.tsx\`
+            3. Add the metadata entry at the top of \`src/data/blogPosts.ts\`
+
+            ## Suggested content buckets
+
+            - Accountability / hypocrisy / authority abuse
+            - Registry policy / reform
+            - Reentry / collateral consequences
+            - Current event commentary
             `;
 
             await github.rest.issues.create({
