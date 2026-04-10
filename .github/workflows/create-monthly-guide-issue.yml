@@ -1,0 +1,38 @@
+name: Create Monthly Guide Issue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 1 * *"
+
+permissions:
+  issues: write
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create monthly guide issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Guide]: ${today}`;
+            const body = `
+            This issue was created automatically for monthly evergreen guide planning.
+
+            Use the **Evergreen Resource Guide** issue form structure when filling this out.
+
+            Suggested focus:
+            - practical evergreen value
+            - SEO usefulness
+            - internal linking to existing SOLAR pages
+            - authoritative sourcing
+            `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
