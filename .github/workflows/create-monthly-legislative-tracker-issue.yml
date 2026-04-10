@@ -1,0 +1,59 @@
+name: Create Monthly Legislative Tracker Issue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 1 * *"
+
+permissions:
+  issues: write
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create monthly Legislative Tracker issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Legislative Tracker]: ${today}`;
+            const body = `
+            ## Purpose
+
+            This issue was created automatically for the monthly Legislative Tracker roundup.
+
+            Target cadence:
+            - publish during the first week of the month
+            - recap the prior month
+
+            ## Monthly checklist
+
+            - Identify the most important federal and state developments
+            - Summarize in plain English
+            - Include direct official bill/court/agency links
+            - Pull out the few developments that matter most
+            - Add action steps only when there is a real action to take
+
+            ## Publishing path reminder
+
+            Current canonical tracker workflow:
+            1. Create or update the dated page in \`src/pages/resources/legislative-tracker/\`
+            2. Add the metadata object in \`src/data/legislativeUpdates.ts\`
+            3. Keep the existing tracker hub structure intact
+
+            ## Priority areas
+
+            - federal developments
+            - major state bill movement
+            - important court decisions
+            - implementation changes
+            - direct action opportunities
+            `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
