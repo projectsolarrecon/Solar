@@ -1,0 +1,106 @@
+name: Evergreen Resource Guide
+description: Create a structured brief for a new SOLAR evergreen resource guide
+title: "[Guide]: "
+labels: ["content", "guide", "needs-brief"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to create a structured brief for a new evergreen SOLAR resource guide.
+
+  - type: input
+    id: guide_title
+    attributes:
+      label: Guide title
+      description: Working title is fine
+      placeholder: "Example: How to Prepare for Federal Supervision After Release"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: guide_type
+    attributes:
+      label: Guide type
+      options:
+        - Practical reentry guide
+        - Legal/process explainer
+        - Family/supporter guide
+        - Policy/myth-busting guide
+        - State-specific guide
+    validations:
+      required: true
+
+  - type: input
+    id: target_keyword
+    attributes:
+      label: Target keyword or phrase
+      description: Main SEO phrase or idea
+      placeholder: "Example: federal supervised release sex offense"
+    validations:
+      required: true
+
+  - type: textarea
+    id: audience
+    attributes:
+      label: Primary audience
+      description: Who is this guide mainly for?
+      placeholder: "Example: people preparing for release, spouses, family members, or advocates"
+    validations:
+      required: true
+
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Core purpose
+      description: What practical problem should this guide solve?
+      placeholder: Explain what the guide should help the reader understand or do
+    validations:
+      required: true
+
+  - type: textarea
+    id: sections
+    attributes:
+      label: Must-have sections
+      description: List the major sections this guide should include
+      placeholder: "Example: overview, checklist, common mistakes, official resources, family tips"
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_targets
+    attributes:
+      label: Source targets
+      description: Primary sources, agencies, courts, research, etc.
+      placeholder: List the types of sources this guide should rely on
+    validations:
+      required: true
+
+  - type: textarea
+    id: internal_links
+    attributes:
+      label: Internal links to include
+      description: Existing SOLAR pages, posts, or guides this should connect to
+      placeholder: "Example: /resources/reentry-checklist"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else important for tone, framing, or urgency
+      placeholder: Optional notes
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Requirements
+      options:
+        - label: Must be practical and easy to follow
+          required: true
+        - label: Must fit SOLAR tone and structure
+          required: true
+        - label: Must include authoritative links where possible
+          required: true

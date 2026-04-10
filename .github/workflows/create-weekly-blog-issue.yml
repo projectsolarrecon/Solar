@@ -1,0 +1,39 @@
+name: Create Weekly Blog Issue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 * * 5"
+
+permissions:
+  issues: write
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create weekly blog issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Weekly Blog]: ${today}`;
+            const body = `
+            This issue was created automatically for the weekly SOLAR blog post.
+
+            Use the **Weekly Blog Post** issue form structure when filling this out.
+
+            Suggested focus:
+            - one strong weekly post
+            - evidence-based
+            - authoritative links
+            - connect to existing SOLAR content
+            `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ["content", "blog", "needs-brief"]
+            });

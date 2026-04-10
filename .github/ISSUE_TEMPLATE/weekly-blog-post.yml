@@ -1,0 +1,87 @@
+name: Weekly Blog Post
+description: Create a structured brief for this week's SOLAR blog post
+title: "[Weekly Blog]: "
+labels: ["content", "blog", "needs-brief"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to create a structured brief for a new weekly SOLAR blog post.
+
+  - type: input
+    id: working_title
+    attributes:
+      label: Working title
+      description: A rough title is fine
+      placeholder: "Example: Why Safety Theater Keeps Failing Children"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: content_bucket
+    attributes:
+      label: Content bucket
+      options:
+        - Accountability / hypocrisy / authority abuse
+        - Registry policy / reform
+        - Reentry / collateral consequences
+        - Current event commentary
+    validations:
+      required: true
+
+  - type: input
+    id: target_keyword
+    attributes:
+      label: Target keyword or phrase
+      description: Main SEO phrase or idea
+      placeholder: "Example: sex offender registry effectiveness"
+    validations:
+      required: true
+
+  - type: textarea
+    id: angle
+    attributes:
+      label: Core angle
+      description: What is the argument or point of this piece?
+      placeholder: Explain the main argument in plain English
+    validations:
+      required: true
+
+  - type: textarea
+    id: source_targets
+    attributes:
+      label: Source targets
+      description: Primary sources, courts, agencies, media, studies, etc.
+      placeholder: List the types of sources this post should rely on
+    validations:
+      required: true
+
+  - type: textarea
+    id: internal_links
+    attributes:
+      label: Internal links to include
+      description: Existing SOLAR pages, posts, or guides this should connect to
+      placeholder: "Example: /resources/legislative-advocacy-guide"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else important for tone, framing, or urgency
+      placeholder: Optional notes
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Requirements
+      options:
+        - label: Must be evidence-based
+          required: true
+        - label: Must fit SOLAR tone and structure
+          required: true
+        - label: Must include authoritative links where possible
+          required: true
