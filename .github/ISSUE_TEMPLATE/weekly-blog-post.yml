@@ -13,7 +13,7 @@ body:
     attributes:
       label: Working title
       description: A rough title is fine
-      placeholder: Example: Why Safety Theater Keeps Failing Children
+      placeholder: "Example: Why Safety Theater Keeps Failing Children"
     validations:
       required: true
 
@@ -34,7 +34,7 @@ body:
     attributes:
       label: Target keyword or phrase
       description: Main SEO phrase or idea
-      placeholder: Example: sex offender registry effectiveness
+      placeholder: "Example: sex offender registry effectiveness"
     validations:
       required: true
 
@@ -60,8 +60,8 @@ body:
     id: internal_links
     attributes:
       label: Internal links to include
-      description: Existing SOLAR pages/posts/guides this should connect to
-      placeholder: Example: /resources/legislative-advocacy-guide
+      description: Existing SOLAR pages, posts, or guides this should connect to
+      placeholder: "Example: /resources/legislative-advocacy-guide"
     validations:
       required: false
 
