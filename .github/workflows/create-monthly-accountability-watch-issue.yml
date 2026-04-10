@@ -1,0 +1,60 @@
+name: Create Monthly Accountability Watch Issue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 18 1 * *"
+
+permissions:
+  issues: write
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create monthly Accountability Watch issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Accountability Watch]: ${today}`;
+            const body = `
+            ## Purpose
+
+            This issue was created automatically for the monthly Accountability Watch roundup.
+
+            Target cadence:
+            - publish during the first week of the month
+            - recap the prior month
+
+            ## Monthly checklist
+
+            - Gather verified arrests, charges, pleas, convictions, and sentencings
+            - Prioritize public figures, authority figures, and institutionally trusted people
+            - Include registry-status context when available
+            - Use primary sources first, then reputable reporting for context
+            - Keep the structure compact and repeatable
+
+            ## Source priorities
+
+            - DOJ / USAO press releases
+            - State AG press rooms
+            - Court records when available
+            - AP / Reuters
+            - Strong local reporting
+            - Cross-check with WhoIsMakingNews.com when useful
+
+            ## Publishing path reminder
+
+            Current Accountability Watch path:
+            1. Create a new dated page under \`src/pages/resources/accountability-watch/\`
+            2. Keep the existing index/date route structure intact
+            3. Publish as the prior-month roundup in the first week of the month
+            `;
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body
+            });
