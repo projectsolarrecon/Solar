@@ -19,15 +19,41 @@ jobs:
             const today = new Date().toISOString().slice(0, 10);
             const title = `[Guide]: ${today}`;
             const body = `
+            ## Purpose
+
             This issue was created automatically for monthly evergreen guide planning.
+
+            Target cadence:
+            - publish or substantially advance at least **one** evergreen resource guide this month
+            - update an older guide too when possible
+
+            ## Use this structure
 
             Use the **Evergreen Resource Guide** issue form structure when filling this out.
 
-            Suggested focus:
-            - practical evergreen value
-            - SEO usefulness
-            - internal linking to existing SOLAR pages
-            - authoritative sourcing
+            ## SOLAR guide checklist
+
+            - Choose one practical evergreen topic
+            - Focus on usefulness first, SEO second
+            - Use authoritative sources where possible
+            - Add internal links to related SOLAR pages and posts
+            - Keep the tone plain, practical, and supportive
+            - Prefer durable topics over reactive ones
+
+            ## Publishing path reminder
+
+            Current canonical guide workflow:
+            1. Create/update the page file in \`src/pages/resources/\`
+            2. Add the route in \`src/App.tsx\`
+            3. Add the resource card entry in \`src/pages/Resources.tsx\`
+
+            ## Strong guide candidates
+
+            - Practical reentry guide
+            - Legal/process explainer
+            - Family/supporter guide
+            - Policy/myth-busting guide
+            - State-specific guide
             `;
 
             await github.rest.issues.create({
