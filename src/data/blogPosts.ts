@@ -13,6 +13,24 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "when-the-label-becomes-the-target",
+  title: "When the Label Becomes the Target",
+  excerpt:
+    "A targeted killing in Florida raises a question registry defenders avoid: when the state publishes a permanent label, is it preventing violence—or reshaping it?",
+  date: "2026-04-11",
+  readTime: "8 min read",
+  category: "Policy Analysis",
+  tags: [
+    "registry vigilantism",
+    "public registry violence",
+    "Megan's Law",
+    "collateral consequences",
+    "public labeling",
+  ],
+  path: "/blog/when-the-label-becomes-the-target",
+  author: "SOLAR Project",
+},
+{
   id: "the-safety-illusion",
   title:
     "The Safety Illusion: What Uber’s Background Checks Reveal About Who We Actually Protect — and Who We Don’t",
