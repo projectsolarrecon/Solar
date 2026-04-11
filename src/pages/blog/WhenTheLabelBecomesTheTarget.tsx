@@ -157,6 +157,132 @@ export default function WhenTheLabelBecomesTheTarget(): JSX.Element {
 
         <Divider />
 
+<BandHeader title="What the Label Hides" icon="🕳️" />
+
+<p>
+  In this case, the gap between the label and the underlying reality is not abstract. It is measurable.
+</p>
+
+<p>
+  Public records show that the victim,{" "}
+  <a
+    className={linkCls}
+    href="https://offender.fdle.state.fl.us/offender/sops/flyer.jsf?personId=105395"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Colie Lee Daniel
+  </a>
+  , was on Florida’s registry for a Brevard County conviction under{" "}
+  <a
+    className={linkCls}
+    href="https://www.flsenate.gov/Laws/Statutes/800.04"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Florida Statute 800.04
+  </a>
+  , with an adjudication date of October 29, 2018. That statute involves a victim between the ages of 12 and 15.
+</p>
+
+<p>
+  That tells the public the category of the offense.
+</p>
+
+<p>
+  It does not tell the public when it happened.
+</p>
+
+<p>
+  A conviction date is the end of a process, not the beginning. In cases like this, timelines often stretch:
+</p>
+
+<ul className="list-disc pl-6">
+  <li>conduct may occur months—or longer—before it is reported</li>
+  <li>investigations can take time before charges are filed</li>
+  <li>pretrial proceedings commonly extend for a year or more</li>
+  <li>many cases resolve through plea agreements after additional delay</li>
+</ul>
+
+<p>
+  Put plainly: a 2018 conviction can easily reflect conduct from 2016 or 2017.
+</p>
+
+<p>
+  That matters, because it allows for a straightforward calculation.
+</p>
+
+<p>
+  Daniel was 28 years old at the time of his death in 2026.
+</p>
+
+<p>
+  That places him at roughly 20 years old at the time of his 2018 conviction.
+</p>
+
+<p>
+  If the underlying conduct occurred one to two years earlier—as is common in cases like this—he would have been approximately 18 or 19 at the time. Possibly younger, depending on the specifics of reporting and investigation.
+</p>
+
+<Callout variant="info" title="What the registry leaves out" icon="📌">
+  <p>
+    Those are not speculative numbers.
+  </p>
+  <p>
+    They are the direct result of applying standard case timelines to known dates.
+  </p>
+</Callout>
+
+<p>
+  What is missing is everything else.
+</p>
+
+<p>
+  The registry does not tell you:
+</p>
+
+<ul className="list-disc pl-6">
+  <li>the exact age difference</li>
+  <li>the nature of the relationship</li>
+  <li>whether the case resolved through a plea</li>
+  <li>what has happened in the years since</li>
+</ul>
+
+<p>
+  It does not tell you how much time has passed.
+</p>
+
+<p>
+  It shows a present-tense identity: a sex offender, living here, now.
+</p>
+
+<p>
+  And once that identity is published, the distinction between:
+</p>
+
+<ul className="list-disc pl-6">
+  <li>a young adult nearly a decade ago</li>
+  <li>and a labeled person today</li>
+</ul>
+
+<p>
+  disappears from public view.
+</p>
+
+<p>
+  That does not excuse the underlying conduct.
+</p>
+
+<p>
+  But it does change the context.
+</p>
+
+<Callout variant="reminder" title="What the label erases" icon="🏷️">
+  And the registry, by design, removes that context entirely.
+</Callout>
+
+<Divider />
+
         <BandHeader title="When Information Becomes a Target" icon="📍" />
 
         <p>No one designed the registry to get someone killed.</p>
