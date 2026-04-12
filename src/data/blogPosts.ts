@@ -13,6 +13,25 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-people-in-the-room",
+  title: "The People in the Room",
+  excerpt:
+    "A Tennessee school board meeting revealed something registries never can: when an elected official sexualized a student in public, the room laughed. This post examines what that reaction says about child safety, power, and the difference between protection and performance.",
+  author: "SOLAR Project",
+  date: "2026-04-12",
+  readTime: "6 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "child safety",
+    "school board",
+    "boundary violations",
+    "institutional culture",
+    "registry reform",
+    "safety theater",
+  ],
+  path: "/blog/the-people-in-the-room",
+},
+{
   id: "when-the-label-becomes-the-target",
   title: "When the Label Becomes the Target",
   excerpt:
