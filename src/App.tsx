@@ -97,6 +97,7 @@ import Prison_Dos_and_Donts_Guide from './pages/resources/Prison_Dos_and_Donts_G
 import UnderstandingRiskLevels from "./pages/blog/understanding-risk-levels";
 import TheSafetyIllusion from './pages/blog/TheSafetyIllusion';
 import WhenTheLabelBecomesTheTarget from './pages/blog/WhenTheLabelBecomesTheTarget';
+import ThePeopleInTheRoom from "./pages/blog/ThePeopleInTheRoom";
 
 function App() {
   return (
@@ -221,6 +222,7 @@ function App() {
 <Route path="/blog/the-safety-illusion"
   element={<TheSafetyIllusion />} />
 <Route path="/blog/when-the-label-becomes-the-target" element={<WhenTheLabelBecomesTheTarget />} />
+<Route path="/blog/the-people-in-the-room" element={<ThePeopleInTheRoom />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
