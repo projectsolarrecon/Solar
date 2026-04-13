@@ -122,6 +122,75 @@ export default function ThePeopleInTheRoom(): JSX.Element {
           And we soften, excuse, or ignore real-world boundary violations—especially when they come from insiders.
         </p>
 
+<BandHeader title="When It Actually Mattered, They Did Nothing" icon="⏱️" />
+        <p>
+          It is almost inconceivable to believe that many of the people in that room do not publicly
+          support “tough on sex offender” policies.
+        </p>
+        <p>
+          They are elected officials. A school board. People who, in all likelihood, campaign on
+          protecting children.
+        </p>
+        <p>And yet—</p>
+        <p>
+          When they were given a real, immediate opportunity to do exactly that—to protect a single
+          child, in real time, from the words of a grown man in a position of authority—they did
+          nothing.
+        </p>
+        <p>They didn’t intervene.</p>
+        <p>They didn’t shut it down.</p>
+        <p>
+          They didn’t create distance or protection or even basic accountability in the moment.
+        </p>
+        <p>They laughed.</p>
+        <p>Let that sit for a second.</p>
+
+        <Callout variant="urgent" title="What real protection looks like" icon="🚨">
+          <p>
+            Real protection is immediate. It is uncomfortable. It requires someone to speak up,
+            disrupt the room, and risk social friction.
+          </p>
+        </Callout>
+
+        <p>And in that moment, none of that happened.</p>
+
+        <Divider label="What that says" />
+
+        <BandHeader title="The Kind of Protection We Prefer" icon="🎭" />
+        <p>
+          It is much easier to vote for laws that target people you will never meet.
+        </p>
+        <p>
+          It is much easier to support policies that label, restrict, and stigmatize a distant,
+          already-defined group.
+        </p>
+        <p>It feels like action.</p>
+        <p>It sounds like protection.</p>
+        <p>It comes with none of the discomfort of confrontation.</p>
+        <p>But what happened in that room exposed something deeper:</p>
+
+        <PullQuote>
+          We are far more comfortable punishing strangers in the abstract than we are confronting
+          misconduct in front of us.
+        </PullQuote>
+
+        <p>Because one requires courage.</p>
+        <p>The other requires nothing at all.</p>
+
+        <BandHeader title="What That Moment Revealed" icon="🔎" />
+        <p>No legislation was needed in that moment.</p>
+        <p>No registry.</p>
+        <p>No database.</p>
+        <p>No map.</p>
+        <p>Just one adult willing to say: “That’s not appropriate. Stop.”</p>
+        <p>And no one did.</p>
+
+        <Callout variant="warning" title="The real gap" icon="⚠️">
+          <p>
+            That is the gap. Not in policy, but in practice. Not in awareness, but in action.
+          </p>
+        </Callout>
+
         <BandHeader title="The Cultural Blind Spot" icon="🪟" />
         <p>This dynamic isn’t limited to one school board meeting.</p>
         <p>It shows up in:</p>
