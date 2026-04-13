@@ -98,6 +98,7 @@ import UnderstandingRiskLevels from "./pages/blog/understanding-risk-levels";
 import TheSafetyIllusion from './pages/blog/TheSafetyIllusion';
 import WhenTheLabelBecomesTheTarget from './pages/blog/WhenTheLabelBecomesTheTarget';
 import ThePeopleInTheRoom from "./pages/blog/ThePeopleInTheRoom";
+import PrisonCommunicationMailVisitsMonitoring from "./pages/resources/PrisonCommunicationMailVisitsMonitoring";
 
 function App() {
   return (
@@ -223,6 +224,7 @@ function App() {
   element={<TheSafetyIllusion />} />
 <Route path="/blog/when-the-label-becomes-the-target" element={<WhenTheLabelBecomesTheTarget />} />
 <Route path="/blog/the-people-in-the-room" element={<ThePeopleInTheRoom />} />
+<Route path="/resources/prison-communication-mail-visits-monitoring" element={<PrisonCommunicationMailVisitsMonitoring />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
