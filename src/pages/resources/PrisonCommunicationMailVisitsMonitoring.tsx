@@ -29,84 +29,194 @@ export default function PrisonCommunicationMailVisitsMonitoring(): JSX.Element {
         <TOC />
       </div>
 
-      {/* ========================= */}
-      {/* START HERE */}
-      {/* ========================= */}
+    {/* ========================= */}
+{/* START HERE */}
+{/* ========================= */}
 
-      <SectionBand title="Start Here" emblem="🧭" />
-      <SectionCard>
-        <p>
-          Communication during incarceration is one of the most confusing—and emotionally loaded—parts of the entire process.
-        </p>
+<SectionBand
+  title="Start Here"
+  subtitle="What’s actually happening—and what matters most"
+  emblem="🧭"
+/>
+<SectionCard>
+  <p>
+    Communication during incarceration is one of the most confusing—and emotionally loaded—parts of the entire process.
+  </p>
 
-        <p>
-          Calls don’t go through. Messages disappear. Mail takes weeks. Rules change without warning. And almost no one explains why.
-        </p>
+  <p>
+    Calls don’t go through. Messages disappear. Mail takes weeks. Rules change without warning. And almost none of it is explained clearly.
+  </p>
 
-        <Callout variant="info" title="If this feels overwhelming, that’s normal" icon="🔵">
-          Most of what feels personal is actually systemic. Delays, silence, and restrictions are usually about the system—not the relationship.
-        </Callout>
+  <Callout variant="info" title="If this feels chaotic, that’s normal" icon="🔵">
+    What feels personal is usually procedural. Most communication problems are driven by the system—not the relationship.
+  </Callout>
 
-        <p className="mt-4">
-          This guide will help you understand:
-        </p>
+  <Divider label="What this guide actually helps you do" />
 
-        <ul className="list-disc pl-6 mt-3 space-y-2">
-          <li>How communication changes across custody stages</li>
-          <li>What is actually monitored—and how seriously</li>
-          <li>How sex-offense cases change the way rules are applied</li>
-          <li>What families should expect (and not panic about)</li>
-          <li>How to communicate safely without shutting down connection</li>
-        </ul>
-      </SectionCard>
+  <ul className="list-disc pl-6 space-y-2">
+    <li>Understand why communication changes depending on location</li>
+    <li>Know what is actually monitored (and how seriously)</li>
+    <li>Avoid the most common mistakes families make</li>
+    <li>Communicate safely without shutting down connection</li>
+    <li>Navigate sex-offense-specific sensitivities and risks</li>
+  </ul>
+</SectionCard>
 
-      {/* ========================= */}
-      {/* QUICK REALITY */}
-      {/* ========================= */}
+{/* ========================= */}
+{/* QUICK REALITY */}
+{/* ========================= */}
 
-      <SectionBand title="Quick Reality Check" emblem="⚠️" />
-      <SectionCard>
-        <Checklist
-          id="quick-rules"
-          items={[
-            { id: "1", label: <>Assume all communication is monitored</> },
-            { id: "2", label: <>Rules depend on location—not the case itself</> },
-            { id: "3", label: <>Silence during transfers is normal</> },
-            { id: "4", label: <>What you say can be misunderstood later</> },
-            { id: "5", label: <>Consistency matters more than intensity</> },
-          ]}
-        />
+<SectionBand
+  title="Quick Reality Check"
+  subtitle="If you only remember a few things, remember these"
+  emblem="⚠️"
+/>
+<SectionCard>
+  <Checklist
+    id="quick-rules"
+    items={[
+      { id: "1", label: <>Assume everything is monitored</> },
+      { id: "2", label: <>Rules depend on location—not the case</> },
+      { id: "3", label: <>Silence during transfer is normal</> },
+      { id: "4", label: <>What you say can be misunderstood later</> },
+      { id: "5", label: <>Consistency matters more than intensity</> },
+    ]}
+  />
 
-        <Callout variant="warning" title="The core truth" icon="🟡">
-          This system is built for monitoring and control—not communication. Everything makes more sense once you accept that.
-        </Callout>
-      </SectionCard>
+  <Callout variant="warning" title="The system reality" icon="🟡">
+    This system is designed for monitoring and control—not communication. Everything becomes easier to understand once you accept that.
+  </Callout>
+</SectionCard>
 
-      {/* ========================= */}
-      {/* STAGES */}
-      {/* ========================= */}
+{/* ========================= */}
+{/* STAGES */}
+{/* ========================= */}
 
-      <SectionBand title="How Communication Changes by Stage" emblem="🔄" />
-      <SectionCard>
-        <h3 className="font-semibold">Pretrial (Local Jail)</h3>
-        <p>
-          Most restrictive and unpredictable. Limited access, heavy monitoring, inconsistent systems.
-        </p>
+<SectionBand
+  title="How Communication Changes by Stage"
+  subtitle="Why pretrial, transfer, and final placement feel like completely different worlds"
+  emblem="🔄"
+/>
 
-        <h3 className="mt-4 font-semibold">Transfer / Holdover</h3>
-        <p>
-          Communication often disappears entirely for periods of time.
-        </p>
+{/* PRETRIAL */}
+<SectionCard>
+  <div className="flex items-start gap-3">
+    <div className="text-2xl">🏢</div>
+    <div>
+      <h3 className="font-semibold text-lg">Pretrial (Local Jail)</h3>
+      <p className="text-sm text-slate-500">U.S. Marshals custody, local facility control</p>
+    </div>
+  </div>
 
-        <h3 className="mt-4 font-semibold">Final Facility (BOP)</h3>
-        <p>
-          More structured systems (TRULINCS, scheduled calls), but still monitored.
-        </p>
+  <Divider />
 
-        <Callout variant="info" title="What this means for families" icon="🔵">
-          Silence—especially during transfers—is extremely common. It usually reflects movement, not avoidance.
-        </Callout>
-      </SectionCard>
+  <p>
+    This is the most restrictive and unpredictable phase. Communication systems are often outdated, inconsistent, or limited.
+  </p>
+
+  <h4 className="font-semibold mt-4">What it actually feels like</h4>
+  <ul className="list-disc pl-6 mt-2 space-y-2">
+    <li>Calls may be expensive, short, or unreliable</li>
+    <li>Messaging may not exist or may be heavily delayed</li>
+    <li>Mail processing can be slow or inconsistent</li>
+  </ul>
+
+  <h4 className="font-semibold mt-4">What families often misunderstand</h4>
+  <p>
+    Lack of communication is often interpreted as avoidance or emotional distance. In reality, it is usually a system limitation.
+  </p>
+
+  <Callout variant="info" title="What to do" icon="🔵">
+    Focus on consistency, not volume. Even short, predictable communication matters more than trying to force frequent contact.
+  </Callout>
+</SectionCard>
+
+{/* TRANSFER */}
+<SectionCard>
+  <div className="flex items-start gap-3">
+    <div className="text-2xl">🚐</div>
+    <div>
+      <h3 className="font-semibold text-lg">Transfer / Holdover</h3>
+      <p className="text-sm text-slate-500">Movement between facilities</p>
+    </div>
+  </div>
+
+  <Divider />
+
+  <p>
+    This is the most misunderstood stage. Communication often disappears entirely for periods of time.
+  </p>
+
+  <h4 className="font-semibold mt-4">What actually happens</h4>
+  <ul className="list-disc pl-6 mt-2 space-y-2">
+    <li>No access to phone or messaging systems</li>
+    <li>Uncertain timelines and locations</li>
+    <li>Administrative delays at every step</li>
+  </ul>
+
+  <h4 className="font-semibold mt-4">What families often assume</h4>
+  <p>
+    Silence is often interpreted as something being wrong. In reality, it usually means the person is in transit or processing.
+  </p>
+
+  <Callout variant="warning" title="Critical expectation" icon="🟡">
+    Silence during transfer is extremely common—and usually has nothing to do with the relationship.
+  </Callout>
+
+  <Callout variant="success" title="What to do" icon="🟢">
+    Stay steady. Avoid panic. Wait for reestablished communication rather than trying to chase answers that may not exist yet.
+  </Callout>
+</SectionCard>
+
+{/* FINAL FACILITY */}
+<SectionCard>
+  <div className="flex items-start gap-3">
+    <div className="text-2xl">🏛️</div>
+    <div>
+      <h3 className="font-semibold text-lg">Final Facility (BOP)</h3>
+      <p className="text-sm text-slate-500">More structured, but still monitored</p>
+    </div>
+  </div>
+
+  <Divider />
+
+  <p>
+    Communication becomes more predictable here, but not private.
+  </p>
+
+  <h4 className="font-semibold mt-4">What improves</h4>
+  <ul className="list-disc pl-6 mt-2 space-y-2">
+    <li>Access to TRULINCS messaging</li>
+    <li>Scheduled phone calls</li>
+    <li>More consistent mail flow</li>
+  </ul>
+
+  <h4 className="font-semibold mt-4">What does NOT improve</h4>
+  <ul className="list-disc pl-6 mt-2 space-y-2">
+    <li>Monitoring and recording</li>
+    <li>Content review</li>
+    <li>Potential for misinterpretation</li>
+  </ul>
+
+  <Callout variant="info" title="What this means long-term" icon="🔵">
+    Communication becomes more reliable—but never truly private. Habits you build early matter here.
+  </Callout>
+</SectionCard>
+
+{/* STAGE COMPARISON */}
+<SectionCard>
+  <h3 className="font-semibold text-lg mb-2">What Changes the Most</h3>
+
+  <ul className="list-disc pl-6 space-y-2">
+    <li><strong>Access:</strong> Limited → None → Structured</li>
+    <li><strong>Predictability:</strong> Low → None → Moderate</li>
+    <li><strong>Monitoring:</strong> High → High → High</li>
+  </ul>
+
+  <Callout variant="warning" title="Most common mistake" icon="🟡">
+    Expecting consistency across stages. Each stage operates like a completely different system.
+  </Callout>
+</SectionCard>
 
       {/* ========================= */}
       {/* MONITORING */}
