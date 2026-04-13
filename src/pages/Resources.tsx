@@ -157,12 +157,13 @@ function Resources() {
       description: "How sex-offense history affects BOP designation, security scoring, treatment programs, safety planning, and institutional movement — with strategies for self-advocacy and harm reduction.",
       link: "#"
     },
-    {
-      name: "Prison Communication, Mail, Visits & Monitoring",
-      type: "Guide",
-      description: "How communication, mail, phones, visits, money transfers, and approved contacts work in prison — including monitoring rules and special restrictions for sex-offense cases.",
-      link: "#"
-    },
+{
+  name: "Prison Communication, Mail, Visits & Monitoring",
+  type: "Guide",
+  description:
+    "How communication actually works from pretrial detention through final incarceration—what changes at each stage, how federal and state systems differ, and what families need to know about monitoring, restrictions, and sex-offense-specific scrutiny.",
+  link: "/resources/prison-communication-mail-visits-monitoring"
+},
     {
       name: "Prison Discipline, Infractions & Common Pitfalls",
       type: "Guide",
