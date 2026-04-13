@@ -511,7 +511,7 @@ export default function PrisonCommunicationMailVisitsMonitoring(): JSX.Element {
         </ul>
       </SectionCard>
 
-     <SectionBand title="Related Reading" emblem="🔗" />
+      <SectionBand title="Related Reading" emblem="🔗" />
       <SectionCard>
         <h2>Related Reading</h2>
         <ul className="list-disc pl-6">
