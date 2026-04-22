@@ -100,6 +100,7 @@ import WhenTheLabelBecomesTheTarget from './pages/blog/WhenTheLabelBecomesTheTar
 import ThePeopleInTheRoom from "./pages/blog/ThePeopleInTheRoom";
 import PrisonCommunicationMailVisitsMonitoring from "./pages/resources/PrisonCommunicationMailVisitsMonitoring";
 import WeDontRegisterRisk from "./pages/blog/WeDontRegisterRisk";
+import PermanentPunishmentPublicTemporaryShame from "./pages/blog/PermanentPunishmentPublicTemporaryShame";
 
 function App() {
   return (
@@ -227,6 +228,9 @@ function App() {
 <Route path="/blog/the-people-in-the-room" element={<ThePeopleInTheRoom />} />
 <Route path="/resources/prison-communication-mail-visits-monitoring" element={<PrisonCommunicationMailVisitsMonitoring />} />
 <Route path="/blog/we-dont-register-risk" element={<WeDontRegisterRisk />} />
+<Route
+  path="/blog/permanent-punishment-public-temporary-shame-powerful"
+element={<PermanentPunishmentPublicTemporaryShame />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
