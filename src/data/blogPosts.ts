@@ -13,6 +13,25 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "permanent-punishment-public-temporary-shame-powerful",
+  title: "Permanent Punishment for the Public, Temporary Shame for the Powerful",
+  excerpt:
+    "Three recent stories near the top of American political power force a harder question: what exactly is this country trying to punish when it talks about sexual harm?",
+  author: "SOLAR Project",
+  date: "2026-04-22",
+  readTime: "10 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "sex offender registry",
+    "congressional ethics",
+    "political hypocrisy",
+    "sexual misconduct",
+    "public safety theater",
+    "systemic accountability"
+  ],
+  path: "/blog/permanent-punishment-public-temporary-shame-powerful",
+},
+{
   id: "we-dont-register-risk",
   title: "We Don’t Register Risk. We Register Contempt.",
   excerpt:
