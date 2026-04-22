@@ -13,6 +13,25 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "we-dont-register-risk",
+  title: "We Don’t Register Risk. We Register Contempt.",
+  excerpt:
+    "America says child safety justifies permanent registries and exclusion. But when danger is politically useful or culturally protected, the absolutism disappears.",
+  author: "SOLAR Project",
+  date: "2026-04-22",
+  readTime: "10 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "child safety",
+    "registry reform",
+    "political hypocrisy",
+    "public safety theater",
+    "systemic accountability",
+    "Jan. 6 pardons",
+  ],
+  path: "/blog/we-dont-register-risk",
+},
+{
   id: "the-people-in-the-room",
   title: "The People in the Room",
   excerpt:
