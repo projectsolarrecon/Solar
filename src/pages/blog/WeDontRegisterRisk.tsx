@@ -112,11 +112,36 @@ export default function WeDontRegisterRisk(): JSX.Element {
           killed, and search terms related to child sexual abuse.
         </p>
         <p>
-          By the time you place Johnson and Tocci side by side, the contradiction is hard to hide. We are told that
-          child safety requires permanent databases, geographic banishment, public humiliation, and endless restrictions
-          for broad categories of registrants, including many nonviolent offenders whose cases may be old,
-          individualized, or radically unlike the public stereotype.
-        </p>
+  And then there is David Daniel. Reporting on federal court records said that Daniel — another Jan. 6 defendant
+  who received Trump clemency — reached a plea agreement in a separate federal child-exploitation case and was set
+  to plead guilty. Earlier Justice Department reporting had already identified Daniel as a North Carolina Jan. 6
+  defendant charged with assaulting law enforcement during the Capitol attack.{" "}
+  <a
+    className={linkCls}
+    href="https://www.ms.now/rachel-maddow-show/maddowblog/pardoned-jan-6-rioter-to-plead-guilty-in-child-sexual-abuse-case-adding-to-pattern"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Reporting on the later plea development
+  </a>{" "}
+  described federal court records indicating charges involving child exploitation of multiple victims, while the{" "}
+  <a
+    className={linkCls}
+    href="https://www.justice.gov/usao-dc/pr/north-carolina-man-arrested-assaulting-law-enforcement-and-other-charges-during-jan-6-0"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    original DOJ release
+  </a>{" "}
+  confirms his Jan. 6 case identity.
+</p>
+
+<p>
+  By the time we get to Johnson, Tocci, and Daniel, this is no longer a one-off embarrassment. It is a pattern:
+  men tied to a political movement treated as uniquely deserving of sympathy, pardon, or rehabilitation later
+  surfacing in child-exploitation or child-abuse cases while the same political culture continues to posture as
+  fanatically committed to protecting children.
+</p>
         <p>
           But when the danger comes wrapped in a politically protected identity — patriot, loyalist, culture-war ally,
           familiar man, useful symbol — the supposed absolutism of child protection softens into mercy, context, and
@@ -283,6 +308,28 @@ export default function WeDontRegisterRisk(): JSX.Element {
             </a>
           </li>
         </ul>
+<li>
+  MSNBC / Maddow Blog —{" "}
+  <a
+    className={linkCls}
+    href="https://www.ms.now/rachel-maddow-show/maddowblog/pardoned-jan-6-rioter-to-plead-guilty-in-child-sexual-abuse-case-adding-to-pattern"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Pardoned Jan. 6 rioter to plead guilty in child sexual abuse case
+  </a>
+</li>
+<li>
+  U.S. Department of Justice —{" "}
+  <a
+    className={linkCls}
+    href="https://www.justice.gov/usao-dc/pr/north-carolina-man-arrested-assaulting-law-enforcement-and-other-charges-during-jan-6-0"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    North Carolina man arrested for assaulting law enforcement during Jan. 6
+  </a>
+</li>
 
         <BandHeader title="Related Reading" icon="🔗" />
         <ul className="list-disc pl-6">
