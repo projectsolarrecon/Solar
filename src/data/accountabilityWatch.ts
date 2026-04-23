@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2026-02-01",
+  title: "Accountability Watch — January 2026 Roundup",
+  slug: "2026-02-01",
+  path: "/resources/accountability-watch/2026-02-01",
+  summary:
+    "Former or current police officers in Washington, D.C., North Carolina, Missouri, Georgia, and New York were arrested, sentenced, or otherwise implicated in January 2026 accountability cases; educators and school-linked defendants in Massachusetts/New Hampshire, Texas, Ohio, New Jersey, Missouri, and Winnsboro ISD figured prominently in both direct offending and alleged institutional concealment; clergy, political, medical, and first-responder cases expanded the month’s reach across Illinois/Missouri, South Carolina, California, Massachusetts, Florida, Wisconsin, and Missouri. Across cases, risk emerged through trusted roles, legitimacy, and institutional access rather than through registry-centered warning assumptions.",
+},
+{
   date: "2025-12-06",
   title: "Accountability Watch — Week of Nov 30–Dec 6, 2025",
   slug: "2025-12-06",
