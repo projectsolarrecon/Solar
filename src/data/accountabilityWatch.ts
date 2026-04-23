@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2026-03-01",
+  title: "Accountability Watch — February 2026 Roundup",
+  slug: "2026-03-01",
+  path: "/resources/accountability-watch/2026-03-01",
+  summary:
+    "February 2026 accountability cases centered on educators, school employees, coaches, youth-program leaders, law-enforcement personnel, child-facing therapeutic professionals, and public officials across Maryland, Virginia, Massachusetts, Alabama, Arkansas, Georgia, Texas, New York, New Jersey, Connecticut, and the U.K. New arrests and indictments included school and youth-access cases in Maryland, Virginia, Massachusetts, Alabama, Arkansas, Georgia, Texas, and New Jersey; federal pleas and sentencings involved a high school lacrosse coach, former teacher, child and adolescent counselor, and former university police officer; civic-legitimacy cases included a former New Jersey mayor / police sergeant and former Bracknell Forest public figures. Across the month, risk emerged through trusted roles, institutional legitimacy, youth access, and authority rather than through registry-centered warning assumptions.",
+},
+{
   date: "2026-02-01",
   title: "Accountability Watch — January 2026 Roundup",
   slug: "2026-02-01",
