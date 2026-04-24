@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2026-04-01",
+  title: "Accountability Watch — March 2026 Roundup",
+  slug: "2026-04-01",
+  path: "/resources/accountability-watch/2026-04-01",
+  summary:
+    "March 2026 accountability cases centered on educators, school employees, coaches, youth ministers, campus-police personnel, physicians, public school districts, and religious institutions across Kansas, Louisiana, New Jersey, Wisconsin, Indiana, Pennsylvania, Ohio, Massachusetts, Florida, New York, California, Missouri, Michigan, Rhode Island, and other jurisdictions. New arrests and charges included school and youth-access cases involving teachers and coaches in Kansas, Louisiana, New Jersey, and Wisconsin; federal pleas and sentencings involved youth-ministry, school, coaching, campus-police, and healthcare-authority cases; civil and administrative actions included a California Attorney General settlement with El Monte Union High School District and a federal lawsuit involving Oconto Falls School District; institutional accountability included the Rhode Island Attorney General’s Diocese of Providence report. Across the month, risk emerged through trusted roles, institutional legitimacy, youth access, medical authority, and oversight failures rather than through registry-centered warning assumptions.",
+},
+{
   date: "2026-03-01",
   title: "Accountability Watch — February 2026 Roundup",
   slug: "2026-03-01",
