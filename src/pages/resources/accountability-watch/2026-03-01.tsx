@@ -100,10 +100,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-3xl border border-slate-200 bg-white p-5 text-slate-950 shadow-sm md:p-7">
+    <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
       {eyebrow && <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">{eyebrow}</p>}
       <h2 className="mb-5 text-2xl font-bold text-slate-950">{title}</h2>
-      <div className="space-y-5">{children}</div>
+      <div className="space-y-4">{children}</div>
     </section>
   );
 }
@@ -133,45 +133,45 @@ function CaseRow({
   whyIncluded,
 }: CaseRowProps) {
   return (
-    <article className="rounded-2xl border border-slate-700 bg-slate-950 p-4 text-slate-100 shadow-md shadow-slate-950/10 md:p-5">
+    <article className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div className="flex gap-3">
-          <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-slate-700 bg-slate-900 text-2xl" aria-hidden="true">
+          <div className="mt-1 text-2xl" aria-hidden="true">
             {emoji}
           </div>
           <div>
-            <h3 className="text-lg font-bold text-white">{name}</h3>
-            <p className="text-sm font-medium leading-6 text-slate-300">{role}</p>
+            <h3 className="text-lg font-bold text-slate-950">{name}</h3>
+            <p className="text-sm font-medium text-slate-700">{role}</p>
           </div>
         </div>
         <div className="text-left md:text-right">
-          <p className="text-sm font-semibold text-slate-100">{date}</p>
-          <p className="text-xs leading-5 text-slate-400">{jurisdiction}</p>
+          <p className="text-sm font-semibold text-slate-800">{date}</p>
+          <p className="text-xs text-slate-500">{jurisdiction}</p>
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         <StageBadge stage={stage} />
         <RegistryChip status={registry} />
       </div>
 
-      <div className="mt-4 text-sm leading-6 text-slate-300">{summary}</div>
+      <div className="mt-3 text-sm leading-6 text-slate-700">{summary}</div>
 
       {whyIncluded && (
-        <div className="mt-4 rounded-xl border border-amber-300/40 bg-amber-100/10 p-3 text-sm leading-6 text-amber-100">
-          <span className="font-semibold text-amber-50">Why included: </span>
+        <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+          <span className="font-semibold">Why included: </span>
           {whyIncluded}
         </div>
       )}
 
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className="mt-3 flex flex-wrap gap-2">
         {sources.map((source) => (
           <a
             key={`${name}-${source.href}`}
             href={source.href}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-blue-300/70 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 underline underline-offset-2 hover:bg-blue-100"
+            className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 underline underline-offset-2 hover:bg-blue-100"
           >
             {source.label}
           </a>
@@ -180,7 +180,6 @@ function CaseRow({
     </article>
   );
 }
-
 export default function AccountabilityWatch20260301() {
   const pageTitle = "Accountability Watch — February 2026 Roundup | SOLAR";
 
@@ -399,8 +398,7 @@ export default function AccountabilityWatch20260301() {
             ]}
           />
         </Section>
-
-        <Section title="Pleas / Convictions / Sentencings" eyebrow="Federal and court-resolved cases inside the February window">
+<Section title="Pleas / Convictions / Sentencings" eyebrow="Federal and court-resolved cases inside the February window">
           <CaseRow
             name="Joseph Garofalo"
             role="Assistant high school lacrosse coach"
