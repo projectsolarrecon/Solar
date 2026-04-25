@@ -590,7 +590,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
           </div>
         </Section>
 
-        {/* Key Developments */}
+      {/* Key Developments */}
         <Section
           id="developments"
           eyebrow="What changed, why it matters, SOLAR analysis"
@@ -617,7 +617,9 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 to the people required to comply.
               </p>
             }
-            solarReadLabels={["Symbolic but important", "Transparency opportunity"]}
+            movementLabels={["Neutral movement"]}
+            impactLabels={["Transparency contrast"]}
+            riskLabels={["Symbolic but important", "Advocacy opening"]}
             solarRead={
               <p>
                 This is not direct registry reform, but the transparency
@@ -650,7 +652,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             onCopy={copyText}
           />
 
-<DevelopmentCard
+          <DevelopmentCard
             tone="amber"
             label="Congressional oversight"
             title="U.S. Congress — DOJ Pressed on Epstein Files Transparency Act Compliance"
@@ -670,7 +672,9 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 proportional rules, or evidence that restrictions improve safety.
               </p>
             }
-            solarReadLabels={["Watch closely", "Transparency opportunity"]}
+            movementLabels={["Unclear movement"]}
+            impactLabels={["Transparency opportunity"]}
+            riskLabels={["Watch closely", "Advocacy opening"]}
             solarRead={
               <p>
                 Oversight pressure is useful only if it becomes more than
@@ -725,20 +729,18 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 law-abiding.
               </p>
             }
-            solarReadLabels={[
-              "Negative movement",
-              "Relief exclusion",
-              "Reentry barrier",
-            ]}
+            movementLabels={["Neutral movement"]}
+            impactLabels={["Relief exclusion", "Reentry barrier"]}
+            riskLabels={["Missed opportunity"]}
             solarRead={
               <p>
-                From the registrant-family perspective, this is not meaningful
-                relief. It reinforces the idea that people required to register
-                are uniquely undeserving of second chances, even when broader
-                reentry policy recognizes that sealed records can support
-                employment, housing, and stability. The practical result is
-                reform for many people, but continued exclusion for the group
-                most often kept under permanent public punishment.
+                From the registrant-family perspective, this does not create new
+                relief or impose a new burden. But it matters because a major
+                reform opportunity moved forward while leaving registrants outside
+                the relief framework. That neutral legal effect carries a negative
+                policy message: people required to register remain treated as
+                categorically beyond second chances, even when lawmakers accept the
+                broader reentry logic for others.
               </p>
             }
             whatToWatch={
@@ -763,7 +765,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             onCopy={copyText}
           />
         </Section>
-
+             
         {/* Action Center */}
         <Section id="action" eyebrow="Practical response" title="Action Center">
           <div className="grid gap-4 md:grid-cols-3">
