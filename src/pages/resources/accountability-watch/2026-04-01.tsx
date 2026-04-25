@@ -16,6 +16,7 @@ type Stage =
   | "Charged / Indicted"
   | "Re-arrest / added charges"
   | "Guilty plea"
+  | "Convicted"
   | "Sentenced"
   | "Civil lawsuit filed"
   | "AG settlement / stipulated judgment"
@@ -63,6 +64,7 @@ function StageBadge({ stage }: { stage: Stage }) {
     "Charged / Indicted": "border-indigo-300 bg-indigo-50 text-indigo-800",
     "Re-arrest / added charges": "border-rose-300 bg-rose-50 text-rose-800",
     "Guilty plea": "border-violet-300 bg-violet-50 text-violet-800",
+    Convicted: "border-violet-300 bg-violet-50 text-violet-800",
     Sentenced: "border-emerald-300 bg-emerald-50 text-emerald-800",
   };
 
@@ -435,6 +437,49 @@ export default function AccountabilityWatch20260401() {
             </Section>
 
             <Section title="Pleas / Convictions / Sentencings" eyebrow="Case outcomes">
+              <Subgroup>Other institutional authority / wealth and public influence</Subgroup>
+
+              <CaseRow
+                emoji="🏙️"
+                name="Alon Alexander, Oren Alexander, and Tal Alexander"
+                role="Luxury real estate / business figures; Alon also reported as a private security executive"
+                jurisdiction="New York / Southern District of New York"
+                stage="Convicted"
+                date="March 9, 2026"
+                registry="No prior registration noted"
+                summary={
+                  <>
+                    A Manhattan federal jury convicted Alon, Oren, and Tal Alexander of
+                    multiple federal sex offenses, including conspiracy to commit sex
+                    trafficking, after a weeks-long trial. Federal prosecutors said the
+                    verdict followed testimony from 11 victims.
+                  </>
+                }
+                whyIncluded={
+                  <>
+                    Wealth, luxury real estate status, elite social access, and professional
+                    credibility can create access, lower suspicion, and make repeated abuse
+                    harder to challenge. This case shows how influence and social capital can
+                    operate as a form of protection before law enforcement ever enters the
+                    picture.
+                  </>
+                }
+                sources={[
+                  {
+                    label: "DOJ / USAO Southern District of New York",
+                    href: "https://www.justice.gov/usao-sdny/pr/statement-us-attorney-jay-clayton-convictions-alon-oren-and-tal-alexander",
+                  },
+                  {
+                    label: "Reuters",
+                    href: "https://www.reuters.com/legal/government/alexander-brothers-top-ny-real-estate-brokers-convicted-sex-trafficking-trial-2026-03-09/",
+                  },
+                  {
+                    label: "CBS News",
+                    href: "https://www.cbsnews.com/news/jury-verdict-guilty-alexander-brothers-trial/",
+                  },
+                ]}
+              />
+
               <Subgroup>Clergy / religious institutions</Subgroup>
 
               <CaseRow
