@@ -2,12 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { accountabilityWatch } from "../../../data/accountabilityWatch";
 import { Helmet } from "react-helmet";
-import { ShieldAlert, Gavel, FileWarning, ArrowRight, Link as LinkIcon, Newspaper } from "lucide-react";
+import {
+  ShieldAlert,
+  Gavel,
+  FileWarning,
+  ArrowRight,
+  Link as LinkIcon,
+  Newspaper,
+} from "lucide-react";
 import ShareBar from "../../../components/solar/ShareBar";
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold ring-1 ring-slate-200">
+    <span className="inline-flex items-center gap-1 rounded-full border border-white/80 bg-white px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
+      {children}
+    </span>
+  );
+}
+
+function ArchiveChip({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600">
       {children}
     </span>
   );
@@ -31,10 +46,12 @@ function Callout({
     emerald: "border-emerald-300 bg-emerald-50 text-emerald-900",
     slate: "border-slate-300 bg-slate-50 text-slate-900",
   } as const;
+
   return (
     <div className={`mt-4 rounded-xl border p-4 ${tones[tone]}`}>
       <div className="mb-1 flex items-center gap-2 font-semibold">
-        {icon} <span>{title}</span>
+        {icon}
+        <span>{title}</span>
       </div>
       <div className="text-sm opacity-90">{children}</div>
     </div>
@@ -42,28 +59,24 @@ function Callout({
 }
 
 export default function AccountabilityWatchIndex() {
-  const pageTitle = "Accountability Watch (Weekly) | SOLAR";
+  const pageTitle = "Accountability Watch | SOLAR";
 
-  // ---- Auto teaser: dynamically import the most recent weekly file and read its exported highlights ----
-  // We assume accountabilityWatch is sorted DESC (newest first). If not, sort by date here.
   const latest = accountabilityWatch?.[0];
   const [teaser, setTeaser] = React.useState<string[] | null>(null);
 
   React.useEffect(() => {
     if (!latest?.slug) return;
-    // Import all weekly modules in this folder (YYYY-MM-DD.tsx)
+
     const modules = import.meta.glob("./*.tsx");
     const path = `./${latest.slug}.tsx`;
 
     if (modules[path]) {
-      modules[path]().then((m: any) => {
-        // Prefer an explicit export, fallback to atAGlance if present
-        const items: string[] =
-          m?.teaserHighlights ??
-          m?.atAGlance ??
-          [];
-        setTeaser(items.slice(0, 4)); // show up to 4 bullets
-      }).catch(() => setTeaser(null));
+      modules[path]()
+        .then((m: any) => {
+          const items: string[] = m?.teaserHighlights ?? m?.atAGlance ?? [];
+          setTeaser(items.slice(0, 4));
+        })
+        .catch(() => setTeaser(null));
     }
   }, [latest?.slug]);
 
@@ -73,7 +86,7 @@ export default function AccountabilityWatchIndex() {
         <title>{pageTitle}</title>
         <meta
           name="description"
-          content="Weekly roundup of verified arrests, charges, pleas, convictions, and sentencings involving public figures—sourced from official filings and reputable reporting, with registry-status context."
+          content="Monthly Accountability Watch roundups documenting cases involving trusted roles, institutional access, public influence, household authority, and registry-status context."
         />
       </Helmet>
 
@@ -81,34 +94,37 @@ export default function AccountabilityWatchIndex() {
       <header className="relative isolate overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 text-white">
         <div className="mx-auto max-w-5xl px-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Chip>🧭 Accountability Watch</Chip>
-              <Chip>Weekly Series</Chip>
+              <Chip>Monthly Series</Chip>
             </div>
-            <div className="hidden sm:flex items-center gap-2 text-xs text-slate-200/90">
+            <div className="hidden items-center gap-2 text-xs text-slate-200/90 sm:flex">
               <Gavel size={16} /> Verified sources only
             </div>
           </div>
 
           <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-            Who’s Making News for Sex Offenses — and Why It Matters
+            See Beyond the Stranger-Danger Myth
           </h1>
-          <p className="mt-2 max-w-3xl text-sm text-slate-200">
-            <strong>Accountability Watch</strong> tracks verified arrests, charges, pleas, convictions, and sentencings involving
-            <em> people in positions of public trust or influence</em>—politicians, law enforcement, corrections staff, educators,
-            coaches, clergy, healthcare professionals, executives, nonprofit and community leaders, and other public-facing figures.
-            We tag <strong>registry status</strong> to show how often new cases involve <strong>non-registrants</strong>, underscoring that prevention
-            requires more than public registries.
+
+          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-200">
+            <strong>Accountability Watch</strong> is a monthly
+            pattern-recognition series, not a crime blotter. Each roundup tracks
+            verified cases involving trusted roles, institutional access, public
+            influence, household authority, and systems that often respond only
+            after harm has surfaced. Registry-status context helps show why
+            prevention requires more than public lists.
           </p>
 
           <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-500/40 via-slate-200/40 to-slate-500/40" />
+
           <div className="mt-4">
             <ShareBar />
           </div>
         </div>
       </header>
 
-      {/* Why this exists (permanent intro) */}
+      {/* Why this exists */}
       <section className="mx-auto max-w-5xl px-4 py-8">
         <div className="grid gap-4 md:grid-cols-3">
           <Callout
@@ -116,17 +132,22 @@ export default function AccountabilityWatchIndex() {
             title="Why we track this"
             icon={<ShieldAlert className="h-4 w-4" />}
           >
-            Public trust is concentrated in roles like lawmakers, judges, police, clergy, educators, and healthcare.
-            When allegations arise here, the stakes are high for communities and policy.
+            Public trust, professional status, household authority, and
+            institutional access can create opportunity before any public
+            warning system exists. Accountability Watch tracks those patterns so
+            prevention is aimed where risk actually appears.
           </Callout>
 
           <Callout
             tone="emerald"
-            title="RECON perspective"
+            title="Why registries miss the point"
             icon={<FileWarning className="h-4 w-4" />}
           >
-            Most sex offenses are committed by <strong>non-registrants</strong>. By tagging registry status, we document how new cases
-            rarely involve people the registry could “pre-identify”—evidence that prevention ≠ perpetual public lists.
+            Public registries are built around people already known to the
+            system. Many new cases involve trusted or high-status people who
+            were not publicly identified that way beforehand. Real prevention
+            requires institutional accountability, earlier intervention, and
+            evidence over myth.
           </Callout>
 
           <Callout
@@ -134,54 +155,86 @@ export default function AccountabilityWatchIndex() {
             title="Standards & fairness"
             icon={<Gavel className="h-4 w-4" />}
           >
-            Allegations aren’t findings of guilt. We link to primary sources when possible and avoid personal data beyond
-            what’s already in public documents.
+            Allegations are not findings of guilt. We use official sources and
+            reputable reporting, avoid graphic detail, and focus on the public
+            accountability lesson: authority, access, status, and prevention
+            failure.
           </Callout>
         </div>
       </section>
 
-      {/* This Week (auto teaser) */}
+      {/* Latest Roundup */}
       {latest && teaser && teaser.length > 0 && (
         <section className="mx-auto max-w-5xl px-4 pb-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             <div className="mb-2 flex items-center gap-2 text-slate-700">
               <Newspaper className="h-5 w-5" />
-              <h2 className="text-lg font-semibold">This Week: {latest.title}</h2>
+              <h2 className="text-lg font-semibold">
+                Latest Roundup: {latest.title}
+              </h2>
             </div>
-            <ul className="m-0 list-disc pl-5 text-slate-800">
-              {teaser.map((t, i) => <li key={i} className="mb-1">{t}</li>)}
+
+            <ul className="m-0 list-disc pl-5 text-sm leading-6 text-slate-800">
+              {teaser.map((t, i) => (
+                <li key={i} className="mb-1">
+                  {t}
+                </li>
+              ))}
             </ul>
+
             <Link
               to={latest.path}
-              className="mt-3 inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-white hover:bg-slate-800"
+              className="mt-4 inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
             >
-              Open latest update <ArrowRight size={16} />
+              Open latest roundup <ArrowRight size={16} />
             </Link>
           </div>
         </section>
       )}
 
-      {/* Recent Weeks */}
+      {/* Recent Roundups */}
       <section className="mx-auto max-w-5xl px-4 pb-12">
-        <h2 className="mb-3 text-lg font-semibold text-slate-900">Recent Weeks</h2>
+        <h2 className="mb-3 text-lg font-semibold text-slate-900">
+          Recent Roundups
+        </h2>
+
         <ul className="grid gap-3">
           {accountabilityWatch.map((w) => (
-            <li key={w.slug} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
-              <div className="flex items-center gap-2 text-sm text-slate-600">
-                <span className="font-semibold text-slate-900">{w.title}</span>
-                <span className="ml-auto">{w.date}</span>
+            <li
+              key={w.slug}
+              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md"
+            >
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    Monthly / Legacy Archive
+                  </p>
+                  <h3 className="text-base font-bold leading-snug text-slate-950">
+                    {w.title}
+                  </h3>
+                </div>
+                <span className="text-sm font-semibold text-slate-500">
+                  {w.date}
+                </span>
               </div>
-              <p className="mt-1 text-slate-700">{w.summary}</p>
+
+              <p className="mt-2 max-h-24 overflow-hidden text-sm leading-6 text-slate-700">
+                {w.summary}
+              </p>
+
               <Link
                 to={w.path}
-                className="mt-3 inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-white hover:bg-slate-800"
+                className="mt-4 inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
               >
-                Open week <ArrowRight size={16} />
+                Open roundup <ArrowRight size={16} />
               </Link>
-              <div className="mt-2 flex flex-wrap gap-2 text-xs text-slate-500">
-                <Chip><LinkIcon size={14} /> Permalink</Chip>
-                <Chip>Registry context</Chip>
-                <Chip>Verified sources</Chip>
+
+              <div className="mt-3 flex flex-wrap gap-2 text-xs text-slate-500">
+                <ArchiveChip>
+                  <LinkIcon size={14} /> Permalink
+                </ArchiveChip>
+                <ArchiveChip>Registry context</ArchiveChip>
+                <ArchiveChip>Verified sources</ArchiveChip>
               </div>
             </li>
           ))}
@@ -190,8 +243,9 @@ export default function AccountabilityWatchIndex() {
         <div className="mt-6 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
           <p className="font-semibold">Reminder</p>
           <p className="mt-1">
-            This index lists weekly summaries. Click through for case-level sources, stage (arrest/charge/plea/conviction/sentencing),
-            and a registry-status note for each entry.
+            This index lists monthly roundups and legacy weekly entries. Click
+            through for case-level sources, procedural stage, why-included
+            notes, and registry-status context for each entry.
           </p>
         </div>
       </section>
