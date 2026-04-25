@@ -237,115 +237,7 @@ function DevelopmentCard({
           </div>
         </div>
       </div>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-4 flex flex-wrap gap-2">
-        {sources.map((source) => (
-          <SourcePill key={source.href} source={source} />
-        ))}
-
-        {scriptId && scriptText && onCopy && (
-          <button
-            onClick={() => onCopy(scriptId, scriptText)}
-            className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
-          >
-            <Clipboard className="h-3 w-3" />
-            {copied === scriptId ? "Copied!" : scriptLabel}
-          </button>
-        )}
-      </div>
-    </article>
-  );
-}
-
-function DevelopmentCard({
-  tone,
-  label,
-  title,
-  whatChanged,
-  whyItMatters,
-  solarReadLabels,
-  solarRead,
-  whatToWatch,
-  tags,
-  sources,
-  scriptId,
-  scriptLabel = "Copy talking point",
-  scriptText,
-  copied,
-  onCopy,
-}: {
-  tone: Tone;
-  label: string;
-  title: string;
-  whatChanged: React.ReactNode;
-  whyItMatters: React.ReactNode;
-  solarReadLabels: string[];
-  solarRead: React.ReactNode;
-  whatToWatch: React.ReactNode;
-  tags: string[];
-  sources: Source[];
-  scriptId?: string;
-  scriptLabel?: string;
-  scriptText?: string;
-  copied?: string | null;
-  onCopy?: (id: string, text: string) => void;
-}) {
-  return (
-    <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
-      <div>
-        <span
-          className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${tones[tone]}`}
-        >
-          {label}
-        </span>
-        <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
-          {title}
-        </h3>
-      </div>
-
-      <div className="mt-4 grid gap-3">
-        <div className="rounded-xl border border-slate-200 bg-white p-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-            What changed
-          </p>
-          <div className="mt-1 text-sm leading-6 text-slate-800">
-            {whatChanged}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-slate-200 bg-white p-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-            Why it matters
-          </p>
-          <div className="mt-1 text-sm leading-6 text-slate-800">
-            {whyItMatters}
-          </div>
-        </div>
-
-        <SolarAnalysis labels={solarReadLabels}>{solarRead}</SolarAnalysis>
-
-        <div className="rounded-xl border border-slate-200 bg-white p-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-            What to watch
-          </p>
-          <div className="mt-1 text-sm leading-6 text-slate-800">
-            {whatToWatch}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-4 flex flex-wrap gap-2">
+<div className="mt-4 flex flex-wrap gap-2">
         {tags.map((tag) => (
           <span
             key={tag}
@@ -404,6 +296,7 @@ function ActionCard({
     </div>
   );
 }
+
 function WatchItem({
   title,
   posture,
@@ -537,8 +430,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
           </div>
         </div>
       </header>
-
-      <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 md:px-6">
+<div className="mx-auto max-w-6xl space-y-6 px-4 py-8 md:px-6">
         {/* At a Glance */}
         <Section id="glance" eyebrow="Plain-language summary" title="At a Glance">
           <div className="grid gap-4 md:grid-cols-3">
@@ -590,7 +482,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
           </div>
         </Section>
 
-      {/* Key Developments */}
+        {/* Key Developments */}
         <Section
           id="developments"
           eyebrow="What changed, why it matters, SOLAR analysis"
@@ -736,11 +628,11 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
               <p>
                 From the registrant-family perspective, this does not create new
                 relief or impose a new burden. But it matters because a major
-                reform opportunity moved forward while leaving registrants outside
-                the relief framework. That neutral legal effect carries a negative
-                policy message: people required to register remain treated as
-                categorically beyond second chances, even when lawmakers accept the
-                broader reentry logic for others.
+                reform opportunity moved forward while leaving registrants
+                outside the relief framework. That neutral legal effect carries
+                a negative policy message: people required to register remain
+                treated as categorically beyond second chances, even when
+                lawmakers accept the broader reentry logic for others.
               </p>
             }
             whatToWatch={
@@ -765,8 +657,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             onCopy={copyText}
           />
         </Section>
-             
-        {/* Action Center */}
+{/* Action Center */}
         <Section id="action" eyebrow="Practical response" title="Action Center">
           <div className="grid gap-4 md:grid-cols-3">
             <ActionCard
