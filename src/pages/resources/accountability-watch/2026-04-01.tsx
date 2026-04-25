@@ -294,13 +294,6 @@ export default function AccountabilityWatch20260401() {
                 sports, ministry, healthcare, campus policing, and institutional
                 complaint systems.
               </PullQuote>
-
-              <p className="text-sm leading-7 text-slate-700">
-                Registry information was mostly absent from public sources. That
-                absence matters because this month’s cases again point toward authority,
-                legitimacy, access, secrecy, and delayed intervention rather than prior
-                public registry status as the central prevention problem.
-              </p>
             </Section>
 
             <Section title="New Arrests & Charges" eyebrow="Criminal procedure">
@@ -330,12 +323,12 @@ export default function AccountabilityWatch20260401() {
                 }
                 sources={[
                   {
-                    label: "DOJ / USAO Kansas — complaint",
-                    href: "https://www.justice.gov/usao-ks/pr/former-kansas-high-school-coach-charged-producing-child-pornography",
-                  },
-                  {
                     label: "DOJ / USAO Kansas — indictment",
                     href: "https://www.justice.gov/usao-ks/pr/former-wrestling-coach-indicted-child-pornography-production",
+                  },
+                  {
+                    label: "Wichita Eagle",
+                    href: "https://www.kansas.com/news/local/crime/article314940245.html",
                   },
                 ]}
               />
@@ -430,8 +423,8 @@ export default function AccountabilityWatch20260401() {
                 }
                 sources={[
                   {
-                    label: "WEAU — arrest",
-                    href: "https://www.weau.com/2026/03/25/eau-claire-teacher-arrested-child-sexual-assault-investigation/",
+                    label: "Eau Claire Police Department",
+                    href: "https://www.facebook.com/EauClairePD/posts/news-release-please-see-the-following-release-regarding-a-child-sexual-assault-t/1356917473137313/",
                   },
                   {
                     label: "WEAU — charges filed",
@@ -471,6 +464,10 @@ export default function AccountabilityWatch20260401() {
                   {
                     label: "DOJ / USAO Southern District of Indiana",
                     href: "https://www.justice.gov/usao-sdin/pr/indiana-youth-minister-linked-imprisoned-kentucky-school-superintendent-sentenced-nine",
+                  },
+                  {
+                    label: "14 News",
+                    href: "https://www.14news.com/2026/03/06/jasper-youth-minister-sentenced-federal-prison-child-sexual-abuse-material-charges/",
                   },
                 ]}
               />
@@ -530,6 +527,10 @@ export default function AccountabilityWatch20260401() {
                     label: "DOJ / USAO Massachusetts",
                     href: "https://www.justice.gov/usao-ma/pr/former-boston-teacher-sentenced-10-years-prison-child-exploitation",
                   },
+                  {
+                    label: "Boston.com",
+                    href: "https://www.boston.com/news/crime/2026/03/15/former-boston-public-schools-teacher-sentenced-to-10-years-in-prison-for-child-exploitation/",
+                  },
                 ]}
               />
 
@@ -558,6 +559,10 @@ export default function AccountabilityWatch20260401() {
                   {
                     label: "DOJ / USAO Southern District of New York",
                     href: "https://www.justice.gov/usao-sdny/pr/former-high-school-teacher-sentenced-13-years-prison-coercing-minors-produce-child",
+                  },
+                  {
+                    label: "Patch",
+                    href: "https://patch.com/new-york/scarsdale/high-school-teacher-westchester-who-coerced-minors-make-child-sex-abuse",
                   },
                 ]}
               />
@@ -590,6 +595,10 @@ export default function AccountabilityWatch20260401() {
                   {
                     label: "DOJ / USAO Southern District of Ohio",
                     href: "https://www.justice.gov/usao-sdoh/pr/jamaican-illegal-alien-who-volunteered-local-teacher-youth-minister-sentenced-more-13",
+                  },
+                  {
+                    label: "Scioto Valley Guardian",
+                    href: "https://sciotovalleyguardian.com/2026/03/12/central-ohio-youth-minister-sentenced-to-13-years-for-child-porn-was-actively-downloading-when-fbi-showed-up/",
                   },
                 ]}
               />
@@ -655,6 +664,10 @@ export default function AccountabilityWatch20260401() {
                     label: "NBC Miami",
                     href: "https://www.nbcmiami.com/news/local/south-florida-youth-track-coach-sentenced-to-50-years-in-prison-in-teen-molestation-case/3785602/",
                   },
+                  {
+                    label: "Local 10",
+                    href: "https://www.local10.com/news/local/2026/03/24/miami-gardens-track-coach-gets-50-years-for-raping-14-year-old-student/",
+                  },
                 ]}
               />
 
@@ -714,6 +727,10 @@ export default function AccountabilityWatch20260401() {
                     label: "DOJ / USAO Central District of California",
                     href: "https://www.justice.gov/usao-cdca/pr/former-san-diego-state-university-police-sergeant-pleads-guilty-possessing-sexually",
                   },
+                  {
+                    label: "NBC San Diego",
+                    href: "https://www.nbcsandiego.com/news/local/ex-sdsu-police-sergeant-pleads-guilty-to-child-porn-charge/3996821/",
+                  },
                 ]}
               />
 
@@ -747,6 +764,10 @@ export default function AccountabilityWatch20260401() {
                     label: "DOJ / USAO Eastern District of Missouri",
                     href: "https://www.justice.gov/usao-edmo/pr/former-st-louis-area-pediatrician-sentenced-20-years-prison-exchanging-prescriptions",
                   },
+                  {
+                    label: "KSDK",
+                    href: "https://www.ksdk.com/article/news/crime/former-pediatrician-craig-spiegel-gets-20-years-trading-prescriptions-for-sex-cash/63-37637993-2345-4db6-af75-89e7f0ad6c69",
+                  },
                 ]}
               />
 
@@ -775,6 +796,10 @@ export default function AccountabilityWatch20260401() {
                   {
                     label: "DOJ / USAO Eastern District of Michigan",
                     href: "https://www.justice.gov/usao-edmi/pr/physician-sentenced-15-years-federal-prison-possessing-and-distributing-thousands",
+                  },
+                  {
+                    label: "Tampa Free Press",
+                    href: "https://www.tampafp.com/michigan-family-doctor-gets-15-years-for-massive-collection-of-csam/",
                   },
                 ]}
               />
@@ -840,6 +865,10 @@ export default function AccountabilityWatch20260401() {
                 }
                 sources={[
                   {
+                    label: "Wisconsin Public Radio",
+                    href: "https://www.wpr.org/news/federal-complaint-alleges-ongoing-sexual-abuse-oconto-falls-school-district",
+                  },
+                  {
                     label: "WLUK / Fox 11",
                     href: "https://fox11online.com/news/local/3-former-oconto-falls-students-sue-district-alleging-years-of-staff-sexual-misconduct-amanda-watzka-brooke-lacount-grace-williams-brynn-larsen-gayle-gander-wisconsin",
                   },
@@ -877,10 +906,6 @@ export default function AccountabilityWatch20260401() {
                   {
                     label: "Rhode Island AG — report page",
                     href: "https://riag.ri.gov/diocese-report",
-                  },
-                  {
-                    label: "Rhode Island AG — press release",
-                    href: "https://riag.ri.gov/press-releases/attorney-general-neronha-publishes-comprehensive-report-child-sexual-abuse-diocese",
                   },
                   {
                     label: "Associated Press",
