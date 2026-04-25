@@ -7,10 +7,8 @@ import {
   Clipboard,
   ExternalLink,
   FileText,
-  Gavel,
   Printer,
   Scale,
-  ShieldCheck,
 } from "lucide-react";
 
 type Tone = "sky" | "amber" | "emerald" | "slate" | "rose" | "indigo";
@@ -97,12 +95,41 @@ function SourcePill({ source }: { source: Source }) {
   );
 }
 
+function SolarAnalysis({
+  labels,
+  children,
+}: {
+  labels: string[];
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-3">
+      <p className="text-xs font-bold uppercase tracking-wide text-indigo-700">
+        SOLAR analysis
+      </p>
+      <div className="mt-2 flex flex-wrap gap-2">
+        {labels.map((label) => (
+          <span
+            key={label}
+            className="rounded-full border border-indigo-200 bg-white px-2.5 py-1 text-xs font-bold text-indigo-800"
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+      <div className="mt-3 text-sm leading-6 text-indigo-950">{children}</div>
+    </div>
+  );
+}
+
 function DevelopmentCard({
   tone,
   label,
   title,
   whatChanged,
   whyItMatters,
+  solarReadLabels,
+  solarRead,
   whatToWatch,
   tags,
   sources,
@@ -117,6 +144,8 @@ function DevelopmentCard({
   title: string;
   whatChanged: React.ReactNode;
   whyItMatters: React.ReactNode;
+  solarReadLabels: string[];
+  solarRead: React.ReactNode;
   whatToWatch: React.ReactNode;
   tags: string[];
   sources: Source[];
@@ -128,17 +157,15 @@ function DevelopmentCard({
 }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
-      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div>
-          <span
-            className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${tones[tone]}`}
-          >
-            {label}
-          </span>
-          <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
-            {title}
-          </h3>
-        </div>
+      <div>
+        <span
+          className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${tones[tone]}`}
+        >
+          {label}
+        </span>
+        <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
+          {title}
+        </h3>
       </div>
 
       <div className="mt-4 grid gap-3">
@@ -159,6 +186,8 @@ function DevelopmentCard({
             {whyItMatters}
           </div>
         </div>
+
+        <SolarAnalysis labels={solarReadLabels}>{solarRead}</SolarAnalysis>
 
         <div className="rounded-xl border border-slate-200 bg-white p-3">
           <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
@@ -229,7 +258,6 @@ function ActionCard({
     </div>
   );
 }
-
 function WatchItem({
   title,
   posture,
@@ -379,7 +407,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
               keeping the transparency law in the public-policy spotlight.
             </StatusCard>
 
-            <StatusCard tone="emerald" title="📣 Relief gap">
+            <StatusCard tone="rose" title="📣 Relief exclusion">
               Illinois Clean Slate coverage highlighted a familiar reform
               pattern: broad record-relief progress still leaves registrants
               excluded from automatic relief.
@@ -394,10 +422,10 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
               The week’s thread is not just transparency. It is selective
               reform. In high-profile cases, lawmakers can move quickly to
               demand disclosure, oversight, and accountability. In registry
-              policy, the same urgency often disappears, leaving people and
-              families to navigate confusing rules, broad exclusions, and
-              compliance systems that punish mistakes long before they clarify
-              obligations.
+              policy, the same urgency often disappears, leaving registrants and
+              their families to navigate confusing rules, categorical
+              exclusions, and compliance systems that punish mistakes long
+              before they clarify obligations.
             </p>
           </div>
 
@@ -411,7 +439,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             <StatusCard tone="slate" title="What’s ahead">
               Watch the Dec. 19 DOJ deadline, any further federal court orders,
               and the Illinois Clean Slate implementation process as automatic
-              relief moves toward a 2029 launch.
+              relief moves toward a 2029 launch without registrants included.
             </StatusCard>
           </div>
         </Section>
@@ -419,7 +447,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
         {/* Key Developments */}
         <Section
           id="developments"
-          eyebrow="What changed, why it matters, what to watch"
+          eyebrow="What changed, why it matters, SOLAR analysis"
           title="Key Developments"
         >
           <DevelopmentCard
@@ -441,6 +469,17 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 routinely impose life-altering public consequences while leaving
                 many rules, relief pathways, and implementation details opaque
                 to the people required to comply.
+              </p>
+            }
+            solarReadLabels={["Symbolic but important", "Transparency opportunity"]}
+            solarRead={
+              <p>
+                This is not direct registry reform, but the transparency
+                principle is useful. From the registrant-family perspective, the
+                comparison point matters: if Congress can demand deadlines,
+                disclosure, and accountability in a high-profile case, it can
+                demand the same clarity from the registry systems that ordinary
+                people must navigate every day.
               </p>
             }
             whatToWatch={
@@ -465,7 +504,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             onCopy={copyText}
           />
 
-          <DevelopmentCard
+<DevelopmentCard
             tone="amber"
             label="Congressional oversight"
             title="U.S. Congress — DOJ Pressed on Epstein Files Transparency Act Compliance"
@@ -483,6 +522,18 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 policy often creates complex compliance duties without
                 comparable attention to clear notice, accurate information,
                 proportional rules, or evidence that restrictions improve safety.
+              </p>
+            }
+            solarReadLabels={["Watch closely", "Transparency opportunity"]}
+            solarRead={
+              <p>
+                Oversight pressure is useful only if it becomes more than
+                performance. For registrants and families, the question is
+                whether lawmakers will apply the same demand for government
+                accountability to everyday systems: confusing rules,
+                inconsistent enforcement, unclear relief pathways, and
+                compliance traps that destabilize housing, work, and family
+                life.
               </p>
             }
             whatToWatch={
@@ -508,8 +559,8 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
           />
 
           <DevelopmentCard
-            tone="emerald"
-            label="Record relief"
+            tone="rose"
+            label="Relief exclusion"
             title="Illinois — Clean Slate Coverage Highlights Registrant Exclusions"
             whatChanged={
               <p>
@@ -526,6 +577,22 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
                 the same permanent underclass logic that blocks reintegration,
                 even for people who may have completed sentences and remained
                 law-abiding.
+              </p>
+            }
+            solarReadLabels={[
+              "Negative movement",
+              "Relief exclusion",
+              "Reentry barrier",
+            ]}
+            solarRead={
+              <p>
+                From the registrant-family perspective, this is not meaningful
+                relief. It reinforces the idea that people required to register
+                are uniquely undeserving of second chances, even when broader
+                reentry policy recognizes that sealed records can support
+                employment, housing, and stability. The practical result is
+                reform for many people, but continued exclusion for the group
+                most often kept under permanent public punishment.
               </p>
             }
             whatToWatch={
@@ -545,7 +612,7 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
             ]}
             scriptId="SCRIPT-CLEANS"
             scriptLabel="Copy advocacy message"
-            scriptText="Message idea: Illinois’s Clean Slate reforms are important progress. Please also study fair, individualized record-relief pathways for people excluded because of registration requirements, especially where stability, housing, and employment would support long-term public safety."
+            scriptText="Message idea: Illinois’s Clean Slate reforms are important progress for many people, but they leave registrants behind. Please study fair, individualized record-relief pathways for people excluded because of registration requirements, especially where stability, housing, and employment would support long-term public safety."
             copied={copied}
             onCopy={copyText}
           />
@@ -609,8 +676,8 @@ export default function LegislativeTracker_2025_12_07(): JSX.Element {
 
             <WatchItem
               title="Illinois Clean Slate Act"
-              posture="Implementation phase continues, with automation expected in 2029."
-              why="Clean Slate reform advances stability for many people, but exclusions for registrants preserve permanent collateral consequences."
+              posture="Implementation phase continues, with automation expected in 2029, while registrants remain excluded from automatic relief."
+              why="Clean Slate reform advances stability for many people, but the exclusion of registrants preserves permanent collateral consequences for the population SOLAR tracks most closely."
               next="Watch for implementation rules, amendment proposals, and advocacy around individualized relief."
             />
 
