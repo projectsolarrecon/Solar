@@ -225,47 +225,37 @@ export default function Home(): JSX.Element {
       </div>
 
       {/* Core Tools (second row, smaller buttons) */}
-      <div className="mt-5 text-center">
-        <div className="text-slate-200/90 text-xs tracking-wide uppercase mb-3">
-          Core Tools
-        </div>
+<div className="mt-5 text-center">
+  <div className="text-slate-200/90 text-xs tracking-wide uppercase mb-3">
+    Core Tools
+  </div>
 
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link
-            to="/resources/state-registry"
-            aria-label="Check your state's registry rules"
-            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
-                       bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base"
-          >
-            Check Your State’s Registry Rules
-          </Link>
+  <div className="flex flex-wrap justify-center gap-3">
+    <Link
+      to="/resources/state-registry"
+      aria-label="Check your state's registry rules"
+      className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors bg-blue-600 text-white hover:bg-blue-500 text-sm md:text-base"
+    >
+      Check Your State’s Registry Rules
+    </Link>
 
-          <Link
-            to="/resources/legislative-tracker"
-            aria-label="Track new laws and bills"
-            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
-                       bg-indigo-600 text-white hover:bg-indigo-500 text-sm md:text-base"
-          >
-            Track New Laws & Bills
-          </Link>
+    <Link
+      to="/resources/legislative-tracker"
+      aria-label="Track new laws and bills"
+      className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors bg-indigo-600 text-white hover:bg-indigo-500 text-sm md:text-base"
+    >
+      Track New Laws & Bills
+    </Link>
 
-          <Link
-            to="/resources/accountability-watch"
-            aria-label="Explore the registry of the unregistered"
-            className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
-                       border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm
-                       text-sm md:text-base"
-          <Link
-  to="/resources/accountability-watch"
-  aria-label="Open Accountability Watch monthly roundups showing risk beyond the stranger-danger myth"
-  className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
-             border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm
-             text-sm md:text-base"
->
-  See Beyond the Stranger-Danger Myth
-</Link>
-        </div>
-      </div>
+    <Link
+      to="/resources/accountability-watch"
+      aria-label="Open Accountability Watch monthly roundups showing risk beyond the stranger-danger myth"
+      className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm text-sm md:text-base"
+    >
+      See Beyond the Stranger-Danger Myth
+    </Link>
+  </div>
+</div>
     </div>
   </div>
 </section>
