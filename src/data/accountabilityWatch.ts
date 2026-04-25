@@ -40,6 +40,14 @@ export const accountabilityWatch: AccountabilityItem[] = [
     "December 2025 accountability cases centered on educators, youth coaches, clergy, law-enforcement and corrections personnel, a military physician, a municipal judge, finance and entertainment figures, and other high-trust or high-status roles across Hawaii, North Carolina, Georgia, Wisconsin, Arizona, New Jersey, Oklahoma, Michigan, Missouri, Louisiana, New York, Connecticut, Texas, Virginia, Florida, Kentucky, Massachusetts, California, New York, the United Kingdom, and other jurisdictions. New arrests and charges included school, youth-sports, law-enforcement, clergy, healthcare, finance-status, and celebrity/public-profile cases; pleas, convictions, and sentencings involved youth-ministry, education, policing, coaching, and youth-access cases; civil accountability included a California lawsuit involving entertainment-industry power and career access. Across the month, risk emerged through trusted roles, institutional legitimacy, custodial or professional authority, wealth, celebrity, public influence, and status-based access rather than through registry-centered warning assumptions.",
 },
 {
+  date: "2025-12-01",
+  title: "Accountability Watch — November 2025 Roundup",
+  slug: "2025-12-01",
+  path: "/resources/accountability-watch/2025-12-01",
+  summary:
+    "November 2025 accountability cases centered on school employees, coaches, youth pastors, foster care, pediatric care, law enforcement, corrections, first responders, religious institutions, and wealth/status-based access across North Carolina, California, Texas, Florida, Illinois, Virginia, Missouri, Vermont, New Jersey, New York, and other jurisdictions. New arrests and charges included school and youth-access cases involving coaches, teachers, campus safety personnel, clergy, foster care, healthcare, and a high-profile real-estate status-access case; pleas and sentencings involved law-enforcement, corrections, education, caregiver, youth-program, and first-responder authority cases; civil and institutional actions included clergy-abuse records litigation involving Seton Hall and the Archdiocese of Newark and an alleged church failure-to-report case in Florida. Across the month, risk emerged through trusted roles, institutional legitimacy, household control, professional authority, public trust, and elite social access rather than through registry-centered warning assumptions.",
+},
+{
   date: "2025-12-06",
   title: "Accountability Watch — Week of Nov 30–Dec 6, 2025",
   slug: "2025-12-06",
