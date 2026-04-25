@@ -151,13 +151,13 @@ function CaseRow({
   whyIncluded,
 }: CaseRowProps) {
   return (
-    <article className="mb-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4 shadow-sm last:mb-0 sm:p-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+    <article className="mb-5 rounded-2xl border border-slate-300/80 bg-slate-50/80 p-4 shadow-md shadow-slate-200/60 last:mb-0 sm:p-5">
+      <div className="flex flex-col gap-3 border-b border-slate-200 pb-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex gap-3">
           {emoji && <div className="pt-1 text-2xl">{emoji}</div>}
           <div>
             <h3 className="text-lg font-bold text-slate-950">{name}</h3>
-            <p className="text-sm font-medium text-slate-700">{role}</p>
+            <p className="mt-0.5 text-sm font-semibold text-slate-700">{role}</p>
           </div>
         </div>
         <div className="text-left text-sm text-slate-600 sm:text-right">
@@ -226,10 +226,17 @@ export default function AccountabilityWatch20260401() {
             </h1>
 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Search window: March 1, 2026, 12:00 AM ET through March 31, 2026,
-              11:59 PM ET. This month’s cases show how child-facing authority,
-              professional legitimacy, and institutional access continue to shape
-              real-world risk.
+              March’s cases belong together because they show the same prevention gap
+              from different angles: trusted adults, respected institutions, and
+              child-facing systems creating access before criminal charges, civil
+              lawsuits, or outside investigations surfaced the harm.
+            </p>
+
+            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300">
+              The pattern is about more than individual misconduct. It is about
+              legitimacy, authority, and institutional proximity — the conditions that
+              can allow risk to sit in plain sight inside schools, youth sports,
+              churches, healthcare, and public-safety roles.
             </p>
 
             <div className="mt-6 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100">
@@ -250,11 +257,32 @@ export default function AccountabilityWatch20260401() {
 
           <div className="mt-6 space-y-6">
             <Section title="At a Glance" eyebrow="What March shows">
-              <div className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm leading-7 text-slate-700">
+                <p>
+                  March’s through-line is trusted access. The included cases are not
+                  interchangeable crime items; they cluster around roles and institutions
+                  that gave adults credibility, proximity, privacy, or power before
+                  formal accountability began.
+                </p>
+                <p className="mt-3">
+                  Education and youth-facing roles dominated the month, while healthcare,
+                  law enforcement, clergy, and school-district accountability actions
+                  showed the same larger pattern: prevention often failed before courts,
+                  prosecutors, civil litigation, or attorneys general entered the picture.
+                </p>
+                <p className="mt-3">
+                  The recurring absence of prior-registration information reinforces the
+                  point. The cases gathered here are best understood through authority,
+                  legitimacy, access, shielding, and delayed intervention — not through a
+                  simplified public-warning model of risk.
+                </p>
+              </div>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {teaserHighlights.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700"
+                    className="rounded-2xl border border-slate-200 bg-white p-4 text-sm leading-6 text-slate-700 shadow-sm"
                   >
                     {item}
                   </div>
@@ -818,7 +846,7 @@ export default function AccountabilityWatch20260401() {
                 ]}
               />
             </Section>
-<Section title="Institutional / Political Misconduct" eyebrow="Shielding and findings">
+<Section title="Institutional Shielding & Findings" eyebrow="Accountability failure">
               <Subgroup>Clergy / religious institutions</Subgroup>
 
               <CaseRow
