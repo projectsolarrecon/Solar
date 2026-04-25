@@ -32,6 +32,14 @@ export const accountabilityWatch: AccountabilityItem[] = [
     "Former or current police officers in Washington, D.C., North Carolina, Missouri, Georgia, and New York were arrested, sentenced, or otherwise implicated in January 2026 accountability cases; educators and school-linked defendants in Massachusetts/New Hampshire, Texas, Ohio, New Jersey, Missouri, and Winnsboro ISD figured prominently in both direct offending and alleged institutional concealment; clergy, political, medical, and first-responder cases expanded the month’s reach across Illinois/Missouri, South Carolina, California, Massachusetts, Florida, Wisconsin, and Missouri. Across cases, risk emerged through trusted roles, legitimacy, and institutional access rather than through registry-centered warning assumptions.",
 },
 {
+  date: "2026-01-01",
+  title: "Accountability Watch — December 2025 Roundup",
+  slug: "2026-01-01",
+  path: "/resources/accountability-watch/2026-01-01",
+  summary:
+    "December 2025 accountability cases centered on educators, youth coaches, clergy, law-enforcement and corrections personnel, a military physician, a municipal judge, finance and entertainment figures, and other high-trust or high-status roles across Hawaii, North Carolina, Georgia, Wisconsin, Arizona, New Jersey, Oklahoma, Michigan, Missouri, Louisiana, New York, Connecticut, Texas, Virginia, Florida, Kentucky, Massachusetts, California, New York, the United Kingdom, and other jurisdictions. New arrests and charges included school, youth-sports, law-enforcement, clergy, healthcare, finance-status, and celebrity/public-profile cases; pleas, convictions, and sentencings involved youth-ministry, education, policing, coaching, and youth-access cases; civil accountability included a California lawsuit involving entertainment-industry power and career access. Across the month, risk emerged through trusted roles, institutional legitimacy, custodial or professional authority, wealth, celebrity, public influence, and status-based access rather than through registry-centered warning assumptions.",
+},
+{
   date: "2025-12-06",
   title: "Accountability Watch — Week of Nov 30–Dec 6, 2025",
   slug: "2025-12-06",
