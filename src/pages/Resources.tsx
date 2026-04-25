@@ -267,11 +267,12 @@ function Resources() {
           link: "/resources/legislative-tracker"
          },
            {
-          name: "Accountability Watch (Weekly)",
-          type: "Series",
-          description: "Weekly roundup of verified arrests, charges, pleas, convictions, and sentencings involving public figures — with registry-status context.",
-          link: "/resources/accountability-watch"
-        },
+  name: "Accountability Watch",
+  type: "Monthly Series",
+  description:
+    "Monthly roundups that look beyond the stranger-danger myth, showing how serious harm often emerges through trusted roles, institutional access, public influence, household authority, and failed prevention.",
+  link: "/resources/accountability-watch"
+},
         {
           name: "Advocacy Wins & Updates",
           type: "News",
