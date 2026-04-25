@@ -255,9 +255,15 @@ export default function Home(): JSX.Element {
             className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
                        border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm
                        text-sm md:text-base"
-          >
-            Explore the Registry of the Unregistered
-          </Link>
+          <Link
+  to="/resources/accountability-watch"
+  aria-label="Open Accountability Watch monthly roundups showing risk beyond the stranger-danger myth"
+  className="px-4 py-2 rounded-lg font-semibold shadow-lg transition-colors
+             border-2 border-amber-400/80 text-white hover:bg-white/10 backdrop-blur-sm
+             text-sm md:text-base"
+>
+  See Beyond the Stranger-Danger Myth
+</Link>
         </div>
       </div>
     </div>
