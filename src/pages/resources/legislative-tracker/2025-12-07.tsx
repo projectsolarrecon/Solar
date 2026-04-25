@@ -95,19 +95,21 @@ function SourcePill({ source }: { source: Source }) {
   );
 }
 
-function SolarAnalysis({
+function AnalysisChipGroup({
+  title,
   labels,
-  children,
 }: {
-  labels: string[];
-  children: React.ReactNode;
+  title: string;
+  labels?: string[];
 }) {
+  if (!labels || labels.length === 0) return null;
+
   return (
-    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-3">
-      <p className="text-xs font-bold uppercase tracking-wide text-indigo-700">
-        SOLAR analysis
+    <div>
+      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-indigo-700">
+        {title}
       </p>
-      <div className="mt-2 flex flex-wrap gap-2">
+      <div className="mt-1 flex flex-wrap gap-2">
         {labels.map((label) => (
           <span
             key={label}
@@ -117,8 +119,152 @@ function SolarAnalysis({
           </span>
         ))}
       </div>
+    </div>
+  );
+}
+
+function SolarAnalysis({
+  movementLabels,
+  impactLabels,
+  riskLabels,
+  children,
+}: {
+  movementLabels?: string[];
+  impactLabels?: string[];
+  riskLabels?: string[];
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-3">
+      <p className="text-xs font-bold uppercase tracking-wide text-indigo-700">
+        SOLAR analysis
+      </p>
+
+      <div className="mt-3 grid gap-3 md:grid-cols-3">
+        <AnalysisChipGroup title="Movement" labels={movementLabels} />
+        <AnalysisChipGroup title="Impact" labels={impactLabels} />
+        <AnalysisChipGroup title="Risk / opportunity" labels={riskLabels} />
+      </div>
+
       <div className="mt-3 text-sm leading-6 text-indigo-950">{children}</div>
     </div>
+  );
+}
+
+function DevelopmentCard({
+  tone,
+  label,
+  title,
+  whatChanged,
+  whyItMatters,
+  movementLabels,
+  impactLabels,
+  riskLabels,
+  solarRead,
+  whatToWatch,
+  tags,
+  sources,
+  scriptId,
+  scriptLabel = "Copy talking point",
+  scriptText,
+  copied,
+  onCopy,
+}: {
+  tone: Tone;
+  label: string;
+  title: string;
+  whatChanged: React.ReactNode;
+  whyItMatters: React.ReactNode;
+  movementLabels?: string[];
+  impactLabels?: string[];
+  riskLabels?: string[];
+  solarRead: React.ReactNode;
+  whatToWatch: React.ReactNode;
+  tags: string[];
+  sources: Source[];
+  scriptId?: string;
+  scriptLabel?: string;
+  scriptText?: string;
+  copied?: string | null;
+  onCopy?: (id: string, text: string) => void;
+}) {
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+      <div>
+        <span
+          className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${tones[tone]}`}
+        >
+          {label}
+        </span>
+        <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
+          {title}
+        </h3>
+      </div>
+
+      <div className="mt-4 grid gap-3">
+        <div className="rounded-xl border border-slate-200 bg-white p-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+            What changed
+          </p>
+          <div className="mt-1 text-sm leading-6 text-slate-800">
+            {whatChanged}
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-slate-200 bg-white p-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+            Why it matters
+          </p>
+          <div className="mt-1 text-sm leading-6 text-slate-800">
+            {whyItMatters}
+          </div>
+        </div>
+
+        <SolarAnalysis
+          movementLabels={movementLabels}
+          impactLabels={impactLabels}
+          riskLabels={riskLabels}
+        >
+          {solarRead}
+        </SolarAnalysis>
+
+        <div className="rounded-xl border border-slate-200 bg-white p-3">
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+            What to watch
+          </p>
+          <div className="mt-1 text-sm leading-6 text-slate-800">
+            {whatToWatch}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {sources.map((source) => (
+          <SourcePill key={source.href} source={source} />
+        ))}
+
+        {scriptId && scriptText && onCopy && (
+          <button
+            onClick={() => onCopy(scriptId, scriptText)}
+            className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
+          >
+            <Clipboard className="h-3 w-3" />
+            {copied === scriptId ? "Copied!" : scriptLabel}
+          </button>
+        )}
+      </div>
+    </article>
   );
 }
 
