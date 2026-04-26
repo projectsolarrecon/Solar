@@ -1,71 +1,98 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import SEO from "../../../components/SEO";
-import ShareBar from "../../../components/solar/ShareBar";
-import {
-  ArrowLeft,
-  Clipboard,
-  ExternalLink,
-  FileText,
-  Printer,
-  Scale,
-} from "lucide-react";
+"use client";
 
-type Tone = "sky" | "amber" | "emerald" | "slate" | "rose" | "indigo";
+import React, { useMemo, useState } from "react";
 
 type Source = {
   label: string;
   href: string;
 };
 
+type ChipGroup = {
+  movement: string[];
+  impact: string[];
+  risk: string[];
+};
+
 type Development = {
-  tone: Tone;
-  label: string;
+  id: string;
+  group: string;
+  status: string;
   title: string;
+  jurisdiction: string;
+  date: string;
+  summary: string;
   whatChanged: React.ReactNode;
   whyItMatters: React.ReactNode;
-  movementLabels?: string[];
-  impactLabels?: string[];
-  riskLabels?: string[];
-  solarRead: React.ReactNode;
+  solarAnalysis: React.ReactNode;
   whatToWatch: React.ReactNode;
+  chips: ChipGroup;
   tags: string[];
   sources: Source[];
-  scriptId?: string;
-  scriptLabel?: string;
-  scriptText?: string;
-  officialActionLabel?: string;
-  officialActionHref?: string;
+  action?: {
+    label: string;
+    href: string;
+    copy: string;
+  };
 };
 
-type Action = {
+type ActionItem = {
   title: string;
-  children: React.ReactNode;
-  scriptId: string;
-  script: string;
-  actionLabel?: string;
-  actionHref?: string;
+  why: string;
+  href: string;
+  linkLabel: string;
+  copy: string;
 };
 
-type WatchItemData = {
+type WatchItem = {
   title: string;
   posture: string;
   why: string;
   next: string;
+  href?: string;
 };
 
-const tones: Record<Tone, string> = {
-  sky: "border-sky-200 bg-sky-50 text-sky-950",
-  amber: "border-amber-200 bg-amber-50 text-amber-950",
-  emerald: "border-emerald-200 bg-emerald-50 text-emerald-950",
-  slate: "border-slate-200 bg-slate-50 text-slate-900",
-  rose: "border-rose-200 bg-rose-50 text-rose-950",
-  indigo: "border-indigo-200 bg-indigo-50 text-indigo-950",
+const pageMeta = {
+  month: "January 2026",
+  dateWindow: "January 1–31, 2026",
+  title: "January 2026 Legislative Tracker",
+  dek:
+    "January’s registry-policy activity was dominated by restriction expansion, compliance-burden proposals, and implementation changes, with one major online-speech case keeping constitutional questions alive.",
 };
 
-function Badge({ children }: { children: React.ReactNode }) {
+const groups = [
+  "Restriction Expansion / Compliance Burden",
+  "Courts & Rights",
+  "Relief / Termination",
+  "Agencies / Implementation",
+];
+
+function cx(...classes: Array<string | false | null | undefined>) {
+  return classes.filter(Boolean).join(" ");
+}
+
+function Badge({
+  children,
+  tone = "slate",
+}: {
+  children: React.ReactNode;
+  tone?: "slate" | "red" | "amber" | "blue" | "green" | "purple";
+}) {
+  const tones = {
+    slate: "border-slate-300 bg-slate-100 text-slate-700",
+    red: "border-red-200 bg-red-50 text-red-700",
+    amber: "border-amber-200 bg-amber-50 text-amber-800",
+    blue: "border-blue-200 bg-blue-50 text-blue-700",
+    green: "border-green-200 bg-green-50 text-green-700",
+    purple: "border-purple-200 bg-purple-50 text-purple-700",
+  };
+
   return (
-    <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white">
+    <span
+      className={cx(
+        "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold",
+        tones[tone],
+      )}
+    >
       {children}
     </span>
   );
@@ -83,37 +110,15 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section
-      id={id}
-      className="scroll-mt-24 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-8"
-    >
-      {eyebrow && (
-        <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+    <section id={id} className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200 md:p-7">
+      {eyebrow ? (
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
           {eyebrow}
         </p>
-      )}
-      <h2 className="mt-2 text-2xl font-black tracking-tight text-slate-950 md:text-3xl">
-        {title}
-      </h2>
-      <div className="mt-6">{children}</div>
+      ) : null}
+      <h2 className="text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">{title}</h2>
+      <div className="mt-5">{children}</div>
     </section>
-  );
-}
-
-function StatusCard({
-  tone,
-  title,
-  children,
-}: {
-  tone: Tone;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className={`rounded-2xl border p-5 ${tones[tone]}`}>
-      <h3 className="text-base font-black">{title}</h3>
-      <p className="mt-2 text-sm leading-6">{children}</p>
-    </div>
   );
 }
 
@@ -123,1024 +128,1387 @@ function SourcePill({ source }: { source: Source }) {
       href={source.href}
       target="_blank"
       rel="noreferrer"
-      className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700 hover:border-slate-500 hover:text-slate-950"
+      className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
     >
       {source.label}
-      <ExternalLink className="h-3 w-3" />
     </a>
   );
 }
-function AnalysisChipGroup({
-  title,
-  labels,
-}: {
-  title: string;
-  labels?: string[];
-}) {
-  if (!labels || labels.length === 0) return null;
+
+function CopyButton({ text, label = "Copy message" }: { text: string; label?: string }) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
+  }
 
   return (
-    <div>
-      <p className="text-xs font-black uppercase tracking-[0.18em] text-slate-500">
-        {title}
-      </p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {labels.map((label) => (
-          <span
-            key={label}
-            className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-bold text-slate-700"
-          >
-            {label}
-          </span>
-        ))}
-      </div>
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 shadow-sm transition hover:bg-slate-50"
+    >
+      {copied ? "Copied" : label}
+    </button>
+  );
+}
+
+function ShareBar() {
+  const shareText = `${pageMeta.title} — The SOLAR Project`;
+
+  async function handleShare() {
+    if (typeof navigator !== "undefined" && "share" in navigator) {
+      await navigator.share({
+        title: pageMeta.title,
+        text: shareText,
+        url: window.location.href,
+      });
+      return;
+    }
+
+    await navigator.clipboard.writeText(window.location.href);
+  }
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      <button
+        type="button"
+        onClick={() => window.print()}
+        className="rounded-full bg-white/95 px-4 py-2 text-sm font-bold text-slate-900 shadow-sm transition hover:bg-white"
+      >
+        Print
+      </button>
+      <button
+        type="button"
+        onClick={handleShare}
+        className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/20"
+      >
+        Share
+      </button>
+      <a
+        href="#actions"
+        className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/20"
+      >
+        Latest actions
+      </a>
     </div>
   );
 }
 
-function SolarAnalysis({
-  movementLabels,
-  impactLabels,
-  riskLabels,
-  children,
-}: {
-  movementLabels?: string[];
-  impactLabels?: string[];
-  riskLabels?: string[];
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-      <div className="flex items-center gap-2">
-        <Scale className="h-4 w-4 text-slate-600" />
-        <h4 className="text-sm font-black uppercase tracking-[0.18em] text-slate-600">
-          SOLAR analysis
-        </h4>
-      </div>
-      <div className="mt-4 grid gap-4 md:grid-cols-3">
-        <AnalysisChipGroup title="Movement" labels={movementLabels} />
-        <AnalysisChipGroup title="Impact" labels={impactLabels} />
-        <AnalysisChipGroup title="Risk / opportunity" labels={riskLabels} />
-      </div>
-      <div className="mt-5 text-sm leading-7 text-slate-700">{children}</div>
-    </div>
-  );
-}
-
-function DevelopmentCard({
-  tone,
+function StatusCard({
   label,
-  title,
-  whatChanged,
-  whyItMatters,
-  movementLabels,
-  impactLabels,
-  riskLabels,
-  solarRead,
-  whatToWatch,
-  tags,
-  sources,
-  scriptId,
-  scriptLabel = "Copy talking point",
-  scriptText,
-  officialActionLabel,
-  officialActionHref,
-  copied,
-  onCopy,
-}: Development & {
-  copied?: string | null;
-  onCopy?: (id: string, text: string) => void;
+  value,
+  detail,
+}: {
+  label: string;
+  value: string;
+  detail: string;
 }) {
   return (
-    <article className={`rounded-3xl border p-5 shadow-sm md:p-6 ${tones[tone]}`}>
-      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.2em] opacity-75">
-            {label}
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">{label}</p>
+      <p className="mt-2 text-2xl font-black text-slate-950">{value}</p>
+      <p className="mt-2 text-sm leading-6 text-slate-650">{detail}</p>
+    </div>
+  );
+}
+
+function AnalysisChips({ chips }: { chips: ChipGroup }) {
+  const rows = [
+    { label: "Movement", items: chips.movement },
+    { label: "Impact", items: chips.impact },
+    { label: "Risk / opportunity", items: chips.risk },
+  ];
+
+  return (
+    <div className="space-y-3 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      {rows.map((row) => (
+        <div key={row.label}>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            {row.label}
           </p>
-          <h3 className="mt-2 text-xl font-black tracking-tight md:text-2xl">
-            {title}
-          </h3>
+          <div className="flex flex-wrap gap-2">
+            {row.items.map((item) => (
+              <Badge
+                key={item}
+                tone={
+                  item.includes("Negative")
+                    ? "red"
+                    : item.includes("Positive")
+                      ? "green"
+                      : item.includes("Mixed") || item.includes("Unclear")
+                        ? "amber"
+                        : "slate"
+                }
+              >
+                {item}
+              </Badge>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-2 md:justify-end">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-white/60 bg-white/70 px-3 py-1 text-xs font-bold"
-            >
-              {tag}
-            </span>
-          ))}
+      ))}
+    </div>
+  );
+}
+
+function DevelopmentCard({ development }: { development: Development }) {
+  return (
+    <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <div className="flex flex-wrap gap-2">
+            <Badge tone="slate">{development.status}</Badge>
+            <Badge tone="blue">{development.jurisdiction}</Badge>
+            <Badge tone="purple">{development.date}</Badge>
+          </div>
+          <h3 className="mt-4 text-xl font-black leading-tight text-slate-950 md:text-2xl">
+            {development.title}
+          </h3>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-650">{development.summary}</p>
         </div>
       </div>
 
       <div className="mt-5 grid gap-4">
-        <div className="rounded-2xl border border-white/70 bg-white/75 p-5">
-          <h4 className="text-sm font-black uppercase tracking-[0.18em] opacity-70">
-            What changed
-          </h4>
-          <div className="mt-2 text-sm leading-7">{whatChanged}</div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <h4 className="text-sm font-black text-slate-950">What changed</h4>
+          <div className="mt-2 text-sm leading-6 text-slate-700">{development.whatChanged}</div>
         </div>
 
-        <div className="rounded-2xl border border-white/70 bg-white/75 p-5">
-          <h4 className="text-sm font-black uppercase tracking-[0.18em] opacity-70">
-            Why it matters
-          </h4>
-          <div className="mt-2 text-sm leading-7">{whyItMatters}</div>
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <h4 className="text-sm font-black text-slate-950">Why it matters</h4>
+          <div className="mt-2 text-sm leading-6 text-slate-700">{development.whyItMatters}</div>
         </div>
 
-        <SolarAnalysis
-          movementLabels={movementLabels}
-          impactLabels={impactLabels}
-          riskLabels={riskLabels}
-        >
-          {solarRead}
-        </SolarAnalysis>
-
-        <div className="rounded-2xl border border-white/70 bg-white/75 p-5">
-          <h4 className="text-sm font-black uppercase tracking-[0.18em] opacity-70">
-            What to watch
-          </h4>
-          <div className="mt-2 text-sm leading-7">{whatToWatch}</div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <h4 className="text-sm font-black text-slate-950">SOLAR analysis</h4>
+          <div className="mt-2 text-sm leading-6 text-slate-700">{development.solarAnalysis}</div>
+          <div className="mt-4">
+            <AnalysisChips chips={development.chips} />
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {sources.map((source) => (
-            <SourcePill key={`${title}-${source.label}`} source={source} />
-          ))}
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+          <h4 className="text-sm font-black text-slate-950">What to watch</h4>
+          <div className="mt-2 text-sm leading-6 text-slate-700">{development.whatToWatch}</div>
+        </div>
+      </div>
 
-          {officialActionHref && (
+      <div className="mt-5 flex flex-wrap gap-2">
+        {development.tags.map((tag) => (
+          <Badge key={tag}>{tag}</Badge>
+        ))}
+      </div>
+
+      {development.action ? (
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <p className="text-sm font-black text-amber-950">Action angle</p>
+          <p className="mt-2 text-sm leading-6 text-amber-950">{development.action.copy}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <CopyButton text={development.action.copy} />
             <a
-              href={officialActionHref}
+              href={development.action.href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 rounded-full border border-slate-900 bg-slate-900 px-3 py-1 text-xs font-bold text-white hover:bg-slate-800"
+              className="rounded-full bg-amber-900 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-amber-800"
             >
-              {officialActionLabel ?? "Official action link"}
-              <ExternalLink className="h-3 w-3" />
+              {development.action.label}
             </a>
-          )}
+          </div>
+        </div>
+      ) : null}
 
-          {scriptId && scriptText && onCopy && (
-            <button
-              type="button"
-              onClick={() => onCopy(scriptId, scriptText)}
-              className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-bold text-emerald-800 hover:bg-emerald-100"
-            >
-              <Clipboard className="h-3 w-3" />
-              {copied === scriptId ? "Copied!" : scriptLabel}
-            </button>
-          )}
+      <div className="mt-5">
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500">Sources</p>
+        <div className="flex flex-wrap gap-2">
+          {development.sources.map((source) => (
+            <SourcePill key={`${development.id}-${source.href}-${source.label}`} source={source} />
+          ))}
         </div>
       </div>
     </article>
   );
 }
-function ActionCard({
-  title,
-  children,
-  scriptId,
-  script,
-  actionLabel,
-  actionHref,
-  copied,
-  onCopy,
-}: Action & {
-  copied: string | null;
-  onCopy: (id: string, text: string) => void;
-}) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-2 text-sm leading-6 text-slate-700">{children}</div>
-      <div className="mt-4 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-        {script}
-      </div>
-      <div className="mt-4 flex flex-wrap gap-2">
-        <button
-          type="button"
-          onClick={() => onCopy(scriptId, script)}
-          className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-        >
-          <Clipboard className="h-4 w-4" />
-          {copied === scriptId ? "Copied!" : "Copy message"}
-        </button>
-        {actionHref && actionLabel && (
-          <a
-            href={actionHref}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:border-slate-500 hover:text-slate-950"
-          >
-            {actionLabel}
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function WatchItem({ title, posture, why, next }: WatchItemData) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-      <h3 className="text-lg font-black text-slate-950">{title}</h3>
-      <div className="mt-3 grid gap-3 md:grid-cols-3">
-        <p className="text-sm leading-6 text-slate-700">
-          <span className="font-bold text-slate-950">Current posture:</span>{" "}
-          {posture}
-        </p>
-        <p className="text-sm leading-6 text-slate-700">
-          <span className="font-bold text-slate-950">Why it matters:</span> {why}
-        </p>
-        <p className="text-sm leading-6 text-slate-700">
-          <span className="font-bold text-slate-950">Watch next:</span> {next}
-        </p>
-      </div>
-    </div>
-  );
-}
-
 const developments: Development[] = [
   {
-    tone: "rose",
-    label: "Florida package advanced",
-    title:
-      "Florida SB 212 / HB 45 — residency, presence, notice, arrest, and supervision expansion package",
-    whatChanged:
-      "Florida SB 212 was introduced on January 13, placed on the Senate Criminal Justice Committee agenda on January 15, and passed Criminal Justice as a committee substitute on January 20. The package revises residency restrictions, modifies loitering and proximity provisions, requires notice to schools or child care facilities in certain circumstances, authorizes warrantless arrest for specified violations, and revises conditional-release, probation, and community-control conditions.",
-    whyItMatters:
-      "This is a direct registrant-family impact item. It would expand where people can live, where they can be present, what they must report, and how easily alleged violations can trigger arrest. Those rules can translate into housing instability, family logistics problems around schools and child care, technical-violation exposure, and heightened supervision consequences.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Housing barrier",
-      "Compliance burden",
-      "Family-stability impact",
-      "Punishment expansion",
-      "Enforcement risk",
-    ],
-    riskLabels: [
-      "Watch closely",
-      "Advocacy opening",
-      "Implementation risk",
-      "Litigation risk",
-    ],
-    solarRead:
-      "From SOLAR’s perspective, this is the kind of broad restriction package that turns registry status into a daily geography and supervision trap. The public-safety question is not whether the bill sounds tough; it is whether added exclusion zones, notice duties, and arrest authority reduce harm or instead increase homelessness, instability, and technical violations without individualized risk review.",
-    whatToWatch:
-      "Watch committee amendments, whether parent and grandparent exceptions remain intact, final effective-date language, and whether legal challenges focus on liberty, retroactivity, vagueness, or housing banishment.",
-    tags: ["Florida", "Residency restrictions", "Presence restrictions", "Supervision"],
+    id: "florida-sb-212-hb-45",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Committee movement",
+    title: "Florida SB 212 / HB 45 — residency, public-place, notice, arrest, and supervision expansion package",
+    jurisdiction: "Florida",
+    date: "Jan. 13–20",
+    summary:
+      "Florida advanced a broad restriction package aimed at people labeled sexual offenders or predators, with direct effects on housing, movement, work, notice duties, supervision, and arrest exposure.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://www.flsenate.gov/Session/Bill/2026/212"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          Florida SB 212
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.flsenate.gov/Session/Bill/2026/45"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          HB 45
+        </a>{" "}
+        would add public swimming pools or public bathing places to covered geography in some
+        circumstances, broaden proximity and loitering exposure from 300 feet to 500 feet in certain
+        child-congregation contexts, create notice duties involving schools or child care facilities,
+        require registry checks before certain public employment or appointment decisions, authorize
+        warrantless arrest for specified violations, and add or revise supervision conditions.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        The package would make ordinary housing, family, school, pool, child care, public-space,
+        work, volunteer, and supervision decisions more legally fragile. It expands both the map of
+        exclusion and the consequences of alleged technical noncompliance.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        From the registrant-family perspective, this is direct negative movement. The bill relies on
+        broad geographic and status-based restrictions rather than individualized risk, increasing
+        the chance that stability itself becomes harder to maintain. Families could face more forced
+        moves, fewer daily-life options, and higher arrest risk without evidence that wider exclusion
+        zones produce real prevention.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether the public swimming pool and public bathing place provisions remain, whether
+        parent or family exceptions are preserved, whether any provisions apply retroactively, how
+        warrantless-arrest authority is framed, and whether litigation raises banishment,
+        vagueness, due-process, liberty, or retroactivity claims.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Housing barrier",
+        "Compliance burden",
+        "Family-stability impact",
+        "Punishment expansion",
+        "Supervision burden",
+      ],
+      risk: ["Watch closely", "Advocacy opening", "Implementation risk", "Litigation risk"],
+    },
+    tags: ["Residency restrictions", "Public-place restrictions", "Notice duties", "Arrest authority"],
     sources: [
+      { label: "Florida SB 212", href: "https://www.flsenate.gov/Session/Bill/2026/212" },
+      { label: "Florida HB 45", href: "https://www.flsenate.gov/Session/Bill/2026/45" },
       {
-        label: "Florida Senate SB 212",
-        href: "https://www.flsenate.gov/Session/Bill/2026/212",
+        label: "Florida House bill detail for CS/CS/CS/SB 212",
+        href: "https://www.flhouse.gov/Sections/Bills/billsdetail.aspx?BillId=82720",
       },
     ],
-    scriptId: "SCRIPT-FL-SB212",
-    scriptLabel: "Copy Florida message",
-    scriptText:
-      "Please oppose broad registry restrictions that expand housing exclusion, presence limits, notice duties, and arrest exposure without individualized risk review. Florida should preserve family-related exceptions, require evidence that any restriction improves safety, and avoid rules that increase homelessness, instability, and technical violations.",
-    officialActionLabel: "Florida SB 212 bill page",
-    officialActionHref: "https://www.flsenate.gov/Session/Bill/2026/212",
+    action: {
+      label: "Find Florida lawmakers",
+      href: "https://www.flsenate.gov/Senators/Find",
+      copy:
+        "Please reject broad registry-based exclusion zones and warrantless-arrest expansion unless lawmakers can show individualized risk evidence, clear family exceptions, and data proving improved safety rather than more homelessness and technical violations.",
+    },
   },
   {
-    tone: "indigo",
-    label: "Federal appellate ruling",
-    title:
-      "Sixth Circuit — Doe v. Burlew remands Kentucky social-media legal-name disclosure challenge",
-    whatChanged:
-      "On January 26, the Sixth Circuit issued a published opinion in Doe v. Burlew. Kentucky’s law requires certain registrants with offenses involving minors to display their full legal name on qualifying social-media accounts. The Sixth Circuit held that the district court had not performed the required facial-overbreadth analysis, vacated the preliminary injunction, and remanded the case for further proceedings.",
-    whyItMatters:
-      "This is a major online-identifier and anonymous-speech case. It affects whether registrants can participate in ordinary online life, political speech, family communication, and support spaces without attaching their legal identity to social-media accounts. The remand creates uncertainty for registrants and families who may face pressure to self-identify, deactivate accounts, or risk enforcement.",
-    movementLabels: ["Mixed movement"],
-    impactLabels: [
-      "Rights concern",
-      "Compliance burden",
-      "Due-process concern",
-      "Family-stability impact",
-      "Litigation risk",
-    ],
-    riskLabels: [
-      "Appeal likely",
-      "Clarification needed",
-      "Watch closely",
-      "Advocacy opening",
-    ],
-    solarRead:
-      "The opinion does not end the challenge, but it does reopen uncertainty around online speech. For registrants and families, mandatory public name display can chill political participation, mutual-support spaces, family communication, and ordinary social use while exposing households to doxxing or harassment. The next phase matters because courts will have to grapple with anonymity, overbreadth, and enforcement realities rather than treating online identity rules as a narrow administrative detail.",
-    whatToWatch:
-      "Watch whether the district court narrows the case to as-applied claims, whether Kentucky enforcement resumes or remains limited, and how courts treat anonymity, political speech, direct messaging, passive browsing, and accounts managed for family purposes.",
-    tags: ["Kentucky", "First Amendment", "Online identifiers", "Court challenge"],
-    sources: [
-      {
-        label: "Sixth Circuit opinion",
-        href: "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf",
-      },
-    ],
-    officialActionLabel: "Sixth Circuit opinion",
-    officialActionHref:
-      "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf",
-  },
-{
-    tone: "rose",
-    label: "Operative date",
-    title: "California SB 680 — new registration trigger took effect January 1",
-    whatChanged:
-      "California’s SB 680, enacted in 2025, became operative for covered offenses occurring on or after January 1. The law amended Penal Code section 290 to require registration for certain convictions under Penal Code section 261.5(c) or (d), generally placing the person in tier one for 10 years unless the statutory exception applies.",
-    whyItMatters:
-      "This directly expands mandatory registration exposure in California for a category that previously could avoid mandatory registration in some circumstances. New registrants may face 10 years of registration, public stigma, employment and housing barriers, and technical compliance risk. The exception matters, but affected people may not understand it without legal help.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Punishment expansion",
-      "Reentry barrier",
-      "Compliance burden",
-      "Employment barrier",
-      "Housing barrier",
-    ],
-    riskLabels: ["Implementation risk", "Clarification needed", "Watch closely"],
-    solarRead:
-      "SB 680 shows how registration can expand through offense-category changes that look technical but carry decade-long consequences. The key implementation concern is over-registration: prosecutors, courts, defense counsel, and the Department of Justice need to apply the exception correctly so people are not swept into registration beyond what the statute requires.",
-    whatToWatch:
-      "Watch how prosecutors charge qualifying cases, whether courts and counsel correctly apply the age-gap and offense-only exception, and whether California provides clear tiering and termination guidance.",
-    tags: ["California", "Registration trigger", "Tier one", "Effective date"],
-    sources: [
-      {
-        label: "California SB 680",
-        href: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB680",
-      },
-    ],
-    officialActionLabel: "California SB 680 bill page",
-    officialActionHref:
-      "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB680",
-  },
-  {
-    tone: "amber",
-    label: "California bill introduced",
-    title:
-      "California AB 1568 — registry-termination petition process bill introduced",
-    whatChanged:
-      "AB 1568 was introduced on January 12. The bill concerns Penal Code section 290.5, California’s petition process for termination from the registry after the minimum registration period. The introduced text would add considerations around position of trust or authority and treatment participation or completion in the termination decision.",
-    whyItMatters:
-      "Relief and removal procedure is one of the most important registry-life issues. Even changes framed as clarifying can make termination harder, more discretionary, or more costly if they add evidentiary burdens. People nearing tier-one or tier-two termination could face more documentation demands, more hearing risk, and potentially more continued-registration orders.",
-    movementLabels: ["Unclear movement"],
-    impactLabels: [
-      "Relief pathway",
-      "Due-process concern",
-      "Compliance clarity",
-      "Litigation risk",
-    ],
-    riskLabels: ["Watch closely", "Clarification needed", "Advocacy opening"],
-    solarRead:
-      "The bill’s effect depends on what the added considerations become in practice. If courts use them as individualized, evidence-based factors, the change may be manageable. If they become new categorical barriers or impossible documentation hurdles, the registry-termination pathway could become less meaningful for people who have already completed their minimum registration period.",
-    whatToWatch:
-      "Watch committee analyses, amendments, whether the bill creates mandatory appearance or treatment-documentation barriers, and whether it protects indigent petitioners and people who cannot access old treatment records.",
-    tags: ["California", "Registry termination", "Relief process", "Court petitions"],
-    sources: [
-      {
-        label: "California AB 1568",
-        href: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1568",
-      },
-    ],
-    scriptId: "SCRIPT-CA-AB1568",
-    scriptLabel: "Copy California message",
-    scriptText:
-      "Please preserve meaningful registry-termination relief in AB 1568. Any added court considerations should be individualized, prospective, and evidence-based, not retroactive or impossible documentation burdens. People who have completed their minimum registration period need a fair, accessible path to review.",
-    officialActionLabel: "California AB 1568 bill page",
-    officialActionHref:
-      "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1568",
-  },
-  {
-    tone: "rose",
-    label: "South Carolina bill introduced",
-    title:
-      "South Carolina H. 4683 — “Sex Offender Child Protection Act” introduced",
-    whatChanged:
-      "H. 4683 was introduced and referred to Judiciary on January 13. The bill would revise the definition of children’s recreational facility, add offenses that trigger residence exclusions near schools, daycare centers, recreational facilities, parks, or public playgrounds, restrict certain registrants from owning, operating, or being employed in businesses or organizations serving minors or involving unsupervised access to minors, and require SLED to notify registrants of the act’s provisions.",
-    whyItMatters:
-      "This is a direct expansion of housing and employment exclusion rules. It also increases public-notification pressure by requiring school districts to provide names and addresses near bus stops or link to registry information. More people may be forced to move, lose job options, avoid volunteer or community roles, or face heightened public exposure near school-bus-stop geography.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Housing barrier",
-      "Employment barrier",
-      "Public notification",
-      "Family-stability impact",
-      "Punishment expansion",
-    ],
-    riskLabels: [
-      "Advocacy opening",
-      "Enforcement risk",
-      "Implementation risk",
-      "Watch closely",
-    ],
-    solarRead:
-      "The proposal layers housing exclusion, employment exclusion, and public-notification pressure onto registry status. For families, the practical impact can be immediate: where a household can live, whether a parent can work, and whether school-related geography becomes a source of public exposure. Evidence-based policy should ask whether these restrictions improve safety or simply widen instability.",
-    whatToWatch:
-      "Watch whether the bill advances from Judiciary, whether grandfather exceptions remain, and whether lawmakers assess homelessness, employment loss, and family-stability consequences.",
-    tags: [
-      "South Carolina",
-      "Residency restrictions",
-      "Employment restrictions",
-      "Public notification",
-    ],
+    id: "sc-h-4683",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Introduced",
+    title: "South Carolina H. 4683 — Sex Offender Child Protection Act introduced",
+    jurisdiction: "South Carolina",
+    date: "Jan. 13",
+    summary:
+      "South Carolina introduced a bill expanding residence exclusions, employment and ownership limits, public-notification mechanisms, and agency notice duties for covered registrants.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://www.scstatehouse.gov/sess126_2025-2026/bills/4683.htm"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          South Carolina H. 4683
+        </a>{" "}
+        would revise the definition of “children’s recreational facility,” add offenses that trigger
+        residence exclusions near schools, daycare centers, recreational facilities, parks, or public
+        playgrounds, restrict certain registrants from owning, operating, or being employed by
+        businesses or organizations serving minors or allowing unsupervised access to minors, and
+        require SLED to notify registrants of the act’s provisions.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Housing and employment are two of the most important stabilizing factors after conviction.
+        A bill that narrows both at once can deepen instability while increasing public exposure and
+        family stress.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is negative movement for registrants and families because it expands status-based
+        exclusion without requiring individualized risk findings. The employment and ownership
+        pieces are especially important: public safety is not strengthened when lawful work,
+        business ownership, and stable housing are treated as threats by default.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether the bill advances out of Judiciary, whether grandfather clauses or family
+        exceptions remain, how “children’s recreational facility” is defined, and whether lawmakers
+        evaluate housing displacement, homelessness, and employment consequences before expanding
+        exclusion zones.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Housing barrier",
+        "Employment barrier",
+        "Public notification",
+        "Family-stability impact",
+        "Punishment expansion",
+      ],
+      risk: ["Advocacy opening", "Enforcement risk", "Implementation risk", "Watch closely"],
+    },
+    tags: ["Housing", "Employment", "Public notification", "School bus stop information"],
     sources: [
       {
         label: "South Carolina H. 4683",
         href: "https://www.scstatehouse.gov/sess126_2025-2026/bills/4683.htm",
       },
+      {
+        label: "Municipal Association of South Carolina bill summary",
+        href: "https://www.masc.sc/legislative-bill/h4683-enacts-sex-offender-child-protection-act",
+      },
     ],
-    scriptId: "SCRIPT-SC-H4683",
-    scriptLabel: "Copy South Carolina message",
-    scriptText:
-      "Please oppose broad residence and employment bans in H. 4683 unless they are supported by individualized risk review, clear evidence, and workable family-stability exceptions. Policies that force people from housing and employment can undermine reentry and public safety rather than improve it.",
-    officialActionLabel: "South Carolina H. 4683 bill page",
-    officialActionHref:
-      "https://www.scstatehouse.gov/sess126_2025-2026/bills/4683.htm",
+    action: {
+      label: "Find South Carolina legislators",
+      href: "https://www.scstatehouse.gov/legislatorssearch.php",
+      copy:
+        "Please oppose broad residence and employment exclusions unless they are supported by individualized risk evidence, clear exemptions, and analysis of housing, employment, and family-stability harms.",
+    },
   },
-{
-    tone: "rose",
-    label: "West Virginia bill introduced",
-    title:
-      "West Virginia SB 500 — 1,000-foot residency restriction bill introduced",
-    whatChanged:
-      "SB 500 was introduced on January 19 and referred to Senate Judiciary. The bill proposes to amend the Sex Offender Registration Act to prohibit registrants from residing within 1,000 feet of schools, parks, or playgrounds. The bill text states that the article applies both retroactively and prospectively.",
-    whyItMatters:
-      "A broad distance rule can function as banishment, especially in rural communities with limited housing and in cities where exclusion zones overlap. Retroactivity language raises added constitutional and practical concerns. Registrants and families could face forced moves, homelessness risk, family separation, inability to live with supportive relatives, and increased violation risk based on geography rather than individualized conduct.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Housing barrier",
-      "Family-stability impact",
-      "Punishment expansion",
-      "Due-process concern",
-      "Litigation risk",
-    ],
-    riskLabels: [
-      "Watch closely",
-      "Advocacy opening",
-      "Appeal likely if enacted",
-      "Implementation risk",
-    ],
-    solarRead:
-      "Residency bans are often presented as simple protective measures, but they can operate as housing banishment. The retroactivity language is especially significant because it threatens to move the legal finish line for people and families who already built housing arrangements around existing rules.",
-    whatToWatch:
-      "Watch whether Judiciary adds exceptions for existing residences, family homes, rural housing scarcity, shelters, or individualized risk review.",
-    tags: ["West Virginia", "Residency restrictions", "Retroactivity", "Housing"],
+  {
+    id: "wv-sb-500",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Introduced",
+    title: "West Virginia SB 500 — 1,000-foot residency restriction bill introduced",
+    jurisdiction: "West Virginia",
+    date: "Jan. 19",
+    summary:
+      "West Virginia introduced a statewide 1,000-foot residence ban tied to schools, parks, and playgrounds, with retroactive and prospective language.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=sb500+intr.htm&i=500&sesstype=RS&yr=2026"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          West Virginia SB 500
+        </a>{" "}
+        would prohibit people required to register from residing within 1,000 feet of a school,
+        park, or playground. Its retroactivity and prospectivity language raises heightened concern
+        because it could affect people whose convictions or housing arrangements predate the bill.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Broad distance-based housing rules can operate like banishment, especially where exclusion
+        zones overlap or where affordable housing is already scarce. Retroactive application makes
+        the practical and constitutional stakes much higher.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is direct negative movement. It treats geography as a substitute for individualized
+        assessment and risks pushing people away from family support, employment, treatment, and
+        stable housing. For families, the harm is not abstract: a compliant home could become
+        unavailable because a map changed.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether Senate Judiciary narrows the bill, whether retroactivity remains, whether
+        existing residences or family homes are protected, whether shelter access is addressed, and
+        whether litigation follows if the bill is enacted.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Housing barrier",
+        "Family-stability impact",
+        "Punishment expansion",
+        "Due-process concern",
+        "Retroactivity concern",
+      ],
+      risk: ["Watch closely", "Advocacy opening", "Implementation risk", "Litigation risk"],
+    },
+    tags: ["Residency restrictions", "Retroactivity", "Housing stability"],
     sources: [
       {
-        label: "West Virginia SB 500",
+        label: "West Virginia SB 500 bill text",
         href: "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=sb500+intr.htm&i=500&sesstype=RS&yr=2026",
       },
     ],
-    scriptId: "SCRIPT-WV-SB500",
-    scriptLabel: "Copy West Virginia message",
-    scriptText:
-      "Please oppose retroactive 1,000-foot residence bans in SB 500. Housing stability and family support are central to reentry and public safety. Any residence rule should be prospective, individualized, evidence-based, and include clear exceptions for existing homes, shelters, and family-support placements.",
-    officialActionLabel: "West Virginia SB 500 bill page",
-    officialActionHref:
-      "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=sb500+intr.htm&i=500&sesstype=RS&yr=2026",
+    action: {
+      label: "West Virginia Senate roster",
+      href: "https://www.wvlegislature.gov/Senate1/roster.cfm",
+      copy:
+        "Please reject retroactive residency exclusion zones. Stable housing and family support reduce risk; broad 1,000-foot bans can create homelessness, family separation, and technical violations without individualized evidence.",
+    },
   },
   {
-    tone: "rose",
-    label: "West Virginia registry package",
-    title:
-      "West Virginia HB 4135 / HB 4138 — online identifiers, vehicle information, and offense-trigger expansion bills introduced",
-    whatChanged:
-      "HB 4135 and HB 4138 were introduced on January 14. HB 4138 was also discussed in a January 27 House Judiciary update as advancing. HB 4135 would require registrants to provide all online identifiers from internet and mobile application accounts and information about ATVs or UTVs they operate. HB 4138 would clarify that sexual extortion and aggravated sexual extortion require registration and that a repealed spousal sexual-assault offense remains registerable, with legislative blog discussion indicating retroactive language.",
-    whyItMatters:
-      "Online-identifier reporting and vehicle-equipment reporting expand compliance traps. Retroactive offense-trigger language raises the same moving-the-finish-line concerns SOLAR tracks in registry litigation. Registrants and families could face more reporting obligations, more risk of technical violations, more law-enforcement data collection, and potential new registration exposure tied to older convictions.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Compliance burden",
-      "Online identifiers",
-      "Punishment expansion",
-      "Due-process concern",
-      "Retroactivity concern",
-    ],
-    riskLabels: [
-      "Watch closely",
-      "Advocacy opening",
-      "Litigation risk",
-      "Clarification needed",
-    ],
-    solarRead:
-      "The compliance footprint matters. Every added identifier, account category, vehicle category, or retroactive trigger creates another path to enforcement even when no new harm has occurred. A narrow, nonpublic, law-enforcement-only approach with safe harbors would be less destabilizing than broad reporting duties that convert ordinary digital and transportation changes into violation risk.",
-    whatToWatch:
-      "Watch whether online identifier language is narrowed, whether retroactivity survives, and whether the bills distinguish public disclosure from law-enforcement-only reporting.",
-    tags: [
-      "West Virginia",
-      "Online identifiers",
-      "Compliance duties",
-      "Retroactivity",
-    ],
+    id: "wv-hb-4135-hb-4138",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Introduced",
+    title: "West Virginia HB 4135 / HB 4138 — online identifiers, vehicle information, and offense-trigger expansion",
+    jurisdiction: "West Virginia",
+    date: "Jan. 14–27",
+    summary:
+      "West Virginia introduced bills expanding registry reporting duties and clarifying or expanding registration-triggering offenses, including online identifiers, mobile application accounts, ATV/UTV information, sexual extortion, and retroactive language.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4135+intr.htm&i=4135&sesstype=RS&yr=2026"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          West Virginia HB 4135
+        </a>{" "}
+        would require registrants to provide online identifiers associated with internet accounts
+        and mobile application accounts, and to report information about ATVs or UTVs they operate.{" "}
+        <a
+          href="https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4138+intr.htm&i=4138&sesstype=RS&yr=2026"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          HB 4138
+        </a>{" "}
+        would clarify that sexual extortion and aggravated sexual extortion require registration and
+        that a repealed spousal sexual-assault offense remains registerable, with January committee
+        context describing retroactive registration language.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Online-identifier and vehicle or equipment reporting rules can create technical-compliance
+        traps. Retroactive offense-trigger language raises “moving the finish line” concerns for
+        people whose convictions predate the bill.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is negative movement because it expands both what must be reported and who may be
+        required to register. The online-account language is especially sensitive: digital life is
+        not optional for work, family communication, services, education, and civic participation.
+        Reporting systems need narrow scope, safe harbors, and law-enforcement-only treatment.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether online and mobile identifier reporting is public or law-enforcement-only,
+        whether safe-harbor timing rules are added for account updates, whether ATV/UTV language is
+        narrowed, whether retroactivity remains in HB 4138, and whether courts or agencies provide
+        guidance if enacted.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Compliance burden",
+        "Online identifiers",
+        "Punishment expansion",
+        "Due-process concern",
+        "Retroactivity concern",
+      ],
+      risk: ["Watch closely", "Advocacy opening", "Litigation risk", "Clarification needed"],
+    },
+    tags: ["Online identifiers", "Mobile apps", "Vehicle reporting", "Retroactivity"],
     sources: [
       {
-        label: "West Virginia HB 4135",
+        label: "West Virginia HB 4135 bill text",
         href: "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4135+intr.htm&i=4135&sesstype=RS&yr=2026",
       },
+      {
+        label: "West Virginia HB 4138 bill text",
+        href: "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4138+intr.htm&i=4138&sesstype=RS&yr=2026",
+      },
+      {
+        label: "West Virginia House Judiciary update",
+        href: "https://home.wvlegislature.gov/house-judiciary-advances-bills-on-sexual-extortion-sentencing-protections-for-vulnerable-adults/",
+      },
     ],
-    scriptId: "SCRIPT-WV-HB4135-HB4138",
-    scriptLabel: "Copy West Virginia message",
-    scriptText:
-      "Please narrow HB 4135 and HB 4138. Online identifier reporting should be clear, limited, nonpublic, and law-enforcement-only, with safe-harbor time to update information. Please also oppose retroactive registration expansion that places people on the registry after the legal consequences of their cases were already set.",
-    officialActionLabel: "West Virginia HB 4135 bill page",
-    officialActionHref:
-      "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4135+intr.htm&i=4135&sesstype=RS&yr=2026",
+    action: {
+      label: "West Virginia House roster",
+      href: "https://www.wvlegislature.gov/House/roster.cfm",
+      copy:
+        "Please narrow online and mobile-account reporting to law-enforcement-only use, add safe-harbor timing rules for technical updates, avoid public disclosure of identifiers, and remove retroactive registration expansion.",
+    },
   },
   {
-    tone: "amber",
-    label: "Maryland bill introduced",
-    title:
-      "Maryland HB 287 — lifetime sexual-offender supervision conditions and discharge process",
-    whatChanged:
-      "HB 287 was introduced and read for the first time on January 14. The bill concerns lifetime sexual-offender supervision and would alter conditions of supervision, reporting requirements for management teams, hearing requirements, and discharge-petition provisions. The bill text includes potential conditions such as GPS monitoring, proximity restrictions, employment or activity limits involving minors, treatment, computer access checks, polygraphs, and contact restrictions.",
-    whyItMatters:
-      "Supervision rules can function like registry-adjacent punishment, especially when layered on top of registration and enforced through new violations. The bill could mean expanded supervision conditions, more violation referrals, more monitoring, and more complex discharge litigation for people seeking eventual release from lifetime supervision.",
-    movementLabels: ["Mixed movement"],
-    impactLabels: [
-      "Compliance burden",
-      "Relief pathway",
-      "Due-process concern",
-      "Family-stability impact",
-      "Supervision burden",
-    ],
-    riskLabels: ["Clarification needed", "Watch closely", "Advocacy opening"],
-    solarRead:
-      "This item is mixed because discharge-process changes may matter for relief, while expanded or more easily triggered supervision conditions can deepen long-term control. The key SOLAR question is whether the bill preserves individualized supervision and meaningful discharge review or turns lifetime supervision into a broader technical-violation pipeline.",
-    whatToWatch:
-      "Watch whether the discharge process becomes easier or harder in practice, whether mandatory violation reporting increases incarceration risk, and whether individualized conditions remain available.",
-    tags: ["Maryland", "Lifetime supervision", "Discharge petitions", "Compliance"],
+    id: "md-hb-287",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Introduced",
+    title: "Maryland HB 287 — lifetime sexual-offender supervision conditions and discharge process",
+    jurisdiction: "Maryland",
+    date: "Jan. 14",
+    summary:
+      "Maryland introduced a bill changing lifetime sexual-offender supervision conditions, management-team reporting, hearings, victim notice, and discharge-petition provisions.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://mgaleg.maryland.gov/2026RS/bills/hb/hb0287f.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          Maryland HB 287
+        </a>{" "}
+        would alter the conditions and administration of lifetime sexual-offender supervision,
+        including potential conditions such as GPS monitoring, proximity limits, restrictions on
+        employment or activities involving minors, treatment, computer access checks, polygraph
+        testing, and contact restrictions. It also affects management-team reporting, hearings,
+        victim notice, and discharge petitions.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Lifetime supervision can operate as registry-adjacent punishment when layered with
+        registration, movement limits, monitoring, treatment mandates, and violation exposure.
+        Discharge procedure is also a relief-pathway issue.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is mixed movement. Process changes may clarify review, but expanded or more rigid
+        supervision conditions can intensify daily-life control and technical-violation risk.
+        SOLAR’s lens is whether review is meaningful, individualized, and reachable for people
+        without money, counsel, or perfect historical records.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether discharge becomes practically easier or harder, whether conditions remain
+        individualized, whether violation reporting triggers incarceration for technical
+        noncompliance, and whether counsel and evidentiary standards are clear.
+      </p>
+    ),
+    chips: {
+      movement: ["Mixed movement"],
+      impact: [
+        "Compliance burden",
+        "Relief pathway",
+        "Due-process concern",
+        "Family-stability impact",
+        "Supervision burden",
+      ],
+      risk: ["Clarification needed", "Watch closely", "Advocacy opening"],
+    },
+    tags: ["Supervision", "Discharge petitions", "GPS", "Technical violations"],
     sources: [
       {
         label: "Maryland HB 287 bill text",
         href: "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0287f.pdf",
       },
     ],
-    scriptId: "SCRIPT-MD-HB287",
-    scriptLabel: "Copy Maryland message",
-    scriptText:
-      "Please preserve individualized supervision and meaningful discharge review in HB 287. Lifetime supervision conditions should be tailored to actual risk, supported by evidence, and paired with access to counsel and proportional responses to technical violations.",
-    officialActionLabel: "Maryland HB 287 bill text",
-    officialActionHref:
-      "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0287f.pdf",
+    action: {
+      label: "Find Maryland legislators",
+      href: "https://mgaleg.maryland.gov/mgawebsite/members/district",
+      copy:
+        "Please preserve individualized supervision, meaningful discharge review, access to counsel, and proportional responses to technical violations. Lifetime supervision should not become permanent punishment by procedure.",
+    },
   },
 {
-    tone: "rose",
-    label: "Maryland cross-filed bills",
-    title:
-      "Maryland HB 501 / SB 407 — tier-definition changes tied to position-of-authority offense",
-    whatChanged:
-      "HB 501 was introduced on January 27, and SB 407 was introduced on January 29. The cross-filed bills would alter penalties and add or adjust offenses involving a person in a position of authority, while also altering the definitions of tier I sex offender and tier III sex offender for registry purposes.",
-    whyItMatters:
-      "Tier placement controls registration length and reporting frequency. A tier-definition change can move someone from a time-limited obligation into longer or lifetime registration. Families may experience longer registration duration, more frequent in-person reporting, and more severe collateral consequences depending on final tier placement.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Punishment expansion",
-      "Compliance burden",
-      "Reentry barrier",
-      "Tiering change",
-    ],
-    riskLabels: ["Watch closely", "Clarification needed", "Advocacy opening"],
-    solarRead:
-      "A tiering bill can look like a definitional cleanup, but tier labels are the architecture of registration length and intensity. The policy concern is whether lawmakers are expanding lifetime or higher-tier consequences without a clear, prospective-only analysis of who is affected and why that longer registration period is evidence-based.",
-    whatToWatch:
-      "Watch fiscal notes and committee amendments explaining who moves into Tier III, whether any lower-tier adjustments exist, and whether changes apply prospectively only.",
-    tags: ["Maryland", "Tiering", "Registration duration", "Position of authority"],
+    id: "md-hb-501-sb-407",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Introduced",
+    title: "Maryland HB 501 / SB 407 — tier-definition changes tied to position-of-authority offense",
+    jurisdiction: "Maryland",
+    date: "Jan. 27–29",
+    summary:
+      "Maryland introduced cross-filed bills that would alter sex-offender tier definitions in connection with offenses involving a person in a position of authority.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://mgaleg.maryland.gov/2026RS/bills/hb/hb0501f.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          Maryland HB 501
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://mgaleg.maryland.gov/2026RS/bills/sb/sb0407f.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          SB 407
+        </a>{" "}
+        would alter penalties and offense language involving sexual offense by a person in a
+        position of authority while also changing definitions of “tier I sex offender” and “tier III
+        sex offender” for registry purposes.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Tier placement controls registration duration, in-person reporting frequency, and collateral
+        exposure. A tier-definition change can turn a shorter registration period into a longer or
+        lifetime burden.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is negative movement because the bill set could move people into more burdensome
+        registry classifications depending on final text and offense mapping. Before any tier
+        expansion is adopted, lawmakers should show exactly who is affected, whether application is
+        prospective only, and what relief remains available.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch committee amendments, fiscal and policy analyses explaining who moves into Tier III,
+        whether any people move into lower tiers, whether changes apply prospectively only, and
+        whether individualized relief remains available.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: ["Punishment expansion", "Compliance burden", "Reentry barrier", "Tiering change"],
+      risk: ["Watch closely", "Clarification needed", "Advocacy opening"],
+    },
+    tags: ["Tiering", "Registration duration", "Position of authority"],
     sources: [
       {
         label: "Maryland HB 501 bill text",
         href: "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0501f.pdf",
       },
-    ],
-    scriptId: "SCRIPT-MD-HB501-SB407",
-    scriptLabel: "Copy Maryland message",
-    scriptText:
-      "Please require a clear registry-tier impact analysis for HB 501 and SB 407. Any tier changes should be prospective only, evidence-based, and paired with individualized relief mechanisms so people are not moved into longer or lifetime registration without meaningful review.",
-    officialActionLabel: "Maryland HB 501 bill text",
-    officialActionHref:
-      "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0501f.pdf",
-  },
-  {
-    tone: "rose",
-    label: "Maryland juvenile registry",
-    title:
-      "Maryland HB 12 — juvenile sex-offender registry access and qualifying-offense expansion",
-    whatChanged:
-      "HB 12 received first reading on January 14 and a hearing notice on January 16 for a January 29 hearing. The bill would authorize a local superintendent or designee to access the juvenile sex-offender registry and add offenses to the list requiring juvenile registry inclusion.",
-    whyItMatters:
-      "Juvenile registry expansion is especially high-risk because youth registration can destabilize education, family life, and rehabilitation while adding long-term stigma. More youth could be placed in registry systems, and school-system access could increase exclusion, monitoring, or informal stigma even if the registry is not fully public.",
-    movementLabels: ["Negative movement"],
-    impactLabels: [
-      "Youth registry",
-      "Education barrier",
-      "Family-stability impact",
-      "Due-process concern",
-      "Reentry barrier",
-    ],
-    riskLabels: ["Watch closely", "Advocacy opening", "Implementation risk"],
-    solarRead:
-      "Youth registry policy deserves heightened caution. A registry label can follow a young person through school, family systems, treatment, and early adulthood. If school access expands, safeguards must be strong enough to prevent exclusionary use, rumor-driven stigma, or informal punishment that undermines rehabilitation.",
-    whatToWatch:
-      "Watch whether access remains tightly limited, whether schools receive guidance against exclusionary misuse, and whether added offenses are narrowly defined.",
-    tags: ["Maryland", "Juvenile registry", "School access", "Education stability"],
-    sources: [
       {
-        label: "Maryland HB 12 bill record",
-        href: "https://legiscan.com/MD/bill/HB12/2026",
+        label: "Maryland SB 407 bill text",
+        href: "https://mgaleg.maryland.gov/2026RS/bills/sb/sb0407f.pdf",
       },
     ],
-    scriptId: "SCRIPT-MD-HB12",
-    scriptLabel: "Copy Maryland message",
-    scriptText:
-      "Please protect youth confidentiality, education stability, and rehabilitation in HB 12. Any school-system access to juvenile registry information should be narrow, controlled, and paired with clear safeguards against exclusion, stigma, or misuse.",
-    officialActionLabel: "Maryland HB 12 bill record",
-    officialActionHref: "https://legiscan.com/MD/bill/HB12/2026",
+    action: {
+      label: "Find Maryland legislators",
+      href: "https://mgaleg.maryland.gov/mgawebsite/members/district",
+      copy:
+        "Please require a clear public tiering-impact analysis, prospective-only application, and individualized relief mechanisms before adopting any registry-tier expansion.",
+    },
   },
   {
-    tone: "amber",
-    label: "New Hampshire effective date",
-    title:
-      "New Hampshire RSA 651-B amendments — January 1 statutory changes to registration definitions and tiers",
-    whatChanged:
-      "Amendments to New Hampshire’s registration chapter took effect on January 1. The official RSA page for Chapter 651-B lists updated definitions for sexual offense, offense against a child, tier I, tier II, and tier III, including creation of a child intimate visual representation among listed offenses. It also includes language requiring an opportunity to be heard, stated reasons, and appeal rights when courts impose registration for certain otherwise unlisted offenses.",
-    whyItMatters:
-      "Effective-date statutory changes can alter who must register, how they are tiered, and what process applies when courts impose registration outside enumerated categories. The practical impact may include new qualifying offenses, changed tier exposure, and possible process protections depending on the conviction category.",
-    movementLabels: ["Mixed movement"],
-    impactLabels: [
-      "Tiering change",
-      "Compliance clarity",
-      "Due-process concern",
-      "Agency implementation",
+    id: "md-hb-12",
+    group: "Restriction Expansion / Compliance Burden",
+    status: "Hearing posture",
+    title: "Maryland HB 12 — juvenile sex-offender registry access and qualifying-offense expansion",
+    jurisdiction: "Maryland",
+    date: "Jan. 14–29",
+    summary:
+      "Maryland considered expanding who can access the juvenile sex-offender registry and adding qualifying offenses for juvenile registry inclusion.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/HB0012?ys=2026RS"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          Maryland HB 12
+        </a>{" "}
+        would authorize a local superintendent or superintendent’s designee to access the juvenile
+        sex-offender registry and would add offenses to the list requiring juvenile registry
+        inclusion.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Juvenile registration is high-risk from a rehabilitation and family-stability perspective.
+        Expanded school access may increase exclusion, surveillance, stigma, or informal discipline
+        even when the registry is not fully public.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is negative movement for youth and families. School systems need safety planning tools,
+        but registry expansion and broader institutional access can undermine education stability,
+        privacy, and rehabilitation unless access is narrow, controlled, and paired with enforceable
+        anti-misuse safeguards.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch whether access is tightly limited, whether schools receive anti-misuse guidance,
+        whether added offenses are narrow, whether confidentiality protections are enforceable, and
+        whether rehabilitation and education stability are considered.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Youth registry",
+        "Education barrier",
+        "Family-stability impact",
+        "Due-process concern",
+        "Reentry barrier",
+      ],
+      risk: ["Watch closely", "Advocacy opening", "Implementation risk"],
+    },
+    tags: ["Juvenile registry", "School access", "Confidentiality", "Education stability"],
+    sources: [
+      {
+        label: "Maryland HB 12 bill text",
+        href: "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0012f.pdf",
+      },
+      {
+        label: "Maryland HB 12 bill record",
+        href: "https://mgaleg.maryland.gov/mgawebsite/Legislation/Details/HB0012?ys=2026RS",
+      },
     ],
-    riskLabels: ["Clarification needed", "Watch closely", "Implementation risk"],
-    solarRead:
-      "This is an implementation item rather than a public bill fight. The mixed posture comes from the combination of possible new registration exposure and process language around hearings, reasons, and appeals. The implementation risk is over-classification if courts or agencies apply the revised categories too broadly or without plain-language guidance.",
-    whatToWatch:
-      "Watch agency guidance, court application of the hearing language, and whether people are over-classified under updated offense categories.",
-    tags: ["New Hampshire", "Tiering", "Definitions", "Implementation"],
+    action: {
+      label: "Find Maryland legislators",
+      href: "https://mgaleg.maryland.gov/mgawebsite/members/district",
+      copy:
+        "Please protect juvenile rehabilitation, confidentiality, education stability, narrow access controls, and safeguards against school-based exclusion or stigma before expanding juvenile registry access.",
+    },
+  },
+  {
+    id: "doe-v-burlew",
+    group: "Courts & Rights",
+    status: "Published opinion",
+    title: "Sixth Circuit — Doe v. Burlew remands Kentucky social-media legal-name disclosure challenge",
+    jurisdiction: "Federal / Kentucky",
+    date: "Jan. 26",
+    summary:
+      "The Sixth Circuit sent a challenge to Kentucky’s social-media legal-name disclosure law back to the district court because the lower court had not completed the required facial-overbreadth analysis.",
+    whatChanged: (
+      <p>
+        The{" "}
+        <a
+          href="https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          Sixth Circuit opinion in Doe v. Burlew
+        </a>{" "}
+        vacated the preliminary injunction and remanded the case for further proceedings. The court
+        did not finally decide whether Kentucky’s law is constitutional; it required the district
+        court to complete the facial-overbreadth analysis.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Kentucky’s challenged law requires covered registrants with offenses involving minors to
+        display their full legal name on qualifying social-media accounts. Legal-name mandates can
+        chill political speech, support-group participation, family communication, employment
+        networking, and ordinary online life.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is mixed movement. The injunction posture changed in a way that may increase
+        uncertainty for affected people, but the First Amendment challenge remains alive. The deeper
+        issue is whether the state can force public self-identification online without individualized
+        findings, exposing registrants and families to doxxing, harassment, and collateral stigma.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch district-court proceedings on remand, whether enforcement is stayed or resumes, and
+        how courts distinguish passive reading, political speech, direct messaging, family accounts,
+        commercial speech, and pseudonymous participation.
+      </p>
+    ),
+    chips: {
+      movement: ["Mixed movement"],
+      impact: [
+        "Rights concern",
+        "Compliance burden",
+        "Due-process concern",
+        "Family-stability impact",
+        "Litigation risk",
+      ],
+      risk: ["Appeal likely", "Clarification needed", "Watch closely", "Advocacy opening"],
+    },
+    tags: ["First Amendment", "Online identifiers", "Legal-name disclosure", "Remand"],
+    sources: [
+      {
+        label: "Sixth Circuit opinion, Doe v. Burlew",
+        href: "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf",
+      },
+    ],
+  },
+  {
+    id: "ca-ab-1568",
+    group: "Relief / Termination",
+    status: "Introduced",
+    title: "California AB 1568 — registry-termination petition process bill introduced",
+    jurisdiction: "California",
+    date: "Jan. 12",
+    summary:
+      "California introduced a bill affecting what courts may consider when deciding petitions to terminate sex-offense registration.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1568"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          California AB 1568
+        </a>{" "}
+        concerns Penal Code section 290.5, California’s petition process for termination from the
+        registry after completion of the minimum registration period. The bill would add or
+        emphasize judicial considerations related to whether the registrable offense involved a
+        position of trust or authority and whether the petitioner participated in or completed
+        treatment.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Registry termination is one of the most important relief issues. Even language framed as
+        clarifying judicial discretion can become a practical barrier if it adds documentation
+        burdens, increases hearing uncertainty, or disadvantages people without counsel or old
+        treatment records.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is unclear movement. A well-designed petition process can support individualized
+        review, but added factors can also make relief harder in practice. The key question is
+        whether AB 1568 preserves meaningful termination or converts eligibility into a more
+        discretionary and resource-heavy process.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch committee analysis, whether language becomes mandatory or permissive, whether
+        inability to access treatment records is addressed, whether indigent petitioners receive
+        protections, and whether the bill applies to pending or future petitions only.
+      </p>
+    ),
+    chips: {
+      movement: ["Unclear movement"],
+      impact: ["Relief pathway", "Due-process concern", "Compliance clarity", "Litigation risk"],
+      risk: ["Watch closely", "Clarification needed", "Advocacy opening"],
+    },
+    tags: ["Registry termination", "Relief", "Court petitions", "Treatment records"],
+    sources: [
+      {
+        label: "California AB 1568",
+        href: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1568",
+      },
+    ],
+    action: {
+      label: "Find California representatives",
+      href: "https://findyourrep.legislature.ca.gov/",
+      copy:
+        "Please preserve meaningful registry termination, avoid impossible documentation burdens, and require individualized evidence rather than categorical distrust of people who have completed their minimum registration period.",
+    },
+  },
+  {
+    id: "ca-sb-680",
+    group: "Agencies / Implementation",
+    status: "Operative date",
+    title: "California SB 680 — new registration trigger became operative January 1, 2026",
+    jurisdiction: "California",
+    date: "Jan. 1",
+    summary:
+      "California added a tier-one registration requirement for certain unlawful-intercourse-with-a-minor convictions occurring on or after January 1, 2026, while preserving a limited statutory exception.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB680"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          California SB 680
+        </a>{" "}
+        amended Penal Code section 290 to require registration for specified Penal Code section
+        261.5(c) or 261.5(d) convictions when the offense occurs on or after January 1, 2026. The
+        placement is generally tier one, meaning a 10-year minimum registration period, unless the
+        statutory age-gap and offense-only exception applies.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Tier one is still a decade-long registry obligation. It can mean recurring registration,
+        collateral housing and employment barriers, stigma, family stress, and risk of technical
+        violations.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is negative movement because it prospectively expands who enters the registry. The
+        limited exception matters, but implementation must be clear enough that affected people,
+        defense counsel, courts, and families understand who is covered and how termination
+        eligibility works.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch prosecutorial charging practices, court application of the statutory exception,
+        California DOJ tiering guidance, and whether defense counsel and registrants receive clear
+        information about termination eligibility and exception criteria.
+      </p>
+    ),
+    chips: {
+      movement: ["Negative movement"],
+      impact: [
+        "Punishment expansion",
+        "Reentry barrier",
+        "Compliance burden",
+        "Employment barrier",
+        "Housing barrier",
+        "Agency implementation",
+      ],
+      risk: ["Implementation risk", "Clarification needed", "Watch closely"],
+    },
+    tags: ["Registration trigger", "Tier one", "Implementation", "Termination eligibility"],
+    sources: [
+      {
+        label: "California SB 680",
+        href: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB680",
+      },
+    ],
+    action: {
+      label: "Find California representatives",
+      href: "https://findyourrep.legislature.ca.gov/",
+      copy:
+        "Please request clear DOJ and court guidance explaining who is covered by SB 680, who qualifies for the statutory exception, and how tier-one termination petitions should be explained to affected people.",
+    },
+  },
+  {
+    id: "nh-rsa-651-b",
+    group: "Agencies / Implementation",
+    status: "Effective date",
+    title: "New Hampshire RSA 651-B amendments — January 1 statutory changes to registration definitions and tiers",
+    jurisdiction: "New Hampshire",
+    date: "Jan. 1",
+    summary:
+      "New Hampshire’s registry definitions and tier categories changed effective January 1, including updated offense lists and language around court process for certain registration determinations.",
+    whatChanged: (
+      <p>
+        <a
+          href="https://www.gencourt.state.nh.us/rsa/html/LXII/651-B/651-B-1.htm"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold text-slate-950 underline decoration-slate-300 underline-offset-4"
+        >
+          New Hampshire RSA 651-B:1
+        </a>{" "}
+        lists amendments effective January 1, 2026, updating definitions of sexual offense, offense
+        against a child, and tier I, tier II, and tier III sex offender categories. The amended
+        language includes “creation of a child intimate visual representation” among listed offenses
+        and contains process language requiring an opportunity to be heard, stated reasons, and
+        appeal rights when courts impose registration for certain otherwise unlisted offenses.
+      </p>
+    ),
+    whyItMatters: (
+      <p>
+        Definitions and tiers determine who is required to register, how long registration lasts, and
+        what process a person receives when a court imposes registration. Implementation errors can
+        lead to over-classification.
+      </p>
+    ),
+    solarAnalysis: (
+      <p>
+        This is mixed movement. The updated offense lists may expand covered categories, while the
+        hearing, reason-giving, and appeal language may improve process in some court-imposed
+        registration decisions. The practical effect will depend on implementation and notice.
+      </p>
+    ),
+    whatToWatch: (
+      <p>
+        Watch state police or court guidance, application of the opportunity-to-be-heard language,
+        whether affected people receive notice, whether new offense categories are over-applied, and
+        whether counsel understands appeal rights.
+      </p>
+    ),
+    chips: {
+      movement: ["Mixed movement"],
+      impact: ["Tiering change", "Compliance clarity", "Due-process concern", "Agency implementation"],
+      risk: ["Clarification needed", "Watch closely", "Implementation risk"],
+    },
+    tags: ["Definitions", "Tiering", "Court process", "Implementation"],
     sources: [
       {
         label: "New Hampshire RSA 651-B:1",
         href: "https://www.gencourt.state.nh.us/rsa/html/LXII/651-B/651-B-1.htm",
       },
     ],
-    officialActionLabel: "New Hampshire RSA 651-B:1",
-    officialActionHref:
-      "https://www.gencourt.state.nh.us/rsa/html/LXII/651-B/651-B-1.htm",
+    action: {
+      label: "New Hampshire General Court member search",
+      href: "https://www.gencourt.state.nh.us/house/members/",
+      copy:
+        "Please support plain-language implementation guidance for affected people, courts, counsel, and families so New Hampshire’s registry-definition and tier changes are not over-applied.",
+    },
+  },
+];
+const actionItems: ActionItem[] = [
+  {
+    title: "Push back on Florida’s broad restriction package",
+    why:
+      "SB 212 / HB 45 combines housing, movement, notice, employment, supervision, and warrantless-arrest exposure.",
+    href: "https://www.flsenate.gov/Senators/Find",
+    linkLabel: "Find your Florida senator",
+    copy:
+      "Please reject broad registry-based exclusion zones and warrantless-arrest expansion unless lawmakers can show individualized risk evidence, clear family exceptions, and data proving improved safety rather than more homelessness and technical violations.",
+  },
+  {
+    title: "Defend housing stability in West Virginia",
+    why:
+      "SB 500 would create a 1,000-foot residence ban with retroactive and prospective language.",
+    href: "https://www.wvlegislature.gov/Senate1/roster.cfm",
+    linkLabel: "West Virginia Senate roster",
+    copy:
+      "Please reject retroactive residency exclusion zones. Stable housing and family support reduce risk; broad 1,000-foot bans can create homelessness, family separation, and technical violations without individualized evidence.",
+  },
+  {
+    title: "Protect juvenile confidentiality and education stability in Maryland",
+    why:
+      "HB 12 would expand school-system access to juvenile registry information and add qualifying offenses.",
+    href: "https://mgaleg.maryland.gov/mgawebsite/members/district",
+    linkLabel: "Find your Maryland legislators",
+    copy:
+      "Please protect juvenile rehabilitation, confidentiality, education stability, narrow access controls, and safeguards against school-based exclusion or stigma before expanding juvenile registry access.",
+  },
+  {
+    title: "Preserve meaningful California registry termination",
+    why:
+      "AB 1568 could reshape what courts consider when deciding termination petitions.",
+    href: "https://findyourrep.legislature.ca.gov/",
+    linkLabel: "Find California representatives",
+    copy:
+      "Please preserve meaningful registry termination, avoid impossible documentation burdens, and require individualized evidence rather than categorical distrust of people who have completed their minimum registration period.",
   },
 ];
 
-const actions: Action[] = [
+const watchItems: WatchItem[] = [
   {
-    title: "Florida: ask lawmakers to reject broad restriction expansion",
-    children:
-      "Use this for SB 212 / HB 45, especially around housing exclusion, presence limits, family exceptions, and warrantless-arrest exposure.",
-    scriptId: "ACTION-FLORIDA",
-    script:
-      "Please oppose broad registry restrictions that expand housing exclusion, presence limits, notice duties, and arrest exposure without individualized risk review. Florida should preserve family-related exceptions, require evidence that any restriction improves safety, and avoid rules that increase homelessness, instability, and technical violations.",
-    actionLabel: "Florida SB 212 bill page",
-    actionHref: "https://www.flsenate.gov/Session/Bill/2026/212",
-  },
-{
-    title: "California: protect meaningful registry-termination review",
-    children:
-      "Use this for AB 1568 as lawmakers consider changes to the court process for termination petitions.",
-    scriptId: "ACTION-CALIFORNIA",
-    script:
-      "Please preserve meaningful registry-termination relief in AB 1568. Any added court considerations should be individualized, prospective, and evidence-based, not retroactive or impossible documentation burdens. People who have completed their minimum registration period need a fair, accessible path to review.",
-    actionLabel: "California AB 1568 bill page",
-    actionHref:
-      "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB1568",
+    title: "Maryland SB 230 / HB 138 — burglary-linked sexual-offense bill",
+    posture:
+      "Borderline item. January bill activity exists, but the registry effect is indirect and case-specific.",
+    why:
+      "Official fiscal materials indicate possible tier consequences in some cases, but the bill is not primarily a registry bill.",
+    next:
+      "Watch for official analysis showing specific tier movement, registration-duration changes, or direct registry-trigger effects.",
+    href: "https://mgaleg.maryland.gov/2026RS/fnotes/bil_0000/sb0230.pdf",
   },
   {
-    title: "South Carolina: oppose broad housing and employment bans",
-    children:
-      "Use this for H. 4683, which combines residence exclusions, employment restrictions, and public-notification pressure.",
-    scriptId: "ACTION-SOUTH-CAROLINA",
-    script:
-      "Please oppose broad residence and employment bans in H. 4683 unless they are supported by individualized risk review, clear evidence, and workable family-stability exceptions. Policies that force people from housing and employment can undermine reentry and public safety rather than improve it.",
-    actionLabel: "South Carolina H. 4683 bill page",
-    actionHref:
-      "https://www.scstatehouse.gov/sess126_2025-2026/bills/4683.htm",
+    title: "Ellingburg v. United States — Supreme Court restitution / ex post facto decision",
+    posture:
+      "Legal-context item only. The case mentions sex-offender registration in civil/punitive discussion but does not decide a registry obligation.",
+    why:
+      "It may become relevant if later litigants or lower courts invoke its reasoning in registry retroactivity or punitive-effects litigation.",
+    next:
+      "Watch whether lower courts cite Ellingburg in registry cases rather than treating it as a January registry-policy development.",
+    href: "https://www.supremecourt.gov/opinions/25pdf/24-482_d1oe.pdf",
   },
   {
-    title: "West Virginia: narrow reporting duties and reject retroactivity",
-    children:
-      "Use this for SB 500, HB 4135, and HB 4138, with emphasis on housing stability, online identifiers, safe harbors, and retroactive registration expansion.",
-    scriptId: "ACTION-WEST-VIRGINIA",
-    script:
-      "Please narrow West Virginia’s registry bills. Residence restrictions should be individualized and should not force people from stable housing. Online identifier reporting should be clear, limited, nonpublic, and law-enforcement-only, with safe-harbor time to update information. Please also oppose retroactive registration expansion that places people on the registry after the legal consequences of their cases were already set.",
-    actionLabel: "West Virginia HB 4135 bill page",
-    actionHref:
-      "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4135+intr.htm&i=4135&sesstype=RS&yr=2026",
+    title: "Sixth Circuit remand in Doe v. Burlew",
+    posture:
+      "The First Amendment challenge remains alive after the preliminary-injunction posture changed.",
+    why:
+      "The case may shape how courts evaluate compelled legal-name display, pseudonymous speech, and online participation by registrants.",
+    next:
+      "Watch district-court proceedings on remand and any enforcement-status changes affecting covered social-media users.",
+    href: "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf",
   },
   {
-    title: "Maryland: protect youth, due process, and individualized review",
-    children:
-      "Use this across Maryland’s January bills involving juvenile registry access, lifetime supervision, discharge petitions, and tier-definition changes.",
-    scriptId: "ACTION-MARYLAND",
-    script:
-      "Please protect due process, youth rehabilitation, and individualized review in Maryland’s registry-related bills. Juvenile registry access should be narrow and confidential, lifetime supervision should remain tailored to actual risk, and any tier changes should be prospective, evidence-based, and paired with meaningful relief mechanisms.",
-    actionLabel: "Maryland HB 287 bill text",
-    actionHref:
-      "https://mgaleg.maryland.gov/2026RS/bills/hb/hb0287f.pdf",
+    title: "Implementation of California SB 680 and New Hampshire RSA 651-B amendments",
+    posture:
+      "Both are January 1 implementation items rather than live hearing fights.",
+    why:
+      "New registration triggers, tier mapping, and court-process rules can be misapplied if agencies, courts, counsel, and families lack clear guidance.",
+    next:
+      "Watch for agency guidance, court interpretation, notices to affected people, and early disputes over exception or tier eligibility.",
   },
 ];
 
-const watchItems: WatchItemData[] = [
-  {
-    title: "Florida SB 212 / HB 45",
-    posture:
-      "The package advanced from Senate Criminal Justice during the January window, with later activity continuing outside this update period.",
-    why:
-      "Residency, presence, notice, arrest, and supervision changes could reshape daily life for registrants and families.",
-    next:
-      "Watch final text, exceptions, effective-date language, and litigation posture, especially around housing and family-related exceptions.",
-  },
-  {
-    title: "Kentucky / Sixth Circuit Doe v. Burlew remand",
-    posture:
-      "The Sixth Circuit vacated the preliminary injunction and remanded for the required facial-overbreadth analysis.",
-    why:
-      "The case affects anonymous speech, online participation, family communication, and public self-identification mandates.",
-    next:
-      "Watch whether the case becomes as-applied, whether enforcement resumes, and how the district court treats political speech, direct messaging, and family-managed accounts.",
-  },
-  {
-    title: "California AB 1568",
-    posture:
-      "The registry-termination petition bill was introduced in January, with later amendments and analysis expected to clarify its practical effect.",
-    why:
-      "Termination petitions are a core relief pathway, and added considerations can become either manageable standards or new barriers.",
-    next:
-      "Watch amendments and committee analyses for appearance requirements, treatment-proof burdens, risk-assessment language, and protections for indigent petitioners.",
-  },
-  {
-    title: "West Virginia registry package",
-    posture:
-      "SB 500, HB 4135, and HB 4138 created a January cluster of residency, online identifier, vehicle-information, offense-trigger, and retroactivity proposals.",
-    why:
-      "Together, the bills could expand housing exclusion, compliance traps, and retroactive registration exposure.",
-    next:
-      "Watch HB 4138 retroactivity, HB 4135 online and mobile identifier breadth, and SB 500’s 1,000-foot residence ban.",
-  },
-  {
-    title: "Maryland juvenile and lifetime-supervision bills",
-    posture:
-      "Maryland introduced January bills affecting juvenile registry access, lifetime supervision, discharge petitions, and tier definitions.",
-    why:
-      "The bills implicate youth confidentiality, education stability, discharge review, technical violations, and registration duration.",
-    next:
-      "Watch whether lawmakers add safeguards for youth confidentiality, school use limits, individualized supervision, counsel access, and proportional responses to technical violations.",
-  },
-  {
-    title: "New Hampshire implementation",
-    posture:
-      "New Hampshire’s RSA 651-B amendments took effect January 1, changing definitions, tiers, and some process language.",
-    why:
-      "Implementation will determine whether the changes create clarity, over-classification, or meaningful hearing protections.",
-    next:
-      "Watch agency guidance, court application of hearing and appeal language, and classification decisions under the updated offense categories.",
-  },
-];
+function ActionCard({ item }: { item: ActionItem }) {
+  return (
+    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h3 className="text-lg font-black text-slate-950">{item.title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-650">{item.why}</p>
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <p className="text-sm leading-6 text-slate-700">{item.copy}</p>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <CopyButton text={item.copy} />
+        <a
+          href={item.href}
+          target="_blank"
+          rel="noreferrer"
+          className="rounded-full bg-slate-950 px-3 py-1.5 text-xs font-bold text-white transition hover:bg-slate-800"
+        >
+          {item.linkLabel}
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function WatchListItem({ item }: { item: WatchItem }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <h3 className="text-base font-black text-slate-950">{item.title}</h3>
+        {item.href ? (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-slate-300 bg-white px-2.5 py-1 text-xs font-bold text-slate-700 hover:bg-slate-100"
+          >
+            Track
+          </a>
+        ) : null}
+      </div>
+      <dl className="mt-3 grid gap-3 text-sm leading-6 text-slate-700 md:grid-cols-3">
+        <div>
+          <dt className="font-black text-slate-950">Current posture</dt>
+          <dd className="mt-1">{item.posture}</dd>
+        </div>
+        <div>
+          <dt className="font-black text-slate-950">Why it matters</dt>
+          <dd className="mt-1">{item.why}</dd>
+        </div>
+        <div>
+          <dt className="font-black text-slate-950">What to watch next</dt>
+          <dd className="mt-1">{item.next}</dd>
+        </div>
+      </dl>
+    </div>
+  );
+}
 
 export const teasers = {
   glance: [
-    "Florida advanced a broad registry restriction package affecting residence, presence, notice duties, arrest authority, and supervision conditions.",
-    "The Sixth Circuit remanded Kentucky’s social-media legal-name disclosure case, keeping anonymous-speech and online-identifier issues live.",
-    "California’s SB 680 registration trigger became operative while AB 1568 opened a new fight over registry-termination petitions.",
-    "West Virginia, South Carolina, and Maryland introduced January bills affecting housing, online identifiers, youth registry access, supervision, and tiering.",
+    "January’s dominant pattern was restriction expansion: states moved proposals affecting housing, public-space access, employment, online identifiers, juvenile registry access, supervision, and tier placement.",
+    "The month’s strongest rights development was Doe v. Burlew, where the Sixth Circuit remanded Kentucky’s social-media legal-name disclosure case for further First Amendment analysis.",
+    "Relief remained procedurally vulnerable: California introduced AB 1568, a registry-termination petition bill that could clarify or complicate court review depending on final language.",
   ],
   highlights: [
-    {
-      icon: "🏠",
-      title: "Florida SB 212 / HB 45 — Restriction Expansion Package",
-      url: "https://www.flsenate.gov/Session/Bill/2026/212",
-    },
-    {
-      icon: "⚖️",
-      title: "Sixth Circuit — Doe v. Burlew Social-Media Disclosure Remand",
-      url: "https://www.opn.ca6.uscourts.gov/opinions.pdf/26a0023p-06.pdf",
-    },
-    {
-      icon: "📌",
-      title: "California SB 680 — New Registration Trigger Operative Jan. 1",
-      url: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB680",
-    },
-    {
-      icon: "🧭",
-      title: "West Virginia Registry Package — Residency, Identifiers, Retroactivity",
-      url: "https://www.wvlegislature.gov/Bill_Status/bills_text.cfm?billdoc=hb4135+intr.htm&i=4135&sesstype=RS&yr=2026",
-    },
+    "Florida SB 212 / HB 45 would expand residency, public-place, notice, arrest, and supervision exposure.",
+    "West Virginia SB 500 proposed a 1,000-foot residence ban with retroactivity concerns.",
+    "Maryland HB 12 raised juvenile-registry concerns by expanding school-system access and qualifying offenses.",
+    "California SB 680 became operative January 1, adding a prospective tier-one registration trigger for specified convictions.",
   ],
 };
-export default function LegislativeTracker_2026_01(): JSX.Element {
-  const [copied, setCopied] = useState<string | null>(null);
 
-  const handlePrint = () => {
-    if (typeof window !== "undefined") window.print();
-  };
-
-  const copyText = async (id: string, text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(id);
-      setTimeout(() => setCopied(null), 1400);
-    } catch {
-      // no-op
-    }
-  };
+export default function January2026LegislativeTrackerPage() {
+  const groupedDevelopments = useMemo(
+    () =>
+      groups
+        .map((group) => ({
+          group,
+          items: developments.filter((development) => development.group === group),
+        }))
+        .filter((entry) => entry.items.length > 0),
+    [],
+  );
 
   return (
-    <>
-      <SEO
-        title="January 2026 Legislative Tracker | The SOLAR Project"
-        description="January 2026 registry-policy developments affecting registrants, families, relief pathways, online identifiers, residency restrictions, supervision, tiering, and evidence-based reform."
-        keywords="sex offense registry, legislative tracker, residency restrictions, registry reform, online identifiers, registration relief, SOLAR Project"
-      />
+    <main className="min-h-screen bg-slate-100 text-slate-900">
+      <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+        <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-12">
+          <a
+            href="/legislative-tracker"
+            className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold text-white transition hover:bg-white/20"
+          >
+            Back to Legislative Tracker
+          </a>
 
-      <main className="bg-slate-100 text-slate-900">
-        <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
-          <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
-            <Link
-              to="/resources/legislative-tracker"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Legislative Tracker
-            </Link>
+          <div className="mt-8 flex flex-wrap gap-2">
+            <Badge tone="blue">Monthly update</Badge>
+            <Badge tone="purple">January 2026</Badge>
+            <Badge tone="amber">Registry policy</Badge>
+          </div>
 
-            <div className="mt-8 max-w-4xl">
-              <div className="flex flex-wrap gap-2">
-                <Badge>Legislative Tracker</Badge>
-                <Badge>January 2026 Update</Badge>
-                <Badge>State / Courts / Implementation</Badge>
-              </div>
-
-              <h1 className="mt-5 text-4xl font-black tracking-tight md:text-6xl">
-                A Restriction-Heavy Start to 2026
+          <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_320px] lg:items-end">
+            <div>
+              <h1 className="max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
+                {pageMeta.title}
               </h1>
-
-              <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-                January’s registry-policy activity leaned sharply toward restriction
-                expansion: residency zones, online identifiers, school and child-care
-                proximity rules, supervision conditions, tier changes, and new registration
-                triggers. This update focuses on what those developments mean for people
-                required to register, their families, and evidence-based reform.
+              <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200 md:text-lg">
+                {pageMeta.dek}
               </p>
+              <p className="mt-4 text-sm font-semibold text-slate-300">
+                Search window: {pageMeta.dateWindow}
+              </p>
+            </div>
 
-              <div className="mt-6 rounded-3xl border border-white/15 bg-white/10 p-5 backdrop-blur">
-                <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-300">
-                  Update scope
-                </p>
-                <p className="mt-2 text-base leading-7 text-slate-100">
-                  Coverage window: January 1 through January 31, 2026, Eastern time.
-                  Included items had a meaningful January event such as bill introduction,
-                  committee movement, operative date, statutory implementation, or court
-                  opinion. Borderline cases are not included in this build.
-                </p>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={handlePrint}
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-950 hover:bg-slate-100"
-                >
-                  <Printer className="h-4 w-4" />
-                  Print
-                </button>
-                <a
-                  href="#at-a-glance"
-                  className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  At a Glance
-                </a>
-                <a
-                  href="#key-developments"
-                  className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  Key Developments
-                </a>
-                <a
-                  href="#action-center"
-                  className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  Action Center
-                </a>
-                <a
-                  href="#watchlist"
-                  className="rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  Watchlist
-                </a>
+            <div className="rounded-3xl border border-white/15 bg-white/10 p-4 backdrop-blur">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-300">
+                Page utility
+              </p>
+              <div className="mt-3">
+                <ShareBar />
               </div>
             </div>
           </div>
-        </section>
 
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-8 md:px-6 md:py-10">
-          <div className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
-            <ShareBar />
-          </div>
-
-          <Section id="at-a-glance" eyebrow="At a Glance" title="January leaned toward restriction expansion">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <StatusCard tone="rose" title="Dominant pattern">
-                January activity leaned toward restriction expansion: residency zones,
-                online-name and identifier controls, proximity rules, employment
-                restrictions, supervision conditions, and added registration triggers.
-              </StatusCard>
-              <StatusCard tone="amber" title="Strongest January items">
-                Florida SB 212 / HB 45, the Sixth Circuit’s Doe v. Burlew remand,
-                California SB 680’s operative date, South Carolina H. 4683, and West
-                Virginia’s registry package carried the clearest direct impact.
-              </StatusCard>
-              <StatusCard tone="sky" title="Best relief/removal item">
-                California AB 1568 is the main relief-pathway item because it directly
-                affects registry-termination petitions. Its movement remains unclear
-                until amendments and analyses show whether it creates manageable
-                standards or new barriers.
-              </StatusCard>
-              <StatusCard tone="indigo" title="Highest family-stability concern">
-                Florida, South Carolina, and West Virginia raise the strongest housing
-                and family concerns because broad exclusion zones can destabilize
-                households without individualized risk findings.
-              </StatusCard>
-            </div>
-
-            <div className="mt-6 rounded-3xl bg-slate-950 p-6 text-white">
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
-                Why this update matters
-              </p>
-              <p className="mt-3 text-base leading-8 text-slate-100">
-                The month’s pattern is not just “more bills.” It is a familiar policy
-                direction: expanding the geography, paperwork, supervision, and
-                public-identification burdens attached to registry status. The key
-                question for evidence-based reform is whether these measures prevent
-                harm or instead widen instability, housing loss, technical violations,
-                and family disruption while leaving real prevention unaddressed.
-              </p>
-            </div>
-          </Section>
-
-          <Section id="key-developments" eyebrow="Key Developments" title="January developments">
-            <div className="grid gap-6">
-              {developments.map((item) => (
-                <DevelopmentCard
-                  key={item.title}
-                  {...item}
-                  copied={copied}
-                  onCopy={copyText}
-                />
-              ))}
-            </div>
-          </Section>
-
-          <Section id="action-center" eyebrow="Action Center" title="Practical response scripts">
-            <p className="-mt-2 mb-5 max-w-3xl text-sm leading-7 text-slate-700">
-              These messages are designed for registrants, families, allies, and reform
-              supporters. They focus on clarity, due process, stability, individualized
-              review, and evidence-based public safety.
-            </p>
-            <div className="grid gap-5 md:grid-cols-2">
-              {actions.map((action) => (
-                <ActionCard
-                  key={action.scriptId}
-                  {...action}
-                  copied={copied}
-                  onCopy={copyText}
-                />
-              ))}
-            </div>
-          </Section>
-
-          <Section id="watchlist" eyebrow="Rolling Watchlist" title="What carries forward">
-            <div className="grid gap-4">
-              {watchItems.map((item) => (
-                <WatchItem key={item.title} {...item} />
-              ))}
-            </div>
-          </Section>
-
-          <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-8">
-            <div className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-slate-600" />
-              <h2 className="text-2xl font-black tracking-tight text-slate-950">
-                Source and methodology note
-              </h2>
-            </div>
-            <p className="mt-4 text-sm leading-7 text-slate-700">
-              This monthly update is based on the approved January 1–31, 2026 item set.
-              Sources emphasize official legislature pages, court opinions, statutory
-              pages, and bill PDFs. Credible media or context sources are used only where
-              helpful and available. The page does not add borderline cases, later-month
-              developments, or newly discovered items. It evaluates each development
-              through SOLAR’s lens: how the law or policy affects people required to
-              register, people with sex-offense convictions, their families, and
-              evidence-based reform.
-            </p>
-          </section>
+          <nav className="mt-8 flex flex-wrap gap-2 text-sm font-bold">
+            <a className="rounded-full bg-white/10 px-3 py-2 hover:bg-white/20" href="#throughline">
+              Throughline
+            </a>
+            <a className="rounded-full bg-white/10 px-3 py-2 hover:bg-white/20" href="#glance">
+              At a glance
+            </a>
+            <a className="rounded-full bg-white/10 px-3 py-2 hover:bg-white/20" href="#developments">
+              Key developments
+            </a>
+            <a className="rounded-full bg-white/10 px-3 py-2 hover:bg-white/20" href="#actions">
+              Action Center
+            </a>
+            <a className="rounded-full bg-white/10 px-3 py-2 hover:bg-white/20" href="#watchlist">
+              Watchlist
+            </a>
+          </nav>
         </div>
-      </main>
-    </>
+      </section>
+
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-6 md:px-6 md:py-8">
+        <Section id="throughline" eyebrow="Reader map" title="Month Throughline">
+          <div className="rounded-3xl bg-slate-950 p-5 text-white md:p-6">
+            <p className="text-lg font-bold leading-8 md:text-xl">
+              January 2026 was dominated by restriction expansion and compliance-burden activity.
+            </p>
+            <p className="mt-4 text-sm leading-7 text-slate-200 md:text-base">
+              State legislatures moved proposals that would add or broaden residency zones,
+              public-place limits, employment limits, online identifier duties, vehicle and
+              equipment reporting, supervision conditions, juvenile registry access, and
+              tier-triggering offenses. The month also included one significant rights-litigation
+              development — the Sixth Circuit’s remand in the Kentucky social-media legal-name
+              disclosure case — and two implementation or relief items: California’s
+              registry-termination petition bill, California’s January 1 registration-trigger
+              expansion, and New Hampshire’s January 1 registration and tiering amendments.
+            </p>
+            <p className="mt-4 text-sm leading-7 text-slate-200 md:text-base">
+              For SOLAR’s audience, the pattern is not simply “more bills.” It is a cluster of
+              proposals that would make registry life more geographically restricted, technically
+              fragile, and exposed to family instability, while relief pathways remained narrower
+              and more procedurally vulnerable.
+            </p>
+          </div>
+        </Section>
+<Section id="glance" eyebrow="At a glance" title="What January moved">
+          <div className="grid gap-4 md:grid-cols-4">
+            <StatusCard
+              label="Key developments"
+              value="11"
+              detail="Included items with January hooks: introductions, hearings, committee movement, operative dates, and a federal appellate opinion."
+            />
+            <StatusCard
+              label="Dominant posture"
+              value="Restriction"
+              detail="Most included items would expand residency, reporting, tiering, supervision, public-notification, or juvenile-registry exposure."
+            />
+            <StatusCard
+              label="Rights litigation"
+              value="1"
+              detail="Doe v. Burlew kept the Kentucky online legal-name disclosure challenge alive but changed the injunction posture."
+            />
+            <StatusCard
+              label="Action paths"
+              value="4"
+              detail="Highest-value actions focus on Florida, West Virginia, Maryland juvenile access, and California termination relief."
+            />
+          </div>
+
+          <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <h3 className="text-lg font-black text-slate-950">Why this update matters</h3>
+            <p className="mt-2 text-sm leading-7 text-slate-700">
+              January’s bills and implementation items show how registry systems expand in pieces:
+              one new location rule, one new tier definition, one new online-identifier field, one
+              new juvenile-access pathway, one new supervision condition. Each piece may be framed
+              as narrow. Together, they create more ways for housing, work, school, family life,
+              digital life, and ordinary movement to become compliance hazards.
+            </p>
+          </div>
+        </Section>
+
+        <Section id="developments" eyebrow="Key developments" title="January 2026 developments">
+          <div className="grid gap-8">
+            {groupedDevelopments.map((entry) => (
+              <div key={entry.group}>
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="h-px flex-1 bg-slate-200" />
+                  <h3 className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-black text-slate-700">
+                    {entry.group}
+                  </h3>
+                  <div className="h-px flex-1 bg-slate-200" />
+                </div>
+                <div className="grid gap-5">
+                  {entry.items.map((development) => (
+                    <DevelopmentCard key={development.id} development={development} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="actions" eyebrow="Action Center" title="Highest-value reader actions">
+          <div className="grid gap-4 md:grid-cols-2">
+            {actionItems.map((item) => (
+              <ActionCard key={item.title} item={item} />
+            ))}
+          </div>
+        </Section>
+
+        <Section id="watchlist" eyebrow="Rolling watchlist" title="What remains unresolved">
+          <div className="grid gap-4">
+            {watchItems.map((item) => (
+              <WatchListItem key={item.title} item={item} />
+            ))}
+          </div>
+        </Section>
+
+        <Section eyebrow="Sources and methodology" title="Source and methodology note">
+          <div className="grid gap-4 text-sm leading-7 text-slate-700 md:grid-cols-[1.4fr_1fr]">
+            <div>
+              <p>
+                This monthly update uses the approved January 1–31, 2026 search handoff and preserves
+                the locked item set. Official bill pages, official bill text, court opinions,
+                statutes, and legislative materials are prioritized. Credible context sources are
+                used only where they support status or framing without replacing official legal
+                sources.
+              </p>
+              <p className="mt-3">
+                The tracker focuses on practical legal effect: who is newly covered, what duties
+                expand, what relief changes, what process is available, and how the development
+                affects people required to register, their families, and evidence-based reform.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <p className="font-black text-slate-950">Not included as key developments</p>
+              <p className="mt-2">
+                Borderline items remain in the watchlist when they have possible future relevance
+                but no direct January registry-policy effect strong enough for a key-development
+                slot.
+              </p>
+            </div>
+          </div>
+        </Section>
+      </div>
+    </main>
   );
 }
