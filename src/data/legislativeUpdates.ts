@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "March 1, 2026",
+  title: "Legislative Tracker — February 2026 Update",
+  slug: "2026-03-01",
+  summary:
+    "February’s registry-policy activity was mixed but mostly burden-expanding, with federal exclusion bills, state restrictions on housing and public places, online-identifier proposals, tiering pressure, technical-violation reform, and court rulings testing statutory and constitutional limits.",
+  tags: ["federal", "state", "courts", "housing", "health care", "implementation"],
+},
+{
   date: "February 1, 2026",
   title: "Legislative Tracker — January 2026 Update",
   slug: "2026-02-01",
