@@ -25,6 +25,8 @@ type ChipSet = {
 };
 
 type ActionLink = {
+  title: string;
+  why: string;
   label: string;
   href: string;
   message: string;
@@ -55,11 +57,17 @@ type WatchItemData = {
   next: string[];
 };
 
+type GlanceCard = {
+  label: string;
+  title: string;
+  body: string;
+};
+
 const pageTitle = "February 2026 Legislative Tracker | The SOLAR Project";
 const pageDescription =
   "February 2026 brought federal exclusion proposals, state registry-expansion bills, technical-violation reforms, and court decisions testing the limits of sex-offense registration laws.";
 
-const canonicalUrl = "https://solarproject.org/resources/legislative-tracker/2026-03-01";
+const canonicalUrl = "https://thesolarproject.org/resources/legislative-tracker/2026-03-01";
 
 const groups = [
   "Federal Exclusion Proposals",
@@ -67,6 +75,39 @@ const groups = [
   "Compliance, Online Identifiers, and Technical-Violation Exposure",
   "Reform / Court Limits",
   "Litigation Watch",
+];
+
+const atAGlance: GlanceCard[] = [
+  {
+    label: "Dominant monthly pattern",
+    title: "Instability by accumulation",
+    body:
+      "February did not produce one sweeping national registry overhaul. It produced a stack of targeted burdens affecting health care, shelter, housing, public places, online identity, tiering, evaluations, and technical violations.",
+  },
+  {
+    label: "Strongest burden-expansion theme",
+    title: "Exclusion from stabilizing systems",
+    body:
+      "The most concrete national signal was exclusion: one federal bill targeted ACA and Medicaid support, while another targeted access to federally funded shelters.",
+  },
+  {
+    label: "Rights / reform counterpoint",
+    title: "Technical-violation limits still mattered",
+    body:
+      "Washington HB 2403 and Iowa’s Uranga decision showed a narrower reform path: distinguishing administrative noncompliance from new harm and requiring prosecutors to prove the exact registry duty charged.",
+  },
+  {
+    label: "Top action opportunity",
+    title: "Respond to federal exclusion bills",
+    body:
+      "The highest-impact reader action is contacting members of Congress about the health-care and shelter exclusion bills before committee movement or copycat proposals normalize the frame.",
+  },
+  {
+    label: "What to watch next",
+    title: "Final text and implementation details",
+    body:
+      "Watch Florida and Wyoming for final restriction language, Idaho for residence-rule implementation, Washington for floor action, and Pennsylvania for the next Act 29 litigation path.",
+  },
 ];
 
 const developments: Development[] = [
@@ -103,7 +144,7 @@ const developments: Development[] = [
         Medicaid matching funds for medical assistance provided to covered individuals.
       </>,
       "The ACA credit denial would apply to taxable years ending after enactment. The Medicaid provisions would apply to people enrolled or reenrolled on or after enactment, while allowing states to elect not to make Medicaid medical assistance available to covered individuals.",
-      "The February event was introduction of a federal proposal that would turn registry status into a health-benefits exclusion.",
+      "The February hook was introduction of a federal proposal that would turn registry status into a health-benefits exclusion.",
     ],
     matters: [
       "Health coverage is tied to stability, treatment access, medication continuity, employment capacity, disability care, mental-health care, and family stability.",
@@ -144,6 +185,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Oppose health-care exclusion by registry status",
+      why:
+        "Health coverage supports treatment, medication access, disability care, work stability, and family stability. A categorical registry-based exclusion would destabilize reentry without individualized risk assessment.",
       label: "Contact your U.S. House member",
       href: "https://www.congress.gov/members/find-your-member",
       message:
@@ -182,7 +226,7 @@ const developments: Development[] = [
         information about non-covered alternatives.
       </>,
       "The proposal includes a notice duty for covered registrants who enter a covered shelter, funding ineligibility for noncompliant shelters in the following fiscal year, and criminal penalties for knowing violations, including imprisonment up to five years.",
-      "The February event was introduction of a bill tying federal shelter funding to categorical denial of access for covered registrants.",
+      "The February hook was introduction of a bill tying federal shelter funding to categorical denial of access for covered registrants.",
     ],
     matters: [
       "Shelter access is a registry-life issue because residence restrictions, employment barriers, family disruption, poverty, and supervision conditions already increase housing instability.",
@@ -229,6 +273,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Oppose shelter exclusion by registry status",
+      why:
+        "Emergency shelter access supports address compliance, reentry stability, family safety, and survival during displacement. Categorical exclusion can increase homelessness and technical-violation risk.",
       label: "Contact your U.S. House member",
       href: "https://www.congress.gov/members/find-your-member",
       message:
@@ -313,6 +360,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Ask Florida lawmakers to narrow place-based restrictions",
+      why:
+        "Pool, park, playground, school, and child-care-adjacent restrictions can create unclear daily-life boundaries and family-stability burdens unless the final text is narrow, clear, and workable.",
       label: "Find your Florida legislators",
       href: "https://www.flsenate.gov/Senators/Find",
       message:
@@ -376,6 +426,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Request constitutional review of online-name rules",
+      why:
+        "Compelled online-name rules can chill lawful speech, family contact, support groups, employment communication, dating, and association unless they are narrow, clear, and tied to individualized risk.",
       label: "Find your South Carolina legislators",
       href: "https://www.scstatehouse.gov/legislatorssearch.php",
       message:
@@ -454,6 +507,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Ask Idaho lawmakers to protect evaluation due process",
+      why:
+        "Evaluation rules can affect sentencing, supervision, risk classification, treatment, and relief. Cost or access barriers should not become aggravating circumstances.",
       label: "Find your Idaho legislator",
       href: "https://legislature.idaho.gov/legislators/whosmylegislator/",
       message:
@@ -545,6 +601,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Monitor Idaho residence-rule implementation",
+      why:
+        "Residence definitions can help clarify compliance, but implementation will determine whether homeless people, care placements, temporary caregiving, and medical stays are treated fairly.",
       label: "Find your Idaho legislator",
       href: "https://legislature.idaho.gov/legislators/whosmylegislator/",
       message:
@@ -634,6 +693,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Support Washington failure-to-register penalty reform",
+      why:
+        "This is the month’s clearest reform-oriented legislative item because it reduces some repeat failure-to-register escalation while keeping accountability in place.",
       label: "Comment on Washington HB 2403",
       href: "https://app.leg.wa.gov/pbc/bill/2403",
       message:
@@ -794,6 +856,9 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Oppose lifetime expansion and harder exemption access",
+      why:
+        "Lifetime-registration expansion can permanently close relief pathways, while petition requirements can make relief depend on money, counsel, transportation, and court access.",
       label: "Find your Missouri representative",
       href: "https://house.mo.gov/legislatorlookup.aspx",
       message:
@@ -995,21 +1060,15 @@ const developments: Development[] = [
       },
     ],
     action: {
+      title: "Oppose blanket daycare residence buffers",
+      why:
+        "Daycare buffers can sharply reduce housing availability and punish people by registry status rather than individualized risk, especially after eviction, rent increases, or family relocation.",
       label: "Find your Wyoming legislator",
       href: "https://wyoleg.gov/Legislators",
       message:
         "Please oppose blanket daycare residence buffers in SF 88. Housing restrictions should require individualized risk nexus, clear measurement rules, hardship exceptions, and review of housing impact on families and reentry.",
     },
   },
-];
-
-const glance = [
-  "Federal exclusion bills were the clearest national February signal: one targeted health-care assistance and one targeted access to federally funded shelters.",
-  "State bills continued using the registry as a platform for location, housing, online-identity, evaluation, lifetime-status, and technical-violation expansion.",
-  "Florida and Wyoming were especially important for physical-space exclusion: pools, parks, child-centered locations, and daycares.",
-  "Washington HB 2403 was the clearest reform-oriented movement, reducing some failure-to-register penalty escalation.",
-  "Iowa’s Uranga decision was the strongest rights-protective court item, requiring prosecutors to prove the specific registry duty charged.",
-  "Pennsylvania litigation remains difficult for broad adult Act 29 challenges after Lacombe and Torsilieri II.",
 ];
 
 const watchlist: WatchItemData[] = [
@@ -1042,22 +1101,14 @@ const watchlist: WatchItemData[] = [
     posture: "Advanced to House Rules in February.",
     why:
       "It is a rare reform-oriented effort to reduce failure-to-register escalation and distinguish technical violations from new sexual harm.",
-    next: [
-      "Floor action.",
-      "Amendments restoring harsher penalty treatment.",
-      "Whether the bill survives political pressure.",
-    ],
+    next: ["Floor action.", "Amendments restoring harsher penalty treatment.", "Whether the bill survives political pressure."],
   },
   {
     title: "New Mexico SORNA-alignment language",
     posture: "HB 199 was postponed indefinitely February 13.",
     why:
       "The architecture may return: shorter deadlines, tiering, longer durations, and expanded digital and travel-related information.",
-    next: [
-      "Reintroduction in future sessions.",
-      "Agency or federal-compliance pressure.",
-      "Committee substitute text for narrower or revived provisions.",
-    ],
+    next: ["Reintroduction in future sessions.", "Agency or federal-compliance pressure.", "Committee substitute text for narrower or revived provisions."],
   },
   {
     title: "Pennsylvania Act 29 litigation after D.L. v. PSP",
@@ -1065,11 +1116,7 @@ const watchlist: WatchItemData[] = [
       "The Commonwealth Court continues applying state supreme court precedent against broad adult Act 29 challenges.",
     why:
       "The litigation path may shift toward as-applied claims, removal-stage claims, juvenile distinctions, or federal theories.",
-    next: [
-      "Appeals from D.L.",
-      "Pending removal-stage cases.",
-      "New challenges focused on public dissemination, digital tracking, or individualized-risk findings.",
-    ],
+    next: ["Appeals from D.L.", "Pending removal-stage cases.", "New challenges focused on public dissemination, digital tracking, or individualized-risk findings."],
   },
 ];
 
@@ -1217,15 +1264,10 @@ function DevelopmentCard({ development }: { development: Development }) {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-amber-200 bg-amber-50/50 p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">SOLAR analysis</h4>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">SOLAR analysis</h4>
           <div className="mt-3">
             <ParagraphList items={development.analysis} />
-          </div>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            <ChipGroup label="Movement" chips={development.chips.movement} />
-            <ChipGroup label="Impact" chips={development.chips.impact} />
-            <ChipGroup label="Risk / opportunity" chips={development.chips.risk} />
           </div>
         </div>
 
@@ -1241,9 +1283,24 @@ function DevelopmentCard({ development }: { development: Development }) {
           </ul>
         </div>
 
+        <div className="rounded-2xl border border-amber-200 bg-white p-4">
+          <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">SOLAR chips</h4>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            <ChipGroup label="Movement" chips={development.chips.movement} />
+            <ChipGroup label="Impact" chips={development.chips.impact} />
+            <ChipGroup label="Risk / opportunity" chips={development.chips.risk} />
+          </div>
+        </div>
+
+        <div className="border-t border-slate-200 pt-4">
+          <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Sources</h4>
+          <SourcePills sources={development.sources} />
+        </div>
+
         {development.action ? (
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">Copyable message</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">Item-level action</h4>
+            <p className="mt-3 text-sm leading-7 text-slate-700">{development.action.why}</p>
             <p className="mt-3 rounded-2xl bg-white p-4 text-sm leading-7 text-slate-700 shadow-sm">
               {development.action.message}
             </p>
@@ -1257,11 +1314,6 @@ function DevelopmentCard({ development }: { development: Development }) {
             </div>
           </div>
         ) : null}
-
-        <div className="border-t border-slate-200 pt-4">
-          <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Sources</h4>
-          <SourcePills sources={development.sources} />
-        </div>
       </div>
     </article>
   );
@@ -1273,10 +1325,12 @@ function ActionCard({ development }: { development: Development }) {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
       <p className="text-sm font-semibold uppercase tracking-wide text-amber-700">{development.jurisdiction}</p>
-      <h3 className="mt-2 text-lg font-bold text-slate-950">{development.title}</h3>
-      <p className="mt-3 rounded-2xl bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-        {development.action.message}
-      </p>
+      <h3 className="mt-2 text-lg font-bold text-slate-950">{development.action.title}</h3>
+      <p className="mt-3 text-sm leading-7 text-slate-700">{development.action.why}</p>
+      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
+        <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Copyable script</p>
+        <p className="mt-2 text-sm leading-7 text-slate-700">{development.action.message}</p>
+      </div>
       <div className="mt-4">
         <ExternalLink
           href={development.action.href}
@@ -1407,11 +1461,13 @@ export default function February2026LegislativeTracker() {
           </Section>
 
           <Section id="glance" eyebrow="At a glance" title="What February showed">
-            <div className="grid gap-4 md:grid-cols-2">
-              {glance.map((item) => (
-                <div key={item} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm leading-7 text-slate-700">
-                  {item}
-                </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+              {atAGlance.map((item) => (
+                <article key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs font-bold uppercase tracking-wide text-amber-700">{item.label}</p>
+                  <h3 className="mt-2 text-base font-bold text-slate-950">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">{item.body}</p>
+                </article>
               ))}
             </div>
           </Section>
