@@ -12,6 +12,14 @@ export type LegislativeUpdateMeta = {
 };
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
+{
+  date: "February 1, 2026",
+  title: "Legislative Tracker — January 2026 Update",
+  slug: "2026-02-01",
+  summary:
+    "January’s registry-policy activity leaned toward restriction expansion, with major developments involving residency limits, online identifiers, supervision, tiering, juvenile registry access, and new registration triggers.",
+  tags: ["federal", "state", "courts", "implementation"],
+},
   {
     date: "December 7, 2025",
     title:
