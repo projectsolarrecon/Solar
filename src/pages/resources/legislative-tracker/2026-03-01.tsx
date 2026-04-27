@@ -391,25 +391,25 @@ const metrics: Metric[] = [
     label: "Key Developments",
     value: "12",
     body:
-      "February included federal exclusion bills, state restriction packages, penalty reform, and court decisions affecting registry enforcement.",
+      "Federal exclusion bills, state restriction packages, court rulings, and implementation fights made February a broad burden-expansion month rather than a single-issue update.",
   },
   {
     label: "Dominant Posture",
-    value: "Burden-expanding",
+    value: "Burden expansion",
     body:
-      "Most activity used registry status to expand exclusion, reporting duties, housing limits, online rules, or lifetime consequences.",
+      "The month’s center of gravity was registry status becoming a gatekeeping tool for healthcare, shelter, housing, public space, online identity, and relief access.",
   },
   {
     label: "Rights / Reform Counterpoint",
     value: "2",
     body:
-      "Washington’s failure-to-register bill and Iowa’s Uranga decision offered narrow but important limits on technical-violation punishment.",
+      "Washington and Iowa showed a different path: reducing technical-violation escalation and requiring prosecutors to prove the exact registry duty charged.",
   },
   {
     label: "Action Paths",
     value: "4",
     body:
-      "Top actions focus on federal benefit exclusions, Florida place restrictions, and Washington’s penalty-reform opening.",
+      "The clearest public actions focus on opposing federal exclusion bills, narrowing Florida restrictions, and supporting Washington’s penalty-reform bill.",
   },
 ];
 
@@ -421,7 +421,7 @@ const developments: Development[] = [
     jurisdiction: "Federal / U.S. House",
     date: "Introduced February 9, 2026",
     summary:
-      "H.R. 7453 would convert sex-offense status into a categorical bar to major health-coverage assistance programs.",
+      "The CLEAN Act would turn registry-related status into a healthcare exclusion rule, threatening the treatment, medication, disability care, and family stability that make lawful reentry possible.",
     tone: "rose",
     changed: [
       <>
@@ -433,15 +433,17 @@ const developments: Development[] = [
         on a joint return, who meets the bill’s sex-offender definition as of the
         last day of the taxable year.
       </>,
-      "The bill would also amend Medicaid funding provisions to block federal matching funds for medical assistance provided to covered individuals and would allow states to elect not to make Medicaid medical assistance available to them.",
+      "It would also amend Medicaid funding provisions to block federal matching funds for medical assistance provided to covered individuals and would allow states to elect not to make Medicaid medical assistance available to them.",
+      "The legal effect is not simply a tax or benefits adjustment. It would convert sex-offense status into a categorical barrier to major health-coverage systems.",
     ],
     matters: [
-      "Health coverage is tied to medication continuity, mental-health care, treatment access, disability care, employment capacity, and family stability.",
-      "The proposal treats registry-related status as a categorical reason to deny health support, without individualized assessment of risk, medical need, offense age, disability, poverty, family circumstances, or treatment compliance.",
+      "Health coverage is tied to medication continuity, mental-health care, treatment access, disability care, chronic-disease management, employment capacity, and family stability.",
+      "For families, the burden would not stop with the covered person. Costs and consequences could shift to spouses, parents, children, emergency rooms, local systems, and untreated illness.",
+      "A policy that destabilizes treatment and medical care in the name of public safety risks undermining the very stability that evidence-based reentry depends on.",
     ],
     analysis: [
-      "This is negative movement because it turns the registry into a gatekeeping mechanism for ordinary medical stability.",
-      "For registrants and families, the likely effects would not stop at the covered person: costs could shift to spouses, parents, children, emergency rooms, local systems, or untreated illness.",
+      "SOLAR reads this as negative movement because it uses the registry as a gatekeeping device for ordinary medical stability, without individualized review of risk, medical need, time since offense, disability, treatment compliance, or family circumstances.",
+      "The broader pattern is permanent punishment through collateral systems: not a new sentence imposed by a court, but a status-based exclusion that follows people into healthcare, poverty, disability, and family life.",
     ],
     watch: [
       "Whether H.R. 7453 receives committee activity or a Senate companion.",
@@ -477,7 +479,7 @@ const developments: Development[] = [
     action: {
       title: "Oppose healthcare exclusion by registry status",
       why:
-        "The bill would use sex-offense status to destabilize medical care, treatment access, disability support, and family stability.",
+        "Health coverage supports treatment, disability care, employment capacity, medication continuity, and family stability; categorical exclusion makes public safety worse by destabilizing the supports that reduce risk.",
       label: "Find your member of Congress",
       href: "https://www.congress.gov/members/find-your-member",
       message:
@@ -491,7 +493,7 @@ const developments: Development[] = [
     jurisdiction: "Federal / U.S. House",
     date: "Introduced February 20, 2026",
     summary:
-      "H.R. 7624 would tie federal shelter funding to denying services and housing to covered registrants, with criminal penalties for knowing violations.",
+      "H.R. 7624 would make federally funded shelter access another registry exclusion point, pushing people and families toward homelessness when stability is most urgent.",
     tone: "rose",
     changed: [
       <>
@@ -505,12 +507,13 @@ const developments: Development[] = [
       "It would require covered sex offenders entering a covered shelter to notify staff of their status and would create criminal penalties for knowing violations, including fines or imprisonment up to five years.",
     ],
     matters: [
-      "Shelter access is a registry-life issue because residence restrictions, employment barriers, family disruption, and supervision conditions already increase housing instability.",
-      "A categorical shelter ban can push people into unsheltered homelessness, making address reporting, supervision compliance, treatment continuity, and family safety harder.",
+      "Emergency shelter is not a luxury benefit. For people facing homelessness, domestic violence, disaster displacement, poverty, eviction, or family breakdown, it may be the difference between lawful stability and street-level survival.",
+      "Shelter exclusion can make registration compliance harder because many registration systems require a stable or reportable address. The practical risk is that a person is denied shelter and then punished for the instability that denial creates.",
+      "Families can also be forced into impossible choices when one household member is excluded from the facility that would otherwise keep the family safe.",
     ],
     analysis: [
-      "This is negative movement because it uses federal funding pressure to turn emergency shelter into another exclusion zone.",
-      "For families, the bill could create impossible choices during domestic violence, disaster displacement, poverty, eviction, or family breakdown if one household member is barred from federally funded shelter.",
+      "SOLAR reads this as negative movement because it turns federal funding into pressure for categorical exclusion, not individualized assessment.",
+      "The bill reflects a broader registry-policy pattern: using public safety language to remove stabilizing supports, even when housing and shelter are among the most practical foundations for compliance and prevention.",
     ],
     watch: [
       "Whether H.R. 7624 receives hearing activity or a Senate companion.",
@@ -552,7 +555,7 @@ const developments: Development[] = [
     action: {
       title: "Oppose shelter exclusion and homelessness penalties",
       why:
-        "Emergency shelter access supports compliance, safety, family stability, and lawful reentry during crisis.",
+        "Emergency shelter access supports compliance, safety, family stability, and lawful reentry during crisis; blanket shelter exclusion can create the instability it claims to solve.",
       label: "Find your member of Congress",
       href: "https://www.congress.gov/members/find-your-member",
       message:
@@ -566,7 +569,7 @@ const developments: Development[] = [
     jurisdiction: "Florida",
     date: "Committee movement February 10 and February 24, 2026",
     summary:
-      "Florida narrowed some draft language but continued advancing a restriction package tied to public swimming pools, child-centered places, supervision permission, and registry-information sharing.",
+      "Florida continued advancing a restriction package that would make public pools and child-centered locations new compliance risk zones for registrants under supervision and their families.",
     tone: "amber",
     changed: [
       <>
@@ -581,16 +584,17 @@ const developments: Development[] = [
         facilities, parks, public swimming pools, playgrounds, and related
         locations.
       </>,
-      "The February Senate Judiciary substitute deleted public-bathing-space references, shifted some language from a 200-foot restricted zone to an on-the-premises standard, and revised warrantless-arrest language in the same direction.",
-      "The bill would require supervising officers to deny certain requests by conditional releasees or probationers to visit a public swimming pool unless specific exemptions apply.",
+      "The February Senate Judiciary substitute narrowed some draft language by deleting public-bathing-space references, shifting some language from a 200-foot restricted zone to an on-the-premises standard, and revising warrantless-arrest language in the same direction.",
+      "The bill would still require supervising officers to deny certain requests by conditional releasees or probationers to visit a public swimming pool unless specific exemptions apply.",
     ],
     matters: [
-      "Even narrowed premises language can create daily-life traps when covered locations are common community spaces and boundaries are unclear.",
-      "Public-pool and child-centered location restrictions can affect parenting, grandparenting, family recreation, caregiving, voting, religious participation, treatment, employment, and ordinary travel.",
+      "The practical issue is not just whether a person can enter a pool or park. It is whether everyday geography becomes a criminal-risk map for parents, grandparents, caregivers, workers, voters, people attending religious services, and people trying to comply with supervision.",
+      "Premises language may be clearer than a 200-foot buffer, but clarity does not eliminate the burden if covered locations are common, boundaries are unclear, or exceptions are too narrow to use in ordinary family life.",
+      "For families, restrictions around recreation and child-centered places can turn ordinary activities into requests for permission, discretionary denials, or fear of technical violations.",
     ],
     analysis: [
-      "This is negative movement because the bill preserves a new restricted-location architecture while adding supervision denial rules and potential arrest exposure.",
-      "The shift from 200 feet to premises may improve boundary clarity, but the practical burden remains significant if implementation guidance is vague or exceptions are too narrow to work for families.",
+      "SOLAR reads this as negative movement because the bill preserves a new restricted-location architecture while adding supervision denial rules and potential arrest exposure.",
+      "The narrowing is real, but it does not change the core policy direction: Florida is still expanding where registry-impacted people may safely exist in public and family life.",
     ],
     watch: [
       "Whether final language keeps premises-based wording rather than a 200-foot zone.",
@@ -652,7 +656,7 @@ const developments: Development[] = [
     jurisdiction: "Wyoming",
     date: "Senate passage February 20, 2026",
     summary:
-      "Wyoming’s Senate advanced a bill barring adult registrants from living within 1,000 feet of licensed or government-run childcare facilities, with limited grandfathering.",
+      "Wyoming’s daycare-buffer bill would turn childcare geography into a housing barrier, even for people whose individual circumstances do not show daycare-specific risk.",
     tone: "rose",
     changed: [
       <>
@@ -666,12 +670,13 @@ const developments: Development[] = [
       "The proposal includes a limited grandfathering provision for people already established in their homes before July 1, 2026, and reported violations would carry jail and fine exposure.",
     ],
     matters: [
-      "Daycare buffers can sharply reduce available housing, especially in smaller communities where childcare facilities are embedded throughout residential neighborhoods.",
-      "The bill applies by registry status, not by individualized risk to young children, current offense facts, time since offense, treatment history, or housing scarcity.",
+      "Housing stability is one of the strongest practical foundations for compliance, work, treatment, supervision success, and family support.",
+      "A broad daycare buffer can shrink lawful housing options in smaller communities, especially when childcare facilities are embedded throughout residential neighborhoods.",
+      "Grandfathering may protect a current address, but it does not protect people who later face eviction, rising rent, job loss, disability, caregiving needs, family reunification, or the need to move closer to support.",
     ],
     analysis: [
-      "This is negative movement because it expands residence exclusion and threatens criminal penalties for housing geography.",
-      "Grandfathering may protect some current homes, but it does not protect future moves caused by eviction, rent increases, caregiving, disability, family reunification, or loss of income.",
+      "SOLAR reads this as negative movement because it expands exclusion by status rather than individualized risk.",
+      "The danger is not only the rule itself, but how ordinary life becomes harder to navigate: lawful housing becomes dependent on maps, measurements, facility licensing, and future moves that families often cannot control.",
     ],
     watch: [
       "Whether the House preserves, narrows, or expands the Senate language.",
@@ -713,7 +718,7 @@ const developments: Development[] = [
     action: {
       title: "Oppose blanket daycare-buffer housing exclusion",
       why:
-        "Housing stability supports compliance, work, treatment, family support, and supervision success.",
+        "Housing stability supports compliance, work, treatment, family support, and supervision success; broad buffers can make lawful housing scarce without individualized risk findings.",
       label: "Find your Wyoming legislator",
       href: "https://wyoleg.gov/Legislators",
       message:
@@ -727,7 +732,7 @@ const developments: Development[] = [
     jurisdiction: "Idaho",
     date: "Introduced February 16; House passage February 26, 2026",
     summary:
-      "Idaho advanced a fast-moving bill defining when a registrant resides or habitually lives at a location, with direct consequences for residence restrictions.",
+      "Idaho’s residence-definition bill offers compliance clarity, but that clarity can also harden enforcement against people navigating homelessness, caregiving, medical care, or unstable housing.",
     tone: "amber",
     changed: [
       <>
@@ -741,12 +746,13 @@ const developments: Development[] = [
       "The text also references posted-notice requirements for covered property, including notice size, statutory reference, use of the term registered sex offender, and placement at public entrances.",
     ],
     matters: [
-      "Residence definitions decide whether a person is compliant, unlawfully residing somewhere, or exposed to enforcement.",
+      "Residence definitions decide whether a person is compliant, unlawfully residing somewhere, or exposed to enforcement. For people with stable housing, a definition may be a paperwork issue; for people without stable housing, it can decide whether survival arrangements become legal risk.",
       "Clarity can reduce arbitrary enforcement, but objective thresholds can also expand enforcement if temporary stays, caregiving, medical placement, homelessness, or couch-surfing are treated as residence.",
+      "Families may need to reassess temporary stays, shared custody, hospital or care-facility stays, treatment placement, and emergency housing under the new framework.",
     ],
     analysis: [
-      "This is mixed movement because clearer definitions may help some people understand the rule, while the same definitions can harden housing restrictions and increase enforcement exposure.",
-      "Families may need to reassess temporary stays, shared custody, treatment placement, hospital or care-facility stays, and emergency housing under the new framework.",
+      "SOLAR reads this as mixed movement because clearer definitions can help people understand the rule, but the same definitions can make housing instability easier to criminalize.",
+      "The implementation question is whether Idaho uses clarity to support compliance or to punish people whose housing, health, and family realities do not fit neat address categories.",
     ],
     watch: [
       "Final implementation guidance from Idaho State Police, local sheriffs, and facility administrators.",
@@ -801,14 +807,14 @@ const developments: Development[] = [
         "Please ensure H0683 implementation protects people facing homelessness, temporary caregiving, treatment placement, medical care, and non-willful housing instability. Guidance should be clear, humane, and focused on compliance rather than technical traps.",
     },
   },
-  {
+{
     id: 6,
     group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
     title: "South Carolina S. 924 would impose registry-name use online as a supervision condition",
     jurisdiction: "South Carolina",
     date: "Introduced February 12, 2026",
     summary:
-      "S. 924 would require covered registrants on probation or parole to use their registry name on social networking websites, dating apps, and certain sexual-communication platforms.",
+      "South Carolina’s online-name bill would turn ordinary digital life into a supervision condition, with criminal penalties for name-use mistakes.",
     tone: "rose",
     changed: [
       <>
@@ -822,14 +828,16 @@ const developments: Development[] = [
         sexual relations.
       </>,
       "A first violation would be a misdemeanor punishable by a fine up to $1,000 or imprisonment up to one year, or both. A second or later violation would carry a fine up to $2,500 or imprisonment up to three years, or both.",
+      "The proposal sits at the intersection of registration, supervision, online identity, speech, privacy, and technical-violation exposure.",
     ],
     matters: [
-      "Online-name and identifier rules implicate speech, privacy, dating, family communication, support groups, mutual aid, employment-related online presence, and association.",
-      "Phrases like communicating for the purpose of promoting sexual relations may create uncertainty over what platforms or conversations are covered.",
+      "Digital identity is part of ordinary life: family communication, work, support groups, mutual aid, dating, advocacy, and basic social participation all happen online.",
+      "A vague or rigid name-use rule can create risk for people who use initials, nicknames, legal name changes, aliases, shared household devices, platform-required display names, or accounts created before supervision.",
+      "For families, the risk may spill into shared accounts, household technology, or the fear that ordinary online contact could be treated as a supervision violation.",
     ],
     analysis: [
-      "This is negative movement because it creates a new online-identity compliance rule backed by criminal penalties.",
-      "The rule could chill lawful online communication and create technical-violation risk for people using nicknames, initials, shared household devices, legal name changes, aliases, or platforms with inconsistent naming rules.",
+      "SOLAR reads this as negative movement because it creates a new online-identity compliance rule backed by criminal penalties.",
+      "The policy concern is not only whether some online restrictions can ever be lawful. It is whether the rule is narrow, constitutional, understandable, and tied to individualized risk rather than status-based exposure.",
     ],
     watch: [
       "Whether the bill is narrowed to specific platforms, conduct, or risk findings.",
@@ -853,21 +861,21 @@ const developments: Development[] = [
     action: {
       title: "Ask South Carolina lawmakers to narrow online-name rules",
       why:
-        "Online restrictions should protect lawful family, work, support, and speech activity from vague technical-violation traps.",
+        "Online restrictions should protect lawful family, work, support, dating, and speech activity from vague technical-violation traps.",
       label: "Find your South Carolina legislators",
       href: "https://www.scstatehouse.gov/legislatorssearch.php",
       message:
         "Please narrow S. 924 and require constitutional review before imposing online-name conditions. Any rule should be specific, evidence-based, and protective of lawful family, work, support, dating, and speech activity.",
     },
   },
-{
+  {
     id: 7,
     group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
     title: "New Mexico HB 199 proposed SORNA alignment, tiering, shorter deadlines, and broader data collection",
     jurisdiction: "New Mexico",
     date: "Committee action February 6 and February 13, 2026",
     summary:
-      "HB 199 would have created a broader SORNA-alignment architecture, but was postponed indefinitely after February committee action.",
+      "New Mexico’s postponed SORNA-alignment bill shows how federal-compliance language can carry sweeping state burdens: faster deadlines, longer registration, broader data collection, and more digital reporting.",
     tone: "amber",
     changed: [
       <>
@@ -882,12 +890,13 @@ const developments: Development[] = [
       "It also would have changed verification periods to 90 days for life for tier 3, every six months for 25 years for tier 2, and annually for 15 years for tier 1, with additional rules for out-of-state and juvenile registration.",
     ],
     matters: [
-      "Federal-compliance rhetoric can produce more onerous state registration architecture even when the public-safety benefit is unclear.",
-      "Shorter deadlines, broader information collection, homelessness-location reporting, and longer verification periods increase technical-violation risk for people and families already navigating unstable housing, work, transportation, and paperwork burdens.",
+      "Shorter deadlines and broader information collection increase the chance that poverty, unstable housing, transportation barriers, confusing paperwork, or ordinary life changes become felony-risk events.",
+      "For families, expanded vehicle, address, temporary-location, school, work, travel, and digital reporting can make household life feel permanently administrated by registry rules.",
+      "The bill was postponed indefinitely, but the architecture matters because SORNA-alignment proposals often return in later sessions or as committee substitutes.",
     ],
     analysis: [
-      "This is mixed movement because the proposal itself was burden-expanding, but it was postponed indefinitely in February.",
-      "The bill remains important as a watch item because SORNA-alignment language often returns in later sessions or through committee substitutes.",
+      "SOLAR reads this as mixed movement because the proposal itself was burden-expanding, but February committee action stopped it for now.",
+      "The larger lesson is that federal-compliance rhetoric can obscure the real-world question: whether added reporting, longer duration, and more data collection produce safety or simply expand punishment and technical-violation risk.",
     ],
     watch: [
       "Whether similar SORNA-alignment language returns in a future session.",
@@ -934,7 +943,7 @@ const developments: Development[] = [
     jurisdiction: "Missouri",
     date: "Fiscal note February 16, 2026",
     summary:
-      "HB 2311 would expand lifetime-registration categories, move some offenses into higher tiers, require court petitions for exemptions, and add registration-system duties.",
+      "Missouri HB 2311 would make relief harder and lifetime registration more likely, turning tier placement and exemption access into deeper long-term consequences.",
     tone: "rose",
     changed: [
       <>
@@ -950,12 +959,13 @@ const developments: Development[] = [
       "It would require people who qualify for exemption from registration to petition the court, and it would move multiple offenses currently listed under tier I or tier II into tier III.",
     ],
     matters: [
-      "Moving offenses into tier III and expanding lifetime-registration categories can permanently close relief pathways.",
-      "A court-petition requirement can turn exemption into a resource-dependent process requiring counsel, transportation, fees, filing access, and court navigation.",
+      "Tier movement and lifetime-registration categories are not abstract labels. They can decide how long a person remains publicly marked, how often they report, whether relief is possible, and whether family stability remains subject to permanent registry consequences.",
+      "A court-petition requirement can make exemption depend on money, counsel, transportation, filing access, and the ability to navigate a legal system that many impacted families cannot easily use.",
+      "Facility release and system-entry duties may reduce some administrative confusion, but they also strengthen surveillance handoffs at the moment of reentry.",
     ],
     analysis: [
-      "This is negative movement because it expands lifetime status, raises tier consequences, and makes relief more procedurally burdensome.",
-      "Facility-release and system-entry provisions may reduce some administrative confusion, but they also intensify surveillance handoffs and enforcement infrastructure.",
+      "SOLAR reads this as negative movement because it expands lifetime status, raises tier consequences, and makes relief more procedurally burdensome.",
+      "The bill reflects a familiar pattern: relief is not formally eliminated for everyone, but it becomes harder, more expensive, and less accessible for the people most likely to need it.",
     ],
     watch: [
       "Whether any court-petition requirement includes appointed counsel, fee waivers, clear standards, and accessible procedures.",
@@ -998,14 +1008,14 @@ const developments: Development[] = [
         "Please oppose lifetime-registration expansion and resource-dependent exemption petitions in HB 2311. Relief pathways should be clear, accessible, individualized, and not limited to people who can afford counsel or navigate court procedures alone.",
     },
   },
-  {
+{
     id: 9,
     group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
     title: "Idaho H0604 proposed psychosexual-evaluation changes with cost and due-process questions",
     jurisdiction: "Idaho",
     date: "Introduced February 6; referred February 9, 2026",
     summary:
-      "H0604 would revise psychosexual-evaluation provisions in Idaho’s sexual-offender-registration framework, including consequences for nonproduction and payment rules.",
+      "Idaho H0604 raises a core fairness question: whether evaluation rules will support accurate assessment or punish people who cannot afford or access the process.",
     tone: "indigo",
     changed: [
       <>
@@ -1016,14 +1026,16 @@ const developments: Development[] = [
         to provide an evaluation may operate as an aggravating circumstance.
       </>,
       "The bill would also revise payment provisions for psychosexual evaluations and establish rules involving certain funding and restitution.",
+      "Because psychosexual evaluations can affect sentencing, treatment, supervision, risk classification, and future relief posture, the payment and nonproduction rules matter as much as the evaluation requirement itself.",
     ],
     matters: [
-      "Psychosexual evaluations can affect sentencing, supervision, risk classification, treatment, and relief posture.",
-      "Payment rules can create access disparities if people without money cannot obtain evaluations that affect liberty or legal outcomes.",
+      "Evaluation rules can be useful when they are fair, qualified, accessible, and tied to individualized assessment. They become dangerous when poverty or lack of provider access is treated like refusal.",
+      "For families, evaluation costs can become a major financial pressure point at the same moment they are already managing legal fees, transportation, housing instability, treatment costs, and reentry planning.",
+      "The bill’s practical effect depends on whether Idaho builds safeguards for indigency, provider shortages, disability, and non-willful inability to produce an evaluation.",
     ],
     analysis: [
-      "This is unclear movement because the practical effect depends on how the final text distinguishes refusal from inability to pay or inability to access an evaluator.",
-      "For families, evaluation costs can become a major financial pressure point if the law shifts cost burdens without meaningful indigency protections.",
+      "SOLAR reads this as unclear movement because the legal direction depends on implementation details that determine whether the bill improves assessment quality or deepens due-process problems.",
+      "The reform question is whether Idaho distinguishes accountability from access barriers. A person should not face a worse legal outcome simply because the evaluation system is expensive, unavailable, or confusing.",
     ],
     watch: [
       "Full official bill text, statement of purpose, and committee analysis.",
@@ -1066,14 +1078,14 @@ const developments: Development[] = [
         "Please add due-process and indigency safeguards to H0604. Evaluation rules should distinguish refusal from inability to pay or access an evaluator, and funding rules should support fair assessment rather than worsening outcomes for poor defendants and families.",
     },
   },
-{
+  {
     id: 10,
     group: "Reform / Court Limits",
     title: "Washington HB 2403 advanced penalty reform for failure-to-register violations",
     jurisdiction: "Washington",
     date: "Committee action February 2, 6, and 9, 2026",
     summary:
-      "HB 2403 would reduce or rationalize some criminal penalties and sentencing consequences for failure-to-register violations.",
+      "Washington HB 2403 is February’s clearest reform counterpoint: it would reduce some failure-to-register escalation while preserving accountability for registration duties.",
     tone: "emerald",
     changed: [
       <>
@@ -1089,11 +1101,12 @@ const developments: Development[] = [
     ],
     matters: [
       "Failure-to-register prosecutions often punish instability, homelessness, confusion, poverty, transportation barriers, mental illness, administrative mistakes, or paperwork failures.",
-      "Reducing repeat failure-to-register escalation can reduce carceral exposure while preserving accountability for registration duties.",
+      "Reducing repeat escalation can lower carceral exposure without eliminating registration duties or accountability.",
+      "For families, this kind of reform can reduce the risk that a technical paperwork or address problem becomes a life-altering sentencing event.",
     ],
     analysis: [
-      "This is positive movement because it distinguishes technical registration violations from new sexual harm and reduces some harsh penalty escalation.",
-      "The reform is limited: felony exposure and community custody remain, so implementation should still focus on preventing non-willful technical violations rather than widening supervision traps.",
+      "SOLAR reads this as positive movement because it recognizes a distinction that registry policy often erases: technical registration violations are not the same thing as new sexual harm.",
+      "The narrow improvement is real, but the reform is limited. Felony exposure and community custody remain, so implementation still matters for people whose violations stem from instability rather than willful evasion.",
     ],
     watch: [
       "Whether the bill reaches the House floor.",
@@ -1149,7 +1162,7 @@ const developments: Development[] = [
     jurisdiction: "Iowa",
     date: "Decision filed February 13, 2026",
     summary:
-      "The Iowa Supreme Court held the State could not convict under the temporary-lodging statute without proving the statutory trigger charged.",
+      "State v. Uranga is a rights-protective reminder that registry prosecutions must match the actual statutory duty charged, not a broader theory of noncompliance.",
     tone: "emerald",
     changed: [
       <>
@@ -1166,11 +1179,12 @@ const developments: Development[] = [
     ],
     matters: [
       "Registry statutes often contain overlapping duties, and technical prosecutions can turn on precise reporting triggers.",
-      "The decision reinforces that a registrant can be convicted only for the actual duty the State charges and proves.",
+      "For people experiencing homelessness, eviction, temporary lodging, residence transition, or unstable family housing, the difference between one reporting duty and another can decide whether conduct becomes a criminal conviction.",
+      "The decision does not eliminate reporting duties. It reinforces that the government must charge and prove the duty it actually relies on.",
     ],
     analysis: [
-      "This is positive movement because it limits prosecutorial overreach and requires precision before punishment.",
-      "The ruling may help defense arguments in cases involving homelessness, eviction, temporary lodging, residence transition, or confusing address-change facts, while leaving underlying reporting duties intact.",
+      "SOLAR reads this as positive movement because it limits prosecutorial overreach and requires precision before punishment.",
+      "The ruling matters beyond one case because technical registry prosecutions often happen in the gray areas of poverty, displacement, and housing instability, where clear statutory limits are essential.",
     ],
     watch: [
       "Whether prosecutors shift to charging change-of-residence provisions more carefully.",
@@ -1198,14 +1212,14 @@ const developments: Development[] = [
       },
     ],
   },
-  {
+{
     id: 12,
     group: "Litigation Watch",
     title: "Pennsylvania Commonwealth Court rejected an Act 29 constitutional challenge in D.L. v. PSP",
     jurisdiction: "Pennsylvania",
     date: "Opinion and order filed February 2, 2026",
     summary:
-      "The court granted Pennsylvania State Police summary relief and dismissed a registrant’s Act 29 constitutional challenge under controlling state precedent.",
+      "D.L. v. PSP shows how difficult broad adult Act 29 challenges remain in Pennsylvania after controlling state supreme court precedent.",
     tone: "rose",
     changed: [
       <>
@@ -1222,11 +1236,12 @@ const developments: Development[] = [
     ],
     matters: [
       "The decision reinforces Pennsylvania’s difficult litigation terrain for broad adult Act 29 challenges.",
-      "It signals that future challenges may need narrower claims, stronger records, juvenile distinctions, removal-stage theories, federal theories, or more targeted as-applied arguments.",
+      "For registrants and families, the practical meaning is that public registration, retroactivity arguments, and reputation-based claims remain hard to challenge through broad facial theories in the current state-court posture.",
+      "Future litigation may need narrower claims, stronger records, juvenile distinctions, removal-stage theories, federal theories, or targeted as-applied arguments.",
     ],
     analysis: [
-      "This is negative movement because it closes another relief path for an adult registrant challenging retroactive and public registration obligations.",
-      "For families and impacted people, the decision underscores how hard it remains to challenge public registry burdens once courts treat the statutory scheme as controlled by prior precedent.",
+      "SOLAR reads this as negative movement because it closes another relief path for an adult registrant challenging retroactive and public registration obligations.",
+      "The ruling also shows the limits of litigation when courts treat earlier precedent as controlling even while families continue to experience registration as public punishment, social exclusion, and long-term instability.",
     ],
     watch: [
       "Whether the petitioner appeals.",
@@ -1268,7 +1283,7 @@ const watchlist: WatchItemData[] = [
     title: "Florida SB 212 / HB 45 final language and implementation",
     posture: "Active in February after Senate and House committee movement.",
     why:
-      "Final wording will determine whether Florida keeps premises language, public-pool definitions, supervision denial rules, and workable exceptions.",
+      "Final wording determines whether Florida keeps premises language, public-pool definitions, supervision denial rules, and exceptions that families can actually use.",
     next: [
       "Watch final enrolled text and whether public-bathing-place language remains deleted.",
       "Watch agency and supervision guidance for boundary, permission, and exception rules.",
@@ -1371,10 +1386,10 @@ export default function LegislativeTrackerFebruary2026Update(): JSX.Element {
           </h1>
 
           <p className="mt-5 max-w-4xl text-base leading-7 text-slate-200 md:text-lg">
-            February brought a mostly burden-expanding mix of federal exclusion
-            proposals, state restriction bills, online and housing compliance
-            measures, and court decisions testing the limits of registry
-            enforcement.
+            February showed how registry status keeps spreading into ordinary
+            systems of survival: healthcare, shelter, housing, public spaces,
+            online communication, supervision, and relief from lifetime
+            consequences.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100">
@@ -1439,10 +1454,12 @@ export default function LegislativeTrackerFebruary2026Update(): JSX.Element {
               Why this update matters
             </h3>
             <p className="mt-2 text-sm leading-6 text-slate-700">
-              February shows how registry status is being used less as a narrow
-              compliance system and more as a broad exclusion tool: from health
-              coverage and shelters to housing, public spaces, online identity,
-              supervision, and relief from lifetime status.
+              February matters because it shows registry status being used less
+              as a narrow compliance tool and more as a broad exclusion
+              architecture. The month’s proposals and rulings touch healthcare,
+              shelter, housing, public space, online identity, supervision,
+              technical violations, and the possibility of relief from permanent
+              punishment.
             </p>
           </div>
         </Section>
@@ -1454,25 +1471,23 @@ export default function LegislativeTrackerFebruary2026Update(): JSX.Element {
         >
           <div className="space-y-4 text-sm leading-7 text-slate-700">
             <p>
-              February 2026 was a mixed but mostly burden-expanding month. The
-              dominant pattern was not one national registry overhaul, but a
-              cluster of targeted expansions: federal proposals to exclude
-              registrants from health coverage assistance and federally funded
-              shelters; state bills adding or tightening residence, presence,
-              reporting, online-identity, and registry-tier consequences; and
-              court decisions testing whether registry statutes are being applied
-              beyond their text or constitutional limits.
+              February 2026 was mixed, but the dominant pattern was burden
+              expansion by accumulation. Instead of one sweeping national
+              registry overhaul, the month brought targeted proposals that would
+              push registry status into health coverage, emergency shelter,
+              housing geography, public pools, online identity, tier placement,
+              and relief access.
             </p>
             <p>
-              For registrants and families, the practical theme is instability by
-              accumulation. Several proposals would narrow access to housing,
-              shelter, healthcare, public spaces, online communication, and
-              lawful mobility. That is why SOLAR keeps tying monthly developments
-              back to{" "}
+              For registrants and families, the practical risk is not only one
+              bill or one court case. It is the combined effect of many rules
+              that make ordinary life harder to navigate. That is why SOLAR ties
+              this month back to{" "}
               <InternalLink to="/advocacy#position-statement">
                 evidence-based registry reform
               </InternalLink>{" "}
-              rather than treating each bill as an isolated headline.
+              rather than treating each proposal as an isolated public-safety
+              headline.
             </p>
             <p>
               The counterpoints matter too. Washington’s failure-to-register bill
