@@ -2,31 +2,30 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import {
-  legislativeUpdates,
   LegislativeUpdateMeta,
+  legislativeUpdates,
 } from "../../data/legislativeUpdates";
 import {
   ArrowRight,
   BookOpen,
-  Clipboard,
   FileText,
   Gavel,
   Link as LinkIcon,
-  Newspaper,
+  Search,
   ShieldCheck,
+  X,
 } from "lucide-react";
 import ShareBar from "../../components/solar/ShareBar";
 
 // Auto-discover dated update pages under /resources/legislative-tracker.
-// NOTE: the file/folder names can remain as-is even though the public cadence is now monthly.
 const updateModules = import.meta.glob("./legislative-tracker/*.tsx");
 
 type Teasers = {
   glance?: string[];
-  highlights?: { icon: string; title: string; url: string }[];
+  highlights?: string[] | { icon: string; title: string; url: string }[];
 } | null;
 
-function HeroChip({ children }: { children: React.ReactNode }) {
+function Chip({ children }: { children: React.ReactNode }) {
   return (
     <span className="inline-flex items-center gap-1 rounded-full border border-white/80 bg-white px-3 py-1 text-xs font-bold text-slate-900 shadow-sm">
       {children}
@@ -72,9 +71,25 @@ function Callout({
   );
 }
 
+function normalize(value: string) {
+  return value.toLowerCase().trim();
+}
+
+function searchableText(update: LegislativeUpdateMeta) {
+  return normalize(
+    [
+      update.title,
+      update.summary,
+      update.date,
+      update.slug,
+      ...(update.tags ?? []),
+    ].join(" ")
+  );
+}
+
 export default function LegislativeTracker(): JSX.Element {
-  const [copied, setCopied] = useState<string | null>(null);
   const [latestTeasers, setLatestTeasers] = useState<Teasers>(null);
+  const [query, setQuery] = useState("");
 
   const items = useMemo(
     () =>
@@ -103,20 +118,23 @@ export default function LegislativeTracker(): JSX.Element {
     }
   }, [latest]);
 
-  const copyText = async (id: string, text: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(id);
-      setTimeout(() => setCopied(null), 1400);
-    } catch {
-      // no-op
-    }
-  };
+  const filteredItems = useMemo(() => {
+    const q = normalize(query);
+    if (!q) return items;
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://thesolarproject.org/resources/legislative-tracker";
+    return items.filter((update) => searchableText(update).includes(q));
+  }, [items, query]);
+
+  const suggestedSearches = [
+    "Florida",
+    "housing",
+    "courts",
+    "SORNA",
+    "health care",
+    "online identifiers",
+    "relief",
+    "implementation",
+  ];
 
   return (
     <main className="min-h-screen bg-slate-50">
@@ -126,9 +144,8 @@ export default function LegislativeTracker(): JSX.Element {
         keywords="legislative tracker, registry reform, court cases, sex offense policy, SOLAR, advocacy"
       />
 
-      {/* Hero */}
-      <header className="relative isolate overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 py-12 text-white">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <header className="relative isolate overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 text-white">
+        <div className="mx-auto max-w-5xl px-4">
           <Link
             to="/resources"
             className="text-sm font-semibold text-white/90 hover:underline print:hidden"
@@ -138,91 +155,44 @@ export default function LegislativeTracker(): JSX.Element {
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2">
-              <HeroChip>🏛️ Legislative Tracker</HeroChip>
-              <HeroChip>Monthly Policy Watch</HeroChip>
-              <HeroChip>Verified Sources</HeroChip>
+              <Chip>🏛️ Legislative Tracker</Chip>
+              <Chip>Monthly Policy Watch</Chip>
+              <Chip>Verified Sources</Chip>
             </div>
             <div className="hidden items-center gap-2 text-xs text-slate-200/90 sm:flex">
-              <Gavel size={16} /> Bills, cases, agencies, and action
+              <Gavel size={16} /> Bills, courts, agencies, and action paths
             </div>
           </div>
 
-          <h1 className="mt-5 max-w-4xl text-3xl font-black tracking-tight sm:text-5xl">
+          <h1 className="mt-5 max-w-4xl text-3xl font-bold tracking-tight sm:text-4xl">
             Track the Laws Behind the Headlines
           </h1>
 
-          <p className="mt-4 max-w-4xl text-base leading-7 text-slate-200 md:text-lg">
-            The Legislative Tracker follows bills, court rulings, agency moves,
-            implementation deadlines, and advocacy opportunities that shape life
-            on and after the registry. Each update translates legal and policy
-            movement into plain language: what changed, why it matters, and what
-            people can do next.
+          <p className="mt-3 max-w-3xl text-base leading-7 text-slate-200">
+            <strong>Legislative Tracker</strong> turns bills, court rulings,
+            agency moves, and implementation deadlines into plain-language
+            updates for people impacted by registration laws, their families,
+            advocates, and policymakers. Each roundup asks what changed, why it
+            matters, and what readers can do next.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100">
-            <div className="mb-2 flex items-center gap-2 font-bold">
-              <ShieldCheck className="h-4 w-4" />
-              SOLAR framing
-            </div>
-            This is not just a bill list. The tracker highlights whether
-            lawmakers and courts are moving toward evidence-based safety,
-            stability, and due process — or doubling down on fear-driven policy,
-            vague compliance burdens, and performative restrictions.
-          </div>
+          <div className="mt-4 h-px w-full bg-gradient-to-r from-slate-500/40 via-slate-200/40 to-slate-500/40" />
 
-          <div className="mt-6 flex flex-wrap gap-3 print:hidden">
-            {latest && (
-              <Link
-                to={`/resources/legislative-tracker/${latest.slug}`}
-                className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-bold text-slate-900 shadow hover:bg-slate-100"
-              >
-                ✨ Read the latest update
-              </Link>
-            )}
-            <a
-              href="#glance"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
-            >
-              🗓️ Glance
-            </a>
-            <a
-              href="#highlights"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
-            >
-              ⭐ Highlights
-            </a>
-            <a
-              href="#archive"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
-            >
-              🗂️ Archive
-            </a>
-            <a
-              href="#glossary"
-              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
-            >
-              📘 Glossary
-            </a>
-          </div>
-
-          <div className="mt-5">
+          <div className="mt-4">
             <ShareBar />
           </div>
         </div>
       </header>
-
-      {/* Why this exists */}
-      <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+<section className="mx-auto max-w-5xl px-4 py-8">
         <div className="grid gap-4 md:grid-cols-3">
           <Callout
             tone="blue"
             title="Why we track this"
             icon={<FileText className="h-4 w-4" />}
           >
-            Registry laws change through legislatures, courts, agencies, and
-            local enforcement practices. The tracker helps families, advocates,
-            and policymakers see what is moving before the change reaches them
-            as a surprise.
+            Registry policy changes through legislatures, courts, agencies, and
+            local implementation. This hub helps families and advocates see what
+            is moving before a rule becomes a surprise.
           </Callout>
 
           <Callout
@@ -230,169 +200,136 @@ export default function LegislativeTracker(): JSX.Element {
             title="What counts as progress"
             icon={<ShieldCheck className="h-4 w-4" />}
           >
-            Real safety is not measured by the harshest headline. We look for
-            evidence-based prevention, clearer compliance rules, meaningful
-            relief pathways, family stability, housing access, and limits on
-            overbroad punishment.
+            SOLAR looks for evidence-based prevention, clearer compliance
+            rules, meaningful relief pathways, family stability, housing access,
+            due process, and limits on overbroad punishment.
           </Callout>
 
           <Callout
             tone="amber"
             title="How to use it"
-            icon={<Clipboard className="h-4 w-4" />}
+            icon={<BookOpen className="h-4 w-4" />}
           >
-            Start with the latest glance, open the full update for sources and
-            plain-language context, then use action links or scripts when a bill,
-            hearing, agency rule, or court development needs public attention.
+            Start with the latest update, search the archive by state or topic,
+            then open the full monthly page for sources, SOLAR analysis, and
+            action links.
           </Callout>
         </div>
       </section>
 
-      {/* Latest Update at a Glance */}
-      <section id="glance" className="mx-auto max-w-6xl px-4 pb-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-700 px-5 py-4 text-white">
-            <h2 className="flex items-center gap-2 text-xl font-bold md:text-2xl">
-              🗓️ Latest Update at a Glance
-            </h2>
-          </div>
-
-          <div className="p-5">
-            <ul className="grid gap-3 md:grid-cols-2">
-              {(latestTeasers?.glance ?? [
-                "🏛️ Federal — loading latest update",
-                "🗺️ States — loading latest update",
-                "⚖️ Courts — loading latest update",
-                "📣 Action — loading latest update",
-              ]).map((line, i) => (
-                <li
-                  key={i}
-                  className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm leading-6 text-slate-800"
-                >
-                  {line}
-                </li>
-              ))}
-            </ul>
-
-            {latest && (
-              <div className="mt-4">
-                <Link
-                  to={`/resources/legislative-tracker/${latest.slug}`}
-                  className="inline-flex items-center gap-2 rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
-                >
-                  Read the full update <ArrowRight size={16} />
-                </Link>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Latest Highlights */}
-      <section id="highlights" className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-700 px-5 py-4 text-white">
-            <h2 className="flex items-center gap-2 text-xl font-bold md:text-2xl">
-              ⭐ Latest Highlights
-            </h2>
-          </div>
-
-          <div className="grid gap-4 p-5 md:grid-cols-2">
-            {(latestTeasers?.highlights ?? []).map((h, idx) => (
-              <article
-                key={idx}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm"
-              >
-                <h3 className="flex items-start gap-2 text-base font-bold leading-snug text-slate-950">
-                  <span aria-hidden="true">{h.icon}</span>
-                  <a
-                    className="text-slate-900 underline underline-offset-2 hover:text-slate-700"
-                    href={h.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {h.title}
-                  </a>
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-slate-700">
-                  Open the latest update for the plain-language summary, why it
-                  matters, source links, and action context.
-                </p>
-
-                {latest && (
-                  <div className="mt-3">
-                    <Link
-                      to={`/resources/legislative-tracker/${latest.slug}#highlights`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-800 underline underline-offset-2"
-                    >
-                      See details →
-                    </Link>
-                  </div>
-                )}
-              </article>
-            ))}
-
-            {(!latestTeasers || (latestTeasers?.highlights ?? []).length === 0) && (
-              <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-                Highlights will appear here as soon as the latest update is
-                loaded.
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* General action */}
-      <section className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="text-slate-800">
-              <div className="font-bold">📣 General advocacy script</div>
-              <p className="mt-1 text-sm leading-6 text-slate-700">
-                Use this when a bill, rule, or agency deadline affects
-                compliance, housing, family stability, relief pathways, or
-                access to accurate information. Personalize it when possible.
-              </p>
+      {latest && (
+        <section className="mx-auto max-w-5xl px-4 pb-4">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-2 flex items-center gap-2 text-slate-700">
+              <FileText className="h-5 w-5" />
+              <h2 className="text-lg font-semibold">
+                Latest Update: {latest.title}
+              </h2>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <p className="text-sm font-semibold text-slate-500">
+              {latest.date}
+            </p>
+
+            <p className="mt-2 text-sm leading-6 text-slate-700">
+              {latest.summary}
+            </p>
+
+            {latestTeasers?.glance && latestTeasers.glance.length > 0 && (
+              <ul className="mt-4 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-800">
+                {latestTeasers.glance.slice(0, 4).map((line, index) => (
+                  <li key={index}>{line}</li>
+                ))}
+              </ul>
+            )}
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              <Link
+                to={`/resources/legislative-tracker/${latest.slug}`}
+                className="inline-flex items-center gap-1 rounded-md bg-slate-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-slate-800"
+              >
+                Open latest update <ArrowRight size={16} />
+              </Link>
+
+              <a
+                href="#archive"
+                className="inline-flex items-center gap-1 rounded-md border border-slate-300 px-3 py-1.5 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+              >
+                Search archive <Search size={16} />
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section id="archive" className="mx-auto max-w-5xl px-4 py-6">
+        <div className="mb-4">
+          <h2 className="text-lg font-semibold text-slate-900">
+            Recent Legislative Updates
+          </h2>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            Search by state, topic, bill type, court issue, or policy theme.
+            Try terms like <span className="font-semibold">Florida</span>,{" "}
+            <span className="font-semibold">housing</span>,{" "}
+            <span className="font-semibold">courts</span>,{" "}
+            <span className="font-semibold">SORNA</span>, or{" "}
+            <span className="font-semibold">online identifiers</span>.
+          </p>
+        </div>
+
+        <div className="mb-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+          <label
+            htmlFor="legislative-search"
+            className="mb-2 block text-sm font-semibold text-slate-900"
+          >
+            Search Legislative Tracker
+          </label>
+
+          <div className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-3 py-2">
+            <Search className="h-4 w-4 text-slate-500" />
+            <input
+              id="legislative-search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search by state, topic, court, bill, or keyword..."
+              className="min-w-0 flex-1 bg-transparent text-sm text-slate-900 outline-none placeholder:text-slate-400"
+            />
+            {query && (
               <button
-                onClick={() =>
-                  copyText(
-                    "script-feature",
-                    "Hello — Please provide clear, plain-language guidance, public timelines, and practical compliance information so impacted people and families can understand their obligations without surprises. Please support evidence-based policy that improves safety without unnecessary instability."
-                  )
-                }
-                className="rounded-lg px-3 py-2 text-sm font-semibold ring-1 ring-slate-300 hover:bg-slate-100"
+                type="button"
+                onClick={() => setQuery("")}
+                className="rounded-full p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                aria-label="Clear search"
               >
-                {copied === "script-feature" ? "Copied!" : "Copy script"}
+                <X className="h-4 w-4" />
               </button>
-
-              {latest && (
-                <Link
-                  to={`/resources/legislative-tracker/${latest.slug}#highlights`}
-                  className="rounded-lg px-3 py-2 text-sm font-semibold ring-1 ring-slate-300 hover:bg-slate-100"
-                >
-                  Go to latest actions
-                </Link>
-              )}
-            </div>
+            )}
           </div>
+
+          <div className="mt-3 flex flex-wrap gap-2">
+            {suggestedSearches.map((term) => (
+              <button
+                key={term}
+                type="button"
+                onClick={() => setQuery(term)}
+                className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100"
+              >
+                {term}
+              </button>
+            ))}
+          </div>
+
+          <p className="mt-3 text-xs leading-5 text-slate-500">
+            Search currently scans update titles, summaries, dates, slugs, and
+            tags. Future metadata can add dedicated state/topic fields without
+            changing the monthly pages.
+          </p>
         </div>
-      </section>
-
-      {/* Archive */}
-      <section id="archive" className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-        <h2 className="mb-3 text-lg font-bold text-slate-900">
-          Recent Legislative Updates
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {items.map((u: LegislativeUpdateMeta) => (
-            <article
+<ul className="grid gap-3">
+          {filteredItems.map((u: LegislativeUpdateMeta) => (
+            <li
               key={u.slug}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:shadow-md"
             >
               <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                 <div>
@@ -413,7 +350,7 @@ export default function LegislativeTracker(): JSX.Element {
                 </span>
               </div>
 
-              <p className="mt-2 max-h-24 overflow-hidden text-sm leading-6 text-slate-700">
+              <p className="mt-2 text-sm leading-6 text-slate-700">
                 {u.summary}
               </p>
 
@@ -425,131 +362,112 @@ export default function LegislativeTracker(): JSX.Element {
               </Link>
 
               <div className="mt-3 flex flex-wrap gap-2">
-                <ArchiveChip>
-                  <LinkIcon size={14} /> Official sources
-                </ArchiveChip>
-                <ArchiveChip>Plain-language context</ArchiveChip>
-                <ArchiveChip>Action watch</ArchiveChip>
+                {(u.tags && u.tags.length > 0
+                  ? u.tags
+                  : ["official sources", "plain-language context", "action watch"]
+                ).map((tag) => (
+                  <ArchiveChip key={tag}>
+                    <LinkIcon size={14} />
+                    {tag}
+                  </ArchiveChip>
+                ))}
               </div>
-            </article>
+            </li>
           ))}
 
-          {items.length === 0 && (
-            <div className="rounded-xl border border-slate-200 bg-white p-4 text-slate-600">
-              No updates yet.
-            </div>
+          {filteredItems.length === 0 && (
+            <li className="rounded-xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600 shadow-sm">
+              No Legislative Tracker updates matched “
+              <span className="font-semibold text-slate-900">{query}</span>.”
+              Try a broader term like “housing,” “courts,” “Florida,” “SORNA,”
+              or “implementation.”
+            </li>
           )}
-        </div>
+        </ul>
       </section>
 
-      {/* Glossary */}
-      <section id="glossary" className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="bg-gradient-to-r from-slate-900 to-slate-700 px-5 py-4 text-white">
-            <h2 className="flex items-center gap-2 text-xl font-bold md:text-2xl">
-              <BookOpen className="h-5 w-5" />
-              Quick Glossary
-            </h2>
-          </div>
+      <section id="glossary" className="mx-auto max-w-5xl px-4 py-4">
+        <details className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <summary className="cursor-pointer text-lg font-semibold text-slate-950">
+            Quick glossary
+          </summary>
 
-          <div className="p-5">
-            <dl className="grid gap-4 sm:grid-cols-2">
-              <div>
-                <dt className="font-bold text-slate-900">Residency ban</dt>
-                <dd className="text-sm leading-6 text-slate-700">
-                  Rule limiting where a person may live, often based on distance
-                  from schools, parks, or other locations.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-bold text-slate-900">Retroactive</dt>
-                <dd className="text-sm leading-6 text-slate-700">
-                  Applied after a case is over, including to conduct or
-                  convictions from the past.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-bold text-slate-900">Petition for relief</dt>
-                <dd className="text-sm leading-6 text-slate-700">
-                  A request to a court to end or reduce registration duties after
-                  set criteria are met.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-bold text-slate-900">Supervised release</dt>
-                <dd className="text-sm leading-6 text-slate-700">
-                  Post-prison federal supervision with conditions, which may
-                  include monitoring or technology restrictions.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-bold text-slate-900">SORNA</dt>
-                <dd className="text-sm leading-6 text-slate-700">
-                  Federal Sex Offender Registration and Notification Act, which
-                  sets national registry standards.
-                </dd>
-              </div>
-            </dl>
-          </div>
-        </div>
+          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div>
+              <dt className="font-bold text-slate-900">Residency ban</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                A rule limiting where a person may live, often based on distance
+                from schools, parks, daycare facilities, or other locations.
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-bold text-slate-900">Presence restriction</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                A rule limiting where a person may go or remain, even if they do
+                not live there.
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-bold text-slate-900">Retroactive</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                Applied after a case is over, including to conduct or
+                convictions from the past.
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-bold text-slate-900">Petition for relief</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                A request asking a court or agency to end, reduce, or modify
+                registration duties after set criteria are met.
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-bold text-slate-900">Technical violation</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                A violation based on failure to follow a reporting, address,
+                travel, online-identifier, or deadline rule rather than a new
+                hands-on offense.
+              </dd>
+            </div>
+
+            <div>
+              <dt className="font-bold text-slate-900">SORNA</dt>
+              <dd className="text-sm leading-6 text-slate-700">
+                The federal Sex Offender Registration and Notification Act,
+                which sets national registration standards.
+              </dd>
+            </div>
+          </dl>
+        </details>
       </section>
 
-      {/* How we track & vet */}
-      <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-5xl px-4 pb-12 pt-4">
         <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="flex items-center gap-2 text-lg font-bold text-slate-950">
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-950">
             🧪 How we track, vet, and curate
           </h2>
+
           <p className="mt-2 text-sm leading-6 text-slate-700">
-            We prioritize primary sources — official bill pages, enrolled acts,
-            court orders, agency notices, and government materials — then add
-            reputable reporting for context. AI-assisted scanning helps flag
-            developments, but human review is still necessary. If something
-            looks off, tell us and we will correct it quickly.
+            SOLAR prioritizes primary sources: official bill pages, enacted
+            acts, court orders, agency notices, fiscal notes, government
+            reports, and public-comment materials. Reputable reporting and
+            advocacy context may help explain why a development matters, but the
+            tracker’s foundation is official-source review wherever possible.
+          </p>
+
+          <p className="mt-2 text-sm leading-6 text-slate-700">
+            AI-assisted scanning helps flag developments, but the final goal is
+            editorial judgment: what changed, how it affects registrants and
+            families, whether it moves policy toward evidence-based safety or
+            deeper exclusion, and what readers should watch next.
           </p>
         </div>
       </section>
 
-      {/* Social share */}
-      <section className="mx-auto max-w-6xl px-4 pb-10 pt-2 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h3 className="text-lg font-bold text-slate-950">🔗 Share this hub</h3>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <a
-              className="rounded-lg px-3 py-1 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
-              href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
-                shareUrl
-              )}&text=${encodeURIComponent(
-                "SOLAR Legislative Tracker — plain-language policy updates and action context"
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              X / Twitter
-            </a>
-            <a
-              className="rounded-lg px-3 py-1 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
-              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                shareUrl
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Facebook
-            </a>
-            <a
-              className="rounded-lg px-3 py-1 text-sm ring-1 ring-slate-300 hover:bg-slate-50"
-              href={`mailto:?subject=${encodeURIComponent(
-                "SOLAR Legislative Tracker"
-              )}&body=${encodeURIComponent(shareUrl)}`}
-            >
-              Email
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Print styles */}
       <style>{`
         @media print {
           .print\\:hidden { display: none !important; }
