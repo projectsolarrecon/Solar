@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "April 1, 2026",
+  title: "Legislative Tracker — March 2026 Update",
+  slug: "2026-04-01",
+  summary:
+    "March brought a restriction-heavy mix of housing exclusions, homelessness monitoring, registry fees, notification duties, offense-trigger expansion, and court rulings that split between narrow procedural barriers and one meaningful SORNA tiering win.",
+  tags: ["state", "courts", "implementation", "housing"],
+},
+{
   date: "March 1, 2026",
   title: "Legislative Tracker — February 2026 Update",
   slug: "2026-03-01",
