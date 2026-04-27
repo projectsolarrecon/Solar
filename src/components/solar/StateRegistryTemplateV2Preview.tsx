@@ -63,7 +63,7 @@ export default function StateRegistryTemplateV2Preview({
       body: trimSummary(
         d.highlights?.presence ||
           d.residencyPresence ||
-          "Presence and loitering rules may depend on tier, supervision, location type, and written exceptions."
+          "Presence and loitering rules may depend on level, supervision, location type, and written exceptions."
       ),
       tone: "sky",
     },
@@ -72,7 +72,7 @@ export default function StateRegistryTemplateV2Preview({
       status: inferDurationStatus(d),
       body: trimSummary(
         d.highlights?.duration ||
-          "Registration duration can depend on tier, offense, date, relief eligibility, and out-of-state treatment."
+          "Registration duration can depend on level, offense, date, removal eligibility, and out-of-state treatment."
       ),
       tone: "rose",
     },
@@ -82,25 +82,25 @@ export default function StateRegistryTemplateV2Preview({
       body: trimSummary(
         d.highlights?.tiering ||
           first(d.publicWebsiteExposure) ||
-          "Public website exposure varies by tier, risk level, offense, and notification rules."
+          "Public website exposure varies by level, risk category, offense, and notification rules."
       ),
       tone: "indigo",
     },
     {
-      label: "Reporting burden",
+      label: "How often do I report?",
       status: inferReportingStatus(d),
       body: trimSummary(
         d.atAGlance?.verificationCadence ||
-          "Reporting may include initial registration, annual or periodic verification, address changes, travel, and online identifiers."
+          "Reporting may include initial registration, regular check-ins, address changes, travel, and online identifiers."
       ),
       tone: "slate",
     },
     {
-      label: "Can I get off?",
-      status: inferReliefStatus(d),
+      label: "Can I get removed?",
+      status: inferRemovalStatus(d),
       body: trimSummary(
         first(d.reliefPaths) ||
-          "Relief may depend on tier, time registered, offense type, risk level, and compliance history."
+          "Removal or reclassification may depend on level, time registered, offense type, risk category, and compliance history."
       ),
       tone: "emerald",
     },
@@ -117,7 +117,7 @@ export default function StateRegistryTemplateV2Preview({
       dependsOn: [
         "offense category",
         "victim age",
-        "tier or level",
+        "level or court order",
         "local rules",
         "supervision conditions",
       ],
@@ -129,10 +129,10 @@ export default function StateRegistryTemplateV2Preview({
       question: "Where can I go?",
       answer: plain(
         d.highlights?.presence ||
-          "Presence rules may apply around schools, parks, child-care locations, youth events, or other child-focused places."
+          "Some places may be off-limits, especially schools, parks, child-care locations, youth events, or other child-focused places."
       ),
       dependsOn: [
-        "tier or level",
+        "level or court order",
         "written exceptions",
         "supervision status",
         "event type",
@@ -146,7 +146,7 @@ export default function StateRegistryTemplateV2Preview({
       question: "Where can I work or go to school?",
       answer: plain(
         first(d.employmentEducationInternet) ||
-          "Employment and school rules usually include reporting duties and may include setting-specific restrictions."
+          "Work and school rules usually include reporting duties and may include setting-specific restrictions."
       ),
       dependsOn: [
         "job setting",
@@ -163,11 +163,11 @@ export default function StateRegistryTemplateV2Preview({
       question: "Who will know, and what will they see?",
       answer: plain(
         first(d.publicWebsiteExposure) ||
-          "Public disclosure varies by state and may depend on tier, risk level, offense, and notification rules."
+          "Public disclosure varies by state and may depend on level, risk category, offense, and notification rules."
       ),
       dependsOn: [
         "public website rules",
-        "tier or risk level",
+        "level or risk category",
         "community notification",
         "school or employer notice",
         "law-enforcement access",
@@ -181,36 +181,36 @@ export default function StateRegistryTemplateV2Preview({
       answer: plain(
         d.atAGlance?.verificationCadence ||
           first(d.verificationInPerson) ||
-          "Verification frequency depends on tier, designation, and housing status."
+          "Check-in frequency depends on level, designation, and housing status."
       ),
       dependsOn: [
-        "tier",
+        "level",
         "designation",
-        "homeless/transient status",
+        "homeless or transient status",
         "change events",
-        "verification windows",
+        "check-in windows",
       ],
       verify:
         "Ask for the next exact reporting date in writing and keep proof of every in-person visit or submission.",
       icon: <Clock className="h-5 w-5" />,
     },
     {
-      question: "How long will this last, and can I get relief?",
+      question: "How long will this last, and can I get removed?",
       answer: plain(
         d.highlights?.duration ||
           first(d.reliefPaths) ||
-          "Duration and relief eligibility depend on state law, tier, time registered, and compliance history."
+          "Duration and removal eligibility depend on state law, level, time registered, and compliance history."
       ),
       dependsOn: [
         "duration category",
-        "tier or level",
+        "level or risk category",
         "risk assessment",
         "time registered",
         "prior compliance",
         "juvenile or adult case",
       ],
       verify:
-        "Confirm whether the state offers removal, reclassification, public-notification reduction, or only narrow post-conviction relief.",
+        "Confirm whether the state offers removal, reclassification, reduced public posting, or only narrow court-based options.",
       icon: <CheckCircle className="h-5 w-5" />,
     },
     {
@@ -259,14 +259,18 @@ export default function StateRegistryTemplateV2Preview({
           {d.state}: Start with the questions people actually ask
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-7 !text-slate-200 md:text-base">
-          This redesigned scaffold puts practical answers first, then shows what changes the answer and where to verify. The goal is to be useful in the first minute without flattening complicated registry law into false certainty.
+          This redesigned scaffold puts practical answers first, then shows what can change the answer and where to double-check. The goal is to be useful in the first minute without pretending registry law is simple.
         </p>
         <div className="mt-4 rounded-xl border border-white/15 bg-white/10 p-4 text-sm leading-6 !text-slate-100">
           <strong className="text-white">Important:</strong> This preview uses Sample State data. For real states, official sources and last-reviewed dates must control.
         </div>
       </section>
 
-      <Section eyebrow="Practical Risk Snapshot" title="The six things most people need to know first">
+      <Section
+        eyebrow="Start Here"
+        title="The basics most people need before reading the fine print"
+        intro="Start here for the big picture. These cards show what usually matters most for daily life. The next section explains what can change the answer and what to double-check before you make plans."
+      >
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {snapshot.map((card) => (
             <div key={card.label} className={`rounded-xl border p-4 ${toneClasses[card.tone]}`}>
@@ -280,7 +284,11 @@ export default function StateRegistryTemplateV2Preview({
         </div>
       </Section>
 
-      <Section eyebrow="Quick Answers" title="The questions families usually ask first">
+      <Section
+        eyebrow="Common Questions"
+        title="Plain-language answers, with what to double-check"
+        intro="Use these cards when you need a practical answer first. The details below explain the rules, deadlines, exceptions, and official sources behind each answer."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {quickAnswers.map((qa) => (
             <article key={qa.question} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
@@ -300,7 +308,7 @@ export default function StateRegistryTemplateV2Preview({
 
               <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3">
                 <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                  What changes the answer
+                  What can change this
                 </p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {qa.dependsOn.map((item) => (
@@ -313,7 +321,7 @@ export default function StateRegistryTemplateV2Preview({
 
               <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
                 <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
-                  Verify before acting
+                  Before you make plans
                 </p>
                 <p className="mt-1">{qa.verify}</p>
               </div>
@@ -344,12 +352,16 @@ export default function StateRegistryTemplateV2Preview({
           <SourceCard label="Statutes" href={d.atAGlance?.officialLinks?.statuteIndex} />
           <SourceCard label="Administrative rules" href={d.atAGlance?.officialLinks?.adminRules} />
           <SourceCard label="Registry agency" href={d.atAGlance?.officialLinks?.statePoliceRegistry} />
-          <SourceCard label="Forms / relief portal" href={d.atAGlance?.officialLinks?.formsPortal} />
+          <SourceCard label="Forms / removal portal" href={d.atAGlance?.officialLinks?.formsPortal} />
           <SourceCard label="Public registry" href={d.atAGlance?.officialLinks?.publicWebsite} />
         </div>
       </Section>
 
-      <Section eyebrow="Detailed Rules" title="Registration, reporting, and restrictions">
+      <Section
+        eyebrow="The Details"
+        title="The rules behind the quick answers"
+        intro="Use this section when you need the fuller rule, a reporting trigger, an exception, or the source-backed explanation behind a quick answer above."
+      >
         <DetailGrid
           items={[
             { title: "Who must register", icon: <Users className="h-5 w-5" />, content: d.whoMustRegister },
@@ -362,10 +374,10 @@ export default function StateRegistryTemplateV2Preview({
         />
       </Section>
 
-      <Section eyebrow="Relief, Movement & Special Issues" title="What changes over time">
+      <Section eyebrow="Moving, Removal & Special Situations" title="What can change over time">
         <DetailGrid
           items={[
-            { title: "Relief / removal / reclassification", icon: <CheckCircle className="h-5 w-5" />, list: d.reliefPaths },
+            { title: "Removal / reclassification", icon: <CheckCircle className="h-5 w-5" />, list: d.reliefPaths },
             { title: "Moving or interstate travel", icon: <Plane className="h-5 w-5" />, list: d.travelInterstate },
             { title: "Visiting or temporary lodging", icon: <Plane className="h-5 w-5" />, list: d.visitingTraveling },
             { title: "Special populations", icon: <Users className="h-5 w-5" />, list: d.specialPopulations },
@@ -386,7 +398,7 @@ export default function StateRegistryTemplateV2Preview({
               <ScriptBox title="Records request template" text={d.checklistsScripts.recordsRequestTemplate} />
             )}
             {d.checklistsScripts.reliefPetitionOutline && (
-              <ScriptBox title="Relief petition outline" text={d.checklistsScripts.reliefPetitionOutline} />
+              <ScriptBox title="Removal / reclassification planning notes" text={d.checklistsScripts.reliefPetitionOutline} />
             )}
           </div>
         )}
@@ -410,7 +422,7 @@ export default function StateRegistryTemplateV2Preview({
             State registry pages should prioritize official statutes, administrative rules, registry agency guidance, official forms, court decisions, and agency pages. Practical summaries are meant to make the rules understandable, not replace legal advice.
           </p>
           <p>
-            Last reviewed: {safeDate(d.lastReviewedUTC)}. For any decision about housing, travel, reporting, relief, or supervision, verify with the official agency or qualified counsel before acting.
+            Last reviewed: {safeDate(d.lastReviewedUTC)}. For any decision about housing, travel, reporting, removal, or supervision, verify with the official agency or qualified counsel before acting.
           </p>
         </div>
         <div className="mt-4 grid gap-2">
@@ -423,11 +435,12 @@ export default function StateRegistryTemplateV2Preview({
   );
 }
 
-function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
+function Section({ eyebrow, title, intro, children }: { eyebrow: string; title: string; intro?: string; children: React.ReactNode }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
       <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-500">{eyebrow}</p>
       <h2 className="text-2xl font-black tracking-tight text-slate-950">{title}</h2>
+      {intro && <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{intro}</p>}
       <div className="mt-5">{children}</div>
     </section>
   );
@@ -572,49 +585,49 @@ function safeDate(value?: string) {
 
 function inferResidenceStatus(d: StateRegistryData) {
   const text = stripMarkdown(`${d.highlights?.residency || ""} ${d.residencyPresence || ""}`).toLowerCase();
-  if (text.includes("no statewide") || text.includes("no blanket")) return "No blanket statewide ban";
-  if (text.includes("2,500") || text.includes("2500")) return "Large buffer zones";
-  if (text.includes("1,000") || text.includes("1000")) return "1,000-ft rule for some";
-  if (text.includes("local")) return "State + local review";
-  return "Verify before leasing";
+  if (text.includes("no statewide") || text.includes("no blanket")) return "No blanket statewide address ban";
+  if (text.includes("2,500") || text.includes("2500")) return "Large address buffer zones";
+  if (text.includes("1,000") || text.includes("1000")) return "Address limits for many people";
+  if (text.includes("local")) return "Check state and local rules";
+  return "Confirm before leasing";
 }
 
 function inferPresenceStatus(d: StateRegistryData) {
   const text = stripMarkdown(`${d.highlights?.presence || ""} ${d.residencyPresence || ""}`).toLowerCase();
-  if (text.includes("no general") || text.includes("does not authorize local")) return "Limited statewide rule";
-  if (text.includes("level 3") || text.includes("tier iii")) return "Limited by level/tier";
-  if (text.includes("schools") || text.includes("parks") || text.includes("child")) return "Child-location limits";
-  return "Verify covered places";
+  if (text.includes("no general") || text.includes("does not authorize local")) return "No broad statewide place ban";
+  if (text.includes("level 3") || text.includes("tier iii")) return "Some places may be off-limits";
+  if (text.includes("schools") || text.includes("parks") || text.includes("child")) return "Child-focused places may be restricted";
+  return "Check covered places";
 }
 
 function inferDurationStatus(d: StateRegistryData) {
   const text = stripMarkdown(`${d.highlights?.duration || ""} ${first(d.reliefPaths)}`).toLowerCase();
-  if (text.includes("10 years") && text.includes("life")) return "10 years to life";
-  if (text.includes("lifetime") || text.includes("for life")) return "Lifetime unless relieved";
-  if (text.includes("relief")) return "Relief may be available";
-  return "Verify duration";
+  if (text.includes("10 years") && text.includes("life")) return "Often years, sometimes life";
+  if (text.includes("lifetime") || text.includes("for life")) return "Usually lifetime unless removed";
+  if (text.includes("relief") || text.includes("removal")) return "Removal may be available";
+  return "Check duration carefully";
 }
 
 function inferPublicStatus(d: StateRegistryData) {
   const text = stripMarkdown(`${d.highlights?.tiering || ""} ${first(d.publicWebsiteExposure)}`).toLowerCase();
-  if (text.includes("only level 3")) return "Level 3 public only";
-  if (text.includes("tier iii") || text.includes("tier 3")) return "Tier-based public posting";
-  if (text.includes("public")) return "Public website rules apply";
+  if (text.includes("only level 3")) return "Only higher levels are public";
+  if (text.includes("tier iii") || text.includes("tier 3")) return "Public posting depends on level";
+  if (text.includes("public")) return "Some information may be public";
   return "Check disclosure rules";
 }
 
 function inferReportingStatus(d: StateRegistryData) {
   const text = stripMarkdown(d.atAGlance?.verificationCadence || first(d.verificationInPerson)).toLowerCase();
-  if (text.includes("quarterly") && text.includes("annual")) return "Annual to quarterly";
-  if (text.includes("quarterly")) return "Quarterly for some";
-  if (text.includes("annual")) return "Annual baseline";
-  return "Verify schedule";
+  if (text.includes("quarterly") && text.includes("annual")) return "Set reporting reminders early";
+  if (text.includes("quarterly")) return "Quarterly check-ins for some";
+  if (text.includes("annual")) return "Annual check-in baseline";
+  return "Confirm your next date";
 }
 
-function inferReliefStatus(d: StateRegistryData) {
+function inferRemovalStatus(d: StateRegistryData) {
   const text = stripMarkdown(d.highlights?.duration || first(d.reliefPaths)).toLowerCase();
-  if (text.includes("no broad") || text.includes("limited")) return "Limited relief";
-  if (text.includes("level 1") || text.includes("tier i") || text.includes("petition")) return "Petition path exists";
-  if (text.includes("lifetime")) return "Hard to remove";
-  return "Verify relief path";
+  if (text.includes("no broad") || text.includes("limited")) return "Removal may be limited";
+  if (text.includes("level 1") || text.includes("tier i") || text.includes("petition")) return "There may be a way to ask";
+  if (text.includes("lifetime")) return "Removal may be difficult";
+  return "Check removal options";
 }
