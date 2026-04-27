@@ -8,9 +8,7 @@ import {
   Clock,
   Database,
   FileText,
-  Gavel,
   Home,
-  Info,
   MapPin,
   Plane,
   Shield,
@@ -19,7 +17,7 @@ import {
 
 type QuickAnswer = {
   question: string;
-  short: string;
+  answer: string;
   dependsOn: string[];
   verify: string;
   icon: React.ReactNode;
@@ -51,44 +49,59 @@ export default function StateRegistryTemplateV2Preview({
   const snapshot: SnapshotCard[] = [
     {
       label: "Where can I live?",
-      status: d.highlights?.residency ? "Conditional" : "Verify locally",
-      body:
-        stripMarkdown(d.highlights?.residency || d.residencyPresence || "Check state law, local rules, and supervision conditions before signing a lease.").slice(0, 190) + "...",
+      status: inferResidenceStatus(d),
+      body: trimSummary(
+        d.highlights?.residency ||
+          d.residencyPresence ||
+          "Check state law, local rules, and supervision conditions before signing a lease."
+      ),
       tone: "amber",
     },
     {
       label: "Where can I go?",
-      status: d.highlights?.presence ? "Conditional" : "Verify locally",
-      body:
-        stripMarkdown(d.highlights?.presence || d.residencyPresence || "Presence and loitering rules may depend on tier, supervision, location type, and written exceptions.").slice(0, 190) + "...",
+      status: inferPresenceStatus(d),
+      body: trimSummary(
+        d.highlights?.presence ||
+          d.residencyPresence ||
+          "Presence and loitering rules may depend on tier, supervision, location type, and written exceptions."
+      ),
       tone: "sky",
     },
     {
       label: "How long does it last?",
-      status: d.highlights?.duration ? "State-specific" : "Verify duration",
-      body:
-        stripMarkdown(d.highlights?.duration || "Registration duration can depend on tier, offense, date, relief eligibility, and out-of-state treatment.").slice(0, 190) + "...",
+      status: inferDurationStatus(d),
+      body: trimSummary(
+        d.highlights?.duration ||
+          "Registration duration can depend on tier, offense, date, relief eligibility, and out-of-state treatment."
+      ),
       tone: "rose",
     },
     {
       label: "Who can see it?",
-      status: d.highlights?.tiering ? "Tier-dependent" : "Check public website rules",
-      body:
-        stripMarkdown(d.highlights?.tiering || first(d.publicWebsiteExposure) || "Public website exposure varies by tier, risk level, offense, and notification rules.").slice(0, 190) + "...",
+      status: inferPublicStatus(d),
+      body: trimSummary(
+        d.highlights?.tiering ||
+          first(d.publicWebsiteExposure) ||
+          "Public website exposure varies by tier, risk level, offense, and notification rules."
+      ),
       tone: "indigo",
     },
     {
       label: "Reporting burden",
-      status: d.atAGlance?.verificationCadence ? "Known schedule" : "Verify schedule",
-      body:
-        stripMarkdown(d.atAGlance?.verificationCadence || "Reporting may include initial registration, annual or periodic verification, address changes, travel, and online identifiers.").slice(0, 190) + "...",
+      status: inferReportingStatus(d),
+      body: trimSummary(
+        d.atAGlance?.verificationCadence ||
+          "Reporting may include initial registration, annual or periodic verification, address changes, travel, and online identifiers."
+      ),
       tone: "slate",
     },
     {
       label: "Can I get off?",
-      status: d.reliefPaths?.length ? "Possible, limited, or staged" : "Needs review",
-      body:
-        stripMarkdown(first(d.reliefPaths) || "Relief may depend on tier, time registered, offense type, risk level, and compliance history.").slice(0, 190) + "...",
+      status: inferReliefStatus(d),
+      body: trimSummary(
+        first(d.reliefPaths) ||
+          "Relief may depend on tier, time registered, offense type, risk level, and compliance history."
+      ),
       tone: "emerald",
     },
   ];
@@ -96,58 +109,142 @@ export default function StateRegistryTemplateV2Preview({
   const quickAnswers: QuickAnswer[] = [
     {
       question: "Where can I live?",
-      short: plain(d.highlights?.residency || d.residencyPresence || "Housing rules vary by state law, local rules, and supervision status."),
-      dependsOn: ["offense category", "victim age", "tier or level", "local rules", "supervision conditions"],
-      verify: "Confirm the address with the registering agency, supervision officer, or counsel before signing a lease.",
+      answer: plain(
+        d.highlights?.residency ||
+          d.residencyPresence ||
+          "Housing rules vary by state law, local rules, and supervision status."
+      ),
+      dependsOn: [
+        "offense category",
+        "victim age",
+        "tier or level",
+        "local rules",
+        "supervision conditions",
+      ],
+      verify:
+        "Confirm the address with the registering agency, supervision officer, or counsel before signing a lease.",
       icon: <Home className="h-5 w-5" />,
     },
     {
       question: "Where can I go?",
-      short: plain(d.highlights?.presence || "Presence rules may apply around schools, parks, child-care locations, youth events, or other child-focused places."),
-      dependsOn: ["tier or level", "written exceptions", "supervision status", "event type", "local enforcement practice"],
-      verify: "Ask whether exceptions exist for voting, court, treatment, worship, employment, or obligations involving your own child.",
+      answer: plain(
+        d.highlights?.presence ||
+          "Presence rules may apply around schools, parks, child-care locations, youth events, or other child-focused places."
+      ),
+      dependsOn: [
+        "tier or level",
+        "written exceptions",
+        "supervision status",
+        "event type",
+        "local enforcement practice",
+      ],
+      verify:
+        "Ask whether exceptions exist for voting, court, treatment, worship, employment, or obligations involving your own child.",
       icon: <MapPin className="h-5 w-5" />,
     },
     {
       question: "Where can I work or go to school?",
-      short: plain(first(d.employmentEducationInternet) || "Employment and school rules usually include reporting duties and may include setting-specific restrictions."),
-      dependsOn: ["job setting", "school or youth access", "licensing rules", "supervision terms", "public notification risk"],
-      verify: "Check both registry reporting rules and any separate employment, licensing, or supervision restrictions.",
+      answer: plain(
+        first(d.employmentEducationInternet) ||
+          "Employment and school rules usually include reporting duties and may include setting-specific restrictions."
+      ),
+      dependsOn: [
+        "job setting",
+        "school or youth access",
+        "licensing rules",
+        "supervision terms",
+        "public notification risk",
+      ],
+      verify:
+        "Check both registry reporting rules and any separate employment, licensing, or supervision restrictions.",
       icon: <Users className="h-5 w-5" />,
     },
     {
       question: "Who will know, and what will they see?",
-      short: plain(first(d.publicWebsiteExposure) || "Public disclosure varies by state and may depend on tier, risk level, offense, and notification rules."),
-      dependsOn: ["public website rules", "tier or risk level", "community notification", "school or employer notice", "law-enforcement access"],
-      verify: "Review the official public registry and ask whether lower-level or law-enforcement-only information can still be released on request.",
+      answer: plain(
+        first(d.publicWebsiteExposure) ||
+          "Public disclosure varies by state and may depend on tier, risk level, offense, and notification rules."
+      ),
+      dependsOn: [
+        "public website rules",
+        "tier or risk level",
+        "community notification",
+        "school or employer notice",
+        "law-enforcement access",
+      ],
+      verify:
+        "Review the official public registry and ask whether lower-level or law-enforcement-only information can still be released on request.",
       icon: <Database className="h-5 w-5" />,
     },
     {
       question: "How often do I have to report?",
-      short: plain(d.atAGlance?.verificationCadence || first(d.verificationInPerson) || "Verification frequency depends on tier, designation, and housing status."),
-      dependsOn: ["tier", "designation", "homeless/transient status", "change events", "annual or periodic verification windows"],
-      verify: "Ask for the next exact reporting date in writing and keep proof of every in-person visit or submission.",
+      answer: plain(
+        d.atAGlance?.verificationCadence ||
+          first(d.verificationInPerson) ||
+          "Verification frequency depends on tier, designation, and housing status."
+      ),
+      dependsOn: [
+        "tier",
+        "designation",
+        "homeless/transient status",
+        "change events",
+        "verification windows",
+      ],
+      verify:
+        "Ask for the next exact reporting date in writing and keep proof of every in-person visit or submission.",
       icon: <Clock className="h-5 w-5" />,
     },
     {
       question: "How long will this last, and can I get relief?",
-      short: plain(d.highlights?.duration || first(d.reliefPaths) || "Duration and relief eligibility depend on state law, tier, time registered, and compliance history."),
-      dependsOn: ["duration category", "tier or level", "risk assessment", "time registered", "prior compliance", "juvenile or adult case"],
-      verify: "Confirm whether the state offers removal, reclassification, public-notification reduction, or only narrow post-conviction relief.",
+      answer: plain(
+        d.highlights?.duration ||
+          first(d.reliefPaths) ||
+          "Duration and relief eligibility depend on state law, tier, time registered, and compliance history."
+      ),
+      dependsOn: [
+        "duration category",
+        "tier or level",
+        "risk assessment",
+        "time registered",
+        "prior compliance",
+        "juvenile or adult case",
+      ],
+      verify:
+        "Confirm whether the state offers removal, reclassification, public-notification reduction, or only narrow post-conviction relief.",
       icon: <CheckCircle className="h-5 w-5" />,
     },
     {
       question: "What if I move, visit, or travel?",
-      short: plain(first(d.visitingTraveling) || first(d.travelInterstate) || "Moving and visiting rules can trigger new registration duties even without a permanent move."),
-      dependsOn: ["length of stay", "temporary lodging", "employment or school", "international travel", "origin-state notice rules"],
-      verify: "Check both the state you are leaving and the state you are entering before travel. Keep itinerary and agency-contact records.",
+      answer: plain(
+        first(d.visitingTraveling) ||
+          first(d.travelInterstate) ||
+          "Moving and visiting rules can trigger new registration duties even without a permanent move."
+      ),
+      dependsOn: [
+        "length of stay",
+        "temporary lodging",
+        "employment or school",
+        "international travel",
+        "origin-state notice rules",
+      ],
+      verify:
+        "Check both the state you are leaving and the state you are entering before travel. Keep itinerary and agency-contact records.",
       icon: <Plane className="h-5 w-5" />,
     },
     {
       question: "What if I do not have stable housing?",
-      short: plain(findHousingNote(d) || "People without stable housing often face more frequent reporting and must document location information carefully."),
-      dependsOn: ["transient definition", "shelter rules", "monthly or more frequent check-ins", "local documentation practice"],
-      verify: "Ask what exact location description is required and get written proof of each check-in.",
+      answer: plain(
+        findHousingNote(d) ||
+          "People without stable housing often face more frequent reporting and must document location information carefully."
+      ),
+      dependsOn: [
+        "transient definition",
+        "shelter rules",
+        "monthly or more frequent check-ins",
+        "local documentation practice",
+      ],
+      verify:
+        "Ask what exact location description is required and get written proof of each check-in.",
       icon: <AlertTriangle className="h-5 w-5" />,
     },
   ];
@@ -158,13 +255,13 @@ export default function StateRegistryTemplateV2Preview({
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-slate-300">
           State Registry Guide Preview
         </p>
-        <h2 className="mt-2 text-2xl font-black tracking-tight md:text-3xl">
+        <h2 className="mt-2 text-2xl font-black tracking-tight !text-white md:text-3xl">
           {d.state}: Start with the questions people actually ask
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-200 md:text-base">
+        <p className="mt-3 max-w-3xl text-sm leading-7 !text-slate-200 md:text-base">
           This redesigned scaffold puts practical answers first, then shows what changes the answer and where to verify. The goal is to be useful in the first minute without flattening complicated registry law into false certainty.
         </p>
-        <div className="mt-4 rounded-xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100">
+        <div className="mt-4 rounded-xl border border-white/15 bg-white/10 p-4 text-sm leading-6 !text-slate-100">
           <strong className="text-white">Important:</strong> This preview uses Sample State data. For real states, official sources and last-reviewed dates must control.
         </div>
       </section>
@@ -187,36 +284,38 @@ export default function StateRegistryTemplateV2Preview({
         <div className="grid gap-4 md:grid-cols-2">
           {quickAnswers.map((qa) => (
             <article key={qa.question} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="rounded-xl border border-slate-200 bg-white p-2 text-slate-700">
+              <div className="flex items-center gap-2 text-slate-700">
+                <div className="rounded-lg border border-slate-200 bg-white p-2">
                   {qa.icon}
                 </div>
-                <div>
-                  <h3 className="font-black text-slate-950">{qa.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{qa.short}</p>
+                <h3 className="font-black leading-snug text-slate-950">{qa.question}</h3>
+              </div>
+
+              <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3">
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                  Quick answer
+                </p>
+                <p className="mt-1 text-sm leading-6 text-slate-700">{qa.answer}</p>
+              </div>
+
+              <div className="mt-3 rounded-xl border border-slate-200 bg-white p-3">
+                <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                  What changes the answer
+                </p>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {qa.dependsOn.map((item) => (
+                    <span key={item} className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700">
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              <div className="mt-4 grid gap-3">
-                <div className="rounded-xl border border-slate-200 bg-white p-3">
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    What changes the answer
-                  </p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {qa.dependsOn.map((item) => (
-                      <span key={item} className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
-                  <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
-                    Verify before acting
-                  </p>
-                  <p className="mt-1">{qa.verify}</p>
-                </div>
+              <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-amber-950">
+                <p className="text-xs font-bold uppercase tracking-wide text-amber-700">
+                  Verify before acting
+                </p>
+                <p className="mt-1">{qa.verify}</p>
               </div>
             </article>
           ))}
@@ -444,6 +543,15 @@ function stripMarkdown(value: string) {
     .trim();
 }
 
+function trimSummary(value: string, max = 185) {
+  const clean = stripMarkdown(value || "");
+  if (clean.length <= max) return clean;
+  const clipped = clean.slice(0, max);
+  const sentenceBreak = clipped.lastIndexOf(". ");
+  if (sentenceBreak > 80) return clipped.slice(0, sentenceBreak + 1);
+  return `${clipped.trim()}…`;
+}
+
 function findHousingNote(d: StateRegistryData) {
   const haystack = [
     ...(d.atAGlance?.topGotchas || []),
@@ -460,4 +568,53 @@ function safeDate(value?: string) {
   } catch {
     return value;
   }
+}
+
+function inferResidenceStatus(d: StateRegistryData) {
+  const text = stripMarkdown(`${d.highlights?.residency || ""} ${d.residencyPresence || ""}`).toLowerCase();
+  if (text.includes("no statewide") || text.includes("no blanket")) return "No blanket statewide ban";
+  if (text.includes("2,500") || text.includes("2500")) return "Large buffer zones";
+  if (text.includes("1,000") || text.includes("1000")) return "1,000-ft rule for some";
+  if (text.includes("local")) return "State + local review";
+  return "Verify before leasing";
+}
+
+function inferPresenceStatus(d: StateRegistryData) {
+  const text = stripMarkdown(`${d.highlights?.presence || ""} ${d.residencyPresence || ""}`).toLowerCase();
+  if (text.includes("no general") || text.includes("does not authorize local")) return "Limited statewide rule";
+  if (text.includes("level 3") || text.includes("tier iii")) return "Limited by level/tier";
+  if (text.includes("schools") || text.includes("parks") || text.includes("child")) return "Child-location limits";
+  return "Verify covered places";
+}
+
+function inferDurationStatus(d: StateRegistryData) {
+  const text = stripMarkdown(`${d.highlights?.duration || ""} ${first(d.reliefPaths)}`).toLowerCase();
+  if (text.includes("10 years") && text.includes("life")) return "10 years to life";
+  if (text.includes("lifetime") || text.includes("for life")) return "Lifetime unless relieved";
+  if (text.includes("relief")) return "Relief may be available";
+  return "Verify duration";
+}
+
+function inferPublicStatus(d: StateRegistryData) {
+  const text = stripMarkdown(`${d.highlights?.tiering || ""} ${first(d.publicWebsiteExposure)}`).toLowerCase();
+  if (text.includes("only level 3")) return "Level 3 public only";
+  if (text.includes("tier iii") || text.includes("tier 3")) return "Tier-based public posting";
+  if (text.includes("public")) return "Public website rules apply";
+  return "Check disclosure rules";
+}
+
+function inferReportingStatus(d: StateRegistryData) {
+  const text = stripMarkdown(d.atAGlance?.verificationCadence || first(d.verificationInPerson)).toLowerCase();
+  if (text.includes("quarterly") && text.includes("annual")) return "Annual to quarterly";
+  if (text.includes("quarterly")) return "Quarterly for some";
+  if (text.includes("annual")) return "Annual baseline";
+  return "Verify schedule";
+}
+
+function inferReliefStatus(d: StateRegistryData) {
+  const text = stripMarkdown(d.highlights?.duration || first(d.reliefPaths)).toLowerCase();
+  if (text.includes("no broad") || text.includes("limited")) return "Limited relief";
+  if (text.includes("level 1") || text.includes("tier i") || text.includes("petition")) return "Petition path exists";
+  if (text.includes("lifetime")) return "Hard to remove";
+  return "Verify relief path";
 }
