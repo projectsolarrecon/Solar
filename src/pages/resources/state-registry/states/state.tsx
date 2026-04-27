@@ -17,11 +17,7 @@ for (const [path, mod] of Object.entries(modules)) {
   STATE_INDEX[code] = mod as any;
 }
 
-const V2_PREVIEW_ALIASES: Record<string, string> = {
-  ss: "ss",
-  xf: "fl",
-  xo: "or",
-};
+const V2_PREVIEW_CODES = new Set(["ss", "xf", "xo"]);
 
 function NotFound({ message }: { message: string }) {
   return (
@@ -61,25 +57,24 @@ export default function StateRegistryStatePage(): JSX.Element {
     return <NotFound message="Missing or invalid state code in the URL." />;
   }
 
-  const dataCode = V2_PREVIEW_ALIASES[code] ?? code;
-  const isV2Preview = Boolean(V2_PREVIEW_ALIASES[code]);
+  const isV2Preview = V2_PREVIEW_CODES.has(code);
 
-  const mod = STATE_INDEX[dataCode];
+  const mod = STATE_INDEX[code];
   if (!mod) {
     // Helpful: shows what the app sees at runtime
     const seen = Object.keys(STATE_INDEX).sort().join(", ");
-    return <NotFound message={`No data file found for "${dataCode}". Seen codes: ${seen || "(none)"}.`} />;
+    return <NotFound message={`No data file found for "${code}". Seen codes: ${seen || "(none)"}.`} />;
   }
 
   const data = (mod.default ?? mod) as Partial<StateRegistryData>;
   if (!data || typeof data !== "object" || !data.state) {
-    return <NotFound message={`Data for "${dataCode}" failed to load or is missing the "state" field.`} />;
+    return <NotFound message={`Data for "${code}" failed to load or is missing the "state" field.`} />;
   }
 
   let reviewed = "";
   try { reviewed = new Date(data.lastReviewedUTC || Date.now()).toLocaleDateString(); } catch {}
 
-  const titlePrefix = isV2Preview && code !== dataCode ? `${data.state} — V2 Preview` : `${data.state} — Registry Rules`;
+  const titlePrefix = isV2Preview ? `${data.state} — V2 Preview` : `${data.state} — Registry Rules`;
 
   return (
     <GuideLayout
