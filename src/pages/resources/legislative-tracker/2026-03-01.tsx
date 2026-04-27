@@ -1,27 +1,20 @@
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../../components/SEO";
 import ShareBar from "../../../components/solar/ShareBar";
-
-type SourceKind = "official" | "supplemental";
-
-type Source = {
-  label: string;
-  href: string;
-  kind: SourceKind;
-  type: string;
-};
-
-type PrimaryLink = {
-  label: string;
-  href: string;
-  note?: string;
-};
 
 type ChipSet = {
   movement: string[];
   impact: string[];
   risk: string[];
+};
+
+type Source = {
+  label: string;
+  href: string;
+  kind: "official" | "supplemental";
+  type: string;
 };
 
 type ActionLink = {
@@ -37,17 +30,23 @@ type Development = {
   group: string;
   title: string;
   jurisdiction: string;
-  status: string;
   date: string;
   summary: string;
-  primaryLinks: PrimaryLink[];
+  tone: "rose" | "amber" | "emerald" | "indigo";
   changed: ReactNode[];
   matters: ReactNode[];
   analysis: ReactNode[];
   watch: ReactNode[];
   chips: ChipSet;
+  tags: string[];
   sources: Source[];
   action?: ActionLink;
+};
+
+type Metric = {
+  label: string;
+  value: string;
+  body: string;
 };
 
 type WatchItemData = {
@@ -57,56 +56,360 @@ type WatchItemData = {
   next: string[];
 };
 
-type GlanceCard = {
-  label: string;
-  title: string;
-  body: string;
+const slug = "2026-03-01";
+const canonicalUrl = `https://thesolarproject.org/resources/legislative-tracker/${slug}`;
+
+const tones = {
+  rose: "border-rose-200 bg-rose-50 text-rose-950",
+  amber: "border-amber-200 bg-amber-50 text-amber-950",
+  emerald: "border-emerald-200 bg-emerald-50 text-emerald-950",
+  indigo: "border-indigo-200 bg-indigo-50 text-indigo-950",
 };
 
-const pageTitle = "February 2026 Legislative Tracker | The SOLAR Project";
-const pageDescription =
-  "February 2026 brought federal exclusion proposals, state registry-expansion bills, technical-violation reforms, and court decisions testing the limits of sex-offense registration laws.";
+function Badge({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-white/70 bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-900 shadow-sm">
+      {children}
+    </span>
+  );
+}
 
-const canonicalUrl = "https://thesolarproject.org/resources/legislative-tracker/2026-03-01";
+function Section({
+  id,
+  eyebrow,
+  title,
+  children,
+}: {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      id={id}
+      className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7"
+    >
+      <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+        {eyebrow}
+      </p>
+      <h2 className="text-2xl font-black tracking-tight text-slate-950">
+        {title}
+      </h2>
+      <div className="mt-5 space-y-4">{children}</div>
+    </section>
+  );
+}
 
-const groups = [
-  "Federal Exclusion Proposals",
-  "Restriction Expansion / Housing and Place-Based Burdens",
-  "Compliance, Online Identifiers, and Technical-Violation Exposure",
-  "Reform / Court Limits",
-  "Litigation Watch",
-];
+function InternalLink({ to, children }: { to: string; children: ReactNode }) {
+  return (
+    <Link
+      to={to}
+      className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:text-slate-700"
+    >
+      {children}
+    </Link>
+  );
+}
 
-const atAGlance: GlanceCard[] = [
+function ExternalLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4 hover:text-amber-950"
+    >
+      {children}
+    </a>
+  );
+}
+
+function MetricCard({ metric }: { metric: Metric }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-slate-500">
+        {metric.label}
+      </p>
+      <p className="mt-2 text-3xl font-black tracking-tight text-slate-950">
+        {metric.value}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{metric.body}</p>
+    </div>
+  );
+}
+
+function ChipGroup({ title, labels }: { title: string; labels: string[] }) {
+  return (
+    <div>
+      <p className="text-[11px] font-black uppercase tracking-[0.18em] text-indigo-700">
+        {title}
+      </p>
+      <div className="mt-1 flex flex-wrap gap-2">
+        {labels.map((label) => (
+          <span
+            key={label}
+            className="rounded-full border border-indigo-200 bg-white px-2.5 py-1 text-xs font-bold text-indigo-800"
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SolarAnalysis({ chips, children }: { chips: ChipSet; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-3">
+      <p className="text-xs font-bold uppercase tracking-wide text-indigo-700">
+        SOLAR analysis
+      </p>
+      <div className="mt-3 grid gap-3 md:grid-cols-3">
+        <ChipGroup title="Movement" labels={chips.movement} />
+        <ChipGroup title="Impact" labels={chips.impact} />
+        <ChipGroup title="Risk / opportunity" labels={chips.risk} />
+      </div>
+      <div className="mt-3 space-y-2 text-sm leading-6 text-indigo-950">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function ContentBox({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-white p-3">
+      <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+        {title}
+      </p>
+      <div className="mt-1 space-y-2 text-sm leading-6 text-slate-800">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function SourcePill({ source }: { source: Source }) {
+  const official = source.kind === "official";
+
+  return (
+    <a
+      href={source.href}
+      target="_blank"
+      rel="noreferrer"
+      title={source.type}
+      className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold underline underline-offset-2 ${
+        official
+          ? "border-blue-200 bg-blue-50 text-blue-800 hover:bg-blue-100"
+          : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+      }`}
+    >
+      {source.label} ↗
+    </a>
+  );
+}
+
+function CopyButton({
+  copied,
+  onCopy,
+}: {
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onCopy}
+      className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+    >
+      {copied ? "Copied!" : "Copy message"}
+    </button>
+  );
+}
+
+function DevelopmentCard({
+  development,
+  copiedId,
+  onCopy,
+}: {
+  development: Development;
+  copiedId: string | null;
+  onCopy: (id: string, text: string) => void;
+}) {
+  const actionId = `development-${development.id}`;
+
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+      <div className="flex flex-wrap items-center gap-2">
+        <span
+          className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${tones[development.tone]}`}
+        >
+          {development.group}
+        </span>
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+          {development.jurisdiction}
+        </span>
+        <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+          {development.date}
+        </span>
+      </div>
+
+      <h3 className="mt-3 text-lg font-black leading-snug text-slate-950">
+        {development.title}
+      </h3>
+      <p className="mt-2 text-sm leading-6 text-slate-700">
+        {development.summary}
+      </p>
+
+      <div className="mt-4 grid gap-3">
+        <ContentBox title="What changed">
+          {development.changed.map((item, i) => (
+            <p key={i}>{item}</p>
+          ))}
+        </ContentBox>
+
+        <ContentBox title="Why it matters">
+          {development.matters.map((item, i) => (
+            <p key={i}>{item}</p>
+          ))}
+        </ContentBox>
+
+        <SolarAnalysis chips={development.chips}>
+          {development.analysis.map((item, i) => (
+            <p key={i}>{item}</p>
+          ))}
+        </SolarAnalysis>
+
+        <ContentBox title="What to watch">
+          <ul className="list-disc space-y-1 pl-5">
+            {development.watch.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </ContentBox>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {development.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {development.sources.map((source) => (
+          <SourcePill key={source.href} source={source} />
+        ))}
+      </div>
+
+      {development.action && (
+        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-3">
+          <p className="text-sm font-black text-slate-950">
+            {development.action.title}
+          </p>
+          <p className="mt-1 text-sm leading-6 text-slate-700">
+            {development.action.why}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <CopyButton
+              copied={copiedId === actionId}
+              onCopy={() => onCopy(actionId, development.action!.message)}
+            />
+            <a
+              href={development.action.href}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+            >
+              {development.action.label} ↗
+            </a>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+}
+function ActionCard({
+  action,
+  copied,
+  onCopy,
+}: {
+  action: ActionLink;
+  copied: boolean;
+  onCopy: () => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+      <h3 className="font-black text-slate-950">{action.title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-700">{action.why}</p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        <CopyButton copied={copied} onCopy={onCopy} />
+        <a
+          href={action.href}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+        >
+          {action.label} ↗
+        </a>
+      </div>
+    </div>
+  );
+}
+
+function WatchItem({ item }: { item: WatchItemData }) {
+  return (
+    <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+      <h3 className="font-black text-slate-950">{item.title}</h3>
+      <p className="mt-2 text-sm leading-6 text-slate-700">
+        <span className="font-bold text-slate-900">Current posture:</span>{" "}
+        {item.posture}
+      </p>
+      <p className="mt-2 text-sm leading-6 text-slate-700">
+        <span className="font-bold text-slate-900">Why it matters:</span>{" "}
+        {item.why}
+      </p>
+      <div className="mt-2 text-sm leading-6 text-slate-700">
+        <span className="font-bold text-slate-900">Watch next:</span>
+        <ul className="mt-1 list-disc space-y-1 pl-5">
+          {item.next.map((line) => (
+            <li key={line}>{line}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+const metrics: Metric[] = [
   {
-    label: "Dominant monthly pattern",
-    title: "Instability by accumulation",
+    label: "Key Developments",
+    value: "12",
     body:
-      "February did not produce one sweeping national registry overhaul. It produced a stack of targeted burdens affecting health care, shelter, housing, public places, online identity, tiering, evaluations, and technical violations.",
+      "February included federal exclusion bills, state restriction packages, penalty reform, and court decisions affecting registry enforcement.",
   },
   {
-    label: "Strongest burden-expansion theme",
-    title: "Exclusion from stabilizing systems",
+    label: "Dominant Posture",
+    value: "Burden-expanding",
     body:
-      "The most concrete national signal was exclusion: one federal bill targeted ACA and Medicaid support, while another targeted access to federally funded shelters.",
+      "Most activity used registry status to expand exclusion, reporting duties, housing limits, online rules, or lifetime consequences.",
   },
   {
-    label: "Rights / reform counterpoint",
-    title: "Technical-violation limits still mattered",
+    label: "Rights / Reform Counterpoint",
+    value: "2",
     body:
-      "Washington HB 2403 and Iowa’s Uranga decision showed a narrower reform path: distinguishing administrative noncompliance from new harm and requiring prosecutors to prove the exact registry duty charged.",
+      "Washington’s failure-to-register bill and Iowa’s Uranga decision offered narrow but important limits on technical-violation punishment.",
   },
   {
-    label: "Top action opportunity",
-    title: "Respond to federal exclusion bills",
+    label: "Action Paths",
+    value: "4",
     body:
-      "The highest-impact reader action is contacting members of Congress about the health-care and shelter exclusion bills before committee movement or copycat proposals normalize the frame.",
-  },
-  {
-    label: "What to watch next",
-    title: "Final text and implementation details",
-    body:
-      "Watch Florida and Wyoming for final restriction language, Idaho for residence-rule implementation, Washington for floor action, and Pennsylvania for the next Act 29 litigation path.",
+      "Top actions focus on federal benefit exclusions, Florida place restrictions, and Washington’s penalty-reform opening.",
   },
 ];
 
@@ -114,59 +417,46 @@ const developments: Development[] = [
   {
     id: 1,
     group: "Federal Exclusion Proposals",
-    title: "H.R. 7453 / CLEAN Act would deny ACA credits and Medicaid-funded medical assistance to covered registrants",
+    title: "CLEAN Act would deny ACA credits and Medicaid-funded assistance by sex-offense status",
     jurisdiction: "Federal / U.S. House",
-    status: "Introduced February 9, 2026; referred to House Ways and Means and Energy and Commerce",
-    date: "February 9, 2026",
+    date: "Introduced February 9, 2026",
     summary:
-      "A federal bill would convert sex-offense status into a categorical bar to major health-coverage assistance programs.",
-    primaryLinks: [
-      {
-        label: "CLEAN Act bill text PDF",
-        href: "https://steube.house.gov/wp-content/uploads/2026/02/PIH-CLEAN-Act-SIGNED.pdf",
-      },
-      {
-        label: "Rep. Steube press release",
-        href: "https://steube.house.gov/press-releases/rep-steube-no-aca-or-medicaid-for-sex-offenders/",
-      },
-    ],
+      "H.R. 7453 would convert sex-offense status into a categorical bar to major health-coverage assistance programs.",
+    tone: "rose",
     changed: [
       <>
         The{" "}
-        <ExternalLink
-          href="https://steube.house.gov/wp-content/uploads/2026/02/PIH-CLEAN-Act-SIGNED.pdf"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        <ExternalLink href="https://steube.house.gov/wp-content/uploads/2026/02/PIH-CLEAN-Act-SIGNED.pdf">
           CLEAN Act
         </ExternalLink>{" "}
-        would deny ACA refundable premium tax credits to any individual, or spouse on a joint return, who is a “sex
-        offender” under the Adam Walsh Act definition as of the last day of the taxable year, and would block federal
-        Medicaid matching funds for medical assistance provided to covered individuals.
+        would deny ACA refundable premium tax credits to any individual, or spouse
+        on a joint return, who meets the bill’s sex-offender definition as of the
+        last day of the taxable year.
       </>,
-      "The ACA credit denial would apply to taxable years ending after enactment. The Medicaid provisions would apply to people enrolled or reenrolled on or after enactment, while allowing states to elect not to make Medicaid medical assistance available to covered individuals.",
-      "The February hook was introduction of a federal proposal that would turn registry status into a health-benefits exclusion.",
+      "The bill would also amend Medicaid funding provisions to block federal matching funds for medical assistance provided to covered individuals and would allow states to elect not to make Medicaid medical assistance available to them.",
     ],
     matters: [
-      "Health coverage is tied to stability, treatment access, medication continuity, employment capacity, disability care, mental-health care, and family stability.",
-      "The bill treats registrants as categorically undeserving of health support, regardless of offense age, present risk, poverty, disability, treatment compliance, medical need, or family circumstances.",
+      "Health coverage is tied to medication continuity, mental-health care, treatment access, disability care, employment capacity, and family stability.",
+      "The proposal treats registry-related status as a categorical reason to deny health support, without individualized assessment of risk, medical need, offense age, disability, poverty, family circumstances, or treatment compliance.",
     ],
     analysis: [
-      "This is negative movement for registrants and families because it uses the registry as a gatekeeping device for essential health support rather than as an individualized public-safety tool.",
-      "The likely spillover would not stop with the person denied coverage. Families, local health systems, emergency rooms, reentry providers, and community supervision systems could absorb the destabilization.",
+      "This is negative movement because it turns the registry into a gatekeeping mechanism for ordinary medical stability.",
+      "For registrants and families, the likely effects would not stop at the covered person: costs could shift to spouses, parents, children, emergency rooms, local systems, or untreated illness.",
     ],
     watch: [
-      "Whether the bill receives committee activity or a Senate companion.",
-      "Whether the definition of “sex offender” is narrowed to current registration status or remains tied to broader federal categories.",
-      "Whether exceptions are proposed for disability, age, hospice, minor dependents, medical necessity, or people who have obtained post-registration relief.",
+      "Whether H.R. 7453 receives committee activity or a Senate companion.",
+      "Whether amendments define covered status by current registration, federal Adam Walsh Act categories, any qualifying conviction, or state-law registration.",
+      "Whether disability, age, hospice, minor-dependent, treatment, or post-registration-relief exceptions are proposed.",
     ],
     chips: {
       movement: ["Negative movement"],
-      impact: ["Relief exclusion", "Reentry barrier", "Family-stability impact", "Rights concern", "Punishment expansion"],
+      impact: ["Healthcare barrier", "Relief exclusion", "Reentry barrier", "Family-stability impact", "Punishment expansion"],
       risk: ["Watch closely", "Advocacy opening", "Implementation risk"],
     },
+    tags: ["federal", "healthcare", "benefits exclusion"],
     sources: [
       {
-        label: "CLEAN Act bill text PDF",
+        label: "CLEAN Act bill text",
         href: "https://steube.house.gov/wp-content/uploads/2026/02/PIH-CLEAN-Act-SIGNED.pdf",
         kind: "official",
         type: "official bill text hosted by sponsor",
@@ -185,70 +475,57 @@ const developments: Development[] = [
       },
     ],
     action: {
-      title: "Oppose health-care exclusion by registry status",
+      title: "Oppose healthcare exclusion by registry status",
       why:
-        "Health coverage supports treatment, medication access, disability care, work stability, and family stability. A categorical registry-based exclusion would destabilize reentry without individualized risk assessment.",
-      label: "Contact your U.S. House member",
+        "The bill would use sex-offense status to destabilize medical care, treatment access, disability support, and family stability.",
+      label: "Find your member of Congress",
       href: "https://www.congress.gov/members/find-your-member",
       message:
-        "Please oppose H.R. 7453. Denying health coverage assistance by registry status would destabilize treatment, medication access, disability care, family stability, and reentry without any individualized public-safety assessment.",
+        "Please oppose H.R. 7453 and any categorical healthcare exclusion based on registry or sex-offense status. Health coverage supports treatment, stability, work, disability care, and family well-being. Any public-safety policy should be evidence-based, individualized, and proportional.",
     },
   },
   {
     id: 2,
     group: "Federal Exclusion Proposals",
-    title: "H.R. 7624 would bar covered registrants from federally funded domestic-violence and homeless shelters",
+    title: "Safe Shelters for Survivors Act would bar covered registrants from federally funded shelters",
     jurisdiction: "Federal / U.S. House",
-    status: "Introduced February 20, 2026; referred to House Financial Services",
-    date: "February 20, 2026",
+    date: "Introduced February 20, 2026",
     summary:
-      "A federal shelter-exclusion bill would prohibit covered shelters from serving covered registrants and would penalize noncompliant shelters through federal-funding consequences.",
-    primaryLinks: [
-      {
-        label: "GovInfo H.R. 7624 bill record",
-        href: "https://www.govinfo.gov/app/details/BILLS-119hr7624ih",
-      },
-      {
-        label: "Rep. Mace press release",
-        href: "https://mace.house.gov/media/press-releases/rep-nancy-mace-new-bill-would-ban-sex-offenders-federally-funded-shelters",
-      },
-    ],
+      "H.R. 7624 would tie federal shelter funding to denying services and housing to covered registrants, with criminal penalties for knowing violations.",
+    tone: "rose",
     changed: [
       <>
-        <ExternalLink
-          href="https://www.govinfo.gov/app/details/BILLS-119hr7624ih"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          H.R. 7624 / Safe Shelters for Survivors Act of 2026
+        <ExternalLink href="https://www.govinfo.gov/app/details/BILLS-119hr7624ih">
+          H.R. 7624
         </ExternalLink>{" "}
-        would prohibit covered federally funded domestic-violence and homeless shelters from providing services or housing
-        to covered sex offenders, and would bar covered sex offenders from entering or using those shelters except to seek
-        information about non-covered alternatives.
+        would prohibit covered domestic-violence and homeless shelters receiving
+        federal funds from providing services or housing to covered sex offenders.
       </>,
-      "The proposal includes a notice duty for covered registrants who enter a covered shelter, funding ineligibility for noncompliant shelters in the following fiscal year, and criminal penalties for knowing violations, including imprisonment up to five years.",
-      "The February hook was introduction of a bill tying federal shelter funding to categorical denial of access for covered registrants.",
+      "The bill would make noncompliant shelters ineligible for federal funds during the following fiscal year and would prohibit covered sex offenders from entering or using covered shelters except to seek information about non-covered shelters.",
+      "It would require covered sex offenders entering a covered shelter to notify staff of their status and would create criminal penalties for knowing violations, including fines or imprisonment up to five years.",
     ],
     matters: [
-      "Shelter access is a registry-life issue because residence restrictions, employment barriers, family disruption, poverty, and supervision conditions already increase housing instability.",
-      "A categorical shelter ban can push people into unsheltered homelessness, making address reporting and supervision compliance harder rather than safer.",
+      "Shelter access is a registry-life issue because residence restrictions, employment barriers, family disruption, and supervision conditions already increase housing instability.",
+      "A categorical shelter ban can push people into unsheltered homelessness, making address reporting, supervision compliance, treatment continuity, and family safety harder.",
     ],
     analysis: [
-      "This is negative movement because it would turn emergency housing and domestic-violence shelter systems into another registry-enforcement boundary.",
-      "The proposal risks harming families as well as individuals: a household that includes a registrant could face impossible choices during homelessness, disaster displacement, family breakdown, or violence.",
+      "This is negative movement because it uses federal funding pressure to turn emergency shelter into another exclusion zone.",
+      "For families, the bill could create impossible choices during domestic violence, disaster displacement, poverty, eviction, or family breakdown if one household member is barred from federally funded shelter.",
     ],
     watch: [
-      "Whether the bill receives hearing activity.",
-      "Whether shelter providers raise concerns about implementation, confidentiality, due process, homelessness, domestic violence, emergency displacement, and family safety.",
-      "Whether the definition of “covered sex offender” is narrowed or remains broad.",
+      "Whether H.R. 7624 receives hearing activity or a Senate companion.",
+      "Whether shelter providers raise implementation, confidentiality, emergency-displacement, due-process, and homelessness concerns.",
+      "Whether the bill’s covered-population definition is narrowed or remains status-based.",
     ],
     chips: {
       movement: ["Negative movement"],
-      impact: ["Housing barrier", "Reentry barrier", "Family-stability impact", "Compliance burden", "Punishment expansion"],
+      impact: ["Shelter barrier", "Housing barrier", "Reentry barrier", "Compliance burden", "Punishment expansion"],
       risk: ["Watch closely", "Advocacy opening", "Enforcement risk"],
     },
+    tags: ["federal", "shelter", "homelessness"],
     sources: [
       {
-        label: "GovInfo H.R. 7624 bill record",
+        label: "GovInfo H.R. 7624 record",
         href: "https://www.govinfo.gov/app/details/BILLS-119hr7624ih",
         kind: "official",
         type: "official federal bill record",
@@ -260,7 +537,7 @@ const developments: Development[] = [
         type: "official congressional press release",
       },
       {
-        label: "Berkeley Observer coverage",
+        label: "Berkeley Observer context",
         href: "https://berkeleyobserver.com/2026/02/22/nancy-mace-pushes-to-ban-sex-offenders-from-federally-funded-shelters/",
         kind: "supplemental",
         type: "media context",
@@ -273,75 +550,62 @@ const developments: Development[] = [
       },
     ],
     action: {
-      title: "Oppose shelter exclusion by registry status",
+      title: "Oppose shelter exclusion and homelessness penalties",
       why:
-        "Emergency shelter access supports address compliance, reentry stability, family safety, and survival during displacement. Categorical exclusion can increase homelessness and technical-violation risk.",
-      label: "Contact your U.S. House member",
+        "Emergency shelter access supports compliance, safety, family stability, and lawful reentry during crisis.",
+      label: "Find your member of Congress",
       href: "https://www.congress.gov/members/find-your-member",
       message:
-        "Please oppose H.R. 7624. Emergency shelter access supports stability, address compliance, family safety, and reentry. Categorical exclusion by registry status would increase homelessness and technical-violation risk without individualized review.",
+        "Please oppose H.R. 7624 and any categorical shelter ban based on registry status. Denying emergency shelter can worsen homelessness, destabilize families, and make registration compliance harder. Public safety is better served by individualized risk assessment, clear safeguards, and stable housing.",
     },
   },
-  {
+{
     id: 3,
     group: "Restriction Expansion / Housing and Place-Based Burdens",
-    title: "Florida SB 212 / HB 45 continued moving restrictions tied to public pools and child-centered places",
+    title: "Florida SB 212 / HB 45 continued moving public-pool and child-centered location restrictions",
     jurisdiction: "Florida",
-    status: "Senate Judiciary committee substitute adopted February 10; House Judiciary reported CS February 24",
-    date: "February 10 and February 24, 2026",
+    date: "Committee movement February 10 and February 24, 2026",
     summary:
-      "Florida narrowed some draft language but continued advancing a bill expanding restricted-location rules around public swimming pools and child-centered places.",
-    primaryLinks: [
-      {
-        label: "Florida Senate SB 212 bill page",
-        href: "https://www.flsenate.gov/Session/Bill/2026/212",
-      },
-      {
-        label: "Florida Senate Judiciary analysis",
-        href: "https://www.flsenate.gov/Session/Bill/2026/212/Analyses/2026s00212.ju.PDF",
-      },
-      {
-        label: "HB 45 tracking page",
-        href: "https://trackbill.com/bill/florida-house-bill-45-sexual-offenders-and-sexual-predators/2744286/",
-        note: "Supplemental tracking source used for House companion movement.",
-      },
-    ],
+      "Florida narrowed some draft language but continued advancing a restriction package tied to public swimming pools, child-centered places, supervision permission, and registry-information sharing.",
+    tone: "amber",
     changed: [
       <>
-        <ExternalLink
-          href="https://www.flsenate.gov/Session/Bill/2026/212"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          Florida CS/CS/SB 212
+        <ExternalLink href="https://www.flsenate.gov/Session/Bill/2026/212">
+          Florida SB 212
         </ExternalLink>{" "}
-        and companion HB 45 would expand or revise restrictions tied to schools, child care facilities, parks, public
-        swimming pools, playgrounds, supervision permissions, and registry-information sharing.
+        and{" "}
+        <ExternalLink href="https://www.flhouse.gov/Sections/Bills/billsdetail.aspx?BillId=82584">
+          HB 45
+        </ExternalLink>{" "}
+        would expand or adjust restrictions tied to schools, child-care
+        facilities, parks, public swimming pools, playgrounds, and related
+        locations.
       </>,
-      "The February Senate committee substitute deleted “public bathing space” references and shifted some presence language from a 200-foot zone to being “on the premises” of covered areas.",
-      "The bill would define public swimming pool for residency-restriction purposes to include county, city, or municipal pools while excluding hotel, motel, and recreational vehicle park pools.",
-      "It would also require supervising officers to deny certain probationer or conditional-release requests to visit public swimming pools unless specific exemptions apply.",
+      "The February Senate Judiciary substitute deleted public-bathing-space references, shifted some language from a 200-foot restricted zone to an on-the-premises standard, and revised warrantless-arrest language in the same direction.",
+      "The bill would require supervising officers to deny certain requests by conditional releasees or probationers to visit a public swimming pool unless specific exemptions apply.",
     ],
     matters: [
-      "Even narrowed premises language can create daily-life traps when covered places include common community spaces such as pools, parks, schools, playgrounds, and child-care-adjacent areas.",
-      "Supervision permission rules can convert ordinary family, religious, civic, or caregiving activities into discretionary denials or compliance hazards.",
+      "Even narrowed premises language can create daily-life traps when covered locations are common community spaces and boundaries are unclear.",
+      "Public-pool and child-centered location restrictions can affect parenting, grandparenting, family recreation, caregiving, voting, religious participation, treatment, employment, and ordinary travel.",
     ],
     analysis: [
-      "This is negative movement because the bill preserves a broader exclusion architecture even after some language was narrowed.",
-      "The change from a 200-foot boundary to “premises” may improve clarity in some settings, but families still need workable exceptions, clear maps, and non-arbitrary supervision guidance.",
+      "This is negative movement because the bill preserves a new restricted-location architecture while adding supervision denial rules and potential arrest exposure.",
+      "The shift from 200 feet to premises may improve boundary clarity, but the practical burden remains significant if implementation guidance is vague or exceptions are too narrow to work for families.",
     ],
     watch: [
-      "Whether final language keeps “premises” rather than restoring broader distance language.",
-      "Whether exceptions are practical for family activity, voting, religious services, employment, treatment, caregiving, and official business.",
-      "Whether agencies and supervision officers receive clear implementation guidance.",
+      "Whether final language keeps premises-based wording rather than a 200-foot zone.",
+      "Whether exemptions are practical for family, voting, religious, treatment, employment, caregiving, and official-business purposes.",
+      "Whether local governments and supervising officers receive clear implementation guidance.",
     ],
     chips: {
       movement: ["Negative movement"],
       impact: ["Compliance burden", "Housing barrier", "Family-stability impact", "Supervision burden", "Punishment expansion"],
       risk: ["Watch closely", "Implementation risk", "Advocacy opening", "Clarification needed"],
     },
+    tags: ["state", "place restrictions", "public pools"],
     sources: [
       {
-        label: "Florida Senate SB 212 bill page",
+        label: "Florida Senate SB 212 page",
         href: "https://www.flsenate.gov/Session/Bill/2026/212",
         kind: "official",
         type: "official bill page",
@@ -353,411 +617,292 @@ const developments: Development[] = [
         type: "official bill analysis",
       },
       {
-        label: "TrackBill HB 45 tracking page",
-        href: "https://trackbill.com/bill/florida-house-bill-45-sexual-offenders-and-sexual-predators/2744286/",
-        kind: "supplemental",
-        type: "legislative tracking context",
+        label: "Florida House HB 45 page",
+        href: "https://www.flhouse.gov/Sections/Bills/billsdetail.aspx?BillId=82584",
+        kind: "official",
+        type: "official companion bill page",
+      },
+      {
+        label: "Florida House Judiciary summary",
+        href: "https://flhouse.gov/meeting-bill-summary-report?CommitteeId=3298&MeetingId=15194&SessionId=113",
+        kind: "official",
+        type: "official committee summary",
+      },
+      {
+        label: "Florida House Judiciary vote",
+        href: "https://www.flhouse.gov/Sections/Committees/billvote.aspx?BillId=82584&IsPCB=1&VoteId=76835",
+        kind: "official",
+        type: "official committee vote record",
       },
     ],
     action: {
-      title: "Ask Florida lawmakers to narrow place-based restrictions",
+      title: "Ask Florida lawmakers to narrow location restrictions",
       why:
-        "Pool, park, playground, school, and child-care-adjacent restrictions can create unclear daily-life boundaries and family-stability burdens unless the final text is narrow, clear, and workable.",
+        "Clear boundaries, practical exemptions, and individualized supervision discretion reduce technical traps without ignoring safety.",
       label: "Find your Florida legislators",
       href: "https://www.flsenate.gov/Senators/Find",
       message:
-        "Please narrow SB 212 / HB 45. Any location restriction should have clear boundaries, practical family and civic exceptions, individualized supervision discretion, and evidence-based justification rather than blanket exclusion.",
+        "Please narrow SB 212 / HB 45. Any location restriction should have clear boundaries, practical family and caregiving exceptions, individualized supervision review, and evidence-based justification. Blanket exclusions can destabilize housing, family life, work, treatment, and compliance.",
     },
   },
-{
+  {
     id: 4,
-    group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
-    title: "South Carolina S. 924 would require registry-name use on social, dating, and sexual-communication platforms",
-    jurisdiction: "South Carolina",
-    status: "Introduced February 12, 2026; referred to Senate Judiciary",
-    date: "February 12, 2026",
+    group: "Restriction Expansion / Housing and Place-Based Burdens",
+    title: "Wyoming SF 88 passed the Senate with a 1,000-foot daycare residence restriction",
+    jurisdiction: "Wyoming",
+    date: "Senate passage February 20, 2026",
     summary:
-      "South Carolina proposed a new online identity / name-use supervision condition for registrants on probation or parole.",
-    primaryLinks: [
-      {
-        label: "South Carolina Legislature S. 924",
-        href: "https://www.scstatehouse.gov/sess126_2025-2026/bills/924.htm",
-      },
-    ],
+      "Wyoming’s Senate advanced a bill barring adult registrants from living within 1,000 feet of licensed or government-run childcare facilities, with limited grandfathering.",
+    tone: "rose",
     changed: [
       <>
-        <ExternalLink
-          href="https://www.scstatehouse.gov/sess126_2025-2026/bills/924.htm"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          South Carolina S. 924
+        <ExternalLink href="https://wyoleg.gov/2026/Engross/SF0088.pdf">
+          Wyoming SF 88
         </ExternalLink>{" "}
-        would require a person convicted of an offense requiring sex-offender registration to use the person’s registry
-        name when accessing social networking websites, communicating with people or groups for the purpose of promoting
-        sexual relations, or using dating applications while on probation or parole.
+        would bar registered sex offenders age 18 or older from living within
+        1,000 feet of covered childcare facilities.
       </>,
-      "The first violation would be a misdemeanor punishable by a fine up to $1,000, imprisonment up to one year, or both.",
-      "A second or subsequent violation would be punishable by a fine up to $2,500, imprisonment up to three years, or both.",
+      "Covered facilities include government-run childcare facilities and daycares licensed by the Wyoming Department of Family Services.",
+      "The proposal includes a limited grandfathering provision for people already established in their homes before July 1, 2026, and reported violations would carry jail and fine exposure.",
     ],
     matters: [
-      "Online-identifier and compelled-name rules implicate speech, privacy, association, dating, family communication, peer support, and employment-related online presence.",
-      "The phrase “communicating with other persons or groups for the purpose of promoting sexual relations” creates uncertainty about what platforms, speech, and conduct are covered.",
+      "Daycare buffers can sharply reduce available housing, especially in smaller communities where childcare facilities are embedded throughout residential neighborhoods.",
+      "The bill applies by registry status, not by individualized risk to young children, current offense facts, time since offense, treatment history, or housing scarcity.",
     ],
     analysis: [
-      "This is negative movement because it adds criminal exposure to ordinary online conduct and creates a new technical-violation pathway.",
-      "For families, shared devices, nicknames, legal name changes, initials, platform rules, and household accounts could complicate compliance even when no harmful conduct is occurring.",
+      "This is negative movement because it expands residence exclusion and threatens criminal penalties for housing geography.",
+      "Grandfathering may protect some current homes, but it does not protect future moves caused by eviction, rent increases, caregiving, disability, family reunification, or loss of income.",
     ],
     watch: [
-      "Whether the bill is narrowed to specific platforms, conduct, or offense categories.",
-      "Whether First Amendment and privacy concerns are raised in committee.",
-      "Whether “registry name” is clarified for people with legal name changes, aliases, initials, or platform naming limits.",
+      "Whether the House preserves, narrows, or expands the Senate language.",
+      "Whether measurement rules and childcare-facility boundaries are clear enough for ordinary people to follow.",
+      "Whether exceptions are added for non-child-related offenses, caregiving, disability, housing scarcity, or individualized risk findings.",
     ],
     chips: {
       movement: ["Negative movement"],
-      impact: ["Online identifiers", "Compliance burden", "Rights concern", "Supervision burden", "Enforcement risk"],
-      risk: ["Watch closely", "Litigation risk", "Clarification needed"],
+      impact: ["Housing barrier", "Family-stability impact", "Compliance burden", "Punishment expansion"],
+      risk: ["Watch closely", "Advocacy opening", "Litigation risk"],
     },
+    tags: ["state", "housing", "daycare buffer"],
     sources: [
       {
-        label: "South Carolina Legislature S. 924",
-        href: "https://www.scstatehouse.gov/sess126_2025-2026/bills/924.htm",
+        label: "Wyoming SF 88 engrossed text",
+        href: "https://wyoleg.gov/2026/Engross/SF0088.pdf",
+        kind: "official",
+        type: "official engrossed bill text",
+      },
+      {
+        label: "Wyoming SF 88 bill page",
+        href: "https://www.wyoleg.gov/Legislation/2026/SF0088",
         kind: "official",
         type: "official bill page",
       },
+      {
+        label: "Wyoming SF 88 digest",
+        href: "https://wyoleg.gov/2026/Digest/SF0088.pdf",
+        kind: "official",
+        type: "official bill digest",
+      },
+      {
+        label: "Cowboy State Daily context",
+        href: "https://cowboystatedaily.com/2026/02/20/wyoming-senate-advances-bill-to-bar-sex-offenders-from-living-near-daycares/",
+        kind: "supplemental",
+        type: "media context",
+      },
     ],
     action: {
-      title: "Request constitutional review of online-name rules",
+      title: "Oppose blanket daycare-buffer housing exclusion",
       why:
-        "Compelled online-name rules can chill lawful speech, family contact, support groups, employment communication, dating, and association unless they are narrow, clear, and tied to individualized risk.",
-      label: "Find your South Carolina legislators",
-      href: "https://www.scstatehouse.gov/legislatorssearch.php",
+        "Housing stability supports compliance, work, treatment, family support, and supervision success.",
+      label: "Find your Wyoming legislator",
+      href: "https://wyoleg.gov/Legislators",
       message:
-        "Please request constitutional review of S. 924. Online conditions should be narrow, clear, and tied to individualized risk, while protecting lawful family, work, support, and speech-related communications.",
+        "Please oppose blanket daycare-buffer residence restrictions in SF 88 unless they are narrowed by individualized risk, clear measurement rules, hardship exceptions, and housing-impact review. Stable housing is a public-safety asset, not a loophole.",
     },
   },
   {
     id: 5,
-    group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
-    title: "Idaho H0604 would revise psychosexual-evaluation provisions inside registration law",
-    jurisdiction: "Idaho",
-    status: "Introduced February 6; referred to House Judiciary, Rules & Administration February 9",
-    date: "February 6 and February 9, 2026",
-    summary:
-      "Idaho introduced a bill addressing psychosexual evaluations, consequences for failure to provide an evaluation, and payment or funding rules.",
-    primaryLinks: [
-      {
-        label: "Idaho Legislature H0604 summary",
-        href: "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0604/",
-      },
-      {
-        label: "Idaho Legislature H0604 text PDF",
-        href: "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2026/legislation/H0604.pdf",
-      },
-    ],
-    changed: [
-      <>
-        <ExternalLink
-          href="https://legislature.idaho.gov/sessioninfo/2026/legislation/H0604/"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          Idaho H0604
-        </ExternalLink>{" "}
-        would revise psychosexual-evaluation provisions in Idaho’s sexual-offender-registration framework, including
-        payment rules and the treatment of failure to provide an evaluation as a potential aggravating circumstance.
-      </>,
-      "The bill concerns consequences for evaluation nonproduction, payment provisions for psychosexual evaluation by a defendant, and use of certain funding and restitution.",
-      "Because evaluation rules can shape sentencing, supervision, treatment, risk classification, and relief posture, the proposal belongs in the month’s compliance and due-process picture even though the available source set was thinner than for several other items.",
-    ],
-    matters: [
-      "Psychosexual evaluations can shape sentencing, supervision, risk classification, treatment, and relief posture.",
-      "Payment rules matter because evaluation access can depend on money, transportation, provider availability, and court timing.",
-    ],
-    analysis: [
-      "The movement is unclear because evaluation rules can sometimes clarify assessment practice, but treating nonproduction as aggravating can raise due-process concerns if inability to pay or access a provider is not distinguished from refusal.",
-      "Families could face direct cost pressure if defendants or registrants are expected to fund evaluations without meaningful indigency protections.",
-    ],
-    watch: [
-      "Whether the bill distinguishes refusal from inability to pay or obtain an evaluation.",
-      "Whether public funding or restitution provisions create real access or simply shift costs.",
-      "Whether evaluation standards are transparent, reviewable, and tied to fair process.",
-    ],
-    chips: {
-      movement: ["Unclear movement"],
-      impact: ["Compliance burden", "Due-process concern", "Agency implementation", "Reentry barrier"],
-      risk: ["Clarification needed", "Watch closely", "Implementation risk"],
-    },
-    sources: [
-      {
-        label: "Idaho Legislature H0604 summary",
-        href: "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0604/",
-        kind: "official",
-        type: "official bill page",
-      },
-      {
-        label: "Idaho Legislature H0604 text PDF",
-        href: "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2026/legislation/H0604.pdf",
-        kind: "official",
-        type: "official bill text",
-      },
-      {
-        label: "LegiScan H0604 page",
-        href: "https://legiscan.com/ID/bill/H0604/2026",
-        kind: "supplemental",
-        type: "legislative tracking context",
-      },
-    ],
-    action: {
-      title: "Ask Idaho lawmakers to protect evaluation due process",
-      why:
-        "Evaluation rules can affect sentencing, supervision, risk classification, treatment, and relief. Cost or access barriers should not become aggravating circumstances.",
-      label: "Find your Idaho legislator",
-      href: "https://legislature.idaho.gov/legislators/whosmylegislator/",
-      message:
-        "Please add due-process safeguards to H0604. Evaluation rules should distinguish refusal from inability to pay or access a provider, include indigency protections, and use transparent standards.",
-    },
-  },
-  {
-    id: 6,
     group: "Restriction Expansion / Housing and Place-Based Burdens",
-    title: "Idaho H0683 clarified residence and “habitually lives” rules with housing-restriction consequences",
+    title: "Idaho H0683 clarified residence and habitual-living rules with housing consequences",
     jurisdiction: "Idaho",
-    status: "Introduced February 16; do-pass February 24; passed House February 26",
-    date: "February 16, February 24, and February 26, 2026",
+    date: "Introduced February 16; House passage February 26, 2026",
     summary:
-      "Idaho advanced a fast-moving bill clarifying when a registrant is considered to reside or habitually live at a location.",
-    primaryLinks: [
-      {
-        label: "Idaho Legislature H0683 summary",
-        href: "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0683/",
-      },
-      {
-        label: "Idaho Legislature H0683 text PDF",
-        href: "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2026/legislation/H0683.pdf",
-      },
-    ],
+      "Idaho advanced a fast-moving bill defining when a registrant resides or habitually lives at a location, with direct consequences for residence restrictions.",
+    tone: "amber",
     changed: [
       <>
-        <ExternalLink
-          href="https://legislature.idaho.gov/sessioninfo/2026/legislation/H0683/"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        <ExternalLink href="https://legislature.idaho.gov/sessioninfo/2026/legislation/H0683/">
           Idaho H0683
         </ExternalLink>{" "}
-        would define or clarify residence and “habitually lives” for registration purposes, including objective time or
-        frequency standards, application to homeless registrants, care-facility exceptions near schools or daycares, and
-        posted-notice requirements for covered property.
+        would clarify residence and habitual-living standards for sexual-offender
+        registration purposes, including objective time and frequency rules.
       </>,
-      "During February, the bill moved from introduction to House passage, making residence-compliance definitions a live Idaho issue.",
-      "Later post-window context indicates the bill was signed March 27 and became effective July 1, 2026; that later enactment is relevant to implementation, not the February hook.",
+      "The bill clarifies application to homeless registrants and exceptions allowing registered adult criminal sex offenders to reside within 500 feet of a school or daycare when living in licensed or certified incarceration, hospital, health, or convalescent-care facilities.",
+      "The text also references posted-notice requirements for covered property, including notice size, statutory reference, use of the term registered sex offender, and placement at public entrances.",
     ],
     matters: [
-      "Residence definitions determine whether someone is compliant, in violation, or unlawfully living too close to a restricted location.",
-      "Clarity can reduce arbitrary enforcement, but objective thresholds can also expand enforcement if more temporary or unstable arrangements count as residence.",
+      "Residence definitions decide whether a person is compliant, unlawfully residing somewhere, or exposed to enforcement.",
+      "Clarity can reduce arbitrary enforcement, but objective thresholds can also expand enforcement if temporary stays, caregiving, medical placement, homelessness, or couch-surfing are treated as residence.",
     ],
     analysis: [
-      "This is mixed movement. Clearer definitions can help people understand obligations, but the same definitions can intensify housing restrictions for people who are homeless, couch-surfing, caregiving, hospitalized, in treatment, or living in long-term care.",
-      "Posted notices may also stigmatize facilities and create collateral exclusion from care settings.",
+      "This is mixed movement because clearer definitions may help some people understand the rule, while the same definitions can harden housing restrictions and increase enforcement exposure.",
+      "Families may need to reassess temporary stays, shared custody, treatment placement, hospital or care-facility stays, and emergency housing under the new framework.",
     ],
     watch: [
-      "Implementation guidance from Idaho State Police or local sheriffs.",
-      "How “habitually lives” applies to homelessness, temporary caregiving, shared custody, medical placement, and unstable housing.",
-      "Whether notice requirements produce stigma or facility-level exclusion.",
+      "Final implementation guidance from Idaho State Police, local sheriffs, and facility administrators.",
+      "How habitual-living rules apply to homelessness, temporary caregiving, shared custody, medical placement, and unstable housing.",
+      "Whether posted notices stigmatize facilities or create collateral exclusion from health and care settings.",
     ],
     chips: {
       movement: ["Mixed movement"],
       impact: ["Compliance clarity", "Housing barrier", "Compliance burden", "Agency implementation", "Family-stability impact"],
       risk: ["Implementation risk", "Clarification needed", "Watch closely"],
     },
+    tags: ["state", "residence", "housing"],
     sources: [
       {
-        label: "Idaho Legislature H0683 summary",
+        label: "Idaho Legislature H0683 page",
         href: "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0683/",
         kind: "official",
-        type: "official bill page",
+        type: "official bill page identified by legislative mirrors",
       },
       {
-        label: "Idaho Legislature H0683 text PDF",
+        label: "Idaho Legislature H0683 text",
         href: "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2026/legislation/H0683.pdf",
         kind: "official",
-        type: "official bill text",
+        type: "official bill text identified by legislative mirrors",
       },
       {
-        label: "LegiScan H0683 page",
+        label: "LegiScan H0683 context",
         href: "https://legiscan.com/ID/bill/H0683/2026",
         kind: "supplemental",
         type: "legislative tracking context",
       },
       {
-        label: "LegiScan H0683 introduced text",
+        label: "LegiScan H0683 text mirror",
         href: "https://legiscan.com/ID/text/H0683/id/3363843",
         kind: "supplemental",
         type: "bill text mirror",
       },
       {
-        label: "Tally Idaho H0683",
+        label: "Tally Idaho context",
         href: "https://www.tallyidaho.com/bills/2026/h0683",
         kind: "supplemental",
         type: "civic-data context",
       },
     ],
     action: {
-      title: "Monitor Idaho residence-rule implementation",
+      title: "Seek careful Idaho implementation guidance",
       why:
-        "Residence definitions can help clarify compliance, but implementation will determine whether homeless people, care placements, temporary caregiving, and medical stays are treated fairly.",
+        "Residence clarity should not punish homelessness, temporary caregiving, treatment, medical care, or non-willful housing instability.",
       label: "Find your Idaho legislator",
       href: "https://legislature.idaho.gov/legislators/whosmylegislator/",
       message:
-        "Please ensure H0683 implementation protects homeless people, medical and treatment placements, temporary caregiving, and non-willful technical violations. Residence guidance should be clear, humane, and administrable.",
+        "Please ensure H0683 implementation protects people facing homelessness, temporary caregiving, treatment placement, medical care, and non-willful housing instability. Guidance should be clear, humane, and focused on compliance rather than technical traps.",
     },
   },
   {
-    id: 7,
-    group: "Reform / Court Limits",
-    title: "Washington HB 2403 advanced reform of failure-to-register penalty escalation",
-    jurisdiction: "Washington",
-    status: "Public hearing February 2; do-pass February 6; referred to Rules 2 Review February 9",
-    date: "February 2, February 6, and February 9, 2026",
+    id: 6,
+    group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
+    title: "South Carolina S. 924 would impose registry-name use online as a supervision condition",
+    jurisdiction: "South Carolina",
+    date: "Introduced February 12, 2026",
     summary:
-      "Washington advanced a reform-oriented bill reducing or rationalizing some criminal penalties and sentencing consequences for failure-to-register violations.",
-    primaryLinks: [
-      {
-        label: "Washington HB 2403 bill page",
-        href: "https://app.leg.wa.gov/billsummary?BillNumber=2403&Year=2025&Initiative=false",
-      },
-      {
-        label: "Washington HB 2403 original bill text",
-        href: "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/House%20Bills/2403.pdf",
-      },
-      {
-        label: "Washington comment portal for HB 2403",
-        href: "https://app.leg.wa.gov/pbc/bill/2403",
-      },
-    ],
+      "S. 924 would require covered registrants on probation or parole to use their registry name on social networking websites, dating apps, and certain sexual-communication platforms.",
+    tone: "rose",
     changed: [
       <>
-        <ExternalLink
-          href="https://app.leg.wa.gov/billsummary?BillNumber=2403&Year=2025&Initiative=false"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          Washington HB 2403
+        <ExternalLink href="https://www.scstatehouse.gov/sess126_2025-2026/bills/924.htm">
+          South Carolina S. 924
         </ExternalLink>{" "}
-        would remove second-or-subsequent failure to register as a sex offender from seriousness level II and place
-        failure to register at seriousness level I, while deleting language that escalates third or later felony
-        failure-to-register offenses to class B felonies.
+        would require a judge to order, as a condition of probation or parole,
+        that a person convicted of a registerable offense use the person’s
+        registry name when accessing social networking websites, using dating
+        applications, or communicating with others for the purpose of promoting
+        sexual relations.
       </>,
-      "It would remove second-or-subsequent felony failure to register from the statutory definition of “sex offense” for sentencing purposes, while preserving class C felony treatment for failure to register tied to felony registration duties and adding two years of community custody for second or subsequent violations.",
-      "The bill advanced through fiscal committee during February and moved to Rules 2 Review.",
+      "A first violation would be a misdemeanor punishable by a fine up to $1,000 or imprisonment up to one year, or both. A second or later violation would carry a fine up to $2,500 or imprisonment up to three years, or both.",
     ],
     matters: [
-      "Failure-to-register prosecutions often punish instability, homelessness, confusion, transportation barriers, mental illness, poverty, or administrative mistakes.",
-      "Reducing repeat escalation can reduce carceral exposure without eliminating registration obligations.",
+      "Online-name and identifier rules implicate speech, privacy, dating, family communication, support groups, mutual aid, employment-related online presence, and association.",
+      "Phrases like communicating for the purpose of promoting sexual relations may create uncertainty over what platforms or conversations are covered.",
     ],
     analysis: [
-      "This is positive movement because it distinguishes technical registration noncompliance from new sexual harm and reduces some of the harshest escalation consequences.",
-      "The reform is limited. It still leaves felony exposure and community custody for repeat violations, so implementation and charging practices will matter.",
+      "This is negative movement because it creates a new online-identity compliance rule backed by criminal penalties.",
+      "The rule could chill lawful online communication and create technical-violation risk for people using nicknames, initials, shared household devices, legal name changes, aliases, or platforms with inconsistent naming rules.",
     ],
     watch: [
-      "Whether the bill reaches the House floor.",
-      "Whether amendments restore harsher penalty treatment.",
-      "Whether public debate accurately distinguishes administrative noncompliance from new harm.",
+      "Whether the bill is narrowed to specific platforms, conduct, or risk findings.",
+      "Whether First Amendment, privacy, compelled-speech, and vagueness concerns are raised.",
+      "Whether registry-name requirements account for legal name changes, aliases, initials, platform rules, and household technology use.",
     ],
     chips: {
-      movement: ["Positive movement"],
-      impact: ["Compliance burden", "Compliance clarity", "Reentry barrier", "Supervision burden", "Court limitation"],
-      risk: ["Reform opening", "Watch closely", "Implementation risk"],
+      movement: ["Negative movement"],
+      impact: ["Online identifiers", "Compliance burden", "Rights concern", "Supervision burden", "Enforcement risk"],
+      risk: ["Watch closely", "Litigation risk", "Clarification needed"],
     },
+    tags: ["state", "online identifiers", "supervision"],
     sources: [
       {
-        label: "Washington HB 2403 bill page",
-        href: "https://app.leg.wa.gov/billsummary?BillNumber=2403&Year=2025&Initiative=false",
+        label: "South Carolina S. 924 page",
+        href: "https://www.scstatehouse.gov/sess126_2025-2026/bills/924.htm",
         kind: "official",
         type: "official bill page",
       },
-      {
-        label: "Washington HB 2403 original bill text",
-        href: "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/House%20Bills/2403.pdf",
-        kind: "official",
-        type: "official bill text",
-      },
-      {
-        label: "Washington House Rules Review 2026",
-        href: "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Workroom%20Reports/House%20Rules%20Review/RULES%20REVIEW%202026-030.pdf",
-        kind: "official",
-        type: "official legislative report",
-      },
-      {
-        label: "FPIW Action final report",
-        href: "https://fpiwaction.org/2026-final-report/",
-        kind: "supplemental",
-        type: "advocacy context",
-      },
     ],
     action: {
-      title: "Support Washington failure-to-register penalty reform",
+      title: "Ask South Carolina lawmakers to narrow online-name rules",
       why:
-        "This is the month’s clearest reform-oriented legislative item because it reduces some repeat failure-to-register escalation while keeping accountability in place.",
-      label: "Comment on Washington HB 2403",
-      href: "https://app.leg.wa.gov/pbc/bill/2403",
+        "Online restrictions should protect lawful family, work, support, and speech activity from vague technical-violation traps.",
+      label: "Find your South Carolina legislators",
+      href: "https://www.scstatehouse.gov/legislatorssearch.php",
       message:
-        "Please support HB 2403. Washington should distinguish technical registration violations from new sexual harm, preserve accountability, and reduce destabilizing felony escalation that undermines reentry.",
+        "Please narrow S. 924 and require constitutional review before imposing online-name conditions. Any rule should be specific, evidence-based, and protective of lawful family, work, support, dating, and speech activity.",
     },
   },
 {
-    id: 8,
+    id: 7,
     group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
-    title: "New Mexico HB 199 proposed SORNA tiering, shorter deadlines, expanded information reporting, and longer registration periods",
+    title: "New Mexico HB 199 proposed SORNA alignment, tiering, shorter deadlines, and broader data collection",
     jurisdiction: "New Mexico",
-    status: "Printed/referred February 6; committee substitute action and postponed indefinitely February 13",
-    date: "February 6 and February 13, 2026",
+    date: "Committee action February 6 and February 13, 2026",
     summary:
-      "A major SORNA-alignment bill would have tightened reporting deadlines, expanded registrable information, created tier classifications, and lengthened registration periods, but was postponed indefinitely.",
-    primaryLinks: [
-      {
-        label: "New Mexico HB 199 bill page",
-        href: "https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=199&year=26",
-      },
-      {
-        label: "New Mexico HB 199 introduced text",
-        href: "https://www.nmlegis.gov/Sessions/26%20Regular/bills/house/HB0199.html",
-      },
-    ],
+      "HB 199 would have created a broader SORNA-alignment architecture, but was postponed indefinitely after February committee action.",
+    tone: "amber",
     changed: [
       <>
-        <ExternalLink
-          href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=199&year=26"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        <ExternalLink href="https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=199&year=26">
           New Mexico HB 199
         </ExternalLink>{" "}
-        would have defined tier 1, tier 2, and tier 3 offenses, shortened initial and change-reporting deadlines from
-        five business days to three, expanded required registrable information, and increased verification and
-        registration-duration burdens for many people.
+        would have added tier classifications, shortened initial and change
+        reporting deadlines from five business days to three, and expanded
+        registrable information.
       </>,
-      "Proposed registrable information included aliases, social networking identifiers for law-enforcement use, phone numbers, professional licenses, vehicle, aircraft and watercraft identifiers, school information, passport, and immigration documents.",
-      "The proposal would have required Tier 3 verification every 90 days for life, Tier 2 verification every six months for 25 years, and Tier 1 annual verification for 15 years.",
-      "The bill was printed and referred in February, then received committee action and was postponed indefinitely on February 13.",
+      "The proposal would have required information including aliases, social networking identifiers for law-enforcement use, phone numbers, professional licenses, vehicle, aircraft, and watercraft identifiers, school information, passport, and immigration documents.",
+      "It also would have changed verification periods to 90 days for life for tier 3, every six months for 25 years for tier 2, and annually for 15 years for tier 1, with additional rules for out-of-state and juvenile registration.",
     ],
     matters: [
-      "Federal-compliance rhetoric often produces more onerous state registry architecture, even when the practical effect is more deadlines, more data collection, longer terms, and more technical-violation risk.",
-      "Shorter deadlines and broader information duties especially affect people with unstable housing, limited transportation, limited internet access, disability, or family responsibilities.",
+      "Federal-compliance rhetoric can produce more onerous state registration architecture even when the public-safety benefit is unclear.",
+      "Shorter deadlines, broader information collection, homelessness-location reporting, and longer verification periods increase technical-violation risk for people and families already navigating unstable housing, work, transportation, and paperwork burdens.",
     ],
     analysis: [
-      "This is mixed movement for the month because the proposal itself was burden-expanding, but it was stopped in committee during February.",
-      "The policy posture remains important: the architecture could return in a future session, and families would be affected by reporting rules tied to vehicles, addresses, temporary locations, school, work, travel, and digital identifiers.",
+      "This is mixed movement because the proposal itself was burden-expanding, but it was postponed indefinitely in February.",
+      "The bill remains important as a watch item because SORNA-alignment language often returns in later sessions or through committee substitutes.",
     ],
     watch: [
-      "Whether similar SORNA-alignment language returns in a later session.",
-      "Whether any committee substitute narrowed the burdens before postponement.",
-      "Whether federal-compliance pressure is invoked in future New Mexico proposals.",
+      "Whether similar SORNA-alignment language returns in a future session.",
+      "Whether any committee substitute narrowed burdens before postponement.",
+      "Whether federal-compliance pressure is invoked in future New Mexico registry proposals.",
     ],
     chips: {
       movement: ["Mixed movement"],
       impact: ["Compliance burden", "Online identifiers", "Public notification", "Retroactivity concern", "Agency implementation"],
       risk: ["Watch closely", "Advocacy opening", "Missed opportunity", "Clarification needed"],
     },
+    tags: ["state", "SORNA", "tiering"],
     sources: [
       {
-        label: "New Mexico HB 199 bill page",
+        label: "New Mexico HB 199 page",
         href: "https://www.nmlegis.gov/Legislation/Legislation?Chamber=H&LegType=B&LegNo=199&year=26",
         kind: "official",
         type: "official bill page",
@@ -775,7 +920,7 @@ const developments: Development[] = [
         type: "official fiscal analysis",
       },
       {
-        label: "FastDemocracy HB 199 page",
+        label: "FastDemocracy HB 199 context",
         href: "https://fastdemocracy.com/bill-search/nm/2026/bills/NMB00012547/",
         kind: "supplemental",
         type: "legislative tracking context",
@@ -783,59 +928,53 @@ const developments: Development[] = [
     ],
   },
   {
-    id: 9,
+    id: 8,
     group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
-    title: "Missouri HB 2311 fiscal note surfaced lifetime-registration, tiering, exemption, and agency-system effects",
+    title: "Missouri HB 2311 fiscal note surfaced lifetime-registration and tier-expansion consequences",
     jurisdiction: "Missouri",
-    status: "Fiscal note dated February 16, 2026",
-    date: "February 16, 2026",
+    date: "Fiscal note February 16, 2026",
     summary:
-      "Missouri’s fiscal analysis documented concrete registry and incarceration effects from a bill expanding lifetime categories, moving offenses into higher tiers, and requiring court petitions for exemptions.",
-    primaryLinks: [
-      {
-        label: "Missouri HB 2311 fiscal note",
-        href: "https://documents.house.mo.gov/billtracking/bills261/fiscal/fispdf/5693H.01I.ORG.pdf",
-      },
-      {
-        label: "Missouri HB 2311 bill summary",
-        href: "https://documents.house.mo.gov/billtracking/bills261/sumpdf/HB2311I.pdf",
-      },
-    ],
+      "HB 2311 would expand lifetime-registration categories, move some offenses into higher tiers, require court petitions for exemptions, and add registration-system duties.",
+    tone: "rose",
     changed: [
       <>
-        <ExternalLink
-          href="https://documents.house.mo.gov/billtracking/bills261/fiscal/fispdf/5693H.01I.ORG.pdf"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        <ExternalLink href="https://documents.house.mo.gov/billtracking/bills261/hlrbillspdf/5693H.01I.pdf">
           Missouri HB 2311
         </ExternalLink>{" "}
-        would expand lifetime-registration categories, shift multiple offenses into higher tiers, require people who
-        qualify for exemption to petition a court, and impose new registration-system duties on correctional, jail, and
-        mental-health facilities.
+        would expand lifetime-registration categories, change exemption
+        procedure, move multiple offenses into higher tiers, and add
+        registration-system handoff duties.
       </>,
-      "The February fiscal note identified unknown general revenue costs greater than $250,000 tied to increased incarceration and case volume.",
-      "The proposal would add lifetime-registration categories for people required to register under federal law and people required to register because of an offense sexual in nature committed against a minor or incapacitated person.",
-      "Facilities would enter registration information into the state system, verify registration status before release, update status, and notify chief law-enforcement officials when a currently registered person is released.",
+      "The February fiscal note identified registry, incarceration, exemption, and agency-implementation consequences from the bill.",
+      "The bill would add lifetime-registration categories, including people required to register under federal law and people required to register for an offense sexual in nature committed against a minor or incapacitated person.",
+      "It would require people who qualify for exemption from registration to petition the court, and it would move multiple offenses currently listed under tier I or tier II into tier III.",
     ],
     matters: [
-      "Moving offenses to tier III and expanding lifetime-registration categories can permanently close relief pathways.",
-      "Requiring court petitions for exemptions can turn an automatic or administrative route into a resource-dependent legal process requiring counsel, fees, transportation, and court navigation.",
+      "Moving offenses into tier III and expanding lifetime-registration categories can permanently close relief pathways.",
+      "A court-petition requirement can turn exemption into a resource-dependent process requiring counsel, transportation, fees, filing access, and court navigation.",
     ],
     analysis: [
-      "This is negative movement because it expands lifetime exposure and makes relief more procedurally burdensome.",
-      "Some facility-update provisions may reduce administrative confusion, but they also intensify surveillance handoffs and enforcement infrastructure.",
+      "This is negative movement because it expands lifetime status, raises tier consequences, and makes relief more procedurally burdensome.",
+      "Facility-release and system-entry provisions may reduce some administrative confusion, but they also intensify surveillance handoffs and enforcement infrastructure.",
     ],
     watch: [
-      "Whether the court-petition requirement includes appointed counsel, fee waivers, and clear standards.",
-      "Which specific offenses move into tier III in final text.",
-      "Whether lifetime categories are tied to current federal law or broad offense characterizations.",
+      "Whether any court-petition requirement includes appointed counsel, fee waivers, clear standards, and accessible procedures.",
+      "Which specific offenses remain moved into tier III in final text.",
+      "Whether lifetime-registration categories are tied to current federal law or broad offense characterizations.",
     ],
     chips: {
       movement: ["Negative movement"],
       impact: ["Relief exclusion", "Compliance burden", "Punishment expansion", "Agency implementation", "Reentry barrier"],
       risk: ["Watch closely", "Implementation risk", "Litigation risk"],
     },
+    tags: ["state", "tiering", "lifetime registration"],
     sources: [
+      {
+        label: "Missouri HB 2311 bill text",
+        href: "https://documents.house.mo.gov/billtracking/bills261/hlrbillspdf/5693H.01I.pdf",
+        kind: "official",
+        type: "official bill text",
+      },
       {
         label: "Missouri HB 2311 fiscal note",
         href: "https://documents.house.mo.gov/billtracking/bills261/fiscal/fispdf/5693H.01I.ORG.pdf",
@@ -843,69 +982,195 @@ const developments: Development[] = [
         type: "official fiscal note",
       },
       {
-        label: "Missouri HB 2311 bill summary",
+        label: "Missouri HB 2311 summary",
         href: "https://documents.house.mo.gov/billtracking/bills261/sumpdf/HB2311I.pdf",
         kind: "official",
         type: "official bill summary",
       },
-      {
-        label: "Missouri Independent context",
-        href: "https://missouriindependent.com/2026/04/22/bill-clarifying-sex-offender-registry-law-clears-missouri-house-heads-back-to-senate/",
-        kind: "supplemental",
-        type: "post-window media context",
-      },
     ],
     action: {
-      title: "Oppose lifetime expansion and harder exemption access",
+      title: "Defend relief pathways in Missouri",
       why:
-        "Lifetime-registration expansion can permanently close relief pathways, while petition requirements can make relief depend on money, counsel, transportation, and court access.",
+        "Lifetime expansion and court-petition requirements can make relief depend on money, counsel, transportation, and legal navigation.",
       label: "Find your Missouri representative",
       href: "https://house.mo.gov/legislatorlookup.aspx",
       message:
-        "Please oppose lifetime-registration expansion and resource-dependent exemption petitions in HB 2311. Relief pathways should be clear, individualized, accessible, and not dependent on a person’s ability to afford court navigation.",
+        "Please oppose lifetime-registration expansion and resource-dependent exemption petitions in HB 2311. Relief pathways should be clear, accessible, individualized, and not limited to people who can afford counsel or navigate court procedures alone.",
     },
   },
   {
+    id: 9,
+    group: "Compliance, Online Identifiers, and Technical-Violation Exposure",
+    title: "Idaho H0604 proposed psychosexual-evaluation changes with cost and due-process questions",
+    jurisdiction: "Idaho",
+    date: "Introduced February 6; referred February 9, 2026",
+    summary:
+      "H0604 would revise psychosexual-evaluation provisions in Idaho’s sexual-offender-registration framework, including consequences for nonproduction and payment rules.",
+    tone: "indigo",
+    changed: [
+      <>
+        <ExternalLink href="https://legislature.idaho.gov/sessioninfo/2026/legislation/H0604/">
+          Idaho H0604
+        </ExternalLink>{" "}
+        would revise psychosexual-evaluation provisions, including how failure
+        to provide an evaluation may operate as an aggravating circumstance.
+      </>,
+      "The bill would also revise payment provisions for psychosexual evaluations and establish rules involving certain funding and restitution.",
+    ],
+    matters: [
+      "Psychosexual evaluations can affect sentencing, supervision, risk classification, treatment, and relief posture.",
+      "Payment rules can create access disparities if people without money cannot obtain evaluations that affect liberty or legal outcomes.",
+    ],
+    analysis: [
+      "This is unclear movement because the practical effect depends on how the final text distinguishes refusal from inability to pay or inability to access an evaluator.",
+      "For families, evaluation costs can become a major financial pressure point if the law shifts cost burdens without meaningful indigency protections.",
+    ],
+    watch: [
+      "Full official bill text, statement of purpose, and committee analysis.",
+      "Whether evaluation nonproduction distinguishes refusal from inability to pay or lack of evaluator access.",
+      "Whether funding and restitution provisions create meaningful access or simply shift costs to defendants and families.",
+    ],
+    chips: {
+      movement: ["Unclear movement"],
+      impact: ["Compliance burden", "Due-process concern", "Agency implementation", "Reentry barrier"],
+      risk: ["Clarification needed", "Watch closely", "Implementation risk"],
+    },
+    tags: ["state", "evaluation", "costs"],
+    sources: [
+      {
+        label: "Idaho Legislature H0604 page",
+        href: "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0604/",
+        kind: "official",
+        type: "official bill page identified by legislative mirrors",
+      },
+      {
+        label: "Idaho Legislature H0604 text",
+        href: "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2026/legislation/H0604.pdf",
+        kind: "official",
+        type: "official bill text identified by legislative mirrors",
+      },
+      {
+        label: "LegiScan H0604 context",
+        href: "https://legiscan.com/ID/bill/H0604/2026",
+        kind: "supplemental",
+        type: "legislative tracking context",
+      },
+    ],
+    action: {
+      title: "Ask Idaho lawmakers for evaluation due-process safeguards",
+      why:
+        "Evaluation rules should not punish poverty, lack of access, or inability to secure qualified providers.",
+      label: "Find your Idaho legislator",
+      href: "https://legislature.idaho.gov/legislators/whosmylegislator/",
+      message:
+        "Please add due-process and indigency safeguards to H0604. Evaluation rules should distinguish refusal from inability to pay or access an evaluator, and funding rules should support fair assessment rather than worsening outcomes for poor defendants and families.",
+    },
+  },
+{
     id: 10,
+    group: "Reform / Court Limits",
+    title: "Washington HB 2403 advanced penalty reform for failure-to-register violations",
+    jurisdiction: "Washington",
+    date: "Committee action February 2, 6, and 9, 2026",
+    summary:
+      "HB 2403 would reduce or rationalize some criminal penalties and sentencing consequences for failure-to-register violations.",
+    tone: "emerald",
+    changed: [
+      <>
+        <ExternalLink href="https://app.leg.wa.gov/billsummary?BillNumber=2403&Year=2025&Initiative=false">
+          Washington HB 2403
+        </ExternalLink>{" "}
+        would move failure to register as a sex offender to seriousness level I
+        and remove second-or-subsequent failure to register from seriousness
+        level II.
+      </>,
+      "The bill would keep failure to register tied to a felony registration duty as a class C felony while deleting language that escalates third or later felony failure-to-register offenses to class B felonies.",
+      "It would remove second-or-subsequent felony failure-to-register from the statutory definition of sex offense for sentencing purposes, while still requiring two years of community custody for second or later violations.",
+    ],
+    matters: [
+      "Failure-to-register prosecutions often punish instability, homelessness, confusion, poverty, transportation barriers, mental illness, administrative mistakes, or paperwork failures.",
+      "Reducing repeat failure-to-register escalation can reduce carceral exposure while preserving accountability for registration duties.",
+    ],
+    analysis: [
+      "This is positive movement because it distinguishes technical registration violations from new sexual harm and reduces some harsh penalty escalation.",
+      "The reform is limited: felony exposure and community custody remain, so implementation should still focus on preventing non-willful technical violations rather than widening supervision traps.",
+    ],
+    watch: [
+      "Whether the bill reaches the House floor.",
+      "Whether amendments restore harsher penalty treatment.",
+      "Whether opposition frames administrative noncompliance as equivalent to new sexual harm.",
+    ],
+    chips: {
+      movement: ["Positive movement"],
+      impact: ["Compliance burden", "Compliance clarity", "Reentry barrier", "Supervision burden", "Court limitation"],
+      risk: ["Reform opening", "Watch closely", "Implementation risk"],
+    },
+    tags: ["state", "failure to register", "penalty reform"],
+    sources: [
+      {
+        label: "Washington HB 2403 page",
+        href: "https://app.leg.wa.gov/billsummary?BillNumber=2403&Year=2025&Initiative=false",
+        kind: "official",
+        type: "official bill page",
+      },
+      {
+        label: "Washington HB 2403 text",
+        href: "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/House%20Bills/2403.pdf",
+        kind: "official",
+        type: "official bill text",
+      },
+      {
+        label: "House Rules Review report",
+        href: "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Workroom%20Reports/House%20Rules%20Review/RULES%20REVIEW%202026-030.pdf",
+        kind: "official",
+        type: "official legislative workroom report",
+      },
+      {
+        label: "FPIW Action context",
+        href: "https://fpiwaction.org/2026-final-report/",
+        kind: "supplemental",
+        type: "advocacy context",
+      },
+    ],
+    action: {
+      title: "Support Washington failure-to-register penalty reform",
+      why:
+        "Technical registration violations should not be treated as new sexual harm or escalated in ways that deepen instability.",
+      label: "Comment on HB 2403",
+      href: "https://app.leg.wa.gov/pbc/bill/2403",
+      message:
+        "Please support HB 2403. Washington should distinguish technical registration violations from new sexual harm, reduce destabilizing felony escalation, and preserve accountability in ways that are proportional, evidence-based, and focused on compliance success.",
+    },
+  },
+  {
+    id: 11,
     group: "Reform / Court Limits",
     title: "Iowa Supreme Court reversed a temporary-lodging registry conviction in State v. Uranga",
     jurisdiction: "Iowa",
-    status: "Opinion filed February 13, 2026; court of appeals vacated; district court reversed; remanded for judgment of acquittal",
-    date: "February 13, 2026",
+    date: "Decision filed February 13, 2026",
     summary:
-      "Iowa’s high court held the State could not convict under the temporary-lodging statute without proving the statutory trigger it charged.",
-    primaryLinks: [
-      {
-        label: "State of Iowa v. Uranga opinion",
-        href: "https://law.justia.com/cases/iowa/supreme-court/2026/23-1001.html",
-      },
-      {
-        label: "Iowa Code chapter 692A",
-        href: "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=692A",
-      },
-    ],
+      "The Iowa Supreme Court held the State could not convict under the temporary-lodging statute without proving the statutory trigger charged.",
+    tone: "emerald",
     changed: [
       <>
-        <ExternalLink
-          href="https://law.justia.com/cases/iowa/supreme-court/2026/23-1001.html"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        In{" "}
+        <ExternalLink href="https://law.justia.com/cases/iowa/supreme-court/2026/23-1001.html">
           State of Iowa v. Uranga
-        </ExternalLink>{" "}
-        held that Iowa Code section 692A.105 requires proof that a registrant stayed away from the registrant’s principal
-        residence for more than five days, and that a change in residence alone does not trigger the temporary-lodging
-        statute.
+        </ExternalLink>
+        , the Iowa Supreme Court held that a change in residence, by itself,
+        does not trigger Iowa’s temporary-lodging notice statute unless the
+        person is away from a principal residence for more than five days.
       </>,
-      "The court held the State charged a temporary-lodging violation but argued a change-of-residence theory.",
-      "Because the evidence did not prove Uranga stayed away from his principal residence for more than five days during the charged timeframe, the court reversed and remanded for judgment of acquittal.",
+      "The court concluded the State charged a temporary-lodging violation but argued a change-of-residence theory, and it found insufficient evidence for the charged temporary-lodging trigger.",
+      "The court vacated the court of appeals decision, reversed the district court, and remanded for judgment of acquittal.",
     ],
     matters: [
-      "Registry statutes often contain overlapping reporting duties. This decision reinforces that a person can only be convicted for the actual duty the State charges and proves.",
-      "That matters for people dealing with eviction, homelessness, temporary lodging, family instability, or residence transitions.",
+      "Registry statutes often contain overlapping duties, and technical prosecutions can turn on precise reporting triggers.",
+      "The decision reinforces that a registrant can be convicted only for the actual duty the State charges and proves.",
     ],
     analysis: [
-      "This is positive movement because it limits prosecutorial overreach and protects against conviction based on a mismatched theory of registry compliance.",
-      "The decision does not erase reporting obligations. It requires the State to charge accurately and prove the precise statutory trigger.",
+      "This is positive movement because it limits prosecutorial overreach and requires precision before punishment.",
+      "The ruling may help defense arguments in cases involving homelessness, eviction, temporary lodging, residence transition, or confusing address-change facts, while leaving underlying reporting duties intact.",
     ],
     watch: [
       "Whether prosecutors shift to charging change-of-residence provisions more carefully.",
@@ -917,9 +1182,10 @@ const developments: Development[] = [
       impact: ["Compliance clarity", "Due-process concern", "Court limitation", "Rights concern"],
       risk: ["Reform opening", "Litigation risk", "Watch closely"],
     },
+    tags: ["court", "Iowa", "temporary lodging"],
     sources: [
       {
-        label: "Iowa Supreme Court opinion / Justia mirror",
+        label: "State v. Uranga opinion",
         href: "https://law.justia.com/cases/iowa/supreme-court/2026/23-1001.html",
         kind: "supplemental",
         type: "legal opinion mirror",
@@ -928,627 +1194,406 @@ const developments: Development[] = [
         label: "Iowa Code chapter 692A",
         href: "https://www.legis.iowa.gov/law/iowaCode/sections?codeChapter=692A",
         kind: "official",
-        type: "official code reference",
+        type: "official statutory framework",
       },
     ],
   },
   {
-    id: 11,
+    id: 12,
     group: "Litigation Watch",
-    title: "D.L. v. Pennsylvania State Police closed another adult Act 29 constitutional challenge against the registrant",
+    title: "Pennsylvania Commonwealth Court rejected an Act 29 constitutional challenge in D.L. v. PSP",
     jurisdiction: "Pennsylvania",
-    status: "Commonwealth Court opinion and order filed February 2, 2026; petition dismissed",
-    date: "February 2, 2026",
+    date: "Opinion and order filed February 2, 2026",
     summary:
-      "The Commonwealth Court granted PSP summary relief and rejected an Act 29 challenge under controlling Pennsylvania Supreme Court precedent.",
-    primaryLinks: [
-      {
-        label: "D.L. v. Pennsylvania State Police opinion/order",
-        href: "https://www.pacourts.us/assets/opinions/Commonwealth/out/405MD17_2-2-26.pdf?cb=1",
-      },
-      {
-        label: "Pennsylvania Act 29 framework",
-        href: "https://www.legis.state.pa.us/WU01/LI/LI/US/HTM/2018/0/0029..HTM",
-      },
-    ],
+      "The court granted Pennsylvania State Police summary relief and dismissed a registrant’s Act 29 constitutional challenge under controlling state precedent.",
+    tone: "rose",
     changed: [
       <>
-        <ExternalLink
-          href="https://www.pacourts.us/assets/opinions/Commonwealth/out/405MD17_2-2-26.pdf?cb=1"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
+        In{" "}
+        <ExternalLink href="https://www.pacourts.us/assets/opinions/Commonwealth/out/405MD17_2-2-26.pdf?cb=1">
           D.L. v. Pennsylvania State Police
-        </ExternalLink>{" "}
-        rejected a registrant’s Act 29 challenge raising ex post facto, reputation, due process, public-disclosure, and
-        irrebuttable-presumption arguments, holding that Pennsylvania Supreme Court precedent controlled.
+        </ExternalLink>
+        , the Commonwealth Court rejected an Act 29 challenge raising ex post
+        facto, reputation, due-process, public-disclosure, and irrebuttable
+        presumption arguments.
       </>,
-      "The court relied on controlling precedent, including Lacombe and Torsilieri II, and held the petitioner did not meet the burden to show the Act 29 presumption constitutionally infirm.",
-      "The court granted PSP summary relief, denied petitioner relief, and dismissed the amended petition.",
+      "The court held that Pennsylvania Supreme Court precedent, including Lacombe and Torsilieri II, controlled the petitioner’s claims.",
+      "The court denied the petitioner’s summary-relief application, granted PSP summary relief, and dismissed the amended petition.",
     ],
     matters: [
-      "The decision reinforces Pennsylvania’s difficult litigation terrain for adult Act 29 challenges.",
-      "Empirical-recidivism, reputation, public-dissemination, and irrebuttable-presumption arguments remain hard to win under current state precedent unless a challenger develops a narrower or stronger record.",
+      "The decision reinforces Pennsylvania’s difficult litigation terrain for broad adult Act 29 challenges.",
+      "It signals that future challenges may need narrower claims, stronger records, juvenile distinctions, removal-stage theories, federal theories, or more targeted as-applied arguments.",
     ],
     analysis: [
-      "This is negative movement for similarly situated adult registrants because it narrows immediate relief options and confirms that broad Act 29 challenges remain uphill.",
-      "Future litigation may need more targeted as-applied theories, juvenile distinctions, removal-stage claims, federal theories, or stronger records on public dissemination and individualized-risk findings.",
+      "This is negative movement because it closes another relief path for an adult registrant challenging retroactive and public registration obligations.",
+      "For families and impacted people, the decision underscores how hard it remains to challenge public registry burdens once courts treat the statutory scheme as controlled by prior precedent.",
     ],
     watch: [
       "Whether the petitioner appeals.",
-      "Pending Pennsylvania cases involving removal-stage presumptions or narrower Act 29 applications.",
-      "Federal litigation around public dissemination, digital tracking, or individualized risk.",
+      "Pending Pennsylvania cases challenging removal-stage presumptions or narrower Act 29 applications.",
+      "Whether federal litigation develops around public dissemination, digital tracking, or individualized-risk findings.",
     ],
     chips: {
       movement: ["Negative movement"],
       impact: ["Due-process concern", "Retroactivity concern", "Public notification", "Court limitation", "Rights concern"],
       risk: ["Appeal likely", "Litigation risk", "Watch closely"],
     },
+    tags: ["court", "Pennsylvania", "Act 29"],
     sources: [
       {
-        label: "Pennsylvania Commonwealth Court opinion/order",
+        label: "D.L. v. PSP opinion/order",
         href: "https://www.pacourts.us/assets/opinions/Commonwealth/out/405MD17_2-2-26.pdf?cb=1",
         kind: "official",
-        type: "official court opinion/order",
+        type: "official court opinion and order",
       },
       {
-        label: "Pennsylvania Act 29 framework",
+        label: "Pennsylvania Act 29",
         href: "https://www.legis.state.pa.us/WU01/LI/LI/US/HTM/2018/0/0029..HTM",
         kind: "official",
-        type: "official statutory reference",
+        type: "official statutory framework",
       },
     ],
   },
-  {
-    id: 12,
-    group: "Restriction Expansion / Housing and Place-Based Burdens",
-    title: "Wyoming SF 88 Senate passage advanced a 1,000-foot daycare residence restriction",
-    jurisdiction: "Wyoming",
-    status: "Passed Senate 25-6 on February 20, 2026; sent to House",
-    date: "February 20, 2026",
-    summary:
-      "Wyoming’s Senate passed a bill barring adult registrants from living within 1,000 feet of licensed or government childcare facilities, with a limited grandfathering provision.",
-    primaryLinks: [
-      {
-        label: "Wyoming Legislature SF 88 page",
-        href: "https://www.wyoleg.gov/Legislation/2026/SF0088",
-      },
-    ],
-    changed: [
-      <>
-        <ExternalLink
-          href="https://www.wyoleg.gov/Legislation/2026/SF0088"
-          className="font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
-        >
-          Wyoming SF 88
-        </ExternalLink>{" "}
-        would bar registered sex offenders age 18 or older from living within 1,000 feet of a childcare facility,
-        including government-run childcare facilities and daycares licensed by the Wyoming Department of Family Services.
-      </>,
-      "The Senate passed the bill on February 20 and sent it to the House.",
-      "As reported at Senate passage, the bill exempted people already established in their homes before July 1, 2026, and violations would carry up to six months in jail and $750 in fines.",
-    ],
-    matters: [
-      "Daycare buffers can sharply reduce housing availability, especially in smaller communities where childcare facilities are spread through residential areas.",
-      "The bill applies by registry status rather than an individualized risk nexus to young children.",
-    ],
-    analysis: [
-      "This is negative movement because it adds a housing exclusion with criminal exposure.",
-      "Grandfathering may protect a current address, but it does not protect future moves caused by eviction, rent increases, family changes, caregiving needs, or employment relocation.",
-    ],
-    watch: [
-      "Final House language and whether grandfathering survives.",
-      "Whether “childcare facility” boundaries and measurement methods are clear.",
-      "Whether exceptions exist for people whose offenses did not involve children, caregiving needs, or housing scarcity.",
-    ],
-    chips: {
-      movement: ["Negative movement"],
-      impact: ["Housing barrier", "Family-stability impact", "Compliance burden", "Punishment expansion"],
-      risk: ["Watch closely", "Advocacy opening", "Litigation risk"],
-    },
-    sources: [
-      {
-        label: "Wyoming Legislature SF 88 page",
-        href: "https://www.wyoleg.gov/Legislation/2026/SF0088",
-        kind: "official",
-        type: "official bill page",
-      },
-      {
-        label: "Cowboy State Daily Senate passage coverage",
-        href: "https://cowboystatedaily.com/2026/02/20/wyoming-senate-advances-bill-to-bar-sex-offenders-from-living-near-daycares/",
-        kind: "supplemental",
-        type: "media context",
-      },
-    ],
-    action: {
-      title: "Oppose blanket daycare residence buffers",
-      why:
-        "Daycare buffers can sharply reduce housing availability and punish people by registry status rather than individualized risk, especially after eviction, rent increases, or family relocation.",
-      label: "Find your Wyoming legislator",
-      href: "https://wyoleg.gov/Legislators",
-      message:
-        "Please oppose blanket daycare residence buffers in SF 88. Housing restrictions should require individualized risk nexus, clear measurement rules, hardship exceptions, and review of housing impact on families and reentry.",
-    },
-  },
+];
+
+const actionCenterItems: ActionLink[] = [
+  developments[0].action!,
+  developments[1].action!,
+  developments[2].action!,
+  developments[9].action!,
 ];
 
 const watchlist: WatchItemData[] = [
   {
     title: "Florida SB 212 / HB 45 final language and implementation",
-    posture: "Active in February; later movement likely after the window.",
+    posture: "Active in February after Senate and House committee movement.",
     why:
-      "Final wording determines whether Florida keeps premises language, public-pool definitions, supervision denial rules, and practical exceptions.",
+      "Final wording will determine whether Florida keeps premises language, public-pool definitions, supervision denial rules, and workable exceptions.",
     next: [
-      "Final enrolled text.",
-      "Agency and supervision guidance.",
-      "Whether public-bathing-place language remains deleted.",
-      "Whether exceptions work for families.",
+      "Watch final enrolled text and whether public-bathing-place language remains deleted.",
+      "Watch agency and supervision guidance for boundary, permission, and exception rules.",
+      "Watch whether family, voting, religious, treatment, employment, and caregiving exceptions are practical.",
     ],
   },
   {
     title: "Federal H.R. 7453 and H.R. 7624",
-    posture: "Introduced in February.",
+    posture: "Both federal exclusion bills were introduced in February.",
     why:
-      "Both bills convert registry status into categorical exclusion from essential stabilizing systems: health care and shelter.",
+      "Together, they convert registry status into categorical exclusion from essential stabilizing systems: healthcare and shelter.",
     next: [
-      "Committee hearings.",
-      "Senate companions.",
-      "Amendments defining “sex offender.”",
-      "Responses from health-care, homelessness, reentry, disability, and survivor-service organizations.",
+      "Watch for committee hearings, Senate companions, amendments, and sponsor additions.",
+      "Watch how each bill defines covered sex-offense status.",
+      "Watch responses from healthcare, homelessness, disability, reentry, and survivor-service organizations.",
     ],
   },
   {
     title: "Washington HB 2403",
-    posture: "Advanced to House Rules in February.",
+    posture: "Advanced to House Rules in February after Appropriations action.",
     why:
       "It is a rare reform-oriented effort to reduce failure-to-register escalation and distinguish technical violations from new sexual harm.",
-    next: ["Floor action.", "Amendments restoring harsher penalty treatment.", "Whether the bill survives political pressure."],
+    next: [
+      "Watch for floor action.",
+      "Watch for amendments restoring harsher penalty treatment.",
+      "Watch whether the bill dies under political pressure.",
+    ],
   },
   {
     title: "New Mexico SORNA-alignment language",
-    posture: "HB 199 was postponed indefinitely February 13.",
+    posture: "HB 199 was postponed indefinitely on February 13.",
     why:
-      "The architecture may return: shorter deadlines, tiering, longer durations, and expanded digital and travel-related information.",
-    next: ["Reintroduction in future sessions.", "Agency or federal-compliance pressure.", "Committee substitute text for narrower or revived provisions."],
+      "The bill’s architecture may return: shorter deadlines, tiering, longer durations, expanded digital information, and expanded travel-related data collection.",
+    next: [
+      "Watch for reintroduction in future sessions.",
+      "Watch whether agency or federal-compliance pressure revives similar language.",
+      "Watch committee substitute language for narrowed or revived provisions.",
+    ],
   },
   {
     title: "Pennsylvania Act 29 litigation after D.L. v. PSP",
-    posture:
-      "The Commonwealth Court continues applying state supreme court precedent against broad adult Act 29 challenges.",
+    posture: "The Commonwealth Court continues applying state supreme court precedent against broad adult Act 29 challenges.",
     why:
       "The litigation path may shift toward as-applied claims, removal-stage claims, juvenile distinctions, or federal theories.",
-    next: ["Appeals from D.L.", "Pending removal-stage cases.", "New challenges focused on public dissemination, digital tracking, or individualized-risk findings."],
+    next: [
+      "Watch for an appeal from D.L.",
+      "Watch pending removal-stage or narrower Act 29 cases.",
+      "Watch challenges focused on public dissemination, digital tracking, or individualized risk findings.",
+    ],
   },
 ];
 
-const actionCenterIds = [1, 2, 3, 7];
-const actionItems = developments.filter(
-  (development) => development.action && actionCenterIds.includes(development.id)
-);
-function ExternalLink({
-  href,
-  children,
-  className = "",
-}: {
-  href: string;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <a href={href} target="_blank" rel="noreferrer" className={className}>
-      {children}
-    </a>
+export default function LegislativeTrackerFebruary2026Update(): JSX.Element {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copyText = async (id: string, text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 1400);
+    } catch {
+      setCopiedId(null);
+    }
+  };
+
+  const grouped = developments.reduce<Record<string, Development[]>>(
+    (acc, item) => {
+      acc[item.group] = acc[item.group] ?? [];
+      acc[item.group].push(item);
+      return acc;
+    },
+    {}
   );
-}
-
-function Badge({ children }: { children: ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700 shadow-sm">
-      {children}
-    </span>
-  );
-}
-
-function Section({
-  id,
-  eyebrow,
-  title,
-  children,
-}: {
-  id?: string;
-  eyebrow?: string;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section id={id} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-      {eyebrow ? <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">{eyebrow}</p> : null}
-      <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">{title}</h2>
-      <div className="mt-6">{children}</div>
-    </section>
-  );
-}
-
-function ParagraphList({ items }: { items: ReactNode[] }) {
-  return (
-    <div className="space-y-3 text-sm leading-7 text-slate-700">
-      {items.map((item, index) => (
-        <p key={index}>{item}</p>
-      ))}
-    </div>
-  );
-}
-
-function ChipGroup({ label, chips }: { label: string; chips: string[] }) {
-  return (
-    <div>
-      <p className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</p>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {chips.map((chip) => (
-          <span key={chip} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-            {chip}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function PrimaryLinks({ links }: { links: PrimaryLink[] }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {links.map((link) => (
-        <ExternalLink
-          key={`${link.label}-${link.href}`}
-          href={link.href}
-          className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-900 transition hover:border-amber-300 hover:bg-amber-100"
-        >
-          {link.label}
-        </ExternalLink>
-      ))}
-    </div>
-  );
-}
-
-function SourcePills({ sources }: { sources: Source[] }) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {sources.map((source) => (
-        <ExternalLink
-          key={`${source.label}-${source.href}`}
-          href={source.href}
-          className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-700 transition hover:border-amber-300 hover:text-amber-800"
-        >
-          {source.kind === "official" ? "Official: " : "Supplemental: "}
-          {source.label}
-        </ExternalLink>
-      ))}
-    </div>
-  );
-}
-
-function DevelopmentCard({ development }: { development: Development }) {
-  return (
-    <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm md:p-6">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-semibold text-white">
-          Development {development.id}
-        </span>
-        <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-800">
-          {development.jurisdiction}
-        </span>
-        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-          {development.date}
-        </span>
-      </div>
-
-      <h3 className="mt-4 text-xl font-bold leading-tight text-slate-950">{development.title}</h3>
-      <p className="mt-2 text-sm font-medium text-slate-600">{development.status}</p>
-      <p className="mt-4 text-base leading-7 text-slate-700">{development.summary}</p>
-
-      <div className="mt-5">
-        <PrimaryLinks links={development.primaryLinks} />
-      </div>
-
-      <div className="mt-6 grid gap-4">
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">What changed</h4>
-          <div className="mt-3">
-            <ParagraphList items={development.changed} />
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">Why it matters</h4>
-          <div className="mt-3">
-            <ParagraphList items={development.matters} />
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">SOLAR analysis</h4>
-          <div className="mt-3">
-            <ParagraphList items={development.analysis} />
-          </div>
-        </div>
-
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">What to watch</h4>
-          <ul className="mt-3 space-y-2 text-sm leading-7 text-slate-700">
-            {development.watch.map((item, index) => (
-              <li key={index} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-amber-600" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="rounded-2xl border border-amber-200 bg-white p-4">
-          <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">SOLAR chips</h4>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            <ChipGroup label="Movement" chips={development.chips.movement} />
-            <ChipGroup label="Impact" chips={development.chips.impact} />
-            <ChipGroup label="Risk / opportunity" chips={development.chips.risk} />
-          </div>
-        </div>
-
-        <div className="border-t border-slate-200 pt-4">
-          <h4 className="mb-3 text-sm font-bold uppercase tracking-wide text-slate-500">Sources</h4>
-          <SourcePills sources={development.sources} />
-        </div>
-
-        {development.action ? (
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-            <h4 className="text-sm font-bold uppercase tracking-wide text-slate-800">Item-level action</h4>
-            <p className="mt-3 text-sm leading-7 text-slate-700">{development.action.why}</p>
-            <p className="mt-3 rounded-2xl bg-white p-4 text-sm leading-7 text-slate-700 shadow-sm">
-              {development.action.message}
-            </p>
-            <div className="mt-3">
-              <ExternalLink
-                href={development.action.href}
-                className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-              >
-                {development.action.label}
-              </ExternalLink>
-            </div>
-          </div>
-        ) : null}
-      </div>
-    </article>
-  );
-}
-
-function ActionCard({ development }: { development: Development }) {
-  if (!development.action) return null;
 
   return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-      <p className="text-sm font-semibold uppercase tracking-wide text-amber-700">{development.jurisdiction}</p>
-      <h3 className="mt-2 text-lg font-bold text-slate-950">{development.action.title}</h3>
-      <p className="mt-3 text-sm leading-7 text-slate-700">{development.action.why}</p>
-      <div className="mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-        <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Copyable script</p>
-        <p className="mt-2 text-sm leading-7 text-slate-700">{development.action.message}</p>
-      </div>
-      <div className="mt-4">
-        <ExternalLink
-          href={development.action.href}
-          className="inline-flex rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800"
-        >
-          {development.action.label}
-        </ExternalLink>
-      </div>
-    </div>
-  );
-}
-
-function WatchItem({ item }: { item: WatchItemData }) {
-  return (
-    <article className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
-      <p className="mt-3 text-sm leading-7 text-slate-700">
-        <span className="font-semibold text-slate-900">Current posture:</span> {item.posture}
-      </p>
-      <p className="mt-2 text-sm leading-7 text-slate-700">
-        <span className="font-semibold text-slate-900">Why it matters:</span> {item.why}
-      </p>
-      <ul className="mt-4 space-y-2 text-sm leading-7 text-slate-700">
-        {item.next.map((next) => (
-          <li key={next} className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-amber-600" />
-            <span>{next}</span>
-          </li>
-        ))}
-      </ul>
-    </article>
-  );
-}
-
-export default function February2026LegislativeTracker() {
-  return (
-    <>
+    <main className="min-h-screen bg-slate-100">
       <SEO
-        title={pageTitle}
-        description={pageDescription}
-        keywords="sex offender registry reform, legislative tracker, February 2026, SORNA, registry laws, reentry, registration reform"
+        title="Legislative Tracker — February 2026 Update | The SOLAR Project"
+        description="February 2026 SOLAR Legislative Tracker update covering federal exclusion bills, state registry restrictions, penalty reform, and court decisions affecting registrants and families."
         canonical={canonicalUrl}
       />
 
-      <main className="min-h-screen bg-slate-50 text-slate-900">
-        <section className="bg-slate-950 text-white">
-          <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
-            <Link to="/resources/legislative-tracker" className="text-sm font-semibold text-amber-200 hover:text-amber-100">
-              ← Back to Legislative Tracker
-            </Link>
+      <header className="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
+        <div className="mx-auto max-w-6xl px-4 py-10 md:px-6 md:py-14">
+          <Link
+            to="/resources/legislative-tracker"
+            className="text-sm font-semibold text-white/90 underline underline-offset-4 hover:text-white print:hidden"
+          >
+            ← Back to Legislative Tracker
+          </Link>
 
-            <div className="mt-8 flex flex-wrap gap-2">
-              <Badge>Monthly update</Badge>
-              <Badge>February 1–28, 2026</Badge>
-              <Badge>12 developments</Badge>
-            </div>
-
-            <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.25em] text-amber-200">
-                  Legislative Tracker
-                </p>
-                <h1 className="mt-3 max-w-4xl text-4xl font-black tracking-tight md:text-6xl">
-                  February 2026: instability by accumulation
-                </h1>
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-                  February brought no single national registry overhaul. Instead, the month’s pattern was a cluster of
-                  targeted expansions: federal exclusion bills, place-based restrictions, online-identifier proposals,
-                  lifetime-registration pressure, technical-violation reforms, and court decisions testing statutory and
-                  constitutional limits.
-                </p>
-              </div>
-
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                <p className="text-sm font-semibold uppercase tracking-wide text-amber-200">Share this update</p>
-                <div className="mt-4 rounded-2xl bg-white p-3 text-slate-900">
-                  <ShareBar />
-                </div>
-                <button
-                  type="button"
-                  onClick={() => window.print()}
-                  className="mt-4 w-full rounded-full border border-white/20 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/10 print:hidden"
-                >
-                  Print / save as PDF
-                </button>
-              </div>
-            </div>
-
-            <nav className="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
-              <a href="#throughline" className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20">
-                Throughline
-              </a>
-              <a href="#glance" className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20">
-                At a glance
-              </a>
-              <a href="#developments" className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20">
-                Key developments
-              </a>
-              <a href="#action" className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20">
-                Action center
-              </a>
-              <a href="#watchlist" className="rounded-full bg-white/10 px-4 py-2 text-white hover:bg-white/20">
-                Watchlist
-              </a>
-            </nav>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <Badge>Legislative Tracker</Badge>
+            <Badge>Monthly Update</Badge>
+            <Badge>Federal / State / Courts</Badge>
           </div>
-        </section>
 
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 md:px-6 md:py-12">
-          <Section id="throughline" eyebrow="Reader map" title="Month throughline">
-            <div className="space-y-4 text-base leading-8 text-slate-700">
-              <p>
-                February 2026 was a mixed but mostly burden-expanding month. The dominant pattern was not a single
-                national registry overhaul, but a set of targeted expansions: federal proposals to exclude registrants
-                from health coverage assistance and federally funded shelters; state bills adding or tightening residence,
-                presence, reporting, online-identity, and registry-tier consequences; and court decisions testing whether
-                registry statutes are being applied beyond their text or constitutional limits.
-              </p>
-              <p>
-                For registrants and families, the practical theme is instability by accumulation. Several proposals would
-                narrow access to housing, shelter, health care, public spaces, online communication, and lawful mobility.
-                A few developments moved in a more rights-protective direction, especially Iowa’s Supreme Court decision
-                limiting a temporary-lodging prosecution to the actual statutory trigger. But the broader legislative
-                posture remained punitive and compliance-heavy, often using the registry as a categorical exclusion tool
-                rather than a risk-calibrated public-safety system.
-              </p>
-            </div>
-          </Section>
+          <h1 className="mt-5 max-w-4xl text-3xl font-black tracking-tight md:text-5xl">
+            Legislative Tracker — February 2026 Update
+          </h1>
 
-          <Section id="glance" eyebrow="At a glance" title="What February showed">
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-              {atAGlance.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                  <p className="text-xs font-bold uppercase tracking-wide text-amber-700">{item.label}</p>
-                  <h3 className="mt-2 text-base font-bold text-slate-950">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-700">{item.body}</p>
-                </article>
-              ))}
-            </div>
-          </Section>
+          <p className="mt-5 max-w-4xl text-base leading-7 text-slate-200 md:text-lg">
+            February brought a mostly burden-expanding mix of federal exclusion
+            proposals, state restriction bills, online and housing compliance
+            measures, and court decisions testing the limits of registry
+            enforcement.
+          </p>
 
-          <section id="developments" className="grid gap-8">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-700">Key developments</p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 md:text-3xl">
-                February’s registry-policy moves
-              </h2>
-            </div>
+          <div className="mt-6 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-6 text-slate-100">
+            <p>
+              <span className="font-bold text-white">Update scope:</span>{" "}
+              This catch-up covers developments with a meaningful event between
+              February 1 and February 28, 2026, using official sources first and
+              clearly labeled supplemental context where useful.
+            </p>
+          </div>
 
-            {groups.map((group) => {
-              const groupDevelopments = developments.filter((development) => development.group === group);
-              return (
-                <div key={group} className="grid gap-4">
-                  <h3 className="rounded-2xl border border-slate-200 bg-white px-5 py-4 text-xl font-bold text-slate-950 shadow-sm">
+          <div className="mt-6 flex flex-wrap gap-3 print:hidden">
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 font-bold text-slate-900 shadow hover:bg-slate-100"
+            >
+              Print
+            </button>
+            <a
+              href="#glance"
+              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
+            >
+              At a Glance
+            </a>
+            <a
+              href="#throughline"
+              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
+            >
+              Throughline
+            </a>
+            <a
+              href="#developments"
+              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
+            >
+              Key Developments
+            </a>
+            <a
+              href="#actions"
+              className="inline-flex items-center gap-2 rounded-2xl bg-white/10 px-4 py-2 font-semibold text-white ring-1 ring-white/30 hover:bg-white/15"
+            >
+              Action Center
+            </a>
+          </div>
+
+          <div className="mt-6">
+            <ShareBar />
+          </div>
+        </div>
+      </header>
+
+      <div className="mx-auto max-w-6xl space-y-6 px-4 py-8 md:px-6">
+        <Section id="glance" eyebrow="At a Glance" title="What February moved">
+          <div className="grid gap-4 md:grid-cols-4">
+            {metrics.map((metric) => (
+              <MetricCard key={metric.label} metric={metric} />
+            ))}
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <h3 className="font-black text-slate-950">
+              Why this update matters
+            </h3>
+            <p className="mt-2 text-sm leading-6 text-slate-700">
+              February shows how registry status is being used less as a narrow
+              compliance system and more as a broad exclusion tool: from health
+              coverage and shelters to housing, public spaces, online identity,
+              supervision, and relief from lifetime status.
+            </p>
+          </div>
+        </Section>
+
+        <Section
+          id="throughline"
+          eyebrow="Monthly Throughline"
+          title="The bigger pattern behind this update"
+        >
+          <div className="space-y-4 text-sm leading-7 text-slate-700">
+            <p>
+              February 2026 was a mixed but mostly burden-expanding month. The
+              dominant pattern was not one national registry overhaul, but a
+              cluster of targeted expansions: federal proposals to exclude
+              registrants from health coverage assistance and federally funded
+              shelters; state bills adding or tightening residence, presence,
+              reporting, online-identity, and registry-tier consequences; and
+              court decisions testing whether registry statutes are being applied
+              beyond their text or constitutional limits.
+            </p>
+            <p>
+              For registrants and families, the practical theme is instability by
+              accumulation. Several proposals would narrow access to housing,
+              shelter, healthcare, public spaces, online communication, and
+              lawful mobility. That is why SOLAR keeps tying monthly developments
+              back to{" "}
+              <InternalLink to="/advocacy#position-statement">
+                evidence-based registry reform
+              </InternalLink>{" "}
+              rather than treating each bill as an isolated headline.
+            </p>
+            <p>
+              The counterpoints matter too. Washington’s failure-to-register bill
+              and Iowa’s Uranga decision show how reform and due-process limits
+              can reduce technical-violation punishment without denying
+              accountability. Readers tracking these patterns over time can use
+              the{" "}
+              <InternalLink to="/resources/legislative-tracker">
+                Legislative Tracker archive
+              </InternalLink>{" "}
+              and SOLAR’s{" "}
+              <InternalLink to="/resources">
+                practical resources for impacted families
+              </InternalLink>{" "}
+              to connect policy changes to daily-life consequences.
+            </p>
+          </div>
+        </Section>
+
+        <Section
+          id="developments"
+          eyebrow="Key Developments"
+          title="February 2026 developments"
+        >
+          <div className="space-y-6">
+            {Object.entries(grouped).map(([group, items]) => (
+              <div key={group} className="space-y-3">
+                <div className="rounded-2xl border border-slate-200 bg-white p-3">
+                  <h3 className="text-sm font-black uppercase tracking-[0.18em] text-slate-600">
                     {group}
                   </h3>
-                  <div className="grid gap-5">
-                    {groupDevelopments.map((development) => (
-                      <DevelopmentCard key={development.id} development={development} />
-                    ))}
-                  </div>
                 </div>
-              );
-            })}
-          </section>
+                <div className="grid gap-4">
+                  {items.map((development) => (
+                    <DevelopmentCard
+                      key={development.id}
+                      development={development}
+                      copiedId={copiedId}
+                      onCopy={copyText}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
 
-          <Section id="action" eyebrow="Action center" title="Top reader actions">
-            <div className="grid gap-5 md:grid-cols-2">
-              {actionItems.map((development) => (
-                <ActionCard key={development.id} development={development} />
-              ))}
-            </div>
-          </Section>
+        <Section
+          id="actions"
+          eyebrow="Action Center"
+          title="Most useful action paths"
+        >
+          <p className="text-sm leading-6 text-slate-700">
+            These are the clearest paths for readers who want to respond to live
+            February developments without chasing every bill page individually.
+            Messages should stay specific, respectful, and focused on stability,
+            due process, individualized review, and evidence-based safety.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2">
+            {actionCenterItems.map((action, index) => (
+              <ActionCard
+                key={action.title}
+                action={action}
+                copied={copiedId === `action-${index}`}
+                onCopy={() => copyText(`action-${index}`, action.message)}
+              />
+            ))}
+          </div>
+        </Section>
 
-          <Section id="watchlist" eyebrow="Rolling watchlist" title="What to keep watching">
-            <div className="grid gap-5">
-              {watchlist.map((item) => (
-                <WatchItem key={item.title} item={item} />
-              ))}
-            </div>
-          </Section>
+        <Section id="watchlist" eyebrow="Rolling Watchlist" title="What to watch next">
+          <div className="grid gap-4">
+            {watchlist.map((item) => (
+              <WatchItem key={item.title} item={item} />
+            ))}
+          </div>
+        </Section>
 
-          <Section id="methodology" eyebrow="Sources and method" title="Source and methodology note">
-            <div className="space-y-4 text-sm leading-7 text-slate-700">
-              <p>
-                This update covers developments with a meaningful February 1–28, 2026 event, including bill introduction,
-                committee movement, chamber passage, court decisions, official fiscal notes, or official bill text/action
-                during the window. Official sources were prioritized.
-              </p>
-              <p>
-                Supplemental advocacy, tracking, civic-data, legal-mirror, and media sources are labeled as supplemental
-                context and do not control SOLAR’s analysis. Official sources appear first when available.
-              </p>
-              <p>
-                SOLAR analyzes each development through its effect on people required to register, people with sex-offense
-                convictions, their families, and evidence-based reform. The tracker does not treat exclusion, instability,
-                or permanent civil disability as public-safety proof simply because a proposal uses registry status as its
-                trigger.
-              </p>
-            </div>
-          </Section>
-        </div>
-      </main>
-    </>
+        <Section
+          id="methodology"
+          eyebrow="Source Note"
+          title="How SOLAR tracks and vets this"
+        >
+          <div className="space-y-3 text-sm leading-6 text-slate-700">
+            <p>
+              SOLAR prioritizes official sources first: bill pages, enacted
+              laws, court opinions, agency notices, government reports, fiscal
+              notes, and official public-comment portals. Reporting, advocacy
+              explainers, civic-data pages, and legislative trackers may be used
+              as supplemental context, but they do not replace official sources
+              when official sources are available.
+            </p>
+            <p>
+              This update includes February 2026 developments with a meaningful
+              in-window event, such as introduction, committee movement, chamber
+              passage, fiscal analysis, or a court opinion. Later procedural
+              developments are included only when needed to orient the reader and
+              are not treated as the February hook.
+            </p>
+            <p>
+              The purpose of this tracker is to identify legal and policy
+              developments that affect registry duties, reentry, housing, family
+              stability, relief pathways, due process, supervision, healthcare,
+              shelter access, and evidence-based reform.
+            </p>
+          </div>
+        </Section>
+      </div>
+    </main>
   );
 }
 
 export const teasers = {
   glance: [
-    "February’s clearest national signal was exclusion: federal bills targeted health-care assistance and shelter access by registry status.",
-    "State bills continued expanding place, housing, online-identity, evaluation, lifetime-registration, and technical-violation burdens.",
-    "Washington HB 2403 and Iowa’s Uranga decision offered rare rights-protective movement in a mostly burden-expanding month.",
+    "12 February developments across federal bills, state legislation, and court rulings.",
+    "Federal proposals targeted healthcare assistance and federally funded shelter access.",
+    "Washington and Iowa offered rights-protective counterpoints on failure-to-register punishment and statutory proof.",
   ],
   highlights: [
-    "H.R. 7453 would deny ACA credits and Medicaid-funded medical assistance to covered registrants.",
-    "H.R. 7624 would bar covered registrants from federally funded domestic-violence and homeless shelters.",
-    "Florida and Wyoming advanced place-based restrictions affecting pools, child-centered locations, and daycare-adjacent housing.",
-    "Washington HB 2403 would reduce some failure-to-register penalty escalation.",
-    "Iowa’s Supreme Court required prosecutors to prove the specific temporary-lodging registry duty charged.",
+    "H.R. 7453 and H.R. 7624 would turn registry status into categorical exclusion from healthcare and shelter systems.",
+    "Florida, Wyoming, Idaho, Missouri, South Carolina, and New Mexico showed how state bills keep expanding housing, location, online, tiering, and reporting burdens.",
+    "State v. Uranga limited a temporary-lodging prosecution to the actual statutory trigger the State charged and proved.",
   ],
 };
