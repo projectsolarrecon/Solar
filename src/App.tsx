@@ -101,6 +101,7 @@ import ThePeopleInTheRoom from "./pages/blog/ThePeopleInTheRoom";
 import PrisonCommunicationMailVisitsMonitoring from "./pages/resources/PrisonCommunicationMailVisitsMonitoring";
 import WeDontRegisterRisk from "./pages/blog/WeDontRegisterRisk";
 import PermanentPunishmentPublicTemporaryShame from "./pages/blog/PermanentPunishmentPublicTemporaryShame";
+import WhenRoomLaughsPolicyFails from "./pages/blog/WhenRoomLaughsPolicyFails";
 
 function App() {
   return (
@@ -231,6 +232,7 @@ function App() {
 <Route
   path="/blog/permanent-punishment-public-temporary-shame-powerful"
 element={<PermanentPunishmentPublicTemporaryShame />} />
+<Route path="/blog/when-the-room-laughs-policy-fails" element={<WhenRoomLaughsPolicyFails />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
