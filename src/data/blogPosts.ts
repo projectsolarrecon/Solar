@@ -13,6 +13,27 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "when-the-room-laughs-policy-fails",
+  title: "When the Room Laughs, the Policy Fails",
+  excerpt:
+    "A Tennessee school board meeting exposed a deeper failure in child-safety politics: officials who will not confront harm in the room should not be trusted when they claim harsh registry policies protect children outside it.",
+  author: "SOLAR Project",
+  date: "2026-05-01",
+  readTime: "8 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "child safety policy",
+    "registry reform",
+    "student safety",
+    "school board accountability",
+    "public safety theater",
+    "institutional accountability",
+    "trusted authority",
+    "prevention over punishment",
+  ],
+  path: "/blog/when-the-room-laughs-policy-fails",
+},
+{
   id: "permanent-punishment-public-temporary-shame-powerful",
   title: "Permanent Punishment for the Public, Temporary Shame for the Powerful",
   excerpt:
