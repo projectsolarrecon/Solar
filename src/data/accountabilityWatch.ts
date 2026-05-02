@@ -7,6 +7,14 @@ export type AccountabilityItem = {
 };
 
 export const accountabilityWatch: AccountabilityItem[] = [
+{
+  date: "2026-05-01",
+  title: "Accountability Watch — April 2026 Roundup",
+  slug: "2026-05-01",
+  path: "/resources/accountability-watch/2026-05-01",
+  summary:
+    "April 2026 accountability cases centered on celebrity and public-profile influence, clergy and youth ministry, educators, school employees, youth-sports coaches, childcare workers, law-enforcement personnel, physicians, daycare facilities, sport governing bodies, and hospital systems across California, the U.S. Virgin Islands, Puerto Rico, Michigan, Ohio, Missouri, Alabama, North Carolina, Utah, Massachusetts, Connecticut, Pennsylvania, Florida, the District of Columbia, New York, Nevada, and other jurisdictions. New arrests and charges included public-profile, pastor/youth-leader, school, youth-sports, law-enforcement, healthcare, childcare, and civic-leadership cases; pleas, convictions, and sentencings involved religious-school, clergy, spiritual-authority, teacher/student, childcare, and tutoring-access cases; civil and administrative actions included USA Climbing placing Matthew Maddison on unpaid leave after arrest; institutional accountability included the Derrick Todd hospital-system context and BrightPath Avon daycare closure and agency investigations. Across the month, risk emerged through fame and public legitimacy, religious authority, school trust, coach-athlete access, physician-patient privacy, daycare custody, police authority, and institutional oversight failures rather than through registry-centered warning assumptions.",
+},
   {
     date: "2026-04-01",
     title: "Accountability Watch — March 2026 Roundup",
