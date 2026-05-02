@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "May 1, 2026",
+  title: "Legislative Tracker — April 2026 Update",
+  slug: "2026-05-01",
+  summary:
+    "April brought a heavy registry-policy month: Florida enacted new pool and splash-pad restrictions, courts split on SORNA and lifetime registration, and state and agency actions raised new housing, employment, supervision, and due-process concerns.",
+  tags: ["state", "courts", "agencies", "implementation"],
+},
+{
   date: "April 1, 2026",
   title: "Legislative Tracker — March 2026 Update",
   slug: "2026-04-01",
