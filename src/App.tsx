@@ -102,6 +102,7 @@ import PrisonCommunicationMailVisitsMonitoring from "./pages/resources/PrisonCom
 import WeDontRegisterRisk from "./pages/blog/WeDontRegisterRisk";
 import PermanentPunishmentPublicTemporaryShame from "./pages/blog/PermanentPunishmentPublicTemporaryShame";
 import WhenRoomLaughsPolicyFails from "./pages/blog/WhenRoomLaughsPolicyFails";
+import PrisonCultureMoralCertainty from "./pages/blog/PrisonCultureMoralCertainty";
 
 function App() {
   return (
@@ -233,6 +234,10 @@ function App() {
   path="/blog/permanent-punishment-public-temporary-shame-powerful"
 element={<PermanentPunishmentPublicTemporaryShame />} />
 <Route path="/blog/when-the-room-laughs-policy-fails" element={<WhenRoomLaughsPolicyFails />} />
+<Route
+  path="/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there"
+  element={<PrisonCultureMoralCertainty />}
+/>
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
