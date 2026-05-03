@@ -13,6 +13,28 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "prison-culture-loves-moral-certainty-until-the-accused-works-there",
+  title: "Prison Culture Loves Moral Certainty — Until the Accused Works There",
+  excerpt:
+    "FPC Bryan, FCI Dublin, and Lowell show how prisons perform moral certainty against the already-despised while becoming skeptical, silent, and evasive when sexual abuse is alleged against staff.",
+  author: "The SOLAR Project",
+  date: "2026-05-03",
+  readTime: "8–10 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "prison staff sexual abuse",
+    "FCI Bryan sexual misconduct",
+    "FCI Dublin sexual abuse",
+    "PREA compliance",
+    "prison sexual misconduct",
+    "correctional staff abuse",
+    "incarcerated women sexual abuse",
+    "institutional hypocrisy",
+    "prison accountability",
+  ],
+  path: "/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there",
+},
+{
   id: "when-the-room-laughs-policy-fails",
   title: "When the Room Laughs, the Policy Fails",
   excerpt:
