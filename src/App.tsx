@@ -103,6 +103,7 @@ import WeDontRegisterRisk from "./pages/blog/WeDontRegisterRisk";
 import PermanentPunishmentPublicTemporaryShame from "./pages/blog/PermanentPunishmentPublicTemporaryShame";
 import WhenRoomLaughsPolicyFails from "./pages/blog/WhenRoomLaughsPolicyFails";
 import PrisonCultureMoralCertainty from "./pages/blog/PrisonCultureMoralCertainty";
+import TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle from "./pages/blog/TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle";
 
 function App() {
   return (
@@ -237,6 +238,10 @@ element={<PermanentPunishmentPublicTemporaryShame />} />
 <Route
   path="/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there"
   element={<PrisonCultureMoralCertainty />}
+/>
+<Route
+  path="/blog/the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle"
+element={<TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle />}
 />
                       
               {/* 404 Route */}
