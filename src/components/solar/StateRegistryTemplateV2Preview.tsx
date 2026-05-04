@@ -15,26 +15,37 @@ import {
   Users,
 } from "lucide-react";
 
+type Tone = "rose" | "amber" | "emerald" | "sky" | "slate" | "indigo";
+
+type SourceMapEntry = {
+  label?: string;
+  url?: string;
+};
+
+type SourceMap = Record<string, SourceMapEntry>;
+
+type SnapshotCard = {
+  label: string;
+  status: string;
+  body: string;
+  tone: Tone;
+  sources?: string[];
+};
+
 type QuickAnswer = {
   question: string;
   answer: string;
   dependsOn: string[];
   verify: string;
   icon: React.ReactNode;
-};
-
-type SnapshotCard = {
-  label: string;
-  status: string;
-  body: string;
-  tone: "rose" | "amber" | "emerald" | "sky" | "slate" | "indigo";
+  sources?: string[];
 };
 
 type StartHereCard = {
   label: string;
   status: string;
   body: string;
-  tone?: SnapshotCard["tone"];
+  tone?: Tone;
   sources?: string[];
 };
 
@@ -46,7 +57,7 @@ type CommonQuestion = {
   sources?: string[];
 };
 
-const toneClasses: Record<SnapshotCard["tone"], string> = {
+const toneClasses: Record<Tone, string> = {
   rose: "border-rose-200 bg-rose-50 text-rose-950",
   amber: "border-amber-200 bg-amber-50 text-amber-950",
   emerald: "border-emerald-200 bg-emerald-50 text-emerald-950",
@@ -55,19 +66,22 @@ const toneClasses: Record<SnapshotCard["tone"], string> = {
   indigo: "border-indigo-200 bg-indigo-50 text-indigo-950",
 };
 
+const validTones: Tone[] = ["rose", "amber", "emerald", "sky", "slate", "indigo"];
+
 export default function StateRegistryTemplateV2Preview({
   data,
 }: {
   data: StateRegistryData;
 }) {
-  const d = data;
+  const d = data as StateRegistryData & Record<string, any>;
+  const sourceMap = normalizeSourceMap(d.sourceMap);
 
-  const authoredStartHere = Array.isArray((d as any).startHere)
-    ? ((d as any).startHere as StartHereCard[])
+  const authoredStartHere = Array.isArray(d.startHere)
+    ? (d.startHere as StartHereCard[])
     : [];
 
-  const authoredCommonQuestions = Array.isArray((d as any).commonQuestions)
-    ? ((d as any).commonQuestions as CommonQuestion[])
+  const authoredCommonQuestions = Array.isArray(d.commonQuestions)
+    ? (d.commonQuestions as CommonQuestion[])
     : [];
 
   const fallbackSnapshot: SnapshotCard[] = [
@@ -136,7 +150,8 @@ export default function StateRegistryTemplateV2Preview({
           label: card.label,
           status: card.status,
           body: stripMarkdown(card.body || ""),
-          tone: card.tone || "slate",
+          tone: sanitizeTone(card.tone),
+          sources: card.sources,
         }))
       : fallbackSnapshot;
 
@@ -210,7 +225,7 @@ export default function StateRegistryTemplateV2Preview({
         "Review the official public registry and ask whether lower-level or law-enforcement-only information can still be released on request.",
       icon: <Database className="h-5 w-5" />,
     },
-    {
+{
       question: "How often do I have to report?",
       answer: plain(
         d.atAGlance?.verificationCadence ||
@@ -293,6 +308,7 @@ export default function StateRegistryTemplateV2Preview({
             qa.beforeYouMakePlans ||
             "Verify with the registering agency, supervision authority, or qualified counsel before acting.",
           icon: iconForQuestion(qa.question),
+          sources: qa.sources,
         }))
       : fallbackQuickAnswers;
 
@@ -306,10 +322,10 @@ export default function StateRegistryTemplateV2Preview({
           {d.state}: Start with the questions people actually ask
         </h2>
         <p className="mt-3 max-w-3xl text-sm leading-7 !text-slate-200 md:text-base">
-          This redesigned scaffold puts practical answers first, then shows what can change the answer and where to double-check. The goal is to be useful in the first minute without pretending registry law is simple.
+          This reader-first format gives practical starting points, explains what can change the answer, and points readers back to official sources before they act.
         </p>
         <div className="mt-4 rounded-xl border border-white/15 bg-white/10 p-4 text-sm leading-6 !text-slate-100">
-          <strong className="text-white">Preview note:</strong> This page is using the V2 reader-first scaffold. Production promotion should happen only after the State Truth File, source links, and state-specific validation gaps are reviewed.
+          <strong className="text-white">Preview note:</strong> This page is a format preview. It is meant to test whether the guide is clear, practical, and source-backed before any state page is promoted to production.
         </div>
       </section>
 
@@ -326,6 +342,7 @@ export default function StateRegistryTemplateV2Preview({
               </p>
               <p className="mt-1 text-lg font-black">{card.status}</p>
               <p className="mt-2 text-sm leading-6 opacity-90">{card.body}</p>
+              <SourceLinks sourceKeys={card.sources} sourceMap={sourceMap} compact />
             </div>
           ))}
         </div>
@@ -372,12 +389,13 @@ export default function StateRegistryTemplateV2Preview({
                 </p>
                 <p className="mt-1">{qa.verify}</p>
               </div>
+
+              <SourceLinks sourceKeys={qa.sources} sourceMap={sourceMap} />
             </article>
           ))}
         </div>
       </Section>
-
-      <Section eyebrow="Top Things to Know" title="Plain-language takeaways">
+<Section eyebrow="Top Things to Know" title="Plain-language takeaways">
         <div className="grid gap-4 md:grid-cols-2">
           <InfoCard title="Registration basics" icon={<FileText className="h-5 w-5" />}>
             <MarkdownText text={d.atAGlance?.mustRegister || d.whoMustRegister || "Verify who must register using the state’s official statute and registry agency."} />
@@ -454,7 +472,7 @@ export default function StateRegistryTemplateV2Preview({
       <Section eyebrow="Recent Changes" title="Recent changes and litigation">
         {Array.isArray(d.recentChangesLitigation) && d.recentChangesLitigation.length > 0 ? (
           <div className="grid gap-3">
-            {d.recentChangesLitigation.map((item: any, index) => (
+            {d.recentChangesLitigation.map((item: any, index: number) => (
               <RecentChangeCard key={index} item={item} />
             ))}
           </div>
@@ -466,14 +484,14 @@ export default function StateRegistryTemplateV2Preview({
       <Section eyebrow="Sources & Methodology" title="How to verify this page">
         <div className="space-y-3 text-sm leading-6 text-slate-700">
           <p>
-            State registry pages should prioritize official statutes, administrative rules, registry agency guidance, official forms, court decisions, and agency pages. Practical summaries are meant to make the rules understandable, not replace legal advice.
+            SOLAR state guides prioritize official statutes, administrative rules, registry agency guidance, official forms, court decisions, and agency pages. Practical summaries are meant to make the rules understandable, not replace legal advice.
           </p>
           <p>
-            Last reviewed: {safeDate(d.lastReviewedUTC)}. For any decision about housing, travel, reporting, removal, or supervision, verify with the official agency or qualified counsel before acting.
+            Last reviewed: {safeDate(d.lastReviewedUTC)}. Before making a decision about housing, travel, reporting, removal, work, school, or supervision, verify the rule with the official agency, the court or supervision authority, or qualified counsel.
           </p>
         </div>
         <div className="mt-4 grid gap-2">
-          {Array.isArray(d.citations) && d.citations.map((citation: any, index) => (
+          {Array.isArray(d.citations) && d.citations.map((citation: any, index: number) => (
             <CitationRow key={index} citation={citation} />
           ))}
         </div>
@@ -508,6 +526,43 @@ function SourceCard({ label, href }: { label: string; href?: string }) {
     <a href={href} target="_blank" rel="noreferrer" className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm font-bold text-blue-900 underline underline-offset-4 hover:bg-blue-100">
       {label} <ArrowRight className="ml-1 inline h-4 w-4" />
     </a>
+  );
+}
+function SourceLinks({ sourceKeys, sourceMap, compact = false }: { sourceKeys?: string[]; sourceMap: SourceMap; compact?: boolean }) {
+  const links = (sourceKeys || [])
+    .map((key) => {
+      const source = sourceMap[key];
+      if (!source?.url || !source?.label) return null;
+      return {
+        key,
+        label: source.label,
+        url: source.url,
+      };
+    })
+    .filter((entry): entry is { key: string; label: string; url: string } => Boolean(entry))
+    .slice(0, 3);
+
+  if (!links.length) return null;
+
+  return (
+    <div className={compact ? "mt-3 border-t border-current/10 pt-2" : "mt-3 rounded-xl border border-blue-100 bg-blue-50 p-3"}>
+      <p className={compact ? "text-[10px] font-black uppercase tracking-[0.16em] opacity-70" : "text-xs font-bold uppercase tracking-wide text-blue-700"}>
+        Official source{links.length > 1 ? "s" : ""}
+      </p>
+      <div className="mt-1 flex flex-wrap gap-2">
+        {links.map(({ key, label, url }) => (
+          <a
+            key={key}
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            className={compact ? "text-xs font-bold underline underline-offset-4" : "rounded-full border border-blue-200 bg-white px-2.5 py-1 text-xs font-bold text-blue-900 underline underline-offset-4"}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -586,6 +641,15 @@ function MarkdownText({ text = "" }: { text?: string }) {
   return <span dangerouslySetInnerHTML={{ __html: out }} />;
 }
 
+function normalizeSourceMap(value: unknown): SourceMap {
+  if (!value || typeof value !== "object") return {};
+  return value as SourceMap;
+}
+
+function sanitizeTone(value?: Tone): Tone {
+  return value && validTones.includes(value) ? value : "slate";
+}
+
 function first(items?: string[]) {
   return Array.isArray(items) && items.length ? items[0] : "";
 }
@@ -602,7 +666,6 @@ function stripMarkdown(value: string) {
     .replace(/\s+/g, " ")
     .trim();
 }
-
 function trimSummary(value: string, max = 185) {
   const clean = stripMarkdown(value || "");
   if (clean.length <= max) return clean;
@@ -627,13 +690,13 @@ function iconForQuestion(question: string) {
   return <FileText className="h-5 w-5" />;
 }
 
-function findHousingNote(d: StateRegistryData) {
+function findHousingNote(d: StateRegistryData & Record<string, any>) {
   const haystack = [
     ...(d.atAGlance?.topGotchas || []),
     ...(d.specialPopulations || []),
     ...(d.verificationInPerson || []),
   ];
-  return haystack.find((line) => /transient|homeless|stable housing|without stable/i.test(line));
+  return haystack.find((line: string) => /transient|homeless|stable housing|without stable/i.test(line));
 }
 
 function safeDate(value?: string) {
@@ -645,7 +708,7 @@ function safeDate(value?: string) {
   }
 }
 
-function inferResidenceStatus(d: StateRegistryData) {
+function inferResidenceStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(`${d.highlights?.residency || ""} ${d.residencyPresence || ""}`).toLowerCase();
   if (text.includes("no statewide") || text.includes("no blanket")) return "No blanket statewide address ban";
   if (text.includes("2,500") || text.includes("2500")) return "Large address buffer zones";
@@ -654,7 +717,7 @@ function inferResidenceStatus(d: StateRegistryData) {
   return "Confirm before leasing";
 }
 
-function inferPresenceStatus(d: StateRegistryData) {
+function inferPresenceStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(`${d.highlights?.presence || ""} ${d.residencyPresence || ""}`).toLowerCase();
   if (text.includes("no general") || text.includes("does not authorize local")) return "No broad statewide place ban";
   if (text.includes("level 3") || text.includes("tier iii")) return "Some places may be off-limits";
@@ -662,7 +725,7 @@ function inferPresenceStatus(d: StateRegistryData) {
   return "Check covered places";
 }
 
-function inferDurationStatus(d: StateRegistryData) {
+function inferDurationStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(`${d.highlights?.duration || ""} ${first(d.reliefPaths)}`).toLowerCase();
   if (text.includes("10 years") && text.includes("life")) return "Often years, sometimes life";
   if (text.includes("lifetime") || text.includes("for life")) return "Usually lifetime unless removed";
@@ -670,7 +733,7 @@ function inferDurationStatus(d: StateRegistryData) {
   return "Check duration carefully";
 }
 
-function inferPublicStatus(d: StateRegistryData) {
+function inferPublicStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(`${d.highlights?.tiering || ""} ${first(d.publicWebsiteExposure)}`).toLowerCase();
   if (text.includes("only level 3")) return "Only higher levels are public";
   if (text.includes("tier iii") || text.includes("tier 3")) return "Public posting depends on level";
@@ -678,7 +741,7 @@ function inferPublicStatus(d: StateRegistryData) {
   return "Check disclosure rules";
 }
 
-function inferReportingStatus(d: StateRegistryData) {
+function inferReportingStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(d.atAGlance?.verificationCadence || first(d.verificationInPerson)).toLowerCase();
   if (text.includes("quarterly") && text.includes("annual")) return "Set reporting reminders early";
   if (text.includes("quarterly")) return "Quarterly check-ins for some";
@@ -686,7 +749,7 @@ function inferReportingStatus(d: StateRegistryData) {
   return "Confirm your next date";
 }
 
-function inferRemovalStatus(d: StateRegistryData) {
+function inferRemovalStatus(d: StateRegistryData & Record<string, any>) {
   const text = stripMarkdown(d.highlights?.duration || first(d.reliefPaths)).toLowerCase();
   if (text.includes("no broad") || text.includes("limited")) return "Removal may be limited";
   if (text.includes("level 1") || text.includes("tier i") || text.includes("petition")) return "There may be a way to ask";
