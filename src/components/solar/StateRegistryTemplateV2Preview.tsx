@@ -30,6 +30,22 @@ type SnapshotCard = {
   tone: "rose" | "amber" | "emerald" | "sky" | "slate" | "indigo";
 };
 
+type StartHereCard = {
+  label: string;
+  status: string;
+  body: string;
+  tone?: SnapshotCard["tone"];
+  sources?: string[];
+};
+
+type CommonQuestion = {
+  question: string;
+  answer: string;
+  whatCanChangeThis?: string[];
+  beforeYouMakePlans?: string;
+  sources?: string[];
+};
+
 const toneClasses: Record<SnapshotCard["tone"], string> = {
   rose: "border-rose-200 bg-rose-50 text-rose-950",
   amber: "border-amber-200 bg-amber-50 text-amber-950",
@@ -46,7 +62,15 @@ export default function StateRegistryTemplateV2Preview({
 }) {
   const d = data;
 
-  const snapshot: SnapshotCard[] = [
+  const authoredStartHere = Array.isArray((d as any).startHere)
+    ? ((d as any).startHere as StartHereCard[])
+    : [];
+
+  const authoredCommonQuestions = Array.isArray((d as any).commonQuestions)
+    ? ((d as any).commonQuestions as CommonQuestion[])
+    : [];
+
+  const fallbackSnapshot: SnapshotCard[] = [
     {
       label: "Where can I live?",
       status: inferResidenceStatus(d),
@@ -106,7 +130,17 @@ export default function StateRegistryTemplateV2Preview({
     },
   ];
 
-  const quickAnswers: QuickAnswer[] = [
+  const snapshot: SnapshotCard[] =
+    authoredStartHere.length > 0
+      ? authoredStartHere.map((card) => ({
+          label: card.label,
+          status: card.status,
+          body: stripMarkdown(card.body || ""),
+          tone: card.tone || "slate",
+        }))
+      : fallbackSnapshot;
+
+  const fallbackQuickAnswers: QuickAnswer[] = [
     {
       question: "Where can I live?",
       answer: plain(
@@ -249,6 +283,19 @@ export default function StateRegistryTemplateV2Preview({
     },
   ];
 
+  const quickAnswers: QuickAnswer[] =
+    authoredCommonQuestions.length > 0
+      ? authoredCommonQuestions.map((qa) => ({
+          question: qa.question,
+          answer: stripMarkdown(qa.answer || ""),
+          dependsOn: qa.whatCanChangeThis || [],
+          verify:
+            qa.beforeYouMakePlans ||
+            "Verify with the registering agency, supervision authority, or qualified counsel before acting.",
+          icon: iconForQuestion(qa.question),
+        }))
+      : fallbackQuickAnswers;
+
   return (
     <div className="space-y-8">
       <section className="rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 p-5 text-white shadow-sm md:p-7">
@@ -262,7 +309,7 @@ export default function StateRegistryTemplateV2Preview({
           This redesigned scaffold puts practical answers first, then shows what can change the answer and where to double-check. The goal is to be useful in the first minute without pretending registry law is simple.
         </p>
         <div className="mt-4 rounded-xl border border-white/15 bg-white/10 p-4 text-sm leading-6 !text-slate-100">
-          <strong className="text-white">Important:</strong> This preview uses Sample State data. For real states, official sources and last-reviewed dates must control.
+          <strong className="text-white">Preview note:</strong> This page is using the V2 reader-first scaffold. Production promotion should happen only after the State Truth File, source links, and state-specific validation gaps are reviewed.
         </div>
       </section>
 
@@ -563,6 +610,21 @@ function trimSummary(value: string, max = 185) {
   const sentenceBreak = clipped.lastIndexOf(". ");
   if (sentenceBreak > 80) return clipped.slice(0, sentenceBreak + 1);
   return `${clipped.trim()}…`;
+}
+
+function iconForQuestion(question: string) {
+  const q = question.toLowerCase();
+
+  if (q.includes("live")) return <Home className="h-5 w-5" />;
+  if (q.includes("go?") || q.includes("where can i go")) return <MapPin className="h-5 w-5" />;
+  if (q.includes("work") || q.includes("school")) return <Users className="h-5 w-5" />;
+  if (q.includes("who will know") || q.includes("see")) return <Database className="h-5 w-5" />;
+  if (q.includes("how often") || q.includes("report")) return <Clock className="h-5 w-5" />;
+  if (q.includes("removed") || q.includes("how long")) return <CheckCircle className="h-5 w-5" />;
+  if (q.includes("move") || q.includes("visit") || q.includes("travel")) return <Plane className="h-5 w-5" />;
+  if (q.includes("stable housing") || q.includes("homeless")) return <AlertTriangle className="h-5 w-5" />;
+
+  return <FileText className="h-5 w-5" />;
 }
 
 function findHousingNote(d: StateRegistryData) {
