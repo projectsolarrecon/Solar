@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle",
+  title: "The Illusion of Child Safety: Grady Judd, Police Stings, and the Taylor Cadle Case",
+  excerpt:
+    "Polk County’s sting press conferences sell child protection as spectacle. Taylor Cadle’s case shows why spectacle is not safety.",
+  author: "The SOLAR Project",
+  date: "2026-05-04",
+  readTime: "8–10 minutes",
+  category: "Systemic Accountability",
+  tags: [
+    "police stings and child safety",
+    "Grady Judd police stings",
+    "Polk County child sex sting",
+    "Taylor Cadle Polk County",
+    "police-created crime",
+    "child safety theater",
+    "sex offense stings",
+    "Operation Child Protector VIII",
+    "Last Week Tonight police stings",
+    "Katie Tinto police-created crime",
+  ],
+  path: "/blog/the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle",
+},
+{
   id: "prison-culture-loves-moral-certainty-until-the-accused-works-there",
   title: "Prison Culture Loves Moral Certainty — Until the Accused Works There",
   excerpt:
