@@ -17,7 +17,7 @@ for (const [path, mod] of Object.entries(modules)) {
   STATE_INDEX[code] = mod as any;
 }
 
-const V2_PREVIEW_CODES = new Set(["ss", "xf", "xo"]);
+const V2_PREVIEW_CODES = new Set(["ss", "xf", "xo", "xt"]);
 
 function NotFound({ message }: { message: string }) {
   return (
