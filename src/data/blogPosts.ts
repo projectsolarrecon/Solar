@@ -13,6 +13,27 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "child-safety-theater-isnt-child-safety",
+  title: "Child Safety Theater Isn’t Child Safety",
+  excerpt:
+    "Child safety theater points outward. Real prevention looks inward. Three recent cases show why institutions fail when protection requires confronting someone trusted, familiar, or powerful.",
+  author: "The SOLAR Project",
+  date: "2026-05-05",
+  readTime: "8–10 minutes",
+  category: "Systemic Accountability",
+  tags: [
+    "child safety theater",
+    "performative child safety",
+    "institutional child protection failures",
+    "trusted-access harm",
+    "registry policy",
+    "student safety",
+    "sexual misconduct prevention",
+    "institutional accountability",
+  ],
+  path: "/blog/child-safety-theater-isnt-child-safety",
+},
+{
   id: "the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle",
   title: "The Illusion of Child Safety: Grady Judd, Police Stings, and the Taylor Cadle Case",
   excerpt:
