@@ -121,7 +121,7 @@ export function QuickStartPanel({
     <section className="rounded-2xl border border-slate-200 bg-white shadow-md overflow-hidden mb-8 avoid-break print:shadow-none">
       <div className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-white px-5 py-5 sm:px-6">
         <div className="flex items-start gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/12 ring-1 ring-white/20 text-xl">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/20 text-xl">
             <span aria-hidden="true">{icon}</span>
           </div>
           <div>
