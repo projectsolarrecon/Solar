@@ -108,7 +108,7 @@ export function SectionHeader({
       <div className="rounded-2xl overflow-hidden bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-white shadow-md">
         <div className="px-5 py-5 sm:px-6 flex items-start gap-4">
           {(icon || number !== undefined) && (
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/12 ring-1 ring-white/20 text-xl font-bold leading-none">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/20 text-xl font-bold leading-none">
               <span aria-hidden="true">{number ?? icon}</span>
             </div>
           )}
