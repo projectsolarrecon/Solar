@@ -9,135 +9,137 @@ import {
   GuideCallout,
   GuideIntro,
   SoftDivider,
-  QuickStartPanel,
-  GuideChecklist,
-  ScriptBox,
-  OfflineOptions,
-  DocumentPacket,
-  VerifyBeforeActing,
-  CommonMistakes,
   OverviewCards,
-  GuideIconList,
+  GuideChecklist,
+  OfflineOptions,
+  VerifyBeforeActing,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  DoDontJudgment,
 } from "../../components/solar";
 
-const sourceLinks = {
-  cornellBillOfRights: "https://www.law.cornell.edu/constitution/billofrights",
-  cornellFourth: "https://www.law.cornell.edu/constitution/fourth_amendment",
-  cornellFifth: "https://www.law.cornell.edu/constitution/fifth_amendment",
-  cornellSixth: "https://www.law.cornell.edu/constitution/sixth_amendment",
-  cornellMiranda: "https://www.law.cornell.edu/wex/miranda_v._arizona_%281966%29",
-  cornellRightToCounsel: "https://www.law.cornell.edu/wex/right_to_counsel",
-  cornellBrady: "https://www.law.cornell.edu/wex/brady_rule",
-  cornellRule16: "https://www.law.cornell.edu/rules/frcrmp/rule_16",
-  justiaPackingham: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
-  bopLegalGuide: "https://www.bop.gov/resources/pdfs/legal_guide.pdf",
-  nacdlDirectory: "https://www.nacdl.org/directory/public",
-  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
-  usaGovLegalAid: "https://www.usa.gov/legal-aid",
-  ncslVotingRights: "https://www.ncsl.org/elections-and-campaigns/felon-voting-rights",
-  narsolResources: "https://resources.narsol.org/",
-};
-
-const rightsByStage = [
+const federalStages = [
   {
-    stage: "Investigation",
+    id: "investigation",
+    number: "1",
+    title: "Investigation",
+    duration: "Weeks to years",
     icon: "🔎",
-    rights: [
-      "You can remain silent.",
-      "You can ask for a lawyer.",
-      "You do not have to consent to a search.",
-      "Searches, seizures, devices, and statements may be challenged later.",
+    summary:
+      "Federal agents and prosecutors gather information before charges are filed. Some people know they are under investigation; others do not learn until an arrest, search, subpoena, or target letter.",
+    whatHappens: [
+      "A federal agency may investigate, execute search warrants, issue subpoenas, interview witnesses, or refer information to the U.S. Attorney’s Office.",
+      "A prosecutor may review evidence and decide whether to pursue charges, present the matter to a grand jury, seek a plea before indictment, or decline prosecution.",
+      "The person being investigated may be treated as a witness, subject, or target, but those labels can change.",
     ],
-    caution:
-      "A conversation can feel informal and still become evidence. Do not try to explain, correct, or talk your way out of the situation without legal advice.",
-    ask:
-      "Ask counsel what to say, whether to unlock or hand over devices, and how to respond to interview, password, or search requests.",
+    federalActors: [
+      "Investigating agency, such as FBI, HSI, Postal Inspection Service, or another federal agency",
+      "Assistant U.S. Attorney",
+      "Federal grand jury, if the government seeks an indictment",
+      "Defense attorney or Federal Public Defender, if counsel is appointed or retained",
+    ],
+    practicalMoves: [
+      "Contact a federal criminal defense attorney before speaking with investigators.",
+      "Do not consent to interviews, searches, or device access without legal advice.",
+      "Save subpoenas, warrants, business cards, letters, receipts, and written instructions.",
+      "Write down dates, names, agencies, phone numbers, and what was said.",
+    ],
   },
   {
-    stage: "Arrest and booking",
-    icon: "🚔",
-    rights: [
-      "You have the right to remain silent.",
-      "You have the right to counsel.",
-      "You should be told the charge or reason for arrest.",
-      "You may have a prompt court appearance and bail or bond review, depending on the court and charge.",
-    ],
-    caution:
-      "Booking, jail calls, text messages, and conversations with other detained people may be recorded or repeated.",
-    ask:
-      "Ask when counsel will be appointed or contacted, when the first appearance is, and what release conditions are being requested.",
-  },
-  {
-    stage: "Pretrial",
-    icon: "📄",
-    rights: [
-      "You are presumed innocent.",
-      "You have the right to counsel.",
-      "Your lawyer can seek discovery and review the evidence.",
-      "Your lawyer can challenge unlawful searches, statements, identifications, or other evidence.",
-    ],
-    caution:
-      "Release conditions can restrict travel, housing, internet use, contact with people, work, treatment, and devices. Violating them can create a new crisis.",
-    ask:
-      "Ask counsel to explain every condition in plain language and to seek clarification or modification before you guess.",
-  },
-  {
-    stage: "Trial",
+    id: "arrest-initial-appearance",
+    number: "2",
+    title: "Arrest and Initial Appearance",
+    duration: "Often within days of arrest",
     icon: "🏛️",
-    rights: [
-      "The prosecution must prove the case beyond a reasonable doubt.",
-      "You may have the right to a jury trial.",
-      "You have the right to confront and cross-examine witnesses.",
-      "You have the right to present a defense and, in most cases, choose whether to testify.",
+    summary:
+      "After arrest or summons, the first federal court appearance usually addresses identity, rights, counsel, charging status, and temporary release or detention questions.",
+    whatHappens: [
+      "The person appears before a magistrate judge.",
+      "The court addresses whether counsel is retained or appointed.",
+      "The government may ask for detention, release conditions, or a later detention hearing.",
+      "Pretrial Services may interview the person and prepare information for the court.",
     ],
-    caution:
-      "Trial decisions are strategic and fact-specific. A general guide cannot tell you whether to testify, waive a jury, accept a stipulation, or reject an offer.",
-    ask:
-      "Ask counsel what each trial right means, what choices are yours to make, and what risks come with each option.",
+    federalActors: [
+      "U.S. Marshals Service",
+      "Magistrate judge",
+      "Assistant U.S. Attorney",
+      "Federal defender or retained defense counsel",
+      "Pretrial Services officer",
+    ],
+    practicalMoves: [
+      "Confirm who the defense attorney is and how family can share information with counsel.",
+      "Ask counsel what release or detention issues will be addressed next.",
+      "Save all release conditions, detention orders, court dates, and attorney instructions.",
+      "Do not contact alleged victims, witnesses, co-defendants, or investigators unless counsel says it is safe and lawful.",
+    ],
   },
   {
-    stage: "Plea and sentencing",
-    icon: "⚖️",
-    rights: [
-      "A plea usually gives up trial rights.",
-      "You should understand the charge, sentence range, registry impact, supervision terms, and collateral consequences before deciding.",
-      "You may have the right to speak at sentencing.",
-      "You may have appeal or post-conviction options, but deadlines can be short.",
+    id: "charging-arraignment",
+    number: "3",
+    title: "Charging, Indictment, and Arraignment",
+    duration: "Timing varies by case and custody status",
+    icon: "📄",
+    summary:
+      "Federal felony charges often move through a grand jury indictment unless waived. Arraignment is where charges are formally read or acknowledged and a plea is entered.",
+    whatHappens: [
+      "The government may proceed by complaint, indictment, information, superseding indictment, or other charging document.",
+      "A grand jury decides whether there is probable cause to charge a federal felony, unless indictment is waived.",
+      "At arraignment, the person is advised of the charges and enters a plea, usually not guilty at the start.",
+      "The court may set scheduling orders, discovery deadlines, motion deadlines, or status conferences.",
     ],
-    caution:
-      "In sex offense cases, the practical consequences may include registration, housing limits, work restrictions, treatment rules, internet limits, travel limits, and family-contact issues.",
-    ask:
-      "Ask counsel to explain the plea, registry tier or duration, supervision conditions, treatment requirements, appeal deadlines, and what consequences are mandatory versus possible.",
+    federalActors: [
+      "Grand jury",
+      "Assistant U.S. Attorney",
+      "Magistrate judge or district judge",
+      "Defense counsel",
+      "Court clerk",
+    ],
+    practicalMoves: [
+      "Review the charging document with counsel, not alone.",
+      "Ask counsel what each count means, what the maximum and mandatory penalties are, and what deadlines are coming.",
+      "Keep a copy of the indictment, arraignment minute entry, scheduling order, and bond or detention paperwork.",
+      "Avoid researching penalties without counsel’s help; federal sentencing depends on statutes, guidelines, facts, criminal history, and negotiated issues.",
+    ],
   },
   {
-    stage: "Incarceration, release, supervision, and registration",
-    icon: "🧭",
-    rights: [
-      "You keep basic constitutional rights, even though incarceration and supervision limit many choices.",
-      "You can ask for written conditions and clarification.",
-      "You may be able to challenge registry errors or seek relief where state law allows.",
-      "Voting, travel, housing, internet, and family-contact rights vary by jurisdiction and status.",
+    id: "discovery-motions",
+    number: "4",
+    title: "Discovery and Pretrial Motions",
+    duration: "Often months; complex cases can take longer",
+    icon: "🗂️",
+    summary:
+      "This is the evidence and litigation stage. Defense counsel reviews the government’s discovery, investigates defenses, negotiates with prosecutors, and files motions when appropriate.",
+    whatHappens: [
+      "The government provides discovery through defense counsel under court rules, protective orders, and case-specific instructions.",
+      "Defense counsel may investigate facts, consult experts, review devices or records, and discuss possible motions.",
+      "Pretrial motions may address suppression, warrants, statements, discovery disputes, severance, expert evidence, or other legal issues.",
+      "Many cases also involve plea discussions during this stage.",
     ],
-    caution:
-      "Most trouble after conviction starts with unclear instructions, missed deadlines, address problems, device issues, or relying on verbal answers.",
-    ask:
-      "Ask what must be reported, what must be approved first, what deadlines apply, and how to get answers in writing.",
+    federalActors: [
+      "Assistant U.S. Attorney",
+      "Defense counsel",
+      "Federal agents or forensic examiners",
+      "District judge or magistrate judge",
+      "Court staff handling scheduling and filings",
+    ],
+    practicalMoves: [
+      "Do not ask counsel to send sensitive discovery to family unless counsel says it is allowed.",
+      "Save court scheduling orders and motion deadlines.",
+      "Give counsel organized background records only when requested and in the format counsel prefers.",
+      "Ask counsel before discussing case facts by phone, email, text, jail messaging, social media, or recorded systems.",
+    ],
   },
 ];
 
-export default function KnowYourRights(): JSX.Element {
+export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Know Your Rights During a Sex Offense Case | The SOLAR Project"
-        description="A practical, sex-offense-specific guide for protecting your rights, slowing down police and court pressure, documenting what happens, and knowing when to ask for legal help."
-        keywords="sex offense case rights, right to remain silent, right to counsel, search warrant, registry rights, supervision rules, criminal defense, legal aid"
+        title="Federal Criminal Process Guide | The SOLAR Project"
+        description="A plain-language roadmap to the federal criminal process, from investigation through court, custody, supervised release, and registration-related handoffs."
+        keywords="federal criminal process, federal sex offense case, federal court, BOP, supervised release, federal probation, registry, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -154,13 +156,11 @@ export default function KnowYourRights(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Know Your Rights During a Sex Offense Case
+            Federal Criminal Process Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical, sex-offense-specific guide for slowing down, protecting
-            your rights, communicating safely, documenting what happens, and
-            knowing when to pause before acting.
+            A practical roadmap for understanding how the federal government is involved from investigation through court, custody, supervised release, and registration-related handoffs.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -187,90 +187,18 @@ export default function KnowYourRights(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="⚖️">
+        <GuideIntro title="Start Here" icon="🧭">
           <p>
-            If you or someone you love is being investigated, charged, sentenced,
-            incarcerated, supervised, or required to register after a sex offense
-            case, the pressure can make people talk too fast, agree too quickly,
-            or rely on guesses. This guide is meant to slow the moment down.
+            A federal case can feel impossible to understand because several systems may be involved at once: investigators, prosecutors, courts, Pretrial Services, the Bureau of Prisons, U.S. Probation, and state or local registration offices.
           </p>
-
           <p>
-            The safest first move is usually simple: stay calm, do not try to
-            explain your way out of the situation, ask for a lawyer, avoid
-            unnecessary consent, save paperwork, and document what happened. The
-            details can change by state, court, case, supervision term, and
-            registry rule, so verify before acting.
-          </p>
-
-          <p>
-            This page is for accused people, convicted people, registrants,
-            people preparing for release, people under supervision, and family
-            members trying to help without accidentally making things worse.
+            This guide is not legal advice and cannot predict what will happen in one case. Its job is to help you understand the usual federal sequence, know which office may be involved, save the right paperwork, and ask safer questions before acting.
           </p>
         </GuideIntro>
 
-        <GuideCallout tone="legal" icon="⚖️" title="A quick legal note">
+        <GuideCallout tone="legal" icon="⚖️" title="Use counsel as the center point">
           <p>
-            This guide is for education and preparation. It is not legal advice,
-            and it cannot replace a lawyer who knows your case, your court
-            orders, your supervision rules, and your local law.
-          </p>
-          <p>
-            Use it to slow down, ask better questions, document what happens, and
-            know when to pause before acting.
-          </p>
-        </GuideCallout>
-
-        <QuickStartPanel
-          title="If police contact, questioning, or a search is happening now"
-          subtitle="Use short sentences. Do not debate facts in the moment. Protect your rights calmly and clearly."
-          icon="🚨"
-          urgentActions={[
-            <span>
-              Say: “I am using my right to remain silent. I want a lawyer.” Then
-              stop explaining.
-            </span>,
-            <span>
-              If asked to search your phone, computer, car, home, accounts, or
-              private messages, say: “I do not consent to a search.” Do not
-              physically resist.
-            </span>,
-            <span>
-              If officers show a warrant, do not interfere. Ask for a copy and
-              write down what was searched or taken.
-            </span>,
-          ]}
-          nextActions={[
-            <span>
-              Contact a criminal defense attorney, public defender, or trusted
-              legal-help referral as soon as possible.
-            </span>,
-            <span>
-              Tell a family member to save paperwork and call-log details, not to
-              argue with police or delete anything.
-            </span>,
-            <span>
-              Start a written timeline with dates, names, badge numbers,
-              agencies, searches, seizures, court dates, release conditions, and
-              deadlines.
-            </span>,
-          ]}
-          reminder={
-            <span>
-              Being polite does not mean answering investigative questions.
-              Silence, counsel, and documentation are protective tools.
-            </span>
-          }
-        />
-
-        <GuideCallout tone="warning" icon="⚠️" title="Do not use a general guide to make a case-specific legal decision">
-          <p>
-            This guide can help you slow down and protect information, but it
-            cannot tell you what to say, what to sign, whether to consent,
-            whether to unlock a device, whether to contact someone, or whether
-            to accept a plea in your specific case. Those decisions need
-            case-specific legal advice whenever possible.
+            In a federal criminal case, the safest first assumption is simple: do not speak with investigators, contact witnesses, explain the case publicly, or make case decisions without defense counsel. Family and supporters can help most by documenting, organizing, and asking counsel what is safe to do.
           </p>
         </GuideCallout>
 
@@ -278,962 +206,719 @@ export default function KnowYourRights(): JSX.Element {
           columns={4}
           cards={[
             {
-              eyebrow: "Right 1",
-              title: "Silence",
-              icon: "🤐",
-              tone: "privacy",
-              description:
-                "You can protect yourself by clearly saying you are using your right to remain silent.",
-            },
-            {
-              eyebrow: "Right 2",
-              title: "Counsel",
-              icon: "⚖️",
+              eyebrow: "Phase 1",
+              title: "Investigation and charging",
+              icon: "🔎",
               tone: "legal",
               description:
-                "Ask for a lawyer before questioning, plea decisions, court strategy, or registry-risk decisions.",
+                "Federal agents and prosecutors decide whether and how charges will be brought.",
             },
             {
-              eyebrow: "Right 3",
-              title: "Search limits",
-              icon: "🔎",
+              eyebrow: "Phase 2",
+              title: "Early court decisions",
+              icon: "🏛️",
               tone: "warning",
               description:
-                "Warrants, consent, devices, accounts, and supervision searches are serious. Do not guess.",
+                "The court addresses counsel, release or detention, arraignment, and scheduling.",
             },
             {
-              eyebrow: "Right 4",
-              title: "Documentation",
-              icon: "🗂️",
-              tone: "success",
+              eyebrow: "Phase 3",
+              title: "Resolution and sentencing",
+              icon: "📘",
+              tone: "info",
               description:
-                "Save orders, notices, warrants, property receipts, conditions, deadlines, and written instructions.",
+                "Discovery, motions, plea negotiations, trial decisions, presentence investigation, and sentencing shape the outcome.",
+            },
+            {
+              eyebrow: "Phase 4",
+              title: "Custody and federal supervision",
+              icon: "🧭",
+              tone: "reentry",
+              description:
+                "BOP custody, release processing, supervised release, and registration handoffs involve different authorities.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="rights-by-stage"
+          id="how-to-use"
           number="1"
-          title="Key rights by stage"
-          subtitle="The rights that matter most can change depending on where the case is. Use this as a practical map, then ask counsel how it applies to your situation."
+          title="How to use this guide"
+          subtitle="Start with the stage you are in, then work backward to what you need to save and forward to what may happen next."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Rights do not disappear because the accusation is serious, because
-              a person is on a registry, or because a case involves the internet,
-              children, family, treatment, or supervision. But the way rights
-              work depends on the stage of the case and the rules already in
-              place.
+              Federal cases do not all move at the same speed. Timing can change because of detention status, discovery volume, continuances, plea negotiations, court scheduling, expert review, new charges, or changes in counsel.
             </p>
 
             <p>
-              This section names common rights and protections in plain language.
-              It is not a complete legal analysis. Use it to prepare questions
-              for counsel and to recognize when you should pause before acting.
+              Treat the timelines here as orientation, not a promise. The most reliable information for a specific case usually comes from defense counsel, filed court orders, the docket, Pretrial Services, U.S. Probation, BOP, or the registration office that actually has authority over the step being taken.
+            </p>
+
+            <p>
+              Families can be helpful without taking over the case. The most useful support is often quiet and practical: save documents, write down names and dates, help counsel receive organized information, and avoid public posts or side conversations that could create risk.
             </p>
           </GuideProse>
 
-          <div className="mt-6 space-y-5">
-            {rightsByStage.map((stage) => (
-              <div
-                key={stage.stage}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xl">
-                    {stage.icon}
-                  </div>
-
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900">
-                      {stage.stage}
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      Rights and caution points to review before acting at this
-                      stage.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-5 grid gap-4 md:grid-cols-3">
-                  <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-slate-700">
-                      Rights to remember
-                    </h4>
-
-                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
-                      {stage.rights.map((right) => (
-                        <li key={right} className="flex gap-2">
-                          <span aria-hidden="true" className="mt-1 text-slate-500">
-                            •
-                          </span>
-                          <span>{right}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="rounded-xl bg-amber-50 p-4 ring-1 ring-amber-200">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">
-                      Be careful
-                    </h4>
-
-                    <p className="mt-3 text-sm leading-relaxed text-amber-950">
-                      {stage.caution}
-                    </p>
-                  </div>
-
-                  <div className="rounded-xl bg-blue-50 p-4 ring-1 ring-blue-200">
-                    <h4 className="text-sm font-bold uppercase tracking-wide text-blue-900">
-                      Ask counsel
-                    </h4>
-
-                    <p className="mt-3 text-sm leading-relaxed text-blue-950">
-                      {stage.ask}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </GuideSectionCard>
-<GuideSectionHeader
-          id="police-contact"
-          number="2"
-          title="Investigation, police contact, and questioning"
-          subtitle="You do not have to explain yourself just because someone with authority asks questions."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              People often talk because they are scared, embarrassed, angry, or
-              convinced they can clear things up. In sex offense investigations,
-              even small statements can be misunderstood, incomplete, or used
-              later. You can be respectful and still decline to answer questions
-              without a lawyer.
-            </p>
-
-            <p>
-              This matters for family members too. A spouse, parent, roommate, or
-              adult child may think they are helping by speaking to police,
-              explaining context, checking a device, contacting a witness, or
-              deleting something upsetting. Those actions can create new legal
-              problems.
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>
-                Clearly say: “I am using my right to remain silent. I want a
-                lawyer.”
-              </span>,
-              <span>
-                Stay calm, keep your hands visible, follow safety commands, and
-                write down names, agencies, dates, and what happened afterward.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not try to explain, guess, joke, minimize, argue facts, or
-                answer “just a few questions” without counsel.
-              </span>,
-              <span>
-                Do not ask family to contact alleged victims, witnesses,
-                investigators, employers, schools, or neighbors to “fix it.”
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Basic identifying information and immediate safety commands may
-                be different from investigative questioning. When the question
-                moves toward facts, allegations, devices, timelines, people, or
-                messages, pause and ask for counsel.
-              </span>,
-            ]}
-          />
-
-          <ScriptBox
-            title="Police contact script"
-            tone="legal"
-            context="Use calmly. Repeat if needed. Do not add explanations afterward."
-            script={`I am using my right to remain silent.
-
-I want a lawyer.
-
-I do not want to answer questions without my lawyer present.`}
-          />
-
-          <ScriptBox
-            title="Family member script"
-            tone="family"
-            context="Use if police, an investigator, a school, a caseworker, or another authority contacts a loved one."
-            script={`I understand this is serious.
-
-I am not comfortable answering questions or guessing about facts. I want to make sure we do this the right way.
-
-Please send any request in writing, and I will encourage [Name] to speak with a lawyer.`}
-          />
-
-          <GuideCallout tone="privacy" icon="🔒" title="Do not delete, edit, or “clean up” anything">
-            <p>
-              Do not delete messages, photos, files, accounts, browser history,
-              apps, cloud backups, or social media posts because you are scared.
-              Do not ask someone else to do it. Tell your lawyer what exists and
-              ask what to do next.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="searches-devices"
-          number="3"
-          title="Searches, devices, accounts, and warrants"
-          subtitle="Phones, computers, cloud accounts, messages, apps, and passwords can become central evidence."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Sex offense investigations often involve digital evidence: phones,
-              computers, tablets, cloud accounts, photos, downloads, search
-              history, location data, messaging apps, gaming platforms, social
-              media, smart-home devices, and shared family devices.
-            </p>
-
-            <p>
-              Search law is complicated. A warrant, a consent request, a
-              subpoena, a probation search condition, a parole instruction, a
-              school or workplace device policy, and a family member handing over
-              a device are not the same thing. Do not assume the rule. Slow down
-              and preserve the paper trail.
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>
-                Ask whether officers have a warrant. If they do, ask for a copy
-                and do not interfere.
-              </span>,
-              <span>
-                Write down what was searched, what was taken, who took it, and
-                whether you received a property receipt.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not consent to searches of your home, phone, computer, car,
-                accounts, or private messages without legal advice when you have
-                a choice.
-              </span>,
-              <span>
-                Do not wipe devices, change accounts, destroy storage media,
-                delete files, or tell family members to do so.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Passwords, biometric unlocking, cloud accounts, and supervised
-                release search conditions are jurisdiction-specific. Ask a lawyer
-                before deciding what must be provided and what can be refused.
-              </span>,
-            ]}
-          />
-
-          <ScriptBox
-            title="Search or consent script"
-            tone="warning"
-            context="Use if officers ask permission to search. Do not physically resist a search."
-            script={`I do not consent to a search.
-
-If you have a warrant, I will not interfere. Please give me a copy of the warrant and a receipt for anything taken.
-
-I want to speak with a lawyer before answering questions.`}
-          />
-
-          <DocumentPacket
-            title="Device and search records to save"
-            intro={
-              <span>
-                Save this information for your lawyer. Do not rely on memory.
-              </span>
-            }
-            items={[
-              "Date, time, location, agency, officer names, badge numbers, and case number if provided.",
-              "A copy or photo of any warrant, subpoena, property receipt, inventory sheet, or business card.",
-              "List of devices, accounts, storage media, papers, vehicles, rooms, or online accounts searched or seized.",
-              "Names of family members, roommates, employers, schools, or providers who were contacted or asked for access.",
-              "Any statement you or someone else made about passwords, ownership, users, shared devices, or accounts.",
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="arrest-pretrial"
-          number="4"
-          title="Arrest, booking, and pretrial release"
-          subtitle="Release conditions can begin immediately and can be easy to violate by accident."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              After arrest or a first court appearance, you may receive bond,
-              pretrial release, GPS monitoring, no-contact orders, internet
-              restrictions, travel limits, firearm restrictions, child-contact
-              restrictions, residence restrictions, school or workplace limits,
-              or treatment requirements.
-            </p>
-
-            <p>
-              Treat every condition as serious. If a condition is confusing, the
-              safer move is not to guess. Ask your lawyer or the court for
-              clarification before you contact someone, go somewhere, post
-              online, travel, move, return home, or use a shared device.
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>
-                Read every release condition before leaving court or custody, and
-                ask for a copy if you do not have one.
-              </span>,
-              <span>
-                Save court dates, deadlines, no-contact names, address rules,
-                travel limits, and internet or device instructions in one place.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not contact alleged victims, witnesses, minors, restricted
-                people, or restricted places unless your lawyer confirms it is
-                allowed.
-              </span>,
-              <span>
-                Do not rely on “they contacted me first” as permission to respond
-                when a no-contact order exists.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Family logistics, childcare, housing, work, medical care,
-                religious services, treatment, and internet access may require
-                modified conditions. Ask your lawyer about requesting changes
-                instead of informally working around the rule.
-              </span>,
-            ]}
-          />
+          <SoftDivider />
 
           <GuideChecklist
-            id="pretrial-condition-check"
-            title="Pretrial condition checklist"
+            id="first-things-to-save"
+            title="First things to save"
+            columns={2}
+            items={[
+              {
+                id: "attorney-contact",
+                label:
+                  "Defense attorney name, phone number, email, and after-hours instructions.",
+              },
+              {
+                id: "court-papers",
+                label:
+                  "Charging documents, court notices, release or detention orders, and scheduling orders.",
+              },
+              {
+                id: "agency-info",
+                label:
+                  "Business cards, letters, subpoenas, warrants, receipts, and agency contact information.",
+              },
+              {
+                id: "conditions",
+                label:
+                  "Any written conditions from the court, Pretrial Services, BOP, U.S. Probation, or registration office.",
+              },
+              {
+                id: "notes",
+                label:
+                  "A paper or digital log of dates, names, departments, instructions, and confirmation numbers.",
+              },
+              {
+                id: "questions",
+                label:
+                  "A running question list for counsel, kept separate from emotional notes or social media drafts.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="federal-timeline"
+          number="2"
+          title="The federal process, stage by stage"
+          subtitle="Each stage has a different federal actor, different paperwork, and different risks."
+        />
+
+        {federalStages.map((stage) => (
+          <GuideSectionCard key={stage.id}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                  Stage {stage.number} · {stage.duration}
+                </div>
+                <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                  <span className="mr-2" aria-hidden="true">
+                    {stage.icon}
+                  </span>
+                  {stage.title}
+                </h3>
+              </div>
+            </div>
+
+            <GuideProse>
+              <p>{stage.summary}</p>
+
+              <h4>What usually happens</h4>
+              <ul>
+                {stage.whatHappens.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <h4>Federal actors you may hear about</h4>
+              <ul>
+                {stage.federalActors.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </GuideProse>
+
+            <GuideChecklist
+              id={`${stage.id}-practical-moves`}
+              title="Practical moves at this stage"
+              columns={1}
+              items={stage.practicalMoves.map((item, index) => ({
+                id: `${stage.id}-move-${index + 1}`,
+                label: item,
+              }))}
+            />
+          </GuideSectionCard>
+        ))}
+
+        <GuideSectionCard>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Stage 5 · Case resolution
+              </div>
+              <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                <span className="mr-2" aria-hidden="true">
+                  ⚖️
+                </span>
+                Plea Agreement or Trial
+              </h3>
+            </div>
+          </div>
+
+          <GuideProse>
+            <p>
+              Many federal cases resolve by plea agreement, but some proceed to trial. The choice between plea and trial belongs to the person charged after consultation with counsel. Family can support the person, but should be careful not to pressure, promise, or threaten a decision.
+            </p>
+
+            <h4>What usually happens</h4>
+            <ul>
+              <li>
+                Defense counsel and the prosecutor may discuss possible plea terms, guideline issues, dismissed counts, appeal waivers, stipulations, and factual admissions.
+              </li>
+              <li>
+                If there is a plea, the judge usually conducts a plea hearing to make sure the plea is knowing and voluntary.
+              </li>
+              <li>
+                If there is a trial, the government must prove the charges beyond a reasonable doubt, and the defense can challenge the evidence through counsel.
+              </li>
+              <li>
+                A conviction after plea or trial usually moves the case toward a presentence investigation and sentencing.
+              </li>
+            </ul>
+
+            <h4>Federal actors you may hear about</h4>
+            <ul>
+              <li>District judge</li>
+              <li>Assistant U.S. Attorney</li>
+              <li>Defense counsel</li>
+              <li>Jury, if the case goes to trial</li>
+              <li>U.S. Probation, after conviction and before sentencing</li>
+            </ul>
+          </GuideProse>
+
+          <GuideChecklist
+            id="plea-trial-practical-moves"
+            title="Practical moves at this stage"
             columns={1}
             items={[
               {
-                id: "orders",
+                id: "plea-trial-ask-options",
                 label:
-                  "Save all bond, release, no-contact, protective, GPS, travel, and internet/device orders.",
+                  "Ask counsel to explain the practical difference between plea, trial, sentencing exposure, appeal rights, and collateral consequences.",
               },
               {
-                id: "contacts",
+                id: "plea-trial-dont-pressure",
                 label:
-                  "List every person, place, platform, school, workplace, or household situation the order may affect.",
+                  "Do not pressure the person to plead or go to trial. Support them in asking counsel clear questions.",
               },
               {
-                id: "housing",
+                id: "plea-trial-court",
                 label:
-                  "Ask whether you may return home, live with family, live near children, or move to a new address.",
+                  "Save plea agreements, hearing notices, trial schedules, jury instructions if provided, and written court orders.",
               },
               {
-                id: "work",
+                id: "plea-trial-media",
                 label:
-                  "Ask how the conditions affect work, job searches, school, travel, phone use, email, and online accounts.",
-              },
-              {
-                id: "clarification",
-                label:
-                  "Send unclear questions to your lawyer and save the answer in writing when possible.",
+                  "If the case may draw public attention, ask counsel before anyone speaks publicly, posts online, or responds to reporters.",
               },
             ]}
-          />
-
-          <ScriptBox
-            title="Attorney call script after release"
-            tone="legal"
-            context="Use when you need help understanding conditions quickly."
-            script={`Hello, my name is [Name]. I was released with conditions in [court/county] on [date].
-
-I need help understanding what I can and cannot do before I accidentally violate anything.
-
-The conditions I am most worried about are:
-- Contact with [person/group]
-- Living at [address]
-- Internet or device use
-- Work or travel
-- Court deadlines
-
-Can we review these before I act?`}
           />
         </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="plea-trial-sentencing"
-          number="5"
-          title="Plea, trial, and sentencing decisions"
-          subtitle="The legal outcome may affect registration, supervision, housing, work, family contact, immigration, and long-term stability."
-        />
-
         <GuideSectionCard>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Stage 6 · Usually after conviction
+              </div>
+              <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                <span className="mr-2" aria-hidden="true">
+                  📘
+                </span>
+                Presentence Investigation and Sentencing
+              </h3>
+            </div>
+          </div>
+
           <GuideProse>
             <p>
-              A plea or conviction can carry consequences far beyond the sentence
-              announced in court. In sex offense cases, the consequences may
-              include registration, public listing, residence limits, employment
-              barriers, treatment conditions, internet restrictions, travel
-              notice rules, lifetime supervision, immigration consequences,
-              family-court effects, and limits on where you can live or work.
+              After conviction, U.S. Probation usually prepares a presentence report for the court. This report can affect guideline calculations, objections, sentencing arguments, custody recommendations, supervision conditions, and future BOP classification.
             </p>
 
-            <p>
-              This guide cannot tell you whether to plead, go to trial, testify,
-              appeal, or accept a sentence. It can help you ask better questions
-              before making decisions that may shape the rest of your life.
-            </p>
+            <h4>What usually happens</h4>
+            <ul>
+              <li>
+                U.S. Probation interviews the person and gathers information about the offense, history, finances, health, family, education, work, treatment, and criminal history.
+              </li>
+              <li>
+                The defense and prosecution may object to parts of the presentence report.
+              </li>
+              <li>
+                The judge considers the advisory sentencing guidelines, statutory penalties, sentencing factors, arguments from both sides, and any required conditions.
+              </li>
+              <li>
+                The sentence may include imprisonment, supervised release, fines, restitution, special assessments, treatment conditions, computer or internet conditions, contact restrictions, and other terms.
+              </li>
+            </ul>
+
+            <h4>Federal actors you may hear about</h4>
+            <ul>
+              <li>U.S. Probation officer conducting the presentence investigation</li>
+              <li>District judge</li>
+              <li>Assistant U.S. Attorney</li>
+              <li>Defense counsel</li>
+              <li>U.S. Sentencing Commission guidelines and policy materials</li>
+            </ul>
           </GuideProse>
 
-          <DoDontJudgment
-            dos={[
-              <span>
-                Ask your lawyer what each charge, plea, conviction, sentence, and
-                registration category would mean in daily life.
-              </span>,
-              <span>
-                Ask about appeal deadlines, immigration consequences, registry
-                duration, supervision rules, treatment requirements, voting
-                rights, and housing effects before deciding.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not accept “you will probably be fine” as the full explanation
-                of consequences.
-              </span>,
-              <span>
-                Do not sign plea paperwork until you understand what you are
-                admitting, what rights you are giving up, and what consequences
-                may follow.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Plea and trial decisions are personal and legal. Family members
-                can help organize questions and documents, but the accused person
-                needs case-specific advice from counsel.
-              </span>,
-            ]}
-          />
-
-          <GuideIconList
-            title="Questions to ask before a plea or sentencing"
-            description="Use this list with your lawyer. Add state-specific and immigration questions if they apply."
-            columns={2}
-            variant="cards"
-            tone="legal"
+          <GuideChecklist
+            id="sentencing-practical-moves"
+            title="Practical moves at this stage"
+            columns={1}
             items={[
               {
-                icon: "court",
-                title: "What rights am I giving up?",
-                description:
-                  "Ask about trial rights, appeal limits, factual admissions, sentencing exposure, and whether the plea can be withdrawn.",
+                id: "sentencing-psr",
+                label:
+                  "Ask counsel what information should and should not be shared with U.S. Probation during the presentence process.",
               },
               {
-                icon: "fingerprint",
-                title: "Will registration be required?",
-                description:
-                  "Ask about duration, public listing, tier/classification, address rules, work reporting, travel notices, and removal eligibility.",
+                id: "sentencing-letters",
+                label:
+                  "Send character letters, treatment records, employment records, and other mitigation materials only in the way counsel requests.",
               },
               {
-                icon: "home",
-                title: "How will this affect housing and family?",
-                description:
-                  "Ask about living with children, returning home, school zones, custody/visitation, lease issues, and supervision approval.",
+                id: "sentencing-guidelines",
+                label:
+                  "Ask counsel to explain the guideline range, objections, mandatory minimums if any, and the difference between advisory guidelines and the judge’s final sentence.",
               },
               {
-                icon: "internet",
-                title: "Will internet or device limits apply?",
-                description:
-                  "Ask about phones, computers, social media, work accounts, treatment software, monitoring, passwords, and shared family devices.",
-              },
-              {
-                icon: "reentry",
-                title: "What will supervision require?",
-                description:
-                  "Ask about curfew, GPS, treatment, polygraph, travel, employment, contact rules, home visits, searches, and violation consequences.",
-              },
-              {
-                icon: "document",
-                title: "What should I save?",
-                description:
-                  "Ask for copies of plea forms, sentencing orders, conditions, registry instructions, treatment referrals, and appeal deadlines.",
+                id: "sentencing-judgment",
+                label:
+                  "After sentencing, save the judgment, statement of reasons if available to counsel, surrender instructions, and all written supervision conditions.",
               },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="🗣️" title="Sentencing is also a documentation moment">
+          <GuideCallout tone="reminder" icon="📝" title="Character letters should go through counsel">
             <p>
-              If sentencing is coming up, ask counsel what mitigation is useful,
-              whether the person has a right to speak, what support letters or
-              treatment records should be gathered, what appeal deadlines may
-              apply, and what paperwork must be saved before leaving court.
+              A heartfelt letter can still create problems if it minimizes harm, attacks others, includes inaccurate facts, or is sent to the wrong place. Ask counsel what tone, deadline, format, and delivery method to use.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionCard>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Stage 7 · After sentencing if custody is ordered
+              </div>
+              <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                <span className="mr-2" aria-hidden="true">
+                  🏢
+                </span>
+                BOP Designation, Surrender, and Federal Custody
+              </h3>
+            </div>
+          </div>
+
+          <GuideProse>
+            <p>
+              If the sentence includes federal imprisonment, the Bureau of Prisons decides designation and custody administration. The sentencing judge may make recommendations, but BOP controls placement, classification, transfer decisions, custody rules, and many day-to-day prison procedures.
+            </p>
+
+            <h4>What usually happens</h4>
+            <ul>
+              <li>
+                The court may order immediate remand or allow self-surrender.
+              </li>
+              <li>
+                BOP reviews designation factors and assigns a facility.
+              </li>
+              <li>
+                BOP rules control communication, visitation, commissary, programming, discipline, transfers, release calculation, and custody classification.
+              </li>
+              <li>
+                As release approaches, BOP may be involved in release planning, Residential Reentry Center placement, home confinement review, or coordination with U.S. Probation.
+              </li>
+            </ul>
+
+            <h4>Federal actors you may hear about</h4>
+            <ul>
+              <li>Bureau of Prisons Designation and Sentence Computation Center</li>
+              <li>Facility case manager or unit team</li>
+              <li>U.S. Marshals Service, if the person is remanded or transported</li>
+              <li>U.S. Probation, especially before release to supervision</li>
+              <li>Sentencing court, for limited post-sentencing issues</li>
+            </ul>
+          </GuideProse>
+
+          <GuideChecklist
+            id="bop-practical-moves"
+            title="Practical moves at this stage"
+            columns={1}
+            items={[
+              {
+                id: "bop-save-designation",
+                label:
+                  "Save the judgment, surrender order, designation notice, BOP register number, facility contact information, and any written surrender instructions.",
+              },
+              {
+                id: "bop-authority",
+                label:
+                  "Remember that court recommendations and BOP decisions are not the same thing. Ask counsel which issues belong to the court and which belong to BOP.",
+              },
+              {
+                id: "bop-communications",
+                label:
+                  "Check BOP and facility rules before sending mail, funds, books, photos, emails, or visitation requests.",
+              },
+              {
+                id: "bop-release",
+                label:
+                  "As release approaches, ask what federal office is handling release timing, RRC or home confinement review, and the handoff to U.S. Probation.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionCard>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Stage 8 · Release from BOP custody and after
+              </div>
+              <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                <span className="mr-2" aria-hidden="true">
+                  🧭
+                </span>
+                Supervised Release and Registration Handoffs
+              </h3>
+            </div>
+          </div>
+
+          <GuideProse>
+            <p>
+              This stage is not general reentry planning. This guide focuses on the federal-process pieces: release from BOP custody, the transition to U.S. Probation supervision, federal supervised release conditions, and the handoff to state or local registration systems when registration applies.
+            </p>
+
+            <h4>What usually happens</h4>
+            <ul>
+              <li>
+                BOP releases the person according to federal custody calculations and release procedures.
+              </li>
+              <li>
+                U.S. Probation supervises the person under the conditions ordered by the federal court.
+              </li>
+              <li>
+                The federal court may later address modification, clarification, early termination, or revocation of supervised release.
+              </li>
+              <li>
+                Registration duties may involve federal law, state law, local law enforcement practice, and supervision conditions, but the actual reporting office is often state or local.
+              </li>
+            </ul>
+
+            <h4>Federal actors you may hear about</h4>
+            <ul>
+              <li>Bureau of Prisons</li>
+              <li>U.S. Probation officer</li>
+              <li>Federal sentencing judge</li>
+              <li>Federal prosecutor and defense counsel, if supervision litigation arises</li>
+              <li>SMART Office or SORNA materials as federal background, not a substitute for local registration instructions</li>
+            </ul>
+          </GuideProse>
+
+          <GuideChecklist
+            id="supervision-registration-practical-moves"
+            title="Practical moves at this stage"
+            columns={1}
+            items={[
+              {
+                id: "supervision-conditions",
+                label:
+                  "Get a copy of the written supervised release conditions and ask U.S. Probation how reporting, travel, treatment, internet, contact, and search conditions will be handled.",
+              },
+              {
+                id: "supervision-authority",
+                label:
+                  "Separate the systems: BOP handles custody release; U.S. Probation handles federal supervision; the federal court handles supervision orders; state or local offices often handle registry reporting.",
+              },
+              {
+                id: "registration-deadlines",
+                label:
+                  "Before relying on any registration assumption, verify the deadline, location, documents required, address rules, travel rules, and update rules with the registering authority.",
+              },
+              {
+                id: "save-confirmation",
+                label:
+                  "Save written instructions, reporting receipts, appointment cards, names, dates, badge numbers, confirmation numbers, and copies of forms submitted.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reentry" icon="🔁" title="Keep this guide focused on the federal handoff">
+            <p>
+              For personal reentry planning such as housing, documents, health care, transportation, employment, and family support, use SOLAR’s dedicated guides. This section is about what changes because federal custody is ending and federal supervision or registration-related obligations may begin.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 <GuideSectionHeader
-          id="incarceration-release"
-          number="6"
-          title="Incarceration, release, supervision, and registration"
-          subtitle="Rights still matter after conviction, but deadlines and written rules become especially important."
+          id="verify"
+          number="3"
+          title="Verify before acting"
+          subtitle="The safest answer often depends on which authority controls the specific step."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              During incarceration, practical rights often involve safety,
-              medical care, mental health care, religious practice, disability
-              access, mail, visitation, grievances, discipline, records, and
-              preparation for release. Families can help by keeping organized
-              notes, saving mail, tracking requests, and helping prepare a
-              reentry folder.
-            </p>
-
-            <p>
-              After release, registry and supervision rules can change ordinary
-              life quickly. Moving, traveling, changing jobs, using the internet,
-              living with family, missing appointments, or misunderstanding a
-              reporting deadline can create serious consequences.
+              A federal case can involve overlapping systems. A probation officer may not control a BOP designation. A BOP case manager may not control a federal court condition. A federal court condition may not tell you every local registration rule. Before acting, identify the office with actual authority over the exact question.
             </p>
           </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>
-                Keep orders, conditions, registry paperwork, officer
-                instructions, treatment rules, and deadlines in one folder.
-              </span>,
-              <span>
-                Verify before moving, traveling, changing employment, using a new
-                device, opening an account, changing household members, or
-                relying on voting-rights assumptions.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not rely on memory, old paperwork, another person’s registry
-                rules, or informal advice from people in a different county or
-                state.
-              </span>,
-              <span>
-                Do not ignore a rule because it seems impossible. Ask for written
-                clarification or legal help before the deadline passes.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Officer instructions, court orders, registry-office instructions,
-                treatment rules, and local ordinances can overlap or conflict.
-                When they do, pause and ask for clarification in writing.
-              </span>,
-            ]}
-          />
 
           <VerifyBeforeActing
-            title="Verify before acting after release"
-            whoToAsk={
-              <span>
-                Your lawyer, supervising officer, registering agency, court
-                clerk, treatment provider, housing authority, or another office
-                with actual authority over the specific rule.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “Before I act, can you confirm what rule applies to [move,
-                travel, job change, internet use, family contact, address change,
-                vehicle, phone, account, voting registration, or deadline], who
-                must approve it, and whether I need written permission?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save the date, name, office, phone number or email, exact
-                instruction, deadline, form, approval, denial, and any follow-up
-                steps.
-              </span>
-            }
+            whoToAsk="Defense counsel first when the question could affect the case, custody, supervision, registration, travel, housing, contact rules, or court compliance. Then ask the specific office with authority, such as Pretrial Services, BOP, U.S. Probation, the court clerk, or the registration office."
+            whatToAsk="Ask one narrow question at a time: What rule applies to this action, what deadline applies, who approves it, what form is required, and can I get the answer in writing?"
+            whatToSave="Save the date, name, title, department, phone number, email, form, written answer, receipt, confirmation number, and any follow-up instruction."
           />
 
-          <GuideCallout tone="legal" icon="🧾" title="Registry errors and relief pathways">
+          <GuideCallout tone="warning" icon="⚠️" title="Do not treat verbal permission as enough when the stakes are high">
             <p>
-              If a registry entry is wrong, outdated, missing context, showing
-              the wrong address, listing the wrong status, or failing to reflect
-              relief already granted, document the problem and ask the
-              registering agency or counsel how to correct it. Some jurisdictions
-              also allow petitions for removal, reduction, termination, relief,
-              or review after certain requirements are met. These pathways vary
-              widely, so verify locally before assuming you are eligible.
+              Verbal guidance may help you understand what to do next, but written confirmation is safer when a mistake could affect release, detention, supervision, registration, housing, travel, or court compliance.
             </p>
           </GuideCallout>
-
-          <OfflineOptions
-            title="If internet access is limited or monitored"
-            icon="📵"
-            note={
-              <span>
-                Many people on supervision or in custody cannot safely rely on
-                private internet access. Use paper and trusted helpers when
-                needed.
-              </span>
-            }
-            items={[
-              "Ask a lawyer, public defender office, library, reentry worker, or family member to print court orders, registry rules, and legal-help contacts.",
-              "Use a paper notebook for officer instructions, registration dates, treatment appointments, and questions for counsel.",
-              "Ask for mailed forms or written instructions if online reporting, portals, or accounts are restricted.",
-              "Have a trusted helper save screenshots, appointment confirmations, transportation plans, and written approvals.",
-            ]}
-          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="scripts-documents"
-          number="7"
-          title="Scripts and documents to keep close"
-          subtitle="Simple language and organized records help when stress is high."
-        />
-
-        <GuideSectionCard>
-          <ScriptBox
-            title="Officer or registry clarification script"
-            tone="reentry"
-            context="Use when a rule is unclear and you need the answer documented."
-            script={`Hello [Name/Office],
-
-I am trying to follow my rules correctly. Before I act, I need clarification about [specific issue].
-
-My question is: [one clear question].
-
-Can you please tell me:
-1. What rule applies?
-2. Who has authority to approve or deny it?
-3. Whether I need written permission or a form?
-4. What deadline applies?
-
-I am saving the answer for my records. Thank you.`}
-          />
-
-          <DocumentPacket
-            title="Rights protection folder"
-            intro={
-              <span>
-                Keep one folder for the documents that prove what happened, what
-                you were told, and what deadlines apply.
-              </span>
-            }
-            categories={[
-              {
-                title: "Police, search, and investigation records",
-                items: [
-                  "Warrants, subpoenas, property receipts, search inventories, officer cards, agency names, case numbers, and device/account seizure notes.",
-                  "Timeline of police contact, interviews, family contact, school/work contact, child-protection contact, or digital-forensics events.",
-                  "Names and contact details for attorneys, public defenders, investigators, advocates, and trusted family helpers.",
-                ],
-              },
-              {
-                title: "Court and defense records",
-                items: [
-                  "Charging documents, bond or release conditions, no-contact orders, protective orders, discovery notices, hearing dates, plea paperwork, sentencing orders, and appeal deadlines.",
-                  "Attorney meeting notes, questions to ask, answers received, mitigation records, treatment records, support letters, and reentry planning documents.",
-                  "Immigration, custody, housing, employment, school, professional licensing, voting-rights, and benefits questions that may need separate legal advice.",
-                ],
-              },
-              {
-                title: "Release, supervision, and registration records",
-                items: [
-                  "Supervision conditions, registry paperwork, address forms, travel forms, employment reporting forms, treatment rules, internet/device rules, and officer instructions.",
-                  "Written approvals, denials, appointment confirmations, registration receipts, reporting deadlines, and copies of anything submitted.",
-                  "A log of calls, visits, emails, mailed forms, names, departments, dates, and exact instructions.",
-                ],
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="family-helper-checklist"
-            title="Family helper checklist"
-            columns={1}
-            items={[
-              {
-                id: "no-explaining",
-                label:
-                  "Do not explain facts to police, alleged victims, witnesses, schools, employers, neighbors, or online groups without legal advice.",
-              },
-              {
-                id: "no-delete",
-                label:
-                  "Do not delete, edit, hide, wipe, forward, or post about messages, photos, devices, accounts, or documents.",
-              },
-              {
-                id: "save-paper",
-                label:
-                  "Save paperwork, envelopes, screenshots, call logs, appointment dates, and written instructions.",
-              },
-              {
-                id: "legal-help",
-                label:
-                  "Help find a lawyer, public defender contact, legal aid office, or criminal defense referral instead of trying to solve the case yourself.",
-              },
-              {
-                id: "support",
-                label:
-                  "Support practical stability: transportation, medication, housing notes, court-date reminders, clothing for court, and calm communication.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="mistakes"
-          number="8"
+          id="avoid-mistakes"
+          number="4"
           title="Common mistakes to avoid"
-          subtitle="Most mistakes happen because people are scared and trying to fix everything too quickly."
+          subtitle="These are not moral judgments. They are practical ways people accidentally make a federal case harder."
         />
 
         <GuideSectionCard>
-          <CommonMistakes
-            mistakes={[
-              {
-                mistake: "Talking to clear things up.",
-                whyItMatters:
-                  "Statements can be incomplete, misunderstood, recorded, repeated, or used later even when the person meant well.",
-                betterMove:
-                  "Say you are using your right to remain silent and want a lawyer.",
-              },
-              {
-                mistake: "Consenting to searches without advice.",
-                whyItMatters:
-                  "Consent can affect phones, computers, accounts, homes, cars, and shared family spaces.",
-                betterMove:
-                  "Do not consent when you have a choice. Ask whether there is a warrant and request a copy.",
-              },
-              {
-                mistake: "Deleting or changing digital evidence.",
-                whyItMatters:
-                  "Trying to clean up files, accounts, messages, or devices can create new legal problems.",
-                betterMove:
-                  "Preserve what exists and tell your lawyer about it.",
-              },
-              {
-                mistake: "Contacting alleged victims or witnesses.",
-                whyItMatters:
-                  "Even peaceful contact can violate orders, look like pressure, or become new evidence.",
-                betterMove:
-                  "Let lawyers handle case-related contact.",
-              },
-              {
-                mistake: "Treating supervision or registry instructions as informal advice.",
-                whyItMatters:
-                  "Missed deadlines, unapproved travel, address issues, or unclear internet rules can lead to violations or new charges.",
-                betterMove:
-                  "Verify the rule, save the answer, and ask for clarification before acting.",
-              },
-              {
-                mistake: "Letting family members become investigators.",
-                whyItMatters:
-                  "Family helpers can accidentally become witnesses, spread information, alter evidence, or trigger contact violations.",
-                betterMove:
-                  "Ask family to organize documents, help find counsel, and support stability.",
-              },
+          <GuideProse>
+            <ul>
+              <li>
+                <strong>Talking to investigators without counsel.</strong> Even a calm explanation can be misunderstood, incomplete, or used later.
+              </li>
+              <li>
+                <strong>Posting about the case online.</strong> Public posts, comments, fundraisers, private groups, and messages may travel farther than expected.
+              </li>
+              <li>
+                <strong>Contacting witnesses, alleged victims, co-defendants, or family members connected to the case.</strong> This can create serious risk even if the intent is peaceful.
+              </li>
+              <li>
+                <strong>Assuming federal, state, and local rules are the same.</strong> Federal supervision, BOP custody, and registration reporting can involve different authorities.
+              </li>
+              <li>
+                <strong>Missing paperwork deadlines.</strong> Court dates, motion deadlines, presentence deadlines, surrender instructions, probation reporting, and registration deadlines should be saved and double-checked.
+              </li>
+              <li>
+                <strong>Sending sensitive materials through monitored systems.</strong> Jail calls, prison email, mail, texts, and some digital platforms may not be private.
+              </li>
+              <li>
+                <strong>Using generic internet advice for a specific case.</strong> Federal procedure is real, but the exact answer can depend on the district, judge, charges, plea terms, custody status, and court orders.
+              </li>
+            </ul>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="limited-access"
+          number="5"
+          title="If internet access is limited"
+          subtitle="Federal cases often affect people who are detained, incarcerated, on supervision, phone-only, or relying on family for paperwork."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet ways to keep the process organized"
+            items={[
+              "Keep one paper folder for court papers, one for attorney notes, and one for supervision or registration instructions.",
+              "Ask counsel, the clerk, BOP, U.S. Probation, or the registration office to mail or print forms when online access is not realistic.",
+              "Write down names, dates, departments, phone numbers, badge numbers, and confirmation numbers during every important call.",
+              "Ask one trusted person to be the document helper so instructions do not get scattered across texts, screenshots, and social media messages.",
+              "Use a public library, courthouse, clerk’s office, or trusted helper for printing only when doing so does not violate supervision, release, or technology restrictions.",
             ]}
           />
 
-          <GuideCallout tone="legal" icon="⚖️" title="Before relying on this guide">
+          <GuideCallout tone="privacy" icon="🔒" title="Privacy still matters">
             <p>
-              This page is educational and practical, not legal advice. If
-              something here conflicts with your lawyer’s advice, court order,
-              supervision condition, registry instruction, or local law, pause
-              and get clarification from a qualified legal professional or the
-              authority responsible for that rule.
+              Do not use a shared computer, public printer, monitored account, or jail or prison messaging system for sensitive case strategy unless counsel has said it is safe.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="resources"
-          number="9"
-          title="Resources and next steps"
-          subtitle="Use official sources where possible, but get case-specific legal help before making legal decisions."
+          number="6"
+          title="Official resources and related SOLAR guides"
+          subtitle="Use official sources for verification, then use SOLAR guides for practical next steps."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Legal help and rights resources"
-            description={
-              <span>
-                These are starting points for education and referrals. They do
-                not replace a lawyer who knows your case.
-              </span>
-            }
+            title="Official federal resources"
             resources={[
               {
-                label: "NACDL Find a Lawyer Directory",
-                href: sourceLinks.nacdlDirectory,
-                badge: "Defense",
+                label: "FBI Field Offices",
                 description:
-                  "Criminal defense lawyer directory from the National Association of Criminal Defense Lawyers.",
-              },
-              {
-                label: "Legal Services Corporation legal help finder",
-                href: sourceLinks.lscLegalHelp,
-                badge: "Legal aid",
-                description:
-                  "Find LSC-funded civil legal aid organizations by location.",
-              },
-              {
-                label: "USAGov legal aid overview",
-                href: sourceLinks.usaGovLegalAid,
+                  "Find local FBI field office contact information and coverage areas.",
+                href: "https://www.fbi.gov/contact-us/field-offices",
                 badge: "Official",
-                description:
-                  "Federal starting point for affordable legal aid, LawHelp.org, and pro bono resources.",
               },
               {
-                label: "Cornell Bill of Rights",
-                href: sourceLinks.cornellBillOfRights,
-                badge: "Legal reference",
+                label: "Federal criminal cases overview",
                 description:
-                  "Plain access to constitutional text and explanations, including the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendments.",
+                  "U.S. Courts overview of criminal cases in federal court.",
+                href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
+                badge: "Official",
               },
               {
-                label: "NCSL felony voting rights",
-                href: sourceLinks.ncslVotingRights,
-                badge: "State law",
+                label: "Pretrial Services",
                 description:
-                  "State-by-state voting rights restoration information for people with felony convictions.",
+                  "U.S. Courts explanation of pretrial services in federal cases.",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
+                badge: "Official",
               },
               {
-                label: "NARSOL Resources",
-                href: sourceLinks.narsolResources,
-                badge: "Registry-specific",
+                label: "Presentence Investigations",
                 description:
-                  "Registry-focused resource collection, advocacy materials, research, links, and court-case resources.",
+                  "U.S. Courts explanation of the presentence investigation process.",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/presentence-investigations",
+                badge: "Official",
+              },
+              {
+                label: "U.S. Sentencing Commission Guidelines Manual",
+                description:
+                  "Current federal sentencing guidelines manual and related guideline materials.",
+                href: "https://www.ussc.gov/guidelines/2025-guidelines-manual",
+                badge: "Official",
+              },
+              {
+                label: "BOP Locations",
+                description:
+                  "Bureau of Prisons facility and location information.",
+                href: "https://www.bop.gov/locations/",
+                badge: "Official",
+              },
+              {
+                label: "U.S. Probation and Pretrial Services",
+                description:
+                  "General U.S. Courts information about federal probation and pretrial services.",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
+                badge: "Official",
+              },
+              {
+                label: "SMART Office SORNA information",
+                description:
+                  "Federal background on SORNA. Verify actual registration duties with the state or local registering authority.",
+                href: "https://smart.ojp.gov/sorna",
+                badge: "Official",
               },
             ]}
           />
+
+          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "Housing Search Guide",
+                title: "Know Your Rights Guide",
                 description:
-                  "Use this when release, supervision, or registration rules affect where someone can live.",
-                to: "/resources/housing-search-guide",
+                  "Use this when you need a rights-focused overview for law enforcement contact, searches, questioning, and legal representation.",
+                to: "/resources/know-your-rights",
+              },
+              {
+                title: "Prison Communication Guide",
+                description:
+                  "Use this for practical guidance on calls, mail, email, visitation, privacy, and communication limits during custody.",
+                to: "/resources/prison-communication",
               },
               {
                 title: "Reentry Planning Guide",
                 description:
-                  "Helpful for organizing release paperwork, appointments, housing, work, transportation, and documentation.",
-                to: "/resources/reentry-planning",
+                  "Use this for personal reentry planning beyond the federal-process handoff, including documents, housing, health care, transportation, and support.",
+                to: "/resources/reentry",
               },
               {
-                title: "Family Support Guide",
+                title: "Housing Search Guide",
                 description:
-                  "Helps loved ones support someone safely without escalating legal, emotional, or practical risk.",
-                to: "/resources/family-support",
+                  "Use this for housing strategy after release or during supervision, especially where registry or supervision restrictions may apply.",
+                to: "/resources/housing-search",
+              },
+              {
+                title: "Job Search Strategies",
+                description:
+                  "Use this for employment planning, applications, disclosure decisions, and rebuilding work options.",
+                to: "/resources/job-search",
               },
             ]}
           />
 
+          <SoftDivider />
+
           <SourceList
-            title="Sources and verification"
-            note={
-              <span>
-                Links were checked for live access before publication.
-                Constitutional rights, criminal procedure, registry duties,
-                supervision rules, voting rights, and incarceration rules still
-                require jurisdiction-specific verification before use in a
-                specific case.
-              </span>
-            }
+            note="Links were selected from official federal sources where possible. Before production publication, re-check any route-specific SOLAR links and any district-specific court practices."
             sources={[
               {
-                label: "Cornell Legal Information Institute: Bill of Rights",
-                href: sourceLinks.cornellBillOfRights,
+                label: "Original SOLAR FederalProcessGuide.tsx",
+                href: "https://github.com/projectsolarrecon/Solar/blob/main/src%2Fpages%2Fresources%2FFederalProcessGuide.tsx",
                 description:
-                  "Constitutional reference for the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendment framework used in this guide.",
+                  "Source guide used as the basis for this sandbox rebuild.",
               },
               {
-                label: "Cornell Legal Information Institute: Fourth Amendment",
-                href: sourceLinks.cornellFourth,
+                label: "FBI Field Offices",
+                href: "https://www.fbi.gov/contact-us/field-offices",
                 description:
-                  "Reference for search, seizure, warrants, surveillance, and privacy-related protections.",
+                  "Official FBI field office directory and local office information.",
               },
               {
-                label: "Cornell Legal Information Institute: Fifth Amendment",
-                href: sourceLinks.cornellFifth,
+                label: "U.S. Courts — Criminal Cases",
+                href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
                 description:
-                  "Reference for self-incrimination and due-process protections.",
+                  "General federal court explanation of criminal cases.",
               },
               {
-                label: "Cornell Legal Information Institute: Sixth Amendment",
-                href: sourceLinks.cornellSixth,
+                label: "U.S. Courts — Pretrial Services",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
                 description:
-                  "Reference for counsel, trial, confrontation, jury, and criminal-prosecution rights.",
+                  "Official overview of the role of pretrial services officers.",
               },
               {
-                label: "Cornell Legal Information Institute: Miranda v. Arizona",
-                href: sourceLinks.cornellMiranda,
+                label: "U.S. Courts — Presentence Investigations",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/presentence-investigations",
                 description:
-                  "Reference for custodial interrogation, the right to remain silent, and counsel warnings.",
+                  "Official overview of presentence investigation work by probation officers.",
               },
               {
-                label: "Cornell Legal Information Institute: Right to counsel",
-                href: sourceLinks.cornellRightToCounsel,
+                label: "U.S. Courts — Probation and Pretrial Services",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
                 description:
-                  "Reference for the right of a criminal defendant to have legal assistance.",
+                  "Official overview of federal probation and pretrial services.",
               },
               {
-                label: "Cornell Legal Information Institute: Brady rule",
-                href: sourceLinks.cornellBrady,
+                label: "U.S. Sentencing Commission — 2025 Guidelines Manual",
+                href: "https://www.ussc.gov/guidelines/2025-guidelines-manual",
                 description:
-                  "Reference for prosecution disclosure of material exculpatory information.",
+                  "Official guidelines manual and sentencing guideline materials.",
               },
               {
-                label: "Federal Rule of Criminal Procedure 16",
-                href: sourceLinks.cornellRule16,
+                label: "Bureau of Prisons — Locations",
+                href: "https://www.bop.gov/locations/",
                 description:
-                  "Reference for federal criminal discovery and inspection rules.",
+                  "Official BOP location and facility information.",
               },
               {
-                label: "Justia U.S. Supreme Court: Packingham v. North Carolina",
-                href: sourceLinks.justiaPackingham,
+                label: "SMART Office — SORNA",
+                href: "https://smart.ojp.gov/sorna",
                 description:
-                  "Reference for registry-related First Amendment internet-access limits and lawful speech concerns.",
-              },
-              {
-                label: "Federal Bureau of Prisons Legal Resource Guide",
-                href: sourceLinks.bopLegalGuide,
-                description:
-                  "Federal custody reference for BOP medical care, administrative remedies, and prison legal-resource topics.",
-              },
-              {
-                label: "NCSL felony voting rights",
-                href: sourceLinks.ncslVotingRights,
-                description:
-                  "State-by-state reference for voting-rights restoration after felony convictions.",
+                  "Federal background on SORNA minimum standards. Local registration duties still need local verification.",
               },
             ]}
           />
