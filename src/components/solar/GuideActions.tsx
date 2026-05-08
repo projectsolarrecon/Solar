@@ -149,7 +149,7 @@ export function QuickStartPanel({
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-red-100 text-sm font-bold text-red-700">
                     {index + 1}
                   </span>
-                  <div className="text-slate-800 leading-relaxed">{item}</div>
+                  <div className="text-[15px] sm:text-base text-slate-800 leading-relaxed">{item}</div>
                 </li>
               ))}
             </ul>
@@ -167,7 +167,7 @@ export function QuickStartPanel({
                   <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
                     {index + 1}
                   </span>
-                  <div className="text-slate-800 leading-relaxed">{item}</div>
+                  <div className="text-[15px] sm:text-base text-slate-800 leading-relaxed">{item}</div>
                 </li>
               ))}
             </ul>
@@ -176,8 +176,8 @@ export function QuickStartPanel({
 
         {reminder && (
           <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
-            <p className="font-semibold mb-1">Remember</p>
-            <div className="leading-relaxed">{reminder}</div>
+            <p className="text-[15px] sm:text-base font-semibold mb-1">Remember</p>
+            <div className="text-[15px] sm:text-base leading-relaxed">{reminder}</div>
           </div>
         )}
       </div>
@@ -210,7 +210,7 @@ export function Checklist({
   return (
     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5 my-5">
       {title && (
-        <h3 className="text-lg font-semibold text-slate-900 mb-4">{title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-4">{title}</h3>
       )}
 
       <ul
@@ -233,7 +233,7 @@ export function Checklist({
                 />
                 <span className="min-w-0">
                   <span
-                    className={`block leading-relaxed ${
+                    className={`block text-[15px] sm:text-base leading-relaxed ${
                       isChecked
                         ? "line-through text-slate-500"
                         : "text-slate-800"
@@ -287,7 +287,7 @@ export function ScriptBox({
     <div className={`rounded-2xl border p-4 sm:p-5 my-5 ${styles.wrapper}`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className={`font-semibold ${styles.title}`}>{title}</p>
+          <p className={`text-[15px] sm:text-base font-semibold ${styles.title}`}>{title}</p>
           {context && (
             <div className={`mt-1 text-sm leading-relaxed ${styles.body}`}>
               {context}
@@ -329,7 +329,7 @@ export function OfflineOptions({
           <span aria-hidden="true">{icon}</span>
         </div>
         <div className="min-w-0">
-          <p className="font-semibold text-orange-950">{title}</p>
+          <p className="text-[15px] sm:text-base font-semibold text-orange-950">{title}</p>
           {note && (
             <div className="mt-1 text-sm leading-relaxed text-orange-900">
               {note}
@@ -337,11 +337,11 @@ export function OfflineOptions({
           )}
           <ul className="mt-3 space-y-2">
             {items.map((item, index) => (
-              <li key={index} className="flex items-start gap-2 text-orange-900">
+              <li key={index} className="flex items-start gap-2 text-[15px] sm:text-base text-orange-900 leading-relaxed">
                 <span aria-hidden="true" className="mt-0.5">
                   •
                 </span>
-                <span className="leading-relaxed">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
@@ -372,7 +372,7 @@ export function DocumentPacket({
           <span aria-hidden="true">🗂️</span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="font-semibold text-slate-950">{title}</p>
+          <p className="text-[15px] sm:text-base font-semibold text-slate-950">{title}</p>
           {intro && (
             <div className="mt-1 text-sm leading-relaxed text-slate-700">
               {intro}
@@ -382,11 +382,11 @@ export function DocumentPacket({
           {items && (
             <ul className="mt-4 space-y-2">
               {items.map((item, index) => (
-                <li key={index} className="flex items-start gap-2 text-slate-800">
+                <li key={index} className="flex items-start gap-2 text-[15px] sm:text-base text-slate-800 leading-relaxed">
                   <span aria-hidden="true" className="mt-0.5 text-slate-500">
                     ☐
                   </span>
-                  <span className="leading-relaxed">{item}</span>
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -399,19 +399,19 @@ export function DocumentPacket({
                   key={category.title}
                   className="rounded-xl border border-slate-200 bg-slate-50 p-4"
                 >
-                  <p className="font-semibold text-slate-900 mb-2">
+                  <p className="text-[15px] sm:text-base font-semibold text-slate-900 mb-2">
                     {category.title}
                   </p>
                   <ul className="space-y-2">
                     {category.items.map((item, index) => (
                       <li
                         key={index}
-                        className="flex items-start gap-2 text-sm text-slate-700"
+                        className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed"
                       >
                         <span aria-hidden="true" className="mt-0.5">
                           ☐
                         </span>
-                        <span className="leading-relaxed">{item}</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -443,7 +443,7 @@ export function VerifyBeforeActing({
           <span aria-hidden="true">🔎</span>
         </div>
         <div className="min-w-0">
-          <p className="font-semibold text-sky-950">{title}</p>
+          <p className="text-[15px] sm:text-base font-semibold text-sky-950">{title}</p>
           <div className="mt-3 grid gap-3 md:grid-cols-3">
             <div className="rounded-xl bg-white/80 border border-sky-100 p-3">
               <p className="text-xs font-bold uppercase tracking-wide text-sky-700">
@@ -496,14 +496,14 @@ export function CommonMistakes({
           <span aria-hidden="true">🚩</span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="font-semibold text-red-950">{title}</p>
+          <p className="text-[15px] sm:text-base font-semibold text-red-950">{title}</p>
           <div className="mt-4 space-y-4">
             {mistakes.map((item, index) => (
               <div
                 key={index}
                 className="rounded-xl bg-white/80 border border-red-100 p-4"
               >
-                <p className="font-semibold text-red-950">{item.mistake}</p>
+                <p className="text-[15px] sm:text-base font-semibold text-red-950">{item.mistake}</p>
                 {item.whyItMatters && (
                   <div className="mt-2 text-sm leading-relaxed text-red-900">
                     <span className="font-semibold">Why it matters: </span>
