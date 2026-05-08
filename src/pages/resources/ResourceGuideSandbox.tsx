@@ -28,12 +28,14 @@ import {
 const sourceLinks = {
   cornellBillOfRights: "https://www.law.cornell.edu/constitution/billofrights",
   cornellFourth: "https://www.law.cornell.edu/constitution/fourth_amendment",
+  cornellFifth: "https://www.law.cornell.edu/constitution/fifth_amendment",
   cornellSixth: "https://www.law.cornell.edu/constitution/sixth_amendment",
-  cornellMiranda: "https://www.law.cornell.edu/wex/miranda_v_arizona_%281966%29",
+  cornellMiranda: "https://www.law.cornell.edu/wex/miranda_v._arizona_%281966%29",
   cornellRightToCounsel: "https://www.law.cornell.edu/wex/right_to_counsel",
   cornellBrady: "https://www.law.cornell.edu/wex/brady_rule",
+  cornellRule16: "https://www.law.cornell.edu/rules/frcrmp/rule_16",
   justiaPackingham: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
-  bopLegalGuide: "https://www.bop.gov/resources/pdfs/legal_guide_march_2019.pdf",
+  bopLegalGuide: "https://www.bop.gov/resources/pdfs/legal_guide.pdf",
   nacdlDirectory: "https://www.nacdl.org/directory/public",
   lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
   usaGovLegalAid: "https://www.usa.gov/legal-aid",
@@ -48,8 +50,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
         title="Know Your Rights During a Sex Offense Case | The SOLAR Project"
-        description="A practical rights guide for people accused or convicted of a sex offense, registrants, and families navigating police contact, searches, court conditions, incarceration, supervision, and registration."
-        keywords="sex offense rights, know your rights, police questioning, right to remain silent, right to counsel, sex offender registry rights, supervision conditions, reentry rights"
+        description="A practical, sex-offense-specific guide for protecting your rights, slowing down police and court pressure, documenting what happens, and knowing when to ask for legal help."
+        keywords="sex offense case rights, right to remain silent, right to counsel, search warrant, registry rights, supervision rules, criminal defense, legal aid"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -176,6 +178,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
           }
         />
 
+        <GuideCallout tone="warning" icon="⚠️" title="Do not use a general guide to make a case-specific legal decision">
+          <p>
+            This guide can help you slow down and protect information, but it
+            cannot tell you what to say, what to sign, whether to consent,
+            whether to unlock a device, whether to contact someone, or whether
+            to accept a plea in your specific case. Those decisions need
+            case-specific legal advice whenever possible.
+          </p>
+        </GuideCallout>
+
         <OverviewCards
           columns={4}
           cards={[
@@ -215,81 +227,177 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionHeader
-          id="big-picture"
+          id="rights-by-stage"
           number="1"
-          title="The big picture: rights change by stage"
-          subtitle="The safest move depends on where you are in the process."
+          title="Rights you may have at each stage"
+          subtitle="Start with the rights themselves, then use the rest of the guide to protect them under pressure."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A sex offense case can move through investigation, arrest,
-              pretrial release, plea negotiations, trial, sentencing,
-              incarceration, supervision, and registration. Your rights do not
-              disappear, but the practical risk changes at each stage.
+              Rights do not disappear because the accusation is serious, because
+              a person is on a registry, or because a case involves the internet,
+              children, family, treatment, or supervision. But the way rights
+              work depends on the stage of the case and the rules already in
+              place.
             </p>
 
             <p>
-              A police interview is different from a court hearing. A search
-              warrant is different from a voluntary request. A probation rule is
-              different from a general registry rule. A family member trying to
-              “help explain” can unintentionally become a witness. That is why
-              this guide pairs each stage with clear do, don’t, and pause-and-
-              verify guidance.
+              This section names common rights and protections in plain language.
+              It is not a complete legal analysis. Use it to prepare questions
+              for counsel and to recognize when you should pause before acting.
             </p>
           </GuideProse>
 
           <TimelineGuidanceGrid
-            title="Rights and risks by stage"
+            title="Named rights and protections by stage"
             stages={[
               {
                 stage: "Investigation",
                 icon: "🔎",
-                whatChanges:
-                  "Police, detectives, federal agents, campus investigators, child-protection workers, or digital-forensics teams may seek statements, devices, records, or consent.",
-                whatToDo:
-                  "Use your right to remain silent, ask for counsel, avoid consent to searches, and tell family not to delete or explain anything.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to remain silent;
+                    right to ask for a lawyer; right not to consent to a search
+                    when consent is requested; Fourth Amendment protections
+                    against unreasonable searches and seizures; limits on
+                    government questioning and evidence collection.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before answering questions, signing statements,
+                    unlocking devices, sharing passwords, giving consent, or
+                    letting family explain facts.
+                  </span>
+                ),
               },
               {
                 stage: "Arrest and booking",
                 icon: "🚔",
-                whatChanges:
-                  "You may be taken into custody, fingerprinted, questioned, given bond conditions, or brought before a judge.",
-                whatToDo:
-                  "Ask for a lawyer, use your phone call carefully, save paperwork, and treat release conditions as rules from the moment you receive them.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to remain silent;
+                    right to counsel; right to know the charge or reason for
+                    arrest; right to a first appearance or prompt court review,
+                    depending on jurisdiction; possible right to bail or bond,
+                    subject to state law, charge type, risk findings, and court
+                    conditions.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before discussing facts on recorded calls, jail phones,
+                    body cameras, transport conversations, text messages, or with
+                    other people in custody.
+                  </span>
+                ),
               },
               {
-                stage: "Pretrial release",
+                stage: "Pretrial",
                 icon: "📄",
-                whatChanges:
-                  "No-contact orders, internet limits, GPS, travel limits, housing rules, child-contact restrictions, and treatment requirements may begin quickly.",
-                whatToDo:
-                  "Read every condition, ask your lawyer before contact or travel, and get clarification in writing when a rule is unclear.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to counsel; right to
+                    review discovery through counsel; right to challenge
+                    unlawful searches, statements, or evidence through motions;
+                    right to seek clarification or modification of unclear or
+                    unworkable release conditions; presumption of innocence.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before contacting anyone named in an order, returning
+                    home, using restricted devices, traveling, posting online, or
+                    changing housing or work.
+                  </span>
+                ),
               },
               {
-                stage: "Plea, trial, and sentencing",
+                stage: "Trial",
                 icon: "🏛️",
-                whatChanges:
-                  "Choices can affect registration, custody, supervision, immigration, housing, work, family contact, and appeal options.",
-                whatToDo:
-                  "Ask your lawyer about direct and collateral consequences before agreeing to a plea or sentencing plan.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> presumption of innocence;
+                    right to require the government to prove the case beyond a
+                    reasonable doubt; right to a public trial; right to a jury
+                    trial where available; right to confront and cross-examine
+                    witnesses; right to present a defense and call witnesses;
+                    right not to testify.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before speaking publicly about the case, contacting
+                    witnesses, posting online, or assuming the defense strategy
+                    is obvious from the outside.
+                  </span>
+                ),
+              },
+              {
+                stage: "Plea and sentencing",
+                icon: "⚖️",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to understand what
+                    rights a plea gives up; right to ask about registration,
+                    supervision, immigration, housing, employment, internet, and
+                    family consequences; right to speak at sentencing or
+                    allocution where available; right to present mitigation;
+                    possible right to appeal or seek review, subject to deadlines
+                    and plea limits.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before signing a plea, agreeing to facts, waiving
+                    appeal rights, or assuming registration and supervision are
+                    only paperwork.
+                  </span>
+                ),
               },
               {
                 stage: "Incarceration",
                 icon: "🔒",
-                whatChanges:
-                  "Safety, medical care, mental health care, religious practice, communication, grievances, and reentry planning become daily practical issues.",
-                whatToDo:
-                  "Document requests, save responses, use grievance processes when needed, and keep family communication calm and organized.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to basic safety and
+                    humane treatment; right to medical and mental health care;
+                    right to use grievance or administrative remedy systems;
+                    right to access courts, mail, and religious practice,
+                    subject to custody rules.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before ignoring medical, safety, discipline, mail, or
+                    grievance paperwork. Save requests and responses when
+                    possible.
+                  </span>
+                ),
               },
               {
                 stage: "Release, supervision, and registration",
                 icon: "🧭",
-                whatChanges:
-                  "Registry deadlines, officer instructions, housing approval, travel notices, internet rules, employment reporting, and address changes may carry serious consequences.",
-                whatToDo:
-                  "Verify before moving, traveling, changing jobs, using restricted platforms, contacting restricted people, or relying on informal advice.",
+                whatChanges: (
+                  <span>
+                    <strong>Rights to know:</strong> right to receive written
+                    conditions and instructions; right to ask for clarification;
+                    right to challenge registry errors; possible petition,
+                    reduction, relief, or removal pathways in some
+                    jurisdictions; state-dependent voting rights restoration;
+                    constitutional protections still apply, though supervision
+                    and registry rules may limit ordinary activity.
+                  </span>
+                ),
+                whatToDo: (
+                  <span>
+                    Pause before moving, traveling, changing jobs, opening
+                    accounts, using online platforms, changing devices, missing
+                    deadlines, or relying on another person’s registry rules.
+                  </span>
+                ),
               },
             ]}
           />
@@ -400,11 +508,11 @@ Please send any request in writing, and I will encourage [Name] to speak with a 
             </p>
 
             <p>
-              Search law is complicated. A warrant, a consent request, a subpoena,
-              a probation search condition, a parole instruction, a school or
-              workplace device policy, and a family member handing over a device
-              are not the same thing. Do not assume the rule. Slow down and
-              preserve the paper trail.
+              Search law is complicated. A warrant, a consent request, a
+              subpoena, a probation search condition, a parole instruction, a
+              school or workplace device policy, and a family member handing over
+              a device are not the same thing. Do not assume the rule. Slow down
+              and preserve the paper trail.
             </p>
           </GuideProse>
 
@@ -609,8 +717,8 @@ Can we review these before I act?`}
               </span>,
               <span>
                 Ask about appeal deadlines, immigration consequences, registry
-                duration, supervision rules, treatment requirements, and housing
-                effects before deciding.
+                duration, supervision rules, treatment requirements, voting
+                rights, and housing effects before deciding.
               </span>,
             ]}
             donts={[
@@ -678,6 +786,15 @@ Can we review these before I act?`}
               },
             ]}
           />
+
+          <GuideCallout tone="reminder" icon="🗣️" title="Sentencing is also a documentation moment">
+            <p>
+              If sentencing is coming up, ask counsel what mitigation is useful,
+              whether the person has a right to speak, what support letters or
+              treatment records should be gathered, what appeal deadlines may
+              apply, and what paperwork must be saved before leaving court.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 <GuideSectionHeader
           id="incarceration-release"
@@ -713,7 +830,8 @@ Can we review these before I act?`}
               </span>,
               <span>
                 Verify before moving, traveling, changing employment, using a new
-                device, opening an account, or changing household members.
+                device, opening an account, changing household members, or
+                relying on voting-rights assumptions.
               </span>,
             ]}
             donts={[
@@ -749,8 +867,8 @@ Can we review these before I act?`}
               <span>
                 “Before I act, can you confirm what rule applies to [move,
                 travel, job change, internet use, family contact, address change,
-                vehicle, phone, account, or deadline], who must approve it, and
-                whether I need written permission?”
+                vehicle, phone, account, voting registration, or deadline], who
+                must approve it, and whether I need written permission?”
               </span>
             }
             whatToSave={
@@ -761,6 +879,18 @@ Can we review these before I act?`}
               </span>
             }
           />
+
+          <GuideCallout tone="legal" icon="🧾" title="Registry errors and relief pathways">
+            <p>
+              If a registry entry is wrong, outdated, missing context, showing
+              the wrong address, listing the wrong status, or failing to reflect
+              relief already granted, document the problem and ask the
+              registering agency or counsel how to correct it. Some jurisdictions
+              also allow petitions for removal, reduction, termination, relief,
+              or review after certain requirements are met. These pathways vary
+              widely, so verify locally before assuming you are eligible.
+            </p>
+          </GuideCallout>
 
           <OfflineOptions
             title="If internet access is limited or monitored"
@@ -830,7 +960,7 @@ I am saving the answer for my records. Thank you.`}
                 items: [
                   "Charging documents, bond or release conditions, no-contact orders, protective orders, discovery notices, hearing dates, plea paperwork, sentencing orders, and appeal deadlines.",
                   "Attorney meeting notes, questions to ask, answers received, mitigation records, treatment records, support letters, and reentry planning documents.",
-                  "Immigration, custody, housing, employment, school, professional licensing, and benefits questions that may need separate legal advice.",
+                  "Immigration, custody, housing, employment, school, professional licensing, voting-rights, and benefits questions that may need separate legal advice.",
                 ],
               },
               {
@@ -1017,7 +1147,7 @@ I am saving the answer for my records. Thank you.`}
               {
                 title: "Reentry Planning Guide",
                 description:
-                  "Helpful for organizing release paperwork, appointments, housing, work, transportation, and family support.",
+                  "Helpful for organizing release paperwork, appointments, housing, work, transportation, and documentation.",
                 to: "/resources/reentry-planning",
               },
               {
@@ -1054,6 +1184,12 @@ I am saving the answer for my records. Thank you.`}
                   "Reference for search, seizure, warrants, surveillance, and privacy-related protections.",
               },
               {
+                label: "Cornell Legal Information Institute: Fifth Amendment",
+                href: sourceLinks.cornellFifth,
+                description:
+                  "Reference for self-incrimination and due-process protections.",
+              },
+              {
                 label: "Cornell Legal Information Institute: Sixth Amendment",
                 href: sourceLinks.cornellSixth,
                 description:
@@ -1066,10 +1202,22 @@ I am saving the answer for my records. Thank you.`}
                   "Reference for custodial interrogation, the right to remain silent, and counsel warnings.",
               },
               {
+                label: "Cornell Legal Information Institute: Right to counsel",
+                href: sourceLinks.cornellRightToCounsel,
+                description:
+                  "Reference for the right of a criminal defendant to have legal assistance.",
+              },
+              {
                 label: "Cornell Legal Information Institute: Brady rule",
                 href: sourceLinks.cornellBrady,
                 description:
                   "Reference for prosecution disclosure of material exculpatory information.",
+              },
+              {
+                label: "Federal Rule of Criminal Procedure 16",
+                href: sourceLinks.cornellRule16,
+                description:
+                  "Reference for federal criminal discovery and inspection rules.",
               },
               {
                 label: "Justia U.S. Supreme Court: Packingham v. North Carolina",
