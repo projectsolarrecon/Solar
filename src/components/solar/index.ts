@@ -12,6 +12,7 @@ export { default as SourcesOffline } from "./SourcesOffline";
 export {
   SectionHeader as GuideSectionHeader,
   SectionCard as GuideSectionCard,
+  GuideProse,
   Callout as GuideCallout,
   GuideIntro,
   PullQuoteBlock,
