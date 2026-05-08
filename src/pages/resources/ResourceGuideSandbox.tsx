@@ -21,15 +21,24 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
 } from "../../components/solar";
 
 const sourceLinks = {
-  unitedWay211: "https://www.211.org/",
-  cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
-  hudRentalAssistance: "https://www.hud.gov/topics/rental_assistance",
-  hudFairHousing: "https://www.hud.gov/program_offices/fair_housing_equal_opp",
-  usaGovHousingHelp: "https://www.usa.gov/housing-help",
+  cornellBillOfRights: "https://www.law.cornell.edu/constitution/billofrights",
+  cornellFourth: "https://www.law.cornell.edu/constitution/fourth_amendment",
+  cornellSixth: "https://www.law.cornell.edu/constitution/sixth_amendment",
+  cornellMiranda: "https://www.law.cornell.edu/wex/miranda_v_arizona_%281966%29",
+  cornellRightToCounsel: "https://www.law.cornell.edu/wex/right_to_counsel",
+  cornellBrady: "https://www.law.cornell.edu/wex/brady_rule",
+  justiaPackingham: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
+  bopLegalGuide: "https://www.bop.gov/resources/pdfs/legal_guide_march_2019.pdf",
+  nacdlDirectory: "https://www.nacdl.org/directory/public",
   lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
+  usaGovLegalAid: "https://www.usa.gov/legal-aid",
+  ncslVotingRights: "https://www.ncsl.org/elections-and-campaigns/felon-voting-rights",
+  narsolResources: "https://resources.narsol.org/",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -38,9 +47,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Housing Search Guide for People on Registries | The SOLAR Project"
-        description="A practical housing search guide for people on sex offense registries and their families, focused on restrictions, supervision approval, landlord communication, documentation, and safer next steps."
-        keywords="sex offender housing, registry housing search, residency restrictions, probation housing approval, parole housing, reentry housing, family housing support"
+        title="Know Your Rights During a Sex Offense Case | The SOLAR Project"
+        description="A practical rights guide for people accused or convicted of a sex offense, registrants, and families navigating police contact, searches, court conditions, incarceration, supervision, and registration."
+        keywords="sex offense rights, know your rights, police questioning, right to remain silent, right to counsel, sex offender registry rights, supervision conditions, reentry rights"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -57,14 +66,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Housing Search Guide for People on Registries
+            Know Your Rights During a Sex Offense Case
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical, sex-offense-specific guide for finding housing that is
-            realistic, affordable, and compliant with registry rules,
-            supervision conditions, local restrictions, lease terms, and family
-            safety needs.
+            A practical, sex-offense-specific guide for slowing down, protecting
+            your rights, communicating safely, documenting what happens, and
+            knowing when to pause before acting.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -91,74 +99,79 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🏠">
+        <GuideIntro title="Start Here" icon="⚖️">
           <p>
-            Housing is one of the hardest parts of registry life. A place can
-            look affordable, safe, and available, but still fail because of a
-            residency restriction, supervision condition, local ordinance, HOA
-            rule, lease clause, internet/device condition, household composition
-            issue, or address-approval process.
+            If you or someone you love is being investigated, charged, sentenced,
+            incarcerated, supervised, or required to register after a sex offense
+            case, the pressure can make people talk too fast, agree too quickly,
+            or rely on guesses. This guide is meant to slow the moment down.
           </p>
 
           <p>
-            This guide is for people on sex offense registries, people preparing
-            for release, people under probation, parole, or supervised release,
-            and family members helping with the search. It is not generic rental
-            advice. The goal is to help you find possible addresses, verify them
-            before money changes hands, communicate carefully, and keep proof of
-            what you were told.
+            The safest first move is usually simple: stay calm, do not try to
+            explain your way out of the situation, ask for a lawyer, avoid
+            unnecessary consent, save paperwork, and document what happened. The
+            details can change by state, court, case, supervision term, and
+            registry rule, so verify before acting.
           </p>
 
           <p>
-            You do not have to solve everything today. Start by finding one
-            possible address, checking the rule that could block it, and saving
-            the answer in writing if possible.
+            This page is for accused people, convicted people, registrants,
+            people preparing for release, people under supervision, and family
+            members trying to help without accidentally making things worse.
           </p>
         </GuideIntro>
 
+        <GuideCallout tone="legal" icon="⚖️" title="A quick legal note">
+          <p>
+            This guide is for education and preparation. It is not legal advice,
+            and it cannot replace a lawyer who knows your case, your court
+            orders, your supervision rules, and your local law.
+          </p>
+          <p>
+            Use it to slow down, ask better questions, document what happens, and
+            know when to pause before acting.
+          </p>
+        </GuideCallout>
+
         <QuickStartPanel
-          title="If you need housing soon"
-          subtitle="Use this as your first 48-hour triage plan. The goal is not the perfect address. The goal is one address that can be checked, documented, and moved forward safely."
-          icon="⚡"
+          title="If police contact, questioning, or a search is happening now"
+          subtitle="Use short sentences. Do not debate facts in the moment. Protect your rights calmly and clearly."
+          icon="🚨"
           urgentActions={[
             <span>
-              Gather the exact restrictions that apply to you: registry law,
-              supervision or court conditions, local ordinances, school/park/daycare
-              distance rules, household limits, internet/device rules, and any
-              victim-contact or child-contact restrictions.
+              Say: “I am using my right to remain silent. I want a lawyer.” Then
+              stop explaining.
             </span>,
             <span>
-              Pick three possible search zones before looking at individual
-              listings. Rural edges, older neighborhoods, industrial corridors,
-              and areas with fewer schools, parks, or daycare sites may produce
-              more workable addresses.
+              If asked to search your phone, computer, car, home, accounts, or
+              private messages, say: “I do not consent to a search.” Do not
+              physically resist.
             </span>,
             <span>
-              Create a housing compliance folder before you apply anywhere. Save
-              maps, screenshots, officer emails, landlord messages, HOA documents,
-              lease terms, and notes from every phone call.
+              If officers show a warrant, do not interfere. Ask for a copy and
+              write down what was searched or taken.
             </span>,
           ]}
           nextActions={[
             <span>
-              Pre-screen each address before paying fees, deposits, application
-              charges, inspection costs, or moving costs.
+              Contact a criminal defense attorney, public defender, or trusted
+              legal-help referral as soon as possible.
             </span>,
             <span>
-              Ask your officer or registering agency the narrow address question:
-              “Is this specific address allowed for me under my current rules?”
+              Tell a family member to save paperwork and call-log details, not to
+              argue with police or delete anything.
             </span>,
             <span>
-              Use a family member, trusted friend, caseworker, reentry worker, or
-              faith volunteer as a housing scout if internet access is restricted
-              or overwhelming.
+              Start a written timeline with dates, names, badge numbers,
+              agencies, searches, seizures, court dates, release conditions, and
+              deadlines.
             </span>,
           ]}
           reminder={
             <span>
-              Paper beats promises. A verbal “that should be fine” is not enough
-              when a lease, move-in date, supervision approval, or registry
-              compliance question is on the line.
+              Being polite does not mean answering investigative questions.
+              Silence, counsel, and documentation are protective tools.
             </span>
           }
         />
@@ -167,532 +180,699 @@ export default function ResourceGuideSandbox(): JSX.Element {
           columns={4}
           cards={[
             {
-              eyebrow: "Step 1",
-              title: "Know the rule",
-              icon: "📏",
+              eyebrow: "Right 1",
+              title: "Silence",
+              icon: "🤐",
+              tone: "privacy",
+              description:
+                "You can protect yourself by clearly saying you are using your right to remain silent.",
+            },
+            {
+              eyebrow: "Right 2",
+              title: "Counsel",
+              icon: "⚖️",
               tone: "legal",
               description:
-                "Identify the exact state, local, court, and supervision rules before you fall in love with a listing.",
+                "Ask for a lawyer before questioning, plea decisions, court strategy, or registry-risk decisions.",
             },
             {
-              eyebrow: "Step 2",
-              title: "Screen the address",
-              icon: "🗺️",
+              eyebrow: "Right 3",
+              title: "Search limits",
+              icon: "🔎",
               tone: "warning",
               description:
-                "Check schools, parks, daycare sites, property lines, local ordinances, HOA rules, and household details.",
+                "Warrants, consent, devices, accounts, and supervision searches are serious. Do not guess.",
             },
             {
-              eyebrow: "Step 3",
-              title: "Communicate carefully",
-              icon: "☎️",
-              tone: "family",
-              description:
-                "Use calm, short scripts with landlords, officers, HOA managers, and helpers. Do not overshare unnecessary details.",
-            },
-            {
-              eyebrow: "Step 4",
-              title: "Save proof",
+              eyebrow: "Right 4",
+              title: "Documentation",
               icon: "🗂️",
               tone: "success",
               description:
-                "Keep written approvals, maps, applications, lease terms, and call notes in one housing compliance packet.",
+                "Save orders, notices, warrants, property receipts, conditions, deadlines, and written instructions.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="rules-first"
+          id="big-picture"
           number="1"
-          title="Know your restrictions before you search"
-          subtitle="The address has to work for your actual legal and supervision situation, not just for the landlord."
+          title="The big picture: rights change by stage"
+          subtitle="The safest move depends on where you are in the process."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              For people on sex offense registries, the first housing question is
-              not “Can I afford this?” or “Will the landlord call me back?” Those
-              questions matter, but they come after the compliance screen.
+              A sex offense case can move through investigation, arrest,
+              pretrial release, plea negotiations, trial, sentencing,
+              incarceration, supervision, and registration. Your rights do not
+              disappear, but the practical risk changes at each stage.
             </p>
 
             <p>
-              Start by writing down the rules that could block an address. They
-              may come from state law, county or city ordinances, probation,
-              parole, federal supervised release, a court order, treatment rules,
-              victim-contact restrictions, child-contact restrictions, internet
-              or device conditions, or the policy of a shelter, landlord, HOA,
-              public housing authority, or transitional housing program.
+              A police interview is different from a court hearing. A search
+              warrant is different from a voluntary request. A probation rule is
+              different from a general registry rule. A family member trying to
+              “help explain” can unintentionally become a witness. That is why
+              this guide pairs each stage with clear do, don’t, and pause-and-
+              verify guidance.
             </p>
           </GuideProse>
 
+          <TimelineGuidanceGrid
+            title="Rights and risks by stage"
+            stages={[
+              {
+                stage: "Investigation",
+                icon: "🔎",
+                whatChanges:
+                  "Police, detectives, federal agents, campus investigators, child-protection workers, or digital-forensics teams may seek statements, devices, records, or consent.",
+                whatToDo:
+                  "Use your right to remain silent, ask for counsel, avoid consent to searches, and tell family not to delete or explain anything.",
+              },
+              {
+                stage: "Arrest and booking",
+                icon: "🚔",
+                whatChanges:
+                  "You may be taken into custody, fingerprinted, questioned, given bond conditions, or brought before a judge.",
+                whatToDo:
+                  "Ask for a lawyer, use your phone call carefully, save paperwork, and treat release conditions as rules from the moment you receive them.",
+              },
+              {
+                stage: "Pretrial release",
+                icon: "📄",
+                whatChanges:
+                  "No-contact orders, internet limits, GPS, travel limits, housing rules, child-contact restrictions, and treatment requirements may begin quickly.",
+                whatToDo:
+                  "Read every condition, ask your lawyer before contact or travel, and get clarification in writing when a rule is unclear.",
+              },
+              {
+                stage: "Plea, trial, and sentencing",
+                icon: "🏛️",
+                whatChanges:
+                  "Choices can affect registration, custody, supervision, immigration, housing, work, family contact, and appeal options.",
+                whatToDo:
+                  "Ask your lawyer about direct and collateral consequences before agreeing to a plea or sentencing plan.",
+              },
+              {
+                stage: "Incarceration",
+                icon: "🔒",
+                whatChanges:
+                  "Safety, medical care, mental health care, religious practice, communication, grievances, and reentry planning become daily practical issues.",
+                whatToDo:
+                  "Document requests, save responses, use grievance processes when needed, and keep family communication calm and organized.",
+              },
+              {
+                stage: "Release, supervision, and registration",
+                icon: "🧭",
+                whatChanges:
+                  "Registry deadlines, officer instructions, housing approval, travel notices, internet rules, employment reporting, and address changes may carry serious consequences.",
+                whatToDo:
+                  "Verify before moving, traveling, changing jobs, using restricted platforms, contacting restricted people, or relying on informal advice.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="police-contact"
+          number="2"
+          title="Investigation, police contact, and questioning"
+          subtitle="You do not have to explain yourself just because someone with authority asks questions."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People often talk because they are scared, embarrassed, angry, or
+              convinced they can clear things up. In sex offense investigations,
+              even small statements can be misunderstood, incomplete, or used
+              later. You can be respectful and still decline to answer questions
+              without a lawyer.
+            </p>
+
+            <p>
+              This matters for family members too. A spouse, parent, roommate, or
+              adult child may think they are helping by speaking to police,
+              explaining context, checking a device, contacting a witness, or
+              deleting something upsetting. Those actions can create new legal
+              problems.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Clearly say: “I am using my right to remain silent. I want a
+                lawyer.”
+              </span>,
+              <span>
+                Stay calm, keep your hands visible, follow safety commands, and
+                write down names, agencies, dates, and what happened afterward.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not try to explain, guess, joke, minimize, argue facts, or
+                answer “just a few questions” without counsel.
+              </span>,
+              <span>
+                Do not ask family to contact alleged victims, witnesses,
+                investigators, employers, schools, or neighbors to “fix it.”
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Basic identifying information and immediate safety commands may
+                be different from investigative questioning. When the question
+                moves toward facts, allegations, devices, timelines, people, or
+                messages, pause and ask for counsel.
+              </span>,
+            ]}
+          />
+
+          <ScriptBox
+            title="Police contact script"
+            tone="legal"
+            context="Use calmly. Repeat if needed. Do not add explanations afterward."
+            script={`I am using my right to remain silent.
+
+I want a lawyer.
+
+I do not want to answer questions without my lawyer present.`}
+          />
+
+          <ScriptBox
+            title="Family member script"
+            tone="family"
+            context="Use if police, an investigator, a school, a caseworker, or another authority contacts a loved one."
+            script={`I understand this is serious.
+
+I am not comfortable answering questions or guessing about facts. I want to make sure we do this the right way.
+
+Please send any request in writing, and I will encourage [Name] to speak with a lawyer.`}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Do not delete, edit, or “clean up” anything">
+            <p>
+              Do not delete messages, photos, files, accounts, browser history,
+              apps, cloud backups, or social media posts because you are scared.
+              Do not ask someone else to do it. Tell your lawyer what exists and
+              ask what to do next.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="searches-devices"
+          number="3"
+          title="Searches, devices, accounts, and warrants"
+          subtitle="Phones, computers, cloud accounts, messages, apps, and passwords can become central evidence."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sex offense investigations often involve digital evidence: phones,
+              computers, tablets, cloud accounts, photos, downloads, search
+              history, location data, messaging apps, gaming platforms, social
+              media, smart-home devices, and shared family devices.
+            </p>
+
+            <p>
+              Search law is complicated. A warrant, a consent request, a subpoena,
+              a probation search condition, a parole instruction, a school or
+              workplace device policy, and a family member handing over a device
+              are not the same thing. Do not assume the rule. Slow down and
+              preserve the paper trail.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Ask whether officers have a warrant. If they do, ask for a copy
+                and do not interfere.
+              </span>,
+              <span>
+                Write down what was searched, what was taken, who took it, and
+                whether you received a property receipt.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not consent to searches of your home, phone, computer, car,
+                accounts, or private messages without legal advice when you have
+                a choice.
+              </span>,
+              <span>
+                Do not wipe devices, change accounts, destroy storage media,
+                delete files, or tell family members to do so.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Passwords, biometric unlocking, cloud accounts, and supervised
+                release search conditions are jurisdiction-specific. Ask a lawyer
+                before deciding what must be provided and what can be refused.
+              </span>,
+            ]}
+          />
+
+          <ScriptBox
+            title="Search or consent script"
+            tone="warning"
+            context="Use if officers ask permission to search. Do not physically resist a search."
+            script={`I do not consent to a search.
+
+If you have a warrant, I will not interfere. Please give me a copy of the warrant and a receipt for anything taken.
+
+I want to speak with a lawyer before answering questions.`}
+          />
+
+          <DocumentPacket
+            title="Device and search records to save"
+            intro={
+              <span>
+                Save this information for your lawyer. Do not rely on memory.
+              </span>
+            }
+            items={[
+              "Date, time, location, agency, officer names, badge numbers, and case number if provided.",
+              "A copy or photo of any warrant, subpoena, property receipt, inventory sheet, or business card.",
+              "List of devices, accounts, storage media, papers, vehicles, rooms, or online accounts searched or seized.",
+              "Names of family members, roommates, employers, schools, or providers who were contacted or asked for access.",
+              "Any statement you or someone else made about passwords, ownership, users, shared devices, or accounts.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="arrest-pretrial"
+          number="4"
+          title="Arrest, booking, and pretrial release"
+          subtitle="Release conditions can begin immediately and can be easy to violate by accident."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              After arrest or a first court appearance, you may receive bond,
+              pretrial release, GPS monitoring, no-contact orders, internet
+              restrictions, travel limits, firearm restrictions, child-contact
+              restrictions, residence restrictions, school or workplace limits,
+              or treatment requirements.
+            </p>
+
+            <p>
+              Treat every condition as serious. If a condition is confusing, the
+              safer move is not to guess. Ask your lawyer or the court for
+              clarification before you contact someone, go somewhere, post
+              online, travel, move, return home, or use a shared device.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Read every release condition before leaving court or custody, and
+                ask for a copy if you do not have one.
+              </span>,
+              <span>
+                Save court dates, deadlines, no-contact names, address rules,
+                travel limits, and internet or device instructions in one place.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not contact alleged victims, witnesses, minors, restricted
+                people, or restricted places unless your lawyer confirms it is
+                allowed.
+              </span>,
+              <span>
+                Do not rely on “they contacted me first” as permission to respond
+                when a no-contact order exists.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Family logistics, childcare, housing, work, medical care,
+                religious services, treatment, and internet access may require
+                modified conditions. Ask your lawyer about requesting changes
+                instead of informally working around the rule.
+              </span>,
+            ]}
+          />
+
+          <GuideChecklist
+            id="pretrial-condition-check"
+            title="Pretrial condition checklist"
+            columns={1}
+            items={[
+              {
+                id: "orders",
+                label:
+                  "Save all bond, release, no-contact, protective, GPS, travel, and internet/device orders.",
+              },
+              {
+                id: "contacts",
+                label:
+                  "List every person, place, platform, school, workplace, or household situation the order may affect.",
+              },
+              {
+                id: "housing",
+                label:
+                  "Ask whether you may return home, live with family, live near children, or move to a new address.",
+              },
+              {
+                id: "work",
+                label:
+                  "Ask how the conditions affect work, job searches, school, travel, phone use, email, and online accounts.",
+              },
+              {
+                id: "clarification",
+                label:
+                  "Send unclear questions to your lawyer and save the answer in writing when possible.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Attorney call script after release"
+            tone="legal"
+            context="Use when you need help understanding conditions quickly."
+            script={`Hello, my name is [Name]. I was released with conditions in [court/county] on [date].
+
+I need help understanding what I can and cannot do before I accidentally violate anything.
+
+The conditions I am most worried about are:
+- Contact with [person/group]
+- Living at [address]
+- Internet or device use
+- Work or travel
+- Court deadlines
+
+Can we review these before I act?`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="plea-trial-sentencing"
+          number="5"
+          title="Plea, trial, and sentencing decisions"
+          subtitle="The legal outcome may affect registration, supervision, housing, work, family contact, immigration, and long-term stability."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A plea or conviction can carry consequences far beyond the sentence
+              announced in court. In sex offense cases, the consequences may
+              include registration, public listing, residence limits, employment
+              barriers, treatment conditions, internet restrictions, travel
+              notice rules, lifetime supervision, immigration consequences,
+              family-court effects, and limits on where you can live or work.
+            </p>
+
+            <p>
+              This guide cannot tell you whether to plead, go to trial, testify,
+              appeal, or accept a sentence. It can help you ask better questions
+              before making decisions that may shape the rest of your life.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Ask your lawyer what each charge, plea, conviction, sentence, and
+                registration category would mean in daily life.
+              </span>,
+              <span>
+                Ask about appeal deadlines, immigration consequences, registry
+                duration, supervision rules, treatment requirements, and housing
+                effects before deciding.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not accept “you will probably be fine” as the full explanation
+                of consequences.
+              </span>,
+              <span>
+                Do not sign plea paperwork until you understand what you are
+                admitting, what rights you are giving up, and what consequences
+                may follow.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Plea and trial decisions are personal and legal. Family members
+                can help organize questions and documents, but the accused person
+                needs case-specific advice from counsel.
+              </span>,
+            ]}
+          />
+
           <GuideIconList
-            title="Questions to answer before you apply"
-            description="Do not guess at these. A wrong assumption can cost money, housing, or compliance."
+            title="Questions to ask before a plea or sentencing"
+            description="Use this list with your lawyer. Add state-specific and immigration questions if they apply."
             columns={2}
             variant="cards"
             tone="legal"
             items={[
               {
-                icon: "location",
-                title: "What distance rule applies?",
+                icon: "court",
+                title: "What rights am I giving up?",
                 description:
-                  "How far must the residence be from schools, parks, daycare centers, bus stops, playgrounds, victim addresses, or other restricted sites?",
+                  "Ask about trial rights, appeal limits, factual admissions, sentencing exposure, and whether the plea can be withdrawn.",
               },
               {
-                icon: "map",
-                title: "How is distance measured?",
+                icon: "fingerprint",
+                title: "Will registration be required?",
                 description:
-                  "Property line to property line? Door to door? Straight line? Walking route? Local practice can matter as much as the number.",
-              },
-              {
-                icon: "gavel",
-                title: "Who has approval power?",
-                description:
-                  "Registry office, probation, parole, federal supervision, a judge, treatment provider, local police, or more than one office?",
+                  "Ask about duration, public listing, tier/classification, address rules, work reporting, travel notices, and removal eligibility.",
               },
               {
                 icon: "home",
-                title: "Who else lives there?",
+                title: "How will this affect housing and family?",
                 description:
-                  "Children, protected persons, victims, unrelated roommates, schools nearby, daycare run from home, or family members with separate restrictions can change the answer.",
+                  "Ask about living with children, returning home, school zones, custody/visitation, lease issues, and supervision approval.",
               },
               {
-                icon: "wifiOff",
-                title: "Do internet or device rules affect the home?",
+                icon: "internet",
+                title: "Will internet or device limits apply?",
                 description:
-                  "A lease that requires online portals, Wi-Fi, smart locks, cameras, or shared devices may create supervision issues for some people.",
+                  "Ask about phones, computers, social media, work accounts, treatment software, monitoring, passwords, and shared family devices.",
               },
               {
-                icon: "building",
-                title: "Are there private rules?",
+                icon: "reentry",
+                title: "What will supervision require?",
                 description:
-                  "HOA rules, condo rules, shelter policies, public housing rules, background-check policies, and lease clauses can block an address even when the map looks clear.",
+                  "Ask about curfew, GPS, treatment, polygraph, travel, employment, contact rules, home visits, searches, and violation consequences.",
+              },
+              {
+                icon: "document",
+                title: "What should I save?",
+                description:
+                  "Ask for copies of plea forms, sentencing orders, conditions, registry instructions, treatment referrals, and appeal deadlines.",
               },
             ]}
           />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="incarceration-release"
+          number="6"
+          title="Incarceration, release, supervision, and registration"
+          subtitle="Rights still matter after conviction, but deadlines and written rules become especially important."
+        />
 
-          <GuideCallout tone="warning" icon="⚠️" title="Do not rely on a map alone">
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Online maps are useful for screening, but they are not the final
-              answer. A few feet, a property-line issue, a newly opened daycare,
-              or a local measurement rule can change the result. Use maps to
-              narrow the search, then verify with the person or office that has
-              authority over your address.
+              During incarceration, practical rights often involve safety,
+              medical care, mental health care, religious practice, disability
+              access, mail, visitation, grievances, discipline, records, and
+              preparation for release. Families can help by keeping organized
+              notes, saving mail, tracking requests, and helping prepare a
+              reentry folder.
             </p>
-          </GuideCallout>
+
+            <p>
+              After release, registry and supervision rules can change ordinary
+              life quickly. Moving, traveling, changing jobs, using the internet,
+              living with family, missing appointments, or misunderstanding a
+              reporting deadline can create serious consequences.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Keep orders, conditions, registry paperwork, officer
+                instructions, treatment rules, and deadlines in one folder.
+              </span>,
+              <span>
+                Verify before moving, traveling, changing employment, using a new
+                device, opening an account, or changing household members.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not rely on memory, old paperwork, another person’s registry
+                rules, or informal advice from people in a different county or
+                state.
+              </span>,
+              <span>
+                Do not ignore a rule because it seems impossible. Ask for written
+                clarification or legal help before the deadline passes.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Officer instructions, court orders, registry-office instructions,
+                treatment rules, and local ordinances can overlap or conflict.
+                When they do, pause and ask for clarification in writing.
+              </span>,
+            ]}
+          />
 
           <VerifyBeforeActing
-            title="Verify before you pay money or move in"
+            title="Verify before acting after release"
             whoToAsk={
               <span>
-                Your supervising officer, registering agency, attorney, local law
-                enforcement registry contact, housing authority, HOA manager,
-                landlord, or other office with actual authority over the specific
-                address.
+                Your lawyer, supervising officer, registering agency, court
+                clerk, treatment provider, housing authority, or another office
+                with actual authority over the specific rule.
               </span>
             }
             whatToAsk={
               <span>
-                “I am considering living at [full address and unit number]. Under
-                my current registry, supervision, court, and local rules, is this
-                specific address allowed? How is distance measured, and do I need
-                written approval before signing or moving in?”
+                “Before I act, can you confirm what rule applies to [move,
+                travel, job change, internet use, family contact, address change,
+                vehicle, phone, account, or deadline], who must approve it, and
+                whether I need written permission?”
               </span>
             }
             whatToSave={
               <span>
-                Save the staff name, title, department, date, phone number or
-                email, exact answer, maps used, distance method, and any written
-                approval or denial.
+                Save the date, name, office, phone number or email, exact
+                instruction, deadline, form, approval, denial, and any follow-up
+                steps.
               </span>
             }
           />
-        </GuideSectionCard>
-<GuideSectionHeader
-          id="search-strategy"
-          number="2"
-          title="Build a search strategy that fits registry life"
-          subtitle="A strong search is wider than rental websites and more careful than ordinary apartment hunting."
-        />
 
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Many people waste weeks applying for places that were never
-              realistic. The better approach is to search in layers: identify
-              possible zones, screen addresses quickly, contact landlords
-              carefully, and move the best candidate into verification.
-            </p>
-
-            <p>
-              Families can help without taking over. A housing scout can search
-              listings, print maps, call about availability, collect applications,
-              and prepare address packets while the person under supervision
-              focuses on compliance, treatment, work, and required appointments.
-            </p>
-          </GuideProse>
-
-          <GuideIconList
-            title="Where to look beyond the obvious listings"
-            columns={2}
-            variant="rows"
-            tone="reentry"
+          <OfflineOptions
+            title="If internet access is limited or monitored"
+            icon="📵"
+            note={
+              <span>
+                Many people on supervision or in custody cannot safely rely on
+                private internet access. Use paper and trusted helpers when
+                needed.
+              </span>
+            }
             items={[
-              {
-                icon: "search",
-                title: "Online listings",
-                description:
-                  "Zillow, Apartments.com, Facebook Marketplace, local newspaper classifieds, property management sites, and small landlord pages.",
-              },
-              {
-                icon: "car",
-                title: "Yard signs and neighborhood drives",
-                description:
-                  "Private owners often use signs instead of websites. Drive pre-screened zones and write down addresses and phone numbers.",
-              },
-              {
-                icon: "library",
-                title: "Community boards",
-                description:
-                  "Libraries, grocery stores, laundromats, reentry groups, treatment providers, faith communities, and local nonprofits may know small landlords.",
-              },
-              {
-                icon: "users",
-                title: "Support networks",
-                description:
-                  "Case managers, public defenders, family members, reentry groups, faith volunteers, and formerly incarcerated peers may know realistic options.",
-              },
-              {
-                icon: "building",
-                title: "Older or smaller properties",
-                description:
-                  "Small landlords may be more willing to hear context than large automated screening systems, though they still need honest, careful communication.",
-              },
-              {
-                icon: "map",
-                title: "Lower-conflict search zones",
-                description:
-                  "Rural edges, industrial areas, and older neighborhoods may have fewer restricted sites nearby, but every address still needs verification.",
-              },
-            ]}
-          />
-
-          <SoftDivider label="Use address screening before application screening" />
-
-          <GuideChecklist
-            id="address-screening"
-            title="Address pre-screen checklist"
-            columns={1}
-            items={[
-              {
-                id: "full-address",
-                label: "Write the full address, unit number, landlord name, and listing source.",
-              },
-              {
-                id: "nearby-sites",
-                label:
-                  "Search nearby schools, parks, daycare centers, playgrounds, bus stops, and any other restricted places named in your rules.",
-              },
-              {
-                id: "local-ordinance",
-                label:
-                  "Check whether the city or county has a local residency ordinance beyond state law.",
-              },
-              {
-                id: "distance-method",
-                label:
-                  "Note how distance appears to be measured and whether your authority uses a different method.",
-              },
-              {
-                id: "household",
-                label:
-                  "List household members, ages, roommates, shared spaces, devices, internet access, and any child-contact or victim-contact issues.",
-              },
-              {
-                id: "lease-private-rules",
-                label:
-                  "Review lease terms, HOA rules, condo rules, public housing rules, shelter rules, or property management policies.",
-              },
-              {
-                id: "approval-needed",
-                label:
-                  "Ask whether written officer, registry office, or court approval is required before signing, paying, or moving.",
-              },
+              "Ask a lawyer, public defender office, library, reentry worker, or family member to print court orders, registry rules, and legal-help contacts.",
+              "Use a paper notebook for officer instructions, registration dates, treatment appointments, and questions for counsel.",
+              "Ask for mailed forms or written instructions if online reporting, portals, or accounts are restricted.",
+              "Have a trusted helper save screenshots, appointment confirmations, transportation plans, and written approvals.",
             ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="documents"
-          number="3"
-          title="Create a housing compliance packet"
-          subtitle="A good packet turns panic into a task list and helps officers, landlords, family helpers, and advocates understand the address."
+          id="scripts-documents"
+          number="7"
+          title="Scripts and documents to keep close"
+          subtitle="Simple language and organized records help when stress is high."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Keep one folder labeled <strong>HOUSING COMPLIANCE</strong>. Paper
-              is fine. A notes app folder is fine. The point is to keep proof in
-              one place so you are not relying on memory when a landlord calls
-              back, an officer asks for details, or a question comes up after you
-              move.
-            </p>
-          </GuideProse>
+          <ScriptBox
+            title="Officer or registry clarification script"
+            tone="reentry"
+            context="Use when a rule is unclear and you need the answer documented."
+            script={`Hello [Name/Office],
+
+I am trying to follow my rules correctly. Before I act, I need clarification about [specific issue].
+
+My question is: [one clear question].
+
+Can you please tell me:
+1. What rule applies?
+2. Who has authority to approve or deny it?
+3. Whether I need written permission or a form?
+4. What deadline applies?
+
+I am saving the answer for my records. Thank you.`}
+          />
 
           <DocumentPacket
-            title="HOUSING COMPLIANCE folder"
+            title="Rights protection folder"
             intro={
               <span>
-                Save the documents that show what the address is, why you believe
-                it may be compliant, who you asked, and what they said.
+                Keep one folder for the documents that prove what happened, what
+                you were told, and what deadlines apply.
               </span>
             }
             categories={[
               {
-                title: "Address and map records",
+                title: "Police, search, and investigation records",
                 items: [
-                  "Full address, unit number, landlord or property manager contact, listing link or printed listing, and move-in date.",
-                  "Maps showing nearby schools, parks, daycare centers, playgrounds, or other restricted sites.",
-                  "Distance notes, screenshots, county GIS printouts, school locator results, and any official measurement guidance.",
+                  "Warrants, subpoenas, property receipts, search inventories, officer cards, agency names, case numbers, and device/account seizure notes.",
+                  "Timeline of police contact, interviews, family contact, school/work contact, child-protection contact, or digital-forensics events.",
+                  "Names and contact details for attorneys, public defenders, investigators, advocates, and trusted family helpers.",
                 ],
               },
               {
-                title: "Rules and approval records",
+                title: "Court and defense records",
                 items: [
-                  "Your registry requirements, supervision conditions, court orders, local ordinance notes, treatment rules, and device or internet restrictions.",
-                  "Officer, registry office, attorney, agency, HOA, shelter, or housing authority emails approving, denying, or explaining the address.",
-                  "Names, dates, departments, phone numbers, and exact instructions from every important call.",
+                  "Charging documents, bond or release conditions, no-contact orders, protective orders, discovery notices, hearing dates, plea paperwork, sentencing orders, and appeal deadlines.",
+                  "Attorney meeting notes, questions to ask, answers received, mitigation records, treatment records, support letters, and reentry planning documents.",
+                  "Immigration, custody, housing, employment, school, professional licensing, and benefits questions that may need separate legal advice.",
                 ],
               },
               {
-                title: "Application and household records",
+                title: "Release, supervision, and registration records",
                 items: [
-                  "Government ID, proof of income, benefits letters, employment verification, references, rental history, and application receipts.",
-                  "Names and ages of household members, roommate information, pets, vehicles, parking needs, and any household safety plan required by supervision.",
-                  "Lease, guest rules, internet plan, smart-device information, HOA documents, condo rules, public housing rules, and landlord screening terms.",
+                  "Supervision conditions, registry paperwork, address forms, travel forms, employment reporting forms, treatment rules, internet/device rules, and officer instructions.",
+                  "Written approvals, denials, appointment confirmations, registration receipts, reporting deadlines, and copies of anything submitted.",
+                  "A log of calls, visits, emails, mailed forms, names, departments, dates, and exact instructions.",
                 ],
               },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="👥" title="For family housing scouts">
-            <p>
-              Your job is not to promise that an address is legal. Your job is to
-              find possible addresses, collect facts, print or save documents,
-              and help the person ask the right authority for approval. Avoid
-              telling landlords, officers, or relatives more than they need to
-              answer the housing question.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="landlords-and-disclosure"
-          number="4"
-          title="Communicate with landlords, officers, and HOAs carefully"
-          subtitle="Be honest where needed, strategic about timing, and focused on the address question."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Disclosure is not one-size-fits-all. Some landlords ask directly
-              about criminal history or run background checks. Some do not. Some
-              supervision conditions require officer involvement before you can
-              sign. Some housing programs have their own rules. The safest
-              approach is to answer direct questions truthfully, avoid unnecessary
-              details, and focus on stability, compliance, references, and the
-              specific address.
-            </p>
-
-            <p>
-              If you are unsure whether a question must be answered, whether a
-              denial is lawful, or whether a housing provider is applying a policy
-              incorrectly, ask a qualified attorney, legal aid office, housing
-              counselor, or reentry advocate before escalating.
-            </p>
-          </GuideProse>
-
-          <ScriptBox
-            title="Landlord intro: text, voicemail, or email"
-            tone="neutral"
-            context="Use when disclosure is necessary or strategically better before a background check surprise. Keep it short and focused on stability."
-            script={`Hello, my name is [Name]. I am interested in the unit at [address]. I have stable income, references, and can move [date].
-
-I do have a past offense and am on the registry. I follow all rules, and I am checking this specific address for compliance before moving forward. I can provide references and, if required, confirmation that the address has been reviewed.
-
-Is the unit still available, and what is the next step to apply?`}
-          />
-
-          <ScriptBox
-            title="Officer approval request"
-            tone="legal"
-            context="Use before signing, paying a deposit, or moving when supervision approval may be required."
-            script={`Hello [Officer Name],
-
-I am seeking approval to reside at [full address and unit number]. The landlord/property contact is [name and phone/email]. Proposed move-in date is [date].
-
-Initial screening notes:
-- Nearest restricted site I identified: [site name/address]
-- Estimated distance: [distance and method used]
-- Household members/ages: [list]
-- Internet/devices: [plan]
-- Work schedule/curfew plan: [summary]
-- HOA/lease/public housing rules: [summary if applicable]
-
-Please let me know whether this address is approved, denied, or whether you need additional documentation before I sign or pay money. I would appreciate written confirmation for my housing compliance folder.
-
-Thank you,
-[Name]`}
-          />
-
-          <ScriptBox
-            title="HOA or condo confirmation email"
-            tone="warning"
-            context="Use before renting or buying in an HOA, condo, co-op, manufactured-home community, or deed-restricted property."
-            script={`Hello,
-
-I am considering living at [address/unit]. Before I sign anything, I need to confirm whether association rules, occupancy rules, guest rules, background-check policies, pool/playground rules, or lease restrictions would prohibit or limit my occupancy based on registry status.
-
-Can you please confirm in writing whether the association has any rule that would prevent me from living at this address or create a conflict with local residency restrictions?
-
-Thank you,
-[Name]`}
-          />
-
-          <GuideCallout tone="privacy" icon="🔒" title="Share enough to answer the question, not your whole life story">
-            <p>
-              Housing conversations can become emotional. Keep your explanation
-              calm and limited. You usually need to discuss eligibility,
-              compliance, income, references, move-in timing, and household
-              details. You usually do not need to give graphic facts, argue about
-              the registry, or disclose information unrelated to the housing
-              decision.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-<GuideSectionHeader
-          id="special-situations"
-          number="5"
-          title="Special situations: buying, HOAs, supervision, and limited internet"
-          subtitle="Some housing options need extra checks before they are safe to rely on."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Buying a home, moving into an HOA, using a shelter, living with
-              family, renting a room, or searching without internet can all work
-              in some situations. The risk is assuming ordinary housing rules are
-              the only rules. For registry-specific housing, private rules and
-              supervision practices often matter as much as the public listing.
-            </p>
-          </GuideProse>
-
-          <GuideIconList
-            title="Extra checks for higher-risk housing decisions"
-            columns={2}
-            variant="cards"
-            tone="warning"
-            items={[
-              {
-                icon: "home",
-                title: "Buying a home",
-                description:
-                  "Pre-clear the address before making an offer when possible. Consider a contract contingency tied to confirmation of registry and supervision compliance.",
-              },
-              {
-                icon: "building",
-                title: "HOA, condo, or manufactured-home community",
-                description:
-                  "Ask for CC&Rs, rules and regulations, background-check policies, guest rules, pool/playground rules, lease restrictions, and written confirmation.",
-              },
-              {
-                icon: "users",
-                title: "Living with family",
-                description:
-                  "Check children in the home, victim-contact rules, household devices, internet access, bedroom layout, school bus stops, and whether the family member’s lease allows it.",
-              },
-              {
-                icon: "door",
-                title: "Room rentals and roommates",
-                description:
-                  "Ask about shared spaces, children, guests, Wi-Fi, devices, lease subletting rules, background checks, and whether the landlord knows about all occupants.",
-              },
-              {
-                icon: "reentry",
-                title: "Shelter or transitional housing",
-                description:
-                  "Call first. Some shelters, sober homes, recovery homes, halfway houses, and transitional programs have registry exclusions or location restrictions.",
-              },
-              {
-                icon: "wifiOff",
-                title: "Internet or device restrictions",
-                description:
-                  "If browsing listings is not allowed, use a housing scout, printed packets, phone calls, library printouts, mailed applications, and officer-approved communication plans.",
-              },
-            ]}
-          />
-
-          <OfflineOptions
-            title="If internet access is limited or restricted"
-            icon="📵"
-            note={
-              <span>
-                Many people on registries cannot safely or legally browse freely.
-                A phone-first and paper-first search can still work.
-              </span>
-            }
-            items={[
-              "Designate a housing scout: a family member, friend, caseworker, public defender social worker, reentry worker, or faith volunteer who can search, print, and organize listings.",
-              "Ask the scout to create a call sheet with address, rent, deposit, landlord contact, nearby restricted sites, listing source, and questions to ask.",
-              "Drive pre-screened neighborhoods and call numbers on yard signs instead of relying only on online listings.",
-              "Ask libraries, reentry groups, legal aid offices, shelters, treatment providers, or faith communities whether they can print listings or forms.",
-              "If supervision restricts devices, ask your officer whether a limited housing-search plan, approved helper, basic phone, or printed packet process is allowed.",
             ]}
           />
 
           <GuideChecklist
-            id="before-signing"
-            title="Before signing, paying, or moving"
+            id="family-helper-checklist"
+            title="Family helper checklist"
             columns={1}
             items={[
               {
-                id: "rules-printed",
+                id: "no-explaining",
                 label:
-                  "Your registry, court, supervision, local, and private housing rules are printed or saved.",
+                  "Do not explain facts to police, alleged victims, witnesses, schools, employers, neighbors, or online groups without legal advice.",
               },
               {
-                id: "distance-confirmed",
+                id: "no-delete",
                 label:
-                  "Distance and restricted-site issues have been checked using the best official tools available.",
+                  "Do not delete, edit, hide, wipe, forward, or post about messages, photos, devices, accounts, or documents.",
               },
               {
-                id: "approval-written",
+                id: "save-paper",
                 label:
-                  "Officer, registry office, housing authority, HOA, or other required approval is saved in writing when possible.",
+                  "Save paperwork, envelopes, screenshots, call logs, appointment dates, and written instructions.",
               },
               {
-                id: "lease-reviewed",
+                id: "legal-help",
                 label:
-                  "Lease, guest rules, internet/device issues, background-check language, and vague eviction clauses have been reviewed.",
+                  "Help find a lawyer, public defender contact, legal aid office, or criminal defense referral instead of trying to solve the case yourself.",
               },
               {
-                id: "household-reviewed",
+                id: "support",
                 label:
-                  "Household members, children, roommates, guests, devices, pets, parking, and bedroom layout have been considered.",
-              },
-              {
-                id: "money-risk",
-                label:
-                  "Application fee, deposit, moving costs, and nonrefundable payments are delayed until the address has been screened.",
-              },
-              {
-                id: "backup-address",
-                label:
-                  "A backup address, shelter option, family plan, or short-term emergency plan has been identified if approval fails.",
+                  "Support practical stability: transportation, medication, housing notes, court-date reminders, clothing for court, and calm communication.",
               },
             ]}
           />
@@ -700,128 +880,128 @@ Thank you,
 
         <GuideSectionHeader
           id="mistakes"
-          number="6"
-          title="Common mistakes that create housing trouble"
-          subtitle="Most mistakes happen because people are scared, rushed, or relying on verbal answers."
+          number="8"
+          title="Common mistakes to avoid"
+          subtitle="Most mistakes happen because people are scared and trying to fix everything too quickly."
         />
 
         <GuideSectionCard>
           <CommonMistakes
             mistakes={[
               {
-                mistake: "Applying everywhere before checking restrictions.",
+                mistake: "Talking to clear things up.",
                 whyItMatters:
-                  "Application fees, background checks, and landlord contacts can pile up quickly while none of the addresses are actually usable.",
+                  "Statements can be incomplete, misunderstood, recorded, repeated, or used later even when the person meant well.",
                 betterMove:
-                  "Screen the address first, then apply to the best candidates.",
+                  "Say you are using your right to remain silent and want a lawyer.",
               },
               {
-                mistake: "Assuming state law is the only rule.",
+                mistake: "Consenting to searches without advice.",
                 whyItMatters:
-                  "Local ordinances, supervision conditions, treatment rules, HOA rules, shelter policies, or lease terms can still block the address.",
+                  "Consent can affect phones, computers, accounts, homes, cars, and shared family spaces.",
                 betterMove:
-                  "Check state, local, supervision, court, and private rules before relying on the listing.",
+                  "Do not consent when you have a choice. Ask whether there is a warrant and request a copy.",
               },
               {
-                mistake: "Trusting a verbal approval without notes.",
+                mistake: "Deleting or changing digital evidence.",
                 whyItMatters:
-                  "A later officer, landlord, registry clerk, or property manager may not know what was said.",
+                  "Trying to clean up files, accounts, messages, or devices can create new legal problems.",
                 betterMove:
-                  "Write down the name, date, department, and exact answer. Ask for email confirmation when possible.",
+                  "Preserve what exists and tell your lawyer about it.",
               },
               {
-                mistake: "Oversharing with landlords or neighbors.",
+                mistake: "Contacting alleged victims or witnesses.",
                 whyItMatters:
-                  "Unnecessary detail can increase stigma, confusion, gossip, or safety risk without helping the housing decision.",
+                  "Even peaceful contact can violate orders, look like pressure, or become new evidence.",
                 betterMove:
-                  "Answer direct questions truthfully, keep the explanation brief, and focus on compliance, income, references, and stability.",
+                  "Let lawyers handle case-related contact.",
               },
               {
-                mistake: "Letting family promise more than they can afford.",
+                mistake: "Treating supervision or registry instructions as informal advice.",
                 whyItMatters:
-                  "Co-signing, extra deposits, or paying rent in two places can harm the whole household if the address is denied.",
+                  "Missed deadlines, unapproved travel, address issues, or unclear internet rules can lead to violations or new charges.",
                 betterMove:
-                  "Verify first, then decide what financial help is realistic and sustainable.",
+                  "Verify the rule, save the answer, and ask for clarification before acting.",
+              },
+              {
+                mistake: "Letting family members become investigators.",
+                whyItMatters:
+                  "Family helpers can accidentally become witnesses, spread information, alter evidence, or trigger contact violations.",
+                betterMove:
+                  "Ask family to organize documents, help find counsel, and support stability.",
               },
             ]}
           />
 
-          <GuideCallout tone="success" icon="✅" title="Three reminders worth keeping">
+          <GuideCallout tone="legal" icon="⚖️" title="Before relying on this guide">
             <p>
-              <strong>Speed beats perfection:</strong> get one realistic address
-              into the approval process instead of endlessly searching for the
-              perfect place.
-            </p>
-            <p>
-              <strong>Paper beats promises:</strong> keep rules, maps, approvals,
-              denials, and call notes in your housing compliance folder.
-            </p>
-            <p>
-              <strong>People help people:</strong> a housing scout, two strong
-              references, and one calm landlord conversation may do more than a
-              dozen online applications.
+              This page is educational and practical, not legal advice. If
+              something here conflicts with your lawyer’s advice, court order,
+              supervision condition, registry instruction, or local law, pause
+              and get clarification from a qualified legal professional or the
+              authority responsible for that rule.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="resources"
-          number="7"
+          number="9"
           title="Resources and next steps"
-          subtitle="Use official sources where possible, and verify local rules before relying on any general guide."
+          subtitle="Use official sources where possible, but get case-specific legal help before making legal decisions."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Housing, legal, and emergency support"
+            title="Legal help and rights resources"
             description={
               <span>
-                These links are starting points. They do not replace checking your
-                own registry, supervision, court, and local housing rules.
+                These are starting points for education and referrals. They do
+                not replace a lawyer who knows your case.
               </span>
             }
             resources={[
               {
-                label: "211 local resource finder",
-                href: sourceLinks.unitedWay211,
-                badge: "Directory",
+                label: "NACDL Find a Lawyer Directory",
+                href: sourceLinks.nacdlDirectory,
+                badge: "Defense",
                 description:
-                  "Search or call for local emergency housing, shelter, utility, food, transportation, and reentry-related referrals.",
-              },
-              {
-                label: "CFPB housing counselor search",
-                href: sourceLinks.cfpbHousingCounselor,
-                badge: "Official",
-                description:
-                  "Find HUD-approved housing counselors for rental, mortgage, foreclosure, credit, and homebuying questions.",
-              },
-              {
-                label: "HUD rental assistance",
-                href: sourceLinks.hudRentalAssistance,
-                badge: "Official",
-                description:
-                  "Federal starting point for rental assistance information and HUD housing programs.",
-              },
-              {
-                label: "HUD Fair Housing and Equal Opportunity",
-                href: sourceLinks.hudFairHousing,
-                badge: "Official",
-                description:
-                  "Information about fair housing rights, complaints, and federal housing discrimination enforcement.",
-              },
-              {
-                label: "USAGov housing help",
-                href: sourceLinks.usaGovHousingHelp,
-                badge: "Official",
-                description:
-                  "Plain-language federal starting point for housing help, rental assistance, and related programs.",
+                  "Criminal defense lawyer directory from the National Association of Criminal Defense Lawyers.",
               },
               {
                 label: "Legal Services Corporation legal help finder",
                 href: sourceLinks.lscLegalHelp,
                 badge: "Legal aid",
                 description:
-                  "Find civil legal aid programs for housing, benefits, consumer, family, and other noncriminal legal issues.",
+                  "Find LSC-funded civil legal aid organizations by location.",
+              },
+              {
+                label: "USAGov legal aid overview",
+                href: sourceLinks.usaGovLegalAid,
+                badge: "Official",
+                description:
+                  "Federal starting point for affordable legal aid, LawHelp.org, and pro bono resources.",
+              },
+              {
+                label: "Cornell Bill of Rights",
+                href: sourceLinks.cornellBillOfRights,
+                badge: "Legal reference",
+                description:
+                  "Plain access to constitutional text and explanations, including the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendments.",
+              },
+              {
+                label: "NCSL felony voting rights",
+                href: sourceLinks.ncslVotingRights,
+                badge: "State law",
+                description:
+                  "State-by-state voting rights restoration information for people with felony convictions.",
+              },
+              {
+                label: "NARSOL Resources",
+                href: sourceLinks.narsolResources,
+                badge: "Registry-specific",
+                description:
+                  "Registry-focused resource collection, advocacy materials, research, links, and court-case resources.",
               },
             ]}
           />
@@ -829,21 +1009,21 @@ Thank you,
           <RelatedGuides
             guides={[
               {
-                title: "Reentry Planning Guide",
+                title: "Housing Search Guide",
                 description:
-                  "Use alongside this guide when housing is part of a broader release, supervision, work, transportation, and documentation plan.",
-                to: "/resources/reentry-planning",
+                  "Use this when release, supervision, or registration rules affect where someone can live.",
+                to: "/resources/housing-search-guide",
               },
               {
-                title: "Employment After Conviction",
+                title: "Reentry Planning Guide",
                 description:
-                  "Stable income and references can make the housing search stronger, especially with small landlords.",
-                to: "/resources/employment-after-conviction",
+                  "Helpful for organizing release paperwork, appointments, housing, work, transportation, and family support.",
+                to: "/resources/reentry-planning",
               },
               {
                 title: "Family Support Guide",
                 description:
-                  "Helpful for spouses, parents, adult children, and trusted friends serving as housing scouts or emergency support.",
+                  "Helps loved ones support someone safely without escalating legal, emotional, or practical risk.",
                 to: "/resources/family-support",
               },
             ]}
@@ -853,48 +1033,61 @@ Thank you,
             title="Sources and verification"
             note={
               <span>
-                Links below were checked for live access during sandbox
-                preparation. State, county, city, registry, supervision, HOA, and
-                shelter rules still need local verification before publication or
-                use in a specific case.
+                Links were checked for live access during sandbox preparation.
+                Constitutional rights, criminal procedure, registry duties,
+                supervision rules, voting rights, and incarceration rules still
+                require jurisdiction-specific verification before use in a
+                specific case.
               </span>
             }
             sources={[
               {
-                label: "United Way 211",
-                href: sourceLinks.unitedWay211,
+                label: "Cornell Legal Information Institute: Bill of Rights",
+                href: sourceLinks.cornellBillOfRights,
                 description:
-                  "Local referral network for housing, utility, food, crisis, and community support.",
+                  "Constitutional reference for the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendment framework used in this guide.",
               },
               {
-                label: "Consumer Financial Protection Bureau housing counselor finder",
-                href: sourceLinks.cfpbHousingCounselor,
+                label: "Cornell Legal Information Institute: Fourth Amendment",
+                href: sourceLinks.cornellFourth,
                 description:
-                  "Search tool for HUD-approved housing counseling agencies.",
+                  "Reference for search, seizure, warrants, surveillance, and privacy-related protections.",
               },
               {
-                label: "U.S. Department of Housing and Urban Development rental assistance",
-                href: sourceLinks.hudRentalAssistance,
+                label: "Cornell Legal Information Institute: Sixth Amendment",
+                href: sourceLinks.cornellSixth,
                 description:
-                  "Federal rental assistance and housing-program starting point.",
+                  "Reference for counsel, trial, confrontation, jury, and criminal-prosecution rights.",
               },
               {
-                label: "HUD Office of Fair Housing and Equal Opportunity",
-                href: sourceLinks.hudFairHousing,
+                label: "Cornell Legal Information Institute: Miranda v. Arizona",
+                href: sourceLinks.cornellMiranda,
                 description:
-                  "Federal fair housing information and enforcement starting point.",
+                  "Reference for custodial interrogation, the right to remain silent, and counsel warnings.",
               },
               {
-                label: "USAGov housing help",
-                href: sourceLinks.usaGovHousingHelp,
+                label: "Cornell Legal Information Institute: Brady rule",
+                href: sourceLinks.cornellBrady,
                 description:
-                  "Federal plain-language housing assistance overview.",
+                  "Reference for prosecution disclosure of material exculpatory information.",
               },
               {
-                label: "Legal Services Corporation legal help",
-                href: sourceLinks.lscLegalHelp,
+                label: "Justia U.S. Supreme Court: Packingham v. North Carolina",
+                href: sourceLinks.justiaPackingham,
                 description:
-                  "Directory-style starting point for finding civil legal aid.",
+                  "Reference for registry-related First Amendment internet-access limits and lawful speech concerns.",
+              },
+              {
+                label: "Federal Bureau of Prisons Legal Resource Guide",
+                href: sourceLinks.bopLegalGuide,
+                description:
+                  "Federal custody reference for BOP medical care, administrative remedies, and prison legal-resource topics.",
+              },
+              {
+                label: "NCSL felony voting rights",
+                href: sourceLinks.ncslVotingRights,
+                description:
+                  "State-by-state reference for voting-rights restoration after felony convictions.",
               },
             ]}
           />
