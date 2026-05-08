@@ -17,37 +17,37 @@ import {
   VerifyBeforeActing,
   CommonMistakes,
   OverviewCards,
-  GuideIconList as GuideIconListBase,
+  GuideIconList,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
 } from "../../components/solar";
 
-const GuideIconList = GuideIconListBase as React.ComponentType<any>;
-
 const sourceLinks = {
   cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
   usaGovRentHelp: "https://www.usa.gov/rental-housing-programs",
-  liheap: "https://www.acf.hhs.gov/ocs/programs/liheap",
+  energyHelp: "https://www.usa.gov/help-with-energy-bills",
   unitedWay211: "https://www.211.org/",
   feedingAmerica: "https://www.feedingamerica.org/find-your-local-foodbank",
   snapUsaGov: "https://www.usa.gov/food-stamps",
   lifeline: "https://www.lifelinesupport.org/",
-  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help",
+  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
   abaFreeLegalAnswers: "https://abafreelegalanswers.org/",
   federalDefenders: "https://www.fd.org/",
-  irs501r: "https://www.irs.gov/charities-non-profits/financial-assistance-policy-and-emergency-medical-care-policy-section-501r4",
+  irs501r:
+    "https://www.irs.gov/charities-non-profits/financial-assistance-policy-and-emergency-medical-care-policy-section-501r4",
   cmsMedicalBillRights: "https://www.cms.gov/medical-bill-rights",
   irsPayments: "https://www.irs.gov/payments",
   taxpayerAdvocate: "https://www.taxpayeradvocate.irs.gov/",
   lowIncomeTaxpayerClinics: "https://www.irs.gov/advocate/low-income-taxpayer-clinics",
   vitaTce: "https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers",
   annualCreditReport: "https://www.annualcreditreport.com/",
-  ftcCreditFreeze: "https://consumer.ftc.gov/articles/what-know-about-credit-freezes-fraud-alerts",
+  ftcCreditFreeze: "https://consumer.ftc.gov/articles/credit-freezes-and-fraud-alerts",
   identityTheft: "https://www.identitytheft.gov/",
-  myCreditUnionPals: "https://mycreditunion.gov/life-events/consumer-loans/payday-loans",
+  myCreditUnionPals:
+    "https://mycreditunion.gov/manage-your-money/consumer-loans-credit-cards/payday-alternative-loans",
   bankOn: "https://joinbankon.org/",
-  acfChildSupportOrder: "https://www.acf.hhs.gov/css/parents/change-support-order",
+  acfChildSupportOrder: "https://acf.gov/css/faq/my-income-has-changed-can-my-order-be-revised",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -56,9 +56,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Surviving the Financial Shock of a Criminal Case | The SOLAR Project"
-        description="A practical SOLAR resource guide for families managing legal fees, lost income, bills, benefits, credit, and financial pressure during a criminal case."
-        keywords="financial support criminal case, reentry financial help, legal fees, family support, benefits, credit protection, utility assistance, housing help"
+        title="Financial Support Strategies | The SOLAR Project"
+        description="Practical, step-by-step support for families managing legal fees, lost income, urgent bills, benefits, credit, and ongoing expenses during a criminal case."
+        keywords="financial support criminal case, legal fees, family support, hardship programs, credit protection, rent help, SNAP, LIHEAP, child support modification"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -79,9 +79,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Practical, step-by-step support for families managing legal fees,
-            lost income, urgent bills, benefits, credit, and ongoing expenses
-            without losing stability or hope.
+            Practical, step-by-step support for families managing legal fees, lost income,
+            urgent bills, benefits, credit, and ongoing expenses without losing stability
+            or hope.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -111,9 +111,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideIntro title="Start Here" icon="🧭">
           <p>
             When someone you love is facing charges, it can feel like the ground
-            has been ripped out from under your feet — emotionally, socially,
-            and financially. Bills do not stop coming just because your family
-            is in crisis. In fact, the costs often rise sharply.
+            has been ripped out from under your feet — emotionally, socially, and
+            financially. Bills do not stop coming just because your family is in
+            crisis. In fact, the costs often rise sharply.
           </p>
 
           <p>
@@ -125,62 +125,62 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <p>
             Keep a notebook or folder nearby as you work through this page.
             Paper is fine. The goal is not perfection. The goal is to protect
-            housing, food, utilities, transportation, phone access, court-related
-            stability, and the caregiver’s credit while you figure out what
-            help is available.
+            housing, food, utilities, transportation, phone access,
+            court-related stability, and the caregiver’s credit while you figure
+            out what help is available.
           </p>
         </GuideIntro>
 
-        <GuideCallout tone="legal" icon="⚖️" title="This guide is not legal or financial advice">
+        <GuideCallout tone="legal" icon="⚖️" title="This is practical guidance, not legal or financial advice">
           <p>
-            This is a practical playbook for stabilizing cash flow and protecting
-            your household during a criminal case. Rules, eligibility, court
-            orders, supervision conditions, and state programs can change the
-            answer. Verify important steps with the agency, attorney, court,
-            benefit office, creditor, or qualified professional before relying
-            on them.
+            This is a practical playbook for stabilizing cash flow and
+            protecting your household during a criminal case. Rules,
+            eligibility, court orders, supervision conditions, and state
+            programs can change the answer. Verify important steps with the
+            agency, attorney, court, benefit office, creditor, or qualified
+            professional before relying on them.
           </p>
         </GuideCallout>
 
         <QuickStartPanel
-          title="The 48-hour money triage"
-          subtitle="Use this when everything feels urgent and you are not sure where to start."
-          icon="⚡"
+          title="First moves when money panic hits"
+          subtitle="Start by protecting the bills that keep the household physically stable, reachable, and able to keep appointments."
+          icon="🧯"
           urgentActions={[
-            <span>
-              Get one notebook, folder, envelope, or notes app file and label it
-              “money crisis log.”
+            <span key="log">
+              Get one notebook, folder, envelope, or notes app file and label it{" "}
+              <strong>“money crisis log.”</strong>
             </span>,
-            <span>
+            <span key="essentials">
               Write down the bills that keep your household housed, fed,
               connected, and able to get to work, school, court, medical care,
               and legal appointments.
             </span>,
-            <span>
+            <span key="star">
               Put a star next to the essentials: rent or mortgage, utilities,
               food, transportation, phone or internet, child support, medical
               needs, and lawyer or court-related deadlines.
             </span>,
           ]}
           nextActions={[
-            <span>
+            <span key="pause">
               Cancel or pause non-essential subscriptions, memberships, and
               automatic payments that are not keeping the household stable.
             </span>,
-            <span>
+            <span key="call">
               Call before you are late. Ask for hardship options, payment plans,
               budget billing, extensions, or written instructions.
             </span>,
-            <span>
+            <span key="save">
               Save names, dates, departments, confirmation numbers, letters,
               emails, bills, and every agreement in writing.
             </span>,
           ]}
           reminder={
             <span>
-              Starred bills go first. Many other bills can be paused, reduced,
-              deferred, negotiated, or handled through a formal assistance
-              program.
+              <strong>Starred bills go first.</strong> Many other bills can be
+              paused, reduced, deferred, negotiated, or handled through a formal
+              assistance program.
             </span>
           }
         />
@@ -190,52 +190,46 @@ export default function ResourceGuideSandbox(): JSX.Element {
           cards={[
             {
               eyebrow: "Stage 1",
-              title: "Stop the bleeding",
-              icon: "🧯",
+              title: "Stop the slide",
+              icon: "🛑",
               tone: "urgent",
               description:
-                "Freeze non-essentials, list must-pay bills, and map the next due dates.",
+                "Pause non-essentials, list immediate bills, and separate true essentials from pressure or embarrassment.",
             },
             {
               eyebrow: "Stage 2",
-              title: "Stabilize and negotiate",
-              icon: "☎️",
-              tone: "warning",
+              title: "Stabilize the basics",
+              icon: "🏠",
+              tone: "family",
               description:
-                "Protect housing, utilities, food, transportation, phone access, legal costs, medical bills, and taxes.",
+                "Work through housing, utilities, food, phone, transportation, legal costs, medical bills, taxes, and child support.",
             },
             {
               eyebrow: "Stage 3",
-              title: "Protect and plan",
+              title: "Protect the future",
               icon: "🛡️",
               tone: "success",
               description:
-                "Protect credit, avoid high-cost debt, document every agreement, and line up credible help.",
+                "Document agreements, protect credit, avoid predatory debt, and build a clear household plan.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="first-things"
+          id="essentials"
           number="1"
-          title="First things first: do not panic, make a list"
-          subtitle="Start with what you can control right now."
+          title="First Things First: Separate Essentials from Noise"
+          subtitle="Money panic makes every bill feel equally urgent. They are not all equal."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Money panic makes every bill feel equally urgent. They are not all
-              equal. Your first job is to separate essentials from pressure,
-              noise, and embarrassment.
-            </p>
-
-            <p>
               Essentials are the bills that keep your household physically
               stable and connected to the systems you must keep using: housing,
-              utilities, food, transportation, phone or internet access,
-              medical care, child support, legal appointments, court dates, and
-              work or school.
+              utilities, food, transportation, phone or internet access, medical
+              care, child support, legal appointments, court dates, and work or
+              school.
             </p>
 
             <p>
@@ -246,42 +240,26 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </GuideProse>
 
           <GuideChecklist
-            id="first-things-checklist"
-            title="First list to make"
-            columns={1}
+            id="financial-essentials"
+            title="Mark the bills that protect immediate stability"
+            columns={2}
             items={[
-              {
-                id: "folder",
-                label: "Create one notebook, folder, envelope, binder, or digital notes file.",
-                helper:
-                  "Use whatever you can actually keep up with. Paper is completely fine.",
-              },
-              {
-                id: "must-pay",
-                label:
-                  "List must-pay bills: rent or mortgage, utilities, food, transportation, phone or internet, child support, medical, and legal costs.",
-              },
-              {
-                id: "stars",
-                label:
-                  "Put a star next to the bills that keep your family housed, fed, reachable, and able to attend required appointments.",
-              },
-              {
-                id: "calendar",
-                label:
-                  "Make a visible calendar of due dates, court dates, legal payment dates, benefit deadlines, and shutoff or eviction notices.",
-              },
-              {
-                id: "contacts",
-                label:
-                  "Write down the phone number, website, account number, and department for each urgent bill.",
-              },
+              { id: "housing", label: "Rent, mortgage, lease, or foreclosure deadline." },
+              { id: "utilities", label: "Electric, gas, water, heating, cooling, or shutoff notice." },
+              { id: "food", label: "Groceries, food benefits, school meals, or food-bank access." },
+              { id: "transportation", label: "Gas, bus fare, car insurance, court travel, work travel, or child-care travel." },
+              { id: "phone", label: "Phone or internet access needed for court, counsel, benefits, work, school, or family coordination." },
+              { id: "medical", label: "Urgent medication, medical treatment, insurance, or billing deadlines." },
+              { id: "legal", label: "Attorney fees, court deadlines, required appointments, or document costs." },
+              { id: "child-support", label: "Child support, custody-related costs, or family-court deadlines." },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="★" title="The practical rule">
+          <GuideCallout tone="reminder" icon="★" title="The starred bills go first">
             <p>
-              Starred bills go first. Everything else should be reviewed,
+              Starred bills should protect shelter, food, utilities, phone
+              access, transportation, court stability, medical needs, child
+              support, and work or school. Everything else should be reviewed,
               paused, reduced, negotiated, or delayed when possible.
             </p>
           </GuideCallout>
@@ -290,8 +268,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionHeader
           id="triage"
           number="2"
-          title="The 48-hour triage"
-          subtitle="Immediate actions to reduce damage while you gather information."
+          title="The 48-Hour Money Triage"
+          subtitle="Use the first two days to slow preventable damage."
         />
 
         <GuideSectionCard>
@@ -304,93 +282,57 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </GuideProse>
 
           <GuideIconList
+            title="Do these before the next round of bills hits"
+            variant="cards"
+            columns={2}
+            tone="money"
             items={[
               {
                 icon: "pause",
-                iconName: "pause",
-                title:
-                  "Cancel extras: streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
-                label:
-                  "Cancel extras: streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
-                children: (
-                  <span>
-                    Cancel extras: streaming services, gyms, subscriptions, delivery
-                    memberships, apps, and automatic payments that are not essential.
-                  </span>
-                ),
+                title: "Cancel extras",
+                description:
+                  "Pause streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
               },
               {
                 icon: "calendar",
-                iconName: "calendar",
-                title:
-                  "Make a due-date map: what is due this week, what is due this month, and what already has a late notice.",
-                label:
-                  "Make a due-date map: what is due this week, what is due this month, and what already has a late notice.",
-                children: (
-                  <span>
-                    Make a due-date map: what is due this week, what is due this
-                    month, and what already has a late notice.
-                  </span>
-                ),
+                title: "Make a due-date map",
+                description:
+                  "Write what is due this week, what is due this month, and what already has a late notice. Use a visible or shared calendar if the household is coordinating together.",
               },
               {
                 icon: "phone",
-                iconName: "phone",
-                title:
-                  "Call before you are late whenever possible. Hardship programs are often easier to access before the account is seriously past due.",
-                label:
-                  "Call before you are late whenever possible. Hardship programs are often easier to access before the account is seriously past due.",
-                children: (
-                  <span>
-                    Call before you are late whenever possible. Hardship programs
-                    are often easier to access before the account is seriously past
-                    due.
-                  </span>
-                ),
+                title: "Call before you are late",
+                description:
+                  "Hardship programs, extensions, and payment plans are often easier to access before the account is seriously past due.",
               },
               {
-                icon: "file-text",
-                iconName: "file-text",
-                title:
-                  "Document every call. Write down who you spoke with, the date, what they said, and what you agreed to do next.",
-                label:
-                  "Document every call. Write down who you spoke with, the date, what they said, and what you agreed to do next.",
-                children: (
-                  <span>
-                    Document every call. Write down who you spoke with, the date,
-                    what they said, and what you agreed to do next.
-                  </span>
-                ),
+                icon: "fileText",
+                title: "Document every call",
+                description:
+                  "Write down who you spoke with, the date, department, phone number, confirmation number, what they said, and what you agreed to do next.",
               },
             ]}
           />
 
           <ScriptBox
-            title="Hardship or payment-plan call script"
+            title="Hardship call script"
             tone="neutral"
-            context="Use this for a landlord, mortgage servicer, utility company, medical biller, phone provider, tax office, or other creditor."
-            script={`Hello, my name is [Name]. I am calling about account [account number, address, or bill type].
+            context="Use this for landlords, mortgage servicers, utilities, creditors, hospitals, and other billing offices."
+            script={`Hello, my name is [Name]. My household is going through a legal emergency and our income or expenses have changed.
 
-Our household is going through a legal emergency, and we are trying to stay in good standing. I want to ask what hardship options, payment plans, extensions, budget billing, reduced payments, or documentation options are available.
+We want to stay in good standing. Can you tell me what hardship options, payment plans, budget billing, extensions, or assistance programs are available?
 
-Can you tell me:
-1. What options exist for this account;
-2. What deadline I need to meet;
-3. What documents you need from me;
-4. Whether this agreement can be sent to me in writing; and
-5. Your name or department so I can write down who I spoke with?
-
-I am taking notes and trying to handle this responsibly.`}
+What documentation do you need, what deadline matters, and can you send the agreement or instructions in writing?`}
           />
 
           <DocumentPacket
-            title="Build a financial crisis folder"
+            title="Start a money crisis folder"
             intro={
-              <span>
+              <p>
                 This folder is not busywork. It helps you apply for help,
                 negotiate payment plans, correct mistakes, and prove what was
                 agreed to later.
-              </span>
+              </p>
             }
             categories={[
               {
@@ -398,7 +340,7 @@ I am taking notes and trying to handle this responsibly.`}
                 items: [
                   "Rent or mortgage statements, lease, foreclosure or eviction notices, and payment agreements.",
                   "Utility bills, shutoff notices, budget billing offers, and energy assistance paperwork.",
-                  "Phone, internet, transportation, insurance, medical, tax, and child support notices.",
+                  "Phone, internet, transportation, insurance, medical, tax, and child-support notices.",
                 ],
               },
               {
@@ -420,14 +362,6 @@ I am taking notes and trying to handle this responsibly.`}
 
           <OfflineOptions
             title="If internet access is limited"
-            icon="📌"
-            note={
-              <span>
-                Many families are phone-only, sharing devices, without a printer,
-                or supporting someone who cannot safely or easily access online
-                forms.
-              </span>
-            }
             items={[
               "Use a paper notebook or envelope system for bills, notices, and call notes.",
               "Ask agencies to mail forms or read the required documents over the phone.",
@@ -438,10 +372,10 @@ I am taking notes and trying to handle this responsibly.`}
           />
         </GuideSectionCard>
 <GuideSectionHeader
-          id="essentials"
+          id="basic-needs"
           number="3"
-          title="Stabilize the essentials"
-          subtitle="Protect housing, utilities, food, phone access, and transportation before lower-priority bills."
+          title="Stabilize Housing, Utilities, Food, Phone, and Transportation"
+          subtitle="Financial shock often hits several systems at once. Start with the essentials, then move outward."
         />
 
         <GuideSectionCard>
@@ -454,102 +388,137 @@ I am taking notes and trying to handle this responsibly.`}
             </p>
 
             <p>
-              Start with the essentials, then move outward.
-            </p>
-
-            <p>
-              <strong>Housing.</strong> Call your landlord or mortgage servicer
-              before the situation becomes a crisis. Ask for a payment plan,
-              smaller weekly payments, temporary forbearance, hardship options,
-              or a written explanation of what happens if you cannot pay the
-              full amount on time. If you own your home or are behind on a
-              mortgage, a HUD-approved housing counselor can help you understand
-              options.
-            </p>
-
-            <p>
-              <strong>Utilities.</strong> Ask about budget billing, shutoff
-              protections, arrears management, medical necessity forms, winter
-              protections, and energy assistance such as LIHEAP. If you do not
-              know where to start, 211 can help connect you to local resources.
-            </p>
-
-            <p>
-              <strong>Food.</strong> Use food banks early. Apply for SNAP or
-              other food benefits as soon as you know income has changed. Waiting
-              until the pantry is empty makes every other decision harder.
-            </p>
-
-            <p>
-              <strong>Phone and internet.</strong> Phone access may be essential
-              for court reminders, lawyer calls, school, work, benefits, medical
-              care, and family coordination. Ask your provider about hardship,
-              prepaid, or low-income options. Check whether Lifeline support is
-              available.
-            </p>
-
-            <p>
-              <strong>Transportation.</strong> Court, treatment, legal meetings,
-              child care, work, and benefits appointments often depend on
-              transportation. Ask local nonprofits, 211, public transit agencies,
-              churches, reentry groups, or legal aid offices whether bus passes,
-              gas cards, or transportation vouchers exist in your area.
+              Start with the essentials, then move outward. For each essential
+              bill, ask what hardship option exists, what proof is needed, what
+              deadline controls, and whether the answer can be put in writing.
             </p>
           </GuideProse>
 
+          <GuideIconList
+            title="Where to start"
+            variant="rows"
+            columns={1}
+            tone="info"
+            items={[
+              {
+                icon: "housing",
+                title: "Housing",
+                description: (
+                  <>
+                    Call your landlord or mortgage servicer before the situation
+                    becomes a crisis. Ask for a payment plan, smaller weekly
+                    payments, temporary forbearance, hardship options, or a
+                    written explanation of what happens if you cannot pay the
+                    full amount on time. If you own your home or are behind on a
+                    mortgage, a HUD-approved housing counselor can help you
+                    understand options.
+                  </>
+                ),
+              },
+              {
+                icon: "utilities",
+                title: "Utilities",
+                description: (
+                  <>
+                    Ask about budget billing, shutoff protections, arrears
+                    management, medical necessity forms, winter protections, and
+                    energy assistance such as LIHEAP. If you do not know where
+                    to start, 211 can help connect you to local resources.
+                  </>
+                ),
+              },
+              {
+                icon: "food",
+                title: "Food",
+                description: (
+                  <>
+                    Use food banks early. Apply for SNAP or other food benefits
+                    as soon as you know income has changed. Waiting until the
+                    pantry is empty makes every other decision harder.
+                  </>
+                ),
+              },
+              {
+                icon: "wifi",
+                title: "Phone and internet",
+                description: (
+                  <>
+                    Phone access may be essential for court reminders, lawyer
+                    calls, school, work, benefits, medical care, and family
+                    coordination. Ask your provider about hardship, prepaid, or
+                    low-income options. Check whether Lifeline support is
+                    available.
+                  </>
+                ),
+              },
+              {
+                icon: "transportation",
+                title: "Transportation",
+                description: (
+                  <>
+                    Court, treatment, legal meetings, child care, work, and
+                    benefits appointments often depend on transportation. Ask
+                    local nonprofits, 211, public transit agencies, churches,
+                    reentry groups, or legal aid offices whether bus passes, gas
+                    cards, or transportation vouchers exist in your area.
+                  </>
+                ),
+              },
+            ]}
+          />
+
           <ResourceLinkGrid
-            title="Essential support resources"
-            description="Use these as starting points. Local availability and eligibility can vary."
+            title="Basic-needs resources"
+            description="Use official or established resource finders first, then verify local eligibility and deadlines."
             resources={[
               {
-                label: "HUD-approved housing counselor search",
+                label: "HUD-approved housing counselor finder",
                 href: sourceLinks.cfpbHousingCounselor,
                 badge: "Official",
                 description:
-                  "Find housing counselors for mortgage, rental, foreclosure, credit, and housing-stability questions.",
+                  "Find HUD-approved housing counselors for mortgage, foreclosure, rental, and credit issues.",
               },
               {
-                label: "USAGov rental housing help",
+                label: "USAGov rental assistance",
                 href: sourceLinks.usaGovRentHelp,
                 badge: "Official",
                 description:
-                  "Federal public-information page for rental housing programs and emergency housing help.",
+                  "Government overview of rental assistance, vouchers, subsidized housing, and public housing.",
               },
               {
-                label: "LIHEAP energy assistance",
-                href: sourceLinks.liheap,
+                label: "USAGov energy-bill help",
+                href: sourceLinks.energyHelp,
                 badge: "Official",
                 description:
-                  "Federal information about Low Income Home Energy Assistance Program support.",
+                  "Plain-language LIHEAP and weatherization guidance, including how to find state help.",
               },
               {
-                label: "211 local help",
+                label: "211 local resource finder",
                 href: sourceLinks.unitedWay211,
-                badge: "Directory",
+                badge: "Resource finder",
                 description:
-                  "Call 211 or use the website to look for local help with housing, utilities, food, health, and basic needs.",
-                phone: "Dial 211",
+                  "Connects people to local help with housing, utilities, food, health, and other urgent needs.",
               },
               {
                 label: "Feeding America food bank locator",
                 href: sourceLinks.feedingAmerica,
                 badge: "Food",
                 description:
-                  "Find local food banks and food assistance programs by location.",
+                  "Find a local food bank or pantry in the Feeding America network.",
               },
               {
                 label: "USAGov SNAP information",
                 href: sourceLinks.snapUsaGov,
-                badge: "Benefits",
+                badge: "Official",
                 description:
-                  "Plain-language federal information about applying for SNAP food benefits.",
+                  "Plain-language federal overview of SNAP benefits and how to apply through your state.",
               },
               {
                 label: "Lifeline phone and internet support",
                 href: sourceLinks.lifeline,
-                badge: "Phone",
+                badge: "Official program",
                 description:
-                  "Federal support program information for eligible phone or internet service discounts.",
+                  "Federal program information for discounted phone or internet service for eligible households.",
               },
             ]}
           />
@@ -558,8 +527,8 @@ I am taking notes and trying to handle this responsibly.`}
         <GuideSectionHeader
           id="legal-medical-tax"
           number="4"
-          title="Handle legal, medical, and tax costs without going broke"
-          subtitle="Ask early, get terms in writing, and avoid surprise obligations."
+          title="Handle Legal Costs, Medical Bills, and Taxes Without Guessing"
+          subtitle="Ask clear questions early and get important terms in writing."
         />
 
         <GuideSectionCard>
@@ -570,153 +539,116 @@ I am taking notes and trying to handle this responsibly.`}
               questions early and avoid vague arrangements that nobody can
               remember later.
             </p>
-
-            <p>
-              <strong>Legal costs.</strong> Ask for the retainer, scope of work,
-              hourly or flat-fee terms, billing cadence, refund rules for unused
-              retainers, and itemized invoices in writing. Ask whether the work
-              can be staged, such as a fee through a preliminary hearing and a
-              separate discussion before the next phase.
-            </p>
-
-            <p>
-              If the case is federal and the accused person cannot afford
-              counsel, ask about eligibility for appointed counsel under the
-              Criminal Justice Act. For civil legal issues connected to the
-              crisis — housing, benefits, debt, family law, employment,
-              consumer issues — legal aid or limited pro bono advice may help.
-            </p>
-
-            <p>
-              <strong>Medical bills.</strong> Do not ignore medical bills. Call
-              the billing office, ask for an itemized bill, ask about charity
-              care or financial assistance, and request a no-interest payment
-              plan if needed. Nonprofit hospitals have financial-assistance
-              policy obligations, but you may still need to ask directly.
-            </p>
-
-            <p>
-              <strong>Taxes.</strong> If taxes are owed, do not assume there is
-              no option. Check balances, payment plans, and low-income tax help.
-              If you cannot pay in full, ask about short-term and long-term IRS
-              payment options and whether a qualified tax clinic can help.
-            </p>
           </GuideProse>
 
-          <GuideChecklist
-            id="legal-medical-tax-checklist"
-            title="Questions to ask before agreeing to a payment plan"
-            columns={1}
+          <GuideIconList
+            title="Costs that need written answers"
+            variant="cards"
+            columns={2}
+            tone="legal"
             items={[
               {
-                id: "amount",
-                label: "What is the total amount owed right now?",
+                icon: "legal",
+                title: "Legal costs",
+                description:
+                  "Ask for the retainer, scope of work, hourly or flat-fee terms, billing cadence, refund rules for unused retainers, itemized invoices, and whether a monthly cap is possible.",
               },
               {
-                id: "deadline",
-                label: "What is the next deadline, and what happens if it is missed?",
+                icon: "plan",
+                title: "Case budget with milestones",
+                description:
+                  "Ask counsel for a case budget with milestones and decision points. It can reduce surprise invoices and help the family understand when another payment discussion may be needed.",
               },
               {
-                id: "hardship",
-                label: "Is there a hardship, charity care, reduced-payment, or no-interest option?",
+                icon: "hospital",
+                title: "Medical bills",
+                description:
+                  "Call the billing office, ask for an itemized bill, ask about charity care or financial assistance, and request a no-interest payment plan if needed.",
               },
               {
-                id: "documents",
-                label: "What documents are required to apply?",
-              },
-              {
-                id: "writing",
-                label: "Can the agreement, deadline, and payment terms be sent in writing?",
-              },
-              {
-                id: "review",
-                label: "Can the plan be reviewed again if income changes?",
+                icon: "tax",
+                title: "Taxes",
+                description:
+                  "If taxes are owed, check balances, payment plans, low-income tax clinics, free tax preparation, and whether a qualified tax professional can help.",
               },
             ]}
           />
 
-          <ScriptBox
-            title="Attorney-fee clarity script"
-            tone="legal"
-            context="Use this when you need billing terms explained without creating conflict."
-            script={`Hello, I am trying to understand the financial side of representation so our family can plan responsibly.
-
-Can you please help me understand:
-1. What the current fee covers;
-2. What work is not included;
-3. Whether this is flat fee, hourly, or staged;
-4. When we should expect invoices or future payment requests;
-5. Whether there is a monthly cap or payment plan option; and
-6. What happens to unused funds if representation ends or the case changes?
-
-I am not challenging the fee. I am trying to avoid confusion and plan around the case.`}
-          />
+          <GuideCallout tone="legal" icon="⚖️" title="Criminal defense and civil legal help are different systems">
+            <p>
+              If the case is federal and the accused person cannot afford
+              counsel, ask about eligibility for appointed counsel under the
+              Criminal Justice Act. For civil legal issues connected to the
+              crisis — housing, benefits, debt, family law, employment, consumer
+              issues — legal aid or limited pro bono advice may help.
+            </p>
+          </GuideCallout>
 
           <ResourceLinkGrid
-            title="Legal, medical, and tax help"
+            title="Legal, medical, and tax resources"
             resources={[
               {
-                label: "Legal Services Corporation — get legal help",
+                label: "Legal Services Corporation legal-aid finder",
                 href: sourceLinks.lscLegalHelp,
                 badge: "Civil legal aid",
                 description:
-                  "Starting point for finding civil legal aid programs for housing, benefits, debt, family, and other non-criminal legal issues.",
+                  "Find LSC-funded legal aid organizations for civil legal problems such as housing, benefits, debt, family law, and consumer issues.",
               },
               {
                 label: "ABA Free Legal Answers",
                 href: sourceLinks.abaFreeLegalAnswers,
                 badge: "Civil Q&A",
                 description:
-                  "Virtual legal advice clinic for qualifying users with civil legal questions in participating states.",
+                  "Online civil legal question-and-answer clinic for eligible users in participating states.",
               },
               {
-                label: "Federal Defender resources",
+                label: "Federal Defender Services",
                 href: sourceLinks.federalDefenders,
-                badge: "Federal cases",
+                badge: "Federal criminal",
                 description:
-                  "Federal defender and CJA-related resource hub for federal criminal defense context.",
+                  "Federal defender and CJA-related resource hub for eligible federal criminal cases.",
               },
               {
-                label: "IRS 501(r) financial assistance policy",
+                label: "IRS nonprofit hospital financial-assistance policy rules",
                 href: sourceLinks.irs501r,
                 badge: "Medical bills",
                 description:
-                  "IRS information about financial assistance policies for nonprofit hospitals.",
+                  "IRS information on financial-assistance policy requirements for tax-exempt hospitals.",
               },
               {
                 label: "CMS medical bill rights",
                 href: sourceLinks.cmsMedicalBillRights,
                 badge: "Medical bills",
                 description:
-                  "Federal information about medical billing rights and surprise-billing protections.",
+                  "Federal information about medical billing rights and protections, including surprise billing protections.",
               },
               {
                 label: "IRS payments",
                 href: sourceLinks.irsPayments,
                 badge: "Taxes",
                 description:
-                  "Official IRS page for tax payment options and payment plans.",
+                  "Official IRS payment and payment-plan information.",
               },
               {
                 label: "Taxpayer Advocate Service",
                 href: sourceLinks.taxpayerAdvocate,
                 badge: "Taxes",
                 description:
-                  "Independent organization within the IRS that helps taxpayers resolve certain tax problems.",
+                  "Independent organization within the IRS that helps taxpayers with tax problems.",
               },
               {
                 label: "Low Income Taxpayer Clinics",
                 href: sourceLinks.lowIncomeTaxpayerClinics,
                 badge: "Taxes",
                 description:
-                  "IRS directory and information for clinics that may help qualifying taxpayers.",
+                  "IRS directory and information for clinics that may help eligible taxpayers.",
               },
               {
-                label: "VITA and TCE free tax preparation",
+                label: "VITA/TCE free tax preparation",
                 href: sourceLinks.vitaTce,
                 badge: "Taxes",
                 description:
-                  "IRS information about free tax return preparation for qualifying taxpayers.",
+                  "Free tax-return preparation information for qualifying taxpayers.",
               },
             ]}
           />
@@ -725,8 +657,8 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
         <GuideSectionHeader
           id="credit-debt"
           number="5"
-          title="Protect credit and avoid debt traps"
-          subtitle="A short-term crisis should not become years of avoidable financial damage."
+          title="Protect Credit and Avoid Debt Traps"
+          subtitle="Credit damage can follow the family long after the first emergency passes."
         />
 
         <GuideSectionCard>
@@ -740,168 +672,117 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
           </GuideProse>
 
           <GuideIconList
+            title="Credit-protection moves"
+            variant="cards"
+            columns={2}
+            tone="warning"
             items={[
               {
-                icon: "credit-card",
-                iconName: "credit-card",
-                title:
-                  "Pull free credit reports and dispute errors when you find them.",
-                label:
-                  "Pull free credit reports and dispute errors when you find them.",
-                children: (
-                  <span>
-                    Pull free credit reports and dispute errors when you find them.
-                  </span>
-                ),
+                icon: "credit",
+                title: "Pull free credit reports",
+                description:
+                  "Use AnnualCreditReport.com to review reports and dispute errors when you find them.",
               },
               {
                 icon: "shield",
-                iconName: "shield",
-                title:
-                  "Consider a credit freeze or fraud alert if identity theft, account misuse, or family financial conflict is a concern.",
-                label:
-                  "Consider a credit freeze or fraud alert if identity theft, account misuse, or family financial conflict is a concern.",
-                children: (
-                  <span>
-                    Consider a credit freeze or fraud alert if identity theft,
-                    account misuse, or family financial conflict is a concern.
-                  </span>
-                ),
+                title: "Consider a credit freeze or fraud alert",
+                description:
+                  "A freeze or fraud alert may help if identity theft, account misuse, or family financial conflict is a concern.",
               },
               {
                 icon: "warning",
-                iconName: "warning",
-                title:
-                  "Avoid payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
-                label:
-                  "Avoid payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
-                children: (
-                  <span>
-                    Avoid payday loans, title loans, and debt-relief promises that
-                    require large upfront payments or pressure you to act
-                    immediately.
-                  </span>
-                ),
+                title: "Avoid high-cost debt traps",
+                description:
+                  "Be careful with payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
               },
               {
                 icon: "bank",
-                iconName: "bank",
-                title:
-                  "Ask local credit unions about lower-cost alternatives, including small-dollar loans or Payday Alternative Loans where available.",
-                label:
-                  "Ask local credit unions about lower-cost alternatives, including small-dollar loans or Payday Alternative Loans where available.",
-                children: (
-                  <span>
-                    Ask local credit unions about lower-cost alternatives, including
-                    small-dollar loans or Payday Alternative Loans where available.
-                  </span>
-                ),
+                title: "Ask about safer small-dollar options",
+                description:
+                  "Local credit unions may offer lower-cost alternatives, including Payday Alternative Loans where available.",
               },
               {
                 icon: "wallet",
-                iconName: "wallet",
-                title:
-                  "Look for low-fee checking accounts, including Bank On certified accounts, if banking access is a barrier.",
-                label:
-                  "Look for low-fee checking accounts, including Bank On certified accounts, if banking access is a barrier.",
-                children: (
-                  <span>
-                    Look for low-fee checking accounts, including Bank On certified
-                    accounts, if banking access is a barrier.
-                  </span>
-                ),
+                title: "Look for low-fee bank accounts",
+                description:
+                  "Bank On certified accounts may help if banking access, overdraft history, or account fees are a barrier.",
               },
             ]}
           />
 
           <CommonMistakes
-            title="Common financial mistakes during a case"
+            title="Common money mistakes during a legal crisis"
             mistakes={[
               {
-                mistake: "Paying whoever yells the loudest first.",
+                mistake: "Paying the loudest collector before protecting housing, food, utilities, phone access, or court-related stability.",
                 whyItMatters:
-                  "The loudest bill is not always the most important bill.",
+                  "Pressure does not always equal priority. A loud bill may be less urgent than a quiet shutoff, court, or housing deadline.",
                 betterMove:
-                  "Pay essentials first: housing, utilities, food, transportation, phone access, child support, medical needs, and required legal or court-related obligations.",
+                  "Star essential bills first, then call other creditors to ask about hardship options.",
               },
               {
-                mistake: "Relying on verbal promises.",
+                mistake: "Letting verbal agreements stay verbal.",
                 whyItMatters:
-                  "A helpful phone call can be forgotten, contradicted, or handled by a different department later.",
+                  "A phone promise may be hard to prove later if the account goes to collections or the office changes staff.",
                 betterMove:
-                  "Ask for written confirmation and save names, dates, departments, and confirmation numbers.",
+                  "Ask for written confirmation, save the name and department, and write down the date and confirmation number.",
               },
               {
-                mistake: "Using payday or title loans to solve a temporary gap.",
+                mistake: "Borrowing from high-cost lenders to cover every bill at once.",
                 whyItMatters:
-                  "High-cost debt can trap the household and make next month’s essentials harder to pay.",
+                  "High-cost debt can create a second emergency that lasts longer than the original bill.",
                 betterMove:
-                  "Ask about hardship plans, local assistance, credit-union alternatives, family support with clear written terms, or nonprofit help first.",
-              },
-              {
-                mistake: "Co-signing risky debt to protect someone else.",
-                whyItMatters:
-                  "The caregiver’s credit may be the household’s path to housing, transportation, utilities, and future stability.",
-                betterMove:
-                  "Protect the caregiver’s credit and avoid new obligations that could destabilize the whole family.",
-              },
-              {
-                mistake: "Ignoring medical, tax, or child-support notices.",
-                whyItMatters:
-                  "These problems can grow through collections, penalties, arrears, enforcement, or missed appeal windows.",
-                betterMove:
-                  "Call early, ask for review or assistance, and save proof of every request.",
+                  "Ask about hardship plans, public benefits, legal aid, credit-union options, and local assistance first.",
               },
             ]}
           />
 
           <ResourceLinkGrid
-            title="Credit and safer banking resources"
+            title="Credit and safer-banking resources"
             resources={[
               {
                 label: "AnnualCreditReport.com",
                 href: sourceLinks.annualCreditReport,
                 badge: "Credit reports",
                 description:
-                  "The official site to request free credit reports from the major credit reporting companies.",
+                  "Official site authorized by federal law for free credit reports from the major credit bureaus.",
               },
               {
-                label: "FTC credit freeze and fraud alert guidance",
+                label: "FTC credit freezes and fraud alerts",
                 href: sourceLinks.ftcCreditFreeze,
-                badge: "Fraud prevention",
+                badge: "Official",
                 description:
-                  "Federal consumer guidance on credit freezes, fraud alerts, and protecting credit files.",
+                  "FTC guidance on credit freezes, fraud alerts, and when each may help.",
               },
               {
                 label: "IdentityTheft.gov",
                 href: sourceLinks.identityTheft,
-                badge: "Identity theft",
+                badge: "Official",
                 description:
-                  "Federal recovery tool for reporting and responding to identity theft.",
+                  "FTC identity-theft reporting and recovery-plan site.",
               },
               {
-                label: "MyCreditUnion.gov — payday loan alternatives",
+                label: "MyCreditUnion.gov payday alternative loans",
                 href: sourceLinks.myCreditUnionPals,
-                badge: "Credit union",
+                badge: "Official",
                 description:
-                  "National Credit Union Administration information about Payday Alternative Loans and safer borrowing options.",
+                  "NCUA consumer information on payday loans, Payday Alternative Loans, and safer borrowing questions.",
               },
               {
-                label: "Bank On accounts",
+                label: "Bank On",
                 href: sourceLinks.bankOn,
-                badge: "Banking",
+                badge: "Banking access",
                 description:
-                  "Information about low-cost, certified bank and credit union accounts.",
+                  "Information about safe, affordable checking accounts and local Bank On coalitions.",
               },
             ]}
           />
         </GuideSectionCard>
-
 <GuideSectionHeader
           id="child-support-family"
           number="6"
-          title="If child support or family finances are involved"
-          subtitle="Act quickly, document changes, and protect the caregiver’s stability."
+          title="Child Support, Family Coordination, and Verification"
+          subtitle="Some obligations do not change automatically just because income drops."
         />
 
         <GuideSectionCard>
@@ -931,53 +812,52 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
           <GuideChecklist
             id="family-financial-checklist"
             title="Family financial checklist"
-            columns={1}
+            columns={2}
             items={[
               {
-                id: "housing",
+                id: "landlord",
                 label: "Call landlord or mortgage servicer and ask for a hardship plan.",
               },
               {
                 id: "utilities",
-                label: "Contact utilities and ask about budget billing, shutoff protections, or LIHEAP.",
+                label: "Contact utilities and ask about budget billing, shutoff protections, or energy help.",
               },
               {
                 id: "food",
-                label: "Secure food support through food banks, SNAP, school meals, or local programs.",
+                label: "Secure food through food banks, SNAP, school meals, or local programs.",
               },
               {
                 id: "medical",
-                label: "Review medical bills and ask for itemized bills, charity care, and payment plans.",
+                label: "Review medical bills, request itemized bills, and ask about charity care.",
               },
               {
                 id: "taxes",
-                label: "If taxes are owed, review IRS payment options or ask a qualified tax clinic for help.",
+                label: "If taxes are owed, check IRS payment-plan options and tax-help programs.",
               },
               {
                 id: "credit",
-                label: "Pull credit reports and dispute errors.",
+                label: "Pull credit reports, dispute errors, and consider a freeze if fraud is a concern.",
               },
               {
-                id: "freeze",
-                label: "Freeze credit or place a fraud alert if identity misuse is a concern.",
-              },
-              {
-                id: "avoid-debt",
-                label: "Avoid payday loans, title loans, and risky co-signing.",
+                id: "debt",
+                label: "Avoid payday loans, title loans, and upfront-fee debt-relief promises.",
               },
               {
                 id: "child-support",
-                label: "Request child-support review or modification immediately if income has changed.",
+                label: "Ask the child-support office how to request review or modification if income changed.",
               },
               {
                 id: "calendar",
-                label: "Use one shared calendar for bills, calls, court dates, appointments, and deadlines.",
+                label: "Keep a visible or shared calendar of court, work, school, benefit, bill, and payment dates.",
+              },
+              {
+                id: "agreements",
+                label: "Save every payment-plan agreement, hardship approval, denial notice, and appeal deadline.",
               },
             ]}
           />
 
           <VerifyBeforeActing
-            title="Verify before relying on a financial decision"
             whoToAsk={
               <span>
                 The office or person with actual authority: attorney, court
@@ -989,11 +869,11 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
             }
             whatToAsk={
               <span>
-                Ask the narrow question tied to the action you are about to
-                take: “Does this affect eligibility?”, “Can this order be
-                reviewed?”, “Will this payment plan stop collections?”, “Is this
-                agreement in writing?”, “Does my supervision condition allow
-                this?”, or “What deadline controls?”
+                Ask the narrow question tied to the action you are about to take:
+                “Does this affect eligibility?”, “Can this order be reviewed?”,
+                “Will this payment plan stop collections?”, “Is this agreement
+                in writing?”, “Does my supervision condition allow this?”, or
+                “What deadline controls?”
               </span>
             }
             whatToSave={
@@ -1005,29 +885,280 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
             }
           />
 
-          <ResourceLinkGrid
-            title="Child support"
-            resources={[
-              {
-                label: "ACF — change a child support order",
-                href: sourceLinks.acfChildSupportOrder,
-                badge: "Official",
-                description:
-                  "Federal child-support information explaining that a support order can be changed only by a new order and pointing parents toward modification steps.",
-              },
-            ]}
-          />
+          <GuideCallout tone="family" icon="👪" title="Protect the person keeping the household stable">
+            <p>
+              Caregivers sometimes co-sign debt, open new credit, or make
+              promises they cannot afford because they are scared. Before taking
+              on new debt, ask what happens if the case lasts longer than
+              expected, income does not return quickly, or another bill arrives.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="closing"
+          id="resources"
           number="7"
-          title="You do not have to solve everything today"
-          subtitle="Steady action beats panic."
+          title="Resources and Next Steps"
+          subtitle="Use official sources when possible, then verify local rules, eligibility, and deadlines."
         />
 
         <GuideSectionCard>
-          <GuideProse>
+          <ResourceLinkGrid
+            title="Main resource links"
+            description="Start with these resource finders and official pages, then confirm local eligibility and documentation rules."
+            resources={[
+              {
+                label: "CFPB HUD-approved housing counselor finder",
+                href: sourceLinks.cfpbHousingCounselor,
+                badge: "Official",
+                description:
+                  "Housing counselor lookup for mortgage, rental, foreclosure, and credit issues.",
+              },
+              {
+                label: "USAGov rental assistance",
+                href: sourceLinks.usaGovRentHelp,
+                badge: "Official",
+                description:
+                  "Federal plain-language guide to rental assistance and affordable housing programs.",
+              },
+              {
+                label: "USAGov energy-bill help",
+                href: sourceLinks.energyHelp,
+                badge: "Official",
+                description:
+                  "LIHEAP and utility-help guidance with state office lookup links.",
+              },
+              {
+                label: "211",
+                href: sourceLinks.unitedWay211,
+                badge: "Local help",
+                description:
+                  "Local referrals for housing, utilities, food, health, transportation, and crisis needs.",
+              },
+              {
+                label: "Feeding America food bank locator",
+                href: sourceLinks.feedingAmerica,
+                badge: "Food",
+                description:
+                  "National food-bank network locator.",
+              },
+              {
+                label: "USAGov SNAP information",
+                href: sourceLinks.snapUsaGov,
+                badge: "Official",
+                description:
+                  "Federal overview of SNAP and how to apply through your state.",
+              },
+              {
+                label: "Lifeline",
+                href: sourceLinks.lifeline,
+                badge: "Phone/internet",
+                description:
+                  "Federal phone and internet discount program information.",
+              },
+              {
+                label: "LSC legal aid finder",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Legal aid",
+                description:
+                  "Find LSC-funded civil legal aid near you.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                badge: "Civil Q&A",
+                description:
+                  "Free civil legal question-and-answer help for eligible users in participating states.",
+              },
+              {
+                label: "IRS payments",
+                href: sourceLinks.irsPayments,
+                badge: "Taxes",
+                description:
+                  "IRS payment and installment-plan information.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                badge: "Credit",
+                description:
+                  "Official free credit-report site.",
+              },
+              {
+                label: "ACF child support modification FAQ",
+                href: sourceLinks.acfChildSupportOrder,
+                badge: "Child support",
+                description:
+                  "Federal child-support FAQ on income changes and possible order review.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "The SOLAR Family & Allies Guide",
+                description:
+                  "For families trying to support a loved one through arrest, court, incarceration, reentry, and long-term adjustment.",
+                to: "/resources/family-support-guide",
+              },
+              {
+                title: "Financial Planning Guide",
+                description:
+                  "For longer-term rebuilding after the immediate legal and household crisis stabilizes.",
+                to: "/resources/financial-planning-guide",
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "For planning housing, documents, health care, transportation, employment, and compliance after incarceration.",
+                to: "/resources/reentry-checklist",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources & verification"
+            note="These links are included because financial, benefit, housing, utility, medical, tax, credit, and child-support rules can change. Local eligibility, deadlines, and documentation requirements may vary by state, county, agency, provider, and court order."
+            sources={[
+              {
+                label: "Consumer Financial Protection Bureau — Find a housing counselor",
+                href: sourceLinks.cfpbHousingCounselor,
+                description:
+                  "HUD-approved housing counselor lookup and housing counseling information.",
+              },
+              {
+                label: "USAGov — Rental assistance",
+                href: sourceLinks.usaGovRentHelp,
+                description:
+                  "Federal plain-language rental assistance and affordable housing overview.",
+              },
+              {
+                label: "USAGov — Help with energy bills",
+                href: sourceLinks.energyHelp,
+                description:
+                  "LIHEAP, weatherization, and utility-disconnection help.",
+              },
+              {
+                label: "United Way 211",
+                href: sourceLinks.unitedWay211,
+                description:
+                  "Local referral network for housing, utilities, food, health, and crisis needs.",
+              },
+              {
+                label: "Feeding America — Find your local food bank",
+                href: sourceLinks.feedingAmerica,
+                description:
+                  "Food bank locator.",
+              },
+              {
+                label: "USAGov — SNAP food benefits",
+                href: sourceLinks.snapUsaGov,
+                description:
+                  "SNAP overview and state application routing.",
+              },
+              {
+                label: "Lifeline Support",
+                href: sourceLinks.lifeline,
+                description:
+                  "Federal phone and internet discount program information.",
+              },
+              {
+                label: "Legal Services Corporation — I Need Legal Help",
+                href: sourceLinks.lscLegalHelp,
+                description:
+                  "Civil legal aid finder.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                description:
+                  "Civil legal Q&A program.",
+              },
+              {
+                label: "Federal Defender Services",
+                href: sourceLinks.federalDefenders,
+                description:
+                  "Federal defender and CJA-related resource hub.",
+              },
+              {
+                label: "IRS — Section 501(r)(4) hospital financial-assistance policy",
+                href: sourceLinks.irs501r,
+                description:
+                  "Tax-exempt hospital financial-assistance policy obligations.",
+              },
+              {
+                label: "CMS — Medical bill rights",
+                href: sourceLinks.cmsMedicalBillRights,
+                description:
+                  "Federal medical billing rights and protections.",
+              },
+              {
+                label: "IRS — Payments",
+                href: sourceLinks.irsPayments,
+                description:
+                  "IRS payment and payment-plan information.",
+              },
+              {
+                label: "Taxpayer Advocate Service",
+                href: sourceLinks.taxpayerAdvocate,
+                description:
+                  "Independent taxpayer assistance within the IRS.",
+              },
+              {
+                label: "IRS — Low Income Taxpayer Clinics",
+                href: sourceLinks.lowIncomeTaxpayerClinics,
+                description:
+                  "Clinic information and directory for eligible taxpayers.",
+              },
+              {
+                label: "IRS — VITA/TCE free tax preparation",
+                href: sourceLinks.vitaTce,
+                description:
+                  "Free tax return preparation information.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                description:
+                  "Official free credit-report site authorized by federal law.",
+              },
+              {
+                label: "FTC — Credit freezes and fraud alerts",
+                href: sourceLinks.ftcCreditFreeze,
+                description:
+                  "Consumer guidance on freezes and fraud alerts.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                description:
+                  "FTC identity theft reporting and recovery-plan site.",
+              },
+              {
+                label: "MyCreditUnion.gov — Payday Alternative Loans",
+                href: sourceLinks.myCreditUnionPals,
+                description:
+                  "NCUA consumer guidance on payday loans and credit-union alternatives.",
+              },
+              {
+                label: "Bank On",
+                href: sourceLinks.bankOn,
+                description:
+                  "Safe and affordable bank-account access initiative.",
+              },
+              {
+                label: "ACF — Child support income-change FAQ",
+                href: sourceLinks.acfChildSupportOrder,
+                description:
+                  "Federal child-support FAQ on income changes and possible order review.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌤️" title="The next safer decision matters">
             <p>
               This season may be hard, but the whole burden does not have to be
               solved in one day. Every phone call you make, every note you keep,
@@ -1046,207 +1177,9 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
               This is not about being perfect. It is about making the next safer
               decision, then the next one.
             </p>
-          </GuideProse>
-
-          <GuideCallout tone="success" icon="🌱" title="A steady reminder">
-            <p>
-              You are not wrong to be worried. You are also not powerless. Start
-              with the starred essentials, document everything, and ask for
-              written answers before acting on anything that could affect
-              housing, benefits, credit, court obligations, supervision, or
-              family stability.
-            </p>
           </GuideCallout>
-
-          <SoftDivider label="Next steps" />
-
-          <RelatedGuides
-            guides={[
-              {
-                title: "Family Support Guide",
-                description:
-                  "Support for families trying to stay steady, communicate clearly, and protect the household during a case.",
-                to: "/resources/family-support",
-              },
-              {
-                title: "Financial Planning Guide",
-                description:
-                  "Longer-term planning for rebuilding stability after the immediate financial emergency.",
-                to: "/resources/financial-planning",
-              },
-              {
-                title: "Reentry Resources",
-                description:
-                  "Practical help for people preparing for release, supervision, housing, employment, and community stability.",
-                to: "/resources/reentry",
-              },
-              {
-                title: "Employment Guide",
-                description:
-                  "Support for job searching, disclosure decisions, documentation, and workplace stability.",
-                to: "/resources/employment",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="sources"
-          number="8"
-          title="Sources and verification"
-          subtitle="Use official and reputable sources, then verify locally before relying on a program or deadline."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              These links are included because financial, benefit, housing,
-              utility, medical, tax, credit, and child-support rules can change.
-              Local eligibility, deadlines, and documentation requirements may
-              vary by state, county, agency, provider, and court order.
-            </p>
-          </GuideProse>
-
-          <SourceList
-            note="Several key links were spot-checked for the sandbox preview. Before replacing production, recheck every link and any state-specific claim."
-            sources={[
-              {
-                label: "Consumer Financial Protection Bureau — Find a Housing Counselor",
-                href: sourceLinks.cfpbHousingCounselor,
-                description:
-                  "HUD-approved housing counselor search for housing, mortgage, foreclosure, rental, and credit questions.",
-              },
-              {
-                label: "USAGov — Rental housing programs",
-                href: sourceLinks.usaGovRentHelp,
-                description:
-                  "Federal public-information page for rental housing and emergency housing help.",
-              },
-              {
-                label: "ACF — Low Income Home Energy Assistance Program",
-                href: sourceLinks.liheap,
-                description:
-                  "Federal LIHEAP program information for energy assistance.",
-              },
-              {
-                label: "United Way 211",
-                href: sourceLinks.unitedWay211,
-                description:
-                  "Local referral network for housing, utilities, food, health, and other essential needs.",
-              },
-              {
-                label: "Feeding America — Find your local food bank",
-                href: sourceLinks.feedingAmerica,
-                description:
-                  "Food bank locator and food assistance starting point.",
-              },
-              {
-                label: "USAGov — SNAP food benefits",
-                href: sourceLinks.snapUsaGov,
-                description:
-                  "Federal public-information page for applying for SNAP and checking benefit information.",
-              },
-              {
-                label: "Lifeline Support",
-                href: sourceLinks.lifeline,
-                description:
-                  "Phone and internet support program information for eligible households.",
-              },
-              {
-                label: "Legal Services Corporation — Get Legal Help",
-                href: sourceLinks.lscLegalHelp,
-                description:
-                  "Civil legal aid starting point for housing, benefits, debt, family, and consumer issues.",
-              },
-              {
-                label: "ABA Free Legal Answers",
-                href: sourceLinks.abaFreeLegalAnswers,
-                description:
-                  "Civil legal Q&A clinic for qualifying users in participating jurisdictions.",
-              },
-              {
-                label: "Federal Defender Services Office Training Division",
-                href: sourceLinks.federalDefenders,
-                description:
-                  "Federal defender and CJA-related resource hub for federal criminal defense context.",
-              },
-              {
-                label: "IRS — Section 501(r)(4) financial assistance policy",
-                href: sourceLinks.irs501r,
-                description:
-                  "IRS information about nonprofit hospital financial assistance policies.",
-              },
-              {
-                label: "CMS — Medical bill rights",
-                href: sourceLinks.cmsMedicalBillRights,
-                description:
-                  "Federal information on medical billing rights and surprise-billing protections.",
-              },
-              {
-                label: "IRS — Payments",
-                href: sourceLinks.irsPayments,
-                description:
-                  "Official IRS page for payment options and payment plans.",
-              },
-              {
-                label: "Taxpayer Advocate Service",
-                href: sourceLinks.taxpayerAdvocate,
-                description:
-                  "Independent IRS organization that helps taxpayers with certain tax problems.",
-              },
-              {
-                label: "IRS — Low Income Taxpayer Clinics",
-                href: sourceLinks.lowIncomeTaxpayerClinics,
-                description:
-                  "Information and directory for clinics that may assist qualifying taxpayers.",
-              },
-              {
-                label: "IRS — VITA/TCE free tax preparation",
-                href: sourceLinks.vitaTce,
-                description:
-                  "IRS information about free tax return preparation for qualifying taxpayers.",
-              },
-              {
-                label: "AnnualCreditReport.com",
-                href: sourceLinks.annualCreditReport,
-                description:
-                  "Official site to request free credit reports from the major credit reporting companies.",
-              },
-              {
-                label: "Federal Trade Commission — Credit freezes and fraud alerts",
-                href: sourceLinks.ftcCreditFreeze,
-                description:
-                  "Federal consumer guidance on credit freezes and fraud alerts.",
-              },
-              {
-                label: "IdentityTheft.gov",
-                href: sourceLinks.identityTheft,
-                description:
-                  "Federal recovery tool for reporting and responding to identity theft.",
-              },
-              {
-                label: "MyCreditUnion.gov — Payday Alternative Loans",
-                href: sourceLinks.myCreditUnionPals,
-                description:
-                  "National Credit Union Administration consumer information about payday loan alternatives.",
-              },
-              {
-                label: "Bank On",
-                href: sourceLinks.bankOn,
-                description:
-                  "Information about low-cost certified bank and credit union accounts.",
-              },
-              {
-                label: "ACF Office of Child Support Services — Change a support order",
-                href: sourceLinks.acfChildSupportOrder,
-                description:
-                  "Federal child-support information about changing a support order.",
-              },
-            ]}
-          />
         </GuideSectionCard>
       </main>
     </div>
   );
 }
-  
