@@ -9,30 +9,42 @@ import {
   GuideCallout,
   GuideIntro,
   SoftDivider,
+  QuickStartPanel,
   GuideChecklist,
   ScriptBox,
   OfflineOptions,
+  DocumentPacket,
   VerifyBeforeActing,
   CommonMistakes,
   OverviewCards,
+  ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  TimelineGuidanceGrid,
 } from "../../components/solar";
 
 const sourceLinks = {
-  bopCommunications: "https://www.bop.gov/inmates/communications.jsp",
-  bopTrulincs: "https://www.bop.gov/inmates/trulincs.jsp",
-  bopVisiting: "https://www.bop.gov/inmates/visiting.jsp",
-  bopLocator: "https://www.bop.gov/inmateloc/",
-  bopLocations: "https://www.bop.gov/locations/",
-  bopCorrespondencePolicy: "https://www.bop.gov/policy/progstat/5265_014.pdf",
-  bopTrulincsPolicy: "https://www.bop.gov/policy/progstat/5265_013.pdf",
-  bopTelephonePolicy: "https://www.bop.gov/policy/progstat/5264_008.pdf",
-  bopVisitingPolicy: "https://www.bop.gov/policy/progstat/5267_09.pdf",
-  bopSpecialMailNotice: "https://www.bop.gov/policy/forms/BP_A0493.pdf",
-  bopVisitorForm: "https://www.bop.gov/policy/forms/BP_A0629.pdf",
-  usaGovPrisonerRecords: "https://www.usa.gov/prisoner-records",
+  cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
+  usaGovRentHelp: "https://www.usa.gov/rental-housing-programs",
+  liheap: "https://www.acf.hhs.gov/ocs/programs/liheap",
+  unitedWay211: "https://www.211.org/",
+  feedingAmerica: "https://www.feedingamerica.org/find-your-local-foodbank",
+  snapUsaGov: "https://www.usa.gov/food-stamps",
+  lifeline: "https://www.lifelinesupport.org/",
+  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help",
+  abaFreeLegalAnswers: "https://abafreelegalanswers.org/",
+  federalDefenders: "https://www.fd.org/",
+  irs501r: "https://www.irs.gov/charities-non-profits/financial-assistance-policy-and-emergency-medical-care-policy-section-501r4",
+  cmsMedicalBillRights: "https://www.cms.gov/medical-bill-rights",
+  irsPayments: "https://www.irs.gov/payments",
+  taxpayerAdvocate: "https://www.taxpayeradvocate.irs.gov/",
+  lowIncomeTaxpayerClinics: "https://www.irs.gov/advocate/low-income-taxpayer-clinics",
+  vitaTce: "https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers",
+  annualCreditReport: "https://www.annualcreditreport.com/",
+  ftcCreditFreeze: "https://consumer.ftc.gov/articles/what-know-about-credit-freezes-fraud-alerts",
+  identityTheft: "https://www.identitytheft.gov/",
+  myCreditUnionPals: "https://mycreditunion.gov/life-events/consumer-loans/payday-loans",
+  bankOn: "https://joinbankon.org/",
+  acfChildSupportOrder: "https://www.acf.hhs.gov/css/parents/change-support-order",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -41,9 +53,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Prison Communication, Mail, Visits & Monitoring | The SOLAR Project"
-        description="A calm, practical SOLAR guide for families and supporters navigating prison mail, calls, messaging, visits, monitoring, legal mail, and facility-specific communication rules."
-        keywords="prison communication, prison mail, prison visits, prison phone calls, TRULINCS, CorrLinks, legal mail, prison monitoring, incarcerated loved one, SOLAR Project"
+        title="Surviving the Financial Shock of a Criminal Case | The SOLAR Project"
+        description="A practical SOLAR resource guide for families managing legal fees, lost income, bills, benefits, credit, and financial pressure during a criminal case."
+        keywords="financial support criminal case, reentry financial help, legal fees, family support, benefits, credit protection, utility assistance, housing help"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -60,13 +72,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Prison Communication, Mail, Visits & Monitoring
+            Surviving the Financial Shock of a Criminal Case
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical guide for families, loved ones, and supporters trying to
-            stay connected during incarceration without creating preventable
-            risk, confusion, or privacy problems.
+            Practical, step-by-step support for families managing legal fees,
+            lost income, urgent bills, benefits, credit, and ongoing expenses
+            without losing stability or hope.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -77,6 +89,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             >
               🖨️ Print Sandbox
             </button>
+
             <a
               href="#sources"
               className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
@@ -94,678 +107,886 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            Communication during incarceration is one of the most confusing and
-            emotionally loaded parts of the process. Calls may not go through.
-            Messages may disappear. Mail may take weeks. Visits may be delayed,
-            cancelled, or denied for reasons that are not explained clearly.
+            When someone you love is facing charges, it can feel like the ground
+            has been ripped out from under your feet — emotionally, socially,
+            and financially. Bills do not stop coming just because your family
+            is in crisis. In fact, the costs often rise sharply.
           </p>
 
           <p>
-            What feels personal is often procedural. Most prison communication
-            problems are driven by facility systems, transfer delays, monitoring
-            rules, vendor accounts, staffing limits, and security policies — not
-            by the strength of the relationship.
+            Think of this guide like a life jacket in rough water. You do not
+            have to swim all the way to shore today. You need to stay afloat,
+            protect the essentials, and make the next few decisions carefully.
           </p>
 
-          <GuideCallout
-            tone="privacy"
-            icon="🔎"
-            title="Start with this assumption"
-          >
-            <p>
-              Assume ordinary prison communication is monitored, recorded,
-              screened, delayed, or reviewable unless a qualified attorney or
-              official written policy tells you otherwise. That includes many
-              phone calls, electronic messages, video visits, and general mail.
-            </p>
-          </GuideCallout>
+          <p>
+            Keep a notebook or folder nearby as you work through this page.
+            Paper is fine. The goal is not perfection. The goal is to protect
+            housing, food, utilities, transportation, phone access, court-related
+            stability, and the caregiver’s credit while you figure out what
+            help is available.
+          </p>
         </GuideIntro>
 
-        <GuideSectionHeader
-          id="case-talk"
-          title="Before you talk about the case"
-          subtitle="The need to explain is human. Monitored jail and prison communication is the wrong place to do it."
+        <GuideCallout tone="legal" icon="⚖️" title="This guide is not legal or financial advice">
+          <p>
+            This is a practical playbook for stabilizing cash flow and protecting
+            your household during a criminal case. Rules, eligibility, court
+            orders, supervision conditions, and state programs can change the
+            answer. Verify important steps with the agency, attorney, court,
+            benefit office, creditor, or qualified professional before relying
+            on them.
+          </p>
+        </GuideCallout>
+
+        <QuickStartPanel
+          title="The 48-hour money triage"
+          subtitle="Use this when everything feels urgent and you are not sure where to start."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Get one notebook, folder, envelope, or notes app file and label it
+              “money crisis log.”
+            </span>,
+            <span>
+              Write down the bills that keep your household housed, fed,
+              connected, and able to get to work, school, court, medical care,
+              and legal appointments.
+            </span>,
+            <span>
+              Put a star next to the essentials: rent or mortgage, utilities,
+              food, transportation, phone or internet, child support, medical
+              needs, and lawyer or court-related deadlines.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Cancel or pause non-essential subscriptions, memberships, and
+              automatic payments that are not keeping the household stable.
+            </span>,
+            <span>
+              Call before you are late. Ask for hardship options, payment plans,
+              budget billing, extensions, or written instructions.
+            </span>,
+            <span>
+              Save names, dates, departments, confirmation numbers, letters,
+              emails, bills, and every agreement in writing.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              Starred bills go first. Many other bills can be paused, reduced,
+              deferred, negotiated, or handled through a formal assistance
+              program.
+            </span>
+          }
         />
 
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              After an arrest, families often need answers right away. A spouse may
-              feel desperate for an explanation. Parents may want to ask what
-              happened. The accused person may want to defend themselves, apologize,
-              reassure people, correct misunderstandings, or be understood before
-              everyone forms an opinion.
-            </p>
-
-            <p>
-              Those feelings are real. But ordinary jail and prison calls,
-              messages, mail, and video visits are dangerous places to process the
-              case — especially in sex-offense-related cases where allegations may
-              involve sexual conduct, minors, victim-related restrictions,
-              no-contact rules, treatment restrictions, family conflict, or intense
-              pressure to explain.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="Do not process the case on monitored communication"
-          >
-            <p>
-              Cases can hinge on what someone says to family, friends, or a
-              partner over monitored communication. Do not make admissions,
-              denials, explanations, apologies, clarifications, contradictions,
-              or emotional case-related statements over ordinary jail or prison
-              communication. Do not discuss alleged facts, victims, witnesses,
-              minors, evidence, legal strategy, timelines, screenshots, phones,
-              devices, treatment, or anyone’s story.
-            </p>
-          </GuideCallout>
-
-          <GuideChecklist
-            id="case-talk-boundaries"
-            title="The safer communication rule"
-            columns={1}
-            items={[
-              {
-                id: "redirect-case",
-                label:
-                  "Redirect case facts, legal questions, evidence, allegations, and strategy to the attorney.",
-              },
-              {
-                id: "avoid-story-work",
-                label:
-                  "Do not use ordinary calls, mail, messages, or video visits to build a timeline, compare stories, explain what happened, pressure anyone, or ask someone what they remember.",
-              },
-              {
-                id: "avoid-minor-victim-witness-topics",
-                label:
-                  "Do not discuss victims, witnesses, minors, alleged conduct, no-contact rules, or family conflict tied to the allegations.",
-              },
-              {
-                id: "safe-topics",
-                label:
-                  "Use ordinary communication for emotional support, health, logistics, daily life, family stability, release planning, and calm grounding.",
-              },
-              {
-                id: "silence-nuance",
-                label:
-                  "The point is not total silence. The better rule is: do not discuss case facts or legal strategy on monitored communication.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="🤝" title="What you can say instead">
-            <p>
-              Try: “I care about you. I know you want to explain. Please save
-              anything about the case for your lawyer. We can talk about how you
-              are doing, what you need, what I can safely help with, and how to
-              keep things steady.”
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
         <OverviewCards
-          columns={4}
+          columns={3}
           cards={[
             {
-              eyebrow: "Channel 1",
-              title: "Mail",
-              icon: "✉️",
-              tone: "info",
+              eyebrow: "Stage 1",
+              title: "Stop the bleeding",
+              icon: "🧯",
+              tone: "urgent",
               description:
-                "Letters, cards, photos, publications, packages, and rejected-mail notices all depend on facility rules.",
+                "Freeze non-essentials, list must-pay bills, and map the next due dates.",
             },
             {
-              eyebrow: "Channel 2",
-              title: "Calls & messages",
+              eyebrow: "Stage 2",
+              title: "Stabilize and negotiate",
               icon: "☎️",
-              tone: "privacy",
+              tone: "warning",
               description:
-                "Phone calls, electronic messaging, and video systems are usually monitored and may require approved contacts or vendor accounts.",
+                "Protect housing, utilities, food, transportation, phone access, legal costs, medical bills, and taxes.",
             },
             {
-              eyebrow: "Channel 3",
-              title: "Visits",
-              icon: "🪪",
-              tone: "family",
+              eyebrow: "Stage 3",
+              title: "Protect and plan",
+              icon: "🛡️",
+              tone: "success",
               description:
-                "Visits usually require approval, ID, scheduling, dress-code compliance, and facility-specific confirmation.",
-            },
-            {
-              eyebrow: "Channel 4",
-              title: "Legal mail",
-              icon: "⚖️",
-              tone: "legal",
-              description:
-                "Attorney and legal mail may receive special handling, but only if the correct procedure, markings, and sender information are used.",
+                "Protect credit, avoid high-cost debt, document every agreement, and line up credible help.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="stages"
+          id="first-things"
           number="1"
-          title="Communication changes by stage"
-          subtitle="A silence that feels alarming may mean transfer, intake, classification, lockdown, or account delay."
+          title="First things first: do not panic, make a list"
+          subtitle="Start with what you can control right now."
         />
 
         <GuideSectionCard>
-          <TimelineGuidanceGrid
-            title="What changes over time"
-            stages={[
+          <GuideProse>
+            <p>
+              Money panic makes every bill feel equally urgent. They are not all
+              equal. Your first job is to separate essentials from pressure,
+              noise, and embarrassment.
+            </p>
+
+            <p>
+              Essentials are the bills that keep your household physically
+              stable and connected to the systems you must keep using: housing,
+              utilities, food, transportation, phone or internet access,
+              medical care, child support, legal appointments, court dates, and
+              work or school.
+            </p>
+
+            <p>
+              Once you know what is essential, you can stop guessing. You can
+              make calls in order, ask for help more clearly, and avoid spending
+              scarce money on the loudest bill instead of the most important one.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="first-things-checklist"
+            title="First list to make"
+            columns={1}
+            items={[
               {
-                stage: "Pretrial or local jail",
-                icon: "🏛️",
-                whatChanges:
-                  "This is often the most restrictive and unpredictable phase. The person may be held by one authority while housed in another facility, and the jail’s communication system may be outdated, expensive, inconsistent, or limited.",
-                whatToDo:
-                  "Expect short calls, delayed mail, limited messaging, and unclear answers. Focus on steady support rather than high-volume contact. Ask the jail or detention facility what communication systems are available and what rules apply right now.",
+                id: "folder",
+                label: "Create one notebook, folder, envelope, binder, or digital notes file.",
+                helper:
+                  "Use whatever you can actually keep up with. Paper is completely fine.",
               },
               {
-                stage: "Transfer or holdover",
-                icon: "🚌",
-                whatChanges:
-                  "Communication may disappear entirely during movement between facilities. The person may not have access to phone, messaging, commissary, property, or a stable mailing address.",
-                whatToDo:
-                  "Do not assume silence means rejection, danger, or punishment. Check the official locator when available, save the last known location, and wait for communication to reestablish before flooding facilities with calls.",
+                id: "must-pay",
+                label:
+                  "List must-pay bills: rent or mortgage, utilities, food, transportation, phone or internet, child support, medical, and legal costs.",
               },
               {
-                stage: "Intake and classification",
-                icon: "📋",
-                whatChanges:
-                  "The facility may be setting up housing, contact lists, phone accounts, visiting lists, medical screening, and security classification. Rules may not feel settled yet.",
-                whatToDo:
-                  "Ask for the facility’s current mail, phone, messaging, and visiting instructions. Save the person’s register number or facility ID, the correct mailing format, and any account setup steps.",
+                id: "stars",
+                label:
+                  "Put a star next to the bills that keep your family housed, fed, reachable, and able to attend required appointments.",
               },
               {
-                stage: "Routine facility placement",
-                icon: "🏢",
-                whatChanges:
-                  "Communication may become more predictable, but not private. Mail may flow more consistently, calls may follow schedules, and electronic messaging may become available in systems that use it.",
-                whatToDo:
-                  "Build calm routines. Keep messages supportive and low-risk. Avoid case facts, emotionally charged rehashing, coded language, or anything that could be misunderstood when reviewed later.",
+                id: "calendar",
+                label:
+                  "Make a visible calendar of due dates, court dates, legal payment dates, benefit deadlines, and shutoff or eviction notices.",
               },
               {
-                stage: "Discipline, lockdown, or investigation",
-                icon: "🚧",
-                whatChanges:
-                  "Access to calls, visits, messaging, commissary, or movement may be limited with little warning. The family may receive incomplete information.",
-                whatToDo:
-                  "Stay steady. Document what changed, when you noticed it, who you contacted, and what they said. Avoid escalating language with staff or sending messages that sound accusatory or coded.",
-              },
-              {
-                stage: "Pre-release and reentry planning",
-                icon: "🌤️",
-                whatChanges:
-                  "Communication may shift toward release planning, housing, transportation, supervision, registry obligations, treatment, and family boundaries.",
-                whatToDo:
-                  "Use communication to plan carefully: where the person is going, who is picking them up, what rules apply, and what needs to be verified before release day.",
+                id: "contacts",
+                label:
+                  "Write down the phone number, website, account number, and department for each urgent bill.",
               },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="🧩" title="What families often misunderstand">
+          <GuideCallout tone="reminder" icon="★" title="The practical rule">
             <p>
-              Each stage can feel like a completely different system. Access,
-              predictability, and response time may change sharply even when the
-              relationship has not changed at all.
+              Starred bills go first. Everything else should be reviewed,
+              paused, reduced, negotiated, or delayed when possible.
             </p>
           </GuideCallout>
         </GuideSectionCard>
-<GuideSectionHeader
-          id="verify"
+
+        <GuideSectionHeader
+          id="triage"
           number="2"
-          title="Verify before acting"
-          subtitle="Use the facility’s current rule before relying on memory, another prison’s policy, or a social media answer."
+          title="The 48-hour triage"
+          subtitle="Immediate actions to reduce damage while you gather information."
         />
 
         <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The first two days are about slowing the financial slide. You may
+              not be able to solve the larger case, replace income, or rebuild
+              savings right away. You can still reduce preventable damage.
+            </p>
+
+            <ul>
+              <li>
+                Cancel extras: streaming services, gyms, subscriptions, delivery
+                memberships, apps, and automatic payments that are not essential.
+              </li>
+              <li>
+                Make a due-date map: what is due this week, what is due this
+                month, and what already has a late notice.
+              </li>
+              <li>
+                Call before you are late whenever possible. Hardship programs
+                are often easier to access before the account is seriously past
+                due.
+              </li>
+              <li>
+                Document every call. Write down who you spoke with, the date,
+                what they said, and what you agreed to do next.
+              </li>
+            </ul>
+          </GuideProse>
+
+          <ScriptBox
+            title="Hardship or payment-plan call script"
+            tone="neutral"
+            context="Use this for a landlord, mortgage servicer, utility company, medical biller, phone provider, tax office, or other creditor."
+            script={`Hello, my name is [Name]. I am calling about account [account number, address, or bill type].
+
+Our household is going through a legal emergency, and we are trying to stay in good standing. I want to ask what hardship options, payment plans, extensions, budget billing, reduced payments, or documentation options are available.
+
+Can you tell me:
+1. What options exist for this account;
+2. What deadline I need to meet;
+3. What documents you need from me;
+4. Whether this agreement can be sent to me in writing; and
+5. Your name or department so I can write down who I spoke with?
+
+I am taking notes and trying to handle this responsibly.`}
+          />
+
+          <DocumentPacket
+            title="Build a financial crisis folder"
+            intro={
+              <span>
+                This folder is not busywork. It helps you apply for help,
+                negotiate payment plans, correct mistakes, and prove what was
+                agreed to later.
+              </span>
+            }
+            categories={[
+              {
+                title: "Bills and notices",
+                items: [
+                  "Rent or mortgage statements, lease, foreclosure or eviction notices, and payment agreements.",
+                  "Utility bills, shutoff notices, budget billing offers, and energy assistance paperwork.",
+                  "Phone, internet, transportation, insurance, medical, tax, and child support notices.",
+                ],
+              },
+              {
+                title: "Income and hardship proof",
+                items: [
+                  "Pay stubs, unemployment paperwork, benefit letters, jail or incarceration documentation if relevant, and proof of reduced income.",
+                  "Receipts for court-related travel, phone calls, commissary support, legal fees, and other case-related costs.",
+                ],
+              },
+              {
+                title: "Call and agreement records",
+                items: [
+                  "Names, dates, departments, phone numbers, confirmation numbers, and exact instructions from every important call.",
+                  "Copies of emails, letters, payment-plan terms, hardship approvals, denial notices, and appeal deadlines.",
+                ],
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet access is limited"
+            icon="📌"
+            note={
+              <span>
+                Many families are phone-only, sharing devices, without a printer,
+                or supporting someone who cannot safely or easily access online
+                forms.
+              </span>
+            }
+            items={[
+              "Use a paper notebook or envelope system for bills, notices, and call notes.",
+              "Ask agencies to mail forms or read the required documents over the phone.",
+              "Use a public library, legal aid office, trusted helper, faith community, or reentry nonprofit to print forms when needed.",
+              "Write down names, dates, departments, phone numbers, and confirmation numbers immediately after each call.",
+              "Ask whether a phone application, mailed application, or in-person appointment is available.",
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="essentials"
+          number="3"
+          title="Stabilize the essentials"
+          subtitle="Protect housing, utilities, food, phone access, and transportation before lower-priority bills."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Financial shock often hits several systems at once. A legal bill
+              appears. Income drops. A caregiver misses work. Transportation
+              costs rise. Food costs rise. Phone costs rise. The family may be
+              afraid to tell anyone what is happening.
+            </p>
+
+            <p>
+              Start with the essentials, then move outward.
+            </p>
+
+            <p>
+              <strong>Housing.</strong> Call your landlord or mortgage servicer
+              before the situation becomes a crisis. Ask for a payment plan,
+              smaller weekly payments, temporary forbearance, hardship options,
+              or a written explanation of what happens if you cannot pay the
+              full amount on time. If you own your home or are behind on a
+              mortgage, a HUD-approved housing counselor can help you understand
+              options.
+            </p>
+
+            <p>
+              <strong>Utilities.</strong> Ask about budget billing, shutoff
+              protections, arrears management, medical necessity forms, winter
+              protections, and energy assistance such as LIHEAP. If you do not
+              know where to start, 211 can help connect you to local resources.
+            </p>
+
+            <p>
+              <strong>Food.</strong> Use food banks early. Apply for SNAP or
+              other food benefits as soon as you know income has changed. Waiting
+              until the pantry is empty makes every other decision harder.
+            </p>
+
+            <p>
+              <strong>Phone and internet.</strong> Phone access may be essential
+              for court reminders, lawyer calls, school, work, benefits, medical
+              care, and family coordination. Ask your provider about hardship,
+              prepaid, or low-income options. Check whether Lifeline support is
+              available.
+            </p>
+
+            <p>
+              <strong>Transportation.</strong> Court, treatment, legal meetings,
+              child care, work, and benefits appointments often depend on
+              transportation. Ask local nonprofits, 211, public transit agencies,
+              churches, reentry groups, or legal aid offices whether bus passes,
+              gas cards, or transportation vouchers exist in your area.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Essential support resources"
+            description="Use these as starting points. Local availability and eligibility can vary."
+            resources={[
+              {
+                label: "HUD-approved housing counselor search",
+                href: sourceLinks.cfpbHousingCounselor,
+                badge: "Official",
+                description:
+                  "Find housing counselors for mortgage, rental, foreclosure, credit, and housing-stability questions.",
+              },
+              {
+                label: "USAGov rental housing help",
+                href: sourceLinks.usaGovRentHelp,
+                badge: "Official",
+                description:
+                  "Federal public-information page for rental housing programs and emergency housing help.",
+              },
+              {
+                label: "LIHEAP energy assistance",
+                href: sourceLinks.liheap,
+                badge: "Official",
+                description:
+                  "Federal information about Low Income Home Energy Assistance Program support.",
+              },
+              {
+                label: "211 local help",
+                href: sourceLinks.unitedWay211,
+                badge: "Directory",
+                description:
+                  "Call 211 or use the website to look for local help with housing, utilities, food, health, and basic needs.",
+                phone: "Dial 211",
+              },
+              {
+                label: "Feeding America food bank locator",
+                href: sourceLinks.feedingAmerica,
+                badge: "Food",
+                description:
+                  "Find local food banks and food assistance programs by location.",
+              },
+              {
+                label: "USAGov SNAP information",
+                href: sourceLinks.snapUsaGov,
+                badge: "Benefits",
+                description:
+                  "Plain-language federal information about applying for SNAP food benefits.",
+              },
+              {
+                label: "Lifeline phone and internet support",
+                href: sourceLinks.lifeline,
+                badge: "Phone",
+                description:
+                  "Federal support program information for eligible phone or internet service discounts.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="legal-medical-tax"
+          number="4"
+          title="Handle legal, medical, and tax costs without going broke"
+          subtitle="Ask early, get terms in writing, and avoid surprise obligations."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Legal emergencies often create new costs at the exact moment a
+              household has less income. The safest approach is to ask clear
+              questions early and avoid vague arrangements that nobody can
+              remember later.
+            </p>
+
+            <p>
+              <strong>Legal costs.</strong> Ask for the retainer, scope of work,
+              hourly or flat-fee terms, billing cadence, refund rules for unused
+              retainers, and itemized invoices in writing. Ask whether the work
+              can be staged, such as a fee through a preliminary hearing and a
+              separate discussion before the next phase.
+            </p>
+
+            <p>
+              If the case is federal and the accused person cannot afford
+              counsel, ask about eligibility for appointed counsel under the
+              Criminal Justice Act. For civil legal issues connected to the
+              crisis — housing, benefits, debt, family law, employment,
+              consumer issues — legal aid or limited pro bono advice may help.
+            </p>
+
+            <p>
+              <strong>Medical bills.</strong> Do not ignore medical bills. Call
+              the billing office, ask for an itemized bill, ask about charity
+              care or financial assistance, and request a no-interest payment
+              plan if needed. Nonprofit hospitals have financial-assistance
+              policy obligations, but you may still need to ask directly.
+            </p>
+
+            <p>
+              <strong>Taxes.</strong> If taxes are owed, do not assume there is
+              no option. Check balances, payment plans, and low-income tax help.
+              If you cannot pay in full, ask about short-term and long-term IRS
+              payment options and whether a qualified tax clinic can help.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="legal-medical-tax-checklist"
+            title="Questions to ask before agreeing to a payment plan"
+            columns={1}
+            items={[
+              {
+                id: "amount",
+                label: "What is the total amount owed right now?",
+              },
+              {
+                id: "deadline",
+                label: "What is the next deadline, and what happens if it is missed?",
+              },
+              {
+                id: "hardship",
+                label: "Is there a hardship, charity care, reduced-payment, or no-interest option?",
+              },
+              {
+                id: "documents",
+                label: "What documents are required to apply?",
+              },
+              {
+                id: "writing",
+                label: "Can the agreement, deadline, and payment terms be sent in writing?",
+              },
+              {
+                id: "review",
+                label: "Can the plan be reviewed again if income changes?",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Attorney-fee clarity script"
+            tone="legal"
+            context="Use this when you need billing terms explained without creating conflict."
+            script={`Hello, I am trying to understand the financial side of representation so our family can plan responsibly.
+
+Can you please help me understand:
+1. What the current fee covers;
+2. What work is not included;
+3. Whether this is flat fee, hourly, or staged;
+4. When we should expect invoices or future payment requests;
+5. Whether there is a monthly cap or payment plan option; and
+6. What happens to unused funds if representation ends or the case changes?
+
+I am not challenging the fee. I am trying to avoid confusion and plan around the case.`}
+          />
+
+          <ResourceLinkGrid
+            title="Legal, medical, and tax help"
+            resources={[
+              {
+                label: "Legal Services Corporation — get legal help",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Civil legal aid",
+                description:
+                  "Starting point for finding civil legal aid programs for housing, benefits, debt, family, and other non-criminal legal issues.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                badge: "Civil Q&A",
+                description:
+                  "Virtual legal advice clinic for qualifying users with civil legal questions in participating states.",
+              },
+              {
+                label: "Federal Defender resources",
+                href: sourceLinks.federalDefenders,
+                badge: "Federal cases",
+                description:
+                  "Federal defender and CJA-related resource hub for federal criminal defense context.",
+              },
+              {
+                label: "IRS 501(r) financial assistance policy",
+                href: sourceLinks.irs501r,
+                badge: "Medical bills",
+                description:
+                  "IRS information about financial assistance policies for nonprofit hospitals.",
+              },
+              {
+                label: "CMS medical bill rights",
+                href: sourceLinks.cmsMedicalBillRights,
+                badge: "Medical bills",
+                description:
+                  "Federal information about medical billing rights and surprise-billing protections.",
+              },
+              {
+                label: "IRS payments",
+                href: sourceLinks.irsPayments,
+                badge: "Taxes",
+                description:
+                  "Official IRS page for tax payment options and payment plans.",
+              },
+              {
+                label: "Taxpayer Advocate Service",
+                href: sourceLinks.taxpayerAdvocate,
+                badge: "Taxes",
+                description:
+                  "Independent organization within the IRS that helps taxpayers resolve certain tax problems.",
+              },
+              {
+                label: "Low Income Taxpayer Clinics",
+                href: sourceLinks.lowIncomeTaxpayerClinics,
+                badge: "Taxes",
+                description:
+                  "IRS directory and information for clinics that may help qualifying taxpayers.",
+              },
+              {
+                label: "VITA and TCE free tax preparation",
+                href: sourceLinks.vitaTce,
+                badge: "Taxes",
+                description:
+                  "IRS information about free tax return preparation for qualifying taxpayers.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="credit-debt"
+          number="5"
+          title="Protect credit and avoid debt traps"
+          subtitle="A short-term crisis should not become years of avoidable financial damage."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Credit damage can make reentry, housing, transportation,
+              employment, and family stability harder long after the immediate
+              emergency has passed. You may not be able to protect everything,
+              but you can reduce preventable harm.
+            </p>
+
+            <ul>
+              <li>
+                Pull free credit reports and dispute errors when you find them.
+              </li>
+              <li>
+                Consider a credit freeze or fraud alert if identity theft,
+                account misuse, or family financial conflict is a concern.
+              </li>
+              <li>
+                Avoid payday loans, title loans, and debt-relief promises that
+                require large upfront payments or pressure you to act
+                immediately.
+              </li>
+              <li>
+                Ask local credit unions about lower-cost alternatives, including
+                small-dollar loans or Payday Alternative Loans where available.
+              </li>
+              <li>
+                Look for low-fee checking accounts, including Bank On certified
+                accounts, if banking access is a barrier.
+              </li>
+            </ul>
+          </GuideProse>
+
+          <CommonMistakes
+            title="Common financial mistakes during a case"
+            mistakes={[
+              {
+                mistake: "Paying whoever yells the loudest first.",
+                whyItMatters:
+                  "The loudest bill is not always the most important bill.",
+                betterMove:
+                  "Pay essentials first: housing, utilities, food, transportation, phone access, child support, medical needs, and required legal or court-related obligations.",
+              },
+              {
+                mistake: "Relying on verbal promises.",
+                whyItMatters:
+                  "A helpful phone call can be forgotten, contradicted, or handled by a different department later.",
+                betterMove:
+                  "Ask for written confirmation and save names, dates, departments, and confirmation numbers.",
+              },
+              {
+                mistake: "Using payday or title loans to solve a temporary gap.",
+                whyItMatters:
+                  "High-cost debt can trap the household and make next month’s essentials harder to pay.",
+                betterMove:
+                  "Ask about hardship plans, local assistance, credit-union alternatives, family support with clear written terms, or nonprofit help first.",
+              },
+              {
+                mistake: "Co-signing risky debt to protect someone else.",
+                whyItMatters:
+                  "The caregiver’s credit may be the household’s path to housing, transportation, utilities, and future stability.",
+                betterMove:
+                  "Protect the caregiver’s credit and avoid new obligations that could destabilize the whole family.",
+              },
+              {
+                mistake: "Ignoring medical, tax, or child-support notices.",
+                whyItMatters:
+                  "These problems can grow through collections, penalties, arrears, enforcement, or missed appeal windows.",
+                betterMove:
+                  "Call early, ask for review or assistance, and save proof of every request.",
+              },
+            ]}
+          />
+
+          <ResourceLinkGrid
+            title="Credit and safer banking resources"
+            resources={[
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                badge: "Credit reports",
+                description:
+                  "The official site to request free credit reports from the major credit reporting companies.",
+              },
+              {
+                label: "FTC credit freeze and fraud alert guidance",
+                href: sourceLinks.ftcCreditFreeze,
+                badge: "Fraud prevention",
+                description:
+                  "Federal consumer guidance on credit freezes, fraud alerts, and protecting credit files.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                badge: "Identity theft",
+                description:
+                  "Federal recovery tool for reporting and responding to identity theft.",
+              },
+              {
+                label: "MyCreditUnion.gov — payday loan alternatives",
+                href: sourceLinks.myCreditUnionPals,
+                badge: "Credit union",
+                description:
+                  "National Credit Union Administration information about Payday Alternative Loans and safer borrowing options.",
+              },
+              {
+                label: "Bank On accounts",
+                href: sourceLinks.bankOn,
+                badge: "Banking",
+                description:
+                  "Information about low-cost, certified bank and credit union accounts.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="child-support-family"
+          number="6"
+          title="If child support or family finances are involved"
+          subtitle="Act quickly, document changes, and protect the caregiver’s stability."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              If income drops because of arrest, jail, detention, job loss, or
+              court-related disruption, do not wait for child-support arrears to
+              pile up. Ask the local child-support office how to request a
+              review or modification and what documentation is required.
+            </p>
+
+            <p>
+              Do not assume the order changes automatically. Many systems
+              require a formal request before the amount can be reviewed. Ask
+              what date matters, what proof is needed, and whether the request
+              can be confirmed in writing.
+            </p>
+
+            <p>
+              Family members often try to solve everything at once. A steadier
+              approach is to centralize information, protect the caregiver’s
+              credit, avoid secret financial promises, and keep a shared
+              calendar of court, work, school, benefit, bill, and payment dates.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="family-financial-checklist"
+            title="Family financial checklist"
+            columns={1}
+            items={[
+              {
+                id: "housing",
+                label: "Call landlord or mortgage servicer and ask for a hardship plan.",
+              },
+              {
+                id: "utilities",
+                label: "Contact utilities and ask about budget billing, shutoff protections, or LIHEAP.",
+              },
+              {
+                id: "food",
+                label: "Secure food support through food banks, SNAP, school meals, or local programs.",
+              },
+              {
+                id: "medical",
+                label: "Review medical bills and ask for itemized bills, charity care, and payment plans.",
+              },
+              {
+                id: "taxes",
+                label: "If taxes are owed, review IRS payment options or ask a qualified tax clinic for help.",
+              },
+              {
+                id: "credit",
+                label: "Pull credit reports and dispute errors.",
+              },
+              {
+                id: "freeze",
+                label: "Freeze credit or place a fraud alert if identity misuse is a concern.",
+              },
+              {
+                id: "avoid-debt",
+                label: "Avoid payday loans, title loans, and risky co-signing.",
+              },
+              {
+                id: "child-support",
+                label: "Request child-support review or modification immediately if income has changed.",
+              },
+              {
+                id: "calendar",
+                label: "Use one shared calendar for bills, calls, court dates, appointments, and deadlines.",
+              },
+            ]}
+          />
+
           <VerifyBeforeActing
+            title="Verify before relying on a financial decision"
             whoToAsk={
               <span>
-                The facility mailroom, visiting office, unit team, records
-                office, counselor, case manager, or the person’s attorney —
-                depending on the question. For legal-mail questions, ask the
-                attorney and the facility’s written legal or special mail policy.
+                The office or person with actual authority: attorney, court
+                clerk, child-support office, benefit agency, landlord, mortgage
+                servicer, utility provider, hospital billing office, tax agency,
+                or supervised-release/probation officer if conditions may be
+                affected.
               </span>
             }
             whatToAsk={
               <span>
-                Ask the narrow question tied to the action you are about to take:
-                “Can I send this item?”, “What is the exact mailing format?”,
-                “Am I approved to visit?”, “Are children allowed under this
-                order or facility rule?”, “Will this be treated as legal mail?”,
-                or “Which vendor/account system does this facility use?”
+                Ask the narrow question tied to the action you are about to
+                take: “Does this affect eligibility?”, “Can this order be
+                reviewed?”, “Will this payment plan stop collections?”, “Is this
+                agreement in writing?”, “Does my supervision condition allow
+                this?”, or “What deadline controls?”
               </span>
             }
             whatToSave={
               <span>
-                Save the date, staff name or department, phone number, written
-                policy, rejection notice, confirmation number, account receipt,
-                visitor approval, and any written instruction you receive.
+                Save the date, staff name, department, phone number, written
+                policy, application confirmation, payment-plan terms, appeal
+                deadline, and any written instruction you receive.
               </span>
             }
           />
 
-          <GuideCallout tone="legal" icon="⚖️" title="Sex-offense-specific caution">
-            <p>
-              Written communication rules may look the same for everyone, but
-              real-world review can be more conservative when the case involves
-              a sex offense. Court orders, no-contact orders, victim-related
-              restrictions, treatment rules, supervision conditions, minor-contact
-              restrictions, and facility policy can all change what is allowed or
-              wise.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="mail"
-          number="3"
-          title="Mail, publications, and rejected mail"
-          subtitle="Mail can be steady and meaningful, but it is rule-bound and often inspected."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Mail is often the most durable form of connection because it gives
-              the incarcerated person something they can reread. It can also be
-              slow, screened, rejected, copied, scanned, returned, or delayed. A
-              small mistake in format or content can create weeks of confusion.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="mail-prep"
-            title="Before sending mail"
-            columns={1}
-            items={[
+          <ResourceLinkGrid
+            title="Child support"
+            resources={[
               {
-                id: "correct-address",
-                label:
-                  "Confirm the person’s full committed name, register number or facility ID, housing unit if required, and the exact facility mailing address.",
-              },
-              {
-                id: "facility-rules",
-                label:
-                  "Check the facility’s current rules for envelopes, paper, cards, photos, stickers, drawings, printouts, books, magazines, publications, and packages.",
-              },
-              {
-                id: "no-extra-items",
-                label:
-                  "Do not include stamps, cash, laminated items, Polaroids, glitter, perfume, labels, unknown printouts, or extra objects unless the written rule clearly allows them.",
-              },
-              {
-                id: "publication-policy",
-                label:
-                  "For books or magazines, verify whether they must come directly from a publisher, bookstore, approved vendor, or facility-approved source.",
-              },
-              {
-                id: "save-copy",
-                label:
-                  "For important letters, keep a photo or copy of what you sent and note the date mailed.",
-              },
-              {
-                id: "rejection-notice",
-                label:
-                  "If mail is rejected, save the notice and ask what rule was applied before sending the same item again.",
+                label: "ACF — change a child support order",
+                href: sourceLinks.acfChildSupportOrder,
+                badge: "Official",
+                description:
+                  "Federal child-support information explaining that a support order can be changed only by a new order and pointing parents toward modification steps.",
               },
             ]}
           />
-
-          <GuideCallout tone="warning" icon="⚠️" title="Rejected mail is not always personal">
-            <p>
-              A rejected letter or delayed package may reflect a formatting
-              mistake, a changed mail policy, a facility vendor rule, staff
-              backlog, a transfer, or a content concern. Treat it as something
-              to document and clarify, not as proof that the relationship is
-              failing.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <p>
-              Legal mail is different from ordinary mail, but it is not magic. It
-              usually requires clear attorney identification, correct markings, and
-              facility-specific handling. If legal mail is not marked or handled
-              correctly, it may be treated as general correspondence.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="legal" icon="📬" title="Legal mail needs correct handling">
-            <p>
-              Do not put legal strategy, case facts, admissions, witness issues,
-              or sensitive attorney communications in ordinary mail or ordinary
-              electronic messages. Ask the attorney how legal communication
-              should happen and verify the facility’s special-mail procedure.
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="calls-messages-video"
-          number="4"
-          title="Calls, messaging, video, and monitoring"
-          subtitle="Connection matters, but monitored systems reward calm, clear, low-risk communication."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Phone calls, electronic messaging, tablets, and video visits can help
-              families stay connected, but they are built inside correctional
-              systems. They may require approved contacts, account funding, vendor
-              registration, identity checks, facility approval, message screening,
-              time limits, and behavior rules.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="privacy" icon="🎙️" title="Assume review is possible">
-            <p>
-              People often think monitoring only matters if someone is doing
-              something obviously wrong. In practice, tone, context, jokes,
-              frustration, coded language, relationship conflict, and emotional
-              rehashing can all be misunderstood later.
-            </p>
-          </GuideCallout>
-
-          <GuideChecklist
-            id="calls-messages-video"
-            title="Before relying on calls, messages, or video"
-            columns={1}
-            items={[
-              {
-                id: "approved-contact",
-                label:
-                  "Confirm whether the incarcerated person must add you to an approved contact list before calls, messages, or video can work.",
-              },
-              {
-                id: "vendor",
-                label:
-                  "Verify the correct vendor or platform for that specific facility; do not assume the same provider is used everywhere.",
-              },
-              {
-                id: "costs-limits",
-                label:
-                  "Check costs, time limits, funding rules, blocked-number rules, refund policies, and whether messages can be delayed or rejected.",
-              },
-              {
-                id: "attorney-separate",
-                label:
-                  "Keep attorney communication separate from ordinary family calls or messages unless the attorney specifically tells you otherwise.",
-              },
-              {
-                id: "topic-boundaries",
-                label:
-                  "Avoid discussing facts, allegations, witnesses, victims, minors, strategy, discipline, facility investigations, or anything that sounds like pressure or coaching.",
-              },
-              {
-                id: "supportive-topics",
-                label:
-                  "Use ordinary communication for support, stability, family updates, future goals, health, routines, and practical planning.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="🤝" title="Support does not require risky details">
-            <p>
-              You do not have to choose between silence and risk. You can say,
-              “I care about you,” “I am keeping things steady here,” “Let’s talk
-              about daily life and next steps,” or “Please save legal details for
-              your attorney.”
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="visits"
-          number="5"
-          title="Visits and family planning"
-          subtitle="Visits can be meaningful, but they require preparation and facility-specific confirmation."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Visiting rules vary by facility, custody level, housing unit,
-              schedule, staffing, discipline status, and security concerns. Even
-              when a general visiting policy exists, the local institution may have
-              its own visiting hours, dress code, approval process, visitor limits,
-              child visitor rules, and cancellation practices.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="visit-prep"
-            title="Before planning a visit"
-            columns={1}
-            items={[
-              {
-                id: "approved-list",
-                label:
-                  "Confirm that you are on the approved visiting list and that approval is active before buying tickets or arranging transportation.",
-              },
-              {
-                id: "schedule",
-                label:
-                  "Check visiting days, hours, arrival rules, cancellation notices, holiday schedules, lockdown status, and whether appointments are required.",
-              },
-              {
-                id: "id",
-                label:
-                  "Bring the exact identification the facility requires. If your name has changed, ask what documents you need.",
-              },
-              {
-                id: "dress-code",
-                label:
-                  "Read the dress code carefully. Bring a backup outfit if travel distance, weather, or cost makes denial especially hard.",
-              },
-              {
-                id: "children",
-                label:
-                  "Verify child and minor-visitor rules before bringing or discussing children, especially when any court order, supervision rule, treatment rule, victim-related restriction, or facility rule may apply.",
-              },
-              {
-                id: "money-property",
-                label:
-                  "Check what you may bring inside, including keys, phones, money, medication, baby supplies, paperwork, and religious or medical items.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="warning" icon="🧒" title="Communication involving children is sensitive">
-            <p>
-              Letters mentioning children, calls involving children, photos of
-              children, and visit requests involving minors may be reviewed more
-              carefully in sex-offense-related cases. Well-intentioned family
-              contact can still create problems if it conflicts with an order,
-              rule, treatment instruction, or facility policy.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-<GuideSectionHeader
-          id="scripts-offline"
-          number="6"
-          title="When communication is blocked, delayed, or confusing"
-          subtitle="Use calm scripts, written notes, and offline backups instead of guessing."
-        />
-
-        <GuideSectionCard>
-          <ScriptBox
-            title="Script: calling the facility about communication rules"
-            tone="neutral"
-            context={
-              <span>
-                Use this when you need the current mail, call, messaging, or
-                visiting rule and do not know which office handles it.
-              </span>
-            }
-            script={`Hello, my name is [Name]. I am trying to understand the current communication rules for [Person's full name and register/facility number, if known].
-
-Can you tell me which office handles [mail / phone accounts / electronic messaging / visiting approval]?
-
-I am taking notes. Could you please tell me:
-1. The correct rule or policy I should follow;
-2. Whether there is a form, account, approval list, or deadline;
-3. Where I can find the rule in writing; and
-4. Your name or department so I can write down who I spoke with?
-
-Thank you. I am trying to follow the facility rule correctly.`}
-          />
-
-          <div className="mt-6">
-            <ScriptBox
-              title="Script: asking about rejected mail"
-              tone="warning"
-              context={
-                <span>
-                  Use this when a letter, photo, book, card, or package was
-                  returned, denied, or never delivered.
-                </span>
-              }
-              script={`Hello, my name is [Name]. I mailed [type of item] to [Person's name and number] on [date]. It was [returned / rejected / not received], and I am trying to understand what rule applied.
-
-Can you tell me:
-1. Whether the mailroom has a record of the item;
-2. The specific reason it was rejected or delayed;
-3. Whether I should send it differently; and
-4. Whether there is a written policy or rejection notice I can rely on?
-
-I am not trying to argue. I just want to avoid repeating the same mistake.`}
-            />
-          </div>
-
-          <div className="mt-6">
-            <OfflineOptions
-              title="If internet access, printing, or privacy is limited"
-              icon="📝"
-              note={
-                <span>
-                  Many families are phone-only, and many incarcerated people
-                  cannot access online rules, forms, or private communication.
-                  Build a paper backup.
-                </span>
-              }
-              items={[
-                "Call the facility and ask for the mailroom, visiting office, records office, counselor, or case manager.",
-                "Ask whether the facility can mail or provide printed visiting rules, mail rules, and account instructions.",
-                "Keep a paper folder with facility addresses, register numbers, rejection notices, visiting approvals, receipts, account confirmations, and staff notes.",
-                "Write down names, dates, departments, phone numbers, confirmation numbers, and exact instructions after every important call.",
-                "Ask a trusted person, library, reentry nonprofit, legal aid office, or faith/community support person to print rules or forms when needed.",
-                "Do not rely on memory when a court order, minor-contact rule, no-contact rule, supervision condition, or treatment instruction may apply.",
-              ]}
-            />
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="mistakes"
+          id="closing"
           number="7"
-          title="Common mistakes to avoid"
-          subtitle="These are not moral judgments. They are predictable traps that can make communication harder."
+          title="You do not have to solve everything today"
+          subtitle="Steady action beats panic."
         />
 
         <GuideSectionCard>
-          <CommonMistakes
-            mistakes={[
-              {
-                mistake: "Assuming ordinary calls, messages, video, or mail are private.",
-                whyItMatters:
-                  "Correctional communication systems are often monitored, recorded, screened, retained, or reviewable.",
-                betterMove:
-                  "Save sensitive legal, case, victim, witness, discipline, and strategy conversations for the attorney through the proper legal channel.",
-              },
-              {
-                mistake: "Treating silence during transfer as proof something is wrong.",
-                whyItMatters:
-                  "Transfers and holdovers can temporarily cut off phones, messaging, mail access, commissary, property, and stable location information.",
-                betterMove:
-                  "Check official location tools when available, then wait for communication to reestablish before assuming the relationship has changed.",
-              },
-              {
-                mistake: "Using one facility’s rule for another facility.",
-                whyItMatters:
-                  "Mail, visiting, phone, messaging, package, publication, and child-visitor rules can vary sharply by facility and can change without much notice.",
-                betterMove:
-                  "Verify the current rule with the specific facility before sending items, setting up travel, or relying on a vendor account.",
-              },
-              {
-                mistake: "Discussing the case because the conversation feels emotionally necessary.",
-                whyItMatters:
-                  "Facts, allegations, contradictions, admissions, pressure, coded language, and emotional rehashing can be misunderstood or used later.",
-                betterMove:
-                  "Talk about support, daily life, stability, health, practical planning, and future goals. Redirect case details to counsel.",
-              },
-              {
-                mistake: "Bringing children into communication without checking every rule first.",
-                whyItMatters:
-                  "Minor contact can be affected by facility rules, court orders, victim-related restrictions, treatment instructions, and supervision conditions.",
-                betterMove:
-                  "Verify child contact, child visits, child photos, and child-related discussion before acting. Save the answer in writing if possible.",
-              },
-              {
-                mistake: "Letting fear turn into total silence.",
-                whyItMatters:
-                  "Families often overcorrect because they are afraid of saying the wrong thing. That can increase isolation and make reentry planning harder.",
-                betterMove:
-                  "Use structured, calm, low-risk communication. Consistency matters more than intensity.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="success" icon="🌱" title="A steadier goal">
+          <GuideProse>
             <p>
-              Lower drama usually means lower risk. Calm, consistent,
-              rule-aware communication helps families stay connected without
-              turning every call, message, or visit into a crisis.
+              This season may be hard, but the whole burden does not have to be
+              solved in one day. Every phone call you make, every note you keep,
+              every agreement you get in writing, and every high-risk debt trap
+              you avoid is a brick in the foundation of your family’s stability.
+            </p>
+
+            <p>
+              Focus on essentials first. Keep communication open with creditors
+              and agencies. Protect the caregiver’s credit. Ask for help early.
+              Use official sources when possible. Get names, dates, and terms in
+              writing.
+            </p>
+
+            <p>
+              This is not about being perfect. It is about making the next safer
+              decision, then the next one.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="success" icon="🌱" title="A steady reminder">
+            <p>
+              You are not wrong to be worried. You are also not powerless. Start
+              with the starred essentials, document everything, and ask for
+              written answers before acting on anything that could affect
+              housing, benefits, credit, court obligations, supervision, or
+              family stability.
             </p>
           </GuideCallout>
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="related"
-          number="8"
-          title="Related SOLAR guides"
-          subtitle="Use these when the communication issue connects to family disclosure, prison survival, reentry, or legal-stage planning."
-        />
+          <SoftDivider label="Next steps" />
 
-        <GuideSectionCard>
           <RelatedGuides
             guides={[
               {
-                title: "Prison Dos & Don’ts Guide",
+                title: "Family Support Guide",
                 description:
-                  "Pairs with this guide for safety, daily-life expectations, boundaries, and reentry preparation during incarceration.",
-                to: "/resources/prison-dos-and-donts",
+                  "Support for families trying to stay steady, communicate clearly, and protect the household during a case.",
+                to: "/resources/family-support",
               },
               {
-                title: "Children & Disclosure + Relationship Rebuilding Toolkit",
+                title: "Financial Planning Guide",
                 description:
-                  "Helpful when communication involves children, family trust, disclosure questions, or rebuilding relationships safely.",
-                to: "/resources/children-disclosure-toolkit",
+                  "Longer-term planning for rebuilding stability after the immediate financial emergency.",
+                to: "/resources/financial-planning",
               },
               {
-                title: "The SOLAR Family & Allies Guide",
+                title: "Reentry Resources",
                 description:
-                  "A broader support roadmap for loved ones trying to stay grounded from arrest through reentry and beyond.",
-                to: "/resources/family-support-guide",
+                  "Practical help for people preparing for release, supervision, housing, employment, and community stability.",
+                to: "/resources/reentry",
               },
               {
-                title: "Reentry Checklist",
+                title: "Employment Guide",
                 description:
-                  "Use when communication shifts toward release planning, housing, transportation, registry obligations, and supervision.",
-                to: "/resources/reentry-checklist",
-              },
-              {
-                title: "Federal Sex-Crime Process Guide",
-                description:
-                  "Useful for understanding how federal custody, designation, transfer, sentencing, and BOP placement fit into the larger process.",
-                to: "/resources/federal-process-guide",
+                  "Support for job searching, disclosure decisions, documentation, and workplace stability.",
+                to: "/resources/employment",
               },
             ]}
           />
@@ -773,93 +994,155 @@ I am not trying to argue. I just want to avoid repeating the same mistake.`}
 
         <GuideSectionHeader
           id="sources"
-          number="9"
+          number="8"
           title="Sources and verification"
-          subtitle="Use official facility and agency pages first. Communication rules change, and local policy may control the answer."
+          subtitle="Use official and reputable sources, then verify locally before relying on a program or deadline."
         />
 
         <GuideSectionCard>
+          <GuideProse>
+            <p>
+              These links are included because financial, benefit, housing,
+              utility, medical, tax, credit, and child-support rules can change.
+              Local eligibility, deadlines, and documentation requirements may
+              vary by state, county, agency, provider, and court order.
+            </p>
+          </GuideProse>
+
           <SourceList
-            note={
-              <span>
-                These links were selected for the sandbox preview because they
-                are official government or agency sources. Before replacing the
-                production guide, recheck any facility-specific or vendor-specific
-                links used in the final version.
-              </span>
-            }
+            note="Several key links were spot-checked for the sandbox preview. Before replacing production, recheck every link and any state-specific claim."
             sources={[
               {
-                label: "Bureau of Prisons — Community Ties: Correspondence, telephone, email, visiting",
-                href: sourceLinks.bopCommunications,
+                label: "Consumer Financial Protection Bureau — Find a Housing Counselor",
+                href: sourceLinks.cfpbHousingCounselor,
                 description:
-                  "Official BOP overview of communication options, including general correspondence and monitored communication context.",
+                  "HUD-approved housing counselor search for housing, mortgage, foreclosure, rental, and credit questions.",
               },
               {
-                label: "Bureau of Prisons — TRULINCS topics",
-                href: sourceLinks.bopTrulincs,
+                label: "USAGov — Rental housing programs",
+                href: sourceLinks.usaGovRentHelp,
                 description:
-                  "Official BOP page for TRULINCS correspondence and troubleshooting.",
+                  "Federal public-information page for rental housing and emergency housing help.",
               },
               {
-                label: "Bureau of Prisons — How to visit a federal inmate",
-                href: sourceLinks.bopVisiting,
+                label: "ACF — Low Income Home Energy Assistance Program",
+                href: sourceLinks.liheap,
                 description:
-                  "Official BOP page explaining visitor pre-approval and general visiting process.",
+                  "Federal LIHEAP program information for energy assistance.",
               },
               {
-                label: "Bureau of Prisons — Inmate Locator",
-                href: sourceLinks.bopLocator,
+                label: "United Way 211",
+                href: sourceLinks.unitedWay211,
                 description:
-                  "Official federal locator for people in BOP custody or released from federal custody since 1982.",
+                  "Local referral network for housing, utilities, food, health, and other essential needs.",
               },
               {
-                label: "Bureau of Prisons — Locations",
-                href: sourceLinks.bopLocations,
+                label: "Feeding America — Find your local food bank",
+                href: sourceLinks.feedingAmerica,
                 description:
-                  "Official BOP location finder for facility pages and local visiting information.",
+                  "Food bank locator and food assistance starting point.",
               },
               {
-                label: "BOP Program Statement 5265.14 — Correspondence",
-                href: sourceLinks.bopCorrespondencePolicy,
+                label: "USAGov — SNAP food benefits",
+                href: sourceLinks.snapUsaGov,
                 description:
-                  "Official BOP correspondence policy, including general and special mail handling.",
+                  "Federal public-information page for applying for SNAP and checking benefit information.",
               },
               {
-                label: "BOP Program Statement 5265.13 — TRULINCS Electronic Messaging",
-                href: sourceLinks.bopTrulincsPolicy,
+                label: "Lifeline Support",
+                href: sourceLinks.lifeline,
                 description:
-                  "Official BOP policy for electronic messaging, including contact approval and monitoring consent language.",
+                  "Phone and internet support program information for eligible households.",
               },
               {
-                label: "BOP Program Statement 5264.08 — Inmate Telephone Regulations",
-                href: sourceLinks.bopTelephonePolicy,
+                label: "Legal Services Corporation — Get Legal Help",
+                href: sourceLinks.lscLegalHelp,
                 description:
-                  "Official BOP policy for inmate telephone privileges, restrictions, and institutional security limits.",
+                  "Civil legal aid starting point for housing, benefits, debt, family, and consumer issues.",
               },
               {
-                label: "BOP Program Statement 5267.09 — Visiting Regulations",
-                href: sourceLinks.bopVisitingPolicy,
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
                 description:
-                  "Official BOP visiting policy addressing approval, visiting limits, institution discretion, and security concerns.",
+                  "Civil legal Q&A clinic for qualifying users in participating jurisdictions.",
               },
               {
-                label: "BOP Special Mail Notice form",
-                href: sourceLinks.bopSpecialMailNotice,
+                label: "Federal Defender Services Office Training Division",
+                href: sourceLinks.federalDefenders,
                 description:
-                  "Official BOP form explaining special mail markings and the risk of mail being treated as general correspondence if requirements are not met.",
+                  "Federal defender and CJA-related resource hub for federal criminal defense context.",
               },
               {
-                label: "BOP Visitor Information form",
-                href: sourceLinks.bopVisitorForm,
+                label: "IRS — Section 501(r)(4) financial assistance policy",
+                href: sourceLinks.irs501r,
                 description:
-                  "Official BOP visitor questionnaire/release form used in the visitor approval process.",
+                  "IRS information about nonprofit hospital financial assistance policies.",
               },
               {
-                label: "USAGov — How to look up prisoners and prison records",
-                href: sourceLinks.usaGovPrisonerRecords,
+                label: "CMS — Medical bill rights",
+                href: sourceLinks.cmsMedicalBillRights,
                 description:
-                  "Official federal public-information page pointing readers to prisoner and prison-record lookup tools.",
+                  "Federal information on medical billing rights and surprise-billing protections.",
+              },
+              {
+                label: "IRS — Payments",
+                href: sourceLinks.irsPayments,
+                description:
+                  "Official IRS page for payment options and payment plans.",
+              },
+              {
+                label: "Taxpayer Advocate Service",
+                href: sourceLinks.taxpayerAdvocate,
+                description:
+                  "Independent IRS organization that helps taxpayers with certain tax problems.",
+              },
+              {
+                label: "IRS — Low Income Taxpayer Clinics",
+                href: sourceLinks.lowIncomeTaxpayerClinics,
+                description:
+                  "Information and directory for clinics that may assist qualifying taxpayers.",
+              },
+              {
+                label: "IRS — VITA/TCE free tax preparation",
+                href: sourceLinks.vitaTce,
+                description:
+                  "IRS information about free tax return preparation for qualifying taxpayers.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                description:
+                  "Official site to request free credit reports from the major credit reporting companies.",
+              },
+              {
+                label: "Federal Trade Commission — Credit freezes and fraud alerts",
+                href: sourceLinks.ftcCreditFreeze,
+                description:
+                  "Federal consumer guidance on credit freezes and fraud alerts.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                description:
+                  "Federal recovery tool for reporting and responding to identity theft.",
+              },
+              {
+                label: "MyCreditUnion.gov — Payday Alternative Loans",
+                href: sourceLinks.myCreditUnionPals,
+                description:
+                  "National Credit Union Administration consumer information about payday loan alternatives.",
+              },
+              {
+                label: "Bank On",
+                href: sourceLinks.bankOn,
+                description:
+                  "Information about low-cost certified bank and credit union accounts.",
+              },
+              {
+                label: "ACF Office of Child Support Services — Change a support order",
+                href: sourceLinks.acfChildSupportOrder,
+                description:
+                  "Federal child-support information about changing a support order.",
               },
             ]}
           />
