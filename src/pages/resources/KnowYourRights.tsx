@@ -1,779 +1,1244 @@
-    import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  GuideIconList,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  DoDontJudgment,
+} from "../../components/solar";
+
+const sourceLinks = {
+  cornellBillOfRights: "https://www.law.cornell.edu/constitution/billofrights",
+  cornellFourth: "https://www.law.cornell.edu/constitution/fourth_amendment",
+  cornellFifth: "https://www.law.cornell.edu/constitution/fifth_amendment",
+  cornellSixth: "https://www.law.cornell.edu/constitution/sixth_amendment",
+  cornellMiranda: "https://www.law.cornell.edu/wex/miranda_v._arizona_%281966%29",
+  cornellRightToCounsel: "https://www.law.cornell.edu/wex/right_to_counsel",
+  cornellBrady: "https://www.law.cornell.edu/wex/brady_rule",
+  cornellRule16: "https://www.law.cornell.edu/rules/frcrmp/rule_16",
+  justiaPackingham: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
+  bopLegalGuide: "https://www.bop.gov/resources/pdfs/legal_guide.pdf",
+  nacdlDirectory: "https://www.nacdl.org/directory/public",
+  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
+  usaGovLegalAid: "https://www.usa.gov/legal-aid",
+  ncslVotingRights: "https://www.ncsl.org/elections-and-campaigns/felon-voting-rights",
+  narsolResources: "https://resources.narsol.org/",
+};
+
+const rightsByStage = [
+  {
+    stage: "Investigation",
+    icon: "🔎",
+    rights: [
+      "You can remain silent.",
+      "You can ask for a lawyer.",
+      "You do not have to consent to a search.",
+      "Searches, seizures, devices, and statements may be challenged later.",
+    ],
+    caution:
+      "A conversation can feel informal and still become evidence. Do not try to explain, correct, or talk your way out of the situation without legal advice.",
+    ask:
+      "Ask counsel what to say, whether to unlock or hand over devices, and how to respond to interview, password, or search requests.",
+  },
+  {
+    stage: "Arrest and booking",
+    icon: "🚔",
+    rights: [
+      "You have the right to remain silent.",
+      "You have the right to counsel.",
+      "You should be told the charge or reason for arrest.",
+      "You may have a prompt court appearance and bail or bond review, depending on the court and charge.",
+    ],
+    caution:
+      "Booking, jail calls, text messages, and conversations with other detained people may be recorded or repeated.",
+    ask:
+      "Ask when counsel will be appointed or contacted, when the first appearance is, and what release conditions are being requested.",
+  },
+  {
+    stage: "Pretrial",
+    icon: "📄",
+    rights: [
+      "You are presumed innocent.",
+      "You have the right to counsel.",
+      "Your lawyer can seek discovery and review the evidence.",
+      "Your lawyer can challenge unlawful searches, statements, identifications, or other evidence.",
+    ],
+    caution:
+      "Release conditions can restrict travel, housing, internet use, contact with people, work, treatment, and devices. Violating them can create a new crisis.",
+    ask:
+      "Ask counsel to explain every condition in plain language and to seek clarification or modification before you guess.",
+  },
+  {
+    stage: "Trial",
+    icon: "🏛️",
+    rights: [
+      "The prosecution must prove the case beyond a reasonable doubt.",
+      "You may have the right to a jury trial.",
+      "You have the right to confront and cross-examine witnesses.",
+      "You have the right to present a defense and, in most cases, choose whether to testify.",
+    ],
+    caution:
+      "Trial decisions are strategic and fact-specific. A general guide cannot tell you whether to testify, waive a jury, accept a stipulation, or reject an offer.",
+    ask:
+      "Ask counsel what each trial right means, what choices are yours to make, and what risks come with each option.",
+  },
+  {
+    stage: "Plea and sentencing",
+    icon: "⚖️",
+    rights: [
+      "A plea usually gives up trial rights.",
+      "You should understand the charge, sentence range, registry impact, supervision terms, and collateral consequences before deciding.",
+      "You may have the right to speak at sentencing.",
+      "You may have appeal or post-conviction options, but deadlines can be short.",
+    ],
+    caution:
+      "In sex offense cases, the practical consequences may include registration, housing limits, work restrictions, treatment rules, internet limits, travel limits, and family-contact issues.",
+    ask:
+      "Ask counsel to explain the plea, registry tier or duration, supervision conditions, treatment requirements, appeal deadlines, and what consequences are mandatory versus possible.",
+  },
+  {
+    stage: "Incarceration, release, supervision, and registration",
+    icon: "🧭",
+    rights: [
+      "You keep basic constitutional rights, even though incarceration and supervision limit many choices.",
+      "You can ask for written conditions and clarification.",
+      "You may be able to challenge registry errors or seek relief where state law allows.",
+      "Voting, travel, housing, internet, and family-contact rights vary by jurisdiction and status.",
+    ],
+    caution:
+      "Most trouble after conviction starts with unclear instructions, missed deadlines, address problems, device issues, or relying on verbal answers.",
+    ask:
+      "Ask what must be reported, what must be approved first, what deadlines apply, and how to get answers in writing.",
+  },
+];
 
 export default function KnowYourRights(): JSX.Element {
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const handleDownload = () => {
-    // This would trigger a PDF download - for now, it opens print dialog
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="Your Rights at Every Stage: A Complete Guide for Sex Offense Cases | The SOLAR Project"
-        description="Comprehensive guide to legal rights for individuals accused or convicted of sex offenses. Know your constitutional protections at every stage from investigation to reentry."
-        keywords="legal rights, sex offense defense, constitutional rights, Miranda rights, due process, criminal defense, legal guide"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Know Your Rights During a Sex Offense Case | The SOLAR Project"
+        description="A practical, sex-offense-specific guide for protecting your rights, slowing down police and court pressure, documenting what happens, and knowing when to ask for legal help."
+        keywords="sex offense case rights, right to remain silent, right to counsel, search warrant, registry rights, supervision rules, criminal defense, legal aid"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <Link 
-              to="/resources" 
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors group"
-            >
-              <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          
-          <div className="mb-4">
-            <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-              Legal Rights Guide
-            </span>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Your Rights at Every Stage
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Know Your Rights During a Sex Offense Case
           </h1>
-          
-          <p className="text-xl text-slate-200 mb-6 max-w-3xl">
-            A Complete Guide for Individuals Accused or Convicted of a Sex Offense
-          </p>
-          
-          <p className="text-lg text-slate-100 mb-8 max-w-3xl">
-            This guide helps individuals and their loved ones understand their legal rights at every stage of a sex offense case. While laws may vary by state, these protections are rooted in the U.S. Constitution and federal law.
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A practical, sex-offense-specific guide for slowing down, protecting
+            your rights, communicating safely, documenting what happens, and
+            knowing when to pause before acting.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors shadow-lg flex items-center justify-center"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Print Guide
+              🖨️ Print Guide
             </button>
-            <button
-              onClick={handleDownload}
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors shadow-lg flex items-center justify-center"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              Download PDF
-            </button>
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 print:py-6">
-        
-        {/* Rights by Stage */}
-        <div className="space-y-10 print:space-y-6">
-          
-          {/* Investigation */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  1
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Investigation</h2>
-                  <p className="text-slate-200">Understanding your constitutional protections during investigation</p>
-                </div>
-              </div>
-            </div>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Constitutional Rights:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to remain silent</strong> (Fifth Amendment)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to an attorney</strong> before and during questioning</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Protection from unlawful searches</strong> (Fourth Amendment)</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-yellow-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                    </svg>
-                    <h4 className="font-semibold text-yellow-800">Critical Tip</h4>
+        <GuideIntro title="Start Here" icon="⚖️">
+          <p>
+            If you or someone you love is being investigated, charged, sentenced,
+            incarcerated, supervised, or required to register after a sex offense
+            case, the pressure can make people talk too fast, agree too quickly,
+            or rely on guesses. This guide is meant to slow the moment down.
+          </p>
+
+          <p>
+            The safest first move is usually simple: stay calm, do not try to
+            explain your way out of the situation, ask for a lawyer, avoid
+            unnecessary consent, save paperwork, and document what happened. The
+            details can change by state, court, case, supervision term, and
+            registry rule, so verify before acting.
+          </p>
+
+          <p>
+            This page is for accused people, convicted people, registrants,
+            people preparing for release, people under supervision, and family
+            members trying to help without accidentally making things worse.
+          </p>
+        </GuideIntro>
+
+        <GuideCallout tone="legal" icon="⚖️" title="A quick legal note">
+          <p>
+            This guide is for education and preparation. It is not legal advice,
+            and it cannot replace a lawyer who knows your case, your court
+            orders, your supervision rules, and your local law.
+          </p>
+          <p>
+            Use it to slow down, ask better questions, document what happens, and
+            know when to pause before acting.
+          </p>
+        </GuideCallout>
+
+        <QuickStartPanel
+          title="If police contact, questioning, or a search is happening now"
+          subtitle="Use short sentences. Do not debate facts in the moment. Protect your rights calmly and clearly."
+          icon="🚨"
+          urgentActions={[
+            <span>
+              Say: “I am using my right to remain silent. I want a lawyer.” Then
+              stop explaining.
+            </span>,
+            <span>
+              If asked to search your phone, computer, car, home, accounts, or
+              private messages, say: “I do not consent to a search.” Do not
+              physically resist.
+            </span>,
+            <span>
+              If officers show a warrant, do not interfere. Ask for a copy and
+              write down what was searched or taken.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Contact a criminal defense attorney, public defender, or trusted
+              legal-help referral as soon as possible.
+            </span>,
+            <span>
+              Tell a family member to save paperwork and call-log details, not to
+              argue with police or delete anything.
+            </span>,
+            <span>
+              Start a written timeline with dates, names, badge numbers,
+              agencies, searches, seizures, court dates, release conditions, and
+              deadlines.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              Being polite does not mean answering investigative questions.
+              Silence, counsel, and documentation are protective tools.
+            </span>
+          }
+        />
+
+        <GuideCallout tone="warning" icon="⚠️" title="Do not use a general guide to make a case-specific legal decision">
+          <p>
+            This guide can help you slow down and protect information, but it
+            cannot tell you what to say, what to sign, whether to consent,
+            whether to unlock a device, whether to contact someone, or whether
+            to accept a plea in your specific case. Those decisions need
+            case-specific legal advice whenever possible.
+          </p>
+        </GuideCallout>
+
+        <OverviewCards
+          columns={4}
+          cards={[
+            {
+              eyebrow: "Right 1",
+              title: "Silence",
+              icon: "🤐",
+              tone: "privacy",
+              description:
+                "You can protect yourself by clearly saying you are using your right to remain silent.",
+            },
+            {
+              eyebrow: "Right 2",
+              title: "Counsel",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Ask for a lawyer before questioning, plea decisions, court strategy, or registry-risk decisions.",
+            },
+            {
+              eyebrow: "Right 3",
+              title: "Search limits",
+              icon: "🔎",
+              tone: "warning",
+              description:
+                "Warrants, consent, devices, accounts, and supervision searches are serious. Do not guess.",
+            },
+            {
+              eyebrow: "Right 4",
+              title: "Documentation",
+              icon: "🗂️",
+              tone: "success",
+              description:
+                "Save orders, notices, warrants, property receipts, conditions, deadlines, and written instructions.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="rights-by-stage"
+          number="1"
+          title="Key rights by stage"
+          subtitle="The rights that matter most can change depending on where the case is. Use this as a practical map, then ask counsel how it applies to your situation."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Rights do not disappear because the accusation is serious, because
+              a person is on a registry, or because a case involves the internet,
+              children, family, treatment, or supervision. But the way rights
+              work depends on the stage of the case and the rules already in
+              place.
+            </p>
+
+            <p>
+              This section names common rights and protections in plain language.
+              It is not a complete legal analysis. Use it to prepare questions
+              for counsel and to recognize when you should pause before acting.
+            </p>
+          </GuideProse>
+
+          <div className="mt-6 space-y-5">
+            {rightsByStage.map((stage) => (
+              <div
+                key={stage.stage}
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xl">
+                    {stage.icon}
                   </div>
-                  <p className="text-yellow-700">
-                    <strong>Do not speak to law enforcement without legal counsel present.</strong> Anything you say can be used against you, even if you believe you're being helpful.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
 
-          {/* Arrest */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  2
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Arrest</h2>
-                  <p className="text-slate-200">Your rights when taken into custody</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Rights Upon Arrest:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to be informed of charges</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to remain silent</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to an attorney</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to a bail hearing</strong> (may be denied in some cases)</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h4 className="font-semibold text-blue-800">Preparation Tip</h4>
-                  </div>
-                  <p className="text-blue-700">
-                    <strong>Have a trusted contact ready for bail arrangements.</strong> Know who you can call and ensure they understand the process.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Pre-Trial */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  3
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Pre-Trial</h2>
-                  <p className="text-slate-200">Rights during the pre-trial phase</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Pre-Trial Rights:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to legal counsel</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to review evidence</strong> (discovery)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to file motions</strong> challenging unlawful evidence</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to negotiate a plea deal</strong></span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <h4 className="font-semibold text-green-800">Documentation Tip</h4>
-                  </div>
-                  <p className="text-green-700">
-                    <strong>Keep detailed records of communications with your attorney.</strong> Document all meetings, calls, and advice received.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Trial */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  4
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Trial</h2>
-                  <p className="text-slate-200">Your rights during trial proceedings</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Trial Rights:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Presumption of innocence</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to a jury trial</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to present a defense</strong> and call witnesses</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to cross-examine witnesses</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to remain silent</strong></span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h4 className="font-semibold text-purple-800">Strategic Tip</h4>
-                  </div>
-                  <p className="text-purple-700">
-                    <strong>Prepare with your attorney whether or not you will testify.</strong> This is a critical decision that requires careful consideration. Learn more about <Link to="/blog/plea-vs-trial" className="underline hover:text-purple-600">plea vs trial decisions</Link>.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Sentencing */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  5
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Sentencing</h2>
-                  <p className="text-slate-200">Your rights during the sentencing phase</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Sentencing Rights:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to speak on your own behalf</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to present mitigating evidence</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to appeal</strong></span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    <h4 className="font-semibold text-teal-800">Support Tip</h4>
-                  </div>
-                  <p className="text-teal-700">
-                    <strong>Gather letters of support and documentation before sentencing.</strong> Character references and evidence of rehabilitation efforts can be crucial.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Incarceration */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  6
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Incarceration</h2>
-                  <p className="text-slate-200">Your rights while incarcerated</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Rights During Incarceration:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to humane treatment</strong> (Eighth Amendment)</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to medical and mental health care</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to religious freedom</strong></span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-gray-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                    </svg>
-                    <h4 className="font-semibold text-gray-800">Connection Tip</h4>
-                  </div>
-                  <p className="text-gray-700">
-                    <strong>Maintain supportive contact with friends, family, and advocacy groups.</strong> These connections are vital for mental health and successful reentry.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Post-Release & Registration */}
-          <section className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                  7
-                </div>
-                <div>
-                  <h2 className="text-2xl font-bold">Post-Release & Registration</h2>
-                  <p className="text-slate-200">Your rights after release and during registration</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Your Post-Release Rights:</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>Right to challenge registry errors</strong></span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>In some states, right to petition for removal</strong> from registry after a certain period</span>
-                    </li>
-                    <li className="flex items-start">
-                      <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      <span><strong>First Amendment protections</strong> for lawful internet use (Packingham v. North Carolina)</span>
-                    </li>
-                  </ul>
-                  
-                  <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
-                    <p className="text-sm text-yellow-800">
-                      <strong>Note:</strong> You may be subject to sex offender registration laws (SORNA & state-level). Learn more about <Link to="/blog/life-on-registry" className="underline hover:text-yellow-600">life on the registry</Link>.
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900">
+                      {stage.stage}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Rights and caution points to review before acting at this
+                      stage.
                     </p>
                   </div>
                 </div>
-                
-                <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-                  <div className="flex items-center mb-2">
-                    <svg className="w-5 h-5 text-emerald-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <h4 className="font-semibold text-emerald-800">Reentry Tip</h4>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-slate-700">
+                      Rights to remember
+                    </h4>
+
+                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
+                      {stage.rights.map((right) => (
+                        <li key={right} className="flex gap-2">
+                          <span aria-hidden="true" className="mt-1 text-slate-500">
+                            •
+                          </span>
+                          <span>{right}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <p className="text-emerald-700">
-                    <strong>Contact advocacy groups for housing and employment assistance.</strong> Organizations like NARSOL can provide valuable support during reentry.
-                  </p>
+
+                  <div className="rounded-xl bg-amber-50 p-4 ring-1 ring-amber-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">
+                      Be careful
+                    </h4>
+
+                    <p className="mt-3 text-sm leading-relaxed text-amber-950">
+                      {stage.caution}
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl bg-blue-50 p-4 ring-1 ring-blue-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-blue-900">
+                      Ask counsel
+                    </h4>
+
+                    <p className="mt-3 text-sm leading-relaxed text-blue-950">
+                      {stage.ask}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
-
-        {/* Quick Reference Table */}
-        <section className="mt-12 print:mt-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 print:text-2xl">Quick Reference Table</h2>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300 print:text-sm">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">Stage</th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">Your Rights</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Investigation</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Silence, attorney, privacy</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Arrest</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Miranda rights, charge info, bail</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Pre-Trial</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Counsel, discovery, trial rights</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Trial</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Jury, defense, remain silent</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Sentencing</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Mitigation, appeal</td>
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Incarceration</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Medical care, safety, rights</td>
-                </tr>
-                <tr>
-                  <td className="border border-gray-300 px-4 py-3 font-medium text-gray-900">Reentry & Registry</td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-700">Free speech, voting (state-dependent), due process</td>
-                </tr>
-              </tbody>
-            </table>
+            ))}
           </div>
-        </section>
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="police-contact"
+          number="2"
+          title="Investigation, police contact, and questioning"
+          subtitle="You do not have to explain yourself just because someone with authority asks questions."
+        />
 
-        {/* Resources & Contact Information */}
-        <section className="mt-12 print:mt-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 print:text-2xl">Resources & Contact Information</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6 print:grid-cols-1 print:gap-4">
-            
-            {/* NARSOL */}
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-blue-900 mb-3">NARSOL</h3>
-              <p className="text-blue-800 mb-4">National Association for Rational Sexual Offense Laws - Advocates for reforming sex offense laws and supporting affected individuals and families.</p>
-              <div className="space-y-2 text-blue-700">
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  (888) 997-7765
-                </p>
-                <p className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  Post Office Box 36123, Albuquerque, NM 87176
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <a href="https://www.narsol.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.narsol.org</a>
-                </p>
-              </div>
-            </div>
-
-            {/* ACLU */}
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-red-900 mb-3">American Civil Liberties Union (ACLU)</h3>
-              <p className="text-red-800 mb-4">Nationwide nonprofit defending individual rights guaranteed by the Constitution.</p>
-              <div className="space-y-2 text-red-700">
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  (212) 549-2500
-                </p>
-                <p className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  125 Broad Street, 18th Floor, New York, NY 10004
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <a href="https://www.aclu.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.aclu.org</a>
-                </p>
-              </div>
-            </div>
-
-            {/* NCSL */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-green-900 mb-3">National Conference of State Legislatures (NCSL)</h3>
-              <p className="text-green-800 mb-4">Provides research and data on state laws, including voting rights restoration.</p>
-              <div className="space-y-2 text-green-700">
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  (303) 364-7700
-                </p>
-                <p className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  7700 East First Place, Denver, CO 80230
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <a href="https://www.ncsl.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.ncsl.org</a>
-                </p>
-              </div>
-            </div>
-
-            {/* Human Rights Watch */}
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-purple-900 mb-3">Human Rights Watch</h3>
-              <p className="text-purple-800 mb-4">International nonprofit investigating and reporting on human rights abuses.</p>
-              <div className="space-y-2 text-purple-700">
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  (212) 290-4700
-                </p>
-                <p className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  350 Fifth Avenue, 34th Floor, New York, NY 10118-3299
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <a href="https://www.hrw.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.hrw.org</a>
-                </p>
-              </div>
-            </div>
-
-            {/* The Marshall Project */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-yellow-900 mb-3">The Marshall Project</h3>
-              <p className="text-yellow-800 mb-4">Nonprofit news organization covering the U.S. criminal justice system.</p>
-              <div className="space-y-2 text-yellow-700">
-                <p className="flex items-start">
-                  <svg className="w-4 h-4 mr-2 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  P.O. Box 524644, Miami, FL 33152
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <a href="https://www.themarshallproject.org" target="_blank" rel="noopener noreferrer" className="hover:underline">www.themarshallproject.org</a>
-                </p>
-              </div>
-            </div>
-
-            {/* SOLAR Project */}
-            <div className="bg-blue-100 border border-blue-300 rounded-lg p-6 print:p-4">
-              <h3 className="text-xl font-bold text-blue-900 mb-3">The SOLAR Project</h3>
-              <p className="text-blue-800 mb-4">Supporting, Organizing, Learning, Advocating, and Reforming - Your source for education, advocacy, and support.</p>
-              <div className="space-y-2 text-blue-700">
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                  </svg>
-                  <Link to="/contact" className="hover:underline">Contact SOLAR</Link>
-                </p>
-                <p className="flex items-center">
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  <Link to="/resources" className="hover:underline">Additional Resources</Link>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final Message */}
-        <section className="mt-12 print:mt-8">
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-8 text-center print:p-6">
-            <h2 className="text-2xl font-bold text-blue-900 mb-4">Remember</h2>
-            <p className="text-lg text-blue-800 mb-4">
-              This process can feel overwhelming, but <strong>you are not alone</strong>.
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People often talk because they are scared, embarrassed, angry, or
+              convinced they can clear things up. In sex offense investigations,
+              even small statements can be misunderstood, incomplete, or used
+              later. You can be respectful and still decline to answer questions
+              without a lawyer.
             </p>
-            <p className="text-blue-700">
-              Protect your rights, lean on trusted supporters, and work closely with a qualified attorney. Stay informed and seek help from reputable organizations.
+
+            <p>
+              This matters for family members too. A spouse, parent, roommate, or
+              adult child may think they are helping by speaking to police,
+              explaining context, checking a device, contacting a witness, or
+              deleting something upsetting. Those actions can create new legal
+              problems.
             </p>
-          </div>
-        </section>
+          </GuideProse>
 
-        {/* Legal Disclaimer */}
-        <div className="border-t border-gray-200 pt-6 mt-8 text-sm text-gray-600 print:text-xs">
-          <p><strong>Legal Disclaimer:</strong> This guide provides general information only and is not legal advice. Laws vary by state and individual circumstances. Always consult with a qualified attorney for advice specific to your situation. The SOLAR Project does not provide legal representation.</p>
-        </div>
+          <DoDontJudgment
+            dos={[
+              <span>
+                Clearly say: “I am using my right to remain silent. I want a
+                lawyer.”
+              </span>,
+              <span>
+                Stay calm, keep your hands visible, follow safety commands, and
+                write down names, agencies, dates, and what happened afterward.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not try to explain, guess, joke, minimize, argue facts, or
+                answer “just a few questions” without counsel.
+              </span>,
+              <span>
+                Do not ask family to contact alleged victims, witnesses,
+                investigators, employers, schools, or neighbors to “fix it.”
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Basic identifying information and immediate safety commands may
+                be different from investigative questioning. When the question
+                moves toward facts, allegations, devices, timelines, people, or
+                messages, pause and ask for counsel.
+              </span>,
+            ]}
+          />
 
-        {/* Navigation */}
-        <div className="border-t border-gray-200 pt-8 mt-8 print:hidden">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <Link 
-              to="/resources" 
-              className="text-blue-600 hover:text-blue-800 font-medium transition-colors"
-            >
-              ← Back to All Resources
-            </Link>
-            <div className="flex space-x-4">
-              <Link 
-                to="/blog/legal-rights" 
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-md"
-              >
-                Legal Rights Blog
-              </Link>
-              <Link 
-                to="/contact" 
-                className="border border-blue-600 text-blue-600 px-6 py-2 rounded-lg hover:bg-blue-50 transition-colors"
-              >
-                Get Help
-              </Link>
-            </div>
-          </div>
-        </div>
-      </article>
+          <ScriptBox
+            title="Police contact script"
+            tone="legal"
+            context="Use calmly. Repeat if needed. Do not add explanations afterward."
+            script={`I am using my right to remain silent.
 
-      {/* Print Styles */}
-      <style jsx>{`
-        @media print {
-          .print\\:hidden { display: none !important; }
-          .print\\:py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
-          .print\\:py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-          .print\\:pb-4 { padding-bottom: 1rem !important; }
-          .print\\:mb-8 { margin-bottom: 2rem !important; }
-          .print\\:mb-6 { margin-bottom: 1.5rem !important; }
-          .print\\:mt-8 { margin-top: 2rem !important; }
-          .print\\:space-y-6 > * + * { margin-top: 1.5rem !important; }
-          .print\\:text-2xl { font-size: 1.5rem !important; line-height: 2rem !important; }
-          .print\\:text-sm { font-size: 0.875rem !important; line-height: 1.25rem !important; }
-          .print\\:text-xs { font-size: 0.75rem !important; line-height: 1rem !important; }
-          .print\\:w-8 { width: 2rem !important; }
-          .print\\:h-8 { height: 2rem !important; }
-          .print\\:text-base { font-size: 1rem !important; line-height: 1.5rem !important; }
-          .print\\:p-6 { padding: 1.5rem !important; }
-          .print\\:p-4 { padding: 1rem !important; }
-          .print\\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
-          .print\\:gap-4 { gap: 1rem !important; }
-          
-          body { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
-          * { box-shadow: none !important; }
-        }
-      `}</style>
+I want a lawyer.
+
+I do not want to answer questions without my lawyer present.`}
+          />
+
+          <ScriptBox
+            title="Family member script"
+            tone="family"
+            context="Use if police, an investigator, a school, a caseworker, or another authority contacts a loved one."
+            script={`I understand this is serious.
+
+I am not comfortable answering questions or guessing about facts. I want to make sure we do this the right way.
+
+Please send any request in writing, and I will encourage [Name] to speak with a lawyer.`}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Do not delete, edit, or “clean up” anything">
+            <p>
+              Do not delete messages, photos, files, accounts, browser history,
+              apps, cloud backups, or social media posts because you are scared.
+              Do not ask someone else to do it. Tell your lawyer what exists and
+              ask what to do next.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="searches-devices"
+          number="3"
+          title="Searches, devices, accounts, and warrants"
+          subtitle="Phones, computers, cloud accounts, messages, apps, and passwords can become central evidence."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sex offense investigations often involve digital evidence: phones,
+              computers, tablets, cloud accounts, photos, downloads, search
+              history, location data, messaging apps, gaming platforms, social
+              media, smart-home devices, and shared family devices.
+            </p>
+
+            <p>
+              Search law is complicated. A warrant, a consent request, a
+              subpoena, a probation search condition, a parole instruction, a
+              school or workplace device policy, and a family member handing over
+              a device are not the same thing. Do not assume the rule. Slow down
+              and preserve the paper trail.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Ask whether officers have a warrant. If they do, ask for a copy
+                and do not interfere.
+              </span>,
+              <span>
+                Write down what was searched, what was taken, who took it, and
+                whether you received a property receipt.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not consent to searches of your home, phone, computer, car,
+                accounts, or private messages without legal advice when you have
+                a choice.
+              </span>,
+              <span>
+                Do not wipe devices, change accounts, destroy storage media,
+                delete files, or tell family members to do so.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Passwords, biometric unlocking, cloud accounts, and supervised
+                release search conditions are jurisdiction-specific. Ask a lawyer
+                before deciding what must be provided and what can be refused.
+              </span>,
+            ]}
+          />
+
+          <ScriptBox
+            title="Search or consent script"
+            tone="warning"
+            context="Use if officers ask permission to search. Do not physically resist a search."
+            script={`I do not consent to a search.
+
+If you have a warrant, I will not interfere. Please give me a copy of the warrant and a receipt for anything taken.
+
+I want to speak with a lawyer before answering questions.`}
+          />
+
+          <DocumentPacket
+            title="Device and search records to save"
+            intro={
+              <span>
+                Save this information for your lawyer. Do not rely on memory.
+              </span>
+            }
+            items={[
+              "Date, time, location, agency, officer names, badge numbers, and case number if provided.",
+              "A copy or photo of any warrant, subpoena, property receipt, inventory sheet, or business card.",
+              "List of devices, accounts, storage media, papers, vehicles, rooms, or online accounts searched or seized.",
+              "Names of family members, roommates, employers, schools, or providers who were contacted or asked for access.",
+              "Any statement you or someone else made about passwords, ownership, users, shared devices, or accounts.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="arrest-pretrial"
+          number="4"
+          title="Arrest, booking, and pretrial release"
+          subtitle="Release conditions can begin immediately and can be easy to violate by accident."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              After arrest or a first court appearance, you may receive bond,
+              pretrial release, GPS monitoring, no-contact orders, internet
+              restrictions, travel limits, firearm restrictions, child-contact
+              restrictions, residence restrictions, school or workplace limits,
+              or treatment requirements.
+            </p>
+
+            <p>
+              Treat every condition as serious. If a condition is confusing, the
+              safer move is not to guess. Ask your lawyer or the court for
+              clarification before you contact someone, go somewhere, post
+              online, travel, move, return home, or use a shared device.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Read every release condition before leaving court or custody, and
+                ask for a copy if you do not have one.
+              </span>,
+              <span>
+                Save court dates, deadlines, no-contact names, address rules,
+                travel limits, and internet or device instructions in one place.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not contact alleged victims, witnesses, minors, restricted
+                people, or restricted places unless your lawyer confirms it is
+                allowed.
+              </span>,
+              <span>
+                Do not rely on “they contacted me first” as permission to respond
+                when a no-contact order exists.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Family logistics, childcare, housing, work, medical care,
+                religious services, treatment, and internet access may require
+                modified conditions. Ask your lawyer about requesting changes
+                instead of informally working around the rule.
+              </span>,
+            ]}
+          />
+
+          <GuideChecklist
+            id="pretrial-condition-check"
+            title="Pretrial condition checklist"
+            columns={1}
+            items={[
+              {
+                id: "orders",
+                label:
+                  "Save all bond, release, no-contact, protective, GPS, travel, and internet/device orders.",
+              },
+              {
+                id: "contacts",
+                label:
+                  "List every person, place, platform, school, workplace, or household situation the order may affect.",
+              },
+              {
+                id: "housing",
+                label:
+                  "Ask whether you may return home, live with family, live near children, or move to a new address.",
+              },
+              {
+                id: "work",
+                label:
+                  "Ask how the conditions affect work, job searches, school, travel, phone use, email, and online accounts.",
+              },
+              {
+                id: "clarification",
+                label:
+                  "Send unclear questions to your lawyer and save the answer in writing when possible.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Attorney call script after release"
+            tone="legal"
+            context="Use when you need help understanding conditions quickly."
+            script={`Hello, my name is [Name]. I was released with conditions in [court/county] on [date].
+
+I need help understanding what I can and cannot do before I accidentally violate anything.
+
+The conditions I am most worried about are:
+- Contact with [person/group]
+- Living at [address]
+- Internet or device use
+- Work or travel
+- Court deadlines
+
+Can we review these before I act?`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="plea-trial-sentencing"
+          number="5"
+          title="Plea, trial, and sentencing decisions"
+          subtitle="The legal outcome may affect registration, supervision, housing, work, family contact, immigration, and long-term stability."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A plea or conviction can carry consequences far beyond the sentence
+              announced in court. In sex offense cases, the consequences may
+              include registration, public listing, residence limits, employment
+              barriers, treatment conditions, internet restrictions, travel
+              notice rules, lifetime supervision, immigration consequences,
+              family-court effects, and limits on where you can live or work.
+            </p>
+
+            <p>
+              This guide cannot tell you whether to plead, go to trial, testify,
+              appeal, or accept a sentence. It can help you ask better questions
+              before making decisions that may shape the rest of your life.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Ask your lawyer what each charge, plea, conviction, sentence, and
+                registration category would mean in daily life.
+              </span>,
+              <span>
+                Ask about appeal deadlines, immigration consequences, registry
+                duration, supervision rules, treatment requirements, voting
+                rights, and housing effects before deciding.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not accept “you will probably be fine” as the full explanation
+                of consequences.
+              </span>,
+              <span>
+                Do not sign plea paperwork until you understand what you are
+                admitting, what rights you are giving up, and what consequences
+                may follow.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Plea and trial decisions are personal and legal. Family members
+                can help organize questions and documents, but the accused person
+                needs case-specific advice from counsel.
+              </span>,
+            ]}
+          />
+
+          <GuideIconList
+            title="Questions to ask before a plea or sentencing"
+            description="Use this list with your lawyer. Add state-specific and immigration questions if they apply."
+            columns={2}
+            variant="cards"
+            tone="legal"
+            items={[
+              {
+                icon: "court",
+                title: "What rights am I giving up?",
+                description:
+                  "Ask about trial rights, appeal limits, factual admissions, sentencing exposure, and whether the plea can be withdrawn.",
+              },
+              {
+                icon: "fingerprint",
+                title: "Will registration be required?",
+                description:
+                  "Ask about duration, public listing, tier/classification, address rules, work reporting, travel notices, and removal eligibility.",
+              },
+              {
+                icon: "home",
+                title: "How will this affect housing and family?",
+                description:
+                  "Ask about living with children, returning home, school zones, custody/visitation, lease issues, and supervision approval.",
+              },
+              {
+                icon: "internet",
+                title: "Will internet or device limits apply?",
+                description:
+                  "Ask about phones, computers, social media, work accounts, treatment software, monitoring, passwords, and shared family devices.",
+              },
+              {
+                icon: "reentry",
+                title: "What will supervision require?",
+                description:
+                  "Ask about curfew, GPS, treatment, polygraph, travel, employment, contact rules, home visits, searches, and violation consequences.",
+              },
+              {
+                icon: "document",
+                title: "What should I save?",
+                description:
+                  "Ask for copies of plea forms, sentencing orders, conditions, registry instructions, treatment referrals, and appeal deadlines.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🗣️" title="Sentencing is also a documentation moment">
+            <p>
+              If sentencing is coming up, ask counsel what mitigation is useful,
+              whether the person has a right to speak, what support letters or
+              treatment records should be gathered, what appeal deadlines may
+              apply, and what paperwork must be saved before leaving court.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="incarceration-release"
+          number="6"
+          title="Incarceration, release, supervision, and registration"
+          subtitle="Rights still matter after conviction, but deadlines and written rules become especially important."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              During incarceration, practical rights often involve safety,
+              medical care, mental health care, religious practice, disability
+              access, mail, visitation, grievances, discipline, records, and
+              preparation for release. Families can help by keeping organized
+              notes, saving mail, tracking requests, and helping prepare a
+              reentry folder.
+            </p>
+
+            <p>
+              After release, registry and supervision rules can change ordinary
+              life quickly. Moving, traveling, changing jobs, using the internet,
+              living with family, missing appointments, or misunderstanding a
+              reporting deadline can create serious consequences.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Keep orders, conditions, registry paperwork, officer
+                instructions, treatment rules, and deadlines in one folder.
+              </span>,
+              <span>
+                Verify before moving, traveling, changing employment, using a new
+                device, opening an account, changing household members, or
+                relying on voting-rights assumptions.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not rely on memory, old paperwork, another person’s registry
+                rules, or informal advice from people in a different county or
+                state.
+              </span>,
+              <span>
+                Do not ignore a rule because it seems impossible. Ask for written
+                clarification or legal help before the deadline passes.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Officer instructions, court orders, registry-office instructions,
+                treatment rules, and local ordinances can overlap or conflict.
+                When they do, pause and ask for clarification in writing.
+              </span>,
+            ]}
+          />
+
+          <VerifyBeforeActing
+            title="Verify before acting after release"
+            whoToAsk={
+              <span>
+                Your lawyer, supervising officer, registering agency, court
+                clerk, treatment provider, housing authority, or another office
+                with actual authority over the specific rule.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Before I act, can you confirm what rule applies to [move,
+                travel, job change, internet use, family contact, address change,
+                vehicle, phone, account, voting registration, or deadline], who
+                must approve it, and whether I need written permission?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the date, name, office, phone number or email, exact
+                instruction, deadline, form, approval, denial, and any follow-up
+                steps.
+              </span>
+            }
+          />
+
+          <GuideCallout tone="legal" icon="🧾" title="Registry errors and relief pathways">
+            <p>
+              If a registry entry is wrong, outdated, missing context, showing
+              the wrong address, listing the wrong status, or failing to reflect
+              relief already granted, document the problem and ask the
+              registering agency or counsel how to correct it. Some jurisdictions
+              also allow petitions for removal, reduction, termination, relief,
+              or review after certain requirements are met. These pathways vary
+              widely, so verify locally before assuming you are eligible.
+            </p>
+          </GuideCallout>
+
+          <OfflineOptions
+            title="If internet access is limited or monitored"
+            icon="📵"
+            note={
+              <span>
+                Many people on supervision or in custody cannot safely rely on
+                private internet access. Use paper and trusted helpers when
+                needed.
+              </span>
+            }
+            items={[
+              "Ask a lawyer, public defender office, library, reentry worker, or family member to print court orders, registry rules, and legal-help contacts.",
+              "Use a paper notebook for officer instructions, registration dates, treatment appointments, and questions for counsel.",
+              "Ask for mailed forms or written instructions if online reporting, portals, or accounts are restricted.",
+              "Have a trusted helper save screenshots, appointment confirmations, transportation plans, and written approvals.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts-documents"
+          number="7"
+          title="Scripts and documents to keep close"
+          subtitle="Simple language and organized records help when stress is high."
+        />
+
+        <GuideSectionCard>
+          <ScriptBox
+            title="Officer or registry clarification script"
+            tone="reentry"
+            context="Use when a rule is unclear and you need the answer documented."
+            script={`Hello [Name/Office],
+
+I am trying to follow my rules correctly. Before I act, I need clarification about [specific issue].
+
+My question is: [one clear question].
+
+Can you please tell me:
+1. What rule applies?
+2. Who has authority to approve or deny it?
+3. Whether I need written permission or a form?
+4. What deadline applies?
+
+I am saving the answer for my records. Thank you.`}
+          />
+
+          <DocumentPacket
+            title="Rights protection folder"
+            intro={
+              <span>
+                Keep one folder for the documents that prove what happened, what
+                you were told, and what deadlines apply.
+              </span>
+            }
+            categories={[
+              {
+                title: "Police, search, and investigation records",
+                items: [
+                  "Warrants, subpoenas, property receipts, search inventories, officer cards, agency names, case numbers, and device/account seizure notes.",
+                  "Timeline of police contact, interviews, family contact, school/work contact, child-protection contact, or digital-forensics events.",
+                  "Names and contact details for attorneys, public defenders, investigators, advocates, and trusted family helpers.",
+                ],
+              },
+              {
+                title: "Court and defense records",
+                items: [
+                  "Charging documents, bond or release conditions, no-contact orders, protective orders, discovery notices, hearing dates, plea paperwork, sentencing orders, and appeal deadlines.",
+                  "Attorney meeting notes, questions to ask, answers received, mitigation records, treatment records, support letters, and reentry planning documents.",
+                  "Immigration, custody, housing, employment, school, professional licensing, voting-rights, and benefits questions that may need separate legal advice.",
+                ],
+              },
+              {
+                title: "Release, supervision, and registration records",
+                items: [
+                  "Supervision conditions, registry paperwork, address forms, travel forms, employment reporting forms, treatment rules, internet/device rules, and officer instructions.",
+                  "Written approvals, denials, appointment confirmations, registration receipts, reporting deadlines, and copies of anything submitted.",
+                  "A log of calls, visits, emails, mailed forms, names, departments, dates, and exact instructions.",
+                ],
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="family-helper-checklist"
+            title="Family helper checklist"
+            columns={1}
+            items={[
+              {
+                id: "no-explaining",
+                label:
+                  "Do not explain facts to police, alleged victims, witnesses, schools, employers, neighbors, or online groups without legal advice.",
+              },
+              {
+                id: "no-delete",
+                label:
+                  "Do not delete, edit, hide, wipe, forward, or post about messages, photos, devices, accounts, or documents.",
+              },
+              {
+                id: "save-paper",
+                label:
+                  "Save paperwork, envelopes, screenshots, call logs, appointment dates, and written instructions.",
+              },
+              {
+                id: "legal-help",
+                label:
+                  "Help find a lawyer, public defender contact, legal aid office, or criminal defense referral instead of trying to solve the case yourself.",
+              },
+              {
+                id: "support",
+                label:
+                  "Support practical stability: transportation, medication, housing notes, court-date reminders, clothing for court, and calm communication.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="8"
+          title="Common mistakes to avoid"
+          subtitle="Most mistakes happen because people are scared and trying to fix everything too quickly."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Talking to clear things up.",
+                whyItMatters:
+                  "Statements can be incomplete, misunderstood, recorded, repeated, or used later even when the person meant well.",
+                betterMove:
+                  "Say you are using your right to remain silent and want a lawyer.",
+              },
+              {
+                mistake: "Consenting to searches without advice.",
+                whyItMatters:
+                  "Consent can affect phones, computers, accounts, homes, cars, and shared family spaces.",
+                betterMove:
+                  "Do not consent when you have a choice. Ask whether there is a warrant and request a copy.",
+              },
+              {
+                mistake: "Deleting or changing digital evidence.",
+                whyItMatters:
+                  "Trying to clean up files, accounts, messages, or devices can create new legal problems.",
+                betterMove:
+                  "Preserve what exists and tell your lawyer about it.",
+              },
+              {
+                mistake: "Contacting alleged victims or witnesses.",
+                whyItMatters:
+                  "Even peaceful contact can violate orders, look like pressure, or become new evidence.",
+                betterMove:
+                  "Let lawyers handle case-related contact.",
+              },
+              {
+                mistake: "Treating supervision or registry instructions as informal advice.",
+                whyItMatters:
+                  "Missed deadlines, unapproved travel, address issues, or unclear internet rules can lead to violations or new charges.",
+                betterMove:
+                  "Verify the rule, save the answer, and ask for clarification before acting.",
+              },
+              {
+                mistake: "Letting family members become investigators.",
+                whyItMatters:
+                  "Family helpers can accidentally become witnesses, spread information, alter evidence, or trigger contact violations.",
+                betterMove:
+                  "Ask family to organize documents, help find counsel, and support stability.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Before relying on this guide">
+            <p>
+              This page is educational and practical, not legal advice. If
+              something here conflicts with your lawyer’s advice, court order,
+              supervision condition, registry instruction, or local law, pause
+              and get clarification from a qualified legal professional or the
+              authority responsible for that rule.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="9"
+          title="Resources and next steps"
+          subtitle="Use official sources where possible, but get case-specific legal help before making legal decisions."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Legal help and rights resources"
+            description={
+              <span>
+                These are starting points for education and referrals. They do
+                not replace a lawyer who knows your case.
+              </span>
+            }
+            resources={[
+              {
+                label: "NACDL Find a Lawyer Directory",
+                href: sourceLinks.nacdlDirectory,
+                badge: "Defense",
+                description:
+                  "Criminal defense lawyer directory from the National Association of Criminal Defense Lawyers.",
+              },
+              {
+                label: "Legal Services Corporation legal help finder",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Legal aid",
+                description:
+                  "Find LSC-funded civil legal aid organizations by location.",
+              },
+              {
+                label: "USAGov legal aid overview",
+                href: sourceLinks.usaGovLegalAid,
+                badge: "Official",
+                description:
+                  "Federal starting point for affordable legal aid, LawHelp.org, and pro bono resources.",
+              },
+              {
+                label: "Cornell Bill of Rights",
+                href: sourceLinks.cornellBillOfRights,
+                badge: "Legal reference",
+                description:
+                  "Plain access to constitutional text and explanations, including the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendments.",
+              },
+              {
+                label: "NCSL felony voting rights",
+                href: sourceLinks.ncslVotingRights,
+                badge: "State law",
+                description:
+                  "State-by-state voting rights restoration information for people with felony convictions.",
+              },
+              {
+                label: "NARSOL Resources",
+                href: sourceLinks.narsolResources,
+                badge: "Registry-specific",
+                description:
+                  "Registry-focused resource collection, advocacy materials, research, links, and court-case resources.",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Use this when release, supervision, or registration rules affect where someone can live.",
+                to: "/resources/housing-search-guide",
+              },
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Helpful for organizing release paperwork, appointments, housing, work, transportation, and documentation.",
+                to: "/resources/reentry-planning",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "Helps loved ones support someone safely without escalating legal, emotional, or practical risk.",
+                to: "/resources/family-support",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources and verification"
+            note={
+              <span>
+                Links were checked for live access before publication.
+                Constitutional rights, criminal procedure, registry duties,
+                supervision rules, voting rights, and incarceration rules still
+                require jurisdiction-specific verification before use in a
+                specific case.
+              </span>
+            }
+            sources={[
+              {
+                label: "Cornell Legal Information Institute: Bill of Rights",
+                href: sourceLinks.cornellBillOfRights,
+                description:
+                  "Constitutional reference for the Fourth, Fifth, Sixth, Eighth, and Fourteenth Amendment framework used in this guide.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Fourth Amendment",
+                href: sourceLinks.cornellFourth,
+                description:
+                  "Reference for search, seizure, warrants, surveillance, and privacy-related protections.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Fifth Amendment",
+                href: sourceLinks.cornellFifth,
+                description:
+                  "Reference for self-incrimination and due-process protections.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Sixth Amendment",
+                href: sourceLinks.cornellSixth,
+                description:
+                  "Reference for counsel, trial, confrontation, jury, and criminal-prosecution rights.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Miranda v. Arizona",
+                href: sourceLinks.cornellMiranda,
+                description:
+                  "Reference for custodial interrogation, the right to remain silent, and counsel warnings.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Right to counsel",
+                href: sourceLinks.cornellRightToCounsel,
+                description:
+                  "Reference for the right of a criminal defendant to have legal assistance.",
+              },
+              {
+                label: "Cornell Legal Information Institute: Brady rule",
+                href: sourceLinks.cornellBrady,
+                description:
+                  "Reference for prosecution disclosure of material exculpatory information.",
+              },
+              {
+                label: "Federal Rule of Criminal Procedure 16",
+                href: sourceLinks.cornellRule16,
+                description:
+                  "Reference for federal criminal discovery and inspection rules.",
+              },
+              {
+                label: "Justia U.S. Supreme Court: Packingham v. North Carolina",
+                href: sourceLinks.justiaPackingham,
+                description:
+                  "Reference for registry-related First Amendment internet-access limits and lawful speech concerns.",
+              },
+              {
+                label: "Federal Bureau of Prisons Legal Resource Guide",
+                href: sourceLinks.bopLegalGuide,
+                description:
+                  "Federal custody reference for BOP medical care, administrative remedies, and prison legal-resource topics.",
+              },
+              {
+                label: "NCSL felony voting rights",
+                href: sourceLinks.ncslVotingRights,
+                description:
+                  "State-by-state reference for voting-rights restoration after felony convictions.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
