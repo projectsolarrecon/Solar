@@ -26,7 +26,7 @@ import {
 const sourceLinks = {
   unitedWay211: "https://www.211.org/",
   cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
-  hudPublicHousingContacts: "https://www.hud.gov/contactus/public-housing-contacts",
+  hudFindCounselor: "https://www.hud.gov/findacounselor",
   hudReportHousingDiscrimination: "https://www.hud.gov/reporthousingdiscrimination",
   usaGovHousingHelp: "https://www.usa.gov/housing-help",
   lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
@@ -39,8 +39,8 @@ export default function HousingSearchGuide(): JSX.Element {
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
         title="Housing Search Guide for People on Registries | The SOLAR Project"
-        description="A practical housing search guide for people on sex offense registries and their families, focused on restrictions, supervision approval, landlord communication, documentation, and safer next steps."
-        keywords="sex offender housing, registry housing search, residency restrictions, probation housing approval, parole housing, reentry housing, family housing support"
+        description="A practical guide for finding housing while checking registry rules, supervision conditions, local restrictions, lease terms, landlord communication, and address approval steps."
+        keywords="registry housing, sex offense registry housing, residency restrictions, housing search, reentry housing, supervision address approval, landlord communication, housing compliance"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -63,8 +63,8 @@ export default function HousingSearchGuide(): JSX.Element {
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
             A practical, sex-offense-specific guide for finding housing that is
             realistic, affordable, and compliant with registry rules,
-            supervision conditions, local restrictions, lease terms, and family
-            safety needs.
+            supervision conditions, local restrictions, lease terms, household
+            realities, and family safety needs.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -91,13 +91,14 @@ export default function HousingSearchGuide(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="">
+        <GuideIntro title="Start Here" icon="🏠">
           <p>
             Housing is one of the hardest parts of registry life. A place can
             look affordable, safe, and available, but still fail because of a
             residency restriction, supervision condition, local ordinance, HOA
-            rule, lease clause, internet/device condition, household composition
-            issue, or address-approval process.
+            rule, lease clause, internet or device condition, household
+            composition issue, victim-contact rule, child-contact rule, or
+            address-approval process.
           </p>
 
           <p>
@@ -123,9 +124,9 @@ export default function HousingSearchGuide(): JSX.Element {
           urgentActions={[
             <span>
               Gather the exact restrictions that apply to you: registry law,
-              supervision or court conditions, local ordinances, school/park/daycare
-              distance rules, household limits, internet/device rules, and any
-              victim-contact or child-contact restrictions.
+              supervision or court conditions, local ordinances, school, park, or
+              daycare distance rules, household limits, internet or device rules,
+              and any victim-contact or child-contact restrictions.
             </span>,
             <span>
               Pick three possible search zones before looking at individual
@@ -135,8 +136,9 @@ export default function HousingSearchGuide(): JSX.Element {
             </span>,
             <span>
               Create a housing compliance folder before you apply anywhere. Save
-              maps, screenshots, officer emails, landlord messages, HOA documents,
-              lease terms, and notes from every phone call.
+              maps, screenshots, officer emails, landlord messages, HOA
+              documents, lease terms, application receipts, and notes from every
+              important phone call.
             </span>,
           ]}
           nextActions={[
@@ -149,9 +151,9 @@ export default function HousingSearchGuide(): JSX.Element {
               “Is this specific address allowed for me under my current rules?”
             </span>,
             <span>
-              Use a family member, trusted friend, caseworker, reentry worker, or
-              faith volunteer as a housing scout if internet access is restricted
-              or overwhelming.
+              Use a family member, trusted friend, caseworker, reentry worker,
+              public defender social worker, or faith volunteer as a housing
+              scout if internet access is restricted or overwhelming.
             </span>,
           ]}
           reminder={
@@ -169,7 +171,7 @@ export default function HousingSearchGuide(): JSX.Element {
             {
               eyebrow: "Step 1",
               title: "Know the rule",
-              icon: "",
+              icon: "📏",
               tone: "legal",
               description:
                 "Identify the exact state, local, court, and supervision rules before you fall in love with a listing.",
@@ -177,7 +179,7 @@ export default function HousingSearchGuide(): JSX.Element {
             {
               eyebrow: "Step 2",
               title: "Screen the address",
-              icon: "️",
+              icon: "🗺️",
               tone: "warning",
               description:
                 "Check schools, parks, daycare sites, property lines, local ordinances, HOA rules, and household details.",
@@ -188,12 +190,12 @@ export default function HousingSearchGuide(): JSX.Element {
               icon: "☎️",
               tone: "family",
               description:
-                "Use calm, short scripts with landlords, officers, HOA managers, and helpers. Do not overshare unnecessary details.",
+                "Use calm, short scripts with landlords, officers, HOA managers, family helpers, and housing programs.",
             },
             {
               eyebrow: "Step 4",
               title: "Save proof",
-              icon: "️",
+              icon: "🗂️",
               tone: "success",
               description:
                 "Keep written approvals, maps, applications, lease terms, and call notes in one housing compliance packet.",
@@ -222,7 +224,8 @@ export default function HousingSearchGuide(): JSX.Element {
               parole, federal supervised release, a court order, treatment rules,
               victim-contact restrictions, child-contact restrictions, internet
               or device conditions, or the policy of a shelter, landlord, HOA,
-              public housing authority, or transitional housing program.
+              public housing authority, transitional housing program, or
+              manufactured-home community.
             </p>
           </GuideProse>
 
@@ -327,9 +330,10 @@ export default function HousingSearchGuide(): JSX.Element {
 
             <p>
               Families can help without taking over. A housing scout can search
-              listings, print maps, call about availability, collect applications,
-              and prepare address packets while the person under supervision
-              focuses on compliance, treatment, work, and required appointments.
+              listings, print maps, call about availability, collect
+              applications, and prepare address packets while the person under
+              supervision focuses on compliance, treatment, work, and required
+              appointments.
             </p>
           </GuideProse>
 
@@ -358,7 +362,7 @@ export default function HousingSearchGuide(): JSX.Element {
                   "Libraries, grocery stores, laundromats, reentry groups, treatment providers, faith communities, and local nonprofits may know small landlords.",
               },
               {
-                icon: "users",
+                icon: "family",
                 title: "Support networks",
                 description:
                   "Case managers, public defenders, family members, reentry groups, faith volunteers, and formerly incarcerated peers may know realistic options.",
@@ -387,7 +391,8 @@ export default function HousingSearchGuide(): JSX.Element {
             items={[
               {
                 id: "full-address",
-                label: "Write the full address, unit number, landlord name, and listing source.",
+                label:
+                  "Write the full address, unit number, landlord name, and listing source.",
               },
               {
                 id: "nearby-sites",
@@ -412,7 +417,7 @@ export default function HousingSearchGuide(): JSX.Element {
               {
                 id: "lease-private-rules",
                 label:
-                  "Review lease terms, HOA rules, condo rules, public housing rules, shelter rules, or property management policies.",
+                  "Review lease terms, HOA rules, condo rules, public housing rules, shelter rules, manufactured-home community rules, or property management policies.",
               },
               {
                 id: "approval-needed",
@@ -453,8 +458,8 @@ export default function HousingSearchGuide(): JSX.Element {
               {
                 title: "Address and map records",
                 items: [
-                  "Full address, unit number, landlord or property manager contact, listing link or printed listing, and move-in date.",
-                  "Maps showing nearby schools, parks, daycare centers, playgrounds, or other restricted sites.",
+                  "Full address, unit number, landlord or property manager contact, listing link or printed listing, and proposed move-in date.",
+                  "Maps showing nearby schools, parks, daycare centers, playgrounds, bus stops, victim-address restrictions, or other restricted sites.",
                   "Distance notes, screenshots, county GIS printouts, school locator results, and any official measurement guidance.",
                 ],
               },
@@ -471,19 +476,19 @@ export default function HousingSearchGuide(): JSX.Element {
                 items: [
                   "Government ID, proof of income, benefits letters, employment verification, references, rental history, and application receipts.",
                   "Names and ages of household members, roommate information, pets, vehicles, parking needs, and any household safety plan required by supervision.",
-                  "Lease, guest rules, internet plan, smart-device information, HOA documents, condo rules, public housing rules, and landlord screening terms.",
+                  "Lease, guest rules, internet plan, smart-device information, HOA documents, condo rules, public housing rules, manufactured-home community rules, and landlord screening terms.",
                 ],
               },
             ]}
           />
 
-          <GuideCallout tone="family" icon="" title="For family housing scouts">
+          <GuideCallout tone="family" icon="👥" title="For family housing scouts">
             <p>
               Your job is not to promise that an address is legal. Your job is to
               find possible addresses, collect facts, print or save documents,
               and help the person ask the right authority for approval. Avoid
-              telling landlords, officers, or relatives more than they need to
-              answer the housing question.
+              telling landlords, officers, relatives, neighbors, or online groups
+              more than they need to answer the housing question.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -501,17 +506,17 @@ export default function HousingSearchGuide(): JSX.Element {
               Disclosure is not one-size-fits-all. Some landlords ask directly
               about criminal history or run background checks. Some do not. Some
               supervision conditions require officer involvement before you can
-              sign. Some housing programs have their own rules. The safest
-              approach is to answer direct questions truthfully, avoid unnecessary
-              details, and focus on stability, compliance, references, and the
-              specific address.
+              sign. Some housing programs have their own rules. The safer
+              approach is to answer direct questions truthfully, avoid
+              unnecessary details, and focus on stability, compliance,
+              references, and the specific address.
             </p>
 
             <p>
               If you are unsure whether a question must be answered, whether a
-              denial is lawful, or whether a housing provider is applying a policy
-              incorrectly, ask a qualified attorney, legal aid office, housing
-              counselor, or reentry advocate before escalating.
+              denial is lawful, or whether a housing provider is applying a
+              policy incorrectly, ask a qualified attorney, legal aid office,
+              housing counselor, or reentry advocate before escalating.
             </p>
           </GuideProse>
 
@@ -535,22 +540,16 @@ Is the unit still available, and what is the next step to apply?`}
 I am seeking approval to reside at [full address and unit number]. The landlord/property contact is [name and phone/email]. Proposed move-in date is [date].
 
 Initial screening notes:
-
 - Nearest restricted site I identified: [site name/address]
-
 - Estimated distance: [distance and method used]
-
 - Household members/ages: [list]
-
 - Internet/devices: [plan]
 - Work schedule/curfew plan: [summary]
-
-- HOA/lease/public housing rules: [summary if applicable]
+- HOA/lease/public housing/manufactured-home community rules: [summary if applicable]
 
 Please let me know whether this address is approved, denied, or whether you need additional documentation before I sign or pay money. I would appreciate written confirmation for my housing compliance folder.
 
 Thank you,
-
 [Name]`}
           />
 
@@ -560,15 +559,15 @@ Thank you,
             context="Use before renting or buying in an HOA, condo, co-op, manufactured-home community, or deed-restricted property."
             script={`Hello,
 
-I am considering living at [address/unit]. Before I sign anything, I need to confirm whether association rules, occupancy rules, guest rules, background-check policies, pool/playground rules, or lease restrictions would prohibit or limit my occupancy based on registry status.
-Can you please confirm in writing whether the association has any rule that would prevent me from living at this address or create a conflict with local residency restrictions?
+I am considering living at [address/unit]. Before I sign anything, I need to confirm whether association rules, occupancy rules, guest rules, background-check policies, pool/playground rules, lease restrictions, or community rules would prohibit or limit my occupancy based on registry status.
+
+Can you please confirm in writing whether the association or community has any rule that would prevent me from living at this address or create a conflict with local residency restrictions?
 
 Thank you,
-
 [Name]`}
           />
 
-          <GuideCallout tone="privacy" icon="" title="Share enough to answer the question, not your whole life story">
+          <GuideCallout tone="privacy" icon="🔒" title="Share enough to answer the question, not your whole life story">
             <p>
               Housing conversations can become emotional. Keep your explanation
               calm and limited. You usually need to discuss eligibility,
@@ -590,9 +589,10 @@ Thank you,
           <GuideProse>
             <p>
               Buying a home, moving into an HOA, using a shelter, living with
-              family, renting a room, or searching without internet can all work
-              in some situations. The risk is assuming ordinary housing rules are
-              the only rules. For registry-specific housing, private rules and
+              family, renting a room, buying a manufactured home, placing an RV
+              on land, or searching without internet can all work in some
+              situations. The risk is assuming ordinary housing rules are the
+              only rules. For registry-specific housing, private rules and
               supervision practices often matter as much as the public listing.
             </p>
           </GuideProse>
@@ -616,7 +616,13 @@ Thank you,
                   "Ask for CC&Rs, rules and regulations, background-check policies, guest rules, pool/playground rules, lease restrictions, and written confirmation.",
               },
               {
-                icon: "users",
+                icon: "housing",
+                title: "Manufactured, modular, tiny-home, or RV options",
+                description:
+                  "These can lower costs, but zoning, hookups, lot rules, park rules, HOA restrictions, mailbox/address rules, and supervision approval still matter.",
+              },
+              {
+                icon: "family",
                 title: "Living with family",
                 description:
                   "Check children in the home, victim-contact rules, household devices, internet access, bedroom layout, school bus stops, and whether the family member’s lease allows it.",
@@ -633,18 +639,12 @@ Thank you,
                 description:
                   "Call first. Some shelters, sober homes, recovery homes, halfway houses, and transitional programs have registry exclusions or location restrictions.",
               },
-              {
-                icon: "wifiOff",
-                title: "Internet or device restrictions",
-                description:
-                  "If browsing listings is not allowed, use a housing scout, printed packets, phone calls, library printouts, mailed applications, and officer-approved communication plans.",
-              },
             ]}
           />
 
           <OfflineOptions
             title="If internet access is limited or restricted"
-            icon=""
+            icon="📵"
             note={
               <span>
                 Many people on registries cannot safely or legally browse freely.
@@ -736,6 +736,20 @@ Thank you,
                   "Write down the name, date, department, and exact answer. Ask for email confirmation when possible.",
               },
               {
+                mistake: "Using Google Maps as the final authority.",
+                whyItMatters:
+                  "A map can miss property-line rules, local measurement methods, daycare changes, school boundaries, or official agency practice.",
+                betterMove:
+                  "Use maps for screening, then verify the specific address with the authority that can approve or reject it.",
+              },
+              {
+                mistake: "Signing or paying before officer or registry approval.",
+                whyItMatters:
+                  "A denied address can leave you without housing and without the money needed for the next application.",
+                betterMove:
+                  "Delay nonrefundable payments when possible until approval is confirmed.",
+              },
+              {
                 mistake: "Oversharing with landlords or neighbors.",
                 whyItMatters:
                   "Unnecessary detail can increase stigma, confusion, gossip, or safety risk without helping the housing decision.",
@@ -758,12 +772,10 @@ Thank you,
               into the approval process instead of endlessly searching for the
               perfect place.
             </p>
-
             <p>
               <strong>Paper beats promises:</strong> keep rules, maps, approvals,
               denials, and call notes in your housing compliance folder.
             </p>
-
             <p>
               <strong>People help people:</strong> a housing scout, two strong
               references, and one calm landlord conversation may do more than a
@@ -784,8 +796,9 @@ Thank you,
             title="Housing, legal, and emergency support"
             description={
               <span>
-                These links are starting points. They do not replace checking your
-                own registry, supervision, court, and local housing rules.
+                These links are starting points. They do not replace checking
+                your own registry, supervision, court, local housing, HOA,
+                shelter, landlord, or public housing rules.
               </span>
             }
             resources={[
@@ -801,28 +814,28 @@ Thank you,
                 href: sourceLinks.cfpbHousingCounselor,
                 badge: "Official",
                 description:
-                  "Find HUD-approved housing counselors for rental, mortgage, foreclosure, credit, and homebuying questions.",
+                  "Find HUD-approved housing counselors for rental, homebuying, foreclosure, credit, and related housing questions.",
               },
               {
-                label: "HUD public housing agency contacts",
-                href: sourceLinks.hudPublicHousingContacts,
+                label: "HUD housing counselor locator",
+                href: sourceLinks.hudFindCounselor,
                 badge: "Official",
                 description:
-                  "Find local public housing agencies for public housing, voucher, and local housing program questions.",
-              },
-              {
-                label: "HUD report housing discrimination",
-                href: sourceLinks.hudReportHousingDiscrimination,
-                badge: "Official",
-                description:
-                  "Direct HUD page for reporting housing discrimination online, by phone, or by mail.",
+                  "HUD’s direct locator for participating housing counseling agencies.",
               },
               {
                 label: "USAGov housing help",
                 href: sourceLinks.usaGovHousingHelp,
                 badge: "Official",
                 description:
-                  "Plain-language federal starting point for housing help, rental assistance, tenant rights, emergency housing, and related programs.",
+                  "Federal starting point for emergency housing, rental assistance, homebuying assistance, tenant rights, and related programs.",
+              },
+              {
+                label: "HUD report housing discrimination",
+                href: sourceLinks.hudReportHousingDiscrimination,
+                badge: "Official",
+                description:
+                  "Federal page for reporting possible housing discrimination online, by phone, or by mail.",
               },
               {
                 label: "Legal Services Corporation legal help finder",
@@ -861,10 +874,10 @@ Thank you,
             title="Sources and verification"
             note={
               <span>
-                Links below were checked for live access before production handoff.
-                State, county, city, registry, supervision, HOA, shelter, landlord,
-                and local housing-program rules still need local verification
-                before use in a specific case.
+                Links were checked for live access before publication. State,
+                county, city, registry, supervision, HOA, shelter, public
+                housing, landlord, and manufactured-home community rules still
+                need local verification before use in a specific case.
               </span>
             }
             sources={[
@@ -881,22 +894,22 @@ Thank you,
                   "Search tool for HUD-approved housing counseling agencies.",
               },
               {
-                label: "HUD public housing agency contacts",
-                href: sourceLinks.hudPublicHousingContacts,
+                label: "HUD housing counselor locator",
+                href: sourceLinks.hudFindCounselor,
                 description:
-                  "Official HUD directory for finding local public housing agencies.",
-              },
-              {
-                label: "HUD report housing discrimination",
-                href: sourceLinks.hudReportHousingDiscrimination,
-                description:
-                  "Official HUD page for housing discrimination reporting options.",
+                  "HUD’s direct locator for participating housing counseling agencies.",
               },
               {
                 label: "USAGov housing help",
                 href: sourceLinks.usaGovHousingHelp,
                 description:
                   "Federal plain-language housing assistance overview.",
+              },
+              {
+                label: "HUD report housing discrimination",
+                href: sourceLinks.hudReportHousingDiscrimination,
+                description:
+                  "Federal page for reporting possible housing discrimination.",
               },
               {
                 label: "Legal Services Corporation legal help",
