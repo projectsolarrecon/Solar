@@ -21,7 +21,6 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  TimelineGuidanceGrid,
   DoDontJudgment,
 } from "../../components/solar";
 
@@ -43,7 +42,94 @@ const sourceLinks = {
   narsolResources: "https://resources.narsol.org/",
 };
 
-export default function ResourceGuideSandbox(): JSX.Element {
+const rightsByStage = [
+  {
+    stage: "Investigation",
+    icon: "🔎",
+    rights: [
+      "You can remain silent.",
+      "You can ask for a lawyer.",
+      "You do not have to consent to a search.",
+      "Searches, seizures, devices, and statements may be challenged later.",
+    ],
+    caution:
+      "A conversation can feel informal and still become evidence. Do not try to explain, correct, or talk your way out of the situation without legal advice.",
+    ask:
+      "Ask counsel what to say, whether to unlock or hand over devices, and how to respond to interview, password, or search requests.",
+  },
+  {
+    stage: "Arrest and booking",
+    icon: "🚔",
+    rights: [
+      "You have the right to remain silent.",
+      "You have the right to counsel.",
+      "You should be told the charge or reason for arrest.",
+      "You may have a prompt court appearance and bail or bond review, depending on the court and charge.",
+    ],
+    caution:
+      "Booking, jail calls, text messages, and conversations with other detained people may be recorded or repeated.",
+    ask:
+      "Ask when counsel will be appointed or contacted, when the first appearance is, and what release conditions are being requested.",
+  },
+  {
+    stage: "Pretrial",
+    icon: "📄",
+    rights: [
+      "You are presumed innocent.",
+      "You have the right to counsel.",
+      "Your lawyer can seek discovery and review the evidence.",
+      "Your lawyer can challenge unlawful searches, statements, identifications, or other evidence.",
+    ],
+    caution:
+      "Release conditions can restrict travel, housing, internet use, contact with people, work, treatment, and devices. Violating them can create a new crisis.",
+    ask:
+      "Ask counsel to explain every condition in plain language and to seek clarification or modification before you guess.",
+  },
+  {
+    stage: "Trial",
+    icon: "🏛️",
+    rights: [
+      "The prosecution must prove the case beyond a reasonable doubt.",
+      "You may have the right to a jury trial.",
+      "You have the right to confront and cross-examine witnesses.",
+      "You have the right to present a defense and, in most cases, choose whether to testify.",
+    ],
+    caution:
+      "Trial decisions are strategic and fact-specific. A general guide cannot tell you whether to testify, waive a jury, accept a stipulation, or reject an offer.",
+    ask:
+      "Ask counsel what each trial right means, what choices are yours to make, and what risks come with each option.",
+  },
+  {
+    stage: "Plea and sentencing",
+    icon: "⚖️",
+    rights: [
+      "A plea usually gives up trial rights.",
+      "You should understand the charge, sentence range, registry impact, supervision terms, and collateral consequences before deciding.",
+      "You may have the right to speak at sentencing.",
+      "You may have appeal or post-conviction options, but deadlines can be short.",
+    ],
+    caution:
+      "In sex offense cases, the practical consequences may include registration, housing limits, work restrictions, treatment rules, internet limits, travel limits, and family-contact issues.",
+    ask:
+      "Ask counsel to explain the plea, registry tier or duration, supervision conditions, treatment requirements, appeal deadlines, and what consequences are mandatory versus possible.",
+  },
+  {
+    stage: "Incarceration, release, supervision, and registration",
+    icon: "🧭",
+    rights: [
+      "You keep basic constitutional rights, even though incarceration and supervision limit many choices.",
+      "You can ask for written conditions and clarification.",
+      "You may be able to challenge registry errors or seek relief where state law allows.",
+      "Voting, travel, housing, internet, and family-contact rights vary by jurisdiction and status.",
+    ],
+    caution:
+      "Most trouble after conviction starts with unclear instructions, missed deadlines, address problems, device issues, or relying on verbal answers.",
+    ask:
+      "Ask what must be reported, what must be approved first, what deadlines apply, and how to get answers in writing.",
+  },
+];
+
+export default function KnowYourRights(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
@@ -64,7 +150,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </Link>
 
           <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
-            Internal Sandbox Preview
+            SOLAR Resource Guide
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
@@ -83,7 +169,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               onClick={handlePrint}
               className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              🖨️ Print Sandbox
+              🖨️ Print Guide
             </button>
 
             <a
@@ -229,8 +315,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionHeader
           id="rights-by-stage"
           number="1"
-          title="Rights you may have at each stage"
-          subtitle="Start with the rights themselves, then use the rest of the guide to protect them under pressure."
+          title="Key rights by stage"
+          subtitle="The rights that matter most can change depending on where the case is. Use this as a practical map, then ask counsel how it applies to your situation."
         />
 
         <GuideSectionCard>
@@ -250,157 +336,69 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
           </GuideProse>
 
-          <TimelineGuidanceGrid
-            title="Named rights and protections by stage"
-            stages={[
-              {
-                stage: "Investigation",
-                icon: "🔎",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to remain silent;
-                    right to ask for a lawyer; right not to consent to a search
-                    when consent is requested; Fourth Amendment protections
-                    against unreasonable searches and seizures; limits on
-                    government questioning and evidence collection.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before answering questions, signing statements,
-                    unlocking devices, sharing passwords, giving consent, or
-                    letting family explain facts.
-                  </span>
-                ),
-              },
-              {
-                stage: "Arrest and booking",
-                icon: "🚔",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to remain silent;
-                    right to counsel; right to know the charge or reason for
-                    arrest; right to a first appearance or prompt court review,
-                    depending on jurisdiction; possible right to bail or bond,
-                    subject to state law, charge type, risk findings, and court
-                    conditions.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before discussing facts on recorded calls, jail phones,
-                    body cameras, transport conversations, text messages, or with
-                    other people in custody.
-                  </span>
-                ),
-              },
-              {
-                stage: "Pretrial",
-                icon: "📄",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to counsel; right to
-                    review discovery through counsel; right to challenge
-                    unlawful searches, statements, or evidence through motions;
-                    right to seek clarification or modification of unclear or
-                    unworkable release conditions; presumption of innocence.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before contacting anyone named in an order, returning
-                    home, using restricted devices, traveling, posting online, or
-                    changing housing or work.
-                  </span>
-                ),
-              },
-              {
-                stage: "Trial",
-                icon: "🏛️",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> presumption of innocence;
-                    right to require the government to prove the case beyond a
-                    reasonable doubt; right to a public trial; right to a jury
-                    trial where available; right to confront and cross-examine
-                    witnesses; right to present a defense and call witnesses;
-                    right not to testify.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before speaking publicly about the case, contacting
-                    witnesses, posting online, or assuming the defense strategy
-                    is obvious from the outside.
-                  </span>
-                ),
-              },
-              {
-                stage: "Plea and sentencing",
-                icon: "⚖️",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to understand what
-                    rights a plea gives up; right to ask about registration,
-                    supervision, immigration, housing, employment, internet, and
-                    family consequences; right to speak at sentencing or
-                    allocution where available; right to present mitigation;
-                    possible right to appeal or seek review, subject to deadlines
-                    and plea limits.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before signing a plea, agreeing to facts, waiving
-                    appeal rights, or assuming registration and supervision are
-                    only paperwork.
-                  </span>
-                ),
-              },
-              {
-                stage: "Incarceration",
-                icon: "🔒",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to basic safety and
-                    humane treatment; right to medical and mental health care;
-                    right to use grievance or administrative remedy systems;
-                    right to access courts, mail, and religious practice,
-                    subject to custody rules.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before ignoring medical, safety, discipline, mail, or
-                    grievance paperwork. Save requests and responses when
-                    possible.
-                  </span>
-                ),
-              },
-              {
-                stage: "Release, supervision, and registration",
-                icon: "🧭",
-                whatChanges: (
-                  <span>
-                    <strong>Rights to know:</strong> right to receive written
-                    conditions and instructions; right to ask for clarification;
-                    right to challenge registry errors; possible petition,
-                    reduction, relief, or removal pathways in some
-                    jurisdictions; state-dependent voting rights restoration;
-                    constitutional protections still apply, though supervision
-                    and registry rules may limit ordinary activity.
-                  </span>
-                ),
-                whatToDo: (
-                  <span>
-                    Pause before moving, traveling, changing jobs, opening
-                    accounts, using online platforms, changing devices, missing
-                    deadlines, or relying on another person’s registry rules.
-                  </span>
-                ),
-              },
-            ]}
-          />
+          <div className="mt-6 space-y-5">
+            {rightsByStage.map((stage) => (
+              <div
+                key={stage.stage}
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xl">
+                    {stage.icon}
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900">
+                      {stage.stage}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      Rights and caution points to review before acting at this
+                      stage.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  <div className="rounded-xl bg-slate-50 p-4 ring-1 ring-slate-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-slate-700">
+                      Rights to remember
+                    </h4>
+
+                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
+                      {stage.rights.map((right) => (
+                        <li key={right} className="flex gap-2">
+                          <span aria-hidden="true" className="mt-1 text-slate-500">
+                            •
+                          </span>
+                          <span>{right}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="rounded-xl bg-amber-50 p-4 ring-1 ring-amber-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-amber-900">
+                      Be careful
+                    </h4>
+
+                    <p className="mt-3 text-sm leading-relaxed text-amber-950">
+                      {stage.caution}
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl bg-blue-50 p-4 ring-1 ring-blue-200">
+                    <h4 className="text-sm font-bold uppercase tracking-wide text-blue-900">
+                      Ask counsel
+                    </h4>
+
+                    <p className="mt-3 text-sm leading-relaxed text-blue-950">
+                      {stage.ask}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </GuideSectionCard>
 <GuideSectionHeader
           id="police-contact"
@@ -1163,7 +1161,7 @@ I am saving the answer for my records. Thank you.`}
             title="Sources and verification"
             note={
               <span>
-                Links were checked for live access during sandbox preparation.
+                Links were checked for live access before publication.
                 Constitutional rights, criminal procedure, registry duties,
                 supervision rules, voting rights, and incarceration rules still
                 require jurisdiction-specific verification before use in a
