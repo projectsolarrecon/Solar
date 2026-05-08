@@ -1,777 +1,913 @@
-    import React from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  GuideIconList,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+} from "../../components/solar";
+
+const sourceLinks = {
+  unitedWay211: "https://www.211.org/",
+  cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
+  hudPublicHousingContacts: "https://www.hud.gov/contactus/public-housing-contacts",
+  hudReportHousingDiscrimination: "https://www.hud.gov/reporthousingdiscrimination",
+  usaGovHousingHelp: "https://www.usa.gov/housing-help",
+  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
+};
 
 export default function HousingSearchGuide(): JSX.Element {
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="Quick-Start Housing Guide for People on the Registry | The SOLAR Project"
-        description="Practical strategies for finding housing with registry restrictions. Step-by-step guide covering rules, applications, landlord communication, and compliance requirements."
-        keywords="housing search, sex offender registry, housing restrictions, landlord communication, housing compliance, residency restrictions, reentry housing"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Housing Search Guide for People on Registries | The SOLAR Project"
+        description="A practical housing search guide for people on sex offense registries and their families, focused on restrictions, supervision approval, landlord communication, documentation, and safer next steps."
+        keywords="sex offender housing, registry housing search, residency restrictions, probation housing approval, parole housing, reentry housing, family housing support"
       />
 
-      {/* Add JSON-LD structured data for enhanced SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "HowTo",
-          "name": "Quick-Start Housing Guide for People on the Registry",
-          "description": "Step-by-step guide for finding housing with registry restrictions and supervision requirements",
-          "totalTime": "PT30M",
-          "supply": ["Phone", "Paper folder", "Maps", "References"],
-          "tool": ["Compliance documentation", "Application materials"],
-          "step": [
-            {
-              "@type": "HowToStep",
-              "name": "Map the Rules",
-              "text": "Call registry office and supervision officer to understand restrictions and requirements"
-            },
-            {
-              "@type": "HowToStep", 
-              "name": "Build a Shortlist",
-              "text": "Use offline and low-tech methods to find potential housing options"
-            },
-            {
-              "@type": "HowToStep",
-              "name": "Contact Landlords",
-              "text": "Use proven scripts and timing for disclosure and applications"
-            }
-          ]
-        })}
-      </script>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <Link 
-              to="/resources" 
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors group"
-            >
-              <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Resources
-            </Link>
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          
-          <div className="mb-4">
-            <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-              Housing Guide
-            </span>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Quick-Start Housing Guide for People on the Registry
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Housing Search Guide for People on Registries
           </h1>
-          
-          <p className="text-xl text-slate-200 mb-6 max-w-3xl">
-            Find housing that's affordable, safe, and compliant with residency and supervision rules—without wasting time on dead ends.
-          </p>
-          
-          <p className="text-lg text-slate-100 mb-8 max-w-3xl">
-            This practical guide provides step-by-step strategies for navigating housing restrictions, communicating with landlords, and securing stable housing for individuals and families affected by registry requirements.
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A practical, sex-offense-specific guide for finding housing that is
+            realistic, affordable, and compliant with registry rules,
+            supervision conditions, local restrictions, lease terms, and family
+            safety needs.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors shadow-lg flex items-center justify-center"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Print Guide
+              🖨️ Print Guide
             </button>
-            <button
-              onClick={handlePrint}
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors shadow-lg flex items-center justify-center"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Save as PDF
-            </button>
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 print:py-6">
-        
-        {/* Section 1: Know Your Restrictions */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                1
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Know Your Restrictions (Before You Start)</h2>
-                <p className="text-slate-200">Understanding your legal requirements and limitations</p>
-              </div>
-            </div>
-          </div>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Get clarity on:</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span><strong>Distance requirements:</strong> How far from schools, parks, daycares, etc.? (varies by state/county)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span><strong>How distance is measured:</strong> Property line to property line? Front door to front door? As the crow flies or driving distance?</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span><strong>Supervision conditions:</strong> Officer approval required? Curfew considerations? Internet restrictions?</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span><strong>Local ordinances:</strong> Some cities/counties have additional rules beyond state law.</span>
-                  </li>
-                </ul>
-              </div>
+        <GuideIntro title="Start Here" icon="">
+          <p>
+            Housing is one of the hardest parts of registry life. A place can
+            look affordable, safe, and available, but still fail because of a
+            residency restriction, supervision condition, local ordinance, HOA
+            rule, lease clause, internet/device condition, household composition
+            issue, or address-approval process.
+          </p>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 mb-3">💡 Pro Tip</h3>
-                <p className="text-blue-700">
-                  <strong>Print out your specific restrictions</strong> and keep them in a "HOUSING COMPLIANCE" folder. Include maps showing buffer zones around restricted sites. This prevents costly mistakes and shows landlords you're proactive about compliance.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          <p>
+            This guide is for people on sex offense registries, people preparing
+            for release, people under probation, parole, or supervised release,
+            and family members helping with the search. It is not generic rental
+            advice. The goal is to help you find possible addresses, verify them
+            before money changes hands, communicate carefully, and keep proof of
+            what you were told.
+          </p>
 
-        {/* Section 2: Mapping & Research Tools */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                2
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Mapping & Research Tools</h2>
-                <p className="text-slate-200">Using technology to find compliant housing options</p>
-              </div>
-            </div>
-          </div>
+          <p>
+            You do not have to solve everything today. Start by finding one
+            possible address, checking the rule that could block it, and saving
+            the answer in writing if possible.
+          </p>
+        </GuideIntro>
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Free mapping resources:</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7" />
-                    </svg>
-                    <span><strong>Google Maps:</strong> Search "schools near [address]" and "parks near [address]" to spot-check distances.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
-                    </svg>
-                    <span><strong>County GIS websites:</strong> Many counties offer free property mapping with school district overlays.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-green-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <span><strong>State education department websites:</strong> Often have school locator tools with exact addresses.</span>
-                  </li>
-                </ul>
-              </div>
+        <QuickStartPanel
+          title="If you need housing soon"
+          subtitle="Use this as your first 48-hour triage plan. The goal is not the perfect address. The goal is one address that can be checked, documented, and moved forward safely."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Gather the exact restrictions that apply to you: registry law,
+              supervision or court conditions, local ordinances, school/park/daycare
+              distance rules, household limits, internet/device rules, and any
+              victim-contact or child-contact restrictions.
+            </span>,
+            <span>
+              Pick three possible search zones before looking at individual
+              listings. Rural edges, older neighborhoods, industrial corridors,
+              and areas with fewer schools, parks, or daycare sites may produce
+              more workable addresses.
+            </span>,
+            <span>
+              Create a housing compliance folder before you apply anywhere. Save
+              maps, screenshots, officer emails, landlord messages, HOA documents,
+              lease terms, and notes from every phone call.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Pre-screen each address before paying fees, deposits, application
+              charges, inspection costs, or moving costs.
+            </span>,
+            <span>
+              Ask your officer or registering agency the narrow address question:
+              “Is this specific address allowed for me under my current rules?”
+            </span>,
+            <span>
+              Use a family member, trusted friend, caseworker, reentry worker, or
+              faith volunteer as a housing scout if internet access is restricted
+              or overwhelming.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              Paper beats promises. A verbal “that should be fine” is not enough
+              when a lease, move-in date, supervision approval, or registry
+              compliance question is on the line.
+            </span>
+          }
+        />
 
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-900 mb-3">⚠️ Important Note</h3>
-                <p className="text-yellow-700">
-                  <strong>Always verify distances with official tools or professional measurement.</strong> Online maps can be inaccurate, and a few feet can mean the difference between compliance and violation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <OverviewCards
+          columns={4}
+          cards={[
+            {
+              eyebrow: "Step 1",
+              title: "Know the rule",
+              icon: "",
+              tone: "legal",
+              description:
+                "Identify the exact state, local, court, and supervision rules before you fall in love with a listing.",
+            },
+            {
+              eyebrow: "Step 2",
+              title: "Screen the address",
+              icon: "️",
+              tone: "warning",
+              description:
+                "Check schools, parks, daycare sites, property lines, local ordinances, HOA rules, and household details.",
+            },
+            {
+              eyebrow: "Step 3",
+              title: "Communicate carefully",
+              icon: "☎️",
+              tone: "family",
+              description:
+                "Use calm, short scripts with landlords, officers, HOA managers, and helpers. Do not overshare unnecessary details.",
+            },
+            {
+              eyebrow: "Step 4",
+              title: "Save proof",
+              icon: "️",
+              tone: "success",
+              description:
+                "Keep written approvals, maps, applications, lease terms, and call notes in one housing compliance packet.",
+            },
+          ]}
+        />
 
-        {/* Section 3: Where to Look */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                3
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Where to Look (Beyond Craigslist)</h2>
-                <p className="text-slate-200">Expanding your search beyond obvious sources</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionHeader
+          id="rules-first"
+          number="1"
+          title="Know your restrictions before you search"
+          subtitle="The address has to work for your actual legal and supervision situation, not just for the landlord."
+        />
 
-          <div className="p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Online platforms:</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Facebook Marketplace (housing section)
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Zillow Rentals
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Apartments.com
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Local newspaper classified sections (online)
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Offline/community sources:</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Drive neighborhoods with "For Rent" signs
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Community bulletin boards (libraries, grocery stores)
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Faith communities and reentry organizations
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Word-of-mouth through support networks
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              For people on sex offense registries, the first housing question is
+              not “Can I afford this?” or “Will the landlord call me back?” Those
+              questions matter, but they come after the compliance screen.
+            </p>
 
-            <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-indigo-900 mb-3">🎯 Strategy Tip</h3>
-              <p className="text-indigo-700">
-                <strong>Focus on areas with fewer restrictions first.</strong> Rural areas, industrial zones, and older neighborhoods often have fewer schools and parks nearby. Start your search in these areas to maximize your options.
-              </p>
-            </div>
-          </div>
-        </section>
+            <p>
+              Start by writing down the rules that could block an address. They
+              may come from state law, county or city ordinances, probation,
+              parole, federal supervised release, a court order, treatment rules,
+              victim-contact restrictions, child-contact restrictions, internet
+              or device conditions, or the policy of a shelter, landlord, HOA,
+              public housing authority, or transitional housing program.
+            </p>
+          </GuideProse>
 
-        {/* Section 4: The Application Process */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                4
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">The Application Process: Honesty vs. Strategy</h2>
-                <p className="text-slate-200">Navigating disclosure and background checks</p>
-              </div>
-            </div>
-          </div>
+          <GuideIconList
+            title="Questions to answer before you apply"
+            description="Do not guess at these. A wrong assumption can cost money, housing, or compliance."
+            columns={2}
+            variant="cards"
+            tone="legal"
+            items={[
+              {
+                icon: "location",
+                title: "What distance rule applies?",
+                description:
+                  "How far must the residence be from schools, parks, daycare centers, bus stops, playgrounds, victim addresses, or other restricted sites?",
+              },
+              {
+                icon: "map",
+                title: "How is distance measured?",
+                description:
+                  "Property line to property line? Door to door? Straight line? Walking route? Local practice can matter as much as the number.",
+              },
+              {
+                icon: "gavel",
+                title: "Who has approval power?",
+                description:
+                  "Registry office, probation, parole, federal supervision, a judge, treatment provider, local police, or more than one office?",
+              },
+              {
+                icon: "home",
+                title: "Who else lives there?",
+                description:
+                  "Children, protected persons, victims, unrelated roommates, schools nearby, daycare run from home, or family members with separate restrictions can change the answer.",
+              },
+              {
+                icon: "wifiOff",
+                title: "Do internet or device rules affect the home?",
+                description:
+                  "A lease that requires online portals, Wi-Fi, smart locks, cameras, or shared devices may create supervision issues for some people.",
+              },
+              {
+                icon: "building",
+                title: "Are there private rules?",
+                description:
+                  "HOA rules, condo rules, shelter policies, public housing rules, background-check policies, and lease clauses can block an address even when the map looks clear.",
+              },
+            ]}
+          />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Two main approaches:</h3>
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-green-800 mb-3">Upfront Disclosure</h4>
-                    <p className="text-green-700 text-sm mb-3">
-                      <strong>Pros:</strong> Builds trust, avoids surprises, shows responsibility
-                    </p>
-                    <p className="text-green-700 text-sm">
-                      <strong>Cons:</strong> May face immediate rejection before you can explain your situation
-                    </p>
-                  </div>
-                  
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-3">Application First</h4>
-                    <p className="text-blue-700 text-sm mb-3">
-                      <strong>Pros:</strong> Gets your foot in the door, allows you to make a personal impression first
-                    </p>
-                    <p className="text-blue-700 text-sm">
-                      <strong>Cons:</strong> May feel deceptive, could damage trust if discovered
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <GuideCallout tone="warning" icon="⚠️" title="Do not rely on a map alone">
+            <p>
+              Online maps are useful for screening, but they are not the final
+              answer. A few feet, a property-line issue, a newly opened daycare,
+              or a local measurement rule can change the result. Use maps to
+              narrow the search, then verify with the person or office that has
+              authority over your address.
+            </p>
+          </GuideCallout>
 
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-purple-900 mb-3">📋 Application Checklist</h3>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <ul className="space-y-2 text-purple-700">
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Government-issued ID
-                    </li>
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Proof of income (pay stubs, benefits letter)
-                    </li>
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Employment verification
-                    </li>
-                  </ul>
-                  <ul className="space-y-2 text-purple-700">
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      References (personal and professional)
-                    </li>
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Previous rental history
-                    </li>
-                    <li className="flex items-center">
-                      <svg className="w-4 h-4 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      Application fee (cash or money order)
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          <VerifyBeforeActing
+            title="Verify before you pay money or move in"
+            whoToAsk={
+              <span>
+                Your supervising officer, registering agency, attorney, local law
+                enforcement registry contact, housing authority, HOA manager,
+                landlord, or other office with actual authority over the specific
+                address.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “I am considering living at [full address and unit number]. Under
+                my current registry, supervision, court, and local rules, is this
+                specific address allowed? How is distance measured, and do I need
+                written approval before signing or moving in?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the staff name, title, department, date, phone number or
+                email, exact answer, maps used, distance method, and any written
+                approval or denial.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="search-strategy"
+          number="2"
+          title="Build a search strategy that fits registry life"
+          subtitle="A strong search is wider than rental websites and more careful than ordinary apartment hunting."
+        />
 
-        {/* Section 5: HOA / Condo Boards */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                5
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">HOA / Condo Boards: Do Your Homework Up Front</h2>
-                <p className="text-slate-200">Understanding association rules before you commit</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Many people waste weeks applying for places that were never
+              realistic. The better approach is to search in layers: identify
+              possible zones, screen addresses quickly, contact landlords
+              carefully, and move the best candidate into verification.
+            </p>
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Before you sign (rent or buy):</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span><strong>Ask for the CC&Rs and Rules & Regs.</strong> Look for: occupancy limits, guest rules, pool/playground buffers, curfews, background checks, and minimum lease terms.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span><strong>Request a written statement</strong> from the HOA that no HOA rule creates a residency conflict.</span>
-                  </li>
-                </ul>
-              </div>
+            <p>
+              Families can help without taking over. A housing scout can search
+              listings, print maps, call about availability, collect applications,
+              and prepare address packets while the person under supervision
+              focuses on compliance, treatment, work, and required appointments.
+            </p>
+          </GuideProse>
 
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-purple-900 mb-3">One-paragraph request to HOA manager:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-purple-400">
-                  <p className="text-gray-700 italic">
-                    "I'm considering living at [address/unit]. Can you confirm in writing that the association rules do not prohibit my occupancy based on registry status and that the property is not within any restricted buffer zones under local law?"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+          <GuideIconList
+            title="Where to look beyond the obvious listings"
+            columns={2}
+            variant="rows"
+            tone="reentry"
+            items={[
+              {
+                icon: "search",
+                title: "Online listings",
+                description:
+                  "Zillow, Apartments.com, Facebook Marketplace, local newspaper classifieds, property management sites, and small landlord pages.",
+              },
+              {
+                icon: "car",
+                title: "Yard signs and neighborhood drives",
+                description:
+                  "Private owners often use signs instead of websites. Drive pre-screened zones and write down addresses and phone numbers.",
+              },
+              {
+                icon: "library",
+                title: "Community boards",
+                description:
+                  "Libraries, grocery stores, laundromats, reentry groups, treatment providers, faith communities, and local nonprofits may know small landlords.",
+              },
+              {
+                icon: "users",
+                title: "Support networks",
+                description:
+                  "Case managers, public defenders, family members, reentry groups, faith volunteers, and formerly incarcerated peers may know realistic options.",
+              },
+              {
+                icon: "building",
+                title: "Older or smaller properties",
+                description:
+                  "Small landlords may be more willing to hear context than large automated screening systems, though they still need honest, careful communication.",
+              },
+              {
+                icon: "map",
+                title: "Lower-conflict search zones",
+                description:
+                  "Rural edges, industrial areas, and older neighborhoods may have fewer restricted sites nearby, but every address still needs verification.",
+              },
+            ]}
+          />
 
-        {/* Section 6: Buying a Home */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                6
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Buying a Home (If You Can)</h2>
-                <p className="text-slate-200">Steps to avoid costly mistakes when purchasing property</p>
-              </div>
-            </div>
-          </div>
+          <SoftDivider label="Use address screening before application screening" />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Sequence that prevents costly mistakes:</h3>
-                <ol className="list-decimal pl-6 space-y-3 text-gray-700">
-                  <li><strong>Pre-clear the address</strong> with your officer before making an offer.</li>
-                  <li><strong>Add a contract contingency:</strong> "Subject to buyer's confirmation of compliance with all residency/supervision restrictions within 10 business days."</li>
-                  <li><strong>Order a title/plat map</strong> and mark distances to schools/parks/daycares.</li>
-                  <li><strong>If in an HOA,</strong> get written clearance (see Section 5).</li>
-                </ol>
-              </div>
+          <GuideChecklist
+            id="address-screening"
+            title="Address pre-screen checklist"
+            columns={1}
+            items={[
+              {
+                id: "full-address",
+                label: "Write the full address, unit number, landlord name, and listing source.",
+              },
+              {
+                id: "nearby-sites",
+                label:
+                  "Search nearby schools, parks, daycare centers, playgrounds, bus stops, and any other restricted places named in your rules.",
+              },
+              {
+                id: "local-ordinance",
+                label:
+                  "Check whether the city or county has a local residency ordinance beyond state law.",
+              },
+              {
+                id: "distance-method",
+                label:
+                  "Note how distance appears to be measured and whether your authority uses a different method.",
+              },
+              {
+                id: "household",
+                label:
+                  "List household members, ages, roommates, shared spaces, devices, internet access, and any child-contact or victim-contact issues.",
+              },
+              {
+                id: "lease-private-rules",
+                label:
+                  "Review lease terms, HOA rules, condo rules, public housing rules, shelter rules, or property management policies.",
+              },
+              {
+                id: "approval-needed",
+                label:
+                  "Ask whether written officer, registry office, or court approval is required before signing, paying, or moving.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
-              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-indigo-900 mb-3">Low-cost options to explore:</h3>
-                <ul className="text-indigo-700 space-y-2">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Manufactured homes on deeded lots outside restricted zones
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Tiny homes/modulars where permitted (confirm local codes)
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Land + RV as a temporary legal address while you build/convert
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+        <GuideSectionHeader
+          id="documents"
+          number="3"
+          title="Create a housing compliance packet"
+          subtitle="A good packet turns panic into a task list and helps officers, landlords, family helpers, and advocates understand the address."
+        />
 
-        {/* Section 7: Supervision Realities */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                7
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Supervision Realities (Probation/Parole/Federal SR)</h2>
-                <p className="text-slate-200">Working effectively with supervision requirements</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Keep one folder labeled <strong>HOUSING COMPLIANCE</strong>. Paper
+              is fine. A notes app folder is fine. The point is to keep proof in
+              one place so you are not relying on memory when a landlord calls
+              back, an officer asks for details, or a question comes up after you
+              move.
+            </p>
+          </GuideProse>
 
-          <div className="p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Address approval packet (what officers like to see):</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Full address with unit number and landlord contact
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Names/ages of all occupants
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Floor plan or a hand sketch (note doors/windows/bedrooms)
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    A note on devices/internet plan
-                  </li>
-                  <li className="flex items-center">
-                    <svg className="w-4 h-4 text-teal-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Work schedule and curfew plan
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-teal-900 mb-3">Officer check-in script:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-teal-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "I'm considering [address]. It's [X] feet from the nearest restricted site. Landlord is [name], move-in is [date]. Here are floor plan notes and tenant rules. Anything else you need for approval?"
-                  </p>
-                </div>
-                <p className="text-teal-700 text-sm mt-3">
-                  <strong>Document approvals in writing</strong> (email/letter). Keep a copy in your HOUSING COMPLIANCE folder.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          <DocumentPacket
+            title="HOUSING COMPLIANCE folder"
+            intro={
+              <span>
+                Save the documents that show what the address is, why you believe
+                it may be compliant, who you asked, and what they said.
+              </span>
+            }
+            categories={[
+              {
+                title: "Address and map records",
+                items: [
+                  "Full address, unit number, landlord or property manager contact, listing link or printed listing, and move-in date.",
+                  "Maps showing nearby schools, parks, daycare centers, playgrounds, or other restricted sites.",
+                  "Distance notes, screenshots, county GIS printouts, school locator results, and any official measurement guidance.",
+                ],
+              },
+              {
+                title: "Rules and approval records",
+                items: [
+                  "Your registry requirements, supervision conditions, court orders, local ordinance notes, treatment rules, and device or internet restrictions.",
+                  "Officer, registry office, attorney, agency, HOA, shelter, or housing authority emails approving, denying, or explaining the address.",
+                  "Names, dates, departments, phone numbers, and exact instructions from every important call.",
+                ],
+              },
+              {
+                title: "Application and household records",
+                items: [
+                  "Government ID, proof of income, benefits letters, employment verification, references, rental history, and application receipts.",
+                  "Names and ages of household members, roommate information, pets, vehicles, parking needs, and any household safety plan required by supervision.",
+                  "Lease, guest rules, internet plan, smart-device information, HOA documents, condo rules, public housing rules, and landlord screening terms.",
+                ],
+              },
+            ]}
+          />
 
-        {/* Section 8: Internet & Devices */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                8
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Internet & Devices: Finding Housing Without Being Online</h2>
-                <p className="text-slate-200">Workarounds for restricted internet access</p>
-              </div>
-            </div>
-          </div>
+          <GuideCallout tone="family" icon="" title="For family housing scouts">
+            <p>
+              Your job is not to promise that an address is legal. Your job is to
+              find possible addresses, collect facts, print or save documents,
+              and help the person ask the right authority for approval. Avoid
+              telling landlords, officers, or relatives more than they need to
+              answer the housing question.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-          <div className="p-6">
-            <div className="mb-6">
-              <p className="text-lg text-gray-700 mb-4">
-                For many registrants, the immediate barrier isn't risky Wi-Fi—it's not being allowed to browse listings at all. Here's how to work around:
-              </p>
-            </div>
+        <GuideSectionHeader
+          id="landlords-and-disclosure"
+          number="4"
+          title="Communicate with landlords, officers, and HOAs carefully"
+          subtitle="Be honest where needed, strategic about timing, and focused on the address question."
+        />
 
-            <div className="space-y-6">
-              <div className="bg-cyan-50 border border-cyan-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-cyan-900 mb-4">Workaround Strategies:</h3>
-                <ul className="space-y-3 text-cyan-700">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-cyan-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                    <span><strong>Designate a "Housing Scout."</strong> A family member, friend, case worker, or faith volunteer who searches, prints listings, and makes call sheets for you.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-cyan-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <span><strong>Ask libraries to print emailed listings</strong> for pickup (you don't have to browse).</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-cyan-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span><strong>Realtor partner:</strong> Some agents will pre-screen addresses for compliance and bring printed packets to showings.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-cyan-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <span><strong>Phone-first approach:</strong> Many private owners list with a yard sign only. Drive target neighborhoods outside buffers and call numbers posted.</span>
-                  </li>
-                </ul>
-              </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Disclosure is not one-size-fits-all. Some landlords ask directly
+              about criminal history or run background checks. Some do not. Some
+              supervision conditions require officer involvement before you can
+              sign. Some housing programs have their own rules. The safest
+              approach is to answer direct questions truthfully, avoid unnecessary
+              details, and focus on stability, compliance, references, and the
+              specific address.
+            </p>
 
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-yellow-900 mb-3">Compliance note for leases:</h3>
-                <p className="text-yellow-700 text-sm">
-                  If your supervision restricts devices, ask your officer for a written exception for a basic phone or a restricted-use device (e.g., whitelist sites only) for housing tasks—or have all digital communications run through your scout.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+            <p>
+              If you are unsure whether a question must be answered, whether a
+              denial is lawful, or whether a housing provider is applying a policy
+              incorrectly, ask a qualified attorney, legal aid office, housing
+              counselor, or reentry advocate before escalating.
+            </p>
+          </GuideProse>
 
-        {/* Quick Reference Checklist */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                ✓
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Quick Compliance Checklist (Tear-off)</h2>
-                <p className="text-slate-200">Essential items to verify before signing any lease</p>
-              </div>
-            </div>
-          </div>
+          <ScriptBox
+            title="Landlord intro: text, voicemail, or email"
+            tone="neutral"
+            context="Use when disclosure is necessary or strategically better before a background check surprise. Keep it short and focused on stability."
+            script={`Hello, my name is [Name]. I am interested in the unit at [address]. I have stable income, references, and can move [date].
 
-          <div className="p-6">
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Printed maps/rules + how distance is measured</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Officer's address approval requirements (in writing)</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Paper application + ID + proof of income</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>References (employer, prior landlord, mentor/faith leader)</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Plan for deposit/co-signer</span>
-                  </label>
-                </div>
-                <div className="space-y-3">
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>If HOA/condo: CC&Rs reviewed + written OK</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Lease clauses checked (no vague "complaint = eviction")</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Internet/device plan that fits supervision rules</span>
-                  </label>
-                  <label className="flex items-center text-emerald-700">
-                    <input type="checkbox" className="mr-3 h-4 w-4 text-emerald-600 rounded" />
-                    <span>Backup short-term address pre-cleared</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+I do have a past offense and am on the registry. I follow all rules, and I am checking this specific address for compliance before moving forward. I can provide references and, if required, confirmation that the address has been reviewed.
 
-        {/* Templates Section */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                📝
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">One-Page Templates (Ready to Copy)</h2>
-                <p className="text-slate-200">Copy-paste scripts for common housing situations</p>
-              </div>
-            </div>
-          </div>
+Is the unit still available, and what is the next step to apply?`}
+          />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">A) Landlord Intro (text or voicemail):</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-blue-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "Hello, I'm interested in the unit at [address]. I have stable income and references and can move [date]. I do have a past offense and am on the registry; I follow all rules and can provide a note from my officer confirming address compliance. I'm happy to offer a larger deposit. When may I see the unit?"
-                  </p>
-                </div>
-              </div>
+          <ScriptBox
+            title="Officer approval request"
+            tone="legal"
+            context="Use before signing, paying a deposit, or moving when supervision approval may be required."
+            script={`Hello [Officer Name],
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">B) Officer Approval Request (note):</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-green-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "I'm seeking approval to reside at [address]. It is [distance] from the nearest restricted site. Landlord is [name/phone]. Occupants: [list]. Proposed move-in: [date]. Internet/devices: [plan]. Please advise if additional documentation is required."
-                  </p>
-                </div>
-              </div>
+I am seeking approval to reside at [full address and unit number]. The landlord/property contact is [name and phone/email]. Proposed move-in date is [date].
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">C) HOA Confirmation Email:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-purple-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "I'm considering [address/unit]. Could you confirm in writing that association rules do not prohibit my occupancy based on registry status and that no HOA rule conflicts with local residency restrictions?"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+Initial screening notes:
 
-        {/* Final Thoughts */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="p-8 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-blue-900 mb-4">Final Thoughts</h2>
-              <div className="space-y-4 text-blue-800">
-                <p className="text-lg">
-                  <strong>Speed beats perfection.</strong> Get one compliant address into your officer's inbox; iterate if needed.
-                </p>
-                <p className="text-lg">
-                  <strong>Paper beats promises.</strong> Keep everything in the HOUSING COMPLIANCE folder.
-                </p>
-                <p className="text-lg">
-                  <strong>People help people.</strong> A housing scout and two strong references often do more than a dozen online clicks.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </article>
+- Nearest restricted site I identified: [site name/address]
 
-      {/* Print Styles */}
-      <style jsx>{`
-        @media print {
-          .print\\:hidden { display: none !important; }
-          .print\\:py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
-          .print\\:py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-          .print\\:pb-4 { padding-bottom: 1rem !important; }
-          .print\\:mb-8 { margin-bottom: 2rem !important; }
-          .print\\:mb-6 { margin-bottom: 1.5rem !important; }
-          .print\\:mt-8 { margin-top: 2rem !important; }
-          .print\\:space-y-6 > * + * { margin-top: 1.5rem !important; }
-          .print\\:text-2xl { font-size: 1.5rem !important; line-height: 2rem !important; }
-          .print\\:text-sm { font-size: 0.875rem !important; line-height: 1.25rem !important; }
-          .print\\:text-xs { font-size: 0.75rem !important; line-height: 1rem !important; }
-          .print\\:w-8 { width: 2rem !important; }
-          .print\\:h-8 { height: 2rem !important; }
-          .print\\:text-base { font-size: 1rem !important; line-height: 1.5rem !important; }
-          .print\\:p-6 { padding: 1.5rem !important; }
-          .print\\:p-4 { padding: 1rem !important; }
-          .print\\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
-          .print\\:gap-4 { gap: 1rem !important; }
-          
-          body { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
-          * { box-shadow: none !important; }
-        }
-      `}</style>
+- Estimated distance: [distance and method used]
+
+- Household members/ages: [list]
+
+- Internet/devices: [plan]
+- Work schedule/curfew plan: [summary]
+
+- HOA/lease/public housing rules: [summary if applicable]
+
+Please let me know whether this address is approved, denied, or whether you need additional documentation before I sign or pay money. I would appreciate written confirmation for my housing compliance folder.
+
+Thank you,
+
+[Name]`}
+          />
+
+          <ScriptBox
+            title="HOA or condo confirmation email"
+            tone="warning"
+            context="Use before renting or buying in an HOA, condo, co-op, manufactured-home community, or deed-restricted property."
+            script={`Hello,
+
+I am considering living at [address/unit]. Before I sign anything, I need to confirm whether association rules, occupancy rules, guest rules, background-check policies, pool/playground rules, or lease restrictions would prohibit or limit my occupancy based on registry status.
+Can you please confirm in writing whether the association has any rule that would prevent me from living at this address or create a conflict with local residency restrictions?
+
+Thank you,
+
+[Name]`}
+          />
+
+          <GuideCallout tone="privacy" icon="" title="Share enough to answer the question, not your whole life story">
+            <p>
+              Housing conversations can become emotional. Keep your explanation
+              calm and limited. You usually need to discuss eligibility,
+              compliance, income, references, move-in timing, and household
+              details. You usually do not need to give graphic facts, argue about
+              the registry, or disclose information unrelated to the housing
+              decision.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="special-situations"
+          number="5"
+          title="Special situations: buying, HOAs, supervision, and limited internet"
+          subtitle="Some housing options need extra checks before they are safe to rely on."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Buying a home, moving into an HOA, using a shelter, living with
+              family, renting a room, or searching without internet can all work
+              in some situations. The risk is assuming ordinary housing rules are
+              the only rules. For registry-specific housing, private rules and
+              supervision practices often matter as much as the public listing.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Extra checks for higher-risk housing decisions"
+            columns={2}
+            variant="cards"
+            tone="warning"
+            items={[
+              {
+                icon: "home",
+                title: "Buying a home",
+                description:
+                  "Pre-clear the address before making an offer when possible. Consider a contract contingency tied to confirmation of registry and supervision compliance.",
+              },
+              {
+                icon: "building",
+                title: "HOA, condo, or manufactured-home community",
+                description:
+                  "Ask for CC&Rs, rules and regulations, background-check policies, guest rules, pool/playground rules, lease restrictions, and written confirmation.",
+              },
+              {
+                icon: "users",
+                title: "Living with family",
+                description:
+                  "Check children in the home, victim-contact rules, household devices, internet access, bedroom layout, school bus stops, and whether the family member’s lease allows it.",
+              },
+              {
+                icon: "door",
+                title: "Room rentals and roommates",
+                description:
+                  "Ask about shared spaces, children, guests, Wi-Fi, devices, lease subletting rules, background checks, and whether the landlord knows about all occupants.",
+              },
+              {
+                icon: "reentry",
+                title: "Shelter or transitional housing",
+                description:
+                  "Call first. Some shelters, sober homes, recovery homes, halfway houses, and transitional programs have registry exclusions or location restrictions.",
+              },
+              {
+                icon: "wifiOff",
+                title: "Internet or device restrictions",
+                description:
+                  "If browsing listings is not allowed, use a housing scout, printed packets, phone calls, library printouts, mailed applications, and officer-approved communication plans.",
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet access is limited or restricted"
+            icon=""
+            note={
+              <span>
+                Many people on registries cannot safely or legally browse freely.
+                A phone-first and paper-first search can still work.
+              </span>
+            }
+            items={[
+              "Designate a housing scout: a family member, friend, caseworker, public defender social worker, reentry worker, or faith volunteer who can search, print, and organize listings.",
+              "Ask the scout to create a call sheet with address, rent, deposit, landlord contact, nearby restricted sites, listing source, and questions to ask.",
+              "Drive pre-screened neighborhoods and call numbers on yard signs instead of relying only on online listings.",
+              "Ask libraries, reentry groups, legal aid offices, shelters, treatment providers, or faith communities whether they can print listings or forms.",
+              "If supervision restricts devices, ask your officer whether a limited housing-search plan, approved helper, basic phone, or printed packet process is allowed.",
+            ]}
+          />
+
+          <GuideChecklist
+            id="before-signing"
+            title="Before signing, paying, or moving"
+            columns={1}
+            items={[
+              {
+                id: "rules-printed",
+                label:
+                  "Your registry, court, supervision, local, and private housing rules are printed or saved.",
+              },
+              {
+                id: "distance-confirmed",
+                label:
+                  "Distance and restricted-site issues have been checked using the best official tools available.",
+              },
+              {
+                id: "approval-written",
+                label:
+                  "Officer, registry office, housing authority, HOA, or other required approval is saved in writing when possible.",
+              },
+              {
+                id: "lease-reviewed",
+                label:
+                  "Lease, guest rules, internet/device issues, background-check language, and vague eviction clauses have been reviewed.",
+              },
+              {
+                id: "household-reviewed",
+                label:
+                  "Household members, children, roommates, guests, devices, pets, parking, and bedroom layout have been considered.",
+              },
+              {
+                id: "money-risk",
+                label:
+                  "Application fee, deposit, moving costs, and nonrefundable payments are delayed until the address has been screened.",
+              },
+              {
+                id: "backup-address",
+                label:
+                  "A backup address, shelter option, family plan, or short-term emergency plan has been identified if approval fails.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="6"
+          title="Common mistakes that create housing trouble"
+          subtitle="Most mistakes happen because people are scared, rushed, or relying on verbal answers."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Applying everywhere before checking restrictions.",
+                whyItMatters:
+                  "Application fees, background checks, and landlord contacts can pile up quickly while none of the addresses are actually usable.",
+                betterMove:
+                  "Screen the address first, then apply to the best candidates.",
+              },
+              {
+                mistake: "Assuming state law is the only rule.",
+                whyItMatters:
+                  "Local ordinances, supervision conditions, treatment rules, HOA rules, shelter policies, or lease terms can still block the address.",
+                betterMove:
+                  "Check state, local, supervision, court, and private rules before relying on the listing.",
+              },
+              {
+                mistake: "Trusting a verbal approval without notes.",
+                whyItMatters:
+                  "A later officer, landlord, registry clerk, or property manager may not know what was said.",
+                betterMove:
+                  "Write down the name, date, department, and exact answer. Ask for email confirmation when possible.",
+              },
+              {
+                mistake: "Oversharing with landlords or neighbors.",
+                whyItMatters:
+                  "Unnecessary detail can increase stigma, confusion, gossip, or safety risk without helping the housing decision.",
+                betterMove:
+                  "Answer direct questions truthfully, keep the explanation brief, and focus on compliance, income, references, and stability.",
+              },
+              {
+                mistake: "Letting family promise more than they can afford.",
+                whyItMatters:
+                  "Co-signing, extra deposits, or paying rent in two places can harm the whole household if the address is denied.",
+                betterMove:
+                  "Verify first, then decide what financial help is realistic and sustainable.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="✅" title="Three reminders worth keeping">
+            <p>
+              <strong>Speed beats perfection:</strong> get one realistic address
+              into the approval process instead of endlessly searching for the
+              perfect place.
+            </p>
+
+            <p>
+              <strong>Paper beats promises:</strong> keep rules, maps, approvals,
+              denials, and call notes in your housing compliance folder.
+            </p>
+
+            <p>
+              <strong>People help people:</strong> a housing scout, two strong
+              references, and one calm landlord conversation may do more than a
+              dozen online applications.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="7"
+          title="Resources and next steps"
+          subtitle="Use official sources where possible, and verify local rules before relying on any general guide."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Housing, legal, and emergency support"
+            description={
+              <span>
+                These links are starting points. They do not replace checking your
+                own registry, supervision, court, and local housing rules.
+              </span>
+            }
+            resources={[
+              {
+                label: "211 local resource finder",
+                href: sourceLinks.unitedWay211,
+                badge: "Directory",
+                description:
+                  "Search or call for local emergency housing, shelter, utility, food, transportation, and reentry-related referrals.",
+              },
+              {
+                label: "CFPB housing counselor search",
+                href: sourceLinks.cfpbHousingCounselor,
+                badge: "Official",
+                description:
+                  "Find HUD-approved housing counselors for rental, mortgage, foreclosure, credit, and homebuying questions.",
+              },
+              {
+                label: "HUD public housing agency contacts",
+                href: sourceLinks.hudPublicHousingContacts,
+                badge: "Official",
+                description:
+                  "Find local public housing agencies for public housing, voucher, and local housing program questions.",
+              },
+              {
+                label: "HUD report housing discrimination",
+                href: sourceLinks.hudReportHousingDiscrimination,
+                badge: "Official",
+                description:
+                  "Direct HUD page for reporting housing discrimination online, by phone, or by mail.",
+              },
+              {
+                label: "USAGov housing help",
+                href: sourceLinks.usaGovHousingHelp,
+                badge: "Official",
+                description:
+                  "Plain-language federal starting point for housing help, rental assistance, tenant rights, emergency housing, and related programs.",
+              },
+              {
+                label: "Legal Services Corporation legal help finder",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Legal aid",
+                description:
+                  "Find civil legal aid programs for housing, benefits, consumer, family, and other noncriminal legal issues.",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Use alongside this guide when housing is part of a broader release, supervision, work, transportation, and documentation plan.",
+                to: "/resources/reentry-planning",
+              },
+              {
+                title: "Employment After Conviction",
+                description:
+                  "Stable income and references can make the housing search stronger, especially with small landlords.",
+                to: "/resources/employment-after-conviction",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "Helpful for spouses, parents, adult children, and trusted friends serving as housing scouts or emergency support.",
+                to: "/resources/family-support",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources and verification"
+            note={
+              <span>
+                Links below were checked for live access before production handoff.
+                State, county, city, registry, supervision, HOA, shelter, landlord,
+                and local housing-program rules still need local verification
+                before use in a specific case.
+              </span>
+            }
+            sources={[
+              {
+                label: "United Way 211",
+                href: sourceLinks.unitedWay211,
+                description:
+                  "Local referral network for housing, utility, food, crisis, and community support.",
+              },
+              {
+                label: "Consumer Financial Protection Bureau housing counselor finder",
+                href: sourceLinks.cfpbHousingCounselor,
+                description:
+                  "Search tool for HUD-approved housing counseling agencies.",
+              },
+              {
+                label: "HUD public housing agency contacts",
+                href: sourceLinks.hudPublicHousingContacts,
+                description:
+                  "Official HUD directory for finding local public housing agencies.",
+              },
+              {
+                label: "HUD report housing discrimination",
+                href: sourceLinks.hudReportHousingDiscrimination,
+                description:
+                  "Official HUD page for housing discrimination reporting options.",
+              },
+              {
+                label: "USAGov housing help",
+                href: sourceLinks.usaGovHousingHelp,
+                description:
+                  "Federal plain-language housing assistance overview.",
+              },
+              {
+                label: "Legal Services Corporation legal help",
+                href: sourceLinks.lscLegalHelp,
+                description:
+                  "Directory-style starting point for finding civil legal aid.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
