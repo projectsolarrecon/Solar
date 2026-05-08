@@ -195,11 +195,11 @@ export function Callout({
 
         <div className="min-w-0">
           {title && (
-            <p className={`font-semibold leading-snug mb-1 ${styles.title}`}>
+            <p className={`text-[15px] sm:text-base font-semibold leading-snug mb-1 ${styles.title}`}>
               {title}
             </p>
           )}
-          <div className={`text-sm sm:text-base leading-relaxed ${styles.body}`}>
+          <div className={`text-[15px] sm:text-base leading-relaxed ${styles.body}`}>
             {children}
           </div>
         </div>
@@ -227,7 +227,7 @@ export function GuideIntro({
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
             {title}
           </h2>
-          <div className="mt-3 space-y-4 text-slate-700 leading-relaxed">
+          <div className="mt-3 space-y-4 text-[15px] sm:text-base text-slate-700 leading-relaxed">
             {children}
           </div>
         </div>
