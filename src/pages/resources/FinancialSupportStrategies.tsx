@@ -1,724 +1,1184 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  GuideIconList,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+} from "../../components/solar";
+
+const sourceLinks = {
+  cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
+  usaGovRentHelp: "https://www.usa.gov/rental-housing-programs",
+  energyHelp: "https://www.usa.gov/help-with-energy-bills",
+  unitedWay211: "https://www.211.org/",
+  feedingAmerica: "https://www.feedingamerica.org/find-your-local-foodbank",
+  snapUsaGov: "https://www.usa.gov/food-stamps",
+  lifeline: "https://www.lifelinesupport.org/",
+  lscLegalHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
+  abaFreeLegalAnswers: "https://abafreelegalanswers.org/",
+  federalDefenders: "https://www.fd.org/",
+  irs501r:
+    "https://www.irs.gov/charities-non-profits/financial-assistance-policy-and-emergency-medical-care-policy-section-501r4",
+  cmsMedicalBillRights: "https://www.cms.gov/medical-bill-rights",
+  irsPayments: "https://www.irs.gov/payments",
+  taxpayerAdvocate: "https://www.taxpayeradvocate.irs.gov/",
+  lowIncomeTaxpayerClinics: "https://www.irs.gov/advocate/low-income-taxpayer-clinics",
+  vitaTce: "https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers",
+  annualCreditReport: "https://www.annualcreditreport.com/",
+  ftcCreditFreeze: "https://consumer.ftc.gov/articles/credit-freezes-and-fraud-alerts",
+  identityTheft: "https://www.identitytheft.gov/",
+  myCreditUnionPals:
+    "https://mycreditunion.gov/manage-your-money/consumer-loans-credit-cards/payday-alternative-loans",
+  bankOn: "https://joinbankon.org/",
+  acfChildSupportOrder: "https://acf.gov/css/faq/my-income-has-changed-can-my-order-be-revised",
+};
 
 export default function FinancialSupportStrategies(): JSX.Element {
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <SEO 
-        title="Surviving the Financial Shock of a Criminal Case | The SOLAR Project"
-        description="Practical, step-by-step advice for families managing legal fees, lost income, and ongoing expenses—without losing stability or hope."
-        keywords="criminal case financial impact, family financial support, legal fees management, financial crisis help, family financial planning, criminal defense costs"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Financial Support Strategies | The SOLAR Project"
+        description="Practical, step-by-step support for families managing legal fees, lost income, urgent bills, benefits, credit, and ongoing expenses during a criminal case."
+        keywords="financial support criminal case, legal fees, family support, hardship programs, credit protection, rent help, SNAP, LIHEAP, child support modification"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-600/90 text-white shadow-xl print:bg-none print:shadow-none">
-        <div className="max-w-5xl mx-auto px-6 py-10">
-          <div className="mb-6">
-            <Link to="/resources" className="inline-flex items-center text-slate-200 hover:text-white transition-colors group">
-              <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-              Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          
-          <div className="flex items-center gap-3 mb-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs tracking-wide font-medium">
-              👨‍👩‍👧‍👦 RESOURCE GUIDE
-            </span>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl font-semibold leading-tight mb-3">
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Surviving the Financial Shock of a Criminal Case
           </h1>
-          
-          <p className="text-white/90 max-w-3xl text-lg">
-            Practical, step-by-step advice for families managing legal fees, lost income, and ongoing expenses—without losing stability or hope.
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Practical, step-by-step support for families managing legal fees, lost income,
+            urgent bills, benefits, credit, and ongoing expenses without losing stability
+            or hope.
           </p>
-          
-          <div className="mt-6 flex flex-wrap gap-3 no-print">
-            <button 
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
               onClick={handlePrint}
-              className="rounded-2xl bg-white/90 text-slate-900 hover:bg-white px-4 py-2 font-medium shadow transition-colors"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
               🖨️ Print Guide
             </button>
-            <Link
-              to="/resources"
-              className="rounded-2xl bg-slate-600/50 text-white hover:bg-slate-600/70 px-4 py-2 font-medium shadow transition-colors"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              📚 More Resources
-            </Link>
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-        {/* Important Notice */}
-        <section className="rounded-xl border border-blue-200 bg-blue-50 p-5 avoid-break">
-          <div className="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-blue-600 flex-shrink-0">
-              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm.75 5a.75.75 0 10-1.5 0v6.25c0 .414.336.75.75.75h4a.75.75 0 100-1.5H12.75V7z"/>
-            </svg>
-            <p className="text-sm leading-relaxed text-blue-800">
-              <span className="font-semibold">This guide is not legal or financial advice.</span> It's a practical playbook to help families stabilize cash flow and protect credit while a case is pending. Use official links embedded throughout to speak with qualified professionals and to verify eligibility in your state.
-            </p>
-          </div>
-        </section>
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            When someone you love is facing charges, it can feel like the ground
+            has been ripped out from under your feet — emotionally, socially, and
+            financially. Bills do not stop coming just because your family is in
+            crisis. In fact, the costs often rise sharply.
+          </p>
 
-        {/* Introduction */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
-            </div>
-            <h2 className="text-xl font-semibold text-slate-800">You're Not Alone in This</h2>
-          </div>
-          
-          <div className="space-y-4 text-slate-700 leading-relaxed">
+          <p>
+            Think of this guide like a life jacket in rough water. You do not
+            have to swim all the way to shore today. You need to stay afloat,
+            protect the essentials, and make the next few decisions carefully.
+          </p>
+
+          <p>
+            Keep a notebook or folder nearby as you work through this page.
+            Paper is fine. The goal is not perfection. The goal is to protect
+            housing, food, utilities, transportation, phone access,
+            court-related stability, and the caregiver’s credit while you figure
+            out what help is available.
+          </p>
+        </GuideIntro>
+
+        <GuideCallout tone="legal" icon="⚖️" title="This is practical guidance, not legal or financial advice">
+          <p>
+            This is a practical playbook for stabilizing cash flow and
+            protecting your household during a criminal case. Rules,
+            eligibility, court orders, supervision conditions, and state
+            programs can change the answer. Verify important steps with the
+            agency, attorney, court, benefit office, creditor, or qualified
+            professional before relying on them.
+          </p>
+        </GuideCallout>
+
+        <QuickStartPanel
+          title="First moves when money panic hits"
+          subtitle="Start by protecting the bills that keep the household physically stable, reachable, and able to keep appointments."
+          icon="🧯"
+          urgentActions={[
+            <span key="log">
+              Get one notebook, folder, envelope, or notes app file and label it{" "}
+              <strong>“money crisis log.”</strong>
+            </span>,
+            <span key="essentials">
+              Write down the bills that keep your household housed, fed,
+              connected, and able to get to work, school, court, medical care,
+              and legal appointments.
+            </span>,
+            <span key="star">
+              Put a star next to the essentials: rent or mortgage, utilities,
+              food, transportation, phone or internet, child support, medical
+              needs, and lawyer or court-related deadlines.
+            </span>,
+          ]}
+          nextActions={[
+            <span key="pause">
+              Cancel or pause non-essential subscriptions, memberships, and
+              automatic payments that are not keeping the household stable.
+            </span>,
+            <span key="call">
+              Call before you are late. Ask for hardship options, payment plans,
+              budget billing, extensions, or written instructions.
+            </span>,
+            <span key="save">
+              Save names, dates, departments, confirmation numbers, letters,
+              emails, bills, and every agreement in writing.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              <strong>Starred bills go first.</strong> Many other bills can be
+              paused, reduced, deferred, negotiated, or handled through a formal
+              assistance program.
+            </span>
+          }
+        />
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Stage 1",
+              title: "Stop the slide",
+              icon: "🛑",
+              tone: "urgent",
+              description:
+                "Pause non-essentials, list immediate bills, and separate true essentials from pressure or embarrassment.",
+            },
+            {
+              eyebrow: "Stage 2",
+              title: "Stabilize the basics",
+              icon: "🏠",
+              tone: "family",
+              description:
+                "Work through housing, utilities, food, phone, transportation, legal costs, medical bills, taxes, and child support.",
+            },
+            {
+              eyebrow: "Stage 3",
+              title: "Protect the future",
+              icon: "🛡️",
+              tone: "success",
+              description:
+                "Document agreements, protect credit, avoid predatory debt, and build a clear household plan.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="essentials"
+          number="1"
+          title="First Things First: Separate Essentials from Noise"
+          subtitle="Money panic makes every bill feel equally urgent. They are not all equal."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              When someone you love is facing charges, it can feel like the ground has been ripped out from under your feet — emotionally, socially, and financially. Bills don't stop coming just because you're in crisis. In fact, the costs often rise sharply. This guide is here to help you <strong>take back control, one small step at a time.</strong>
+              Essentials are the bills that keep your household physically
+              stable and connected to the systems you must keep using: housing,
+              utilities, food, transportation, phone or internet access, medical
+              care, child support, legal appointments, court dates, and work or
+              school.
             </p>
+
             <p>
-              Think of it like a life jacket in rough water: you don't have to swim all the way to shore right now — you just need to stay afloat and protect your family's stability. Each section is designed to be followed <strong>step by step</strong>, with concrete actions you can take today, tomorrow, and in the weeks ahead. Keep a notebook or folder handy, use the checklist at the end, and remember: you are not alone, and you do not have to figure this out from scratch.
+              Once you know what is essential, you can stop guessing. You can
+              make calls in order, ask for help more clearly, and avoid spending
+              scarce money on the loudest bill instead of the most important one.
             </p>
-          </div>
-        </section>
+          </GuideProse>
 
-        {/* Overview */}
-        <section className="grid md:grid-cols-3 gap-4">
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-red-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                <span className="text-red-600 font-bold text-sm">1</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Stage 1</p>
-                <h3 className="font-semibold text-slate-800">48-Hour Money Triage</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Freeze non-essentials, list essentials, and map immediate due dates.</p>
-          </div>
-          
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-amber-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                <span className="text-amber-600 font-bold text-sm">2</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Stage 2</p>
-                <h3 className="font-semibold text-slate-800">Stabilize & Negotiate</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Prioritize housing, utilities, food & transport; set up payment plans and hardship options.</p>
-          </div>
-          
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-green-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-green-600 font-bold text-sm">3</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Stage 3</p>
-                <h3 className="font-semibold text-slate-800">Protect & Plan</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Protect credit, avoid high-cost debt, and line up credible help.</p>
-          </div>
-        </section>
+          <GuideChecklist
+            id="financial-essentials"
+            title="Mark the bills that protect immediate stability"
+            columns={2}
+            items={[
+              { id: "housing", label: "Rent, mortgage, lease, or foreclosure deadline." },
+              { id: "utilities", label: "Electric, gas, water, heating, cooling, or shutoff notice." },
+              { id: "food", label: "Groceries, food benefits, school meals, or food-bank access." },
+              { id: "transportation", label: "Gas, bus fare, car insurance, court travel, work travel, or child-care travel." },
+              { id: "phone", label: "Phone or internet access needed for court, counsel, benefits, work, school, or family coordination." },
+              { id: "medical", label: "Urgent medication, medical treatment, insurance, or billing deadlines." },
+              { id: "legal", label: "Attorney fees, court deadlines, required appointments, or document costs." },
+              { id: "child-support", label: "Child support, custody-related costs, or family-court deadlines." },
+            ]}
+          />
 
-        {/* First Things First */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              1
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">First Things First: Don't Panic, Make a List</h2>
-              <p className="text-sm text-slate-600">Start with what you can control right now</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Get a notebook or folder. Paper is fine if you don't have easy internet access.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Write down your <strong>must-pay bills</strong>: rent/mortgage, utilities, food, transportation, child support, phone/internet, medical.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Put a ★ next to the bills that keep your family housed, fed, and connected to work/school/court.</div>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <svg className="w-5 h-5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-              </svg>
-              <p className="font-semibold text-amber-800">Reminder</p>
-            </div>
-            <p className="text-sm text-amber-800">Those starred bills go first. Everything else can be paused, reduced, or renegotiated.</p>
-          </div>
-        </section>
-
-        {/* 48-Hour Money Triage */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              2
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">The 48-Hour Money Triage</h2>
-              <p className="text-sm text-slate-600">Immediate actions to stop the bleeding</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div><strong>Cancel extras.</strong> Stop auto-pays for streaming, gyms, and subscriptions.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"></path>
-                  </svg>
-                </div>
-                <div><strong>Make a visible calendar.</strong> Post due dates where everyone can see them.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
-                  </svg>
-                </div>
-                <div><strong>Call before you're late.</strong> Script: "We're going through a legal emergency. We want to stay in good standing. What hardship or payment options do you offer, and what documentation do you need?"</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div><strong>Document everything.</strong> Record who you spoke with, the date, and what was agreed; save letters/emails.</div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Stabilizing Cash Flow */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              3
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Stabilizing Cash Flow</h2>
-              <p className="text-sm text-slate-600">Secure the essentials first</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4 space-y-4">
-            <div className="border-l-4 border-blue-500 pl-4">
-              <p className="text-sm leading-6">
-                <strong>Housing.</strong> Call your landlord/mortgage servicer. Ask for a payment plan, smaller weekly payments, or temporary forbearance/modification. Get free help from a <a href="https://www.consumerfinance.gov/find-a-housing-counselor/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">HUD-approved housing counselor</a>.
-              </p>
-            </div>
-            
-            <div className="border-l-4 border-green-500 pl-4">
-              <p className="text-sm leading-6">
-                <strong>Utilities.</strong> Ask about budget billing, shut-off protections, and energy aid like <a href="https://www.acf.hhs.gov/ocs/low-income-home-energy-assistance-program-liheap" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">LIHEAP</a>. If stuck, dial <a href="https://www.211.org/get-help/i-need-help-paying-my-bills" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">211</a>.
-              </p>
-            </div>
-            
-            <div className="border-l-4 border-orange-500 pl-4">
-              <p className="text-sm leading-6">
-                <strong>Food.</strong> Use <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Feeding America's locator</a> and apply for <a href="https://www.benefits.gov/benefit/361" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">SNAP</a> early.
-              </p>
-            </div>
-            
-            <div className="border-l-4 border-purple-500 pl-4">
-              <p className="text-sm leading-6">
-                <strong>Phone/Internet.</strong> Ask your provider for hardship/low-income plans; check <a href="https://www.lifelinesupport.org/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Lifeline</a>.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Legal Costs */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              4
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Legal Costs Without Going Broke</h2>
-              <p className="text-sm text-slate-600">Manage attorney fees strategically</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div><strong>Get it in writing:</strong> retainer, scope, hourly/flat-fee terms, billing cadence; itemized invoices; monthly cap.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
-                  </svg>
-                </div>
-                <div><strong>Negotiate stages:</strong> e.g., a flat fee through preliminary hearing, then revisit.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zM14 6a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h6zM4 14a2 2 0 002 2h8a2 2 0 002-2v-2H4v2z"></path>
-                  </svg>
-                </div>
-                <div><strong>Payment plans:</strong> ask early; confirm refunds of unused retainers.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div><strong>Lower-cost help:</strong> <a href="https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">LSC legal aid</a> (civil), <a href="https://www.abafreelegalanswers.org/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">ABA Free Legal Answers</a> (civil Q&A), and <a href="https://www.fd.org/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Federal Public Defenders (CJA)</a> for eligible federal cases.</div>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <svg className="w-5 h-5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path>
-              </svg>
-              <p className="font-semibold text-emerald-800">Pro Tip</p>
-            </div>
-            <p className="text-sm text-emerald-800">Ask counsel for a <em>case budget</em> with milestones and decision points. It reduces surprise invoices and keeps everyone aligned.</p>
-          </div>
-        </section>
-
-        {/* Medical Bills */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              5
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Taming Medical Bills</h2>
-              <p className="text-sm text-slate-600">Navigate healthcare costs strategically</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ol className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-pink-600 font-bold text-xs">1</span>
-                </div>
-                <div>Never ignore bills; call the billing office to keep accounts out of collections.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-pink-600 font-bold text-xs">2</span>
-                </div>
-                <div>Request an <strong>itemized bill</strong> to check accuracy.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-pink-600 font-bold text-xs">3</span>
-                </div>
-                <div>Ask about <strong>financial assistance/charity care</strong> (required at nonprofits per <a href="https://www.irs.gov/charities-non-profits/financial-assistance-policy-and-emergency-medical-care-policy-section-501r4" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">IRS 501(r)</a>).</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-pink-600 font-bold text-xs">4</span>
-                </div>
-                <div>Invoke rights under the <a href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">No Surprises Act</a> for certain emergency/out-of-network bills.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-pink-600 font-bold text-xs">5</span>
-                </div>
-                <div>Negotiate prompt-pay discounts; request <strong>0% interest</strong> payment plans; get agreements in writing.</div>
-              </li>
-            </ol>
-          </div>
-        </section>
-
-        {/* Taxes */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              6
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">If Taxes Are a Stressor</h2>
-              <p className="text-sm text-slate-600">Handle tax obligations without panic</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Check balances and options at <a href="https://www.irs.gov/payments" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">IRS.gov/payments</a>.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zM14 6a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2h6zM4 14a2 2 0 002 2h8a2 2 0 002-2v-2H4v2z"></path>
-                  </svg>
-                </div>
-                <div>Short-term (≤120 days) and long-term installment plans available; set up online.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>If truly unable to pay, explore <strong>Offer in Compromise</strong> (rare but possible).</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>Get help: <a href="https://www.taxpayeradvocate.irs.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Taxpayer Advocate Service</a> and <a href="https://www.irs.gov/advocate/low-income-taxpayer-clinics" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Low-Income Taxpayer Clinics</a>.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-teal-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>Free tax prep: <a href="https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">VITA/TCE</a>.</div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Credit Protection */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              7
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Protect Credit; Avoid Debt Traps</h2>
-              <p className="text-sm text-slate-600">Safeguard your financial future</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-cyan-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Pull free credit reports weekly at <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">AnnualCreditReport.com</a> and dispute errors.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-cyan-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Consider a <a href="https://consumer.ftc.gov/articles/credit-freeze-or-fraud-alert-whats-right-your-credit-report" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">credit freeze or fraud alert</a>; report identity theft at <a href="https://www.identitytheft.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">IdentityTheft.gov</a>.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-cyan-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-cyan-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>Avoid payday/title loans. Consider <a href="https://mycreditunion.gov/manage-your-money/consumer-loans-credit-cards/payday-alternative-loans" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">credit-union PALs</a> and low-fee <a href="https://joinbankon.org/accounts/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Bank On accounts</a> (also called "Second Chance" or "Fresh Start" at some institutions).</div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Child Support */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              8
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">If Child Support Is Involved</h2>
-              <p className="text-sm text-slate-600">Act quickly to prevent arrears</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <p className="text-sm leading-6">
-              If income drops due to arrest/jail, request a review and modification <em>immediately</em>. Incarceration is generally treated as involuntary unemployment under federal policy—ask your local office how to document this. Start here: <a href="https://www.acf.hhs.gov/css/parents/change-support-order" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">ACF—Change a support order</a>.
-            </p>
-          </div>
-        </section>
-
-        {/* Family Tips & Checklist */}
-        <section className="grid md:grid-cols-2 gap-6">
-          <div className="rounded-2xl bg-white shadow-lg p-6 avoid-break">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                </svg>
-              </div>
-              <h3 className="font-semibold text-slate-800">Family Tips</h3>
-            </div>
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <div>Centralize logins, due dates, account numbers, and a shared calendar of court obligations.</div>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <div>Automate the most critical bills once a plan is in place.</div>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <div>Track every agreement in writing; set reminders one week before each payment.</div>
-              </li>
-              <li className="flex items-start gap-2">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <div>Protect the caregiver's credit—avoid co-signing high-risk debt.</div>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="rounded-2xl bg-white shadow-lg p-6 avoid-break">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 className="font-semibold text-slate-800">Family Financial Checklist</h3>
-            </div>
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Call landlord/servicer → request hardship plan</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Contact utilities → budget billing or LIHEAP</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Secure food → food bank + SNAP</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Review medical bills → itemized + charity care</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">If taxes owed → set up payment plan</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Pull credit reports; dispute errors</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Freeze credit if worried about fraud</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Avoid payday loans; use PAL/Bank On accounts</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Request child support modification</label>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Official Resources */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
-              <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-              </svg>
-            </div>
-            <h3 className="font-semibold text-slate-800">Official Resources</h3>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-4 text-sm leading-6">
-            <div className="space-y-2">
-              <div className="font-medium text-slate-700">Housing & Utilities</div>
-              <ul className="space-y-1 text-slate-600">
-                <li>• <a href="https://www.consumerfinance.gov/find-a-housing-counselor/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">HUD-approved counselors</a></li>
-                <li>• <a href="https://www.usa.gov/emergency-pay-rent" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Emergency rent assistance</a></li>
-                <li>• <a href="https://www.acf.hhs.gov/ocs/low-income-home-energy-assistance-program-liheap" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">LIHEAP</a></li>
-                <li>• <a href="https://www.211.org/get-help/utilities-expenses" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">211 utility help</a></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-2">
-              <div className="font-medium text-slate-700">Food & Benefits</div>
-              <ul className="space-y-1 text-slate-600">
-                <li>• <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Food bank locator</a></li>
-                <li>• <a href="https://www.benefits.gov/benefit/361" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">SNAP</a></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-2">
-              <div className="font-medium text-slate-700">Medical & Taxes</div>
-              <ul className="space-y-1 text-slate-600">
-                <li>• <a href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">No Surprises Act</a></li>
-                <li>• <a href="https://www.irs.gov/individuals/free-tax-return-preparation-for-qualifying-taxpayers" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">VITA/TCE</a></li>
-                <li>• <a href="https://www.taxpayeradvocate.irs.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Taxpayer Advocate Service</a></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-2">
-              <div className="font-medium text-slate-700">Credit & Legal</div>
-              <ul className="space-y-1 text-slate-600">
-                <li>• <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">AnnualCreditReport.com</a></li>
-                <li>• <a href="https://www.identitytheft.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">IdentityTheft.gov</a></li>
-                <li>• <a href="https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">LSC legal aid</a></li>
-                <li>• <a href="https://www.acf.hhs.gov/css/parents/change-support-order" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Child support changes</a></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Important Reminders */}
-        <section className="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-              <svg className="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
-              </svg>
-            </div>
-            <h3 className="font-semibold text-yellow-800">Important Reminders</h3>
-          </div>
-          
-          <ul className="space-y-2 text-sm leading-6 text-yellow-800">
-            <li className="flex items-start gap-2">
-              <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-              <div>Call <em>before</em> you're late—hardship programs are easier to access proactively.</div>
-            </li>
-            <li className="flex items-start gap-2">
-              <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-              <div>Get every arrangement in writing and store it in your case binder.</div>
-            </li>
-            <li className="flex items-start gap-2">
-              <div className="w-2 h-2 bg-yellow-600 rounded-full mt-2 flex-shrink-0"></div>
-              <div>Beware of high-cost lenders and debt-relief scams. Use official links above.</div>
-            </li>
-          </ul>
-        </section>
-
-        {/* Closing */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
-            </div>
-            <h2 className="font-semibold text-lg text-slate-800">You Will Get Through This</h2>
-          </div>
-          
-          <div className="space-y-4 text-sm leading-6 text-slate-700">
+          <GuideCallout tone="reminder" icon="★" title="The starred bills go first">
             <p>
-              This season will be hard, but it won't last forever. Every phone call you make, every note you keep, and every payment plan you negotiate is a brick in the foundation of your family's stability. You've already shown resilience by picking up this guide and looking for answers — that in itself is a powerful step forward.
+              Starred bills should protect shelter, food, utilities, phone
+              access, transportation, court stability, medical needs, child
+              support, and work or school. Everything else should be reviewed,
+              paused, reduced, negotiated, or delayed when possible.
             </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="triage"
+          number="2"
+          title="The 48-Hour Money Triage"
+          subtitle="Use the first two days to slow preventable damage."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              If you can focus on the essentials, keep communication open with creditors, and avoid traps like payday loans, you'll protect your family not just in the short term but in the years to come. Remember: this isn't about being perfect — it's about progress, one decision at a time. <strong>You can and will get through this.</strong>
+              The first two days are about slowing the financial slide. You may
+              not be able to solve the larger case, replace income, or rebuild
+              savings right away. You can still reduce preventable damage.
             </p>
-          </div>
-        </section>
+          </GuideProse>
 
-        {/* Related Resources */}
-        <section className="rounded-2xl bg-gradient-to-r from-slate-100 to-slate-50 p-6">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Related Resources</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link to="/resources/family-support-guide" className="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800">Family Support Guide</h4>
-                  <p className="text-sm text-slate-600">Comprehensive support for families</p>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/resources/financial-planning-guide" className="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800">Financial Planning Guide</h4>
-                  <p className="text-sm text-slate-600">Long-term financial recovery</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
+          <GuideIconList
+            title="Do these before the next round of bills hits"
+            variant="cards"
+            columns={2}
+            tone="money"
+            items={[
+              {
+                icon: "pause",
+                title: "Cancel extras",
+                description:
+                  "Pause streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
+              },
+              {
+                icon: "calendar",
+                title: "Make a due-date map",
+                description:
+                  "Write what is due this week, what is due this month, and what already has a late notice. Use a visible or shared calendar if the household is coordinating together.",
+              },
+              {
+                icon: "phone",
+                title: "Call before you are late",
+                description:
+                  "Hardship programs, extensions, and payment plans are often easier to access before the account is seriously past due.",
+              },
+              {
+                icon: "fileText",
+                title: "Document every call",
+                description:
+                  "Write down who you spoke with, the date, department, phone number, confirmation number, what they said, and what you agreed to do next.",
+              },
+            ]}
+          />
 
+          <ScriptBox
+            title="Hardship call script"
+            tone="neutral"
+            context="Use this for landlords, mortgage servicers, utilities, creditors, hospitals, and other billing offices."
+            script={`Hello, my name is [Name]. My household is going through a legal emergency and our income or expenses have changed.
+
+We want to stay in good standing. Can you tell me what hardship options, payment plans, budget billing, extensions, or assistance programs are available?
+
+What documentation do you need, what deadline matters, and can you send the agreement or instructions in writing?`}
+          />
+
+          <DocumentPacket
+            title="Start a money crisis folder"
+            intro={
+              <p>
+                This folder is not busywork. It helps you apply for help,
+                negotiate payment plans, correct mistakes, and prove what was
+                agreed to later.
+              </p>
+            }
+            categories={[
+              {
+                title: "Bills and notices",
+                items: [
+                  "Rent or mortgage statements, lease, foreclosure or eviction notices, and payment agreements.",
+                  "Utility bills, shutoff notices, budget billing offers, and energy assistance paperwork.",
+                  "Phone, internet, transportation, insurance, medical, tax, and child-support notices.",
+                ],
+              },
+              {
+                title: "Income and hardship proof",
+                items: [
+                  "Pay stubs, unemployment paperwork, benefit letters, jail or incarceration documentation if relevant, and proof of reduced income.",
+                  "Receipts for court-related travel, phone calls, commissary support, legal fees, and other case-related costs.",
+                ],
+              },
+              {
+                title: "Call and agreement records",
+                items: [
+                  "Names, dates, departments, phone numbers, confirmation numbers, and exact instructions from every important call.",
+                  "Copies of emails, letters, payment-plan terms, hardship approvals, denial notices, and appeal deadlines.",
+                ],
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet access is limited"
+            items={[
+              "Use a paper notebook or envelope system for bills, notices, and call notes.",
+              "Ask agencies to mail forms or read the required documents over the phone.",
+              "Use a public library, legal aid office, trusted helper, faith community, or reentry nonprofit to print forms when needed.",
+              "Write down names, dates, departments, phone numbers, and confirmation numbers immediately after each call.",
+              "Ask whether a phone application, mailed application, or in-person appointment is available.",
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="basic-needs"
+          number="3"
+          title="Stabilize Housing, Utilities, Food, Phone, and Transportation"
+          subtitle="Financial shock often hits several systems at once. Start with the essentials, then move outward."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Financial shock often hits several systems at once. A legal bill
+              appears. Income drops. A caregiver misses work. Transportation
+              costs rise. Food costs rise. Phone costs rise. The family may be
+              afraid to tell anyone what is happening.
+            </p>
+
+            <p>
+              Start with the essentials, then move outward. For each essential
+              bill, ask what hardship option exists, what proof is needed, what
+              deadline controls, and whether the answer can be put in writing.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Where to start"
+            variant="rows"
+            columns={1}
+            tone="info"
+            items={[
+              {
+                icon: "housing",
+                title: "Housing",
+                description: (
+                  <>
+                    Call your landlord or mortgage servicer before the situation
+                    becomes a crisis. Ask for a payment plan, smaller weekly
+                    payments, temporary forbearance, hardship options, or a
+                    written explanation of what happens if you cannot pay the
+                    full amount on time. If you own your home or are behind on a
+                    mortgage, a HUD-approved housing counselor can help you
+                    understand options.
+                  </>
+                ),
+              },
+              {
+                icon: "utilities",
+                title: "Utilities",
+                description: (
+                  <>
+                    Ask about budget billing, shutoff protections, arrears
+                    management, medical necessity forms, winter protections, and
+                    energy assistance such as LIHEAP. If you do not know where
+                    to start, 211 can help connect you to local resources.
+                  </>
+                ),
+              },
+              {
+                icon: "food",
+                title: "Food",
+                description: (
+                  <>
+                    Use food banks early. Apply for SNAP or other food benefits
+                    as soon as you know income has changed. Waiting until the
+                    pantry is empty makes every other decision harder.
+                  </>
+                ),
+              },
+              {
+                icon: "wifi",
+                title: "Phone and internet",
+                description: (
+                  <>
+                    Phone access may be essential for court reminders, lawyer
+                    calls, school, work, benefits, medical care, and family
+                    coordination. Ask your provider about hardship, prepaid, or
+                    low-income options. Check whether Lifeline support is
+                    available.
+                  </>
+                ),
+              },
+              {
+                icon: "transportation",
+                title: "Transportation",
+                description: (
+                  <>
+                    Court, treatment, legal meetings, child care, work, and
+                    benefits appointments often depend on transportation. Ask
+                    local nonprofits, 211, public transit agencies, churches,
+                    reentry groups, or legal aid offices whether bus passes, gas
+                    cards, or transportation vouchers exist in your area.
+                  </>
+                ),
+              },
+            ]}
+          />
+
+          <ResourceLinkGrid
+            title="Basic-needs resources"
+            description="Use official or established resource finders first, then verify local eligibility and deadlines."
+            resources={[
+              {
+                label: "HUD-approved housing counselor finder",
+                href: sourceLinks.cfpbHousingCounselor,
+                badge: "Official",
+                description:
+                  "Find HUD-approved housing counselors for mortgage, foreclosure, rental, and credit issues.",
+              },
+              {
+                label: "USAGov rental assistance",
+                href: sourceLinks.usaGovRentHelp,
+                badge: "Official",
+                description:
+                  "Government overview of rental assistance, vouchers, subsidized housing, and public housing.",
+              },
+              {
+                label: "USAGov energy-bill help",
+                href: sourceLinks.energyHelp,
+                badge: "Official",
+                description:
+                  "Plain-language LIHEAP and weatherization guidance, including how to find state help.",
+              },
+              {
+                label: "211 local resource finder",
+                href: sourceLinks.unitedWay211,
+                badge: "Resource finder",
+                description:
+                  "Connects people to local help with housing, utilities, food, health, and other urgent needs.",
+              },
+              {
+                label: "Feeding America food bank locator",
+                href: sourceLinks.feedingAmerica,
+                badge: "Food",
+                description:
+                  "Find a local food bank or pantry in the Feeding America network.",
+              },
+              {
+                label: "USAGov SNAP information",
+                href: sourceLinks.snapUsaGov,
+                badge: "Official",
+                description:
+                  "Plain-language federal overview of SNAP benefits and how to apply through your state.",
+              },
+              {
+                label: "Lifeline phone and internet support",
+                href: sourceLinks.lifeline,
+                badge: "Official program",
+                description:
+                  "Federal program information for discounted phone or internet service for eligible households.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="legal-medical-tax"
+          number="4"
+          title="Handle Legal Costs, Medical Bills, and Taxes Without Guessing"
+          subtitle="Ask clear questions early and get important terms in writing."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Legal emergencies often create new costs at the exact moment a
+              household has less income. The safest approach is to ask clear
+              questions early and avoid vague arrangements that nobody can
+              remember later.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Costs that need written answers"
+            variant="cards"
+            columns={2}
+            tone="legal"
+            items={[
+              {
+                icon: "legal",
+                title: "Legal costs",
+                description:
+                  "Ask for the retainer, scope of work, hourly or flat-fee terms, billing cadence, refund rules for unused retainers, itemized invoices, and whether a monthly cap is possible.",
+              },
+              {
+                icon: "plan",
+                title: "Case budget with milestones",
+                description:
+                  "Ask counsel for a case budget with milestones and decision points. It can reduce surprise invoices and help the family understand when another payment discussion may be needed.",
+              },
+              {
+                icon: "hospital",
+                title: "Medical bills",
+                description:
+                  "Call the billing office, ask for an itemized bill, ask about charity care or financial assistance, and request a no-interest payment plan if needed.",
+              },
+              {
+                icon: "tax",
+                title: "Taxes",
+                description:
+                  "If taxes are owed, check balances, payment plans, low-income tax clinics, free tax preparation, and whether a qualified tax professional can help.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Criminal defense and civil legal help are different systems">
+            <p>
+              If the case is federal and the accused person cannot afford
+              counsel, ask about eligibility for appointed counsel under the
+              Criminal Justice Act. For civil legal issues connected to the
+              crisis — housing, benefits, debt, family law, employment, consumer
+              issues — legal aid or limited pro bono advice may help.
+            </p>
+          </GuideCallout>
+
+          <ResourceLinkGrid
+            title="Legal, medical, and tax resources"
+            resources={[
+              {
+                label: "Legal Services Corporation legal-aid finder",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Civil legal aid",
+                description:
+                  "Find LSC-funded legal aid organizations for civil legal problems such as housing, benefits, debt, family law, and consumer issues.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                badge: "Civil Q&A",
+                description:
+                  "Online civil legal question-and-answer clinic for eligible users in participating states.",
+              },
+              {
+                label: "Federal Defender Services",
+                href: sourceLinks.federalDefenders,
+                badge: "Federal criminal",
+                description:
+                  "Federal defender and CJA-related resource hub for eligible federal criminal cases.",
+              },
+              {
+                label: "IRS nonprofit hospital financial-assistance policy rules",
+                href: sourceLinks.irs501r,
+                badge: "Medical bills",
+                description:
+                  "IRS information on financial-assistance policy requirements for tax-exempt hospitals.",
+              },
+              {
+                label: "CMS medical bill rights",
+                href: sourceLinks.cmsMedicalBillRights,
+                badge: "Medical bills",
+                description:
+                  "Federal information about medical billing rights and protections, including surprise billing protections.",
+              },
+              {
+                label: "IRS payments",
+                href: sourceLinks.irsPayments,
+                badge: "Taxes",
+                description:
+                  "Official IRS payment and payment-plan information.",
+              },
+              {
+                label: "Taxpayer Advocate Service",
+                href: sourceLinks.taxpayerAdvocate,
+                badge: "Taxes",
+                description:
+                  "Independent organization within the IRS that helps taxpayers with tax problems.",
+              },
+              {
+                label: "Low Income Taxpayer Clinics",
+                href: sourceLinks.lowIncomeTaxpayerClinics,
+                badge: "Taxes",
+                description:
+                  "IRS directory and information for clinics that may help eligible taxpayers.",
+              },
+              {
+                label: "VITA/TCE free tax preparation",
+                href: sourceLinks.vitaTce,
+                badge: "Taxes",
+                description:
+                  "Free tax-return preparation information for qualifying taxpayers.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="credit-debt"
+          number="5"
+          title="Protect Credit and Avoid Debt Traps"
+          subtitle="Credit damage can follow the family long after the first emergency passes."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Credit damage can make reentry, housing, transportation,
+              employment, and family stability harder long after the immediate
+              emergency has passed. You may not be able to protect everything,
+              but you can reduce preventable harm.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Credit-protection moves"
+            variant="cards"
+            columns={2}
+            tone="warning"
+            items={[
+              {
+                icon: "credit",
+                title: "Pull free credit reports",
+                description:
+                  "Use AnnualCreditReport.com to review reports and dispute errors when you find them.",
+              },
+              {
+                icon: "shield",
+                title: "Consider a credit freeze or fraud alert",
+                description:
+                  "A freeze or fraud alert may help if identity theft, account misuse, or family financial conflict is a concern.",
+              },
+              {
+                icon: "warning",
+                title: "Avoid high-cost debt traps",
+                description:
+                  "Be careful with payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
+              },
+              {
+                icon: "bank",
+                title: "Ask about safer small-dollar options",
+                description:
+                  "Local credit unions may offer lower-cost alternatives, including Payday Alternative Loans where available.",
+              },
+              {
+                icon: "wallet",
+                title: "Look for low-fee bank accounts",
+                description:
+                  "Bank On certified accounts may help if banking access, overdraft history, or account fees are a barrier.",
+              },
+            ]}
+          />
+
+          <CommonMistakes
+            title="Common money mistakes during a legal crisis"
+            mistakes={[
+              {
+                mistake: "Paying the loudest collector before protecting housing, food, utilities, phone access, or court-related stability.",
+                whyItMatters:
+                  "Pressure does not always equal priority. A loud bill may be less urgent than a quiet shutoff, court, or housing deadline.",
+                betterMove:
+                  "Star essential bills first, then call other creditors to ask about hardship options.",
+              },
+              {
+                mistake: "Letting verbal agreements stay verbal.",
+                whyItMatters:
+                  "A phone promise may be hard to prove later if the account goes to collections or the office changes staff.",
+                betterMove:
+                  "Ask for written confirmation, save the name and department, and write down the date and confirmation number.",
+              },
+              {
+                mistake: "Borrowing from high-cost lenders to cover every bill at once.",
+                whyItMatters:
+                  "High-cost debt can create a second emergency that lasts longer than the original bill.",
+                betterMove:
+                  "Ask about hardship plans, public benefits, legal aid, credit-union options, and local assistance first.",
+              },
+            ]}
+          />
+
+          <ResourceLinkGrid
+            title="Credit and safer-banking resources"
+            resources={[
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                badge: "Credit reports",
+                description:
+                  "Official site authorized by federal law for free credit reports from the major credit bureaus.",
+              },
+              {
+                label: "FTC credit freezes and fraud alerts",
+                href: sourceLinks.ftcCreditFreeze,
+                badge: "Official",
+                description:
+                  "FTC guidance on credit freezes, fraud alerts, and when each may help.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                badge: "Official",
+                description:
+                  "FTC identity-theft reporting and recovery-plan site.",
+              },
+              {
+                label: "MyCreditUnion.gov payday alternative loans",
+                href: sourceLinks.myCreditUnionPals,
+                badge: "Official",
+                description:
+                  "NCUA consumer information on payday loans, Payday Alternative Loans, and safer borrowing questions.",
+              },
+              {
+                label: "Bank On",
+                href: sourceLinks.bankOn,
+                badge: "Banking access",
+                description:
+                  "Information about safe, affordable checking accounts and local Bank On coalitions.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+<GuideSectionHeader
+          id="child-support-family"
+          number="6"
+          title="Child Support, Family Coordination, and Verification"
+          subtitle="Some obligations do not change automatically just because income drops."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              If income drops because of arrest, jail, detention, job loss, or
+              court-related disruption, do not wait for child-support arrears to
+              pile up. Ask the local child-support office how to request a
+              review or modification and what documentation is required.
+            </p>
+
+            <p>
+              Do not assume the order changes automatically. Many systems
+              require a formal request before the amount can be reviewed. Ask
+              what date matters, what proof is needed, and whether the request
+              can be confirmed in writing.
+            </p>
+
+            <p>
+              Family members often try to solve everything at once. A steadier
+              approach is to centralize information, protect the caregiver’s
+              credit, avoid secret financial promises, and keep a shared
+              calendar of court, work, school, benefit, bill, and payment dates.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="family-financial-checklist"
+            title="Family financial checklist"
+            columns={2}
+            items={[
+              {
+                id: "landlord",
+                label: "Call landlord or mortgage servicer and ask for a hardship plan.",
+              },
+              {
+                id: "utilities",
+                label: "Contact utilities and ask about budget billing, shutoff protections, or energy help.",
+              },
+              {
+                id: "food",
+                label: "Secure food through food banks, SNAP, school meals, or local programs.",
+              },
+              {
+                id: "medical",
+                label: "Review medical bills, request itemized bills, and ask about charity care.",
+              },
+              {
+                id: "taxes",
+                label: "If taxes are owed, check IRS payment-plan options and tax-help programs.",
+              },
+              {
+                id: "credit",
+                label: "Pull credit reports, dispute errors, and consider a freeze if fraud is a concern.",
+              },
+              {
+                id: "debt",
+                label: "Avoid payday loans, title loans, and upfront-fee debt-relief promises.",
+              },
+              {
+                id: "child-support",
+                label: "Ask the child-support office how to request review or modification if income changed.",
+              },
+              {
+                id: "calendar",
+                label: "Keep a visible or shared calendar of court, work, school, benefit, bill, and payment dates.",
+              },
+              {
+                id: "agreements",
+                label: "Save every payment-plan agreement, hardship approval, denial notice, and appeal deadline.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            whoToAsk={
+              <span>
+                The office or person with actual authority: attorney, court
+                clerk, child-support office, benefit agency, landlord, mortgage
+                servicer, utility provider, hospital billing office, tax agency,
+                or supervised-release/probation officer if conditions may be
+                affected.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask the narrow question tied to the action you are about to take:
+                “Does this affect eligibility?”, “Can this order be reviewed?”,
+                “Will this payment plan stop collections?”, “Is this agreement
+                in writing?”, “Does my supervision condition allow this?”, or
+                “What deadline controls?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the date, staff name, department, phone number, written
+                policy, application confirmation, payment-plan terms, appeal
+                deadline, and any written instruction you receive.
+              </span>
+            }
+          />
+
+          <GuideCallout tone="family" icon="👪" title="Protect the person keeping the household stable">
+            <p>
+              Caregivers sometimes co-sign debt, open new credit, or make
+              promises they cannot afford because they are scared. Before taking
+              on new debt, ask what happens if the case lasts longer than
+              expected, income does not return quickly, or another bill arrives.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="7"
+          title="Resources and Next Steps"
+          subtitle="Use official sources when possible, then verify local rules, eligibility, and deadlines."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Main resource links"
+            description="Start with these resource finders and official pages, then confirm local eligibility and documentation rules."
+            resources={[
+              {
+                label: "CFPB HUD-approved housing counselor finder",
+                href: sourceLinks.cfpbHousingCounselor,
+                badge: "Official",
+                description:
+                  "Housing counselor lookup for mortgage, rental, foreclosure, and credit issues.",
+              },
+              {
+                label: "USAGov rental assistance",
+                href: sourceLinks.usaGovRentHelp,
+                badge: "Official",
+                description:
+                  "Federal plain-language guide to rental assistance and affordable housing programs.",
+              },
+              {
+                label: "USAGov energy-bill help",
+                href: sourceLinks.energyHelp,
+                badge: "Official",
+                description:
+                  "LIHEAP and utility-help guidance with state office lookup links.",
+              },
+              {
+                label: "211",
+                href: sourceLinks.unitedWay211,
+                badge: "Local help",
+                description:
+                  "Local referrals for housing, utilities, food, health, transportation, and crisis needs.",
+              },
+              {
+                label: "Feeding America food bank locator",
+                href: sourceLinks.feedingAmerica,
+                badge: "Food",
+                description:
+                  "National food-bank network locator.",
+              },
+              {
+                label: "USAGov SNAP information",
+                href: sourceLinks.snapUsaGov,
+                badge: "Official",
+                description:
+                  "Federal overview of SNAP and how to apply through your state.",
+              },
+              {
+                label: "Lifeline",
+                href: sourceLinks.lifeline,
+                badge: "Phone/internet",
+                description:
+                  "Federal phone and internet discount program information.",
+              },
+              {
+                label: "LSC legal aid finder",
+                href: sourceLinks.lscLegalHelp,
+                badge: "Legal aid",
+                description:
+                  "Find LSC-funded civil legal aid near you.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                badge: "Civil Q&A",
+                description:
+                  "Free civil legal question-and-answer help for eligible users in participating states.",
+              },
+              {
+                label: "IRS payments",
+                href: sourceLinks.irsPayments,
+                badge: "Taxes",
+                description:
+                  "IRS payment and installment-plan information.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                badge: "Credit",
+                description:
+                  "Official free credit-report site.",
+              },
+              {
+                label: "ACF child support modification FAQ",
+                href: sourceLinks.acfChildSupportOrder,
+                badge: "Child support",
+                description:
+                  "Federal child-support FAQ on income changes and possible order review.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "The SOLAR Family & Allies Guide",
+                description:
+                  "For families trying to support a loved one through arrest, court, incarceration, reentry, and long-term adjustment.",
+                to: "/resources/family-support-guide",
+              },
+              {
+                title: "Financial Planning Guide",
+                description:
+                  "For longer-term rebuilding after the immediate legal and household crisis stabilizes.",
+                to: "/resources/financial-planning-guide",
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "For planning housing, documents, health care, transportation, employment, and compliance after incarceration.",
+                to: "/resources/reentry-checklist",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources & verification"
+            note="These links are included because financial, benefit, housing, utility, medical, tax, credit, and child-support rules can change. Local eligibility, deadlines, and documentation requirements may vary by state, county, agency, provider, and court order."
+            sources={[
+              {
+                label: "Consumer Financial Protection Bureau — Find a housing counselor",
+                href: sourceLinks.cfpbHousingCounselor,
+                description:
+                  "HUD-approved housing counselor lookup and housing counseling information.",
+              },
+              {
+                label: "USAGov — Rental assistance",
+                href: sourceLinks.usaGovRentHelp,
+                description:
+                  "Federal plain-language rental assistance and affordable housing overview.",
+              },
+              {
+                label: "USAGov — Help with energy bills",
+                href: sourceLinks.energyHelp,
+                description:
+                  "LIHEAP, weatherization, and utility-disconnection help.",
+              },
+              {
+                label: "United Way 211",
+                href: sourceLinks.unitedWay211,
+                description:
+                  "Local referral network for housing, utilities, food, health, and crisis needs.",
+              },
+              {
+                label: "Feeding America — Find your local food bank",
+                href: sourceLinks.feedingAmerica,
+                description:
+                  "Food bank locator.",
+              },
+              {
+                label: "USAGov — SNAP food benefits",
+                href: sourceLinks.snapUsaGov,
+                description:
+                  "SNAP overview and state application routing.",
+              },
+              {
+                label: "Lifeline Support",
+                href: sourceLinks.lifeline,
+                description:
+                  "Federal phone and internet discount program information.",
+              },
+              {
+                label: "Legal Services Corporation — I Need Legal Help",
+                href: sourceLinks.lscLegalHelp,
+                description:
+                  "Civil legal aid finder.",
+              },
+              {
+                label: "ABA Free Legal Answers",
+                href: sourceLinks.abaFreeLegalAnswers,
+                description:
+                  "Civil legal Q&A program.",
+              },
+              {
+                label: "Federal Defender Services",
+                href: sourceLinks.federalDefenders,
+                description:
+                  "Federal defender and CJA-related resource hub.",
+              },
+              {
+                label: "IRS — Section 501(r)(4) hospital financial-assistance policy",
+                href: sourceLinks.irs501r,
+                description:
+                  "Tax-exempt hospital financial-assistance policy obligations.",
+              },
+              {
+                label: "CMS — Medical bill rights",
+                href: sourceLinks.cmsMedicalBillRights,
+                description:
+                  "Federal medical billing rights and protections.",
+              },
+              {
+                label: "IRS — Payments",
+                href: sourceLinks.irsPayments,
+                description:
+                  "IRS payment and payment-plan information.",
+              },
+              {
+                label: "Taxpayer Advocate Service",
+                href: sourceLinks.taxpayerAdvocate,
+                description:
+                  "Independent taxpayer assistance within the IRS.",
+              },
+              {
+                label: "IRS — Low Income Taxpayer Clinics",
+                href: sourceLinks.lowIncomeTaxpayerClinics,
+                description:
+                  "Clinic information and directory for eligible taxpayers.",
+              },
+              {
+                label: "IRS — VITA/TCE free tax preparation",
+                href: sourceLinks.vitaTce,
+                description:
+                  "Free tax return preparation information.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                description:
+                  "Official free credit-report site authorized by federal law.",
+              },
+              {
+                label: "FTC — Credit freezes and fraud alerts",
+                href: sourceLinks.ftcCreditFreeze,
+                description:
+                  "Consumer guidance on freezes and fraud alerts.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                description:
+                  "FTC identity theft reporting and recovery-plan site.",
+              },
+              {
+                label: "MyCreditUnion.gov — Payday Alternative Loans",
+                href: sourceLinks.myCreditUnionPals,
+                description:
+                  "NCUA consumer guidance on payday loans and credit-union alternatives.",
+              },
+              {
+                label: "Bank On",
+                href: sourceLinks.bankOn,
+                description:
+                  "Safe and affordable bank-account access initiative.",
+              },
+              {
+                label: "ACF — Child support income-change FAQ",
+                href: sourceLinks.acfChildSupportOrder,
+                description:
+                  "Federal child-support FAQ on income changes and possible order review.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌤️" title="The next safer decision matters">
+            <p>
+              This season may be hard, but the whole burden does not have to be
+              solved in one day. Every phone call you make, every note you keep,
+              every agreement you get in writing, and every high-risk debt trap
+              you avoid is a brick in the foundation of your family’s stability.
+            </p>
+
+            <p>
+              Focus on essentials first. Keep communication open with creditors
+              and agencies. Protect the caregiver’s credit. Ask for help early.
+              Use official sources when possible. Get names, dates, and terms in
+              writing.
+            </p>
+
+            <p>
+              This is not about being perfect. It is about making the next safer
+              decision, then the next one.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
       </main>
     </div>
   );
