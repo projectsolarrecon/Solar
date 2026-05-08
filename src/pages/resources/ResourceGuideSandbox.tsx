@@ -17,10 +17,13 @@ import {
   VerifyBeforeActing,
   CommonMistakes,
   OverviewCards,
+  GuideIconList as GuideIconListBase,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
 } from "../../components/solar";
+
+const GuideIconList = GuideIconListBase as React.ComponentType<any>;
 
 const sourceLinks = {
   cfpbHousingCounselor: "https://www.consumerfinance.gov/find-a-housing-counselor/",
@@ -298,27 +301,69 @@ export default function ResourceGuideSandbox(): JSX.Element {
               not be able to solve the larger case, replace income, or rebuild
               savings right away. You can still reduce preventable damage.
             </p>
-
-            <ul>
-              <li>
-                Cancel extras: streaming services, gyms, subscriptions, delivery
-                memberships, apps, and automatic payments that are not essential.
-              </li>
-              <li>
-                Make a due-date map: what is due this week, what is due this
-                month, and what already has a late notice.
-              </li>
-              <li>
-                Call before you are late whenever possible. Hardship programs
-                are often easier to access before the account is seriously past
-                due.
-              </li>
-              <li>
-                Document every call. Write down who you spoke with, the date,
-                what they said, and what you agreed to do next.
-              </li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            items={[
+              {
+                icon: "pause",
+                iconName: "pause",
+                title:
+                  "Cancel extras: streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
+                label:
+                  "Cancel extras: streaming services, gyms, subscriptions, delivery memberships, apps, and automatic payments that are not essential.",
+                children: (
+                  <span>
+                    Cancel extras: streaming services, gyms, subscriptions, delivery
+                    memberships, apps, and automatic payments that are not essential.
+                  </span>
+                ),
+              },
+              {
+                icon: "calendar",
+                iconName: "calendar",
+                title:
+                  "Make a due-date map: what is due this week, what is due this month, and what already has a late notice.",
+                label:
+                  "Make a due-date map: what is due this week, what is due this month, and what already has a late notice.",
+                children: (
+                  <span>
+                    Make a due-date map: what is due this week, what is due this
+                    month, and what already has a late notice.
+                  </span>
+                ),
+              },
+              {
+                icon: "phone",
+                iconName: "phone",
+                title:
+                  "Call before you are late whenever possible. Hardship programs are often easier to access before the account is seriously past due.",
+                label:
+                  "Call before you are late whenever possible. Hardship programs are often easier to access before the account is seriously past due.",
+                children: (
+                  <span>
+                    Call before you are late whenever possible. Hardship programs
+                    are often easier to access before the account is seriously past
+                    due.
+                  </span>
+                ),
+              },
+              {
+                icon: "file-text",
+                iconName: "file-text",
+                title:
+                  "Document every call. Write down who you spoke with, the date, what they said, and what you agreed to do next.",
+                label:
+                  "Document every call. Write down who you spoke with, the date, what they said, and what you agreed to do next.",
+                children: (
+                  <span>
+                    Document every call. Write down who you spoke with, the date,
+                    what they said, and what you agreed to do next.
+                  </span>
+                ),
+              },
+            ]}
+          />
 
           <ScriptBox
             title="Hardship or payment-plan call script"
@@ -692,30 +737,82 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
               emergency has passed. You may not be able to protect everything,
               but you can reduce preventable harm.
             </p>
-
-            <ul>
-              <li>
-                Pull free credit reports and dispute errors when you find them.
-              </li>
-              <li>
-                Consider a credit freeze or fraud alert if identity theft,
-                account misuse, or family financial conflict is a concern.
-              </li>
-              <li>
-                Avoid payday loans, title loans, and debt-relief promises that
-                require large upfront payments or pressure you to act
-                immediately.
-              </li>
-              <li>
-                Ask local credit unions about lower-cost alternatives, including
-                small-dollar loans or Payday Alternative Loans where available.
-              </li>
-              <li>
-                Look for low-fee checking accounts, including Bank On certified
-                accounts, if banking access is a barrier.
-              </li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            items={[
+              {
+                icon: "credit-card",
+                iconName: "credit-card",
+                title:
+                  "Pull free credit reports and dispute errors when you find them.",
+                label:
+                  "Pull free credit reports and dispute errors when you find them.",
+                children: (
+                  <span>
+                    Pull free credit reports and dispute errors when you find them.
+                  </span>
+                ),
+              },
+              {
+                icon: "shield",
+                iconName: "shield",
+                title:
+                  "Consider a credit freeze or fraud alert if identity theft, account misuse, or family financial conflict is a concern.",
+                label:
+                  "Consider a credit freeze or fraud alert if identity theft, account misuse, or family financial conflict is a concern.",
+                children: (
+                  <span>
+                    Consider a credit freeze or fraud alert if identity theft,
+                    account misuse, or family financial conflict is a concern.
+                  </span>
+                ),
+              },
+              {
+                icon: "warning",
+                iconName: "warning",
+                title:
+                  "Avoid payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
+                label:
+                  "Avoid payday loans, title loans, and debt-relief promises that require large upfront payments or pressure you to act immediately.",
+                children: (
+                  <span>
+                    Avoid payday loans, title loans, and debt-relief promises that
+                    require large upfront payments or pressure you to act
+                    immediately.
+                  </span>
+                ),
+              },
+              {
+                icon: "bank",
+                iconName: "bank",
+                title:
+                  "Ask local credit unions about lower-cost alternatives, including small-dollar loans or Payday Alternative Loans where available.",
+                label:
+                  "Ask local credit unions about lower-cost alternatives, including small-dollar loans or Payday Alternative Loans where available.",
+                children: (
+                  <span>
+                    Ask local credit unions about lower-cost alternatives, including
+                    small-dollar loans or Payday Alternative Loans where available.
+                  </span>
+                ),
+              },
+              {
+                icon: "wallet",
+                iconName: "wallet",
+                title:
+                  "Look for low-fee checking accounts, including Bank On certified accounts, if banking access is a barrier.",
+                label:
+                  "Look for low-fee checking accounts, including Bank On certified accounts, if banking access is a barrier.",
+                children: (
+                  <span>
+                    Look for low-fee checking accounts, including Bank On certified
+                    accounts, if banking access is a barrier.
+                  </span>
+                ),
+              },
+            ]}
+          />
 
           <CommonMistakes
             title="Common financial mistakes during a case"
@@ -799,6 +896,7 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
             ]}
           />
         </GuideSectionCard>
+
 <GuideSectionHeader
           id="child-support-family"
           number="6"
@@ -1151,3 +1249,4 @@ I am not challenging the fee. I am trying to avoid confusion and plan around the
     </div>
   );
 }
+  
