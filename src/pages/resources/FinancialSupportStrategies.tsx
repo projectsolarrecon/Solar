@@ -200,7 +200,7 @@ export default function FinancialSupportStrategies(): JSX.Element {
               eyebrow: "Stage 2",
               title: "Stabilize the basics",
               icon: "🏠",
-              tone: "family",
+              tone: "warning",
               description:
                 "Work through housing, utilities, food, phone, transportation, legal costs, medical bills, taxes, and child support.",
             },
