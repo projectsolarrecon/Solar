@@ -10,6 +10,16 @@ export { default as TOC } from "./TOC";
 export { default as SourcesOffline } from "./SourcesOffline";
 
 export {
+  IconList,
+  IconList as GuideIconList,
+  iconMap,
+  type IconListIconName,
+  type IconListItem,
+  type IconListTone,
+  type IconListVariant,
+} from "../common/IconList";
+
+export {
   SectionHeader as GuideSectionHeader,
   SectionCard as GuideSectionCard,
   GuideProse,
