@@ -5,6 +5,7 @@ import ShareBar from "../../components/solar/ShareBar";
 import {
   GuideSectionHeader,
   GuideSectionCard,
+  GuideProse,
   GuideCallout,
   GuideIntro,
   SoftDivider,
@@ -127,22 +128,24 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
-          <p className="text-slate-700 leading-relaxed">
-            After an arrest, families often need answers right away. A spouse may
-            feel desperate for an explanation. Parents may want to ask what
-            happened. The accused person may want to defend themselves, apologize,
-            reassure people, correct misunderstandings, or be understood before
-            everyone forms an opinion.
-          </p>
+          <GuideProse>
+            <p>
+              After an arrest, families often need answers right away. A spouse may
+              feel desperate for an explanation. Parents may want to ask what
+              happened. The accused person may want to defend themselves, apologize,
+              reassure people, correct misunderstandings, or be understood before
+              everyone forms an opinion.
+            </p>
 
-          <p className="mt-4 text-slate-700 leading-relaxed">
-            Those feelings are real. But ordinary jail and prison calls,
-            messages, mail, and video visits are dangerous places to process the
-            case — especially in sex-offense-related cases where allegations may
-            involve sexual conduct, minors, victim-related restrictions,
-            no-contact rules, treatment restrictions, family conflict, or intense
-            pressure to explain.
-          </p>
+            <p>
+              Those feelings are real. But ordinary jail and prison calls,
+              messages, mail, and video visits are dangerous places to process the
+              case — especially in sex-offense-related cases where allegations may
+              involve sexual conduct, minors, victim-related restrictions,
+              no-contact rules, treatment restrictions, family conflict, or intense
+              pressure to explain.
+            </p>
+          </GuideProse>
 
           <GuideCallout
             tone="legal"
@@ -366,80 +369,82 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
-          <div className="space-y-5 text-base leading-relaxed [&_p]:!text-base [&_p]:!leading-relaxed [&_li]:!text-base [&_li]:!leading-relaxed [&_span]:!text-base">
-            <p className="text-slate-700">
+          <GuideProse>
+            <p>
               Mail is often the most durable form of connection because it gives
               the incarcerated person something they can reread. It can also be
               slow, screened, rejected, copied, scanned, returned, or delayed. A
               small mistake in format or content can create weeks of confusion.
             </p>
+          </GuideProse>
 
-            <GuideChecklist
-              id="mail-prep"
-              title="Before sending mail"
-              columns={1}
-              items={[
-                {
-                  id: "correct-address",
-                  label:
-                    "Confirm the person’s full committed name, register number or facility ID, housing unit if required, and the exact facility mailing address.",
-                },
-                {
-                  id: "facility-rules",
-                  label:
-                    "Check the facility’s current rules for envelopes, paper, cards, photos, stickers, drawings, printouts, books, magazines, publications, and packages.",
-                },
-                {
-                  id: "no-extra-items",
-                  label:
-                    "Do not include stamps, cash, laminated items, Polaroids, glitter, perfume, labels, unknown printouts, or extra objects unless the written rule clearly allows them.",
-                },
-                {
-                  id: "publication-policy",
-                  label:
-                    "For books or magazines, verify whether they must come directly from a publisher, bookstore, approved vendor, or facility-approved source.",
-                },
-                {
-                  id: "save-copy",
-                  label:
-                    "For important letters, keep a photo or copy of what you sent and note the date mailed.",
-                },
-                {
-                  id: "rejection-notice",
-                  label:
-                    "If mail is rejected, save the notice and ask what rule was applied before sending the same item again.",
-                },
-              ]}
-            />
+          <GuideChecklist
+            id="mail-prep"
+            title="Before sending mail"
+            columns={1}
+            items={[
+              {
+                id: "correct-address",
+                label:
+                  "Confirm the person’s full committed name, register number or facility ID, housing unit if required, and the exact facility mailing address.",
+              },
+              {
+                id: "facility-rules",
+                label:
+                  "Check the facility’s current rules for envelopes, paper, cards, photos, stickers, drawings, printouts, books, magazines, publications, and packages.",
+              },
+              {
+                id: "no-extra-items",
+                label:
+                  "Do not include stamps, cash, laminated items, Polaroids, glitter, perfume, labels, unknown printouts, or extra objects unless the written rule clearly allows them.",
+              },
+              {
+                id: "publication-policy",
+                label:
+                  "For books or magazines, verify whether they must come directly from a publisher, bookstore, approved vendor, or facility-approved source.",
+              },
+              {
+                id: "save-copy",
+                label:
+                  "For important letters, keep a photo or copy of what you sent and note the date mailed.",
+              },
+              {
+                id: "rejection-notice",
+                label:
+                  "If mail is rejected, save the notice and ask what rule was applied before sending the same item again.",
+              },
+            ]}
+          />
 
-            <GuideCallout tone="warning" icon="⚠️" title="Rejected mail is not always personal">
-              <p>
-                A rejected letter or delayed package may reflect a formatting
-                mistake, a changed mail policy, a facility vendor rule, staff
-                backlog, a transfer, or a content concern. Treat it as something
-                to document and clarify, not as proof that the relationship is
-                failing.
-              </p>
-            </GuideCallout>
+          <GuideCallout tone="warning" icon="⚠️" title="Rejected mail is not always personal">
+            <p>
+              A rejected letter or delayed package may reflect a formatting
+              mistake, a changed mail policy, a facility vendor rule, staff
+              backlog, a transfer, or a content concern. Treat it as something
+              to document and clarify, not as proof that the relationship is
+              failing.
+            </p>
+          </GuideCallout>
 
-            <SoftDivider />
+          <SoftDivider />
 
-            <p className="text-slate-700">
+          <GuideProse>
+            <p>
               Legal mail is different from ordinary mail, but it is not magic. It
               usually requires clear attorney identification, correct markings, and
               facility-specific handling. If legal mail is not marked or handled
               correctly, it may be treated as general correspondence.
             </p>
+          </GuideProse>
 
-            <GuideCallout tone="legal" icon="📬" title="Legal mail needs correct handling">
-              <p>
-                Do not put legal strategy, case facts, admissions, witness issues,
-                or sensitive attorney communications in ordinary mail or ordinary
-                electronic messages. Ask the attorney how legal communication
-                should happen and verify the facility’s special-mail procedure.
-              </p>
-            </GuideCallout>
-          </div>
+          <GuideCallout tone="legal" icon="📬" title="Legal mail needs correct handling">
+            <p>
+              Do not put legal strategy, case facts, admissions, witness issues,
+              or sensitive attorney communications in ordinary mail or ordinary
+              electronic messages. Ask the attorney how legal communication
+              should happen and verify the facility’s special-mail procedure.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
@@ -450,71 +455,71 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
-          <div className="space-y-5 text-base leading-relaxed [&_p]:!text-base [&_p]:!leading-relaxed [&_li]:!text-base [&_li]:!leading-relaxed [&_span]:!text-base">
-            <p className="text-slate-700">
+          <GuideProse>
+            <p>
               Phone calls, electronic messaging, tablets, and video visits can help
               families stay connected, but they are built inside correctional
               systems. They may require approved contacts, account funding, vendor
               registration, identity checks, facility approval, message screening,
               time limits, and behavior rules.
             </p>
+          </GuideProse>
 
-            <GuideCallout tone="privacy" icon="🎙️" title="Assume review is possible">
-              <p>
-                People often think monitoring only matters if someone is doing
-                something obviously wrong. In practice, tone, context, jokes,
-                frustration, coded language, relationship conflict, and emotional
-                rehashing can all be misunderstood later.
-              </p>
-            </GuideCallout>
+          <GuideCallout tone="privacy" icon="🎙️" title="Assume review is possible">
+            <p>
+              People often think monitoring only matters if someone is doing
+              something obviously wrong. In practice, tone, context, jokes,
+              frustration, coded language, relationship conflict, and emotional
+              rehashing can all be misunderstood later.
+            </p>
+          </GuideCallout>
 
-            <GuideChecklist
-              id="calls-messages-video"
-              title="Before relying on calls, messages, or video"
-              columns={1}
-              items={[
-                {
-                  id: "approved-contact",
-                  label:
-                    "Confirm whether the incarcerated person must add you to an approved contact list before calls, messages, or video can work.",
-                },
-                {
-                  id: "vendor",
-                  label:
-                    "Verify the correct vendor or platform for that specific facility; do not assume the same provider is used everywhere.",
-                },
-                {
-                  id: "costs-limits",
-                  label:
-                    "Check costs, time limits, funding rules, blocked-number rules, refund policies, and whether messages can be delayed or rejected.",
-                },
-                {
-                  id: "attorney-separate",
-                  label:
-                    "Keep attorney communication separate from ordinary family calls or messages unless the attorney specifically tells you otherwise.",
-                },
-                {
-                  id: "topic-boundaries",
-                  label:
-                    "Avoid discussing facts, allegations, witnesses, victims, minors, strategy, discipline, facility investigations, or anything that sounds like pressure or coaching.",
-                },
-                {
-                  id: "supportive-topics",
-                  label:
-                    "Use ordinary communication for support, stability, family updates, future goals, health, routines, and practical planning.",
-                },
-              ]}
-            />
+          <GuideChecklist
+            id="calls-messages-video"
+            title="Before relying on calls, messages, or video"
+            columns={1}
+            items={[
+              {
+                id: "approved-contact",
+                label:
+                  "Confirm whether the incarcerated person must add you to an approved contact list before calls, messages, or video can work.",
+              },
+              {
+                id: "vendor",
+                label:
+                  "Verify the correct vendor or platform for that specific facility; do not assume the same provider is used everywhere.",
+              },
+              {
+                id: "costs-limits",
+                label:
+                  "Check costs, time limits, funding rules, blocked-number rules, refund policies, and whether messages can be delayed or rejected.",
+              },
+              {
+                id: "attorney-separate",
+                label:
+                  "Keep attorney communication separate from ordinary family calls or messages unless the attorney specifically tells you otherwise.",
+              },
+              {
+                id: "topic-boundaries",
+                label:
+                  "Avoid discussing facts, allegations, witnesses, victims, minors, strategy, discipline, facility investigations, or anything that sounds like pressure or coaching.",
+              },
+              {
+                id: "supportive-topics",
+                label:
+                  "Use ordinary communication for support, stability, family updates, future goals, health, routines, and practical planning.",
+              },
+            ]}
+          />
 
-            <GuideCallout tone="family" icon="🤝" title="Support does not require risky details">
-              <p>
-                You do not have to choose between silence and risk. You can say,
-                “I care about you,” “I am keeping things steady here,” “Let’s talk
-                about daily life and next steps,” or “Please save legal details for
-                your attorney.”
-              </p>
-            </GuideCallout>
-          </div>
+          <GuideCallout tone="family" icon="🤝" title="Support does not require risky details">
+            <p>
+              You do not have to choose between silence and risk. You can say,
+              “I care about you,” “I am keeping things steady here,” “Let’s talk
+              about daily life and next steps,” or “Please save legal details for
+              your attorney.”
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
@@ -525,13 +530,15 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
-          <p className="text-slate-700 leading-relaxed">
-            Visiting rules vary by facility, custody level, housing unit,
-            schedule, staffing, discipline status, and security concerns. Even
-            when a general visiting policy exists, the local institution may have
-            its own visiting hours, dress code, approval process, visitor limits,
-            child visitor rules, and cancellation practices.
-          </p>
+          <GuideProse>
+            <p>
+              Visiting rules vary by facility, custody level, housing unit,
+              schedule, staffing, discipline status, and security concerns. Even
+              when a general visiting policy exists, the local institution may have
+              its own visiting hours, dress code, approval process, visitor limits,
+              child visitor rules, and cancellation practices.
+            </p>
+          </GuideProse>
 
           <GuideChecklist
             id="visit-prep"
