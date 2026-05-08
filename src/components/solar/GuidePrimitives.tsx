@@ -149,6 +149,22 @@ export function SectionCard({
   );
 }
 
+export function GuideProse({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`space-y-5 text-[15px] sm:text-base leading-relaxed text-slate-700 [&>p]:leading-relaxed [&>ul]:space-y-2 [&>ol]:space-y-2 [&>ul]:pl-6 [&>ol]:pl-6 [&>ul]:list-disc [&>ol]:list-decimal [&>li]:leading-relaxed ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export function Callout({
   title,
   children,
