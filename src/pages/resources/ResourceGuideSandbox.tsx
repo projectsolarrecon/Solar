@@ -9,312 +9,100 @@ import {
   GuideCallout,
   GuideIntro,
   SoftDivider,
-  OverviewCards,
+  QuickStartPanel,
   GuideChecklist,
-  GuideIconList,
+  ScriptBox,
   OfflineOptions,
+  DocumentPacket,
   VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
+  TimelineGuidanceGrid,
 } from "../../components/solar";
 
-const stateStages = [
+const sourceLinks = [
   {
-    id: "investigation",
-    number: "1",
-    title: "Investigation",
-    duration: "Timing varies widely",
-    icon: "🔎",
-    summary:
-      "State and local investigations may involve police departments, sheriff’s offices, child-protection agencies, state investigators, ICAC task forces, or prosecutors. Some people know they are under investigation; others first learn through a search, interview request, subpoena, warrant, arrest, or device seizure.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">📱</span>,
-        title: "Digital evidence may be central",
-        description:
-          "Sex-offense investigations may involve phones, computers, cloud accounts, social media, apps, images, messages, location data, or forensic review.",
-      },
-      {
-        icon: <span aria-hidden="true">🧭</span>,
-        title: "Your status can change",
-        description:
-          "A person may be treated as a witness, suspect, target, or potential defendant. Do not rely on informal labels without counsel.",
-      },
-      {
-        icon: <span aria-hidden="true">🚪</span>,
-        title: "Searches and interviews matter",
-        description:
-          "Consent, warrants, statements, and device access can shape the case. Get legal advice before speaking or agreeing to a search.",
-      },
-    ],
-    actors:
-      "Local police, sheriff’s office, state investigators, ICAC task force, child-protection agency, prosecutor, defense counsel, and sometimes federal partners.",
-    practicalMoves: [
-      "Contact a qualified state criminal defense attorney before speaking with investigators.",
-      "Do not consent to interviews, searches, device access, account access, or polygraphs without legal advice.",
-      "Save business cards, warrants, subpoenas, receipts, letters, phone numbers, and written instructions.",
-      "Do not post about the accusation, the investigation, the alleged victim, witnesses, police, or the family situation.",
-    ],
+    label: "Federal Rule of Appellate Procedure 4",
+    href: "https://www.law.cornell.edu/rules/frap/rule_4",
+    description:
+      "Readable rule text for federal appeal timing, including criminal notice-of-appeal timing and the prisoner mailbox rule.",
   },
   {
-    id: "arrest-booking-first-appearance",
-    number: "2",
-    title: "Arrest, Booking, and First Appearance",
-    duration: "Usually soon after arrest, but state law controls",
-    icon: "🏛️",
-    summary:
-      "After arrest or summons, the person may be booked, brought before a judge, advised of charges or rights, and considered for release, bond, bail, or detention. This stage can feel chaotic because family may have limited information while release conditions are being set quickly.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">🔐</span>,
-        title: "Release conditions can be immediate",
-        description:
-          "No-contact orders, stay-away orders, device limits, internet limits, travel limits, or child-contact restrictions may begin early.",
-      },
-      {
-        icon: <span aria-hidden="true">💵</span>,
-        title: "Bail and bond vary locally",
-        description:
-          "Some states use bail schedules, some use risk assessment, and some use different pretrial release systems.",
-      },
-      {
-        icon: <span aria-hidden="true">📋</span>,
-        title: "Written orders matter",
-        description:
-          "The exact wording of release, bond, or pretrial conditions controls what the person may and may not do.",
-      },
-    ],
-    actors:
-      "Jail or booking staff, magistrate or judge, prosecutor, defense counsel, pretrial services or bond office, and sometimes victim-witness staff.",
-    practicalMoves: [
-      "Confirm who represents the person before discussing case facts.",
-      "Get and save all bond, bail, release, no-contact, device, internet, travel, and reporting conditions.",
-      "Ask counsel before arranging contact with anyone connected to the case, including family members who may be witnesses.",
-      "Write down the next court date, the court location, the case number, and who has authority over release conditions.",
-    ],
+    label: "Federal Rules of Appellate Procedure — official PDF",
+    href: "https://www.uscourts.gov/sites/default/files/2025-02/federal-rules-of-appellate-procedure-dec-1-2024_0.pdf",
+    description:
+      "Official U.S. Courts rules PDF for federal appellate procedure verification.",
   },
   {
-    id: "charging-arraignment",
-    number: "3",
-    title: "Charging, Arraignment, and Early Case Settings",
-    duration: "Depends on state law, custody status, and local practice",
-    icon: "📄",
-    summary:
-      "The prosecutor decides what charges to file and how the case will proceed. Depending on the state, charges may begin by complaint, information, indictment, citation, or another charging document. Arraignment or an early court setting usually addresses the formal charge, plea entry, counsel, and future dates.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">⚖️</span>,
-        title: "Charge names are state-specific",
-        description:
-          "The same conduct may be labeled differently by state, and penalties can depend on age, relationship, force, consent definitions, images, devices, or prior history.",
-      },
-      {
-        icon: <span aria-hidden="true">🗓️</span>,
-        title: "Local calendars drive timing",
-        description:
-          "Court dates may depend on the county, judge, prosecutor, custody status, counsel availability, and local scheduling practice.",
-      },
-      {
-        icon: <span aria-hidden="true">🧾</span>,
-        title: "Conditions may be revisited",
-        description:
-          "Bond, no-contact, technology, residence, travel, and supervision conditions may be clarified or modified through the court.",
-      },
-    ],
-    actors:
-      "Prosecutor, judge or magistrate, court clerk, defense counsel, pretrial services or bond office, and sometimes victim-witness staff.",
-    practicalMoves: [
-      "Review the charging document with counsel and ask what each count means under that state’s law.",
-      "Ask counsel about possible mandatory penalties, registration consequences, supervision terms, and collateral consequences.",
-      "Save all charging documents, arraignment notices, written conditions, scheduling orders, and clerk instructions.",
-      "Do not rely on another state’s law, a different county’s practice, or a generic internet summary.",
-    ],
+    label: "U.S. Courts AO 435 Transcript Order",
+    href: "https://www.uscourts.gov/forms-rules/forms/transcript-order",
+    description:
+      "Official federal transcript order form page for ordering trial, hearing, and sentencing transcripts.",
   },
   {
-    id: "discovery-motions",
-    number: "4",
-    title: "Discovery and Pretrial Motions",
-    duration: "Often the longest phase",
-    icon: "🗂️",
-    summary:
-      "This is the evidence-review and litigation stage. Defense counsel receives discovery, investigates facts, considers experts or evaluations, and files motions when appropriate. In sex-offense cases, discovery may be sensitive, restricted, or subject to protective orders.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">🔒</span>,
-        title: "Discovery may be restricted",
-        description:
-          "Reports, images, videos, forensic data, interviews, or protected information may not be shareable with family.",
-      },
-      {
-        icon: <span aria-hidden="true">🔬</span>,
-        title: "Experts may matter",
-        description:
-          "Counsel may consider digital forensic review, psychological evaluation, medical evidence, or other expert issues depending on the case.",
-      },
-      {
-        icon: <span aria-hidden="true">📝</span>,
-        title: "Motions can shape the case",
-        description:
-          "Motions may address searches, statements, warrants, discovery disputes, evidence limits, experts, or trial issues.",
-      },
-    ],
-    actors:
-      "Defense counsel, prosecutor, judge, police or forensic examiners, expert witnesses, court staff, and sometimes treatment or evaluation providers.",
-    practicalMoves: [
-      "Ask counsel what discovery can be discussed, copied, stored, or shared.",
-      "Do not ask the person to describe sensitive discovery through jail calls, monitored messages, texts, or social media.",
-      "Give counsel organized records only in the way counsel requests.",
-      "Track motion deadlines, hearing dates, protective orders, and written court rulings.",
-    ],
+    label: "Supreme Court Guide for Prospective Indigent Petitioners",
+    href: "https://www.supremecourt.gov/casehand/IFPGuide2026.pdf",
+    description:
+      "Official Supreme Court self-represented guide, including certiorari timing basics.",
   },
   {
-    id: "plea-trial",
-    number: "5",
-    title: "Plea Negotiation or Trial",
-    duration: "Varies by court calendar and case posture",
-    icon: "⚖️",
-    summary:
-      "Many state cases resolve by plea agreement, while some proceed to bench trial or jury trial. In sex-offense cases, plea decisions often involve more than custody exposure; registration, treatment, supervision, housing, technology limits, appeal rights, and future relief eligibility may all matter.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">🤝</span>,
-        title: "Plea terms can carry long consequences",
-        description:
-          "A plea may affect registration, supervision, treatment, contact rules, housing, work, immigration, appeals, or future relief options.",
-      },
-      {
-        icon: <span aria-hidden="true">👥</span>,
-        title: "Trial is public and stressful",
-        description:
-          "Trials can involve sensitive testimony, exhibits, expert evidence, and arguments that are difficult for families to hear.",
-      },
-      {
-        icon: <span aria-hidden="true">🧭</span>,
-        title: "The choice belongs to the person charged",
-        description:
-          "Family can help ask questions and provide support, but should not pressure, promise, threaten, or decide for the person.",
-      },
-    ],
-    actors:
-      "Defense counsel, prosecutor, judge, jury if applicable, witnesses, victim-witness staff, court clerk, and court security.",
-    practicalMoves: [
-      "Ask counsel to explain plea, trial, sentencing, registration, supervision, appeal, and collateral-consequence risks together.",
-      "Do not pressure the person to accept or reject a plea.",
-      "Ask counsel whether any proposed plea affects registration duration, offense classification, treatment, supervision, or later relief.",
-      "If media or community attention is possible, ask counsel before anyone posts, speaks publicly, or responds to reporters.",
-    ],
+    label: "California Courts CR-415",
+    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415",
+    description:
+      "Official California petition form to ask a court to terminate a sex offender registration requirement.",
   },
   {
-    id: "sentencing",
-    number: "6",
-    title: "Presentence Investigation and Sentencing",
-    duration: "Usually after conviction; timing varies",
-    icon: "📘",
-    summary:
-      "After a plea or conviction, the court may order a presentence investigation, evaluation, psychosexual assessment, risk assessment, or treatment recommendation depending on state law and local practice. Sentencing can feel exposing because private history, harm, risk, mitigation, family impact, treatment, and punishment may be discussed in court.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">📋</span>,
-        title: "Reports may affect the outcome",
-        description:
-          "Presentence reports or evaluations can influence custody, probation, parole, treatment, registration, and conditions.",
-      },
-      {
-        icon: <span aria-hidden="true">⚖️</span>,
-        title: "Sentencing systems vary",
-        description:
-          "Some states use guidelines, scoring systems, mandatory minimums, judicial discretion, treatment tracks, or local practices.",
-      },
-      {
-        icon: <span aria-hidden="true">🧾</span>,
-        title: "Conditions should be saved",
-        description:
-          "Probation, treatment, internet, search, contact, travel, housing, work, and registration-related conditions should be kept in writing.",
-      },
-    ],
-    actors:
-      "Judge, probation or presentence investigator, prosecutor, defense counsel, treatment or evaluation provider, and court clerk.",
-    practicalMoves: [
-      "Ask counsel what information should and should not be shared during the presentence or evaluation process.",
-      "Send letters, treatment records, work records, family information, and mitigation materials only through counsel’s process.",
-      "Ask counsel to explain the sentence, credit rules, supervision terms, registration consequences, and appeal deadlines.",
-      "Save the judgment, sentencing order, probation conditions, treatment orders, no-contact orders, and reporting instructions.",
-    ],
+    label: "California Courts CR-415-INFO",
+    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415-INFO",
+    description:
+      "Official California information sheet explaining steps for a court to consider registry termination.",
   },
   {
-    id: "custody",
-    number: "7",
-    title: "Jail, Prison, or State Custody",
-    duration: "Depends on sentence and custody authority",
-    icon: "🏢",
-    summary:
-      "A state sentence may involve county jail, state prison, treatment placement, probation with jail time, or another custody arrangement. Custody can feel dehumanizing, especially at intake or transfer, but facilities still have rules and responsibilities around safety, medical care, classification, communication, and release processing.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">🏛️</span>,
-        title: "County and state custody differ",
-        description:
-          "County jail, state prison, and treatment placement may have different rules, contacts, property limits, visitation, and release procedures.",
-      },
-      {
-        icon: <span aria-hidden="true">📨</span>,
-        title: "Communication rules are facility-specific",
-        description:
-          "Mail, calls, tablets, email, books, photos, money, visits, and video visits depend on the facility’s policy.",
-      },
-      {
-        icon: <span aria-hidden="true">🧭</span>,
-        title: "Release planning is a handoff",
-        description:
-          "The process may shift from custody staff to probation, parole, community supervision, treatment, or a registration office.",
-      },
-    ],
-    actors:
-      "County jail, state Department of Corrections, facility staff, classification staff, probation, parole, court, and treatment providers.",
-    practicalMoves: [
-      "Save the sentencing order, commitment paperwork, facility name, booking or inmate number, and release instructions.",
-      "Check the specific facility’s rules before sending mail, money, books, photos, or visitation requests.",
-      "Ask which agency controls release timing, credits, transfer decisions, parole review, or post-release supervision.",
-      "Use SOLAR’s prison communication and reentry guides for custody communication and personal reentry planning.",
-    ],
+    label: "California Courts — how to ask to end registration",
+    href: "https://selfhelp.courts.ca.gov/clean-your-record/ask-PC290-relief",
+    description:
+      "Official California self-help page explaining basic filing steps and attachments for Penal Code 290 relief.",
+  },
+];
+
+const resourceLinks = [
+  {
+    label: "Federal appeal timing rule",
+    href: "https://www.law.cornell.edu/rules/frap/rule_4",
+    badge: "Federal rule",
+    description:
+      "Use this to verify federal appeal deadlines. State and agency deadlines may be different.",
   },
   {
-    id: "registration-supervision",
-    number: "8",
-    title: "Probation, Parole, Registration, and Local Handoffs",
-    duration: "Begins when the controlling rule says it begins",
-    icon: "🧾",
-    summary:
-      "After conviction or release, a person may have probation, parole, post-release supervision, treatment, monitoring, no-contact rules, and state or local registration duties. This stage can feel intrusive because ordinary choices may require permission, reporting, documentation, or in-person updates.",
-    concepts: [
-      {
-        icon: <span aria-hidden="true">🧑‍💼</span>,
-        title: "Supervision and registration are not the same",
-        description:
-          "Probation or parole may supervise behavior, while a local registration office may control reporting forms, deadlines, and receipts.",
-      },
-      {
-        icon: <span aria-hidden="true">📍</span>,
-        title: "Local office practice matters",
-        description:
-          "Registration may be handled by a sheriff, police department, state police, registry unit, or another office depending on the state.",
-      },
-      {
-        icon: <span aria-hidden="true">🔁</span>,
-        title: "Updates may be required",
-        description:
-          "Address, employment, school, vehicle, travel, internet identifier, or other updates may have deadlines under state law or conditions.",
-      },
-    ],
-    actors:
-      "Probation, parole, state DOC, local law enforcement, state registry office, treatment provider, court, and defense counsel for modification or relief questions.",
-    practicalMoves: [
-      "Get written supervision conditions and ask who approves travel, residence, employment, internet, contact, or treatment questions.",
-      "Verify registration deadline, location, required documents, update rules, travel rules, and receipt process with the registering authority.",
-      "Save receipts, appointment cards, forms, names, badge numbers, dates, and written instructions.",
-      "Ask counsel about modification, clarification, early termination, relief from registration, or appeal options before filing anything yourself.",
-    ],
+    label: "AO 435 Transcript Order",
+    href: "https://www.uscourts.gov/forms-rules/forms/transcript-order",
+    badge: "Official form",
+    description:
+      "Use this federal form page when transcripts are needed for an appeal record.",
+  },
+  {
+    label: "Supreme Court IFP guide",
+    href: "https://www.supremecourt.gov/casehand/IFPGuide2026.pdf",
+    badge: "Official guide",
+    description:
+      "For people considering a petition for certiorari without prepaying Supreme Court filing costs.",
+  },
+  {
+    label: "California CR-415 registry termination petition",
+    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415",
+    badge: "State example",
+    description:
+      "Example of a state-specific registration relief form. Your state may use a different process.",
+  },
+  {
+    label: "California CR-415-INFO",
+    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415-INFO",
+    badge: "State example",
+    description:
+      "Explains the California registration termination petition process in plain language.",
   },
 ];
 
@@ -324,9 +112,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="State Sex-Crime Process Guide | The SOLAR Project"
-        description="A plain-language roadmap to the state sex-crime process, from investigation through court, custody, supervision, and registration-related local handoffs."
-        keywords="state sex-crime process, state criminal court, sex offense case, probation, parole, registry, state court, SOLAR Project"
+        title="SOLAR Appeals Guide | The SOLAR Project"
+        description="A calm, practical guide for people charged with or convicted of sex offenses, registrants, and families trying to protect appeal deadlines, preserve records, and understand legal review options."
+        keywords="sex offense appeal guide, registry appeal, supervision condition appeal, notice of appeal, post-conviction relief, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -343,11 +131,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            State Sex-Crime Process Guide
+            SOLAR Appeals Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical roadmap for understanding how state and local systems may be involved from investigation through court, custody, supervision, and registration.
+            A step-by-step hand-holder for people charged with or convicted of
+            sex offenses, registrants, and families trying to challenge a ruling,
+            protect deadlines, preserve records, or understand what review path
+            may still exist.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -376,635 +167,615 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            State sex-crime cases share a recognizable shape, but the answers that control your situation usually come from the specific state, county, court, supervision agency, registry office, and written conditions involved.
+            If you are reading this, something may have just happened that feels
+            frightening, unfair, confusing, or final: a conviction, sentence,
+            plea-related ruling, supervision condition, registry classification,
+            parole decision, civil commitment order, or agency notice.
           </p>
+
           <p>
-            This guide is not legal advice and cannot cover every state. Its job is to help you understand the common process, know what can vary, ask better local questions, save the right paperwork, and support a loved one without creating new risk.
+            A bad ruling does not always mean there are no options. But appeal
+            and review deadlines can be short, technical, and unforgiving. You do
+            not have to solve the whole case today. Your first job is to protect
+            deadlines, save proof, and find out exactly what was entered, when it
+            was entered, and who has authority to review it.
           </p>
         </GuideIntro>
 
-        <GuideCallout tone="legal" icon="⚖️" title="Use defense counsel as the center point">
-          <p>
-            In an active state case, the safest first assumption is simple: do not speak with investigators, contact witnesses, explain the case publicly, or make case decisions without defense counsel. Family and supporters can help most by documenting, organizing, and asking counsel what support is safe.
-          </p>
-        </GuideCallout>
+        <QuickStartPanel
+          title="If a ruling just landed"
+          subtitle="Use this first when a conviction, sentence, condition, registry notice, or agency decision just came in."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Write down the decision date, the docket entry date if there is
+              one, and the date you received notice. These may not be the same.
+            </span>,
+            <span>
+              Ask the clerk, lawyer, public defender, or agency what deadline
+              applies and where the notice, petition, or review request must be
+              filed.
+            </span>,
+            <span>
+              Save proof of everything: envelopes, mail logs, receipts, stamped
+              copies, screenshots, confirmation numbers, and the name of anyone
+              who gave instructions.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Ask whether a notice of appeal, request for appointed counsel, fee
+              waiver, transcript order, or administrative review request is
+              needed immediately.
+            </span>,
+            <span>
+              Start one paper or digital appeal folder with the judgment, order,
+              registry notice, supervision condition, docket sheet, and all
+              mailing proof.
+            </span>,
+            <span>
+              If you are incarcerated, use legal-mail procedures and ask for
+              proof of the date you deposited the filing.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              This guide is educational, not legal advice. For your own case,
+              rely on your lawyer or the court or agency with authority over the
+              decision. When in doubt, verify the deadline before doing anything
+              else.
+            </span>
+          }
+        />
 
         <OverviewCards
-          columns={4}
+          columns={3}
           cards={[
             {
-              eyebrow: "Phase 1",
-              title: "Investigation and arrest",
-              icon: "🔎",
+              eyebrow: "Path 1",
+              title: "Direct appeal",
+              icon: "⚖️",
               tone: "legal",
               description:
-                "Police, sheriffs, ICAC task forces, or state investigators may gather evidence before or after arrest.",
+                "A higher court reviews legal errors from a conviction, sentence, suppression ruling, trial ruling, or other appealable order.",
             },
             {
-              eyebrow: "Phase 2",
-              title: "Charging and early court",
-              icon: "🏛️",
+              eyebrow: "Path 2",
+              title: "Post-conviction relief",
+              icon: "🧾",
               tone: "warning",
               description:
-                "The court addresses charges, counsel, release, bond, no-contact orders, and early deadlines.",
+                "A later challenge may raise issues such as constitutional violations, ineffective assistance, newly discovered evidence, or other claims allowed by law.",
             },
             {
-              eyebrow: "Phase 3",
-              title: "Discovery, plea, or trial",
+              eyebrow: "Path 3",
+              title: "Registry, supervision, or agency review",
               icon: "🗂️",
-              tone: "info",
-              description:
-                "Evidence review, motions, negotiations, and trial decisions shape the case and its consequences.",
-            },
-            {
-              eyebrow: "Phase 4",
-              title: "Sentencing and handoffs",
-              icon: "🧾",
               tone: "reentry",
               description:
-                "Custody, probation, parole, treatment, supervision, and registration often involve different authorities.",
+                "Some decisions are challenged through petitions, agency review, hearings, motions to modify conditions, or state-specific registration relief processes.",
             },
           ]}
         />
 
-        <GuideSectionHeader
-          id="state-variance"
+        <GuideCallout tone="legal" icon="⚠️" title="Deadlines come first">
+          <p>
+            Federal criminal appeals often use a 14-day notice-of-appeal rule,
+            but that is not the deadline for every case, state, agency, registry
+            petition, civil commitment order, probation decision, or supervision
+            condition. Treat every decision as having its own deadline until you
+            verify otherwise.
+          </p>
+        </GuideCallout>
+<GuideSectionHeader
+          id="what-appeals-are"
           number="1"
-          title="Why state cases vary so much"
-          subtitle="The process has a common shape, but the controlling answer is usually local."
+          title="What appeals really are"
+          subtitle="Appeals are not just for trial verdicts. They are review paths for decisions that may be legally wrong, unfair, unsupported, or entered through the wrong process."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A state sex-crime case is not one national system. State statutes define most charges and penalties. County prosecutors decide how many cases are charged. Local judges and court calendars affect timing. Pretrial services, bond offices, probation, parole, state corrections, treatment providers, and registry offices may each control different pieces.
+              In a criminal case, an appeal usually means asking a higher court
+              to review whether the trial court made legal errors that affected
+              the outcome. That may involve a conviction, sentence, suppression
+              ruling, plea issue, probation condition, restitution order, or
+              another order the law allows someone to challenge.
             </p>
 
             <p>
-              That does not mean everything is unknowable. It means the safest approach is to use the roadmap below, then verify the specific step with the person or office that actually has authority over it.
+              For people charged with or convicted of sex offenses, appeal work
+              may also involve issues outside the ordinary courtroom path:
+              registration tiers, lifetime registration, residence restrictions,
+              internet conditions, treatment requirements, GPS monitoring,
+              no-contact conditions, parole board decisions, civil commitment,
+              immigration consequences, or agency classifications.
+            </p>
+
+            <p>
+              The unifying question is simple: who made the decision, what rule
+              gives them authority, what review process exists, and what deadline
+              controls the next step?
             </p>
           </GuideProse>
-
-          <GuideIconList
-            title="What can change by state or county"
-            columns={3}
-            items={[
-              {
-                icon: <span aria-hidden="true">📜</span>,
-                title: "Charge names and penalties",
-                description:
-                  "Definitions, felony levels, mandatory penalties, and registration consequences vary by state law.",
-              },
-              {
-                icon: <span aria-hidden="true">🔐</span>,
-                title: "Release conditions",
-                description:
-                  "Bond, no-contact orders, device limits, internet rules, and travel restrictions can be very local.",
-              },
-              {
-                icon: <span aria-hidden="true">⚖️</span>,
-                title: "Court practice",
-                description:
-                  "Arraignment, discovery, motion, plea, and trial timing may depend on county calendars and local rules.",
-              },
-              {
-                icon: <span aria-hidden="true">📘</span>,
-                title: "Sentencing systems",
-                description:
-                  "Some states use guidelines or scoring systems; others rely more on statutory ranges and judicial discretion.",
-              },
-              {
-                icon: <span aria-hidden="true">🏢</span>,
-                title: "Custody authority",
-                description:
-                  "A sentence may involve county jail, state prison, treatment placement, parole, or community supervision.",
-              },
-              {
-                icon: <span aria-hidden="true">🧾</span>,
-                title: "Registration practice",
-                description:
-                  "Registration may be handled by a sheriff, police department, state police, or specialized registry office.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="reminder" icon="🧭" title="Use this guide as a map, not a substitute for local rules">
-            <p>
-              The useful question is not only “What usually happens?” It is also “Who controls this exact step in this state, county, court, supervision office, or registry office — and what can I save in writing?”
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="how-to-use"
-          number="2"
-          title="How to use this guide"
-          subtitle="Start with the stage you are in, then identify what must be verified locally."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Timing can change because of custody status, charge level, discovery volume, continuances, plea negotiations, evaluations, expert review, local court calendars, counsel changes, prosecutor practice, and state or county procedure.
-            </p>
-
-            <p>
-              Treat the timelines here as orientation, not promises. The most reliable information usually comes from defense counsel, written court orders, the docket, pretrial services or bond office, probation or parole, the state Department of Corrections, or the local registration office that has authority over the step.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="first-things-to-save"
-            title="First things to save"
-            columns={2}
-            items={[
-              {
-                id: "attorney-contact",
-                label:
-                  "Defense attorney name, phone number, email, and after-hours instructions.",
-              },
-              {
-                id: "court-papers",
-                label:
-                  "Charging documents, case number, court notices, bond paperwork, and scheduling orders.",
-              },
-              {
-                id: "conditions",
-                label:
-                  "No-contact, stay-away, device, internet, travel, residence, treatment, and reporting conditions.",
-              },
-              {
-                id: "agency-info",
-                label:
-                  "Business cards, subpoenas, warrants, receipts, forms, and agency contact information.",
-              },
-              {
-                id: "supervision-registration",
-                label:
-                  "Probation, parole, DOC, treatment, and registration instructions or receipts.",
-              },
-              {
-                id: "notes",
-                label:
-                  "A dated log of names, departments, phone numbers, badge numbers, instructions, and confirmation numbers.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="family-support"
-          number="3"
-          title="How family can help without creating risk"
-          subtitle="Support is useful when it reduces chaos without interfering with the case."
-        />
-
-        <GuideSectionCard>
-          <GuideIconList
-            title="Helpful roles for family and supporters"
-            columns={3}
-            items={[
-              {
-                icon: <span aria-hidden="true">🗓️</span>,
-                title: "Calendar keeper",
-                description:
-                  "Track court dates, attorney calls, bond deadlines, treatment appointments, and reporting instructions.",
-              },
-              {
-                icon: <span aria-hidden="true">🏠</span>,
-                title: "Household stabilizer",
-                description:
-                  "Help with childcare, work coverage, transportation, bills, pets, or other needs that keep daily life from collapsing.",
-              },
-              {
-                icon: <span aria-hidden="true">🗂️</span>,
-                title: "Document organizer",
-                description:
-                  "Collect records counsel requests and keep notices, conditions, dates, and written instructions in one place.",
-              },
-            ]}
-          />
 
           <SoftDivider />
 
+          <GuideCallout tone="reminder" icon="🧭" title="Appeals are not retrials">
+            <p>
+              Most appellate courts do not simply start over. They usually review
+              the record that already exists. That is why objections, motions,
+              transcripts, exhibits, written orders, and proof of notice matter
+              so much.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="timeline"
+          number="2"
+          title="What to do by stage"
+          subtitle="The right move changes depending on where the case is. Use this as a map, then verify the rule in your court, agency, or state."
+        />
+
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="Appeal and review timeline"
+            stages={[
+              {
+                stage: "Same day or immediately",
+                icon: "⏰",
+                whatChanges:
+                  "The clock may already be running. A spoken ruling, written order, docket entry, agency notice, or mailed decision can each matter differently.",
+                whatToDo:
+                  "Write down every date. Ask what was entered, when it was entered, what deadline applies, and where the notice or review request must be filed.",
+              },
+              {
+                stage: "First few days",
+                icon: "📄",
+                whatChanges:
+                  "The safest first filing may be a notice of appeal, request for review, request for counsel, fee waiver, or motion to modify conditions.",
+                whatToDo:
+                  "Confirm whether counsel will file. If not, ask the clerk for self-represented forms and filing instructions. Keep stamped copies and mailing proof.",
+              },
+              {
+                stage: "First weeks",
+                icon: "🗂️",
+                whatChanges:
+                  "The appeal may shift from deadline protection to record-building: transcripts, exhibits, orders, docket entries, and agency records.",
+                whatToDo:
+                  "Order transcripts, request the docket sheet, gather notices and conditions, and make a simple index so a lawyer or clinic can understand the file quickly.",
+              },
+              {
+                stage: "While review is pending",
+                icon: "☎️",
+                whatChanges:
+                  "Housing, supervision, registration, treatment, travel, device access, and family contact restrictions may continue while the appeal moves slowly.",
+                whatToDo:
+                  "Ask whether a stay, release request, condition modification, or agency hold is available. Do not violate a condition because you believe it is wrong.",
+              },
+              {
+                stage: "After a decision",
+                icon: "🔁",
+                whatChanges:
+                  "There may be limited next steps: rehearing, mandate, higher-court review, remand, post-conviction relief, or a later registry-relief petition.",
+                whatToDo:
+                  "Save the decision, calendar the next deadline, ask what the mandate or remand requires, and update your appeal folder before documents disappear.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="👥" title="For family and supporters">
+            <p>
+              A family member can help without becoming the legal expert. The
+              most useful support is often practical: make calls, print forms,
+              organize records, keep a calendar, save envelopes, and help the
+              person ask counsel clear written questions.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="deadlines"
+          number="3"
+          title="Deadlines, notices, and the first filing"
+          subtitle="The first filing often protects the right to be heard. Do not wait for the whole record before asking what must be filed now."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A notice of appeal is often the gateway document. In many cases, it
+              does not need to contain the full argument. Its job is to tell the
+              court that you are appealing a specific judgment, sentence, order,
+              or decision.
+            </p>
+
+            <p>
+              In federal criminal cases, the defendant’s notice of appeal is
+              often due within 14 days after the judgment or order is entered, or
+              after the government files its notice of appeal. But federal rules
+              are only one example. State criminal appeals, civil commitment
+              orders, probation decisions, parole decisions, administrative
+              classifications, and registry petitions can have different timing.
+            </p>
+
+            <p>
+              If you are incarcerated, legal-mail rules may matter. Ask staff how
+              to send legal mail, how to document the deposit date, and how to get
+              a receipt, log entry, or other proof. Keep a copy of what you sent.
+            </p>
+          </GuideProse>
+
           <GuideChecklist
-            id="family-safe-help"
-            title="Safe support checklist"
+            id="first-filing-checklist"
+            title="First-filing checklist"
             columns={1}
             items={[
               {
-                id: "family-ask-counsel",
+                id: "decision",
                 label:
-                  "Ask counsel what help is safe before contacting agencies, gathering records, or speaking with anyone connected to the case.",
+                  "Identify the decision you are challenging: conviction, sentence, order, supervision condition, registry notice, civil commitment decision, agency classification, or parole decision.",
               },
               {
-                id: "family-track-instructions",
+                id: "entry-date",
                 label:
-                  "Save attorney instructions, court notices, bond conditions, probation directions, treatment instructions, and registration paperwork.",
+                  "Ask for the entry date or official decision date, not just the day someone told you about it.",
               },
               {
-                id: "family-organize-documents",
+                id: "deadline",
                 label:
-                  "Organize documents for counsel by topic and date instead of sending scattered screenshots or long emotional summaries.",
+                  "Ask what deadline applies and whether weekends, holidays, mail delays, or post-trial motions change the calculation.",
               },
               {
-                id: "family-avoid-contact",
+                id: "where-file",
                 label:
-                  "Do not contact alleged victims, witnesses, co-defendants, investigators, or people connected to the case unless counsel has clearly said it is safe and lawful.",
+                  "Ask where the notice, petition, or review request must be filed and how service must be completed.",
               },
               {
-                id: "family-avoid-posting",
+                id: "proof",
                 label:
-                  "Avoid public posts, private-group speculation, fundraising claims, media responses, or online investigation about the case.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="🤝" title="You do not have to solve the legal case">
-            <p>
-              Family support is often most useful when it lowers stress around the person instead of trying to control the defense. Keep notes, preserve paperwork, support daily logistics, and let counsel guide case-related action.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="what-this-may-feel-like"
-          number="4"
-          title="What this may feel like"
-          subtitle="State cases can move through public, local systems that feel fast, exposing, and personal."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A state sex-crime case can feel frightening, humiliating, confusing, and isolating. Arrest and booking can feel chaotic. Court hearings may describe the case in harsh terms. Bond conditions may immediately affect home life, devices, work, parenting, transportation, or contact with people the family cares about.
-            </p>
-
-            <p>
-              Those reactions are real. They do not mean the case is over, that the person has no rights, or that family support has no place. The safest response is to slow down, write things down, work through counsel, and separate what you are hearing emotionally from what you need to do procedurally.
-            </p>
-          </GuideProse>
-
-          <GuideIconList
-            title="Emotional reality checks"
-            columns={2}
-            items={[
-              {
-                icon: <span aria-hidden="true">🌪️</span>,
-                title: "Arrest can feel chaotic",
-                description:
-                  "Focus first on counsel, written release conditions, and the next court date.",
-              },
-              {
-                icon: <span aria-hidden="true">🏛️</span>,
-                title: "Hearings can feel public",
-                description:
-                  "Local courtrooms can feel exposing. The government’s version is not the whole defense story.",
-              },
-              {
-                icon: <span aria-hidden="true">🔐</span>,
-                title: "Restrictions can feel sudden",
-                description:
-                  "No-contact, housing, device, travel, internet, or child-contact rules may change daily life immediately.",
-              },
-              {
-                icon: <span aria-hidden="true">🧭</span>,
-                title: "Registration can feel overwhelming",
-                description:
-                  "Deadlines and local reporting rules are serious. Verify the exact rule and save proof.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="state-timeline"
-          number="5"
-          title="The state process, stage by stage"
-          subtitle="The stages are common, but the controlling rules are state, county, and case-specific."
-        />
-
-        {stateStages.map((stage) => (
-          <GuideSectionCard key={stage.id}>
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-              <div>
-                <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  Stage {stage.number} · {stage.duration}
-                </div>
-                <h3 className="mt-1 text-2xl font-bold text-slate-900">
-                  <span className="mr-2" aria-hidden="true">
-                    {stage.icon}
-                  </span>
-                  {stage.title}
-                </h3>
-              </div>
-            </div>
-
-            <GuideProse>
-              <p>{stage.summary}</p>
-            </GuideProse>
-
-            <GuideIconList
-              title="What this stage usually means"
-              columns={3}
-              items={stage.concepts}
-            />
-
-            <GuideCallout tone="neutral" icon="👥" title="Who may be involved">
-              <p>{stage.actors}</p>
-            </GuideCallout>
-
-            <GuideChecklist
-              id={`${stage.id}-practical-moves`}
-              title="Practical moves at this stage"
-              columns={1}
-              items={stage.practicalMoves.map((item, index) => ({
-                id: `${stage.id}-move-${index + 1}`,
-                label: item,
-              }))}
-            />
-          </GuideSectionCard>
-        ))}
-
-        <GuideSectionHeader
-          id="state-federal-differences"
-          number="6"
-          title="How state cases differ from federal cases"
-          subtitle="State cases can look familiar, but the authority, timing, custody, and registration rules often work differently."
-        />
-
-        <GuideSectionCard>
-          <GuideIconList
-            title="Key differences to keep in mind"
-            columns={3}
-            items={[
-              {
-                icon: <span aria-hidden="true">🗓️</span>,
-                title: "Local speed",
-                description:
-                  "State cases may move quickly in some counties and slowly in others. Court calendars and custody status matter.",
-              },
-              {
-                icon: <span aria-hidden="true">💵</span>,
-                title: "Bail and bond",
-                description:
-                  "Pretrial release systems vary widely. Conditions can still be strict even when release is granted.",
-              },
-              {
-                icon: <span aria-hidden="true">📘</span>,
-                title: "Sentencing systems",
-                description:
-                  "There is no single national state sentencing system. Statutes, guidelines, scoring, and local practice vary.",
-              },
-              {
-                icon: <span aria-hidden="true">🏢</span>,
-                title: "Custody authority",
-                description:
-                  "County jail, state prison, treatment placement, probation, parole, and state DOC may control different steps.",
-              },
-              {
-                icon: <span aria-hidden="true">🧾</span>,
-                title: "Registration authority",
-                description:
-                  "State law may set the duty, but local offices often control reporting instructions and receipts.",
-              },
-              {
-                icon: <span aria-hidden="true">⚖️</span>,
-                title: "Dual sovereignty",
-                description:
-                  "In some situations, state and federal authorities may both have interests in similar conduct.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="legal" icon="⚖️" title="Ask directly about state, federal, or parallel-investigation risk">
-            <p>
-              Do not assume one state case, dismissal, plea, or sentence automatically prevents another jurisdiction from acting. Ask counsel whether there is any federal interest, another state’s interest, or parallel-investigation risk.
-            </p>
-          </GuideCallout>
-
-          <RelatedGuides
-            guides={[
-              {
-                title: "Federal Sex-Crime Process Guide",
-                description:
-                  "Use this to compare federal investigation, court, BOP custody, supervised release, and federal handoff issues.",
-                to: "/resources/federal-process",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="verify"
-          number="7"
-          title="Verify before acting"
-          subtitle="The safest answer usually comes from the office with authority over the exact step."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              State cases often involve overlapping systems. A court clerk may not control bond conditions. A probation officer may not control registration deadlines. A registry office may not be able to change a court order. A treatment provider may have policies that are separate from court rules. Before acting, identify who controls the specific question.
-            </p>
-          </GuideProse>
-
-          <GuideIconList
-            title="Authority check"
-            columns={4}
-            items={[
-              {
-                icon: <span aria-hidden="true">⚖️</span>,
-                title: "Court",
-                description:
-                  "Charges, hearings, bond, orders, sentencing, modification, and violations.",
-              },
-              {
-                icon: <span aria-hidden="true">🔐</span>,
-                title: "Pretrial or bond office",
-                description:
-                  "Release reporting, monitoring, check-ins, travel approval, and condition questions.",
-              },
-              {
-                icon: <span aria-hidden="true">🧑‍💼</span>,
-                title: "Probation or parole",
-                description:
-                  "Supervision reporting, permission requests, treatment, monitoring, and violation issues.",
-              },
-              {
-                icon: <span aria-hidden="true">🧾</span>,
-                title: "Registration office",
-                description:
-                  "Reporting deadlines, address updates, forms, receipts, travel notices, and local instructions.",
+                  "Keep stamped copies, legal-mail logs, receipts, envelopes, confirmation numbers, and written instructions.",
               },
             ]}
           />
 
           <VerifyBeforeActing
-            whoToAsk="Defense counsel first when the question could affect the case, custody, supervision, registration, housing, work, technology, contact rules, travel, or court compliance. Then ask the specific office with authority."
-            whatToAsk="Ask one narrow question at a time: Which state or local rule applies, what deadline applies, who approves it, what form is required, and can I get the answer in writing?"
-            whatToSave="Save the date, name, title, department, phone number, email, form, written answer, receipt, confirmation number, and any follow-up instruction."
+            title="Verify before relying on a deadline"
+            whoToAsk={
+              <span>
+                The clerk of the court that entered the judgment or order, the
+                appellate clerk, your lawyer or public defender, or the agency
+                office that issued the decision.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “What was entered, on what date, what deadline applies, where do
+                I file the notice or review request, and is there a local rule,
+                form, or service requirement?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                The name, office, date and time of the answer, the docket entry,
+                the written instruction if available, and proof of filing or
+                mailing.
+              </span>
+            }
           />
-
-          <GuideCallout tone="warning" icon="⚠️" title="Do not treat another person’s case as your rule">
-            <p>
-              Another person’s outcome, county, supervision condition, registry instruction, or state law may not apply to this case. Use examples to form better questions, not as permission to act.
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="avoid-mistakes"
-          number="8"
-          title="Common mistakes to avoid"
-          subtitle="These are practical ways people accidentally make a state case harder."
+        <GuideSectionHeader
+          id="record"
+          number="4"
+          title="Build the record"
+          subtitle="Appeals usually depend on what is in the file. A clean record packet helps counsel, clinics, family, and self-represented people move faster."
         />
 
         <GuideSectionCard>
-          <GuideIconList
-            title="High-risk moves"
-            columns={2}
-            items={[
+          <GuideProse>
+            <p>
+              Appellate courts generally review the record, not rumors or memory.
+              If an issue was never raised, never written down, never transcribed,
+              or never included in the file, it may be harder to use later.
+            </p>
+
+            <p>
+              For sex-offense cases, the record may include more than trial
+              documents. It may include psychosexual evaluations, treatment
+              reports, risk assessments, presentence reports, registration
+              notices, supervision conditions, device-search terms, no-contact
+              orders, exclusion-zone maps, civil commitment filings, and agency
+              classification letters.
+            </p>
+          </GuideProse>
+<DocumentPacket
+            title="Appeal and review packet"
+            intro={
+              <span>
+                Use one folder, binder, envelope, or digital folder. Add a simple
+                index page at the front with document names and dates.
+              </span>
+            }
+            categories={[
               {
-                icon: <span aria-hidden="true">🚫</span>,
-                title: "Talking without counsel",
-                description:
-                  "Even a calm explanation to investigators can be misunderstood, incomplete, or used later.",
+                title: "Court documents",
+                items: [
+                  "Judgment, sentencing order, written ruling, minute order, or agency decision.",
+                  "Docket sheet and case number.",
+                  "Notice of appeal or review request, plus stamped copy or proof of submission.",
+                  "Motions, objections, plea paperwork, sentencing memoranda, and written orders.",
+                ],
               },
               {
-                icon: <span aria-hidden="true">📣</span>,
-                title: "Posting about the case",
-                description:
-                  "Public posts, private groups, fundraisers, comments, and messages may travel farther than expected.",
+                title: "Record materials",
+                items: [
+                  "Transcript order forms and receipts.",
+                  "Trial, plea, suppression, sentencing, revocation, or commitment hearing transcripts.",
+                  "Exhibits, exhibit lists, admitted evidence, and excluded evidence if preserved.",
+                  "Rulings on objections, jury instructions, verdict forms, and special findings.",
+                ],
               },
               {
-                icon: <span aria-hidden="true">☎️</span>,
-                title: "Contacting case-related people",
-                description:
-                  "Reaching out to alleged victims, witnesses, co-defendants, or investigators can create serious risk.",
+                title: "Sex-offense-specific materials",
+                items: [
+                  "Registration tier notices, classification letters, and termination or relief notices.",
+                  "Probation, parole, supervised release, or treatment conditions.",
+                  "Polygraph, GPS, internet, device-search, travel, housing, employment, or family-contact restrictions.",
+                  "Civil commitment filings, risk assessments, treatment reports, and review decisions.",
+                ],
               },
               {
-                icon: <span aria-hidden="true">🔀</span>,
-                title: "Blending systems together",
-                description:
-                  "Court orders, bond rules, probation, parole, treatment, custody, and registration can each have different authority.",
-              },
-              {
-                icon: <span aria-hidden="true">⏰</span>,
-                title: "Missing local deadlines",
-                description:
-                  "Court dates, bond reporting, evaluations, treatment intake, registration, and update deadlines need tracking.",
-              },
-              {
-                icon: <span aria-hidden="true">🔓</span>,
-                title: "Using monitored systems carelessly",
-                description:
-                  "Jail calls, prison email, texts, social media, and shared devices may not be private.",
+                title: "Proof and access records",
+                items: [
+                  "Envelopes, postmarks, legal-mail logs, certified mail receipts, and confirmation numbers.",
+                  "Names, departments, dates, and instructions from clerks, lawyers, officers, or agencies.",
+                  "Requests for law library access, transcript access, forms, or legal mail, including denials or delays.",
+                ],
               },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="🧭" title="General information is not enough">
+          <GuideCallout tone="privacy" icon="🔒" title="Be careful with sensitive records">
             <p>
-              The state-process roadmap is useful, but the exact answer can depend on state law, county practice, judge, prosecutor, custody status, court orders, supervision conditions, and registry office practice.
+              Some records may contain victim information, child-protection
+              information, sealed material, treatment records, mental-health
+              records, or private family information. Share only what is needed,
+              use secure storage when possible, and ask counsel before sending
+              sensitive documents widely.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="limited-access"
-          number="9"
-          title="If internet access is limited"
-          subtitle="State cases often affect people who are detained, incarcerated, phone-only, on supervision, or relying on family for paperwork."
+          id="registry-supervision"
+          number="5"
+          title="Registry, supervision, and sex-offense-specific review paths"
+          subtitle="Some of the most serious consequences happen outside the trial itself. They may have their own review process."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A person charged with or convicted of a sex offense may face
+              decisions that do not look like a traditional conviction appeal but
+              still shape daily life: registration length, tier level, public
+              website placement, exclusion zones, housing restrictions,
+              employment limits, internet conditions, GPS monitoring, treatment
+              requirements, or family-contact rules.
+            </p>
+
+            <p>
+              These decisions may be reviewed through different paths depending
+              on the state, supervision status, sentence, agency, and court
+              order. Some require an administrative appeal. Some require a motion
+              in the sentencing court. Some require a statutory petition. Some
+              require exhausting an internal process before going to court.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Classification",
+                title: "Registry tier or public listing",
+                icon: "📌",
+                tone: "warning",
+                description:
+                  "Save the notice, tier letter, score sheet, and instructions. Ask whether there is a hearing, objection deadline, or petition process.",
+              },
+              {
+                eyebrow: "Conditions",
+                title: "Supervision or release terms",
+                icon: "🧭",
+                tone: "legal",
+                description:
+                  "Do not violate a condition because you think it is unconstitutional. Ask whether modification, clarification, stay, or appeal is available.",
+              },
+              {
+                eyebrow: "Relief",
+                title: "Termination, reduction, or exemption",
+                icon: "🕊️",
+                tone: "success",
+                description:
+                  "Some states allow petitions to reduce or end registration duties after eligibility rules are met. The process is state-specific.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reentry" icon="🏠" title="Practical risk">
+            <p>
+              Registry and supervision decisions can affect housing, work,
+              travel, treatment, family contact, internet use, and safety. Treat
+              every notice as something to save, calendar, and verify before
+              relying on memory or informal advice.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts"
+          number="6"
+          title="Words to use"
+          subtitle="Use calm, narrow questions. You do not need to explain your whole life story to ask for the next procedural step."
+        />
+
+        <GuideSectionCard>
+          <ScriptBox
+            title="Clerk script: appeal deadline and first filing"
+            tone="legal"
+            context="Use this with a court clerk when you need to protect a deadline."
+            script={`Hello, my name is [Name]. I am calling about case number [case number].
+
+I am trying to protect an appeal or review deadline. Can you tell me what judgment, order, or decision was entered, the entry date, where a notice of appeal or review request is filed, and whether your court has a self-represented packet or local rule sheet?
+
+I am taking notes. Could you please repeat your name or department so I can write it down correctly?`}
+          />
+
+          <ScriptBox
+            title="Counsel script: confirm who is filing"
+            tone="neutral"
+            context="Use this with trial counsel, public defender, appellate defender, or post-conviction counsel."
+            script={`Hello [Counsel Name],
+
+I am writing to confirm the appeal deadline in [case number]. Will you be filing the notice of appeal or any immediate review request? If yes, please tell me the filing date when it is done.
+
+If you will not be filing it, please tell me immediately so I can ask the clerk how to protect the deadline myself. Thank you.`}
+          />
+
+          <ScriptBox
+            title="Legal mail script: incarcerated filing proof"
+            tone="warning"
+            context="Use this when a person in custody needs proof that legal mail was deposited on time."
+            script={`I need to send legal mail for case number [case number]. This filing may involve an appeal or review deadline.
+
+Please provide proof of the date I deposited the filing, the address used, and any legal-mail log number or receipt available. I also need to keep a copy for my records.`}
+          />
+
+          <ScriptBox
+            title="Registry or supervision script: ask for the review path"
+            tone="reentry"
+            context="Use this for registry offices, probation, parole, treatment providers, or agencies."
+            script={`Hello, my name is [Name]. I received a decision or condition about [registry tier / registration duty / supervision condition / GPS / internet access / housing / travel / treatment].
+
+I am not asking you for legal advice. I am asking what review process exists, what deadline applies, what form or office handles it, and how I can get the answer in writing.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offline"
+          number="7"
+          title="If internet, phone, or printer access is limited"
+          subtitle="Appeals can still move forward with paper, phone calls, courthouse forms, legal mail, and careful notes."
         />
 
         <GuideSectionCard>
           <OfflineOptions
-            title="Lower-internet ways to keep the process organized"
+            title="Offline and limited-access options"
+            icon="📬"
+            note={
+              <span>
+                This section is especially important for people in jail or
+                prison, people on device restrictions, families without printers,
+                and anyone relying on public computers.
+              </span>
+            }
             items={[
-              "Keep one paper folder for court papers, one for attorney notes, and one for supervision or registration instructions.",
-              "Ask counsel, the clerk, jail, DOC, probation, parole, or registration office to mail or print forms when online access is not realistic.",
-              "Write down names, dates, departments, phone numbers, badge numbers, and confirmation numbers during every important call.",
-              "Ask one trusted person to be the document helper so instructions do not get scattered across texts, screenshots, and social media messages.",
-              "Use a public library, courthouse, clerk’s office, law library, or trusted helper for printing only when doing so does not violate release, supervision, technology, or contact restrictions.",
+              "Ask the clerk for paper appeal forms, self-represented packets, local rule sheets, and the mailing address for filings.",
+              "Use courthouse terminals, public law libraries, prison law libraries, or public libraries to print rules and forms.",
+              "Ask a trusted person to print official forms and mail them, but keep copies of exactly what was sent.",
+              "Use legal-mail procedures if incarcerated. Keep the log, receipt, or written proof of deposit date.",
+              "Write down every call: date, time, number called, person or department, question asked, and answer received.",
+              "Keep a paper calendar with the appeal deadline, transcript deadline, briefing dates, hearing dates, and agency review dates.",
             ]}
           />
 
-          <GuideCallout tone="privacy" icon="🔒" title="Privacy still matters">
+          <GuideCallout tone="reminder" icon="✍️" title="Paper notes count">
             <p>
-              Do not use a shared computer, public printer, monitored account, jail or prison messaging system, or shared family device for sensitive case strategy unless counsel has said it is safe.
+              A simple notebook can protect you. Write down names, dates,
+              addresses, instructions, case numbers, and confirmation numbers.
+              Put copies of filings and envelopes behind the note page.
             </p>
           </GuideCallout>
         </GuideSectionCard>
+<GuideSectionHeader
+          id="mistakes"
+          number="8"
+          title="Common mistakes to avoid"
+          subtitle="These are normal mistakes under stress. The goal is not shame. The goal is prevention."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Waiting for transcripts before filing the first notice.",
+                whyItMatters:
+                  "The notice deadline may arrive before transcripts are ready.",
+                betterMove:
+                  "Ask whether a notice of appeal or review request must be filed now, then order transcripts and build the record.",
+              },
+              {
+                mistake: "Assuming an appeal is a new trial.",
+                whyItMatters:
+                  "Most appellate courts review legal errors in the existing record.",
+                betterMove:
+                  "Focus on orders, objections, rulings, transcript pages, exhibits, and the relief you are asking for.",
+              },
+              {
+                mistake: "Relying on a phone answer without writing it down.",
+                whyItMatters:
+                  "People forget names, departments, and instructions. Agencies may disagree later.",
+                betterMove:
+                  "Record the date, time, name, department, question, answer, and whether a written confirmation is available.",
+              },
+              {
+                mistake:
+                  "Assuming registry or supervision relief uses the same rules as a criminal appeal.",
+                whyItMatters:
+                  "A tier challenge, termination petition, probation condition, or agency classification may have a different process.",
+                betterMove:
+                  "Identify the decision-maker and ask what review path applies to that exact decision.",
+              },
+              {
+                mistake: "Throwing away envelopes, receipts, and mail logs.",
+                whyItMatters:
+                  "Proof of mailing, notice, or legal-mail deposit can matter when timing is disputed.",
+                betterMove:
+                  "Save envelopes, postmarks, legal-mail logs, certified mail receipts, tracking numbers, and stamped copies.",
+              },
+              {
+                mistake:
+                  "Violating a condition because you believe it is unfair or unconstitutional.",
+                whyItMatters:
+                  "A violation can create new custody, supervision, housing, or registry consequences while the challenge is pending.",
+                betterMove:
+                  "Ask about modification, clarification, stay, appeal, or emergency relief before acting against the condition.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
-          number="10"
-          title="Official resources and related SOLAR guides"
-          subtitle="Use official sources and state-specific offices for verification, then use SOLAR guides for practical next steps."
+          id="resources-next"
+          number="9"
+          title="Resources and next steps"
+          subtitle="Use official sources first, then ask the court, agency, or counsel how they apply to your case."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="State-process resources and lookup tools"
-            resources={[
-              {
-                label: "ICAC Task Force Program",
-                description:
-                  "Federal background on the Internet Crimes Against Children task force network used in many online exploitation investigations.",
-                href: "https://www.icactaskforce.org/",
-                badge: "Official",
-              },
-              {
-                label: "ABA Bar Directories and Lawyer Finders",
-                description:
-                  "State bar directories and lawyer-finder tools for locating licensed legal help.",
-                href: "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
-                badge: "Directory",
-              },
-              {
-                label: "ABA Lawyer Referral Directory",
-                description:
-                  "Lookup tool for state and local bar lawyer referral services.",
-                href: "https://www.americanbar.org/groups/lawyer_referral/resources/lawyer-referral-directory/",
-                badge: "Directory",
-              },
-              {
-                label: "California Courts Criminal Court Overview",
-                description:
-                  "Example of a state court self-help overview. Use your own state court site for controlling local guidance.",
-                href: "https://selfhelp.courts.ca.gov/criminal-court/overview",
-                badge: "State example",
-              },
-              {
-                label: "USA.gov State Departments of Corrections",
-                description:
-                  "Directory for state corrections departments and custody-related contact information.",
-                href: "https://www.usa.gov/state-corrections",
-                badge: "Official",
-              },
-              {
-                label: "NCSL Sex Offender Enactments Database",
-                description:
-                  "State legislation database for policy research. It is not a substitute for local registration instructions.",
-                href: "https://www.ncsl.org/civil-and-criminal-justice/sex-offender-enactments-database",
-                badge: "Policy",
-              },
-              {
-                label: "NCSL Community Supervision Legislation Database",
-                description:
-                  "State legislation database on probation, parole, and community supervision policy.",
-                href: "https://www.ncsl.org/civil-and-criminal-justice/community-supervision-legislation-database",
-                badge: "Policy",
-              },
-              {
-                label: "CCRC Relief from Registration Comparison",
-                description:
-                  "50-state comparison focused on relief from sex offense registration obligations.",
-                href: "https://ccresourcecenter.org/state-restoration-profiles/50-state-comparison-relief-from-sex-offender-registration-obligations/",
-                badge: "Research",
-              },
-            ]}
+            title="Official resources and forms"
+            description={
+              <span>
+                These links are starting points, not a substitute for the rule in
+                your exact court, state, agency, or supervision order.
+              </span>
+            }
+            resources={resourceLinks}
           />
 
           <SoftDivider />
@@ -1014,38 +785,32 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Federal Sex-Crime Process Guide",
                 description:
-                  "Compare state-process issues with federal investigation, court, BOP custody, and supervised release handoffs.",
-                to: "/resources/federal-process",
+                  "Useful if the appeal grows out of a federal investigation, plea, trial, sentencing, or BOP-related issue.",
+                to: "/resources/federal-process-guide",
               },
               {
-                title: "Know Your Rights Guide",
+                title: "State Sex-Crime Process Guide",
                 description:
-                  "Use this when you need rights-focused guidance for police contact, questioning, searches, and legal representation.",
+                  "Useful if the appeal or post-conviction issue comes from a state prosecution, sentence, or state-court order.",
+                to: "/resources/state-process-guide",
+              },
+              {
+                title: "Your Rights at Every Stage",
+                description:
+                  "Helpful for understanding rights during investigation, prosecution, custody, supervision, and reentry.",
                 to: "/resources/know-your-rights",
               },
               {
-                title: "Prison Communication Guide",
+                title: "Registry Rules by State",
                 description:
-                  "Use this for practical guidance on calls, mail, email, visitation, privacy, and communication limits during custody.",
-                to: "/resources/prison-communication",
+                  "Use this when the issue involves registration duties, state-specific rules, travel, relief eligibility, or compliance risk.",
+                to: "/resources/state-registry",
               },
               {
-                title: "Reentry Planning Guide",
+                title: "Family & Allies Guide",
                 description:
-                  "Use this for personal reentry planning beyond the state-process handoff.",
-                to: "/resources/reentry",
-              },
-              {
-                title: "Housing Search Guide",
-                description:
-                  "Use this for housing strategy where registry, supervision, or local restrictions may apply.",
-                to: "/resources/housing-search",
-              },
-              {
-                title: "Job Search Strategies",
-                description:
-                  "Use this for employment planning, applications, disclosure decisions, and rebuilding work options.",
-                to: "/resources/job-search",
+                  "For supporters helping with paperwork, calls, transportation, money, emotional strain, and practical follow-through.",
+                to: "/resources/family-support-guide",
               },
             ]}
           />
@@ -1053,64 +818,50 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <SoftDivider />
 
           <SourceList
-            note="State laws, county procedures, court practices, supervision rules, and registry-office instructions can change. Use these links for orientation and lookup, then verify the specific answer with counsel or the office that has authority."
-            sources={[
-              {
-                label: "Original SOLAR StateProcessGuide.tsx",
-                href: "https://github.com/projectsolarrecon/Solar/blob/main/src%2Fpages%2Fresources%2FStateProcessGuide.tsx",
-                description:
-                  "Original guide used as the source base for this sandbox rebuild.",
-              },
-              {
-                label: "ICAC Task Force Program",
-                href: "https://www.icactaskforce.org/",
-                description:
-                  "Background on ICAC task forces used in many online child-exploitation investigations.",
-              },
-              {
-                label: "ABA Bar Directories and Lawyer Finders",
-                href: "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
-                description:
-                  "State bar directory and lawyer-finder resources.",
-              },
-              {
-                label: "ABA Lawyer Referral Directory",
-                href: "https://www.americanbar.org/groups/lawyer_referral/resources/lawyer-referral-directory/",
-                description:
-                  "State and local lawyer referral service lookup.",
-              },
-              {
-                label: "California Courts — Criminal Court Overview",
-                href: "https://selfhelp.courts.ca.gov/criminal-court/overview",
-                description:
-                  "Example of a state court self-help overview; not a national rule.",
-              },
-              {
-                label: "USA.gov — State Departments of Corrections",
-                href: "https://www.usa.gov/state-corrections",
-                description:
-                  "Directory for state corrections departments.",
-              },
-              {
-                label: "NCSL — Sex Offender Enactments Database",
-                href: "https://www.ncsl.org/civil-and-criminal-justice/sex-offender-enactments-database",
-                description:
-                  "State legislation database for sex-offense registration and related policy research.",
-              },
-              {
-                label: "NCSL — Community Supervision Legislation Database",
-                href: "https://www.ncsl.org/civil-and-criminal-justice/community-supervision-legislation-database",
-                description:
-                  "State legislation database on probation, parole, and supervision policy.",
-              },
-              {
-                label: "Collateral Consequences Resource Center — Relief from Registration",
-                href: "https://ccresourcecenter.org/state-restoration-profiles/50-state-comparison-relief-from-sex-offender-registration-obligations/",
-                description:
-                  "50-state comparison focused on relief from sex offense registration obligations.",
-              },
-            ]}
+            title="Sources & verification"
+            note="These sources were selected because they are official court/government sources or stable legal rule references. Always verify the local rule, state rule, agency rule, and current deadline before relying on any general guide."
+            sources={sourceLinks}
           />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="closing"
+          number="10"
+          title="Moving forward with realism and hope"
+          subtitle="Appeals are technical and often slow, but preserving rights is still meaningful work."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Appeals and review petitions are not easy. They can be slow,
+              technical, expensive, and emotionally draining. Many are denied.
+              Standards of review can feel stacked against the person trying to
+              challenge the decision.
+            </p>
+
+            <p>
+              But appeal work still matters. It can correct errors, reduce
+              punishment, change conditions, preserve issues for later law
+              changes, challenge overbroad restrictions, protect family contact,
+              and create a record that future lawyers, clinics, courts, and
+              reform advocates can use.
+            </p>
+
+            <p>
+              You do not have to do everything perfectly today. Start with the
+              next safe step: calendar the deadline, save the proof, ask the
+              narrow question, and keep the paper trail moving.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="success" icon="🕊️" title="Keep momentum, not perfection">
+            <p>
+              Calendar every deadline, save every receipt, and keep a one-page
+              case log. Progress compounds even when today’s answer is “not
+              yet.”
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
       </main>
     </div>
