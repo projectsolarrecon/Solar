@@ -170,7 +170,7 @@ const federalStages = [
   },
 ];
 
-export default function ResourceGuideSandbox(): JSX.Element {
+export default function FederalProcessGuide(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
@@ -220,8 +220,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
         </div>
       </section>
-
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+<div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
@@ -362,7 +361,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
             ]}
           />
         </GuideSectionCard>
-<GuideSectionHeader
+
+        <GuideSectionHeader
           id="family-support"
           number="2"
           title="How family can help without creating risk"
@@ -492,8 +492,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
           </GuideCallout>
         </GuideSectionCard>
-
-        <GuideSectionHeader
+<GuideSectionHeader
           id="federal-timeline"
           number="4"
           title="The federal process, stage by stage"
@@ -709,7 +708,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
           </GuideCallout>
         </GuideSectionCard>
-<GuideSectionCard>
+
+        <GuideSectionCard>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -789,8 +789,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             ]}
           />
         </GuideSectionCard>
-
-        <GuideSectionCard>
+<GuideSectionCard>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -941,8 +940,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           title="Common mistakes to avoid"
           subtitle="These are not moral judgments. They are practical ways people accidentally make a federal case harder."
         />
-
-        <GuideSectionCard>
+<GuideSectionCard>
           <GuideIconList
             title="High-risk moves"
             columns={2}
@@ -1111,8 +1109,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           />
 
           <SoftDivider />
-
-          <RelatedGuides
+<RelatedGuides
             guides={[
               {
                 title: "Know Your Rights Guide",
@@ -1150,14 +1147,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <SoftDivider />
 
           <SourceList
-            note="Official links were selected where possible. Before production publication, re-check route-specific SOLAR links, district-specific court practices, and whether the current U.S. Sentencing Commission manual year should be updated."
+            note="Rules and agency practices can change. Use the official links below to verify current federal process information, and confirm case-specific questions with counsel or the office that has authority over the issue."
             sources={[
-              {
-                label: "Original SOLAR FederalProcessGuide.tsx",
-                href: "https://github.com/projectsolarrecon/Solar/blob/main/src%2Fpages%2Fresources%2FFederalProcessGuide.tsx",
-                description:
-                  "Source guide used as the basis for this sandbox rebuild.",
-              },
               {
                 label: "U.S. Courts — Criminal Cases",
                 href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
