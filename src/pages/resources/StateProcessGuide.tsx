@@ -1,483 +1,1099 @@
-import { useState } from 'react';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  OverviewCards,
+  GuideChecklist,
+  GuideIconList,
+  OfflineOptions,
+  VerifyBeforeActing,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+} from "../../components/solar";
 
-function StateProcessGuide() {
-  const [checkedItems, setCheckedItems] = useState<{[key: string]: boolean}>({});
+const stateStages = [
+  {
+    id: "investigation",
+    number: "1",
+    title: "Investigation",
+    duration: "Timing varies widely",
+    icon: "🔎",
+    summary:
+      "State and local investigations may involve police departments, sheriff’s offices, child-protection agencies, state investigators, ICAC task forces, or prosecutors. Some people know they are under investigation; others first learn through a search, interview request, subpoena, warrant, arrest, or device seizure.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">📱</span>,
+        title: "Digital evidence may be central",
+        description:
+          "Sex-offense investigations may involve phones, computers, cloud accounts, social media, apps, images, messages, location data, or forensic review.",
+      },
+      {
+        icon: <span aria-hidden="true">🧭</span>,
+        title: "Your status can change",
+        description:
+          "A person may be treated as a witness, suspect, target, or potential defendant. Do not rely on informal labels without counsel.",
+      },
+      {
+        icon: <span aria-hidden="true">🚪</span>,
+        title: "Searches and interviews matter",
+        description:
+          "Consent, warrants, statements, and device access can shape the case. Get legal advice before speaking or agreeing to a search.",
+      },
+    ],
+    actors:
+      "Local police, sheriff’s office, state investigators, ICAC task force, child-protection agency, prosecutor, defense counsel, and sometimes federal partners.",
+    practicalMoves: [
+      "Contact a qualified state criminal defense attorney before speaking with investigators.",
+      "Do not consent to interviews, searches, device access, account access, or polygraphs without legal advice.",
+      "Save business cards, warrants, subpoenas, receipts, letters, phone numbers, and written instructions.",
+      "Do not post about the accusation, the investigation, the alleged victim, witnesses, police, or the family situation.",
+    ],
+  },
+  {
+    id: "arrest-booking-first-appearance",
+    number: "2",
+    title: "Arrest, Booking, and First Appearance",
+    duration: "Usually soon after arrest, but state law controls",
+    icon: "🏛️",
+    summary:
+      "After arrest or summons, the person may be booked, brought before a judge, advised of charges or rights, and considered for release, bond, bail, or detention. This stage can feel chaotic because family may have limited information while release conditions are being set quickly.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🔐</span>,
+        title: "Release conditions can be immediate",
+        description:
+          "No-contact orders, stay-away orders, device limits, internet limits, travel limits, or child-contact restrictions may begin early.",
+      },
+      {
+        icon: <span aria-hidden="true">💵</span>,
+        title: "Bail and bond vary locally",
+        description:
+          "Some states use bail schedules, some use risk assessment, and some use different pretrial release systems.",
+      },
+      {
+        icon: <span aria-hidden="true">📋</span>,
+        title: "Written orders matter",
+        description:
+          "The exact wording of release, bond, or pretrial conditions controls what the person may and may not do.",
+      },
+    ],
+    actors:
+      "Jail or booking staff, magistrate or judge, prosecutor, defense counsel, pretrial services or bond office, and sometimes victim-witness staff.",
+    practicalMoves: [
+      "Confirm who represents the person before discussing case facts.",
+      "Get and save all bond, bail, release, no-contact, device, internet, travel, and reporting conditions.",
+      "Ask counsel before arranging contact with anyone connected to the case, including family members who may be witnesses.",
+      "Write down the next court date, the court location, the case number, and who has authority over release conditions.",
+    ],
+  },
+  {
+    id: "charging-arraignment",
+    number: "3",
+    title: "Charging, Arraignment, and Early Case Settings",
+    duration: "Depends on state law, custody status, and local practice",
+    icon: "📄",
+    summary:
+      "The prosecutor decides what charges to file and how the case will proceed. Depending on the state, charges may begin by complaint, information, indictment, citation, or another charging document. Arraignment or an early court setting usually addresses the formal charge, plea entry, counsel, and future dates.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">⚖️</span>,
+        title: "Charge names are state-specific",
+        description:
+          "The same conduct may be labeled differently by state, and penalties can depend on age, relationship, force, consent definitions, images, devices, or prior history.",
+      },
+      {
+        icon: <span aria-hidden="true">🗓️</span>,
+        title: "Local calendars drive timing",
+        description:
+          "Court dates may depend on the county, judge, prosecutor, custody status, counsel availability, and local scheduling practice.",
+      },
+      {
+        icon: <span aria-hidden="true">🧾</span>,
+        title: "Conditions may be revisited",
+        description:
+          "Bond, no-contact, technology, residence, travel, and supervision conditions may be clarified or modified through the court.",
+      },
+    ],
+    actors:
+      "Prosecutor, judge or magistrate, court clerk, defense counsel, pretrial services or bond office, and sometimes victim-witness staff.",
+    practicalMoves: [
+      "Review the charging document with counsel and ask what each count means under that state’s law.",
+      "Ask counsel about possible mandatory penalties, registration consequences, supervision terms, and collateral consequences.",
+      "Save all charging documents, arraignment notices, written conditions, scheduling orders, and clerk instructions.",
+      "Do not rely on another state’s law, a different county’s practice, or a generic internet summary.",
+    ],
+  },
+  {
+    id: "discovery-motions",
+    number: "4",
+    title: "Discovery and Pretrial Motions",
+    duration: "Often the longest phase",
+    icon: "🗂️",
+    summary:
+      "This is the evidence-review and litigation stage. Defense counsel receives discovery, investigates facts, considers experts or evaluations, and files motions when appropriate. In sex-offense cases, discovery may be sensitive, restricted, or subject to protective orders.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🔒</span>,
+        title: "Discovery may be restricted",
+        description:
+          "Reports, images, videos, forensic data, interviews, or protected information may not be shareable with family.",
+      },
+      {
+        icon: <span aria-hidden="true">🔬</span>,
+        title: "Experts may matter",
+        description:
+          "Counsel may consider digital forensic review, psychological evaluation, medical evidence, or other expert issues depending on the case.",
+      },
+      {
+        icon: <span aria-hidden="true">📝</span>,
+        title: "Motions can shape the case",
+        description:
+          "Motions may address searches, statements, warrants, discovery disputes, evidence limits, experts, or trial issues.",
+      },
+    ],
+    actors:
+      "Defense counsel, prosecutor, judge, police or forensic examiners, expert witnesses, court staff, and sometimes treatment or evaluation providers.",
+    practicalMoves: [
+      "Ask counsel what discovery can be discussed, copied, stored, or shared.",
+      "Do not ask the person to describe sensitive discovery through jail calls, monitored messages, texts, or social media.",
+      "Give counsel organized records only in the way counsel requests.",
+      "Track motion deadlines, hearing dates, protective orders, and written court rulings.",
+    ],
+  },
+  {
+    id: "plea-trial",
+    number: "5",
+    title: "Plea Negotiation or Trial",
+    duration: "Varies by court calendar and case posture",
+    icon: "⚖️",
+    summary:
+      "Many state cases resolve by plea agreement, while some proceed to bench trial or jury trial. In sex-offense cases, plea decisions often involve more than custody exposure; registration, treatment, supervision, housing, technology limits, appeal rights, and future relief eligibility may all matter.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🤝</span>,
+        title: "Plea terms can carry long consequences",
+        description:
+          "A plea may affect registration, supervision, treatment, contact rules, housing, work, immigration, appeals, or future relief options.",
+      },
+      {
+        icon: <span aria-hidden="true">👥</span>,
+        title: "Trial is public and stressful",
+        description:
+          "Trials can involve sensitive testimony, exhibits, expert evidence, and arguments that are difficult for families to hear.",
+      },
+      {
+        icon: <span aria-hidden="true">🧭</span>,
+        title: "The choice belongs to the person charged",
+        description:
+          "Family can help ask questions and provide support, but should not pressure, promise, threaten, or decide for the person.",
+      },
+    ],
+    actors:
+      "Defense counsel, prosecutor, judge, jury if applicable, witnesses, victim-witness staff, court clerk, and court security.",
+    practicalMoves: [
+      "Ask counsel to explain plea, trial, sentencing, registration, supervision, appeal, and collateral-consequence risks together.",
+      "Do not pressure the person to accept or reject a plea.",
+      "Ask counsel whether any proposed plea affects registration duration, offense classification, treatment, supervision, or later relief.",
+      "If media or community attention is possible, ask counsel before anyone posts, speaks publicly, or responds to reporters.",
+    ],
+  },
+{
+    id: "sentencing",
+    number: "6",
+    title: "Presentence Investigation and Sentencing",
+    duration: "Usually after conviction; timing varies",
+    icon: "📘",
+    summary:
+      "After a plea or conviction, the court may order a presentence investigation, evaluation, psychosexual assessment, risk assessment, or treatment recommendation depending on state law and local practice. Sentencing can feel exposing because private history, harm, risk, mitigation, family impact, treatment, and punishment may be discussed in court.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">📋</span>,
+        title: "Reports may affect the outcome",
+        description:
+          "Presentence reports or evaluations can influence custody, probation, parole, treatment, registration, and conditions.",
+      },
+      {
+        icon: <span aria-hidden="true">⚖️</span>,
+        title: "Sentencing systems vary",
+        description:
+          "Some states use guidelines, scoring systems, mandatory minimums, judicial discretion, treatment tracks, or local practices.",
+      },
+      {
+        icon: <span aria-hidden="true">🧾</span>,
+        title: "Conditions should be saved",
+        description:
+          "Probation, treatment, internet, search, contact, travel, housing, work, and registration-related conditions should be kept in writing.",
+      },
+    ],
+    actors:
+      "Judge, probation or presentence investigator, prosecutor, defense counsel, treatment or evaluation provider, and court clerk.",
+    practicalMoves: [
+      "Ask counsel what information should and should not be shared during the presentence or evaluation process.",
+      "Send letters, treatment records, work records, family information, and mitigation materials only through counsel’s process.",
+      "Ask counsel to explain the sentence, credit rules, supervision terms, registration consequences, and appeal deadlines.",
+      "Save the judgment, sentencing order, probation conditions, treatment orders, no-contact orders, and reporting instructions.",
+    ],
+  },
+  {
+    id: "custody",
+    number: "7",
+    title: "Jail, Prison, or State Custody",
+    duration: "Depends on sentence and custody authority",
+    icon: "🏢",
+    summary:
+      "A state sentence may involve county jail, state prison, treatment placement, probation with jail time, or another custody arrangement. Custody can feel dehumanizing, especially at intake or transfer, but facilities still have rules and responsibilities around safety, medical care, classification, communication, and release processing.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🏛️</span>,
+        title: "County and state custody differ",
+        description:
+          "County jail, state prison, and treatment placement may have different rules, contacts, property limits, visitation, and release procedures.",
+      },
+      {
+        icon: <span aria-hidden="true">📨</span>,
+        title: "Communication rules are facility-specific",
+        description:
+          "Mail, calls, tablets, email, books, photos, money, visits, and video visits depend on the facility’s policy.",
+      },
+      {
+        icon: <span aria-hidden="true">🧭</span>,
+        title: "Release planning is a handoff",
+        description:
+          "The process may shift from custody staff to probation, parole, community supervision, treatment, or a registration office.",
+      },
+    ],
+    actors:
+      "County jail, state Department of Corrections, facility staff, classification staff, probation, parole, court, and treatment providers.",
+    practicalMoves: [
+      "Save the sentencing order, commitment paperwork, facility name, booking or inmate number, and release instructions.",
+      "Check the specific facility’s rules before sending mail, money, books, photos, or visitation requests.",
+      "Ask which agency controls release timing, credits, transfer decisions, parole review, or post-release supervision.",
+      "Use SOLAR’s prison communication and reentry guides for custody communication and personal reentry planning.",
+    ],
+  },
+  {
+    id: "registration-supervision",
+    number: "8",
+    title: "Probation, Parole, Registration, and Local Handoffs",
+    duration: "Begins when the controlling rule says it begins",
+    icon: "🧾",
+    summary:
+      "After conviction or release, a person may have probation, parole, post-release supervision, treatment, monitoring, no-contact rules, and state or local registration duties. This stage can feel intrusive because ordinary choices may require permission, reporting, documentation, or in-person updates.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🧑‍💼</span>,
+        title: "Supervision and registration are not the same",
+        description:
+          "Probation or parole may supervise behavior, while a local registration office may control reporting forms, deadlines, and receipts.",
+      },
+      {
+        icon: <span aria-hidden="true">📍</span>,
+        title: "Local office practice matters",
+        description:
+          "Registration may be handled by a sheriff, police department, state police, registry unit, or another office depending on the state.",
+      },
+      {
+        icon: <span aria-hidden="true">🔁</span>,
+        title: "Updates may be required",
+        description:
+          "Address, employment, school, vehicle, travel, internet identifier, or other updates may have deadlines under state law or conditions.",
+      },
+    ],
+    actors:
+      "Probation, parole, state DOC, local law enforcement, state registry office, treatment provider, court, and defense counsel for modification or relief questions.",
+    practicalMoves: [
+      "Get written supervision conditions and ask who approves travel, residence, employment, internet, contact, or treatment questions.",
+      "Verify registration deadline, location, required documents, update rules, travel rules, and receipt process with the registering authority.",
+      "Save receipts, appointment cards, forms, names, badge numbers, dates, and written instructions.",
+      "Ask counsel about modification, clarification, early termination, relief from registration, or appeal options before filing anything yourself.",
+    ],
+  },
+];
 
-  const toggleCheck = (id: string) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const processStages = [
-    {
-      id: 'investigation',
-      title: '1. Investigation',
-      duration: 'Weeks to Months',
-      description: 'Local police and ICAC task forces investigate potential crimes',
-      familyTips: [
-        'Do not authorize interviews or searches without legal counsel',
-        'Document all interactions with law enforcement',
-        'Secure qualified state criminal defense attorney immediately',
-        'Avoid discussing the case publicly or on social media'
-      ],
-      checklist: [
-        'Contact experienced state defense attorney',
-        'Avoid speaking to investigators without counsel present',
-        'Preserve relevant documents and communications',
-        'Begin gathering character references'
-      ],
-      resources: [
-        { name: 'ICAC Task Force Program', url: 'https://ojjdp.ojp.gov/programs/internet-crimes-against-children-task-force-program' },
-        { name: 'State Bar Attorney Directory', url: 'https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/' }
-      ]
-    },
-    {
-      id: 'arrest-appearance',
-      title: '2. Arrest & First Appearance',
-      duration: '24-72 Hours',
-      description: 'Initial court appearance for charges, rights, and bail consideration',
-      familyTips: [
-        'Attend the initial appearance if possible for support',
-        'Understand bail conditions and restrictions that may be imposed',
-        'Prepare for potential no-contact orders and device restrictions',
-        'Begin planning for legal expenses and time commitments'
-      ],
-      checklist: [
-        'Confirm attorney representation at first appearance',
-        'Understand all bail conditions and restrictions',
-        'Review charges and potential penalties with counsel',
-        'Plan for compliance with any pretrial conditions'
-      ],
-      resources: [
-        { name: 'California Criminal Court Overview', url: 'https://selfhelp.courts.ca.gov/criminal-court/overview' },
-        { name: 'National Center for State Courts', url: 'https://www.ncsc.org/resources-courts' }
-      ]
-    },
-    {
-      id: 'charging',
-      title: '3. Formal Charging',
-      duration: '2-8 Weeks',
-      description: 'Prosecutor files complaint, information, or seeks grand jury indictment',
-      familyTips: [
-        'Prepare emotionally for formal charges to be filed',
-        'Research the specific charges and potential penalties',
-        'Begin building support network and gathering resources',
-        'Consider family counseling to cope with stress'
-      ],
-      checklist: [
-        'Review formal charges with attorney in detail',
-        'Understand difference between felony and misdemeanor charges',
-        'Discuss potential plea options and trial strategy',
-        'Begin collecting mitigation evidence'
-      ],
-      resources: [
-        { name: 'LawHelp.org Legal Information', url: 'https://www.lawhelp.org/' },
-        { name: 'RAINN Criminal Justice Process', url: 'https://rainn.org/articles/what-expect-criminal-justice-system' }
-      ]
-    },
-    {
-      id: 'discovery-motions',
-      title: '4. Discovery & Pretrial Motions',
-      duration: '3-12 Months',
-      description: 'Evidence exchange and legal motions to suppress or exclude evidence',
-      familyTips: [
-        'Be patient - this phase often takes the longest',
-        'Support your loved one through evidence review process',
-        'Continue gathering character references and support letters',
-        'Maintain normal family routines where possible'
-      ],
-      checklist: [
-        'Review discovery materials with attorney',
-        'Identify potential defense witnesses',
-        'Gather mitigation evidence and character letters',
-        'Understand any pretrial motion outcomes'
-      ],
-      resources: [
-        { name: 'State Rules of Criminal Procedure', url: 'https://www.ncsc.org/information-and-resources' },
-        { name: 'Rape Shield Law Information', url: 'https://rainn.org/articles/rape-shield-laws' }
-      ]
-    },
-    {
-      id: 'plea-trial',
-      title: '5. Plea Negotiation or Trial',
-      duration: '1-4 Weeks (Trial)',
-      description: 'Case resolves through plea agreement or jury trial',
-      familyTips: [
-        'Understand the risks and benefits of plea vs. trial',
-        'Prepare emotionally for either outcome',
-        'Plan for court attendance and family support',
-        'Consider impact on employment and housing'
-      ],
-      checklist: [
-        'Discuss plea vs. trial options thoroughly with counsel',
-        'Understand registration requirements for any conviction',
-        'Review sentencing exposure for charges',
-        'Prepare for potential trial testimony and evidence'
-      ],
-      resources: [
-        { name: 'RAINN Trial Process Overview', url: 'https://rainn.org/articles/what-expect-criminal-trial' },
-        { name: 'Plea Bargaining Information', url: 'https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases' }
-      ]
-    },
-    {
-      id: 'sentencing',
-      title: '6. Sentencing & PSI',
-      duration: '30-90 Days Post-Conviction',
-      description: 'Presentence investigation and judicial sentencing',
-      familyTips: [
-        'Participate in presentence investigation interview',
-        'Submit character letters and mitigation evidence',
-        'Prepare concrete reentry plan for housing and employment',
-        'Attend sentencing hearing for support'
-      ],
-      checklist: [
-        'Complete presentence investigation process',
-        'Submit all character letters and mitigation materials',
-        'Understand state sentencing guidelines if applicable',
-        'Plan for immediate post-sentencing needs'
-      ],
-      resources: [
-        { name: 'Minnesota Sentencing Guidelines', url: 'https://mn.gov/sentencing-guidelines/' },
-        { name: 'Presentence Report Information', url: 'https://www.uscourts.gov/services-forms/probation-and-pretrial-services' }
-      ]
-    },
-    {
-      id: 'incarceration',
-      title: '7. Incarceration',
-      duration: 'Varies by Sentence',
-      description: 'Service of sentence in county jail or state prison',
-      familyTips: [
-        'Research the assigned facility policies and procedures',
-        'Set up visitation schedules and communication plans',
-        'Prepare financially for commissary and phone costs',
-        'Maintain family connections and support systems'
-      ],
-      checklist: [
-        'Understand facility rules and visiting procedures',
-        'Set up commissary account and communication methods',
-        'Plan for family visits and ongoing support',
-        'Research available programs and treatment options'
-      ],
-      resources: [
-        { name: 'Prison Policy Initiative', url: 'https://www.prisonpolicy.org/reports/pie2025.html' },
-        { name: 'State Department of Corrections', url: 'https://www.corrections.gov/' }
-      ]
-    },
-    {
-      id: 'registration-supervision',
-      title: '8. Registration & Supervision',
-      duration: 'Upon Release',
-      description: 'Compliance with registration and probation/parole requirements',
-      familyTips: [
-        'Understand state-specific registration requirements',
-        'Plan for housing restrictions and employment challenges',
-        'Prepare family for ongoing supervision conditions',
-        'Research available support services and resources'
-      ],
-      checklist: [
-        'Register with local law enforcement as required',
-        'Meet with probation/parole officer',
-        'Understand all supervision conditions and restrictions',
-        'Begin reintegration and compliance planning'
-      ],
-      resources: [
-        { name: 'NCSL Sex Offender Database', url: 'https://www.ncsl.org/civil-and-criminal-justice/sex-offender-enactments-database' },
-        { name: 'Collateral Consequences Resource Center', url: 'https://ccresourcecenter.org/state-restoration-profiles/50-state-comparison-relief-from-sex-offender-registration-obligations/' }
-      ]
-    }
-  ];
+export default function StateProcessGuide(): React.JSX.Element {
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="State Sex-Crime Process Guide - Step-by-Step Resource | The SOLAR Project"
-        description="Comprehensive guide to the state sex-crime legal process from investigation to registration. Includes family tips, checklists, and official resources for each stage."
-        keywords="state sex crime process, state criminal defense, arraignment, plea bargain, presentence investigation, sex offender registration, state court process"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="State Sex-Crime Process Guide | The SOLAR Project"
+        description="A plain-language roadmap to the state sex-crime process, from investigation through court, custody, supervision, and registration-related local handoffs."
+        keywords="state sex-crime process, state criminal court, sex offense case, probation, parole, registry, state court, SOLAR Project"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="mb-4">
-              <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-                Resource Guide
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              State Sex-Crime Process Guide
-            </h1>
-            
-            <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
-              A step-by-step roadmap through the state criminal process from investigation to registration, 
-              with practical tips for families and official resources.
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            State Sex-Crime Process Guide
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A practical roadmap for understanding how state and local systems may be involved from investigation through court, custody, supervision, and registration.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
+
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            State sex-crime cases share a recognizable shape, but the answers that control your situation usually come from the specific state, county, court, supervision agency, registry office, and written conditions involved.
+          </p>
+          <p>
+            This guide is not legal advice and cannot cover every state. Its job is to help you understand the common process, know what can vary, ask better local questions, save the right paperwork, and support a loved one without creating new risk.
+          </p>
+        </GuideIntro>
+
+        <GuideCallout tone="legal" icon="⚖️" title="Use defense counsel as the center point">
+          <p>
+            In an active state case, the safest first assumption is simple: do not speak with investigators, contact witnesses, explain the case publicly, or make case decisions without defense counsel. Family and supporters can help most by documenting, organizing, and asking counsel what support is safe.
+          </p>
+        </GuideCallout>
+
+        <OverviewCards
+          columns={4}
+          cards={[
+            {
+              eyebrow: "Phase 1",
+              title: "Investigation and arrest",
+              icon: "🔎",
+              tone: "legal",
+              description:
+                "Police, sheriffs, ICAC task forces, or state investigators may gather evidence before or after arrest.",
+            },
+            {
+              eyebrow: "Phase 2",
+              title: "Charging and early court",
+              icon: "🏛️",
+              tone: "warning",
+              description:
+                "The court addresses charges, counsel, release, bond, no-contact orders, and early deadlines.",
+            },
+            {
+              eyebrow: "Phase 3",
+              title: "Discovery, plea, or trial",
+              icon: "🗂️",
+              tone: "info",
+              description:
+                "Evidence review, motions, negotiations, and trial decisions shape the case and its consequences.",
+            },
+            {
+              eyebrow: "Phase 4",
+              title: "Sentencing and handoffs",
+              icon: "🧾",
+              tone: "reentry",
+              description:
+                "Custody, probation, parole, treatment, supervision, and registration often involve different authorities.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="state-variance"
+          number="1"
+          title="Why state cases vary so much"
+          subtitle="The process has a common shape, but the controlling answer is usually local."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A state sex-crime case is not one national system. State statutes define most charges and penalties. County prosecutors decide how many cases are charged. Local judges and court calendars affect timing. Pretrial services, bond offices, probation, parole, state corrections, treatment providers, and registry offices may each control different pieces.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handlePrint}
-                className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                Print Guide
-              </button>
-              <a
-                href="/blog/state-sex-crime-process"
-                className="bg-slate-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-500 transition-colors flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-                Detailed Article
-              </a>
-              <a
-                href="/resources/federal-process-guide"
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition-colors flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Federal Guide
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
-
-      {/* Process Overview */}
-      <section className="py-12 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">State Process Overview</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              The state sex-crime process involves 8 distinct stages, each with specific requirements, 
-              timelines, and considerations for families. Note that procedures vary by state.
+            <p>
+              That does not mean everything is unknowable. It means the safest approach is to use the roadmap below, then verify the specific step with the person or office that actually has authority over it.
             </p>
-          </div>
+          </GuideProse>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processStages.map((stage, index) => (
-              <div key={stage.id} className="bg-white rounded-lg shadow-sm p-6 text-center">
-                <div className="w-12 h-12 bg-slate-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
-                  {index + 1}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{stage.title}</h3>
-                <p className="text-sm text-slate-600 mb-2">{stage.duration}</p>
-                <p className="text-sm text-gray-600">{stage.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <GuideIconList
+            title="What can change by state or county"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">📜</span>,
+                title: "Charge names and penalties",
+                description:
+                  "Definitions, felony levels, mandatory penalties, and registration consequences vary by state law.",
+              },
+              {
+                icon: <span aria-hidden="true">🔐</span>,
+                title: "Release conditions",
+                description:
+                  "Bond, no-contact orders, device limits, internet rules, and travel restrictions can be very local.",
+              },
+              {
+                icon: <span aria-hidden="true">⚖️</span>,
+                title: "Court practice",
+                description:
+                  "Arraignment, discovery, motion, plea, and trial timing may depend on county calendars and local rules.",
+              },
+              {
+                icon: <span aria-hidden="true">📘</span>,
+                title: "Sentencing systems",
+                description:
+                  "Some states use guidelines or scoring systems; others rely more on statutory ranges and judicial discretion.",
+              },
+              {
+                icon: <span aria-hidden="true">🏢</span>,
+                title: "Custody authority",
+                description:
+                  "A sentence may involve county jail, state prison, treatment placement, parole, or community supervision.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration practice",
+                description:
+                  "Registration may be handled by a sheriff, police department, state police, or specialized registry office.",
+              },
+            ]}
+          />
 
-      {/* Detailed Stages */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {processStages.map((stage, index) => (
-              <div key={stage.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold">{stage.title}</h3>
-                      <p className="text-slate-200">Duration: {stage.duration}</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-slate-100">{stage.description}</p>
-                </div>
-
-                <div className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Family Tips */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                        Family Tips
-                      </h4>
-                      <ul className="space-y-2">
-                        {stage.familyTips.map((tip, tipIndex) => (
-                          <li key={tipIndex} className="flex items-start">
-                            <svg className="w-4 h-4 text-green-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-gray-700">{tip}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Checklist */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                        </svg>
-                        Action Checklist
-                      </h4>
-                      <ul className="space-y-2">
-                        {stage.checklist.map((item, itemIndex) => {
-                          const checkId = `${stage.id}-${itemIndex}`;
-                          return (
-                            <li key={itemIndex} className="flex items-start">
-                              <input
-                                type="checkbox"
-                                id={checkId}
-                                checked={checkedItems[checkId] || false}
-                                onChange={() => toggleCheck(checkId)}
-                                className="mt-1 mr-3 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                              />
-                              <label 
-                                htmlFor={checkId}
-                                className={`text-gray-700 cursor-pointer ${checkedItems[checkId] ? 'line-through text-gray-500' : ''}`}
-                              >
-                                {item}
-                              </label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Resources */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                      <svg className="w-5 h-5 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                      </svg>
-                      Official Resources
-                    </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {stage.resources.map((resource, resourceIndex) => (
-                        <a
-                          key={resourceIndex}
-                          href={resource.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
-                        >
-                          <svg className="w-4 h-4 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                          <span className="text-gray-900 font-medium">{resource.name}</span>
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* State vs Federal Comparison */}
-      <section className="bg-blue-50 border-l-4 border-blue-400 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-lg font-medium text-blue-800 mb-4">Key Differences from Federal Process</h3>
-              <div className="text-blue-700 space-y-2">
-                <p>• <strong>Speed:</strong> State cases often move faster than federal, but timelines vary by jurisdiction</p>
-                <p>• <strong>Bail:</strong> States more frequently allow pretrial release, though conditions can be strict</p>
-                <p>• <strong>Sentencing:</strong> No uniform guidelines across states; local statutes and practice drive outcomes</p>
-                <p>• <strong>Dual sovereignty:</strong> Both state and federal authorities may prosecute the same conduct</p>
-                <p>• <strong>Compare processes:</strong> See our <a href="/resources/federal-process-guide" className="text-blue-600 hover:text-blue-800 underline">Federal Process Guide</a> for detailed comparison</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Important Notes */}
-      <section className="bg-yellow-50 border-l-4 border-yellow-400 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-lg font-medium text-yellow-800 mb-4">Important Reminders</h3>
-              <div className="text-yellow-700 space-y-2">
-                <p>• <strong>State laws vary significantly</strong> - Procedures and timelines differ by jurisdiction</p>
-                <p>• <strong>Legal representation is crucial</strong> - Always consult with an experienced state defense attorney</p>
-                <p>• <strong>Stay informed</strong> - Laws and procedures can change; verify current information with official sources</p>
-                <p>• <strong>Support is available</strong> - Don't navigate this process alone; seek help from qualified professionals</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Resources */}
-      <section className="bg-slate-100 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Related Resources</h2>
-            <p className="text-lg text-gray-600">
-              Additional guides and resources to help you through this process
+          <GuideCallout tone="reminder" icon="🧭" title="Use this guide as a map, not a substitute for local rules">
+            <p>
+              The useful question is not only “What usually happens?” It is also “Who controls this exact step in this state, county, court, supervision office, or registry office — and what can I save in writing?”
             </p>
-          </div>
+          </GuideCallout>
+        </GuideSectionCard>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Federal Process Guide</h3>
-              <p className="text-gray-600 mb-4">
-                Compare with our comprehensive federal sex-crime process guide for cases involving federal jurisdiction.
-              </p>
-              <a href="/resources/federal-process-guide" className="text-blue-600 font-medium hover:text-blue-800">
-                View Guide →
-              </a>
+<GuideSectionHeader
+          id="how-to-use"
+          number="2"
+          title="How to use this guide"
+          subtitle="Start with the stage you are in, then identify what must be verified locally."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Timing can change because of custody status, charge level, discovery volume, continuances, plea negotiations, evaluations, expert review, local court calendars, counsel changes, prosecutor practice, and state or county procedure.
+            </p>
+
+            <p>
+              Treat the timelines here as orientation, not promises. The most reliable information usually comes from defense counsel, written court orders, the docket, pretrial services or bond office, probation or parole, the state Department of Corrections, or the local registration office that has authority over the step.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="first-things-to-save"
+            title="First things to save"
+            columns={2}
+            items={[
+              {
+                id: "attorney-contact",
+                label:
+                  "Defense attorney name, phone number, email, and after-hours instructions.",
+              },
+              {
+                id: "court-papers",
+                label:
+                  "Charging documents, case number, court notices, bond paperwork, and scheduling orders.",
+              },
+              {
+                id: "conditions",
+                label:
+                  "No-contact, stay-away, device, internet, travel, residence, treatment, and reporting conditions.",
+              },
+              {
+                id: "agency-info",
+                label:
+                  "Business cards, subpoenas, warrants, receipts, forms, and agency contact information.",
+              },
+              {
+                id: "supervision-registration",
+                label:
+                  "Probation, parole, DOC, treatment, and registration instructions or receipts.",
+              },
+              {
+                id: "notes",
+                label:
+                  "A dated log of names, departments, phone numbers, badge numbers, instructions, and confirmation numbers.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family-support"
+          number="3"
+          title="How family can help without creating risk"
+          subtitle="Support is useful when it reduces chaos without interfering with the case."
+        />
+
+        <GuideSectionCard>
+          <GuideIconList
+            title="Helpful roles for family and supporters"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🗓️</span>,
+                title: "Calendar keeper",
+                description:
+                  "Track court dates, attorney calls, bond deadlines, treatment appointments, and reporting instructions.",
+              },
+              {
+                icon: <span aria-hidden="true">🏠</span>,
+                title: "Household stabilizer",
+                description:
+                  "Help with childcare, work coverage, transportation, bills, pets, or other needs that keep daily life from collapsing.",
+              },
+              {
+                icon: <span aria-hidden="true">🗂️</span>,
+                title: "Document organizer",
+                description:
+                  "Collect records counsel requests and keep notices, conditions, dates, and written instructions in one place.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <GuideChecklist
+            id="family-safe-help"
+            title="Safe support checklist"
+            columns={1}
+            items={[
+              {
+                id: "family-ask-counsel",
+                label:
+                  "Ask counsel what help is safe before contacting agencies, gathering records, or speaking with anyone connected to the case.",
+              },
+              {
+                id: "family-track-instructions",
+                label:
+                  "Save attorney instructions, court notices, bond conditions, probation directions, treatment instructions, and registration paperwork.",
+              },
+              {
+                id: "family-organize-documents",
+                label:
+                  "Organize documents for counsel by topic and date instead of sending scattered screenshots or long emotional summaries.",
+              },
+              {
+                id: "family-avoid-contact",
+                label:
+                  "Do not contact alleged victims, witnesses, co-defendants, investigators, or people connected to the case unless counsel has clearly said it is safe and lawful.",
+              },
+              {
+                id: "family-avoid-posting",
+                label:
+                  "Avoid public posts, private-group speculation, fundraising claims, media responses, or online investigation about the case.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="🤝" title="You do not have to solve the legal case">
+            <p>
+              Family support is often most useful when it lowers stress around the person instead of trying to control the defense. Keep notes, preserve paperwork, support daily logistics, and let counsel guide case-related action.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="what-this-may-feel-like"
+          number="4"
+          title="What this may feel like"
+          subtitle="State cases can move through public, local systems that feel fast, exposing, and personal."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A state sex-crime case can feel frightening, humiliating, confusing, and isolating. Arrest and booking can feel chaotic. Court hearings may describe the case in harsh terms. Bond conditions may immediately affect home life, devices, work, parenting, transportation, or contact with people the family cares about.
+            </p>
+
+            <p>
+              Those reactions are real. They do not mean the case is over, that the person has no rights, or that family support has no place. The safest response is to slow down, write things down, work through counsel, and separate what you are hearing emotionally from what you need to do procedurally.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Emotional reality checks"
+            columns={2}
+            items={[
+              {
+                icon: <span aria-hidden="true">🌪️</span>,
+                title: "Arrest can feel chaotic",
+                description:
+                  "Focus first on counsel, written release conditions, and the next court date.",
+              },
+              {
+                icon: <span aria-hidden="true">🏛️</span>,
+                title: "Hearings can feel public",
+                description:
+                  "Local courtrooms can feel exposing. The government’s version is not the whole defense story.",
+              },
+              {
+                icon: <span aria-hidden="true">🔐</span>,
+                title: "Restrictions can feel sudden",
+                description:
+                  "No-contact, housing, device, travel, internet, or child-contact rules may change daily life immediately.",
+              },
+              {
+                icon: <span aria-hidden="true">🧭</span>,
+                title: "Registration can feel overwhelming",
+                description:
+                  "Deadlines and local reporting rules are serious. Verify the exact rule and save proof.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="state-timeline"
+          number="5"
+          title="The state process, stage by stage"
+          subtitle="The stages are common, but the controlling rules are state, county, and case-specific."
+        />
+
+        {stateStages.map((stage) => (
+          <GuideSectionCard key={stage.id}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                  Stage {stage.number} · {stage.duration}
+                </div>
+                <h3 className="mt-1 text-2xl font-bold text-slate-900">
+                  <span className="mr-2" aria-hidden="true">
+                    {stage.icon}
+                  </span>
+                  {stage.title}
+                </h3>
+              </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Know Your Rights Guide</h3>
-              <p className="text-gray-600 mb-4">
-                Comprehensive guide to constitutional rights and legal protections from investigation through reentry.
-              </p>
-              <a href="/resources/know-your-rights" className="text-blue-600 font-medium hover:text-blue-800">
-                View Guide →
-              </a>
-            </div>
+            <GuideProse>
+              <p>{stage.summary}</p>
+            </GuideProse>
 
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Housing Search Guide</h3>
-              <p className="text-gray-600 mb-4">
-                Strategies for finding housing with registry restrictions and landlord communication tips.
-              </p>
-              <a href="/resources/housing-search-guide" className="text-blue-600 font-medium hover:text-blue-800">
-                View Guide →
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+            <GuideIconList
+              title="What this stage usually means"
+              columns={3}
+              items={stage.concepts}
+            />
+
+            <GuideCallout tone="neutral" icon="👥" title="Who may be involved">
+              <p>{stage.actors}</p>
+            </GuideCallout>
+
+            <GuideChecklist
+              id={`${stage.id}-practical-moves`}
+              title="Practical moves at this stage"
+              columns={1}
+              items={stage.practicalMoves.map((item, index) => ({
+                id: `${stage.id}-move-${index + 1}`,
+                label: item,
+              }))}
+            />
+          </GuideSectionCard>
+        ))}
+<GuideSectionHeader
+          id="state-federal-differences"
+          number="6"
+          title="How state cases differ from federal cases"
+          subtitle="State cases can look familiar, but the authority, timing, custody, and registration rules often work differently."
+        />
+
+        <GuideSectionCard>
+          <GuideIconList
+            title="Key differences to keep in mind"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🗓️</span>,
+                title: "Local speed",
+                description:
+                  "State cases may move quickly in some counties and slowly in others. Court calendars and custody status matter.",
+              },
+              {
+                icon: <span aria-hidden="true">💵</span>,
+                title: "Bail and bond",
+                description:
+                  "Pretrial release systems vary widely. Conditions can still be strict even when release is granted.",
+              },
+              {
+                icon: <span aria-hidden="true">📘</span>,
+                title: "Sentencing systems",
+                description:
+                  "There is no single national state sentencing system. Statutes, guidelines, scoring, and local practice vary.",
+              },
+              {
+                icon: <span aria-hidden="true">🏢</span>,
+                title: "Custody authority",
+                description:
+                  "County jail, state prison, treatment placement, probation, parole, and state DOC may control different steps.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration authority",
+                description:
+                  "State law may set the duty, but local offices often control reporting instructions and receipts.",
+              },
+              {
+                icon: <span aria-hidden="true">⚖️</span>,
+                title: "Dual sovereignty",
+                description:
+                  "In some situations, state and federal authorities may both have interests in similar conduct.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Ask directly about state, federal, or parallel-investigation risk">
+            <p>
+              Do not assume one state case, dismissal, plea, or sentence automatically prevents another jurisdiction from acting. Ask counsel whether there is any federal interest, another state’s interest, or parallel-investigation risk.
+            </p>
+          </GuideCallout>
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Federal Sex-Crime Process Guide",
+                description:
+                  "Compare state-process issues with federal investigation, court, BOP custody, and supervised release handoffs.",
+                to: "/resources/federal-process-guide",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="verify"
+          number="7"
+          title="Verify before acting"
+          subtitle="The safest answer usually comes from the office with authority over the exact step."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              State cases often involve overlapping systems. A court clerk may not control bond conditions. A probation officer may not control registration deadlines. A registry office may not be able to change a court order. A treatment provider may have policies that are separate from court rules. Before acting, identify who controls the specific question.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Authority check"
+            columns={4}
+            items={[
+              {
+                icon: <span aria-hidden="true">⚖️</span>,
+                title: "Court",
+                description:
+                  "Charges, hearings, bond, orders, sentencing, modification, and violations.",
+              },
+              {
+                icon: <span aria-hidden="true">🔐</span>,
+                title: "Pretrial or bond office",
+                description:
+                  "Release reporting, monitoring, check-ins, travel approval, and condition questions.",
+              },
+              {
+                icon: <span aria-hidden="true">🧑‍💼</span>,
+                title: "Probation or parole",
+                description:
+                  "Supervision reporting, permission requests, treatment, monitoring, and violation issues.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration office",
+                description:
+                  "Reporting deadlines, address updates, forms, receipts, travel notices, and local instructions.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            whoToAsk="Defense counsel first when the question could affect the case, custody, supervision, registration, housing, work, technology, contact rules, travel, or court compliance. Then ask the specific office with authority."
+            whatToAsk="Ask one narrow question at a time: Which state or local rule applies, what deadline applies, who approves it, what form is required, and can I get the answer in writing?"
+            whatToSave="Save the date, name, title, department, phone number, email, form, written answer, receipt, confirmation number, and any follow-up instruction."
+          />
+
+          <GuideCallout tone="warning" icon="⚠️" title="Do not treat another person’s case as your rule">
+            <p>
+              Another person’s outcome, county, supervision condition, registry instruction, or state law may not apply to this case. Use examples to form better questions, not as permission to act.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="avoid-mistakes"
+          number="8"
+          title="Common mistakes to avoid"
+          subtitle="These are practical ways people accidentally make a state case harder."
+        />
+
+        <GuideSectionCard>
+          <GuideIconList
+            title="High-risk moves"
+            columns={2}
+            items={[
+              {
+                icon: <span aria-hidden="true">🚫</span>,
+                title: "Talking without counsel",
+                description:
+                  "Even a calm explanation to investigators can be misunderstood, incomplete, or used later.",
+              },
+              {
+                icon: <span aria-hidden="true">📣</span>,
+                title: "Posting about the case",
+                description:
+                  "Public posts, private groups, fundraisers, comments, and messages may travel farther than expected.",
+              },
+              {
+                icon: <span aria-hidden="true">☎️</span>,
+                title: "Contacting case-related people",
+                description:
+                  "Reaching out to alleged victims, witnesses, co-defendants, or investigators can create serious risk.",
+              },
+              {
+                icon: <span aria-hidden="true">🔀</span>,
+                title: "Blending systems together",
+                description:
+                  "Court orders, bond rules, probation, parole, treatment, custody, and registration can each have different authority.",
+              },
+              {
+                icon: <span aria-hidden="true">⏰</span>,
+                title: "Missing local deadlines",
+                description:
+                  "Court dates, bond reporting, evaluations, treatment intake, registration, and update deadlines need tracking.",
+              },
+              {
+                icon: <span aria-hidden="true">🔓</span>,
+                title: "Using monitored systems carelessly",
+                description:
+                  "Jail calls, prison email, texts, social media, and shared devices may not be private.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🧭" title="General information is not enough">
+            <p>
+              The state-process roadmap is useful, but the exact answer can depend on state law, county practice, judge, prosecutor, custody status, court orders, supervision conditions, and registry office practice.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="limited-access"
+          number="9"
+          title="If internet access is limited"
+          subtitle="State cases often affect people who are detained, incarcerated, phone-only, on supervision, or relying on family for paperwork."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet ways to keep the process organized"
+            items={[
+              "Keep one paper folder for court papers, one for attorney notes, and one for supervision or registration instructions.",
+              "Ask counsel, the clerk, jail, DOC, probation, parole, or registration office to mail or print forms when online access is not realistic.",
+              "Write down names, dates, departments, phone numbers, badge numbers, and confirmation numbers during every important call.",
+              "Ask one trusted person to be the document helper so instructions do not get scattered across texts, screenshots, and social media messages.",
+              "Use a public library, courthouse, clerk’s office, law library, or trusted helper for printing only when doing so does not violate release, supervision, technology, or contact restrictions.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Privacy still matters">
+            <p>
+              Do not use a shared computer, public printer, monitored account, jail or prison messaging system, or shared family device for sensitive case strategy unless counsel has said it is safe.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="10"
+          title="Official resources and related SOLAR guides"
+          subtitle="Use official sources and state-specific offices for verification, then use SOLAR guides for practical next steps."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="State-process resources and lookup tools"
+            resources={[
+              {
+                label: "ICAC Task Force Program",
+                description:
+                  "Federal background on the Internet Crimes Against Children task force network used in many online exploitation investigations.",
+                href: "https://www.icactaskforce.org/",
+                badge: "Official",
+              },
+              {
+                label: "ABA Bar Directories and Lawyer Finders",
+                description:
+                  "State bar directories and lawyer-finder tools for locating licensed legal help.",
+                href: "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
+                badge: "Directory",
+              },
+              {
+                label: "ABA Lawyer Referral Directory",
+                description:
+                  "Lookup tool for state and local bar lawyer referral services.",
+                href: "https://www.americanbar.org/groups/lawyer_referral/resources/lawyer-referral-directory/",
+                badge: "Directory",
+              },
+              {
+                label: "California Courts Criminal Court Overview",
+                description:
+                  "Example of a state court self-help overview. Use your own state court site for controlling local guidance.",
+                href: "https://selfhelp.courts.ca.gov/criminal-court/overview",
+                badge: "State example",
+              },
+              {
+                label: "USA.gov State Departments of Corrections",
+                description:
+                  "Directory for state corrections departments and custody-related contact information.",
+                href: "https://www.usa.gov/state-corrections",
+                badge: "Official",
+              },
+              {
+                label: "NCSL Sex Offender Enactments Database",
+                description:
+                  "State legislation database for policy research. It is not a substitute for local registration instructions.",
+                href: "https://www.ncsl.org/civil-and-criminal-justice/sex-offender-enactments-database",
+                badge: "Policy",
+              },
+              {
+                label: "NCSL Community Supervision Legislation Database",
+                description:
+                  "State legislation database on probation, parole, and community supervision policy.",
+                href: "https://www.ncsl.org/civil-and-criminal-justice/community-supervision-legislation-database",
+                badge: "Policy",
+              },
+              {
+                label: "CCRC Relief from Registration Comparison",
+                description:
+                  "50-state comparison focused on relief from sex offense registration obligations.",
+                href: "https://ccresourcecenter.org/state-restoration-profiles/50-state-comparison-relief-from-sex-offender-registration-obligations/",
+                badge: "Research",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Federal Sex-Crime Process Guide",
+                description:
+                  "Compare state-process issues with federal investigation, court, BOP custody, and supervised release handoffs.",
+                to: "/resources/federal-process-guide",
+              },
+              {
+                title: "Know Your Rights Guide",
+                description:
+                  "Use this when you need rights-focused guidance for police contact, questioning, searches, and legal representation.",
+                to: "/resources/know-your-rights",
+              },
+              {
+                title: "Prison Communication Guide",
+                description:
+                  "Use this for practical guidance on calls, mail, email, visitation, privacy, and communication limits during custody.",
+                to: "/resources/prison-communication-mail-visits-monitoring",
+              },
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Use this for personal reentry planning beyond the state-process handoff.",
+                to: "/resources/reentry-checklist",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <SourceList
+            note="State laws, county procedures, court practices, supervision rules, and registry-office instructions can change. Use these links for orientation and lookup, then verify the specific answer with counsel or the office that has authority."
+            sources={[
+              {
+                label: "ICAC Task Force Program",
+                href: "https://www.icactaskforce.org/",
+                description:
+                  "Background on ICAC task forces used in many online child-exploitation investigations.",
+              },
+              {
+                label: "ABA Bar Directories and Lawyer Finders",
+                href: "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
+                description:
+                  "State bar directory and lawyer-finder resources.",
+              },
+              {
+                label: "ABA Lawyer Referral Directory",
+                href: "https://www.americanbar.org/groups/lawyer_referral/resources/lawyer-referral-directory/",
+                description:
+                  "State and local lawyer referral service lookup.",
+              },
+              {
+                label: "California Courts — Criminal Court Overview",
+                href: "https://selfhelp.courts.ca.gov/criminal-court/overview",
+                description:
+                  "Example of a state court self-help overview; not a national rule.",
+              },
+              {
+                label: "USA.gov — State Departments of Corrections",
+                href: "https://www.usa.gov/state-corrections",
+                description:
+                  "Directory for state corrections departments.",
+              },
+              {
+                label: "NCSL — Sex Offender Enactments Database",
+                href: "https://www.ncsl.org/civil-and-criminal-justice/sex-offender-enactments-database",
+                description:
+                  "State legislation database for sex-offense registration and related policy research.",
+              },
+              {
+                label: "NCSL — Community Supervision Legislation Database",
+                href: "https://www.ncsl.org/civil-and-criminal-justice/community-supervision-legislation-database",
+                description:
+                  "State legislation database on probation, parole, and supervision policy.",
+              },
+              {
+                label: "Collateral Consequences Resource Center — Relief from Registration",
+                href: "https://ccresourcecenter.org/state-restoration-profiles/50-state-comparison-relief-from-sex-offender-registration-obligations/",
+                description:
+                  "50-state comparison focused on relief from sex offense registration obligations.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
-
-export default StateProcessGuide;
