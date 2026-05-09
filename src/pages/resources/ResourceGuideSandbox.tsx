@@ -1066,6 +1066,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 badge: "Official",
               },
               {
+                label: "Post-Conviction Supervision",
+                description:
+                  "U.S. Courts explanation of federal post-conviction supervision.",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision",
+                badge: "Official",
+              },
+              {
                 label: "U.S. Sentencing Commission Guidelines Manual",
                 description:
                   "Current federal sentencing guidelines manual and related guideline materials.",
@@ -1180,6 +1187,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/presentence-investigations",
                 description:
                   "Official overview of presentence investigation work by probation officers.",
+              },
+              {
+                label: "U.S. Courts — Post-Conviction Supervision",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision",
+                description:
+                  "Official overview of federal post-conviction supervision.",
               },
               {
                 label: "U.S. Sentencing Commission — 2025 Guidelines Manual",
