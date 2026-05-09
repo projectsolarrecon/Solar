@@ -11,6 +11,7 @@ import {
   SoftDivider,
   OverviewCards,
   GuideChecklist,
+  GuideIconList,
   OfflineOptions,
   VerifyBeforeActing,
   ResourceLinkGrid,
@@ -23,21 +24,32 @@ const federalStages = [
     id: "investigation",
     number: "1",
     title: "Investigation",
-    duration: "Weeks to years",
+    duration: "Timing varies widely",
     icon: "🔎",
     summary:
       "Federal agents and prosecutors gather information before charges are filed. Some people know they are under investigation; others do not learn until an arrest, search, subpoena, or target letter.",
-    whatHappens: [
-      "A federal agency may investigate, execute search warrants, issue subpoenas, interview witnesses, or refer information to the U.S. Attorney’s Office.",
-      "A prosecutor may review evidence and decide whether to pursue charges, present the matter to a grand jury, seek a plea before indictment, or decline prosecution.",
-      "The person being investigated may be treated as a witness, subject, or target, but those labels can change.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🕵️</span>,
+        title: "Federal agency involvement",
+        description:
+          "An agency may investigate, execute search warrants, issue subpoenas, interview witnesses, or refer information to the U.S. Attorney’s Office.",
+      },
+      {
+        icon: <span aria-hidden="true">⚖️</span>,
+        title: "Prosecutor review",
+        description:
+          "A federal prosecutor may pursue charges, present the case to a grand jury, seek a plea before indictment, or decline prosecution.",
+      },
+      {
+        icon: <span aria-hidden="true">🧭</span>,
+        title: "Witness, subject, or target",
+        description:
+          "A person’s status can change. Those labels should be discussed with counsel before anyone speaks to investigators.",
+      },
     ],
-    federalActors: [
-      "Investigating agency, such as FBI, HSI, Postal Inspection Service, or another federal agency",
-      "Assistant U.S. Attorney",
-      "Federal grand jury, if the government seeks an indictment",
-      "Defense attorney or Federal Public Defender, if counsel is appointed or retained",
-    ],
+    actors:
+      "Investigating agency, Assistant U.S. Attorney, grand jury if used, and defense counsel if retained or appointed.",
     practicalMoves: [
       "Contact a federal criminal defense attorney before speaking with investigators.",
       "Do not consent to interviews, searches, or device access without legal advice.",
@@ -49,23 +61,32 @@ const federalStages = [
     id: "arrest-initial-appearance",
     number: "2",
     title: "Arrest and Initial Appearance",
-    duration: "Often within days of arrest",
+    duration: "Usually soon after arrest or summons",
     icon: "🏛️",
     summary:
       "After arrest or summons, the first federal court appearance usually addresses identity, rights, counsel, charging status, and temporary release or detention questions.",
-    whatHappens: [
-      "The person appears before a magistrate judge.",
-      "The court addresses whether counsel is retained or appointed.",
-      "The government may ask for detention, release conditions, or a later detention hearing.",
-      "Pretrial Services may interview the person and prepare information for the court.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">👤</span>,
+        title: "Counsel and rights",
+        description:
+          "The magistrate judge addresses counsel, the charge, and basic rights at the start of the case.",
+      },
+      {
+        icon: <span aria-hidden="true">🔐</span>,
+        title: "Release or detention",
+        description:
+          "The government may seek detention, release conditions, or a later detention hearing.",
+      },
+      {
+        icon: <span aria-hidden="true">📋</span>,
+        title: "Pretrial Services",
+        description:
+          "Pretrial Services may interview the person and provide information to the court about release or detention.",
+      },
     ],
-    federalActors: [
-      "U.S. Marshals Service",
-      "Magistrate judge",
-      "Assistant U.S. Attorney",
-      "Federal defender or retained defense counsel",
-      "Pretrial Services officer",
-    ],
+    actors:
+      "U.S. Marshals Service, magistrate judge, Assistant U.S. Attorney, defense counsel, and Pretrial Services.",
     practicalMoves: [
       "Confirm who the defense attorney is and how family can share information with counsel.",
       "Ask counsel what release or detention issues will be addressed next.",
@@ -77,28 +98,37 @@ const federalStages = [
     id: "charging-arraignment",
     number: "3",
     title: "Charging, Indictment, and Arraignment",
-    duration: "Timing varies by case and custody status",
+    duration: "Depends on charging posture and custody status",
     icon: "📄",
     summary:
       "Federal felony charges often move through a grand jury indictment unless waived. Arraignment is where charges are formally read or acknowledged and a plea is entered.",
-    whatHappens: [
-      "The government may proceed by complaint, indictment, information, superseding indictment, or other charging document.",
-      "A grand jury decides whether there is probable cause to charge a federal felony, unless indictment is waived.",
-      "At arraignment, the person is advised of the charges and enters a plea, usually not guilty at the start.",
-      "The court may set scheduling orders, discovery deadlines, motion deadlines, or status conferences.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">📑</span>,
+        title: "Charging document",
+        description:
+          "The case may proceed by complaint, indictment, information, superseding indictment, or another filing.",
+      },
+      {
+        icon: <span aria-hidden="true">👥</span>,
+        title: "Grand jury",
+        description:
+          "A grand jury decides whether there is probable cause to charge a federal felony unless indictment is waived.",
+      },
+      {
+        icon: <span aria-hidden="true">🗓️</span>,
+        title: "Arraignment and schedule",
+        description:
+          "The court may set discovery, motion, status conference, plea, or trial deadlines.",
+      },
     ],
-    federalActors: [
-      "Grand jury",
-      "Assistant U.S. Attorney",
-      "Magistrate judge or district judge",
-      "Defense counsel",
-      "Court clerk",
-    ],
+    actors:
+      "Grand jury, Assistant U.S. Attorney, magistrate or district judge, defense counsel, and court clerk.",
     practicalMoves: [
       "Review the charging document with counsel, not alone.",
       "Ask counsel what each count means, what the maximum and mandatory penalties are, and what deadlines are coming.",
       "Keep a copy of the indictment, arraignment minute entry, scheduling order, and bond or detention paperwork.",
-      "Avoid researching penalties without counsel’s help; federal sentencing depends on statutes, guidelines, facts, criminal history, and negotiated issues.",
+      "Avoid relying on generic penalty information without counsel’s help.",
     ],
   },
   {
@@ -109,19 +139,28 @@ const federalStages = [
     icon: "🗂️",
     summary:
       "This is the evidence and litigation stage. Defense counsel reviews the government’s discovery, investigates defenses, negotiates with prosecutors, and files motions when appropriate.",
-    whatHappens: [
-      "The government provides discovery through defense counsel under court rules, protective orders, and case-specific instructions.",
-      "Defense counsel may investigate facts, consult experts, review devices or records, and discuss possible motions.",
-      "Pretrial motions may address suppression, warrants, statements, discovery disputes, severance, expert evidence, or other legal issues.",
-      "Many cases also involve plea discussions during this stage.",
+    concepts: [
+      {
+        icon: <span aria-hidden="true">🗃️</span>,
+        title: "Discovery review",
+        description:
+          "The government provides discovery through defense counsel under court rules, protective orders, and case-specific instructions.",
+      },
+      {
+        icon: <span aria-hidden="true">🔬</span>,
+        title: "Defense investigation",
+        description:
+          "Counsel may review records, consult experts, investigate facts, and discuss possible defenses.",
+      },
+      {
+        icon: <span aria-hidden="true">📝</span>,
+        title: "Pretrial motions",
+        description:
+          "Motions may address warrants, statements, discovery disputes, expert evidence, severance, or other legal issues.",
+      },
     ],
-    federalActors: [
-      "Assistant U.S. Attorney",
-      "Defense counsel",
-      "Federal agents or forensic examiners",
-      "District judge or magistrate judge",
-      "Court staff handling scheduling and filings",
-    ],
+    actors:
+      "Assistant U.S. Attorney, defense counsel, federal agents or forensic examiners, judge, and court staff.",
     practicalMoves: [
       "Do not ask counsel to send sensitive discovery to family unless counsel says it is allowed.",
       "Save court scheduling orders and motion deadlines.",
@@ -137,9 +176,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Federal Criminal Process Guide | The SOLAR Project"
-        description="A plain-language roadmap to the federal criminal process, from investigation through court, custody, supervised release, and registration-related handoffs."
-        keywords="federal criminal process, federal sex offense case, federal court, BOP, supervised release, federal probation, registry, SOLAR Project"
+        title="Federal Sex-Crime Process Guide | The SOLAR Project"
+        description="A plain-language roadmap to the federal sex-crime process, from investigation through court, custody, supervised release, and registration-related handoffs."
+        keywords="federal sex-crime process, federal criminal process, federal court, BOP, supervised release, federal probation, registry, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -156,7 +195,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Federal Criminal Process Guide
+            Federal Sex-Crime Process Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
@@ -231,7 +270,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             },
             {
               eyebrow: "Phase 4",
-              title: "Custody and federal supervision",
+              title: "Custody and supervision",
               icon: "🧭",
               tone: "reentry",
               description:
@@ -250,17 +289,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Federal cases do not all move at the same speed. Timing can change because of detention status, discovery volume, continuances, plea negotiations, court scheduling, expert review, new charges, or changes in counsel.
+              Federal cases do not all move at the same speed. Timing can change because of detention status, discovery volume, continuances, plea negotiations, expert review, new charges, court scheduling, counsel changes, and local practice.
             </p>
 
             <p>
               Treat the timelines here as orientation, not a promise. The most reliable information for a specific case usually comes from defense counsel, filed court orders, the docket, Pretrial Services, U.S. Probation, BOP, or the registration office that actually has authority over the step being taken.
             </p>
-
-            <p>
-              Families can be helpful without taking over the case. The most useful support is often quiet and practical: save documents, write down names and dates, help counsel receive organized information, and avoid public posts or side conversations that could create risk.
-            </p>
           </GuideProse>
+
+          <GuideIconList
+            title="Three things to keep separate"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🏛️</span>,
+                title: "The court case",
+                description:
+                  "Charges, hearings, plea or trial decisions, sentencing, and later supervision litigation.",
+              },
+              {
+                icon: <span aria-hidden="true">🏢</span>,
+                title: "Federal custody",
+                description:
+                  "BOP designation, sentence computation, facility rules, transfers, and release processing.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration and supervision",
+                description:
+                  "Federal supervised release conditions may overlap with state or local registration duties, but they are not the same system.",
+              },
+            ]}
+          />
 
           <SoftDivider />
 
@@ -303,8 +363,83 @@ export default function ResourceGuideSandbox(): JSX.Element {
           />
         </GuideSectionCard>
 <GuideSectionHeader
-          id="federal-timeline"
+          id="family-support"
           number="2"
+          title="How family can help without creating risk"
+          subtitle="Support matters. The safest help is organized, quiet, and checked with counsel before it touches the case."
+        />
+
+        <GuideSectionCard>
+          <GuideIconList
+            title="Helpful roles for family and supporters"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🗓️</span>,
+                title: "Calendar keeper",
+                description:
+                  "Track court dates, attorney calls, reporting instructions, and paperwork deadlines.",
+              },
+              {
+                icon: <span aria-hidden="true">🏠</span>,
+                title: "Household stabilizer",
+                description:
+                  "Help with childcare, work coverage, transportation, bills, pets, or other needs that keep daily life from collapsing.",
+              },
+              {
+                icon: <span aria-hidden="true">🗂️</span>,
+                title: "Document organizer",
+                description:
+                  "Collect records counsel requests and keep notices, names, dates, and written instructions in one place.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <GuideChecklist
+            id="family-safe-help"
+            title="Safe support checklist"
+            columns={1}
+            items={[
+              {
+                id: "family-ask-counsel",
+                label:
+                  "Ask counsel what kind of help is safe before contacting agencies, gathering records, or speaking with anyone connected to the case.",
+              },
+              {
+                id: "family-track-instructions",
+                label:
+                  "Save attorney instructions, court notices, Pretrial Services instructions, BOP paperwork, probation directions, and registration instructions.",
+              },
+              {
+                id: "family-organize-documents",
+                label:
+                  "Organize documents for counsel by topic and date instead of sending scattered screenshots or long emotional summaries.",
+              },
+              {
+                id: "family-avoid-contact",
+                label:
+                  "Do not contact alleged victims, witnesses, co-defendants, investigators, or people connected to the case unless counsel has clearly said it is safe and lawful.",
+              },
+              {
+                id: "family-avoid-posting",
+                label:
+                  "Avoid public posts, private-group speculation, fundraising claims, media responses, or online investigation about the case.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="🤝" title="You do not have to solve the legal case">
+            <p>
+              Family support is often most useful when it reduces chaos around the person instead of trying to control the defense. Keep notes, preserve paperwork, support daily logistics, and let counsel guide case-related action.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="federal-timeline"
+          number="3"
           title="The federal process, stage by stage"
           subtitle="Each stage has a different federal actor, different paperwork, and different risks."
         />
@@ -327,21 +462,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
             <GuideProse>
               <p>{stage.summary}</p>
-
-              <h4>What usually happens</h4>
-              <ul>
-                {stage.whatHappens.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h4>Federal actors you may hear about</h4>
-              <ul>
-                {stage.federalActors.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
             </GuideProse>
+
+            <GuideIconList
+              title="What this stage usually means"
+              columns={3}
+              items={stage.concepts}
+            />
+
+            <GuideCallout tone="neutral" icon="👥" title="Federal actors at this stage">
+              <p>{stage.actors}</p>
+            </GuideCallout>
 
             <GuideChecklist
               id={`${stage.id}-practical-moves`}
@@ -374,32 +505,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               Many federal cases resolve by plea agreement, but some proceed to trial. The choice between plea and trial belongs to the person charged after consultation with counsel. Family can support the person, but should be careful not to pressure, promise, or threaten a decision.
             </p>
-
-            <h4>What usually happens</h4>
-            <ul>
-              <li>
-                Defense counsel and the prosecutor may discuss possible plea terms, guideline issues, dismissed counts, appeal waivers, stipulations, and factual admissions.
-              </li>
-              <li>
-                If there is a plea, the judge usually conducts a plea hearing to make sure the plea is knowing and voluntary.
-              </li>
-              <li>
-                If there is a trial, the government must prove the charges beyond a reasonable doubt, and the defense can challenge the evidence through counsel.
-              </li>
-              <li>
-                A conviction after plea or trial usually moves the case toward a presentence investigation and sentencing.
-              </li>
-            </ul>
-
-            <h4>Federal actors you may hear about</h4>
-            <ul>
-              <li>District judge</li>
-              <li>Assistant U.S. Attorney</li>
-              <li>Defense counsel</li>
-              <li>Jury, if the case goes to trial</li>
-              <li>U.S. Probation, after conviction and before sentencing</li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            title="What this stage usually means"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🤝</span>,
+                title: "Plea discussions",
+                description:
+                  "Counsel and the prosecutor may discuss plea terms, dismissed counts, stipulations, guideline issues, and appeal waivers.",
+              },
+              {
+                icon: <span aria-hidden="true">🧑‍⚖️</span>,
+                title: "Plea hearing",
+                description:
+                  "If there is a plea, the judge usually confirms that the plea is knowing and voluntary.",
+              },
+              {
+                icon: <span aria-hidden="true">👥</span>,
+                title: "Trial",
+                description:
+                  "At trial, the government must prove the charges beyond a reasonable doubt, and the defense challenges the case through counsel.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="neutral" icon="👥" title="Federal actors at this stage">
+            <p>
+              District judge, Assistant U.S. Attorney, defense counsel, jury if the case goes to trial, and U.S. Probation after conviction.
+            </p>
+          </GuideCallout>
 
           <GuideChecklist
             id="plea-trial-practical-moves"
@@ -449,32 +586,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               After conviction, U.S. Probation usually prepares a presentence report for the court. This report can affect guideline calculations, objections, sentencing arguments, custody recommendations, supervision conditions, and future BOP classification.
             </p>
-
-            <h4>What usually happens</h4>
-            <ul>
-              <li>
-                U.S. Probation interviews the person and gathers information about the offense, history, finances, health, family, education, work, treatment, and criminal history.
-              </li>
-              <li>
-                The defense and prosecution may object to parts of the presentence report.
-              </li>
-              <li>
-                The judge considers the advisory sentencing guidelines, statutory penalties, sentencing factors, arguments from both sides, and any required conditions.
-              </li>
-              <li>
-                The sentence may include imprisonment, supervised release, fines, restitution, special assessments, treatment conditions, computer or internet conditions, contact restrictions, and other terms.
-              </li>
-            </ul>
-
-            <h4>Federal actors you may hear about</h4>
-            <ul>
-              <li>U.S. Probation officer conducting the presentence investigation</li>
-              <li>District judge</li>
-              <li>Assistant U.S. Attorney</li>
-              <li>Defense counsel</li>
-              <li>U.S. Sentencing Commission guidelines and policy materials</li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            title="What this stage usually means"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">📋</span>,
+                title: "Presentence report",
+                description:
+                  "U.S. Probation gathers offense, history, guideline, victim impact, financial, and background information for the court.",
+              },
+              {
+                icon: <span aria-hidden="true">✍️</span>,
+                title: "Objections and arguments",
+                description:
+                  "Counsel may object to parts of the report and present sentencing arguments or mitigation.",
+              },
+              {
+                icon: <span aria-hidden="true">⚖️</span>,
+                title: "Sentence and conditions",
+                description:
+                  "The judge imposes the sentence and any supervised release, financial, treatment, technology, contact, or reporting conditions.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="neutral" icon="👥" title="Federal actors at this stage">
+            <p>
+              U.S. Probation officer, district judge, Assistant U.S. Attorney, defense counsel, and U.S. Sentencing Commission guideline materials.
+            </p>
+          </GuideCallout>
 
           <GuideChecklist
             id="sentencing-practical-moves"
@@ -510,8 +653,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
           </GuideCallout>
         </GuideSectionCard>
-
-        <GuideSectionCard>
+<GuideSectionCard>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <div className="text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -528,34 +670,40 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideProse>
             <p>
-              If the sentence includes federal imprisonment, the Bureau of Prisons decides designation and custody administration. The sentencing judge may make recommendations, but BOP controls placement, classification, transfer decisions, custody rules, and many day-to-day prison procedures.
+              If the sentence includes federal imprisonment, the Bureau of Prisons decides designation and custody administration. The sentencing judge may make recommendations, but BOP controls placement, classification, transfer decisions, custody rules, sentence computation, and many day-to-day prison procedures.
             </p>
-
-            <h4>What usually happens</h4>
-            <ul>
-              <li>
-                The court may order immediate remand or allow self-surrender.
-              </li>
-              <li>
-                BOP reviews designation factors and assigns a facility.
-              </li>
-              <li>
-                BOP rules control communication, visitation, commissary, programming, discipline, transfers, release calculation, and custody classification.
-              </li>
-              <li>
-                As release approaches, BOP may be involved in release planning, Residential Reentry Center placement, home confinement review, or coordination with U.S. Probation.
-              </li>
-            </ul>
-
-            <h4>Federal actors you may hear about</h4>
-            <ul>
-              <li>Bureau of Prisons Designation and Sentence Computation Center</li>
-              <li>Facility case manager or unit team</li>
-              <li>U.S. Marshals Service, if the person is remanded or transported</li>
-              <li>U.S. Probation, especially before release to supervision</li>
-              <li>Sentencing court, for limited post-sentencing issues</li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            title="What this stage usually means"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">📍</span>,
+                title: "Designation",
+                description:
+                  "BOP decides the facility assignment through its designation and sentence computation process.",
+              },
+              {
+                icon: <span aria-hidden="true">📨</span>,
+                title: "Surrender or transport",
+                description:
+                  "The person may self-surrender if allowed or be remanded and transported by federal authorities.",
+              },
+              {
+                icon: <span aria-hidden="true">🏘️</span>,
+                title: "Release processing",
+                description:
+                  "As release approaches, BOP may coordinate RRC placement, home confinement review, or handoff to U.S. Probation.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="neutral" icon="👥" title="Federal actors at this stage">
+            <p>
+              Bureau of Prisons, Designation and Sentence Computation Center, facility case manager or unit team, U.S. Marshals Service if remanded or transported, and U.S. Probation before release to supervision.
+            </p>
+          </GuideCallout>
 
           <GuideChecklist
             id="bop-practical-moves"
@@ -605,32 +753,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               This stage is not general reentry planning. This guide focuses on the federal-process pieces: release from BOP custody, the transition to U.S. Probation supervision, federal supervised release conditions, and the handoff to state or local registration systems when registration applies.
             </p>
-
-            <h4>What usually happens</h4>
-            <ul>
-              <li>
-                BOP releases the person according to federal custody calculations and release procedures.
-              </li>
-              <li>
-                U.S. Probation supervises the person under the conditions ordered by the federal court.
-              </li>
-              <li>
-                The federal court may later address modification, clarification, early termination, or revocation of supervised release.
-              </li>
-              <li>
-                Registration duties may involve federal law, state law, local law enforcement practice, and supervision conditions, but the actual reporting office is often state or local.
-              </li>
-            </ul>
-
-            <h4>Federal actors you may hear about</h4>
-            <ul>
-              <li>Bureau of Prisons</li>
-              <li>U.S. Probation officer</li>
-              <li>Federal sentencing judge</li>
-              <li>Federal prosecutor and defense counsel, if supervision litigation arises</li>
-              <li>SMART Office or SORNA materials as federal background, not a substitute for local registration instructions</li>
-            </ul>
           </GuideProse>
+
+          <GuideIconList
+            title="What this stage usually means"
+            columns={3}
+            items={[
+              {
+                icon: <span aria-hidden="true">🚪</span>,
+                title: "BOP release",
+                description:
+                  "BOP releases the person according to federal custody calculations and release procedures.",
+              },
+              {
+                icon: <span aria-hidden="true">🧑‍💼</span>,
+                title: "U.S. Probation",
+                description:
+                  "Federal supervision usually begins under written conditions ordered by the federal court.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration handoff",
+                description:
+                  "Registration can involve federal law, state law, local practice, and individual supervision or court conditions.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="neutral" icon="👥" title="Federal actors at this stage">
+            <p>
+              Bureau of Prisons, U.S. Probation officer, federal sentencing judge, federal prosecutor and defense counsel if supervision litigation arises, and SMART Office or SORNA materials as federal background.
+            </p>
+          </GuideCallout>
 
           <GuideChecklist
             id="supervision-registration-practical-moves"
@@ -666,9 +820,10 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
           </GuideCallout>
         </GuideSectionCard>
-<GuideSectionHeader
+
+        <GuideSectionHeader
           id="verify"
-          number="3"
+          number="4"
           title="Verify before acting"
           subtitle="The safest answer often depends on which authority controls the specific step."
         />
@@ -679,6 +834,37 @@ export default function ResourceGuideSandbox(): JSX.Element {
               A federal case can involve overlapping systems. A probation officer may not control a BOP designation. A BOP case manager may not control a federal court condition. A federal court condition may not tell you every local registration rule. Before acting, identify the office with actual authority over the exact question.
             </p>
           </GuideProse>
+
+          <GuideIconList
+            title="Authority check"
+            columns={4}
+            items={[
+              {
+                icon: <span aria-hidden="true">⚖️</span>,
+                title: "Court",
+                description:
+                  "Orders, hearings, sentencing, and supervised release modification or revocation.",
+              },
+              {
+                icon: <span aria-hidden="true">🏢</span>,
+                title: "BOP",
+                description:
+                  "Custody, designation, sentence computation, facility rules, and release processing.",
+              },
+              {
+                icon: <span aria-hidden="true">🧑‍💼</span>,
+                title: "U.S. Probation",
+                description:
+                  "Pretrial services, presentence investigation, and supervised release supervision.",
+              },
+              {
+                icon: <span aria-hidden="true">🧾</span>,
+                title: "Registration office",
+                description:
+                  "Local reporting instructions, deadlines, forms, receipts, and update requirements.",
+              },
+            ]}
+          />
 
           <VerifyBeforeActing
             whoToAsk="Defense counsel first when the question could affect the case, custody, supervision, registration, travel, housing, contact rules, or court compliance. Then ask the specific office with authority, such as Pretrial Services, BOP, U.S. Probation, the court clerk, or the registration office."
@@ -695,42 +881,65 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="avoid-mistakes"
-          number="4"
+          number="5"
           title="Common mistakes to avoid"
           subtitle="These are not moral judgments. They are practical ways people accidentally make a federal case harder."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <ul>
-              <li>
-                <strong>Talking to investigators without counsel.</strong> Even a calm explanation can be misunderstood, incomplete, or used later.
-              </li>
-              <li>
-                <strong>Posting about the case online.</strong> Public posts, comments, fundraisers, private groups, and messages may travel farther than expected.
-              </li>
-              <li>
-                <strong>Contacting witnesses, alleged victims, co-defendants, or family members connected to the case.</strong> This can create serious risk even if the intent is peaceful.
-              </li>
-              <li>
-                <strong>Assuming federal, state, and local rules are the same.</strong> Federal supervision, BOP custody, and registration reporting can involve different authorities.
-              </li>
-              <li>
-                <strong>Missing paperwork deadlines.</strong> Court dates, motion deadlines, presentence deadlines, surrender instructions, probation reporting, and registration deadlines should be saved and double-checked.
-              </li>
-              <li>
-                <strong>Sending sensitive materials through monitored systems.</strong> Jail calls, prison email, mail, texts, and some digital platforms may not be private.
-              </li>
-              <li>
-                <strong>Using generic internet advice for a specific case.</strong> Federal procedure is real, but the exact answer can depend on the district, judge, charges, plea terms, custody status, and court orders.
-              </li>
-            </ul>
-          </GuideProse>
+          <GuideIconList
+            title="High-risk moves"
+            columns={2}
+            items={[
+              {
+                icon: <span aria-hidden="true">🚫</span>,
+                title: "Talking without counsel",
+                description:
+                  "Even a calm explanation to investigators can be misunderstood, incomplete, or used later.",
+              },
+              {
+                icon: <span aria-hidden="true">📣</span>,
+                title: "Posting about the case",
+                description:
+                  "Public posts, private groups, fundraisers, and messages may travel farther than expected.",
+              },
+              {
+                icon: <span aria-hidden="true">☎️</span>,
+                title: "Contacting case-related people",
+                description:
+                  "Reaching out to alleged victims, witnesses, co-defendants, or investigators can create serious risk.",
+              },
+              {
+                icon: <span aria-hidden="true">🔀</span>,
+                title: "Blending systems together",
+                description:
+                  "Federal supervision, BOP custody, and registration reporting can involve different authorities.",
+              },
+              {
+                icon: <span aria-hidden="true">⏰</span>,
+                title: "Missing deadlines",
+                description:
+                  "Court dates, motion deadlines, surrender instructions, probation reporting, and registration deadlines need tracking.",
+              },
+              {
+                icon: <span aria-hidden="true">🔓</span>,
+                title: "Using monitored systems carelessly",
+                description:
+                  "Jail calls, prison email, mail, texts, and some digital platforms may not be private.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🧭" title="Generic internet advice is not enough">
+            <p>
+              Federal procedure is real, but the exact answer can depend on the district, judge, charges, plea terms, custody status, court orders, and local practice. Use this guide for orientation, then verify the specific step.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="limited-access"
-          number="5"
+          number="6"
           title="If internet access is limited"
           subtitle="Federal cases often affect people who are detained, incarcerated, on supervision, phone-only, or relying on family for paperwork."
         />
@@ -756,7 +965,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="resources"
-          number="6"
+          number="7"
           title="Official resources and related SOLAR guides"
           subtitle="Use official sources for verification, then use SOLAR guides for practical next steps."
         />
@@ -766,17 +975,24 @@ export default function ResourceGuideSandbox(): JSX.Element {
             title="Official federal resources"
             resources={[
               {
-                label: "FBI Field Offices",
+                label: "U.S. Courts: Criminal Cases",
                 description:
-                  "Find local FBI field office contact information and coverage areas.",
-                href: "https://www.fbi.gov/contact-us/field-offices",
+                  "Federal judiciary overview of criminal cases in federal court.",
+                href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
                 badge: "Official",
               },
               {
-                label: "Federal criminal cases overview",
+                label: "Federal Rules of Criminal Procedure",
                 description:
-                  "U.S. Courts overview of criminal cases in federal court.",
-                href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
+                  "Current federal criminal procedure rules from U.S. Courts.",
+                href: "https://www.uscourts.gov/forms-rules/current-rules-practice-procedure/federal-rules-criminal-procedure",
+                badge: "Official",
+              },
+              {
+                label: "Federal Defender Programs",
+                description:
+                  "Federal defender directory and federal defender program resources.",
+                href: "https://www.fd.org/other-resources/federal-defender-programs",
                 badge: "Official",
               },
               {
@@ -801,21 +1017,28 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 badge: "Official",
               },
               {
-                label: "BOP Locations",
+                label: "BOP Designations",
                 description:
-                  "Bureau of Prisons facility and location information.",
-                href: "https://www.bop.gov/locations/",
+                  "BOP information about classification and designation functions.",
+                href: "https://www.bop.gov/inmates/custody_and_care/designations.jsp",
                 badge: "Official",
               },
               {
-                label: "U.S. Probation and Pretrial Services",
+                label: "BOP Sentence Computations",
                 description:
-                  "General U.S. Courts information about federal probation and pretrial services.",
-                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
+                  "BOP information about sentence computation functions.",
+                href: "https://www.bop.gov/inmates/custody_and_care/sentence_computations.jsp",
                 badge: "Official",
               },
               {
-                label: "SMART Office SORNA information",
+                label: "BOP Residential Reentry Management Centers",
+                description:
+                  "BOP explanation of RRCs and residential reentry management.",
+                href: "https://www.bop.gov/about/facilities/residential_reentry_management_centers.jsp",
+                badge: "Official",
+              },
+              {
+                label: "SMART Office: SORNA",
                 description:
                   "Federal background on SORNA. Verify actual registration duties with the state or local registering authority.",
                 href: "https://smart.ojp.gov/sorna",
@@ -864,7 +1087,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <SoftDivider />
 
           <SourceList
-            note="Links were selected from official federal sources where possible. Before production publication, re-check any route-specific SOLAR links and any district-specific court practices."
+            note="Official links were selected where possible. Before production publication, re-check route-specific SOLAR links, district-specific court practices, and whether the current U.S. Sentencing Commission manual year should be updated."
             sources={[
               {
                 label: "Original SOLAR FederalProcessGuide.tsx",
@@ -873,16 +1096,22 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Source guide used as the basis for this sandbox rebuild.",
               },
               {
-                label: "FBI Field Offices",
-                href: "https://www.fbi.gov/contact-us/field-offices",
-                description:
-                  "Official FBI field office directory and local office information.",
-              },
-              {
                 label: "U.S. Courts — Criminal Cases",
                 href: "https://www.uscourts.gov/about-federal-courts/types-cases/criminal-cases",
                 description:
                   "General federal court explanation of criminal cases.",
+              },
+              {
+                label: "U.S. Courts — Federal Rules of Criminal Procedure",
+                href: "https://www.uscourts.gov/forms-rules/current-rules-practice-procedure/federal-rules-criminal-procedure",
+                description:
+                  "Current federal criminal procedure rules.",
+              },
+              {
+                label: "Federal Defender Programs",
+                href: "https://www.fd.org/other-resources/federal-defender-programs",
+                description:
+                  "Federal defender directory and program resources.",
               },
               {
                 label: "U.S. Courts — Pretrial Services",
@@ -897,22 +1126,28 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Official overview of presentence investigation work by probation officers.",
               },
               {
-                label: "U.S. Courts — Probation and Pretrial Services",
-                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
-                description:
-                  "Official overview of federal probation and pretrial services.",
-              },
-              {
                 label: "U.S. Sentencing Commission — 2025 Guidelines Manual",
                 href: "https://www.ussc.gov/guidelines/2025-guidelines-manual",
                 description:
                   "Official guidelines manual and sentencing guideline materials.",
               },
               {
-                label: "Bureau of Prisons — Locations",
-                href: "https://www.bop.gov/locations/",
+                label: "BOP — Designations",
+                href: "https://www.bop.gov/inmates/custody_and_care/designations.jsp",
                 description:
-                  "Official BOP location and facility information.",
+                  "BOP information about designation and classification functions.",
+              },
+              {
+                label: "BOP — Sentence Computations",
+                href: "https://www.bop.gov/inmates/custody_and_care/sentence_computations.jsp",
+                description:
+                  "BOP information about sentence computation functions.",
+              },
+              {
+                label: "BOP — Residential Reentry Management Centers",
+                href: "https://www.bop.gov/about/facilities/residential_reentry_management_centers.jsp",
+                description:
+                  "BOP explanation of residential reentry centers and reentry management.",
               },
               {
                 label: "SMART Office — SORNA",
