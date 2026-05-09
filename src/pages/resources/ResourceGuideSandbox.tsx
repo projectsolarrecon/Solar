@@ -170,7 +170,7 @@ const federalStages = [
   },
 ];
 
-export default function FederalProcessGuide(): JSX.Element {
+export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
@@ -220,12 +220,12 @@ export default function FederalProcessGuide(): JSX.Element {
           </div>
         </div>
       </section>
-<div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
-
-        <GuideIntro title="Start Here" icon="🧭">
+<GuideIntro title="Start Here" icon="🧭">
           <p>
             A federal case can feel impossible to understand because several systems may be involved at once: investigators, prosecutors, courts, Pretrial Services, the Bureau of Prisons, U.S. Probation, and state or local registration offices.
           </p>
@@ -940,7 +940,8 @@ export default function FederalProcessGuide(): JSX.Element {
           title="Common mistakes to avoid"
           subtitle="These are not moral judgments. They are practical ways people accidentally make a federal case harder."
         />
-<GuideSectionCard>
+
+        <GuideSectionCard>
           <GuideIconList
             title="High-risk moves"
             columns={2}
@@ -1109,7 +1110,8 @@ export default function FederalProcessGuide(): JSX.Element {
           />
 
           <SoftDivider />
-<RelatedGuides
+
+          <RelatedGuides
             guides={[
               {
                 title: "Know Your Rights Guide",
