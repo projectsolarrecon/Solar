@@ -64,7 +64,7 @@ const federalStages = [
     duration: "Usually soon after arrest or summons",
     icon: "🏛️",
     summary:
-      "After arrest or summons, the first federal court appearance usually addresses identity, rights, counsel, charging status, and temporary release or detention questions.",
+      "After arrest or summons, the first federal court appearance usually addresses identity, rights, counsel, charging status, and temporary release or detention questions. This stage can feel frightening and disorienting because families may have little information at first, and decisions about release or detention can happen quickly.",
     concepts: [
       {
         icon: <span aria-hidden="true">👤</span>,
@@ -438,8 +438,64 @@ export default function ResourceGuideSandbox(): JSX.Element {
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="federal-timeline"
+          id="what-this-may-feel-like"
           number="3"
+          title="What this may feel like"
+          subtitle="The federal process is not just paperwork. It can be emotionally intense even when everyone is doing the next practical step."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Federal cases can feel frightening, humiliating, confusing, and dehumanizing. Court hearings may describe the case in harsh terms. Detention arguments may make family members hear things no one wants to hear about someone they love. Custody can make a person feel reduced to a number, even while federal agencies still have duties to follow rules, provide basic care, and protect people in custody.
+            </p>
+
+            <p>
+              Those reactions are real. They do not mean the case is over, that the person has no rights, or that family support has no place. The safer response is to slow down, write things down, work through counsel, and separate what you are hearing emotionally from what you need to do procedurally.
+            </p>
+          </GuideProse>
+
+          <GuideIconList
+            title="Emotional reality checks"
+            columns={2}
+            items={[
+              {
+                icon: <span aria-hidden="true">🌪️</span>,
+                title: "Arrest can feel chaotic",
+                description:
+                  "Focus first on counsel, release or detention conditions, and the next court date.",
+              },
+              {
+                icon: <span aria-hidden="true">🏛️</span>,
+                title: "Hearings can feel exposing",
+                description:
+                  "The government may argue its view forcefully. That is not the whole defense story.",
+              },
+              {
+                icon: <span aria-hidden="true">🧱</span>,
+                title: "Custody can feel dehumanizing",
+                description:
+                  "BOP still has rules and duties around safety, medical care, classification, communication, and release processing.",
+              },
+              {
+                icon: <span aria-hidden="true">🧭</span>,
+                title: "Supervision can feel intrusive",
+                description:
+                  "Conditions are serious. Some questions may be clarified or addressed through counsel, U.S. Probation, or the court.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="📝" title="A hard moment is not the same as the final answer">
+            <p>
+              Write down what happened, who said it, and what the next deadline is. Then bring the question back to counsel or the office with authority instead of trying to solve it in panic.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="federal-timeline"
+          number="4"
           title="The federal process, stage by stage"
           subtitle="Each stage has a different federal actor, different paperwork, and different risks."
         />
@@ -503,7 +559,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideProse>
             <p>
-              Many federal cases resolve by plea agreement, but some proceed to trial. The choice between plea and trial belongs to the person charged after consultation with counsel. Family can support the person, but should be careful not to pressure, promise, or threaten a decision.
+              Many federal cases resolve by plea agreement, but some proceed to trial. The choice between plea and trial belongs to the person charged after consultation with counsel. This stage can feel heavy because the person may be weighing risk, pressure, fear, possible punishment, and the desire to be heard all at once. Family can support the person, but should be careful not to pressure, promise, or threaten a decision.
             </p>
           </GuideProse>
 
@@ -584,7 +640,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideProse>
             <p>
-              After conviction, U.S. Probation usually prepares a presentence report for the court. This report can affect guideline calculations, objections, sentencing arguments, custody recommendations, supervision conditions, and future BOP classification.
+              After conviction, U.S. Probation usually prepares a presentence report for the court. This report can affect guideline calculations, objections, sentencing arguments, custody recommendations, supervision conditions, and future BOP classification. Sentencing can feel exposing because private history, harm, mitigation, risk, punishment, and family impact may be discussed in open court.
             </p>
           </GuideProse>
 
@@ -670,7 +726,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideProse>
             <p>
-              If the sentence includes federal imprisonment, the Bureau of Prisons decides designation and custody administration. The sentencing judge may make recommendations, but BOP controls placement, classification, transfer decisions, custody rules, sentence computation, and many day-to-day prison procedures.
+              If the sentence includes federal imprisonment, the Bureau of Prisons decides designation and custody administration. The sentencing judge may make recommendations, but BOP controls placement, classification, transfer decisions, custody rules, sentence computation, and many day-to-day prison procedures. Custody can feel dehumanizing, especially at intake or during transfers, but BOP still has rules and responsibilities around safety, medical care, communication, classification, and release processing.
             </p>
           </GuideProse>
 
@@ -751,7 +807,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideProse>
             <p>
-              This stage is not general reentry planning. This guide focuses on the federal-process pieces: release from BOP custody, the transition to U.S. Probation supervision, federal supervised release conditions, and the handoff to state or local registration systems when registration applies.
+              This stage is not general reentry planning. This guide focuses on the federal-process pieces: release from BOP custody, the transition to U.S. Probation supervision, federal supervised release conditions, and the handoff to state or local registration systems when registration applies. Supervision and registration can feel intrusive because ordinary choices may require permission, reporting, or documentation, but the first step is still to identify the exact rule and the office with authority over it.
             </p>
           </GuideProse>
 
@@ -823,7 +879,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="verify"
-          number="4"
+          number="5"
           title="Verify before acting"
           subtitle="The safest answer often depends on which authority controls the specific step."
         />
@@ -881,7 +937,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="avoid-mistakes"
-          number="5"
+          number="6"
           title="Common mistakes to avoid"
           subtitle="These are not moral judgments. They are practical ways people accidentally make a federal case harder."
         />
@@ -939,7 +995,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="limited-access"
-          number="6"
+          number="7"
           title="If internet access is limited"
           subtitle="Federal cases often affect people who are detained, incarcerated, on supervision, phone-only, or relying on family for paperwork."
         />
@@ -965,7 +1021,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="resources"
-          number="7"
+          number="8"
           title="Official resources and related SOLAR guides"
           subtitle="Use official sources for verification, then use SOLAR guides for practical next steps."
         />
