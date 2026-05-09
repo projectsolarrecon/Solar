@@ -31,6 +31,18 @@ const sourceLinks = [
       "Readable rule text for federal appeal timing, including criminal notice-of-appeal timing and the prisoner mailbox rule.",
   },
   {
+    label: "Federal Rule of Appellate Procedure 9",
+    href: "https://www.law.cornell.edu/rules/frap/rule_9",
+    description:
+      "Readable rule text for release in a criminal case and related custody review during appeal.",
+  },
+  {
+    label: "Federal Rule of Appellate Procedure 24",
+    href: "https://www.law.cornell.edu/rules/frap/rule_24",
+    description:
+      "Readable rule text for proceeding in forma pauperis on appeal in federal court.",
+  },
+  {
     label: "Federal Rules of Appellate Procedure — official PDF",
     href: "https://www.uscourts.gov/sites/default/files/2025-02/federal-rules-of-appellate-procedure-dec-1-2024_0.pdf",
     description:
@@ -75,6 +87,20 @@ const resourceLinks = [
     badge: "Federal rule",
     description:
       "Use this to verify federal appeal deadlines. State and agency deadlines may be different.",
+  },
+  {
+    label: "Release during federal criminal appeal",
+    href: "https://www.law.cornell.edu/rules/frap/rule_9",
+    badge: "Federal rule",
+    description:
+      "Federal rule source for release or detention review in a criminal case during appeal.",
+  },
+  {
+    label: "Federal in forma pauperis rule",
+    href: "https://www.law.cornell.edu/rules/frap/rule_24",
+    badge: "Federal rule",
+    description:
+      "Federal rule source for asking to proceed without prepaying fees on appeal.",
   },
   {
     label: "AO 435 Transcript Order",
@@ -468,8 +494,84 @@ export default function ResourceGuideSandbox(): JSX.Element {
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="record"
+          id="counsel-fees-conditions"
           number="4"
+          title="Ask about counsel, fees, transcripts, release, and conditions"
+          subtitle="These are practical support requests, not side issues. They can affect whether the appeal can actually move forward."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The first filing protects the door. The next question is whether
+              the person has the tools to walk through it: counsel, forms, filing
+              access, transcripts, and a safe plan for custody or supervision
+              conditions while review is pending.
+            </p>
+
+            <p>
+              In sex-offense cases, this can matter immediately. A person may be
+              trying to appeal from custody, comply with registration, follow
+              device restrictions, maintain housing, preserve family contact, or
+              challenge a condition that makes ordinary life impossible.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="support-requests-checklist"
+            title="Practical requests to ask about"
+            columns={1}
+            items={[
+              {
+                id: "appointed-counsel",
+                label:
+                  "Ask whether appointed appellate counsel, an appellate defender, conflict counsel, or a public defender can be requested.",
+              },
+              {
+                id: "fee-waiver",
+                label:
+                  "Ask for fee waiver or in forma pauperis forms if filing costs, transcript costs, or copying costs are a barrier.",
+              },
+              {
+                id: "transcripts",
+                label:
+                  "Ask how to order transcripts, whether a transcript-cost waiver exists, and whether any hearing needs to be ordered quickly.",
+              },
+              {
+                id: "release-pending-appeal",
+                label:
+                  "If the person is in custody, ask counsel whether release pending appeal, bond review, or detention review is legally available.",
+              },
+              {
+                id: "conditions",
+                label:
+                  "If a supervision, registry, GPS, internet, housing, travel, treatment, or no-contact condition is causing immediate harm, ask whether clarification, modification, stay, or emergency review is available.",
+              },
+              {
+                id: "written-confirmation",
+                label:
+                  "Ask for the answer in writing when possible, especially if the issue affects a deadline, custody, registration, supervision, housing, or family contact.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="warning"
+            icon="🧷"
+            title="Do not confuse challenge with permission"
+          >
+            <p>
+              Challenging a condition usually does not mean the person can ignore
+              it. Until a court, agency, or supervising authority changes the
+              rule, treat the condition as active and ask how to seek relief
+              safely.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="record"
+          number="5"
           title="Build the record"
           subtitle="Appeals usually depend on what is in the file. A clean record packet helps counsel, clinics, family, and self-represented people move faster."
         />
@@ -551,7 +653,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="registry-supervision"
-          number="5"
+          number="6"
           title="Registry, supervision, and sex-offense-specific review paths"
           subtitle="Some of the most serious consequences happen outside the trial itself. They may have their own review process."
         />
@@ -617,13 +719,94 @@ export default function ResourceGuideSandbox(): JSX.Element {
         </GuideSectionCard>
 
         <GuideSectionHeader
+          id="self-advocacy"
+          number="7"
+          title="Brief or explain the issue clearly"
+          subtitle="Even when a lawyer is involved, a simple issue summary can help everyone understand what happened and what relief is being requested."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Appeals often turn on structured questions: what ruling was wrong,
+              where it appears in the record, what legal standard applies, why it
+              mattered, and what remedy is being requested. You do not need to
+              sound like a lawyer to organize the issue clearly.
+            </p>
+
+            <p>
+              For a person convicted of or charged with a sex offense, this can
+              include trial errors, sentencing issues, plea problems, overbroad
+              supervision conditions, registry classifications, civil commitment
+              findings, treatment-related decisions, or restrictions affecting
+              family contact, housing, work, travel, or internet access.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="issue-summary-checklist"
+            title="One-page issue summary"
+            columns={1}
+            items={[
+              {
+                id: "ruling",
+                label:
+                  "Name the exact ruling, condition, classification, sentence, or agency decision being challenged.",
+              },
+              {
+                id: "record-citation",
+                label:
+                  "List where it appears: docket number, transcript date and page if known, exhibit number, written order, notice, or letter.",
+              },
+              {
+                id: "error",
+                label:
+                  "Write one plain sentence explaining what seems legally wrong, unsupported, unconstitutional, unfair, or procedurally defective.",
+              },
+              {
+                id: "harm",
+                label:
+                  "Explain the practical harm: custody, registration, housing loss, family contact, employment, treatment access, travel, internet use, or future relief.",
+              },
+              {
+                id: "standard",
+                label:
+                  "If counsel has identified a standard of review, write it down. If not, leave space for counsel or a clinic to add it later.",
+              },
+              {
+                id: "relief",
+                label:
+                  "State what is being requested: reversal, new hearing, resentencing, condition modification, tier correction, remand, stay, or another specific remedy.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
           id="scripts"
-          number="6"
+          number="8"
           title="Words to use"
           subtitle="Use calm, narrow questions. You do not need to explain your whole life story to ask for the next procedural step."
         />
 
         <GuideSectionCard>
+          <ScriptBox
+            title="One-page triage script"
+            tone="legal"
+            context="Use this when you need to ask about several urgent appeal tasks in one call or message."
+            script={`Hello, my name is [Name]. I am trying to protect rights in case number [case number].
+
+I need to know:
+1. What judgment, order, condition, registry decision, or agency decision was entered?
+2. What is the official entry date or decision date?
+3. What deadline applies to a notice of appeal, review request, petition, or motion?
+4. Where do I file it, and how must it be served?
+5. Are there forms for appointment of counsel, fee waiver / in forma pauperis, transcript order, extension of time, release pending appeal, condition modification, or registry/supervision review?
+6. If I am incarcerated or under supervision, is there a specific legal-mail, filing, or permission process I must use?
+
+I am taking notes. Could you please repeat your name, department, and the best number or address for follow-up?`}
+          />
+
           <ScriptBox
             title="Clerk script: appeal deadline and first filing"
             tone="legal"
@@ -667,7 +850,7 @@ I am not asking you for legal advice. I am asking what review process exists, wh
 
         <GuideSectionHeader
           id="offline"
-          number="7"
+          number="9"
           title="If internet, phone, or printer access is limited"
           subtitle="Appeals can still move forward with paper, phone calls, courthouse forms, legal mail, and careful notes."
         />
@@ -703,7 +886,7 @@ I am not asking you for legal advice. I am asking what review process exists, wh
         </GuideSectionCard>
 <GuideSectionHeader
           id="mistakes"
-          number="8"
+          number="10"
           title="Common mistakes to avoid"
           subtitle="These are normal mistakes under stress. The goal is not shame. The goal is prevention."
         />
@@ -760,13 +943,129 @@ I am not asking you for legal advice. I am asking what review process exists, wh
         </GuideSectionCard>
 
         <GuideSectionHeader
+          id="after-decision"
+          number="11"
+          title="After the decision"
+          subtitle="An appellate decision may create a new deadline, a new court step, or a new practical problem to solve."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              When a court or agency issues a decision, save the full decision,
+              the date it was entered, the envelope or notice, and any docket
+              update. The next step may depend on whether the case is over,
+              remanded, reopened, denied, partly granted, or sent back for more
+              proceedings.
+            </p>
+
+            <p>
+              Depending on the case and court, possible next steps may include
+              rehearing, reconsideration, en banc review, mandate, remand, a
+              petition for higher-court review, Supreme Court certiorari,
+              post-conviction relief, or a later registry-relief petition. The
+              terms sound technical, but the practical question is still the same:
+              what deadline applies now, and who has authority over the next
+              step?
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="after-decision-checklist"
+            title="After-decision checklist"
+            columns={1}
+            items={[
+              {
+                id: "save-decision",
+                label:
+                  "Save the decision, order, mandate notice, docket entry, and envelope or electronic notice.",
+              },
+              {
+                id: "ask-next-deadline",
+                label:
+                  "Ask counsel or the clerk whether there is a rehearing, reconsideration, mandate, remand, certiorari, or other deadline.",
+              },
+              {
+                id: "remand",
+                label:
+                  "If the case is remanded, ask what the lower court or agency must do next and whether a hearing will be scheduled.",
+              },
+              {
+                id: "conditions-after",
+                label:
+                  "If custody, supervision, registration, treatment, housing, travel, internet, or family-contact conditions change after the decision, ask for the new rule in writing.",
+              },
+              {
+                id: "future-remedies",
+                label:
+                  "Ask whether the issue should be preserved for post-conviction relief, later law changes, registry termination, or another future remedy.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⏳" title="Supreme Court timing is separate">
+            <p>
+              A petition for Supreme Court review has its own rules and timing.
+              Do not assume the same deadline as the lower appeal. If Supreme
+              Court review is being considered, verify the deadline immediately
+              with counsel or the Supreme Court’s current filing guidance.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
           id="resources-next"
-          number="9"
+          number="12"
           title="Resources and next steps"
           subtitle="Use official sources first, then ask the court, agency, or counsel how they apply to your case."
         />
 
         <GuideSectionCard>
+          <GuideChecklist
+            id="forms-to-ask-for"
+            title="Common forms to ask for"
+            columns={1}
+            items={[
+              {
+                id: "notice-appeal",
+                label:
+                  "Notice of appeal, notice of review, administrative appeal request, or petition form.",
+              },
+              {
+                id: "extension",
+                label:
+                  "Motion or application for extension of time, if a deadline problem exists and the rules allow it.",
+              },
+              {
+                id: "ifp",
+                label:
+                  "Fee waiver, in forma pauperis, or indigency affidavit forms.",
+              },
+              {
+                id: "counsel",
+                label:
+                  "Request for appointed counsel, appellate defender referral, or conflict counsel request.",
+              },
+              {
+                id: "transcript",
+                label:
+                  "Transcript order form, transcript-cost waiver request, or court-reporter contact instructions.",
+              },
+              {
+                id: "custody-conditions",
+                label:
+                  "Release pending appeal, bond review, detention review, stay request, or supervision-condition modification form.",
+              },
+              {
+                id: "registry",
+                label:
+                  "Registry tier review, registration termination petition, agency appeal, or condition clarification form if applicable.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
           <ResourceLinkGrid
             title="Official resources and forms"
             description={
@@ -826,7 +1125,7 @@ I am not asking you for legal advice. I am asking what review process exists, wh
 
         <GuideSectionHeader
           id="closing"
-          number="10"
+          number="13"
           title="Moving forward with realism and hope"
           subtitle="Appeals are technical and often slow, but preserving rights is still meaningful work."
         />
