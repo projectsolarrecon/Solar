@@ -1,561 +1,1565 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  AlertTriangle,
+  BookOpen,
+  Briefcase,
+  Building2,
+  CheckCircle2,
+  ClipboardCheck,
+  FileText,
+  GraduationCap,
+  Hammer,
+  Laptop,
+  MapPinned,
+  Phone,
+  Route,
+  Search,
+  ShieldCheck,
+  Truck,
+  Users,
+  Utensils,
+  Wrench,
+} from "lucide-react";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  OfflineOptions,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  PathwayCard,
+} from "../../components/solar";
+
+const sourceLinks = {
+  jobSearchGuide: "/resources/job-search-guide",
+  knowYourRights: "/resources/know-your-rights",
+  housingSearch: "/resources/housing-search-guide",
+  reentryChecklist: "/resources/reentry-checklist",
+  mentalHealthDirectory: "/resources/mental-health-directory",
+  professionalLicensing: "/resources/professional-licensing",
+  smallBusinessGuide: "/resources/small-business-guide",
+
+  careerOneStopJustice: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
+  careerOneStopAjc:
+    "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx",
+  careerOneStopReentry:
+    "https://www.careeronestop.org/JusticeImpacted/Toolkit/find-reentry-programs.aspx",
+  apprenticeshipHome: "https://www.apprenticeship.gov/",
+  apprenticeshipBarriers:
+    "https://www.apprenticeship.gov/career-seekers/with-employment-barriers",
+  dolReentry: "https://www.dol.gov/agencies/eta/reentry",
+  secondChanceBusinessCoalition: "https://secondchancebusinesscoalition.org/",
+  scbcPartnerMap: "https://secondchancebusinesscoalition.org/find-partners",
+  honestJobs: "https://www.honestjobs.com/for-job-seekers",
+  hireNetworkClearinghouse: "https://clearinghouse.lac.org/",
+  jailsToJobs: "https://jailstojobs.org/",
+  federalBonding: "https://bonds4jobs.com/",
+  dolWotc: "https://www.dol.gov/agencies/eta/wotc",
+  irsWotc:
+    "https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit",
+  ftcBackgroundChecks:
+    "https://consumer.ftc.gov/articles/employer-background-checks-and-your-rights",
+  eeocArrestConviction: "https://www.eeoc.gov/arrestandconviction",
+  lyftDriverRequirements:
+    "https://help.lyft.com/hc/en-us/all/articles/115012925687-Driver-requirements",
+  uberBackgroundChecks: "https://www.uber.com/us/en/newsroom/background-checks/",
+  walmartCareers: "https://careers.walmart.com/",
+  targetCareers: "https://corporate.target.com/careers",
+  homeDepotCareers: "https://careers.homedepot.com/",
+  lowesCareers: "https://talent.lowes.com/us/en",
+  krogerCareers: "https://www.thekrogerco.com/careers/",
+  mcdonaldsCareers: "https://careers.mcdonalds.com/",
+  amazonJobs: "https://www.amazon.jobs/",
+  upsJobs: "https://www.jobs-ups.com/",
+  fedexCareers: "https://careers.fedex.com/",
+  aramarkCareers: "https://www.aramarkcareers.com/",
+  compassCareers: "https://www.compassgroupcareers.com/",
+  sodexoCareers: "https://us.sodexo.com/careers",
+  wasteManagementCareers: "https://careers.wm.com/",
+  marriottCareers: "https://careers.marriott.com/",
+  hiltonCareers: "https://jobs.hilton.com/us/en",
+  randstadJobs: "https://www.randstadusa.com/jobs/",
+};
 
 export default function EmploymentDirectory(): JSX.Element {
+  const handlePrint = () => window.print();
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      <SEO 
-        title="Employment Directory & Job Search Guide - Registry-Friendly Employers | The SOLAR Project"
-        description="Step-by-step employment guide for people on the registry: rights, fair-chance employers, industries, training, remote work, scripts, programs, and quick-start checklist."
-        keywords="employment for sex offenders, fair chance employers, second chance hiring, job search with criminal record, registry employment restrictions, WOTC tax credit, federal bonding program"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Employment Directory for People on Sex Offender Registries | The SOLAR Project"
+        description="A practical employment directory for people with sex offense convictions, registry requirements, or both, including fair-chance job boards, workforce offices, apprenticeships, training paths, employer leads, and restriction-check reminders."
+        keywords="sex offender registry employment directory, jobs for people on sex offender registry, fair chance employers, felony friendly employers, reentry employment, apprenticeship after incarceration, American Job Center, Federal Bonding Program, SOLAR Project"
       />
 
-      {/* Header */}
-      <header className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 opacity-95"></div>
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 text-white">
-          <div className="mb-4">
-            <Link to="/resources" className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/80 text-white hover:bg-slate-700/80 transition-colors">
-              ← Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          <p className="mb-3 text-sm opacity-90">SOLAR Resource Guide</p>
-          <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">Employment Guide for People on the Registry (U.S.)</h1>
-          <p className="mt-4 max-w-3xl text-slate-200">
-            Stable work <em>is</em> possible on the registry. This guide gives you step-by-step actions, fair-chance employers, in-demand industries, training paths, remote options, and programs that meaningfully improve your odds.
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Employment Directory for People on Sex Offender Registries
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Job boards, workforce offices, training paths, apprenticeships,
+            employer lead sources, and verification steps for people with sex
+            offense convictions, registry requirements, or both.
           </p>
 
-          {/* Actions */}
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button 
-              onClick={() => window.print()} 
-              className="inline-flex items-center gap-2 rounded-2xl bg-white/95 text-slate-800 px-4 py-2 shadow hover:bg-white transition"
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 9V4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V9M6 18.75V15h12v3.75M6 15H4.5A1.5 1.5 0 0 1 3 13.5v-6A1.5 1.5 0 0 1 4.5 6H19.5A1.5 1.5 0 0 1 21 7.5v6A1.5 1.5 0 0 1 19.5 15H18"/>
-              </svg>
-              Print Guide
+              🖨️ Print Guide
             </button>
-            <a 
-              href="https://secondchancebusinesscoalition.org/find-partners" 
-              target="_blank" 
-              rel="noopener" 
-              className="inline-flex items-center gap-2 rounded-2xl bg-sky-100 text-sky-900 px-4 py-2 shadow hover:bg-sky-200 transition"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 20l-5-2.5V5l5 2.5L15 5l5 2.5v12.5L15 20l-6-3M9 7.5v12.5M15 5v12"/>
-              </svg>
-              SCBC Partner Map
+              Jump to Sources
             </a>
           </div>
         </div>
-        <div className="h-px bg-gradient-to-r from-transparent via-slate-400/60 to-transparent"></div>
-      </header>
+      </section>
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-        
-        {/* Section 1 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">1</span>
-            Know Your Rules, Then Plan Your Search
-          </h2>
-          <div className="space-y-3 leading-relaxed text-slate-700">
-            <p>
-              • <strong>Check state/local employment limits first (distance rules).</strong> Some states bar registrants from <em>working</em> near schools/daycares/parks (often 1,000–2,000 ft.). Examples: <a className="text-blue-600 hover:text-blue-800 underline" href="https://law.justia.com/codes/alabama/title-15/chapter-20a/section-15-20a-13/" target="_blank" rel="noopener">Alabama</a> (2,000 ft. from schools/daycares) and <a className="text-blue-600 hover:text-blue-800 underline" href="https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-16/" target="_blank" rel="noopener">Georgia</a> (no employment at or within 1,000 ft. of schools/daycares/churches for many registrants). <a className="text-blue-600 hover:text-blue-800 underline" href="https://sor.tbi.tn.gov/api/vfs/40-39-211.pdf" target="_blank" rel="noopener">Tennessee</a> restricts employment within 1,000 ft. of schools/parks when the victim was a minor. Read your state statute (or ask counsel/supervising officer) before applying so you don't waste time on ineligible roles.
-            </p>
-            <p>
-              • <strong>Background checks are common—honesty is required.</strong> Plan a brief, factual disclosure (what happened, what you've done since, what you offer now) and pivot to your skills. "Ban-the-Box" and <strong>Fair Chance</strong> laws in many places delay conviction questions until later, giving you a chance to show fit first (e.g., the federal <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.hhs.gov/about/agencies/asa/fair-chance-act/index.html" target="_blank" rel="noopener">Fair Chance Act</a> for U.S. agencies/contractors; broader overviews via <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.nelp.org/insights-research/ban-the-box-fair-chance-hiring-state-and-local-guide/" target="_blank" rel="noopener">NELP</a> and <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.accurate.com/ban-the-box/" target="_blank" rel="noopener">state-by-state maps</a>).
-            </p>
-          </div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-          <div className="mt-4 rounded-xl border border-blue-200 bg-blue-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-blue-800">
-                  <strong>Know your rights:</strong> For detailed information about your legal protections during the job search process, see our <Link to="/resources/know-your-rights" className="text-blue-600 hover:text-blue-800 underline font-semibold">Your Rights at Every Stage guide</Link>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-        {/* Section 2 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">2</span>
-            Fair-Chance & Second-Chance Employers (Where to Aim First)
-          </h2>
-          <div className="space-y-3 leading-relaxed text-slate-700">
-            <p>
-              • <strong>National "Second Chance" coalitions & pledges.</strong> The <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">Second Chance Business Coalition</a> (SCBC) includes major brands—American Airlines, AT&T, Bank of America, Best Buy, Cisco, CVS, Home Depot, JPMorgan Chase, Koch, Kroger, Lowe's, McDonald's, Microsoft, Target, United, Verizon, Walgreens, Walmart, etc.—that are working to expand hiring of people with records. These firms have scale and process maturity; start here. Explore the <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/find-partners" target="_blank" rel="noopener">SCBC partner map</a> to find organizations in your metro.
-            </p>
-            <p>
-              • <strong>Why an employer should hire you (mention incentives).</strong> Flag the <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.dol.gov/agencies/eta/wotc" target="_blank" rel="noopener">Work Opportunity Tax Credit (WOTC)</a> and <a className="text-blue-600 hover:text-blue-800 underline" href="https://bonds4jobs.com/" target="_blank" rel="noopener">Federal Bonding Program</a> in interviews; both reduce risk for the employer and can nudge a "yes." (Per IRS, WOTC is authorized through 12/31/2025: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit" target="_blank" rel="noopener">IRS WOTC</a>.)
-            </p>
-            <p>
-              • <strong>American Job Centers can match you.</strong> <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">AJCs</a> routinely help justice-impacted jobseekers and know which local employers hire. Ask for "justice-involved" services and reentry job fairs.
-            </p>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-green-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-green-800">
-                  <strong>Pro tip:</strong> If you're preparing for reentry, our <Link to="/resources/reentry-checklist" className="text-green-600 hover:text-green-800 underline font-semibold">Reentry Checklist</Link> covers employment planning alongside housing, health, and legal obligations.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">3</span>
-            Industries & Roles That Often Hire (and Why)
-          </h2>
-          
-          <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-green-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-green-800 mb-2">🔥 Fastest Path to Employment</h3>
-                <p className="text-green-800">
-                  <strong>Skilled trades offer the quickest route to stable employment.</strong> These industries prioritize skills over background checks and often provide paid training. <span className="bg-green-100 px-2 py-1 rounded font-semibold">Many positions start at $15-25/hour with clear advancement paths.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-4 leading-relaxed text-slate-700">
-            <div className="border-l-4 border-blue-400 pl-4 py-2 bg-blue-50/50 rounded-r-lg">
-              <p>
-                • <strong>Skilled trades (fastest pathway).</strong> Construction, electrical, plumbing, HVAC, welding, heavy equipment. Hiring is skills-first; apprenticeships and short certs get you in quickly (see §5). Use <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.apprenticeship.gov/" target="_blank" rel="noopener">Apprenticeship.gov</a> and funding via your <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">AJC</a>.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-purple-400 pl-4 py-2 bg-purple-50/50 rounded-r-lg">
-              <p>
-                • <strong>Retail, grocery, warehousing.</strong> Big-box chains (and their distribution centers) regularly onboard second-chance applicants for stocking, fulfillment, and operations. Many are in <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a>.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-teal-400 pl-4 py-2 bg-teal-50/50 rounded-r-lg">
-              <p>
-                • <strong>Food service & hospitality.</strong> Restaurants and hotels hire for kitchen, housekeeping, and maintenance, with room to advance. (Always avoid roles that conflict with local child-focused restrictions.)
-              </p>
-            </div>
-
-            <div className="border-l-4 border-indigo-400 pl-4 py-2 bg-indigo-50/50 rounded-r-lg">
-              <p>
-                • <strong>Logistics & delivery.</strong> Warehouse roles at UPS/FedEx/Amazon are common. <span className="font-semibold">Important:</span> rideshare (Lyft/Uber) generally disqualifies applicants listed on the National Sex Offender Registry; see <a className="text-blue-600 hover:text-blue-800 underline" href="https://help.lyft.com/hc/en-us/all/articles/115012925687-Driver-requirements" target="_blank" rel="noopener">Lyft's policy</a> (and Uber's background check overview <a className="text-blue-600 hover:text-blue-800 underline" href="https://help.uber.com/driving-and-delivering/article/what-does-the-background-check-look-for?nodeId=ee210269-89bf-4bd9-87f6-43471300ebf2" target="_blank" rel="noopener">here</a>).
-              </p>
-            </div>
-
-            <div className="border-l-4 border-orange-400 pl-4 py-2 bg-orange-50/50 rounded-r-lg">
-              <p>
-                • <strong>Other avenues.</strong> Agriculture, animal care, small local contractors, and family-owned businesses can be flexible because decisions are made locally (fewer blanket policies). (Use AJCs/networking to find them.)
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-xl border border-red-200 bg-red-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-red-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <div>
-                <p className="text-red-800">
-                  <strong>⚠️ Avoid These Platforms:</strong> Rideshare (Uber/Lyft), TaskRabbit, Instacart, and most gig economy platforms automatically disqualify registry individuals. <em>Always verify policies before applying to save time and avoid disappointment.</em>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">4</span>
-            How to Search (and Actually Get Interviews)
-          </h2>
-
-          <div className="bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-cyan-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-cyan-800 mb-2">💡 Smart Search Strategy</h3>
-                <p className="text-cyan-800">
-                  <strong>Start with fair-chance platforms first.</strong> You'll get better response rates from employers who are already committed to second-chance hiring. <span className="bg-cyan-100 px-2 py-1 rounded font-semibold">This approach can save you weeks of rejections.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-5">
-              <div className="flex items-center mb-3">
-                <span className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3">1</span>
-                <h3 className="font-semibold text-green-800">Fair-Chance First</h3>
-              </div>
-              <p className="text-green-700 text-sm">
-                • <strong>Start with fair-chance platforms.</strong> <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.honestjobs.com/" target="_blank" rel="noopener">Honest Jobs</a> is a large fair-chance job board built for people with records; sign up and set alerts.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-lg p-5">
-              <div className="flex items-center mb-3">
-                <span className="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3">2</span>
-                <h3 className="font-semibold text-purple-800">Smart Keywords</h3>
-              </div>
-              <p className="text-purple-700 text-sm">
-                • <strong>Use general boards with smart keywords.</strong> On Indeed/ZipRecruiter/LinkedIn, search <em>"second chance," "fair chance," "felon friendly"</em>. Then cross-check each posting on the company's careers site.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-lg p-5">
-              <div className="flex items-center mb-3">
-                <span className="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3">3</span>
-                <h3 className="font-semibold text-amber-800">Get Professional Help</h3>
-              </div>
-              <p className="text-amber-700 text-sm">
-                • <strong>Go where the help is.</strong> Visit an <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">American Job Center</a> (search by zip) for resume help, training money, and employer leads who already hire justice-involved applicants.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-200 rounded-lg p-5">
-              <div className="flex items-center mb-3">
-                <span className="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mr-3">4</span>
-                <h3 className="font-semibold text-teal-800">Network Strategically</h3>
-              </div>
-              <p className="text-teal-700 text-sm">
-                • <strong>Network on purpose.</strong> Ask mentors, faith communities, reentry groups, or past supervisors for referrals. The <a className="text-blue-600 hover:text-blue-800 underline" href="https://hirenetwork.org/" target="_blank" rel="noopener">National HIRE Network</a> directory lists state reentry orgs that can connect you.
-              </p>
-            </div>
-          </div>
-
-          <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-indigo-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-indigo-800">
-                  <strong>Success Metric:</strong> Aim for <span className="bg-indigo-100 px-2 py-1 rounded font-semibold">5-10 applications per week</span> to fair-chance employers rather than 50+ applications to general job boards. Quality over quantity gets better results.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 5 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">5</span>
-            Training, Certifications & Apprenticeships (Weeks to Months)
-          </h2>
-          <div className="space-y-3 leading-relaxed text-slate-700">
-            <p>
-              • <strong>Quick credentials that move the needle:</strong> CDL, forklift, OSHA-10/30, HVAC, welding, IT support (CompTIA A+/Google IT), medical billing/coding. <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">AJCs</a> often fund these.
-            </p>
-            <p>
-              • <strong>Earn while you learn (apprenticeships).</strong> Use <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.apprenticeship.gov/" target="_blank" rel="noopener">Apprenticeship.gov</a> to find registered apprenticeships; DOL specifically promotes these for justice-involved applicants (<a className="text-blue-600 hover:text-blue-800 underline" href="https://www.dol.gov/agencies/eta" target="_blank" rel="noopener">ETA</a> programs).
-            </p>
-            <p>
-              • <strong>Education access.</strong> If you need a GED/adult-ed refresher, AJCs and community colleges can help; many aid programs have expanded to justice-involved learners. (Ask at your AJC.)
-            </p>
-          </div>
-        </section>
-
-        {/* Section 6 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">6</span>
-            Remote & Flexible Work (What Works / What to Avoid)
-          </h2>
-          <div className="space-y-3 leading-relaxed text-slate-700">
-            <p>
-              • <strong>Good targets.</strong> Remote customer support, tech support, sales development, data entry, content moderation, and freelance work (Upwork/Fiverr) often have lighter location/foot-traffic issues than on-site roles.
-            </p>
-            <p>
-              • <strong>Companies with remote corps + fair-chance efforts.</strong> Several <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a> members hire remotely in corporate/ops roles (e.g., Home Depot, Microsoft, Target, Verizon, Walgreens/Walmart, AA/United). Search each careers site and filter for "remote."
-            </p>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-amber-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <div>
-                <p className="text-amber-800">
-                  <strong>Caution zones:</strong> Rideshare and many in-home service platforms screen out anyone on the National Sex Offender Registry (confirmed by <a className="text-amber-600 hover:text-amber-800 underline" href="https://help.lyft.com/hc/en-us/all/articles/115012925687-Driver-requirements" target="_blank" rel="noopener">Lyft policy</a>). Verify policies before investing time.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 7 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">7</span>
-            Resume, Disclosure & Interview (Scripts You Can Use)
-          </h2>
-
-          <div className="bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-violet-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-violet-800 mb-2">📝 The 3-Part Formula</h3>
-                <p className="text-violet-800">
-                  <strong>Resume → Disclosure → Value Proposition.</strong> Lead with skills, acknowledge the past briefly, then pivot immediately to what you bring to the team. <span className="bg-violet-100 px-2 py-1 rounded font-semibold">This approach works because it controls the narrative.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            {/* Resume Section */}
-            <div className="border border-blue-200 rounded-lg p-5 bg-blue-50/30">
-              <div className="flex items-center mb-3">
-                <svg className="w-5 h-5 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <h3 className="font-semibold text-blue-800">Resume Strategy (1 page for now)</h3>
-              </div>
-              <p className="text-blue-700 mb-3">
-                Lead with skills, certs, and <em>recent</em> experience or training. Keep the record off the resume unless asked in the application. Use numbers ("managed 200+ SKUs," "cut waste 15%").
-              </p>
-              <div className="bg-blue-100 rounded-lg p-3">
-                <p className="text-blue-800 text-sm">
-                  <strong>💡 Pro tip:</strong> If you have gaps in employment, fill them with volunteer work, training, or "Personal Development" sections. Employers want to see you've been productive.
-                </p>
-              </div>
-            </div>
-
-            {/* Disclosure Section */}
-            <div className="border border-green-200 rounded-lg p-5 bg-green-50/30">
-              <div className="flex items-center mb-3">
-                <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-                <h3 className="font-semibold text-green-800">Disclosure Script (keep it short)</h3>
-              </div>
-              <div className="bg-green-100 rounded-lg p-4 mb-3">
-                <p className="text-green-800 italic">
-                  "I made a serious mistake in [year]. Since then I've completed [training], kept [work/volunteer], and I'm focused on showing up, learning fast, and adding value."
-                </p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-3 text-sm">
-                <div className="bg-white rounded p-3 border border-green-200">
-                  <p className="text-green-700"><strong>✅ Do:</strong> Keep it under 30 seconds</p>
-                </div>
-                <div className="bg-white rounded p-3 border border-green-200">
-                  <p className="text-green-700"><strong>✅ Do:</strong> Pivot immediately to skills</p>
-                </div>
-                <div className="bg-white rounded p-3 border border-green-200">
-                  <p className="text-green-700"><strong>❌ Don't:</strong> Over-explain or make excuses</p>
-                </div>
-                <div className="bg-white rounded p-3 border border-green-200">
-                  <p className="text-green-700"><strong>❌ Don't:</strong> Bring it up if not asked</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Employer Reassurance Section */}
-            <div className="border border-purple-200 rounded-lg p-5 bg-purple-50/30">
-              <div className="flex items-center mb-3">
-                <svg className="w-5 h-5 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                <h3 className="font-semibold text-purple-800">Employer Reassurance (reduce their risk)</h3>
-              </div>
-              <p className="text-purple-700 mb-3">
-                Mention <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.dol.gov/agencies/eta/wotc" target="_blank" rel="noopener">WOTC</a> and the <a className="text-blue-600 hover:text-blue-800 underline" href="https://bonds4jobs.com/" target="_blank" rel="noopener">Federal Bonding</a> Program as employer benefits; offer to connect them with your <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">AJC</a> to process it.
-              </p>
-              <div className="bg-purple-100 rounded-lg p-3">
-                <p className="text-purple-800 text-sm">
-                  <strong>💰 Financial incentive:</strong> WOTC can save employers up to $2,400 per hire, and Federal Bonding provides free insurance. <em>These programs exist specifically to encourage second-chance hiring.</em>
-                </p>
-              </div>
-            </div>
-
-            {/* Follow-up Section */}
-            <div className="border border-amber-200 rounded-lg p-5 bg-amber-50/30">
-              <div className="flex items-center mb-3">
-                <svg className="w-5 h-5 text-amber-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <h3 className="font-semibold text-amber-800">Follow-up Strategy</h3>
-              </div>
-              <p className="text-amber-700 mb-3">
-                Send a 4–6 sentence thank-you note within 24 hours, reiterating one concrete way you'll help the team.
-              </p>
-              <div className="bg-amber-100 rounded-lg p-3">
-                <p className="text-amber-800 text-sm">
-                  <strong>📧 Template:</strong> "Thank you for your time today. I'm excited about the opportunity to [specific role task]. Based on our conversation, I believe my [specific skill] would help [specific team goal]. I look forward to hearing from you."
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-xl border border-rose-200 bg-rose-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-rose-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-              </svg>
-              <div>
-                <p className="text-rose-800">
-                  <strong>Remember:</strong> Every "no" gets you closer to a "yes." <span className="bg-rose-100 px-2 py-1 rounded font-semibold">Most successful job seekers with records report 20-50 applications before landing their first position.</span> Stay persistent and keep improving your approach.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 8 */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">8</span>
-            Programs & Help (Bookmark These)
-          </h2>
-          <div className="space-y-3 leading-relaxed text-slate-700">
-            <p>
-              • <strong>American Job Centers (finder).</strong> Resume help, training $, employer intros, job fairs: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">Find an AJC</a>.
-            </p>
-            <p>
-              • <strong>CareerOneStop: Justice-Impacted hub.</strong> Step-by-step guides, job search tips, and training info: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/ExOffender/american-job-centers.aspx" target="_blank" rel="noopener">CareerOneStop</a>.
-            </p>
-            <p>
-              • <strong>Apprenticeship.gov (finder).</strong> Registered apprenticeships across industries: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.apprenticeship.gov/" target="_blank" rel="noopener">Apprenticeship.gov</a>.
-            </p>
-            <p>
-              • <strong>National HIRE Network (directory).</strong> State reentry orgs and legal resources: <a className="text-blue-600 hover:text-blue-800 underline" href="https://hirenetwork.org/" target="_blank" rel="noopener">HIRE Network</a>.
-            </p>
-            <p>
-              • <strong>WOTC (official).</strong> What it is and who qualifies: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.dol.gov/agencies/eta/wotc" target="_blank" rel="noopener">DOL WOTC</a> • <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit" target="_blank" rel="noopener">IRS WOTC</a>.
-            </p>
-            <p>
-              • <strong>Federal Bonding (official).</strong> Free fidelity bond for your first 6 months on the job: <a className="text-blue-600 hover:text-blue-800 underline" href="https://bonds4jobs.com/" target="_blank" rel="noopener">Federal Bonding Program</a>.
-            </p>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-purple-200 bg-purple-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-purple-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-purple-800">
-                  <strong>Need mental health support during your job search?</strong> Our <Link to="/resources/mental-health-directory" className="text-purple-600 hover:text-purple-800 underline font-semibold">Mental Health & Support Directory</Link> includes resources for managing stress and anxiety during this challenging process.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Company Job Boards */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">•</span>
-            Company Job Boards (Quick Links)
-          </h2>
-          <p className="text-slate-700 mb-4">
-            These are large employers with public fair-chance commitments or SCBC membership. Search each site (add "remote" where applicable) and apply broadly:
+        <GuideIntro
+          title="Start here"
+          icon={<Search className="h-6 w-6" aria-hidden="true" />}
+        >
+          <p>
+            This directory is a supplement to SOLAR’s Employment Strategies
+            guide. Use this page to find job leads, training leads, workforce
+            offices, apprenticeships, employer lead sources, and local programs
+            that may help people with records move toward work.
           </p>
-          <ul className="grid md:grid-cols-2 gap-3 list-disc pl-6 text-slate-700">
-            <li><strong>American Airlines Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>AT&T Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Bank of America Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Best Buy Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Cisco Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>CVS Health Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Home Depot Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Indeed (jobs marketplace)</strong> (SCBC partner) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>JPMorgan Chase Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Koch Industries Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Kroger Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Lowe's Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>McDonald's Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Microsoft Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Target Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>United Airlines Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Verizon Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Walgreens Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Walmart Careers</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Randstad (staffing)</strong> (SCBC) — see <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a></li>
-            <li><strong>Honest Jobs</strong> (fair-chance job board) — <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.honestjobs.com/" target="_blank" rel="noopener">honestjobs.com</a></li>
-          </ul>
 
-          <div className="mt-4 rounded-xl border border-sky-200 bg-sky-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-sky-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-sky-800">
-                  <strong>Tip:</strong> If a posting looks promising on a general job site, always click through to the <em>company's own careers site</em> to apply (and search for "Fair Chance," "Ban-the-Box," or "Second Chance" in their policy pages). Many SCBC members also partner with local reentry orgs—use the <a className="text-sky-600 hover:text-sky-800 underline" href="https://secondchancebusinesscoalition.org/find-partners" target="_blank" rel="noopener">SCBC partner map</a> to find connections in your metro.
-                </p>
-              </div>
-            </div>
+          <p>
+            These links are starting points, not approvals. Use them to find
+            leads, then verify the exact role, location, background-check policy,
+            and supervision or registry rules before you rely on the lead.
+            Policies can vary by employer, franchise, contractor, platform, and
+            state.
+          </p>
+
+          <p>
+            There are useful places to look. The goal is to spend your limited
+            time on stronger leads, ask clearer questions, and connect with
+            people who may know which employers have actually worked with
+            registry-impacted job seekers.
+          </p>
+        </GuideIntro>
+
+        <QuickStartPanel
+          title="Where to look first this week"
+          subtitle="Start with places designed for people with records, workforce support, or skills-based hiring."
+          icon={<ClipboardCheck className="h-6 w-6" aria-hidden="true" />}
+          urgentActions={[
+            <span>
+              Find your nearest{" "}
+              <a
+                href={sourceLinks.careerOneStopAjc}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                American Job Center
+              </a>{" "}
+              and ask about justice-involved job seeker services, training
+              funding, employer referrals, and job fairs.
+            </span>,
+            <span>
+              Search{" "}
+              <a
+                href={sourceLinks.honestJobs}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Honest Jobs
+              </a>{" "}
+              and set alerts for roles that match your skills, transportation,
+              and restrictions.
+            </span>,
+            <span>
+              Use the{" "}
+              <a
+                href={sourceLinks.scbcPartnerMap}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Second Chance Business Coalition Community Partners Map
+              </a>{" "}
+              to find local reentry, workforce, and training organizations.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Search{" "}
+              <a
+                href={sourceLinks.apprenticeshipHome}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Apprenticeship.gov
+              </a>{" "}
+              for paid earn-while-you-learn paths in trades, manufacturing,
+              transportation, and other fields.
+            </span>,
+            <span>
+              Ask local reentry organizations which employers have recently hired
+              people with sex offense convictions or registry requirements, not
+              only people with records generally.
+            </span>,
+            <span>
+              Keep a simple log of every lead: employer, role, location, contact
+              person, background-check stage, restriction question, and next
+              step.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              A lead is a starting point. A written answer is stronger than a
+              guess.
+            </span>
+          }
+        />
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Search lane 1",
+              title: "Where to search",
+              icon: <Briefcase className="h-5 w-5" aria-hidden="true" />,
+              tone: "info",
+              description:
+                "Use fair-chance job boards, workforce offices, reentry directories, and local partner maps.",
+            },
+            {
+              eyebrow: "Search lane 2",
+              title: "What to consider",
+              icon: <Hammer className="h-5 w-5" aria-hidden="true" />,
+              tone: "success",
+              description:
+                "Look for realistic fields such as trades, warehouse, food service, facilities, manufacturing, and paid training.",
+            },
+            {
+              eyebrow: "Search lane 3",
+              title: "What to verify",
+              icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />,
+              tone: "legal",
+              description:
+                "Check the exact role, location, duties, background-check process, and any registry or supervision rules.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="registry-aware"
+          number="1"
+          title="Use every lead with registry awareness"
+          subtitle="Fair-chance hiring can help, but sex offense and registry issues often require a more specific check."
+          icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A fair-chance employer may be open to people with many kinds of
+              criminal records while still placing limits on certain convictions,
+              public registry status, job duties, work locations, insurance
+              requirements, or licensed roles.
+            </p>
+
+            <p>
+              The practical move is simple: use the lead, then verify before
+              relying on it. Ask about the exact job, not just the company name.
+            </p>
+          </GuideProse>
+
+          <VerifyBeforeActing
+            title="Verify each lead before you rely on it"
+            whoToAsk={
+              <span>
+                Your supervising officer if you are on supervision; the
+                registering agency for registry-specific questions; the hiring
+                contact or HR office for employer-policy questions; the licensing
+                board for credentialed fields; and an attorney or legal aid
+                office for legal-risk questions.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Does this exact role, location, schedule, travel requirement,
+                internet use, background-check policy, customer contact, and
+                contact-with-minors risk fit my restrictions?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                The posting, employer name, role, address, date, person who
+                answered, exact question asked, answer given, and any written
+                confirmation.
+              </span>
+            }
+          />
+
+          <GuideCallout
+            tone="legal"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Ask the narrower question"
+          >
+            <p>
+              “Do you hire people with felonies?” is often too broad. A better
+              question is whether they will consider someone with your type of
+              conviction or registry requirement for this exact role and location.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="where-to-search"
+          number="2"
+          title="Where to search for leads"
+          subtitle="Start with resources built for records, reentry, workforce help, or local employer connections."
+          icon={<Route className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="High-value lead sources"
+            description={
+              <span>
+                These resources can help you find openings, workforce offices,
+                reentry programs, training providers, and local organizations
+                that know the employment landscape.
+              </span>
+            }
+            resources={[
+              {
+                label: "CareerOneStop Justice-Impacted Job Seekers",
+                href: sourceLinks.careerOneStopJustice,
+                badge: "Official",
+                description:
+                  "Career exploration, job search, training, and application guidance for people with criminal records.",
+              },
+              {
+                label: "American Job Center Finder",
+                href: sourceLinks.careerOneStopAjc,
+                badge: "Official",
+                description:
+                  "Find local workforce offices that may offer resume help, job referrals, computer access, training funding, and workshops.",
+              },
+              {
+                label: "CareerOneStop Reentry Program Finder",
+                href: sourceLinks.careerOneStopReentry,
+                badge: "Official",
+                description:
+                  "Search for local reentry programs that help people overcome employment and other barriers.",
+              },
+              {
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                badge: "Fair chance",
+                description:
+                  "A fair-chance job board for people with criminal records. Use it as a lead source and check the exact role and location.",
+              },
+              {
+                label: "SCBC Community Partners Map",
+                href: sourceLinks.scbcPartnerMap,
+                badge: "Local partners",
+                description:
+                  "Find organizations connected to second-chance hiring ecosystems in many local job markets.",
+              },
+              {
+                label: "National H.I.R.E. Network Clearinghouse",
+                href: sourceLinks.hireNetworkClearinghouse,
+                badge: "Directory",
+                description:
+                  "State-specific government and community-based resources for people with criminal records.",
+              },
+              {
+                label: "Jails to Jobs",
+                href: sourceLinks.jailsToJobs,
+                badge: "Nonprofit",
+                description:
+                  "Practical job-search information for people coming home from jail or prison.",
+              },
+              {
+                label: "DOL Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
+                badge: "Official",
+                description:
+                  "Federal reentry employment program information and links to workforce resources.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="search-plan"
+            title="Simple search plan"
+            columns={2}
+            items={[
+              {
+                id: "local-office",
+                label:
+                  "Call or visit an American Job Center and ask what help is available for justice-involved job seekers.",
+              },
+              {
+                id: "local-reentry",
+                label:
+                  "Search for local reentry programs and ask which employers have recently hired people with similar barriers.",
+              },
+              {
+                id: "job-board",
+                label:
+                  "Set alerts on Honest Jobs or other job boards for roles that match your skills and restrictions.",
+              },
+              {
+                id: "partner-map",
+                label:
+                  "Use the SCBC partner map to identify local organizations that may know employer leads.",
+              },
+              {
+                id: "paper-log",
+                label:
+                  "Track employer name, role, location, contact person, background-check stage, and next step.",
+              },
+              {
+                id: "follow-up",
+                label:
+                  "Follow up on stronger leads instead of starting from zero every week.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="work-types"
+          number="3"
+          title="What kinds of work to consider"
+          subtitle="Look for roles where the duties, location, schedule, and screening process can be checked clearly."
+          icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              After you know where to search, narrow the field. Stronger leads
+              often have clear worksites, adult coworkers, visible duties, and a
+              hiring process where a real person can answer questions. Useful
+              search terms include <strong>second chance hiring</strong>,{" "}
+              <strong>fair chance employer</strong>,{" "}
+              <strong>background friendly</strong>,{" "}
+              <strong>justice involved</strong>,{" "}
+              <strong>reentry employment</strong>,{" "}
+              <strong>warehouse no experience</strong>,{" "}
+              <strong>apprentice helper</strong>,{" "}
+              <strong>maintenance trainee</strong>, and{" "}
+              <strong>paid training</strong>.
+            </p>
+
+            <p>
+              Different people will have different restrictions. Use these
+              categories to focus your search, then check the exact role and
+              location.
+            </p>
+          </GuideProse>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Retail, grocery, and big-box"
+              subtitle="Stocking, overnight freight, cart attendant, receiving, warehouse, maintenance, backroom."
+              icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  These employers often have many entry points, structured hiring
+                  systems, and roles that may not require one-on-one
+                  unsupervised contact.
+                </span>
+              }
+              steps={[
+                <span>
+                  Search{" "}
+                  <a
+                    href={sourceLinks.walmartCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Walmart
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.targetCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Target
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.homeDepotCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Home Depot
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.lowesCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Lowe's
+                  </a>
+                  , and{" "}
+                  <a
+                    href={sourceLinks.krogerCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Kroger
+                  </a>
+                  .
+                </span>,
+                <span>
+                  Look closely at whether the role involves delivery, pharmacy
+                  areas, youth events, or restricted locations.
+                </span>,
+                <span>
+                  Ask whether the decision is made by corporate HR, a local
+                  manager, a franchise, or a background-check vendor.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People seeking structured entry-level work, stocking,
+                  receiving, facilities, maintenance, or operations roles.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Warehouse, logistics, and distribution"
+              subtitle="Picking, packing, forklift, dock work, inventory, shipping, receiving, package handling."
+              icon={<Truck className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  These jobs may value punctuality, physical stamina, safety, and
+                  consistency. Some roles are less public-facing than retail.
+                </span>
+              }
+              steps={[
+                <span>
+                  Search{" "}
+                  <a
+                    href={sourceLinks.amazonJobs}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Amazon Jobs
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.upsJobs}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    UPS Jobs
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.fedexCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    FedEx Careers
+                  </a>
+                  , local warehouses, and staffing agencies.
+                </span>,
+                <span>
+                  Check driving, delivery, airport, school-zone, overnight, and
+                  travel issues before accepting.
+                </span>,
+                <span>
+                  Ask staffing agencies which warehouse clients use case-by-case
+                  background review.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can work physical shifts and need a skills-first
+                  entry point with advancement potential.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Food service, hospitality, and facilities"
+              subtitle="Kitchen, prep, dish, housekeeping, laundry, janitorial, maintenance, banquet setup."
+              icon={<Utensils className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Back-of-house roles can be practical starting points and may
+                  offer fast hiring, clear duties, and chances to build local
+                  references.
+                </span>
+              }
+              steps={[
+                <span>
+                  Search{" "}
+                  <a
+                    href={sourceLinks.mcdonaldsCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    McDonald's Careers
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.aramarkCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Aramark
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.compassCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Compass Group
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.sodexoCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Sodexo
+                  </a>
+                  ,{" "}
+                  <a
+                    href={sourceLinks.marriottCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Marriott
+                  </a>
+                  , and{" "}
+                  <a
+                    href={sourceLinks.hiltonCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Hilton
+                  </a>
+                  .
+                </span>,
+                <span>
+                  Check whether the job involves schools, youth-serving sites,
+                  guest-room access, or events with minors.
+                </span>,
+                <span>
+                  Ask whether the job is corporate, franchise, contractor, or
+                  facility-specific.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can work fast-paced shifts and want a local
+                  reference-building job.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Trades, maintenance, and local contractors"
+              subtitle="Helper roles, repair, landscaping, waste services, facilities, painting, cleaning, hauling."
+              icon={<Hammer className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Skills can matter more than resume polish. Local contractors
+                  may make decisions directly and may care most about reliability
+                  and safe work.
+                </span>
+              }
+              steps={[
+                <span>
+                  Search{" "}
+                  <a
+                    href={sourceLinks.wasteManagementCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    WM Careers
+                  </a>
+                  , local trade helpers, maintenance teams, landscaping
+                  companies, and small contractors.
+                </span>,
+                <span>
+                  Verify private-home access, school sites, youth facilities,
+                  tools, driving, licensing, and insurance rules.
+                </span>,
+                <span>
+                  Ask whether a short work trial, reference, or bonding
+                  information would help the employer evaluate you fairly.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with hands-on skills, physical stamina, training
+                  certificates, or a willingness to start as a helper.
+                </span>
+              }
+            />
           </div>
-        </section>
 
-        {/* Quick Start Checklist */}
-        <section className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-          <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-3 mb-4">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-white text-slate-700 font-bold ring-2 ring-slate-200">✓</span>
-            Quick Start Checklist (print this)
-          </h2>
-          <ol className="space-y-2 list-decimal pl-6 text-slate-700">
-            <li>Look up your state's <strong>employment distance rules</strong> (or ask your supervising officer). See examples: <a className="text-blue-600 hover:text-blue-800 underline" href="https://law.justia.com/codes/alabama/title-15/chapter-20a/section-15-20a-13/" target="_blank" rel="noopener">Alabama</a>, <a className="text-blue-600 hover:text-blue-800 underline" href="https://law.justia.com/codes/georgia/title-42/chapter-1/article-2/section-42-1-16/" target="_blank" rel="noopener">Georgia</a>, <a className="text-blue-600 hover:text-blue-800 underline" href="https://sor.tbi.tn.gov/api/vfs/40-39-211.pdf" target="_blank" rel="noopener">Tennessee</a>.</li>
-            <li>Create a 1-page <strong>skills-first resume</strong> (add any certs or volunteer work).</li>
-            <li>Register at <strong>Honest Jobs</strong> and set job alerts: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.honestjobs.com/" target="_blank" rel="noopener">honestjobs.com</a>.</li>
-            <li>Visit your <strong>American Job Center</strong> for resume review, training $, and employer leads: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx" target="_blank" rel="noopener">Find an AJC</a>.</li>
-            <li>Apply to <strong>SCBC member companies</strong> (filter for "remote" as needed): <a className="text-blue-600 hover:text-blue-800 underline" href="https://secondchancebusinesscoalition.org/" target="_blank" rel="noopener">SCBC</a>.</li>
-            <li>Practice your <strong>30-second disclosure</strong> + pivot.</li>
-            <li>In interviews, mention <strong>WOTC</strong> and <strong>Federal Bonding</strong> to reassure employers: <a className="text-blue-600 hover:text-blue-800 underline" href="https://www.dol.gov/agencies/eta/wotc" target="_blank" rel="noopener">DOL WOTC</a> • <a className="text-blue-600 hover:text-blue-800 underline" href="https://bonds4jobs.com/" target="_blank" rel="noopener">Bonds4Jobs</a>.</li>
-          </ol>
-        </section>
+          <GuideCallout
+            tone="neutral"
+            icon={<Users className="h-5 w-5" aria-hidden="true" />}
+            title="Use second-chance employer lists as lead sources"
+          >
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.secondChanceBusinessCoalition}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Second Chance Business Coalition
+              </a>{" "}
+              and similar initiatives can point you toward employers and local
+              organizations thinking about second-chance hiring. Use those lists
+              to decide where to ask better questions.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-        {/* Important Reminders */}
-        <section className="rounded-xl border border-yellow-200 bg-yellow-50 p-6">
-          <div className="flex items-start">
-            <svg className="w-6 h-6 text-yellow-600 mt-0.5 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <div>
-              <p className="font-semibold text-yellow-800 mb-2">Key Reminder:</p>
-              <p className="text-yellow-800">
-                The path may not be quick, but persistence pays off. Thousands of registrants have secured stable jobs by targeting supportive industries, preparing with training, and using second-chance resources. Every application is a step closer to stability.
-              </p>
-              <p className="text-yellow-800 mt-3">
-                For additional support during your job search, explore our <Link to="/resources" className="text-yellow-600 hover:text-yellow-800 underline font-semibold">complete resource library</Link> including housing assistance, mental health support, and family guidance.
-              </p>
-            </div>
+        <GuideSectionHeader
+          id="training"
+          number="4"
+          title="Training, apprenticeships, and credentials"
+          subtitle="Paid training and short credentials can open doors, but placement rules still matter."
+          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Training can be one of the most hopeful paths because it gives you
+              proof of current effort, a newer reference, and a skill an employer
+              can understand. The best options are usually practical,
+              short-to-medium length, and connected to real employers.
+            </p>
+
+            <p>
+              Before spending money, ask whether the credential, license,
+              worksite, internship, clinical placement, apprenticeship sponsor,
+              or job placement path fits your situation.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Training and apprenticeship resources"
+            resources={[
+              {
+                label: "Apprenticeship.gov",
+                href: sourceLinks.apprenticeshipHome,
+                badge: "Official",
+                description:
+                  "Search Registered Apprenticeships and learn how earn-while-you-learn programs work.",
+              },
+              {
+                label: "Apprenticeship.gov — Barriers to Employment",
+                href: sourceLinks.apprenticeshipBarriers,
+                badge: "Official",
+                description:
+                  "Information for career seekers with employment barriers, including justice-involved people.",
+              },
+              {
+                label: "American Job Centers",
+                href: sourceLinks.careerOneStopAjc,
+                badge: "Training help",
+                description:
+                  "Ask about WIOA-funded training, occupational certificates, job clubs, computer access, and local employer partnerships.",
+              },
+              {
+                label: "DOL Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
+                badge: "Official",
+                description:
+                  "Federal links for justice-involved job seekers, employers, and reentry workforce programs.",
+              },
+              {
+                label: "Professional Licensing Guide",
+                href: sourceLinks.professionalLicensing,
+                badge: "SOLAR",
+                description:
+                  "Use SOLAR's licensing guide before investing in a credential that may require background review.",
+              },
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              Common practical paths include OSHA-10/30, forklift, welding,
+              HVAC, electrical helper, plumbing helper, maintenance, CDL,
+              food-handler credentials, culinary programs, manufacturing,
+              logistics, bookkeeping, customer support, and basic IT support.
+              Check licensing, driving, insurance, internet, and worksite rules
+              before paying for a program.
+            </p>
+          </GuideProse>
+
+          <GuideCallout
+            tone="warning"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Ask about placement before enrolling"
+          >
+            <p>
+              A school may accept you into training even if a later internship,
+              apprenticeship sponsor, clinical site, licensing board, or employer
+              partner creates a barrier. Ask direct questions before you pay:
+              “Have you placed people with sex offense convictions or registry
+              requirements in this field before?”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="green-red-flags"
+          number="5"
+          title="Better leads and higher-friction leads"
+          subtitle="Some opportunities are easier to evaluate than others."
+          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <div className="grid gap-4 md:grid-cols-2">
+            <GuideCallout
+              tone="success"
+              icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+              title="Better signs"
+            >
+              <GuideProse>
+                <ul>
+                  <li>The employer says it uses case-by-case review.</li>
+                  <li>The job has a clear adult worksite.</li>
+                  <li>The duties are visible and easy to explain.</li>
+                  <li>
+                    The role does not involve schools, child care, youth
+                    programs, private homes, or unsupervised access to minors.
+                  </li>
+                  <li>
+                    A local reentry organization has placed people there before.
+                  </li>
+                  <li>
+                    The employer has HR staff who can explain the background-check
+                    process.
+                  </li>
+                  <li>
+                    The job offers training, certifications, advancement, or a
+                    stable schedule.
+                  </li>
+                </ul>
+              </GuideProse>
+            </GuideCallout>
+
+            <GuideCallout
+              tone="warning"
+              icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+              title="Higher-friction signs"
+            >
+              <GuideProse>
+                <ul>
+                  <li>
+                    The job involves minors, schools, child care, youth sports,
+                    camps, parks, or recreation programs.
+                  </li>
+                  <li>
+                    The role requires entering private homes or hotel rooms alone.
+                  </li>
+                  <li>
+                    The platform uses automated background screening with no
+                    clear human review.
+                  </li>
+                  <li>
+                    The role requires rideshare, passenger driving, in-home
+                    delivery, or vulnerable-person access.
+                  </li>
+                  <li>
+                    The job requires internet use that may conflict with
+                    supervision rules.
+                  </li>
+                  <li>
+                    The credential has moral-character, licensing, or insurance
+                    barriers.
+                  </li>
+                  <li>
+                    The employer cannot tell you who makes the background-check
+                    decision.
+                  </li>
+                </ul>
+              </GuideProse>
+            </GuideCallout>
           </div>
-        </section>
 
+          <SoftDivider />
+
+          <GuideProse>
+            <p>
+              Rideshare and passenger-driving platforms are often high-friction
+              for people on sex offender registries. Lyft publicly states that a
+              person may be ineligible to drive if listed on the National Sex
+              Offender Registry, and Uber publicly says drivers with reported
+              sexual assault convictions are permanently banned. Check current
+              platform rules before spending time or money on this path.
+            </p>
+          </GuideProse>
+
+          <CommonMistakes
+            title="Directory mistakes to avoid"
+            mistakes={[
+              {
+                mistake:
+                  "Treating “felony friendly” as the same as registry-aware.",
+                whyItMatters:
+                  "Many programs and employers are open to some records but use separate rules for sex offense convictions, public registry status, or certain job duties.",
+                betterMove:
+                  "Ask whether they have worked with people with sex offense convictions or registry requirements specifically.",
+              },
+              {
+                mistake: "Applying to every large employer without checking the role.",
+                whyItMatters:
+                  "One company may have warehouse roles, delivery roles, school-site contracts, and different local decision-makers.",
+                betterMove:
+                  "Check the exact location, duties, background-check stage, and decision-maker.",
+              },
+              {
+                mistake: "Paying for training before checking placement barriers.",
+                whyItMatters:
+                  "A training provider may accept payment even if a later internship, license, or employer placement creates a barrier.",
+                betterMove:
+                  "Ask written questions about placement, licensing, background checks, and registry-specific barriers before enrolling.",
+              },
+              {
+                mistake: "Assuming remote work is automatically easier.",
+                whyItMatters:
+                  "Remote work can involve internet monitoring, customer data, minors, platform rules, background checks, or supervision restrictions.",
+                betterMove:
+                  "Verify internet use, device rules, customer contact, platform policies, and data-access limits.",
+              },
+              {
+                mistake: "Giving up after a few dead ends.",
+                whyItMatters:
+                  "Some leads will not work. That does not mean all work is closed off.",
+                betterMove:
+                  "Track results, adjust your target list, ask local reentry staff for recent employer leads, and keep building proof of reliability.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="employer-reassurance"
+          number="6"
+          title="Employer reassurance tools"
+          subtitle="Some employers need help understanding support, bonding, and current hiring resources."
+          icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some hiring managers are nervous about people with records and do
+              not know what tools exist. If the conversation is respectful and
+              the role appears workable, a short mention of employer support
+              programs can help.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Employer-facing tools"
+            resources={[
+              {
+                label: "Federal Bonding Program",
+                href: sourceLinks.federalBonding,
+                badge: "Hiring support",
+                description:
+                  "No-cost fidelity bonding that may reduce perceived hiring risk for some employers considering job seekers with barriers.",
+              },
+              {
+                label: "DOL WOTC page",
+                href: sourceLinks.dolWotc,
+                badge: "Check status",
+                description:
+                  "Official Department of Labor page for the Work Opportunity Tax Credit. Verify current status before mentioning it.",
+              },
+              {
+                label: "IRS WOTC page",
+                href: sourceLinks.irsWotc,
+                badge: "Check status",
+                description:
+                  "Official IRS page explaining WOTC eligibility, timing, and current authorization language.",
+              },
+              {
+                label: "SCBC employer resources",
+                href: sourceLinks.secondChanceBusinessCoalition,
+                badge: "Employer tools",
+                description:
+                  "Employer-facing second-chance hiring resources that may help a company understand case-by-case hiring practices.",
+              },
+              {
+                label: "Jails to Jobs",
+                href: sourceLinks.jailsToJobs,
+                badge: "Practical",
+                description:
+                  "Job-search and employer-education resources for people coming home from incarceration.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="info"
+            icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+            title="Work Opportunity Tax Credit context"
+          >
+            <p>
+              Some employer-facing resources mention the Work Opportunity Tax
+              Credit. As of this guide’s review, DOL and IRS pages describe WOTC
+              as authorized through December 31, 2025. Do not rely on WOTC as a
+              current hiring incentive unless an employer, workforce office, tax
+              professional, or official source confirms that it applies to the
+              job and hiring date.
+            </p>
+          </GuideCallout>
+
+          <GuideCallout
+            tone="success"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Simple way to mention bonding"
+          >
+            <p>
+              “I understand employers sometimes have concerns when hiring people
+              with records. There is a Federal Bonding Program that may provide a
+              no-cost fidelity bond for eligible workers. I can send you the
+              official information if that would help.”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="local-strategy"
+          number="7"
+          title="How to find local leads that are actually useful"
+          subtitle="Local knowledge often beats national lists."
+          icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              National lists can get you started, but the strongest leads often
+              come from local people who know which employers have recently hired
+              registry-impacted workers. A workforce counselor, reentry case
+              manager, faith-based job club, public defender reentry staff,
+              treatment provider, or trusted mentor may know which employers are
+              worth your limited time.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="local-lead-plan"
+            title="Local lead plan"
+            columns={1}
+            items={[
+              {
+                id: "ajc",
+                label:
+                  "Call or visit your nearest American Job Center and ask whether they have justice-involved job seeker services.",
+              },
+              {
+                id: "reentry",
+                label:
+                  "Search CareerOneStop's reentry program finder and the National H.I.R.E. Network Clearinghouse for local organizations.",
+              },
+              {
+                id: "specific",
+                label:
+                  "Ask every helper the specific question: “Have you placed someone with a sex offense conviction or registry status recently?”",
+              },
+              {
+                id: "fields",
+                label:
+                  "Ask which fields have worked locally: warehouse, food service, trades, maintenance, manufacturing, staffing, or small employers.",
+              },
+              {
+                id: "names",
+                label:
+                  "Ask for names of programs, hiring managers, staffing agencies, job fairs, and training providers.",
+              },
+              {
+                id: "log",
+                label:
+                  "Write down every lead and result so you can see patterns instead of starting over each week.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="family"
+            icon={<Users className="h-5 w-5" aria-hidden="true" />}
+            title="For family and supporters"
+          >
+            <p>
+              A helpful supporter can research employers, print applications,
+              drive to appointments, practice interviews, organize a job log, or
+              call programs to ask what services they offer. Try not to take over
+              the job search. The person applying still needs ownership,
+              preparation, and accurate information.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="limited-access"
+          number="8"
+          title="If internet access, privacy, or transportation is limited"
+          subtitle="A directory should still work for phone-only, paper-based, supervised, or recently released readers."
+          icon={<Phone className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet ways to use this guide"
+            icon={<Laptop className="h-5 w-5" aria-hidden="true" />}
+            note={
+              <span>
+                These steps can help if you have no printer, limited internet,
+                supervision restrictions, unreliable transportation, or no
+                private computer.
+              </span>
+            }
+            items={[
+              <span>
+                Call an American Job Center and ask for help finding local
+                reentry employment services, job fairs, and training programs.
+              </span>,
+              <span>
+                Ask for mailed or printed information if you cannot easily use a
+                website.
+              </span>,
+              <span>
+                Keep a paper job lead log with employer name, role, location,
+                phone number, date, restriction question, and result.
+              </span>,
+              <span>
+                Ask a trusted person to print job postings, bus directions,
+                application confirmations, and program contacts.
+              </span>,
+              <span>
+                Use a public library, workforce center, or reentry office for
+                computer access only if your supervision and internet rules allow
+                it.
+              </span>,
+              <span>
+                If you are incarcerated or preparing for release, ask family or a
+                reentry worker to print nearby American Job Centers, reentry
+                programs, apprenticeships, and training providers.
+              </span>,
+            ]}
+          />
+
+          <GuideCallout
+            tone="privacy"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Check technology rules first"
+          >
+            <p>
+              If you have internet restrictions, monitoring rules, device
+              restrictions, or limits on social media or job platforms, verify
+              what job-search technology is allowed before using public
+              computers, apps, job boards, or remote-work platforms.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="lead-vetting"
+          number="9"
+          title="Lead-vetting checklist"
+          subtitle="Use this before applying, interviewing, accepting, or paying for training."
+          icon={<ClipboardCheck className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="lead-vetting-checklist"
+            title="Check the lead"
+            columns={2}
+            items={[
+              {
+                id: "exact-location",
+                label: "Do I know the exact worksite or training location?",
+              },
+              {
+                id: "allowed-location",
+                label:
+                  "Is the location allowed under registry, supervision, court, and local rules?",
+              },
+              {
+                id: "duties",
+                label:
+                  "Do the duties involve minors, schools, child care, parks, homes, hospitals, nursing facilities, travel, driving, or internet use?",
+              },
+              {
+                id: "policy",
+                label:
+                  "Does the employer, platform, franchise, contractor, or staffing agency have a policy that affects registry status?",
+              },
+              {
+                id: "background-stage",
+                label:
+                  "When does the background check happen, and who makes the decision?",
+              },
+              {
+                id: "case-review",
+                label:
+                  "Is there case-by-case review, or is the background screen automatic?",
+              },
+              {
+                id: "license",
+                label:
+                  "Does the job or training path require a license, credential, placement, or insurance approval?",
+              },
+              {
+                id: "save-answer",
+                label:
+                  "Did I save the posting, names, dates, answers, and written confirmation if possible?",
+              },
+            ]}
+          />
+
+          <PullQuoteBlock>
+            The goal is not to find a perfect employer. The goal is to find a
+            lawful, realistic next step that can become proof of stability.
+          </PullQuoteBlock>
+
+          <GuideCallout
+            tone="reentry"
+            icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+            title="Use this with the Employment Strategies guide"
+          >
+            <p>
+              This directory helps you find leads. For resume structure,
+              disclosure scripts, interview preparation, documentation packets,
+              and first-90-days job planning, use SOLAR’s{" "}
+              <Link
+                to={sourceLinks.jobSearchGuide}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Employment Strategies for People on Sex Offender Registries
+              </Link>
+              .
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="10"
+          title="Resources, related guides, and sources"
+          subtitle="Keep going with practical next steps and source links."
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Core employment resources"
+            resources={[
+              {
+                label: "CareerOneStop Justice-Impacted Job Seekers",
+                href: sourceLinks.careerOneStopJustice,
+                badge: "Official",
+                description:
+                  "Career, training, and job-search tools for people with criminal records.",
+              },
+              {
+                label: "American Job Center Finder",
+                href: sourceLinks.careerOneStopAjc,
+                badge: "Official",
+                description:
+                  "Find local workforce offices for resume help, training referrals, job search support, and workshops.",
+              },
+              {
+                label: "CareerOneStop Reentry Program Finder",
+                href: sourceLinks.careerOneStopReentry,
+                badge: "Official",
+                description:
+                  "Find local reentry programs that may offer job search, housing, and other support.",
+              },
+              {
+                label: "Apprenticeship.gov",
+                href: sourceLinks.apprenticeshipHome,
+                badge: "Official",
+                description:
+                  "Search registered apprenticeships and learn about paid earn-while-you-learn paths.",
+              },
+              {
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                badge: "Fair chance",
+                description:
+                  "Fair-chance job board for people with criminal records.",
+              },
+              {
+                label: "Federal Bonding Program",
+                href: sourceLinks.federalBonding,
+                badge: "Hiring support",
+                description:
+                  "No-cost fidelity bonding information for eligible workers and employers.",
+              },
+              {
+                label: "FTC background-check rights",
+                href: sourceLinks.ftcBackgroundChecks,
+                badge: "Official",
+                description:
+                  "Federal guidance on applicant rights when employers use background reporting companies.",
+              },
+              {
+                label: "EEOC arrest and conviction record resources",
+                href: sourceLinks.eeocArrestConviction,
+                badge: "Official",
+                description:
+                  "Employment-rights resources about arrest and conviction records.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Employment Strategies for People on Sex Offender Registries",
+                description:
+                  "Use this companion guide for resumes, disclosure scripts, interviews, documentation, and first-90-days planning.",
+                to: sourceLinks.jobSearchGuide,
+              },
+              {
+                title: "Professional Licensing & Certification Paths",
+                description:
+                  "Use this before paying for a credential, trade program, CDL path, or licensed field.",
+                to: sourceLinks.professionalLicensing,
+              },
+              {
+                title: "Small Business & Entrepreneurship Guide",
+                description:
+                  "Use this if traditional hiring is blocked and self-employment may be a realistic path.",
+                to: sourceLinks.smallBusinessGuide,
+              },
+              {
+                title: "Know Your Rights Guide",
+                description:
+                  "Use this for broader rights, documentation, background-check, and safe communication guidance.",
+                to: sourceLinks.knowYourRights,
+              },
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Employment and housing often affect each other. Use this for restriction-aware housing planning.",
+                to: sourceLinks.housingSearch,
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "Use this to coordinate employment with IDs, housing, health care, supervision, and registration tasks.",
+                to: sourceLinks.reentryChecklist,
+              },
+              {
+                title: "Mental Health & Support Directory",
+                description:
+                  "Use this if the job search is affecting anxiety, shame, depression, or family stress.",
+                to: sourceLinks.mentalHealthDirectory,
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <GuideCallout
+            tone="legal"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Legal and employment note"
+          >
+            <p>
+              This directory is a lead-finding tool, not legal advice or
+              employer approval. A listing here does not mean a job is available,
+              lawful for your situation, or open to every conviction or registry
+              status. Before applying, accepting work, or paying for training,
+              verify the exact role, location, background-check process, employer
+              policy, and any supervision, court, registry, or local restrictions
+              that apply to you.
+            </p>
+          </GuideCallout>
+
+          <div id="sources">
+            <SourceList
+              title="Sources and verification"
+              note="These links support the directory's core lead sources, training paths, background-check rights, and high-friction platform cautions. Local registry, supervision, employer, and licensing rules still need case-specific verification."
+              sources={[
+                {
+                  label: "CareerOneStop — Justice-Impacted Job Seekers",
+                  href: sourceLinks.careerOneStopJustice,
+                  description:
+                    "Official job search, training, and career resources for people with criminal records.",
+                },
+                {
+                  label: "CareerOneStop — American Job Center Finder",
+                  href: sourceLinks.careerOneStopAjc,
+                  description:
+                    "Official finder for American Job Centers and local workforce help.",
+                },
+                {
+                  label: "CareerOneStop — Reentry Program Finder",
+                  href: sourceLinks.careerOneStopReentry,
+                  description:
+                    "Official finder for local reentry employment programs.",
+                },
+                {
+                  label: "Apprenticeship.gov",
+                  href: sourceLinks.apprenticeshipHome,
+                  description:
+                    "Official federal apprenticeship search and career-seeker resource.",
+                },
+                {
+                  label: "Apprenticeship.gov — Career Seekers with Barriers",
+                  href: sourceLinks.apprenticeshipBarriers,
+                  description:
+                    "Federal apprenticeship information for career seekers with barriers to employment.",
+                },
+                {
+                  label:
+                    "U.S. Department of Labor — Reentry Employment Opportunities",
+                  href: sourceLinks.dolReentry,
+                  description:
+                    "Federal reentry employment program information.",
+                },
+                {
+                  label: "Second Chance Business Coalition Community Partners Map",
+                  href: sourceLinks.scbcPartnerMap,
+                  description:
+                    "Local partner map used as a lead source for reentry and workforce organizations.",
+                },
+                {
+                  label: "Honest Jobs",
+                  href: sourceLinks.honestJobs,
+                  description:
+                    "Fair-chance job board and job-seeker resource for people with criminal records.",
+                },
+                {
+                  label: "National H.I.R.E. Network Clearinghouse",
+                  href: sourceLinks.hireNetworkClearinghouse,
+                  description:
+                    "State-specific reentry, legal, and employment resource clearinghouse.",
+                },
+                {
+                  label: "Federal Bonding Program",
+                  href: sourceLinks.federalBonding,
+                  description:
+                    "Employer and job seeker information about fidelity bonding.",
+                },
+                {
+                  label: "DOL — Work Opportunity Tax Credit",
+                  href: sourceLinks.dolWotc,
+                  description:
+                    "Official WOTC source included because some employer-facing resources mention the credit; current applicability should be verified.",
+                },
+                {
+                  label: "IRS — Work Opportunity Tax Credit",
+                  href: sourceLinks.irsWotc,
+                  description:
+                    "Official IRS WOTC source included to verify authorization language and hiring-date rules.",
+                },
+                {
+                  label: "FTC — Employer Background Checks and Your Rights",
+                  href: sourceLinks.ftcBackgroundChecks,
+                  description:
+                    "Federal background-check rights information for job applicants.",
+                },
+                {
+                  label: "EEOC — Arrest and Conviction Records",
+                  href: sourceLinks.eeocArrestConviction,
+                  description:
+                    "EEOC resources about arrest and conviction records in employment.",
+                },
+                {
+                  label: "Lyft Driver Requirements",
+                  href: sourceLinks.lyftDriverRequirements,
+                  description:
+                    "Example of rideshare platform background-check restrictions involving the National Sex Offender Registry.",
+                },
+                {
+                  label: "Uber Background Checks",
+                  href: sourceLinks.uberBackgroundChecks,
+                  description:
+                    "Example of rideshare background-check and disqualification information.",
+                },
+              ]}
+            />
+          </div>
+        </GuideSectionCard>
       </main>
-
-      <footer className="mt-8 mb-12 text-center text-sm text-slate-500 px-4">
-        <p>© The SOLAR Project — Employment guide for people on the registry. This page includes links to official sources and reputable organizations current as of August 2025.</p>
-      </footer>
     </div>
   );
 }
