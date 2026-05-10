@@ -7,7 +7,6 @@ import {
   Building2,
   CheckCircle2,
   ClipboardCheck,
-  Factory,
   FileText,
   GraduationCap,
   Hammer,
@@ -62,14 +61,10 @@ const sourceLinks = {
   apprenticeshipBarriers:
     "https://www.apprenticeship.gov/career-seekers/with-employment-barriers",
   dolReentry: "https://www.dol.gov/agencies/eta/reentry",
-  dolReentryResources: "https://www.dol.gov/agencies/eta/reentry/resources",
-  workforceGpsReentry: "https://reo.workforcegps.org/",
   secondChanceBusinessCoalition: "https://secondchancebusinesscoalition.org/",
   scbcPartnerMap: "https://secondchancebusinesscoalition.org/find-partners",
-  scbcLocalEcosystems: "https://secondchancebusinesscoalition.org/local-ecosystems",
   honestJobs: "https://www.honestjobs.com/for-job-seekers",
   hireNetworkClearinghouse: "https://clearinghouse.lac.org/",
-  hireNetworkProject: "https://www.lac.org/major-project/national-hire-network",
   jailsToJobs: "https://jailstojobs.org/",
   federalBonding: "https://bonds4jobs.com/",
   dolWotc: "https://www.dol.gov/agencies/eta/wotc",
@@ -78,8 +73,6 @@ const sourceLinks = {
   ftcBackgroundChecks:
     "https://consumer.ftc.gov/articles/employer-background-checks-and-your-rights",
   eeocArrestConviction: "https://www.eeoc.gov/arrestandconviction",
-  eeocGuidance:
-    "https://www.eeoc.gov/laws/guidance/enforcement-guidance-consideration-arrest-and-conviction-records-employment-decisions",
   lyftDriverRequirements:
     "https://help.lyft.com/hc/en-us/all/articles/115012925687-Driver-requirements",
   uberBackgroundChecks: "https://www.uber.com/us/en/newsroom/background-checks/",
@@ -88,8 +81,6 @@ const sourceLinks = {
   homeDepotCareers: "https://careers.homedepot.com/",
   lowesCareers: "https://talent.lowes.com/us/en",
   krogerCareers: "https://www.thekrogerco.com/careers/",
-  cvsCareers: "https://jobs.cvshealth.com/",
-  walgreensCareers: "https://jobs.walgreens.com/",
   mcdonaldsCareers: "https://careers.mcdonalds.com/",
   amazonJobs: "https://www.amazon.jobs/",
   upsJobs: "https://www.jobs-ups.com/",
@@ -166,24 +157,25 @@ export default function ResourceGuideSandbox(): JSX.Element {
           icon={<Search className="h-6 w-6" aria-hidden="true" />}
         >
           <p>
-            This directory is for finding leads. It is not a promise that any
-            employer, job board, program, or training path will accept every
-            person with a sex offense conviction or registry requirement.
+            This directory is a supplement to SOLAR’s Employment Strategies
+            guide. Use this page to find job leads, training leads, workforce
+            offices, apprenticeships, employer lead sources, and local programs
+            that may help people with records move toward work.
           </p>
 
           <p>
-            That distinction matters. A company may be “fair chance,”
-            “second chance,” or “felony friendly” and still exclude people on sex
-            offender registries, restrict certain roles, require case-by-case
-            review, or use background-check rules that vary by location, job
-            duty, franchise, contractor, or vendor.
+            These links are starting points, not approvals. Use them to find
+            leads, then verify the exact role, location, background-check policy,
+            and supervision or registry rules before you rely on the lead.
+            Policies can vary by employer, franchise, contractor, platform, and
+            state.
           </p>
 
           <p>
-            Still, there are meaningful places to look. Use this page to find
-            stronger leads, ask better questions, avoid predictable dead ends,
-            and connect with people who may know which local employers have
-            actually hired registry-impacted workers.
+            There are useful places to look. The goal is to spend your limited
+            time on stronger leads, ask clearer questions, and connect with
+            people who may know which employers have actually worked with
+            registry-impacted job seekers.
           </p>
         </GuideIntro>
 
@@ -215,7 +207,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
               >
                 Honest Jobs
               </a>{" "}
-              and set alerts for roles that match your skills and restrictions.
+              and set alerts for roles that match your skills, transportation,
+              and restrictions.
             </span>,
             <span>
               Use the{" "}
@@ -246,8 +239,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </span>,
             <span>
               Ask local reentry organizations which employers have recently hired
-              people with sex offense convictions or registry status, not only
-              people with records generally.
+              people with sex offense convictions or registry requirements, not
+              only people with records generally.
             </span>,
             <span>
               Keep a simple log of every lead: employer, role, location, contact
@@ -257,8 +250,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
           ]}
           reminder={
             <span>
-              A lead is not a guarantee. It is a place to start asking better
-              questions.
+              A lead is a starting point. A written answer is stronger than a
+              guess.
             </span>
           }
         />
@@ -268,27 +261,27 @@ export default function ResourceGuideSandbox(): JSX.Element {
           cards={[
             {
               eyebrow: "Search lane 1",
-              title: "Job boards and employer leads",
+              title: "Where to search",
               icon: <Briefcase className="h-5 w-5" aria-hidden="true" />,
               tone: "info",
               description:
-                "Use fair-chance job boards, company career pages, staffing firms, and local employer lists as starting points.",
+                "Use fair-chance job boards, workforce offices, reentry directories, and local partner maps.",
             },
             {
               eyebrow: "Search lane 2",
-              title: "Training and apprenticeships",
-              icon: <GraduationCap className="h-5 w-5" aria-hidden="true" />,
+              title: "What to consider",
+              icon: <Hammer className="h-5 w-5" aria-hidden="true" />,
               tone: "success",
               description:
-                "Look for paid training, trade certificates, apprenticeships, and workforce-funded credentials.",
+                "Look for realistic fields such as trades, warehouse, food service, facilities, manufacturing, and paid training.",
             },
             {
               eyebrow: "Search lane 3",
-              title: "Local help and verification",
-              icon: <MapPinned className="h-5 w-5" aria-hidden="true" />,
+              title: "What to verify",
+              icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />,
               tone: "legal",
               description:
-                "Use American Job Centers, reentry programs, legal aid, and supervision contacts to vet each lead safely.",
+                "Check the exact role, location, duties, background-check process, and any registry or supervision rules.",
             },
           ]}
         />
@@ -296,8 +289,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionHeader
           id="registry-aware"
           number="1"
-          title="Fair chance does not always mean registry-aware"
-          subtitle="This is the key rule for using the directory safely."
+          title="Use every lead with registry awareness"
+          subtitle="Fair-chance hiring can help, but sex offense and registry issues often require a more specific check."
           icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
         />
 
@@ -305,16 +298,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideProse>
             <p>
               A fair-chance employer may be open to people with many kinds of
-              criminal records, but sex offense convictions and public registry
-              status often trigger extra screening, role limits, insurance
-              issues, licensing barriers, supervision concerns, or local
-              restrictions.
+              criminal records while still placing limits on certain convictions,
+              public registry status, job duties, work locations, insurance
+              requirements, or licensed roles.
             </p>
 
             <p>
-              That does not make the lead useless. It means you should treat it
-              as a lead to investigate, not as proof that the job is safe or
-              available to you.
+              The practical move is simple: use the lead, then verify before
+              relying on it. Ask about the exact job, not just the company name.
             </p>
           </GuideProse>
 
@@ -348,33 +339,32 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="legal"
             icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="The question is not only “Will they hire people with felonies?”"
+            title="Ask the narrower question"
           >
             <p>
-              Ask the narrower question: whether they will consider people with
-              sex offense convictions or registry requirements for this exact
-              role. A warehouse job, delivery job, kitchen job, remote job, or
-              trade job may be realistic in one setting and risky in another.
+              “Do you hire people with felonies?” is often too broad. A better
+              question is whether they will consider someone with your type of
+              conviction or registry requirement for this exact role and location.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="best-starting-points"
+          id="where-to-search"
           number="2"
-          title="Best starting points"
-          subtitle="These resources are more useful than cold-searching random job boards."
+          title="Where to search for leads"
+          subtitle="Start with resources built for records, reentry, workforce help, or local employer connections."
           icon={<Route className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Start with these"
+            title="High-value lead sources"
             description={
               <span>
-                These are not registry guarantees. They are higher-value places
-                to find leads, training, referrals, and people who understand
-                employment barriers.
+                These resources can help you find openings, workforce offices,
+                reentry programs, training providers, and local organizations
+                that know the employment landscape.
               </span>
             }
             resources={[
@@ -397,21 +387,21 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 href: sourceLinks.careerOneStopReentry,
                 badge: "Official",
                 description:
-                  "Search for local reentry employment programs that help people overcome barriers caused by a criminal record.",
+                  "Search for local reentry programs that help people overcome employment and other barriers.",
               },
               {
                 label: "Honest Jobs",
                 href: sourceLinks.honestJobs,
                 badge: "Fair chance",
                 description:
-                  "A fair-chance job board for people with criminal records. Still verify sex-offense and registry-specific restrictions.",
+                  "A fair-chance job board for people with criminal records. Use it as a lead source and check the exact role and location.",
               },
               {
-                label: "Second Chance Business Coalition Partner Map",
+                label: "SCBC Community Partners Map",
                 href: sourceLinks.scbcPartnerMap,
-                badge: "Lead finder",
+                badge: "Local partners",
                 description:
-                  "Find community organizations connected to second-chance hiring ecosystems in many local job markets.",
+                  "Find organizations connected to second-chance hiring ecosystems in many local job markets.",
               },
               {
                 label: "National H.I.R.E. Network Clearinghouse",
@@ -432,46 +422,65 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 href: sourceLinks.dolReentry,
                 badge: "Official",
                 description:
-                  "Federal reentry employment program information and links to reentry workforce resources.",
+                  "Federal reentry employment program information and links to workforce resources.",
               },
             ]}
           />
 
-          <GuideCallout
-            tone="success"
-            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
-            title="Hopeful, but specific"
-          >
-            <p>
-              The most useful question is not “Who hires registrants?” It is
-              “Who near me has recently helped someone with a similar conviction,
-              restriction level, transportation situation, and work history get a
-              safe job?” Local reentry staff, workforce offices, and small
-              employers often know more than national job boards.
-            </p>
-          </GuideCallout>
+          <GuideChecklist
+            id="search-plan"
+            title="Simple search plan"
+            columns={2}
+            items={[
+              {
+                id: "local-office",
+                label:
+                  "Call or visit an American Job Center and ask what help is available for justice-involved job seekers.",
+              },
+              {
+                id: "local-reentry",
+                label:
+                  "Search for local reentry programs and ask which employers have recently hired people with similar barriers.",
+              },
+              {
+                id: "job-board",
+                label:
+                  "Set alerts on Honest Jobs or other job boards for roles that match your skills and restrictions.",
+              },
+              {
+                id: "partner-map",
+                label:
+                  "Use the SCBC partner map to identify local organizations that may know employer leads.",
+              },
+              {
+                id: "paper-log",
+                label:
+                  "Track employer name, role, location, contact person, background-check stage, and next step.",
+              },
+              {
+                id: "follow-up",
+                label:
+                  "Follow up on stronger leads instead of starting from zero every week.",
+              },
+            ]}
+          />
         </GuideSectionCard>
 
 <GuideSectionHeader
-          id="job-boards"
+          id="work-types"
           number="3"
-          title="Job boards and employer lead sources"
-          subtitle="Use job boards to find openings, then verify the exact employer, role, and background-check process."
+          title="What kinds of work to consider"
+          subtitle="Look for roles where the duties, location, schedule, and screening process can be checked clearly."
           icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Job boards are useful, but they can also create false hope if you
-              apply everywhere without checking whether the employer has a real
-              case-by-case process. Start with fair-chance and workforce-oriented
-              sources, then use general job boards with targeted search terms.
-            </p>
-
-            <p>
-              Useful search terms include{" "}
-              <strong>second chance hiring</strong>,{" "}
+              After you know where to search, narrow the field. Stronger leads
+              often have clear worksites, adult coworkers, visible duties, and a
+              hiring process where a real person can answer questions. Useful
+              search terms include <strong>second chance hiring</strong>,{" "}
               <strong>fair chance employer</strong>,{" "}
               <strong>background friendly</strong>,{" "}
               <strong>justice involved</strong>,{" "}
@@ -481,217 +490,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
               <strong>maintenance trainee</strong>, and{" "}
               <strong>paid training</strong>.
             </p>
-          </GuideProse>
-
-          <ResourceLinkGrid
-            title="Job-board and lead sources"
-            resources={[
-              {
-                label: "Honest Jobs",
-                href: sourceLinks.honestJobs,
-                badge: "Fair chance",
-                description:
-                  "Search jobs from employers that identify as open to people with criminal records. Verify registry-specific policies before relying on any listing.",
-              },
-              {
-                label: "CareerOneStop Job Search",
-                href: sourceLinks.careerOneStopJustice,
-                badge: "Official",
-                description:
-                  "Use CareerOneStop's justice-impacted job seeker tools to explore careers, training, and job applications.",
-              },
-              {
-                label: "SCBC Community Partners Map",
-                href: sourceLinks.scbcPartnerMap,
-                badge: "Local partners",
-                description:
-                  "Find organizations that may know local employers, job fairs, and training providers connected to second-chance hiring.",
-              },
-              {
-                label: "National H.I.R.E. Network Clearinghouse",
-                href: sourceLinks.hireNetworkClearinghouse,
-                badge: "State resources",
-                description:
-                  "Look up state and local organizations that may offer job-related help, legal information, or referrals.",
-              },
-              {
-                label: "American Job Centers",
-                href: sourceLinks.careerOneStopAjc,
-                badge: "Local help",
-                description:
-                  "Ask for employer leads, reentry job fairs, resume help, training funds, and job clubs.",
-              },
-              {
-                label: "Randstad Jobs",
-                href: sourceLinks.randstadJobs,
-                badge: "Staffing",
-                description:
-                  "Staffing agencies can be useful for warehouse, manufacturing, clerical, and temporary-to-hire leads. Policies vary by client and role.",
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="job-board-vetting"
-            title="Before you apply from a job board"
-            columns={2}
-            items={[
-              {
-                id: "company-site",
-                label:
-                  "Click through to the employer's own careers page when possible.",
-              },
-              {
-                id: "address",
-                label:
-                  "Identify the exact worksite address, not just the company name.",
-              },
-              {
-                id: "duties",
-                label:
-                  "Check whether the job involves minors, homes, schools, parks, driving, travel, internet use, or vulnerable people.",
-              },
-              {
-                id: "background",
-                label:
-                  "Look for background-check timing, adverse-action process, and whether the employer says case-by-case review is possible.",
-              },
-              {
-                id: "contact",
-                label:
-                  "Write down a hiring contact, HR email, staffing agency, or recruiter name.",
-              },
-              {
-                id: "save",
-                label:
-                  "Save a copy or screenshot of the posting before it disappears.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="training"
-          number="4"
-          title="Training, apprenticeships, and credentials"
-          subtitle="Paid training and short credentials can open doors, but licensing and placement rules still matter."
-          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Training can be one of the most hopeful paths because it gives you
-              proof of current effort, a newer reference, and a skill an employer
-              can understand. The best options are usually practical,
-              short-to-medium length, and connected to real employers.
-            </p>
 
             <p>
-              Before spending money, verify whether the credential, license,
-              worksite, internship, clinical placement, apprenticeship sponsor,
-              or job placement path is realistic for someone with your conviction
-              and registry status.
-            </p>
-          </GuideProse>
-
-          <ResourceLinkGrid
-            title="Training and apprenticeship resources"
-            resources={[
-              {
-                label: "Apprenticeship.gov",
-                href: sourceLinks.apprenticeshipHome,
-                badge: "Official",
-                description:
-                  "Search Registered Apprenticeships and learn how earn-while-you-learn programs work.",
-              },
-              {
-                label: "Apprenticeship.gov — Barriers to Employment",
-                href: sourceLinks.apprenticeshipBarriers,
-                badge: "Official",
-                description:
-                  "Information for career seekers with employment barriers, including justice-involved people.",
-              },
-              {
-                label: "American Job Centers",
-                href: sourceLinks.careerOneStopAjc,
-                badge: "Training help",
-                description:
-                  "Ask about WIOA-funded training, occupational certificates, job clubs, computer access, and local employer partnerships.",
-              },
-              {
-                label: "DOL Reentry Resources",
-                href: sourceLinks.dolReentryResources,
-                badge: "Official",
-                description:
-                  "Federal links for justice-involved job seekers, employers, and reentry workforce programs.",
-              },
-              {
-                label: "WorkforceGPS Reentry Employment Opportunities",
-                href: sourceLinks.workforceGpsReentry,
-                badge: "Workforce",
-                description:
-                  "Workforce-development resources for people returning from the justice system and the programs that serve them.",
-              },
-              {
-                label: "Professional Licensing Guide",
-                href: sourceLinks.professionalLicensing,
-                badge: "SOLAR",
-                description:
-                  "Use SOLAR's licensing guide before investing in a credential that may require background review.",
-              },
-            ]}
-          />
-
-          <GuideProse>
-            <p>
-              Common practical paths include OSHA-10/30, forklift, welding,
-              HVAC, electrical helper, plumbing helper, maintenance, CDL,
-              food-handler credentials, culinary programs, manufacturing,
-              logistics, bookkeeping, customer support, and basic IT support.
-              Some of these can be realistic; some may be blocked by licensing,
-              driving, insurance, internet, or worksite restrictions.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="warning"
-            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Ask about placement before enrolling"
-          >
-            <p>
-              A school may accept you into training even if the internship,
-              apprenticeship sponsor, clinical site, licensing board, or employer
-              partner later rejects you. Ask direct questions before you pay:
-              “Have you placed people with sex offense convictions or registry
-              requirements in this field before?”
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="lead-banks"
-          number="5"
-          title="Company lead banks"
-          subtitle="Use these as places to search, not endorsements or guarantees."
-          icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Large employers can be worth checking because they may have
-              formal HR processes, many roles, multiple worksites, and experience
-              with background checks. Smaller local employers can also be
-              valuable because decisions may be more personal and less automated.
-            </p>
-
-            <p>
-              The companies below are examples of places to search for openings
-              or role types. They are not presented as registry-friendly
-              employers. A national company, local franchise, distribution
-              center, contractor, or staffing partner may handle registry cases
-              differently.
+              Different people will have different restrictions. Use these
+              categories to focus your search, then check the exact role and
+              location.
             </p>
           </GuideProse>
 
@@ -702,38 +505,63 @@ export default function ResourceGuideSandbox(): JSX.Element {
               icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  These employers often have many entry points, structured
-                  hiring systems, and roles that may not require one-on-one
+                  These employers often have many entry points, structured hiring
+                  systems, and roles that may not require one-on-one
                   unsupervised contact.
                 </span>
               }
               steps={[
                 <span>
                   Search{" "}
-                  <a href={sourceLinks.walmartCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.walmartCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Walmart
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.targetCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.targetCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Target
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.homeDepotCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.homeDepotCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Home Depot
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.lowesCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.lowesCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Lowe's
                   </a>
                   , and{" "}
-                  <a href={sourceLinks.krogerCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.krogerCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Kroger
                   </a>
                   .
                 </span>,
                 <span>
-                  Check whether the role involves schools, youth events, delivery
-                  to homes, pharmacy access, or customer areas that create risk.
+                  Look closely at whether the role involves delivery, pharmacy
+                  areas, youth events, or restricted locations.
                 </span>,
                 <span>
                   Ask whether the decision is made by corporate HR, a local
@@ -754,29 +582,44 @@ export default function ResourceGuideSandbox(): JSX.Element {
               icon={<Truck className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  These jobs may value punctuality, physical stamina, safety,
-                  and consistency. Some roles are less public-facing than retail.
+                  These jobs may value punctuality, physical stamina, safety, and
+                  consistency. Some roles are less public-facing than retail.
                 </span>
               }
               steps={[
                 <span>
                   Search{" "}
-                  <a href={sourceLinks.amazonJobs} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.amazonJobs}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Amazon Jobs
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.upsJobs} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.upsJobs}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     UPS Jobs
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.fedexCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.fedexCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     FedEx Careers
                   </a>
-                  , and local warehouses.
+                  , local warehouses, and staffing agencies.
                 </span>,
                 <span>
-                  Verify driving, delivery, route, airport, school-zone,
-                  overnight, and travel issues before accepting.
+                  Check driving, delivery, airport, school-zone, overnight, and
+                  travel issues before accepting.
                 </span>,
                 <span>
                   Ask staffing agencies which warehouse clients use case-by-case
@@ -805,35 +648,64 @@ export default function ResourceGuideSandbox(): JSX.Element {
               steps={[
                 <span>
                   Search{" "}
-                  <a href={sourceLinks.mcdonaldsCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.mcdonaldsCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     McDonald's Careers
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.aramarkCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.aramarkCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Aramark
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.compassCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.compassCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Compass Group
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.sodexoCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.sodexoCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Sodexo
                   </a>
                   ,{" "}
-                  <a href={sourceLinks.marriottCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.marriottCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Marriott
                   </a>
                   , and{" "}
-                  <a href={sourceLinks.hiltonCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.hiltonCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     Hilton
                   </a>
                   .
                 </span>,
                 <span>
-                  Avoid youth-serving sites, schools, camps, child-centered
-                  events, or unsupervised guest-room access unless clearly
-                  permitted.
+                  Check whether the job involves schools, youth-serving sites,
+                  guest-room access, or events with minors.
                 </span>,
                 <span>
                   Ask whether the job is corporate, franchise, contractor, or
@@ -862,7 +734,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
               steps={[
                 <span>
                   Search{" "}
-                  <a href={sourceLinks.wasteManagementCareers} target="_blank" rel="noreferrer" className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950">
+                  <a
+                    href={sourceLinks.wasteManagementCareers}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
                     WM Careers
                   </a>
                   , local trade helpers, maintenance teams, landscaping
@@ -889,7 +766,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="neutral"
             icon={<Users className="h-5 w-5" aria-hidden="true" />}
-            title="Use second-chance employer lists carefully"
+            title="Use second-chance employer lists as lead sources"
           >
             <p>
               The{" "}
@@ -901,19 +778,109 @@ export default function ResourceGuideSandbox(): JSX.Element {
               >
                 Second Chance Business Coalition
               </a>{" "}
-              and similar initiatives can point you toward employers that are
-              thinking about people with records. That is helpful. It is not the
-              same as confirmation that a specific location or role will consider
-              someone on a sex offender registry.
+              and similar initiatives can point you toward employers and local
+              organizations thinking about second-chance hiring. Use those lists
+              to decide where to ask better questions.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="training"
+          number="4"
+          title="Training, apprenticeships, and credentials"
+          subtitle="Paid training and short credentials can open doors, but placement rules still matter."
+          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Training can be one of the most hopeful paths because it gives you
+              proof of current effort, a newer reference, and a skill an employer
+              can understand. The best options are usually practical,
+              short-to-medium length, and connected to real employers.
+            </p>
+
+            <p>
+              Before spending money, ask whether the credential, license,
+              worksite, internship, clinical placement, apprenticeship sponsor,
+              or job placement path fits your situation.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Training and apprenticeship resources"
+            resources={[
+              {
+                label: "Apprenticeship.gov",
+                href: sourceLinks.apprenticeshipHome,
+                badge: "Official",
+                description:
+                  "Search Registered Apprenticeships and learn how earn-while-you-learn programs work.",
+              },
+              {
+                label: "Apprenticeship.gov — Barriers to Employment",
+                href: sourceLinks.apprenticeshipBarriers,
+                badge: "Official",
+                description:
+                  "Information for career seekers with employment barriers, including justice-involved people.",
+              },
+              {
+                label: "American Job Centers",
+                href: sourceLinks.careerOneStopAjc,
+                badge: "Training help",
+                description:
+                  "Ask about WIOA-funded training, occupational certificates, job clubs, computer access, and local employer partnerships.",
+              },
+              {
+                label: "DOL Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
+                badge: "Official",
+                description:
+                  "Federal links for justice-involved job seekers, employers, and reentry workforce programs.",
+              },
+              {
+                label: "Professional Licensing Guide",
+                href: sourceLinks.professionalLicensing,
+                badge: "SOLAR",
+                description:
+                  "Use SOLAR's licensing guide before investing in a credential that may require background review.",
+              },
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              Common practical paths include OSHA-10/30, forklift, welding,
+              HVAC, electrical helper, plumbing helper, maintenance, CDL,
+              food-handler credentials, culinary programs, manufacturing,
+              logistics, bookkeeping, customer support, and basic IT support.
+              Check licensing, driving, insurance, internet, and worksite rules
+              before paying for a program.
+            </p>
+          </GuideProse>
+
+          <GuideCallout
+            tone="warning"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Ask about placement before enrolling"
+          >
+            <p>
+              A school may accept you into training even if a later internship,
+              apprenticeship sponsor, clinical site, licensing board, or employer
+              partner creates a barrier. Ask direct questions before you pay:
+              “Have you placed people with sex offense convictions or registry
+              requirements in this field before?”
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
 <GuideSectionHeader
           id="green-red-flags"
-          number="6"
+          number="5"
           title="Better leads and higher-friction leads"
-          subtitle="Some opportunities are worth trying first. Others may waste time or create compliance risk."
+          subtitle="Some opportunities are easier to evaluate than others."
           icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
         />
 
@@ -929,10 +896,21 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   <li>The employer says it uses case-by-case review.</li>
                   <li>The job has a clear adult worksite.</li>
                   <li>The duties are visible and easy to explain.</li>
-                  <li>The role does not involve schools, child care, youth programs, private homes, or unsupervised access to minors.</li>
-                  <li>A local reentry organization has placed people there before.</li>
-                  <li>The employer has HR staff who can explain the background-check process.</li>
-                  <li>The job offers training, certifications, advancement, or a stable schedule.</li>
+                  <li>
+                    The role does not involve schools, child care, youth
+                    programs, private homes, or unsupervised access to minors.
+                  </li>
+                  <li>
+                    A local reentry organization has placed people there before.
+                  </li>
+                  <li>
+                    The employer has HR staff who can explain the background-check
+                    process.
+                  </li>
+                  <li>
+                    The job offers training, certifications, advancement, or a
+                    stable schedule.
+                  </li>
                 </ul>
               </GuideProse>
             </GuideCallout>
@@ -944,13 +922,33 @@ export default function ResourceGuideSandbox(): JSX.Element {
             >
               <GuideProse>
                 <ul>
-                  <li>The job involves minors, schools, child care, youth sports, camps, parks, or recreation programs.</li>
-                  <li>The role requires entering private homes or hotel rooms alone.</li>
-                  <li>The platform uses automated background screening with no human review.</li>
-                  <li>The role requires rideshare, passenger driving, in-home delivery, or vulnerable-person access.</li>
-                  <li>The job requires internet use that may conflict with your supervision rules.</li>
-                  <li>The credential has moral-character, licensing, or insurance barriers.</li>
-                  <li>The employer cannot tell you who makes the background-check decision.</li>
+                  <li>
+                    The job involves minors, schools, child care, youth sports,
+                    camps, parks, or recreation programs.
+                  </li>
+                  <li>
+                    The role requires entering private homes or hotel rooms alone.
+                  </li>
+                  <li>
+                    The platform uses automated background screening with no
+                    clear human review.
+                  </li>
+                  <li>
+                    The role requires rideshare, passenger driving, in-home
+                    delivery, or vulnerable-person access.
+                  </li>
+                  <li>
+                    The job requires internet use that may conflict with
+                    supervision rules.
+                  </li>
+                  <li>
+                    The credential has moral-character, licensing, or insurance
+                    barriers.
+                  </li>
+                  <li>
+                    The employer cannot tell you who makes the background-check
+                    decision.
+                  </li>
                 </ul>
               </GuideProse>
             </GuideCallout>
@@ -964,9 +962,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
               for people on sex offender registries. Lyft publicly states that a
               person may be ineligible to drive if listed on the National Sex
               Offender Registry, and Uber publicly says drivers with reported
-              sexual assault convictions are permanently banned. Do not build
-              your whole plan around these platforms without checking current
-              rules first.
+              sexual assault convictions are permanently banned. Check current
+              platform rules before spending time or money on this path.
             </p>
           </GuideProse>
 
@@ -974,28 +971,29 @@ export default function ResourceGuideSandbox(): JSX.Element {
             title="Directory mistakes to avoid"
             mistakes={[
               {
-                mistake: "Treating “felony friendly” as the same as registry-aware.",
+                mistake:
+                  "Treating “felony friendly” as the same as registry-aware.",
                 whyItMatters:
-                  "Many programs and employers are open to some records but still exclude sex offense convictions, public registry status, or certain job duties.",
+                  "Many programs and employers are open to some records but use separate rules for sex offense convictions, public registry status, or certain job duties.",
                 betterMove:
                   "Ask whether they have worked with people with sex offense convictions or registry requirements specifically.",
               },
               {
                 mistake: "Applying to every large employer without checking the role.",
                 whyItMatters:
-                  "One company may have safe warehouse roles, risky delivery roles, restricted school-site contracts, and different local decision-makers.",
+                  "One company may have warehouse roles, delivery roles, school-site contracts, and different local decision-makers.",
                 betterMove:
                   "Check the exact location, duties, background-check stage, and decision-maker.",
               },
               {
                 mistake: "Paying for training before checking placement barriers.",
                 whyItMatters:
-                  "A training provider may accept your money even if the internship, license, or employer placement is unlikely.",
+                  "A training provider may accept payment even if a later internship, license, or employer placement creates a barrier.",
                 betterMove:
                   "Ask written questions about placement, licensing, background checks, and registry-specific barriers before enrolling.",
               },
               {
-                mistake: "Assuming remote work is automatically safe.",
+                mistake: "Assuming remote work is automatically easier.",
                 whyItMatters:
                   "Remote work can involve internet monitoring, customer data, minors, platform rules, background checks, or supervision restrictions.",
                 betterMove:
@@ -1014,19 +1012,18 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="employer-reassurance"
-          number="7"
+          number="6"
           title="Employer reassurance tools"
-          subtitle="Some employers need help understanding risk, support, and incentives."
+          subtitle="Some employers need help understanding support, bonding, and current hiring resources."
           icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              You should not have to sell your humanity to an employer. Still,
-              some hiring managers are nervous about people with records and do
+              Some hiring managers are nervous about people with records and do
               not know what tools exist. If the conversation is respectful and
-              the job appears legally safe, a short mention of employer support
+              the role appears workable, a short mention of employer support
               programs can help.
             </p>
           </GuideProse>
@@ -1053,7 +1050,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 href: sourceLinks.irsWotc,
                 badge: "Check status",
                 description:
-                  "Official IRS page explaining WOTC eligibility and timing. The program was authorized for workers beginning work on or before December 31, 2025.",
+                  "Official IRS page explaining WOTC eligibility, timing, and current authorization language.",
               },
               {
                 label: "SCBC employer resources",
@@ -1073,21 +1070,23 @@ export default function ResourceGuideSandbox(): JSX.Element {
           />
 
           <GuideCallout
-            tone="warning"
-            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Do not overstate WOTC"
+            tone="info"
+            icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+            title="Work Opportunity Tax Credit context"
           >
             <p>
-              WOTC was authorized for eligible workers who began work on or
-              before December 31, 2025. Unless Congress renews or changes it,
-              employers may not be able to claim WOTC for 2026 new hires. Check
-              the IRS or DOL page before using WOTC as an employer talking point.
+              Some employer-facing resources mention the Work Opportunity Tax
+              Credit. As of this guide’s review, DOL and IRS pages describe WOTC
+              as authorized through December 31, 2025. Do not rely on WOTC as a
+              current hiring incentive unless an employer, workforce office, tax
+              professional, or official source confirms that it applies to the
+              job and hiring date.
             </p>
           </GuideCallout>
 
           <GuideCallout
-            tone="info"
-            icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+            tone="success"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
             title="Simple way to mention bonding"
           >
             <p>
@@ -1101,7 +1100,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="local-strategy"
-          number="8"
+          number="7"
           title="How to find local leads that are actually useful"
           subtitle="Local knowledge often beats national lists."
           icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
@@ -1111,9 +1110,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideProse>
             <p>
               National lists can get you started, but the strongest leads often
-              come from local people who know which employers have hired
-              registry-impacted workers recently. A workforce counselor, reentry
-              case manager, faith-based job club, public defender reentry staff,
+              come from local people who know which employers have recently hired
+              registry-impacted workers. A workforce counselor, reentry case
+              manager, faith-based job club, public defender reentry staff,
               treatment provider, or trusted mentor may know which employers are
               worth your limited time.
             </p>
@@ -1174,7 +1173,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="limited-access"
-          number="9"
+          number="8"
           title="If internet access, privacy, or transportation is limited"
           subtitle="A directory should still work for phone-only, paper-based, supervised, or recently released readers."
           icon={<Phone className="h-5 w-5" aria-hidden="true" />}
@@ -1197,8 +1196,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 reentry employment services, job fairs, and training programs.
               </span>,
               <span>
-                Ask for mailed forms, printed job lists, or an appointment with a
-                workforce counselor if online access is difficult.
+                Ask for mailed or printed information if you cannot easily use a
+                website.
               </span>,
               <span>
                 Keep a paper job lead log with employer name, role, location,
@@ -1224,20 +1223,20 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="privacy"
             icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
-            title="Do not use unsafe internet access"
+            title="Check technology rules first"
           >
             <p>
               If you have internet restrictions, monitoring rules, device
               restrictions, or limits on social media or job platforms, verify
-              what is allowed before using public computers, apps, job boards, or
-              remote-work platforms.
+              what job-search technology is allowed before using public
+              computers, apps, job boards, or remote-work platforms.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
 <GuideSectionHeader
           id="lead-vetting"
-          number="10"
+          number="9"
           title="Lead-vetting checklist"
           subtitle="Use this before applying, interviewing, accepting, or paying for training."
           icon={<ClipboardCheck className="h-5 w-5" aria-hidden="true" />}
@@ -1318,7 +1317,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="resources"
-          number="11"
+          number="10"
           title="Resources, related guides, and sources"
           subtitle="Keep going with practical next steps and source links."
           icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
@@ -1441,23 +1440,23 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="legal"
             icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Legal and employment disclaimer"
+            title="Legal and employment note"
           >
             <p>
-              This directory provides general information and lead sources. It is
-              not legal advice, supervision approval, an endorsement of any
-              employer, or a promise that any company or program will hire people
-              with sex offense convictions or registry requirements. Verify your
-              specific restrictions, the exact role, and the employer’s current
-              policy before applying, accepting work, paying for training, or
-              relying on any lead.
+              This directory is a lead-finding tool, not legal advice or
+              employer approval. A listing here does not mean a job is available,
+              lawful for your situation, or open to every conviction or registry
+              status. Before applying, accepting work, or paying for training,
+              verify the exact role, location, background-check process, employer
+              policy, and any supervision, court, registry, or local restrictions
+              that apply to you.
             </p>
           </GuideCallout>
 
           <div id="sources">
             <SourceList
               title="Sources and verification"
-              note="These links were selected because they are official government resources, reputable nonprofit resources, employer-facing second-chance resources, or practical job-search lead sources. Registry-specific employment eligibility still requires local verification."
+              note="These links support the directory's core lead sources, training paths, background-check rights, and high-friction platform cautions. Local registry, supervision, employer, and licensing rules still need case-specific verification."
               sources={[
                 {
                   label: "CareerOneStop — Justice-Impacted Job Seekers",
@@ -1490,28 +1489,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
                     "Federal apprenticeship information for career seekers with barriers to employment.",
                 },
                 {
-                  label: "U.S. Department of Labor — Reentry Employment Opportunities",
+                  label:
+                    "U.S. Department of Labor — Reentry Employment Opportunities",
                   href: sourceLinks.dolReentry,
                   description:
                     "Federal reentry employment program information.",
                 },
                 {
-                  label: "Second Chance Business Coalition",
-                  href: sourceLinks.secondChanceBusinessCoalition,
-                  description:
-                    "Employer-facing second-chance hiring coalition and resources.",
-                },
-                {
-                  label: "SCBC Community Partners Map",
+                  label: "Second Chance Business Coalition Community Partners Map",
                   href: sourceLinks.scbcPartnerMap,
                   description:
-                    "Map of community organizations supporting people with criminal records.",
-                },
-                {
-                  label: "SCBC Local Ecosystems",
-                  href: sourceLinks.scbcLocalEcosystems,
-                  description:
-                    "Explanation of local second-chance employer and community partner ecosystems.",
+                    "Local partner map used as a lead source for reentry and workforce organizations.",
                 },
                 {
                   label: "Honest Jobs",
@@ -1526,12 +1514,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
                     "State-specific reentry, legal, and employment resource clearinghouse.",
                 },
                 {
-                  label: "Jails to Jobs",
-                  href: sourceLinks.jailsToJobs,
-                  description:
-                    "Nonprofit job-search guidance for people leaving jail or prison.",
-                },
-                {
                   label: "Federal Bonding Program",
                   href: sourceLinks.federalBonding,
                   description:
@@ -1541,13 +1523,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   label: "DOL — Work Opportunity Tax Credit",
                   href: sourceLinks.dolWotc,
                   description:
-                    "Official WOTC status and employer certification information.",
+                    "Official WOTC source included because some employer-facing resources mention the credit; current applicability should be verified.",
                 },
                 {
                   label: "IRS — Work Opportunity Tax Credit",
                   href: sourceLinks.irsWotc,
                   description:
-                    "Official IRS WOTC eligibility and authorization information.",
+                    "Official IRS WOTC source included to verify authorization language and hiring-date rules.",
                 },
                 {
                   label: "FTC — Employer Background Checks and Your Rights",
@@ -1560,12 +1542,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   href: sourceLinks.eeocArrestConviction,
                   description:
                     "EEOC resources about arrest and conviction records in employment.",
-                },
-                {
-                  label: "EEOC — Enforcement Guidance on Arrest and Conviction Records",
-                  href: sourceLinks.eeocGuidance,
-                  description:
-                    "Federal guidance on use of arrest and conviction records under Title VII.",
                 },
                 {
                   label: "Lyft Driver Requirements",
