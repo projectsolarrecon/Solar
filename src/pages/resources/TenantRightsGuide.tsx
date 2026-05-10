@@ -94,6 +94,9 @@ const sourceLinks = {
   },
 } as const;
 
+const inlineLinkClass =
+  "font-medium text-blue-700 underline decoration-blue-600 underline-offset-2 hover:text-blue-900 hover:decoration-blue-900";
+
 export default function TenantRightsGuide(): JSX.Element {
   const handlePrint = () => window.print();
 
@@ -577,6 +580,7 @@ I am keeping a written record so we can handle this clearly and avoid misunderst
                 href={sourceLinks.cfpbTenantScreeningDenied.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 CFPB tenant-screening denial guidance
               </a>{" "}
@@ -585,6 +589,7 @@ I am keeping a written record so we can handle this clearly and avoid misunderst
                 href={sourceLinks.ftcTenantScreeningErrors.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 FTC tenant-background-check dispute guidance
               </a>{" "}
@@ -644,6 +649,7 @@ I am keeping a written record so we can handle this clearly and avoid misunderst
                 href={sourceLinks.hudPihRescission2025.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 HUD rescinded the 2015 arrest-record guidance in Notice PIH
                 2025-26 / H 2025-05
@@ -795,6 +801,7 @@ I am taking notes. Could you please give me your name, department, and the date 
                 href={sourceLinks.publicHousingRule.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 24 CFR § 960.204
               </a>
@@ -803,6 +810,7 @@ I am taking notes. Could you please give me your name, department, and the date 
                 href={sourceLinks.voucherRule.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 24 CFR § 982.553
               </a>
@@ -904,6 +912,7 @@ Thank you.`}
                 href={sourceLinks.dojReasonableAccommodation.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={inlineLinkClass}
               >
                 DOJ/HUD reasonable-accommodation guidance
               </a>{" "}
