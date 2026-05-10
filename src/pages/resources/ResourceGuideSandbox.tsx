@@ -34,6 +34,7 @@ import {
   QuickStartPanel,
   GuideChecklist,
   OfflineOptions,
+  DocumentPacket,
   VerifyBeforeActing,
   CommonMistakes,
   OverviewCards,
@@ -44,54 +45,33 @@ import {
 } from "../../components/solar";
 
 const sourceLinks = {
-  jobSearchGuide: "/resources/job-search-guide",
+  employmentStrategies: "/resources/job-search-guide",
+  employmentDirectory: "/resources/employment-directory",
+  smallBusinessGuide: "/resources/small-business-guide",
+  reentryChecklist: "/resources/reentry-checklist",
   knowYourRights: "/resources/know-your-rights",
   housingSearch: "/resources/housing-search-guide",
-  reentryChecklist: "/resources/reentry-checklist",
-  mentalHealthDirectory: "/resources/mental-health-directory",
-  professionalLicensing: "/resources/professional-licensing",
-  smallBusinessGuide: "/resources/small-business-guide",
 
-  careerOneStopJustice: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
+  nicccHome: "https://niccc.nationalreentryresourcecenter.org/",
+  nicccConsequences: "https://niccc.nationalreentryresourcecenter.org/consequences",
   careerOneStopAjc:
     "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx",
-  careerOneStopReentry:
-    "https://www.careeronestop.org/JusticeImpacted/Toolkit/find-reentry-programs.aspx",
+  careerOneStopJustice: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
   apprenticeshipHome: "https://www.apprenticeship.gov/",
+  apprenticeshipFinder: "https://www.apprenticeship.gov/apprenticeship-job-finder",
   apprenticeshipBarriers:
     "https://www.apprenticeship.gov/career-seekers/with-employment-barriers",
   dolReentry: "https://www.dol.gov/agencies/eta/reentry",
-  secondChanceBusinessCoalition: "https://secondchancebusinesscoalition.org/",
-  scbcPartnerMap: "https://secondchancebusinesscoalition.org/find-partners",
-  honestJobs: "https://www.honestjobs.com/for-job-seekers",
-  hireNetworkClearinghouse: "https://clearinghouse.lac.org/",
-  jailsToJobs: "https://jailstojobs.org/",
-  federalBonding: "https://bonds4jobs.com/",
-  dolWotc: "https://www.dol.gov/agencies/eta/wotc",
-  irsWotc:
-    "https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit",
-  ftcBackgroundChecks:
-    "https://consumer.ftc.gov/articles/employer-background-checks-and-your-rights",
-  eeocArrestConviction: "https://www.eeoc.gov/arrestandconviction",
-  lyftDriverRequirements:
-    "https://help.lyft.com/hc/en-us/all/articles/115012925687-Driver-requirements",
-  uberBackgroundChecks: "https://www.uber.com/us/en/newsroom/background-checks/",
-  walmartCareers: "https://careers.walmart.com/",
-  targetCareers: "https://corporate.target.com/careers",
-  homeDepotCareers: "https://careers.homedepot.com/",
-  lowesCareers: "https://talent.lowes.com/us/en",
-  krogerCareers: "https://www.thekrogerco.com/careers/",
-  mcdonaldsCareers: "https://careers.mcdonalds.com/",
-  amazonJobs: "https://www.amazon.jobs/",
-  upsJobs: "https://www.jobs-ups.com/",
-  fedexCareers: "https://careers.fedex.com/",
-  aramarkCareers: "https://www.aramarkcareers.com/",
-  compassCareers: "https://www.compassgroupcareers.com/",
-  sodexoCareers: "https://us.sodexo.com/careers",
-  wasteManagementCareers: "https://careers.wm.com/",
-  marriottCareers: "https://careers.marriott.com/",
-  hiltonCareers: "https://jobs.hilton.com/us/en",
-  randstadJobs: "https://www.randstadusa.com/jobs/",
+  fmcsaEldt:
+    "https://www.fmcsa.dot.gov/registration/commercial-drivers-license/entry-level-driver-training-eldt",
+  fmcsaTpr: "https://tpr.fmcsa.dot.gov/",
+  tsaHazmat: "https://www.tsa.gov/for-industry/hazmat-endorsement",
+  tsaDisqualifying: "https://www.tsa.gov/disqualifying-offenses-factors",
+  irsPtin: "https://www.irs.gov/tax-professionals/ptin-requirements-for-tax-return-preparers",
+  comptiaAPlus: "https://www.comptia.org/certifications/a",
+  servSafe: "https://www.servsafe.com/",
+  oshaTraining: "https://www.osha.gov/training/outreach",
+  nhaPhlebotomy: "https://www.nhanow.com/certification/nha-certifications/certified-phlebotomy-technician-(cpt)",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -100,9 +80,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Employment Directory for People on Sex Offender Registries | The SOLAR Project"
-        description="A practical employment directory for people with sex offense convictions, registry requirements, or both, including fair-chance job boards, workforce offices, apprenticeships, training paths, employer leads, and restriction-check reminders."
-        keywords="sex offender registry employment directory, jobs for people on sex offender registry, fair chance employers, felony friendly employers, reentry employment, apprenticeship after incarceration, American Job Center, Federal Bonding Program, SOLAR Project"
+        title="Professional Licenses and Certifications for People on Sex Offender Registries | The SOLAR Project"
+        description="A practical guide to choosing realistic licenses, certifications, apprenticeships, trade credentials, and self-employment-ready skills for people with sex offense convictions, registry requirements, or both."
+        keywords="professional license sex offender registry, certifications for people on sex offender registry, occupational licensing felony conviction, sex offense conviction professional license, reentry careers, trade license registry, CDL sex offense conviction, certifications after incarceration"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -119,13 +99,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Employment Directory for People on Sex Offender Registries
+            Professional Licenses and Certifications for People on Sex Offender Registries
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Job boards, workforce offices, training paths, apprenticeships,
-            employer lead sources, and verification steps for people with sex
-            offense convictions, registry requirements, or both.
+            A practical guide to choosing credential paths, checking licensing
+            rules early, finding training, building proof, and using skills
+            toward employment or self-employment.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -154,104 +134,73 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro
           title="Start here"
-          icon={<Search className="h-6 w-6" aria-hidden="true" />}
+          icon={<GraduationCap className="h-6 w-6" aria-hidden="true" />}
         >
           <p>
-            This directory is a supplement to SOLAR’s Employment Strategies
-            guide. Use this page to find job leads, training leads, workforce
-            offices, apprenticeships, employer lead sources, and local programs
-            that may help people with records move toward work.
+            A license or certification can be one of the strongest ways forward.
+            It can make your skills visible, help you compete when ordinary
+            hiring is difficult, support better pay, and sometimes open a path to
+            self-employment.
           </p>
 
           <p>
-            These links are starting points, not approvals. Use them to find
-            leads, then verify the exact role, location, background-check policy,
-            and supervision or registry rules before you rely on the lead.
-            Policies can vary by employer, franchise, contractor, platform, and
-            state.
+            The key is to choose a path with a real shot. Some credentials have
+            licensing boards, background reviews, insurance rules, placement
+            sites, customer-contact issues, or worksite limits. Check those gates
+            early, then build proof while you train.
           </p>
 
           <p>
-            There are useful places to look. The goal is to spend your limited
-            time on stronger leads, ask clearer questions, and connect with
-            people who may know which employers have actually worked with
-            registry-impacted job seekers.
+            This guide is for people with sex offense convictions, registry
+            requirements, or both. It is not here to talk you out of getting
+            trained. It is here to help you choose carefully, ask better
+            questions, and move toward work that is lawful, stable, and
+            realistic.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="Where to look first this week"
-          subtitle="Start with places designed for people with records, workforce support, or skills-based hiring."
+          title="Build a credential plan"
+          subtitle="Start with the path, then check the gate, then build proof."
           icon={<ClipboardCheck className="h-6 w-6" aria-hidden="true" />}
           urgentActions={[
             <span>
-              Find your nearest{" "}
-              <a
-                href={sourceLinks.careerOneStopAjc}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                American Job Center
-              </a>{" "}
-              and ask about justice-involved job seeker services, training
-              funding, employer referrals, and job fairs.
+              Choose one field to explore first: trade work, CDL, IT support,
+              barber or cosmetology, food service, medical admin, bookkeeping,
+              tax preparation, repair, or another skill path.
             </span>,
             <span>
-              Search{" "}
-              <a
-                href={sourceLinks.honestJobs}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Honest Jobs
-              </a>{" "}
-              and set alerts for roles that match your skills, transportation,
-              and restrictions.
+              Identify the credential needed for entry-level work: license,
+              certification, apprenticeship, endorsement, training card, or
+              degree.
             </span>,
             <span>
-              Use the{" "}
-              <a
-                href={sourceLinks.scbcPartnerMap}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Second Chance Business Coalition Community Partners Map
-              </a>{" "}
-              to find local reentry, workforce, and training organizations.
+              Find the licensing board, certifying body, apprenticeship sponsor,
+              training provider, or employer gatekeeper that controls the next
+              step.
             </span>,
           ]}
           nextActions={[
             <span>
-              Search{" "}
-              <a
-                href={sourceLinks.apprenticeshipHome}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Apprenticeship.gov
-              </a>{" "}
-              for paid earn-while-you-learn paths in trades, manufacturing,
-              transportation, and other fields.
+              Ask whether sex offense convictions, registry requirements,
+              supervision rules, worksite limits, or background checks affect
+              eligibility.
             </span>,
             <span>
-              Ask local reentry organizations which employers have recently hired
-              people with sex offense convictions or registry requirements, not
-              only people with records generally.
+              Compare at least two paths before paying out of pocket. An
+              apprenticeship, American Job Center, community college, or employer
+              training program may lower the cost.
             </span>,
             <span>
-              Keep a simple log of every lead: employer, role, location, contact
-              person, background-check stage, restriction question, and next
-              step.
+              Start a proof packet now: certificates, attendance, evaluations,
+              references, compliance records, and written answers from boards or
+              programs.
             </span>,
           ]}
           reminder={
             <span>
-              A lead is a starting point. A written answer is stronger than a
-              guess.
+              A credential can be a bridge to stable work. Check the gate early,
+              then build the proof you need to walk through it.
             </span>
           }
         />
@@ -260,1128 +209,967 @@ export default function ResourceGuideSandbox(): JSX.Element {
           columns={3}
           cards={[
             {
-              eyebrow: "Search lane 1",
-              title: "Where to search",
-              icon: <Briefcase className="h-5 w-5" aria-hidden="true" />,
-              tone: "info",
-              description:
-                "Use fair-chance job boards, workforce offices, reentry directories, and local partner maps.",
-            },
-            {
-              eyebrow: "Search lane 2",
-              title: "What to consider",
-              icon: <Hammer className="h-5 w-5" aria-hidden="true" />,
+              eyebrow: "Route 1",
+              title: "Certification",
+              icon: <FileText className="h-5 w-5" aria-hidden="true" />,
               tone: "success",
               description:
-                "Look for realistic fields such as trades, warehouse, food service, facilities, manufacturing, and paid training.",
+                "Often faster than a license and useful for proving skills to employers, customers, or training programs.",
             },
             {
-              eyebrow: "Search lane 3",
-              title: "What to verify",
+              eyebrow: "Route 2",
+              title: "Apprenticeship",
+              icon: <Hammer className="h-5 w-5" aria-hidden="true" />,
+              tone: "reentry",
+              description:
+                "Paid training tied to a trade or occupation. A strong option when available and compatible with your restrictions.",
+            },
+            {
+              eyebrow: "Route 3",
+              title: "State license",
               icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />,
               tone: "legal",
               description:
-                "Check the exact role, location, duties, background-check process, and any registry or supervision rules.",
+                "A formal permission to work in a regulated field. It can be powerful, but the board rules should be checked early.",
+            },
+            {
+              eyebrow: "Route 4",
+              title: "Stackable path",
+              icon: <Route className="h-5 w-5" aria-hidden="true" />,
+              tone: "info",
+              description:
+                "Start with a shorter credential, get work experience, then build toward a larger license or better role.",
+            },
+            {
+              eyebrow: "Route 5",
+              title: "Self-employment path",
+              icon: <Wrench className="h-5 w-5" aria-hidden="true" />,
+              tone: "success",
+              description:
+                "Some credentials can support trade work, repair, food, grooming, bookkeeping, tax, cleaning, or specialty services.",
+            },
+            {
+              eyebrow: "Route 6",
+              title: "Degree or diploma",
+              icon: <BookOpen className="h-5 w-5" aria-hidden="true" />,
+              tone: "neutral",
+              description:
+                "Education may help, but check whether the final job, internship, clinical site, or license has a separate background review.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="registry-aware"
+          id="credential-types"
           number="1"
-          title="Use every lead with registry awareness"
-          subtitle="Fair-chance hiring can help, but sex offense and registry issues often require a more specific check."
+          title="Know what kind of credential you are chasing"
+          subtitle="A license, certification, apprenticeship, and degree do different jobs."
+          icon={<Search className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Before you choose a program, name the final goal. Are you trying to
+              get hired, enter an apprenticeship, qualify for a license, start a
+              small business, or build proof of skill? Each path has a different
+              gate.
+            </p>
+
+            <p>
+              A <strong>license</strong> is usually permission from a state or
+              government board to perform regulated work. A{" "}
+              <strong>certification</strong> usually proves training or skill
+              through a company, school, industry group, or testing provider. An{" "}
+              <strong>apprenticeship</strong> combines paid work and training. A{" "}
+              <strong>degree or diploma</strong> shows education, but it may not
+              answer whether the final job or license will be available.
+            </p>
+
+            <p>
+              The strongest plan usually works backward from the job you want:
+              final job → required credential → training provider → background
+              review → cost and funding → application packet.
+            </p>
+          </GuideProse>
+
+          <GuideCallout
+            tone="success"
+            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+            title="Look for stackable wins"
+          >
+            <p>
+              A shorter credential can sometimes lead to a first job, a better
+              reference, and a stronger application later. Examples include
+              OSHA training before a trade helper role, food-handler training
+              before kitchen work, CompTIA A+ before help desk, or forklift
+              training before warehouse work.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="check-the-gate"
+          number="2"
+          title="Check the gate early"
+          subtitle="Do this as a planning step, not as a reason to stop."
           icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A fair-chance employer may be open to people with many kinds of
-              criminal records while still placing limits on certain convictions,
-              public registry status, job duties, work locations, insurance
-              requirements, or licensed roles.
-            </p>
-
-            <p>
-              The practical move is simple: use the lead, then verify before
-              relying on it. Ask about the exact job, not just the company name.
-            </p>
-          </GuideProse>
-
-          <VerifyBeforeActing
-            title="Verify each lead before you rely on it"
-            whoToAsk={
-              <span>
-                Your supervising officer if you are on supervision; the
-                registering agency for registry-specific questions; the hiring
-                contact or HR office for employer-policy questions; the licensing
-                board for credentialed fields; and an attorney or legal aid
-                office for legal-risk questions.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “Does this exact role, location, schedule, travel requirement,
-                internet use, background-check policy, customer contact, and
-                contact-with-minors risk fit my restrictions?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                The posting, employer name, role, address, date, person who
-                answered, exact question asked, answer given, and any written
-                confirmation.
-              </span>
-            }
-          />
-
-          <GuideCallout
-            tone="legal"
-            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Ask the narrower question"
-          >
-            <p>
-              “Do you hire people with felonies?” is often too broad. A better
-              question is whether they will consider someone with your type of
-              conviction or registry requirement for this exact role and location.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="where-to-search"
-          number="2"
-          title="Where to search for leads"
-          subtitle="Start with resources built for records, reentry, workforce help, or local employer connections."
-          icon={<Route className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <ResourceLinkGrid
-            title="High-value lead sources"
-            description={
-              <span>
-                These resources can help you find openings, workforce offices,
-                reentry programs, training providers, and local organizations
-                that know the employment landscape.
-              </span>
-            }
-            resources={[
-              {
-                label: "CareerOneStop Justice-Impacted Job Seekers",
-                href: sourceLinks.careerOneStopJustice,
-                badge: "Official",
-                description:
-                  "Career exploration, job search, training, and application guidance for people with criminal records.",
-              },
-              {
-                label: "American Job Center Finder",
-                href: sourceLinks.careerOneStopAjc,
-                badge: "Official",
-                description:
-                  "Find local workforce offices that may offer resume help, job referrals, computer access, training funding, and workshops.",
-              },
-              {
-                label: "CareerOneStop Reentry Program Finder",
-                href: sourceLinks.careerOneStopReentry,
-                badge: "Official",
-                description:
-                  "Search for local reentry programs that help people overcome employment and other barriers.",
-              },
-              {
-                label: "Honest Jobs",
-                href: sourceLinks.honestJobs,
-                badge: "Fair chance",
-                description:
-                  "A fair-chance job board for people with criminal records. Use it as a lead source and check the exact role and location.",
-              },
-              {
-                label: "SCBC Community Partners Map",
-                href: sourceLinks.scbcPartnerMap,
-                badge: "Local partners",
-                description:
-                  "Find organizations connected to second-chance hiring ecosystems in many local job markets.",
-              },
-              {
-                label: "National H.I.R.E. Network Clearinghouse",
-                href: sourceLinks.hireNetworkClearinghouse,
-                badge: "Directory",
-                description:
-                  "State-specific government and community-based resources for people with criminal records.",
-              },
-              {
-                label: "Jails to Jobs",
-                href: sourceLinks.jailsToJobs,
-                badge: "Nonprofit",
-                description:
-                  "Practical job-search information for people coming home from jail or prison.",
-              },
-              {
-                label: "DOL Reentry Employment Opportunities",
-                href: sourceLinks.dolReentry,
-                badge: "Official",
-                description:
-                  "Federal reentry employment program information and links to workforce resources.",
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="search-plan"
-            title="Simple search plan"
-            columns={2}
-            items={[
-              {
-                id: "local-office",
-                label:
-                  "Call or visit an American Job Center and ask what help is available for justice-involved job seekers.",
-              },
-              {
-                id: "local-reentry",
-                label:
-                  "Search for local reentry programs and ask which employers have recently hired people with similar barriers.",
-              },
-              {
-                id: "job-board",
-                label:
-                  "Set alerts on Honest Jobs or other job boards for roles that match your skills and restrictions.",
-              },
-              {
-                id: "partner-map",
-                label:
-                  "Use the SCBC partner map to identify local organizations that may know employer leads.",
-              },
-              {
-                id: "paper-log",
-                label:
-                  "Track employer name, role, location, contact person, background-check stage, and next step.",
-              },
-              {
-                id: "follow-up",
-                label:
-                  "Follow up on stronger leads instead of starting from zero every week.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="work-types"
-          number="3"
-          title="What kinds of work to consider"
-          subtitle="Look for roles where the duties, location, schedule, and screening process can be checked clearly."
-          icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              After you know where to search, narrow the field. Stronger leads
-              often have clear worksites, adult coworkers, visible duties, and a
-              hiring process where a real person can answer questions. Useful
-              search terms include <strong>second chance hiring</strong>,{" "}
-              <strong>fair chance employer</strong>,{" "}
-              <strong>background friendly</strong>,{" "}
-              <strong>justice involved</strong>,{" "}
-              <strong>reentry employment</strong>,{" "}
-              <strong>warehouse no experience</strong>,{" "}
-              <strong>apprentice helper</strong>,{" "}
-              <strong>maintenance trainee</strong>, and{" "}
-              <strong>paid training</strong>.
-            </p>
-
-            <p>
-              Different people will have different restrictions. Use these
-              categories to focus your search, then check the exact role and
-              location.
-            </p>
-          </GuideProse>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <PathwayCard
-              title="Retail, grocery, and big-box"
-              subtitle="Stocking, overnight freight, cart attendant, receiving, warehouse, maintenance, backroom."
-              icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  These employers often have many entry points, structured hiring
-                  systems, and roles that may not require one-on-one
-                  unsupervised contact.
-                </span>
-              }
-              steps={[
-                <span>
-                  Search{" "}
-                  <a
-                    href={sourceLinks.walmartCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Walmart
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.targetCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Target
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.homeDepotCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Home Depot
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.lowesCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Lowe's
-                  </a>
-                  , and{" "}
-                  <a
-                    href={sourceLinks.krogerCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Kroger
-                  </a>
-                  .
-                </span>,
-                <span>
-                  Look closely at whether the role involves delivery, pharmacy
-                  areas, youth events, or restricted locations.
-                </span>,
-                <span>
-                  Ask whether the decision is made by corporate HR, a local
-                  manager, a franchise, or a background-check vendor.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People seeking structured entry-level work, stocking,
-                  receiving, facilities, maintenance, or operations roles.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Warehouse, logistics, and distribution"
-              subtitle="Picking, packing, forklift, dock work, inventory, shipping, receiving, package handling."
-              icon={<Truck className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  These jobs may value punctuality, physical stamina, safety, and
-                  consistency. Some roles are less public-facing than retail.
-                </span>
-              }
-              steps={[
-                <span>
-                  Search{" "}
-                  <a
-                    href={sourceLinks.amazonJobs}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Amazon Jobs
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.upsJobs}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    UPS Jobs
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.fedexCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    FedEx Careers
-                  </a>
-                  , local warehouses, and staffing agencies.
-                </span>,
-                <span>
-                  Check driving, delivery, airport, school-zone, overnight, and
-                  travel issues before accepting.
-                </span>,
-                <span>
-                  Ask staffing agencies which warehouse clients use case-by-case
-                  background review.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People who can work physical shifts and need a skills-first
-                  entry point with advancement potential.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Food service, hospitality, and facilities"
-              subtitle="Kitchen, prep, dish, housekeeping, laundry, janitorial, maintenance, banquet setup."
-              icon={<Utensils className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  Back-of-house roles can be practical starting points and may
-                  offer fast hiring, clear duties, and chances to build local
-                  references.
-                </span>
-              }
-              steps={[
-                <span>
-                  Search{" "}
-                  <a
-                    href={sourceLinks.mcdonaldsCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    McDonald's Careers
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.aramarkCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Aramark
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.compassCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Compass Group
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.sodexoCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Sodexo
-                  </a>
-                  ,{" "}
-                  <a
-                    href={sourceLinks.marriottCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Marriott
-                  </a>
-                  , and{" "}
-                  <a
-                    href={sourceLinks.hiltonCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Hilton
-                  </a>
-                  .
-                </span>,
-                <span>
-                  Check whether the job involves schools, youth-serving sites,
-                  guest-room access, or events with minors.
-                </span>,
-                <span>
-                  Ask whether the job is corporate, franchise, contractor, or
-                  facility-specific.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People who can work fast-paced shifts and want a local
-                  reference-building job.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Trades, maintenance, and local contractors"
-              subtitle="Helper roles, repair, landscaping, waste services, facilities, painting, cleaning, hauling."
-              icon={<Hammer className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  Skills can matter more than resume polish. Local contractors
-                  may make decisions directly and may care most about reliability
-                  and safe work.
-                </span>
-              }
-              steps={[
-                <span>
-                  Search{" "}
-                  <a
-                    href={sourceLinks.wasteManagementCareers}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    WM Careers
-                  </a>
-                  , local trade helpers, maintenance teams, landscaping
-                  companies, and small contractors.
-                </span>,
-                <span>
-                  Verify private-home access, school sites, youth facilities,
-                  tools, driving, licensing, and insurance rules.
-                </span>,
-                <span>
-                  Ask whether a short work trial, reference, or bonding
-                  information would help the employer evaluate you fairly.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People with hands-on skills, physical stamina, training
-                  certificates, or a willingness to start as a helper.
-                </span>
-              }
-            />
-          </div>
-
-          <GuideCallout
-            tone="neutral"
-            icon={<Users className="h-5 w-5" aria-hidden="true" />}
-            title="Use second-chance employer lists as lead sources"
-          >
-            <p>
-              The{" "}
+              People with criminal records can face licensing and employment
+              rules called collateral consequences. The{" "}
               <a
-                href={sourceLinks.secondChanceBusinessCoalition}
+                href={sourceLinks.nicccHome}
                 target="_blank"
                 rel="noreferrer"
                 className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
               >
-                Second Chance Business Coalition
+                National Inventory of Collateral Consequences of Conviction
               </a>{" "}
-              and similar initiatives can point you toward employers and local
-              organizations thinking about second-chance hiring. Use those lists
-              to decide where to ask better questions.
+              describes collateral consequences as legal and regulatory
+              restrictions that can affect employment, occupational licensing,
+              housing, education, and other opportunities. Use it as one
+              research tool, then confirm with the board or agency that controls
+              your field.
             </p>
-          </GuideCallout>
+
+            <p>
+              Checking early helps you avoid expensive detours. It can also show
+              you what proof the board, employer, program, or sponsor wants to
+              see.
+            </p>
+          </GuideProse>
+
+          <VerifyBeforeActing
+            title="Ask before you invest heavily"
+            whoToAsk={
+              <span>
+                The state licensing board, certifying organization, training
+                provider, apprenticeship sponsor, American Job Center, supervising
+                officer, registering agency, employer placement site, insurance
+                or bonding contact, and legal aid or an attorney when available.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “For someone with my conviction history and registry
+                requirements, can this credential lead to the license, placement,
+                apprenticeship, job duties, worksite, driving, internet use, or
+                self-employment path I am planning?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Board rules, emails, screenshots, handbooks, application
+                deadlines, names, dates, written answers, appeal information,
+                and copies of any forms you submit.
+              </span>
+            }
+          />
+
+          <GuideChecklist
+            id="gate-check-checklist"
+            title="Gate-check questions"
+            columns={2}
+            items={[
+              {
+                id: "board",
+                label:
+                  "Is there a state board, licensing agency, or certifying body?",
+              },
+              {
+                id: "conviction",
+                label:
+                  "Does the rule mention criminal convictions, moral character, good cause, rehabilitation, or public safety?",
+              },
+              {
+                id: "registry",
+                label:
+                  "Does public registry status affect the license, placement, worksite, or employer policy?",
+              },
+              {
+                id: "placement",
+                label:
+                  "Will there be an internship, clinical site, ride-along, apprenticeship sponsor, or supervised placement?",
+              },
+              {
+                id: "duties",
+                label:
+                  "Will the work involve minors, schools, homes, healthcare facilities, vulnerable people, driving, travel, or internet access?",
+              },
+              {
+                id: "appeal",
+                label:
+                  "If denied, is there appeal, waiver, predetermination, reconsideration, or a waiting period?",
+              },
+            ]}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="training"
-          number="4"
-          title="Training, apprenticeships, and credentials"
-          subtitle="Paid training and short credentials can open doors, but placement rules still matter."
-          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
+          id="pathways"
+          number="3"
+          title="Credential paths worth exploring"
+          subtitle="These paths can lead to stable work, better pay, or self-employment when chosen carefully."
+          icon={<Route className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Training can be one of the most hopeful paths because it gives you
-              proof of current effort, a newer reference, and a skill an employer
-              can understand. The best options are usually practical,
-              short-to-medium length, and connected to real employers.
-            </p>
-
-            <p>
-              Before spending money, ask whether the credential, license,
-              worksite, internship, clinical placement, apprenticeship sponsor,
-              or job placement path fits your situation.
+              The paths below are not one-size-fits-all. They are starting points
+              that many people explore because they can be skill-based,
+              practical, stackable, or connected to real work. Use the cards to
+              compare the path, then check your state and situation.
             </p>
           </GuideProse>
 
-          <ResourceLinkGrid
-            title="Training and apprenticeship resources"
-            resources={[
-              {
-                label: "Apprenticeship.gov",
-                href: sourceLinks.apprenticeshipHome,
-                badge: "Official",
-                description:
-                  "Search Registered Apprenticeships and learn how earn-while-you-learn programs work.",
-              },
-              {
-                label: "Apprenticeship.gov — Barriers to Employment",
-                href: sourceLinks.apprenticeshipBarriers,
-                badge: "Official",
-                description:
-                  "Information for career seekers with employment barriers, including justice-involved people.",
-              },
-              {
-                label: "American Job Centers",
-                href: sourceLinks.careerOneStopAjc,
-                badge: "Training help",
-                description:
-                  "Ask about WIOA-funded training, occupational certificates, job clubs, computer access, and local employer partnerships.",
-              },
-              {
-                label: "DOL Reentry Employment Opportunities",
-                href: sourceLinks.dolReentry,
-                badge: "Official",
-                description:
-                  "Federal links for justice-involved job seekers, employers, and reentry workforce programs.",
-              },
-              {
-                label: "Professional Licensing Guide",
-                href: sourceLinks.professionalLicensing,
-                badge: "SOLAR",
-                description:
-                  "Use SOLAR's licensing guide before investing in a credential that may require background review.",
-              },
-            ]}
-          />
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Trades and apprenticeships"
+              subtitle="Electrical helper, HVAC, plumbing, welding, carpentry, maintenance, facilities, repair."
+              icon={<Hammer className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Trade paths can be skill-based and stackable. Apprenticeships
+                  may let you earn while learning, and some trades can support
+                  later self-employment.
+                </span>
+              }
+              steps={[
+                <span>
+                  Search{" "}
+                  <a
+                    href={sourceLinks.apprenticeshipFinder}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Apprenticeship.gov's job finder
+                  </a>{" "}
+                  and ask local American Job Centers about trade training.
+                </span>,
+                <span>
+                  Ask whether the sponsor, union, contractor, or licensing board
+                  has rules about convictions or registry status.
+                </span>,
+                <span>
+                  Check jobsite issues: schools, homes, youth facilities, travel,
+                  tools, driving, and insurance.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who like hands-on work, want a visible skill, and can
+                  build proof through training, work samples, and supervisor
+                  references.
+                </span>
+              }
+            />
 
-          <GuideProse>
-            <p>
-              Common practical paths include OSHA-10/30, forklift, welding,
-              HVAC, electrical helper, plumbing helper, maintenance, CDL,
-              food-handler credentials, culinary programs, manufacturing,
-              logistics, bookkeeping, customer support, and basic IT support.
-              Check licensing, driving, insurance, internet, and worksite rules
-              before paying for a program.
-            </p>
-          </GuideProse>
+            <PathwayCard
+              title="CDL and transportation"
+              subtitle="Class A or B CDL, local delivery, warehouse-to-driver, yard work, non-passenger routes."
+              icon={<Truck className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  CDL training can create a clear credential and measurable
+                  skill. Local, warehouse, or non-passenger routes may be more
+                  realistic for some people than school bus, passenger, or HazMat
+                  paths.
+                </span>
+              }
+              steps={[
+                <span>
+                  Review{" "}
+                  <a
+                    href={sourceLinks.fmcsaEldt}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    FMCSA Entry-Level Driver Training rules
+                  </a>{" "}
+                  and use the{" "}
+                  <a
+                    href={sourceLinks.fmcsaTpr}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Training Provider Registry
+                  </a>{" "}
+                  to check providers.
+                </span>,
+                <span>
+                  Be careful with passenger, school bus, HazMat, interstate
+                  travel, overnight routes, and home delivery.
+                </span>,
+                <span>
+                  Ask about employer insurance rules, supervision travel rules,
+                  and whether any endorsement requires a separate background
+                  review.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with driving eligibility, steady reporting habits, and a
+                  plan for routes that fit supervision and registry rules.
+                </span>
+              }
+            />
 
-          <GuideCallout
-            tone="warning"
-            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Ask about placement before enrolling"
-          >
-            <p>
-              A school may accept you into training even if a later internship,
-              apprenticeship sponsor, clinical site, licensing board, or employer
-              partner creates a barrier. Ask direct questions before you pay:
-              “Have you placed people with sex offense convictions or registry
-              requirements in this field before?”
-            </p>
-          </GuideCallout>
+            <PathwayCard
+              title="IT support and device repair"
+              subtitle="CompTIA A+, help desk, computer repair, networking basics, inventory, technical support."
+              icon={<Laptop className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Many IT certifications are not state licenses, and skills can
+                  be shown through certificates, projects, repair work, and
+                  practice labs.
+                </span>
+              }
+              steps={[
+                <span>
+                  Explore entry-level certifications such as{" "}
+                  <a
+                    href={sourceLinks.comptiaAPlus}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    CompTIA A+
+                  </a>{" "}
+                  and ask training providers about job placement.
+                </span>,
+                <span>
+                  Check internet, device, monitoring, data-access, remote-work,
+                  and customer-contact rules before choosing a role.
+                </span>,
+                <span>
+                  Build proof with labs, repair notes, volunteer tech support,
+                  certificates, and references.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can use computers lawfully, learn independently,
+                  document work, and handle customer or internal support
+                  carefully.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Barber, cosmetology, grooming, and personal services"
+              subtitle="Barbering, cosmetology, nails, grooming, shop assistant, booth rental, future self-employment."
+              icon={<Users className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  These fields can combine practical skill, customer service, and
+                  business ownership potential. A license may help someone work
+                  in a shop or eventually operate independently.
+                </span>
+              }
+              steps={[
+                <span>
+                  Check your state board rules before enrolling in school.
+                </span>,
+                <span>
+                  Ask about background review, student clinic rules, minors,
+                  mobile services, booth rental, and shop ownership.
+                </span>,
+                <span>
+                  Build a portfolio, attendance record, instructor reference, and
+                  customer-service proof.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who enjoy hands-on service work, can manage boundaries,
+                  and want a skill that may support future self-employment.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Food service and culinary credentials"
+              subtitle="Food handler, ServSafe, prep cook, bakery, catering, food truck, kitchen supervision."
+              icon={<Utensils className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Food credentials can be faster and practical. Kitchen and
+                  back-of-house roles can help build recent references and may
+                  lead to catering, food trucks, or specialty food work.
+                </span>
+              }
+              steps={[
+                <span>
+                  Check local food-handler requirements and consider{" "}
+                  <a
+                    href={sourceLinks.servSafe}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    ServSafe
+                  </a>{" "}
+                  if it fits your local market.
+                </span>,
+                <span>
+                  Verify school, youth-event, delivery, catering, and business
+                  permit issues.
+                </span>,
+                <span>
+                  Ask whether a community college, workforce office, or employer
+                  offers low-cost training.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who want a practical first credential, fast entry into
+                  work, and possible future business options.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Office, bookkeeping, tax, and notary-adjacent work"
+              subtitle="Bookkeeping, QuickBooks, payroll, tax preparation, admin support, notary where allowed."
+              icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Office credentials can support employment, freelance work, or a
+                  small service business. Some paths are certification-based
+                  rather than state-license-heavy.
+                </span>
+              }
+              steps={[
+                <span>
+                  For tax preparation, review{" "}
+                  <a
+                    href={sourceLinks.irsPtin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    IRS PTIN requirements
+                  </a>{" "}
+                  and any state tax-preparer rules.
+                </span>,
+                <span>
+                  Check state notary rules, financial data access, employer
+                  background checks, and privacy duties.
+                </span>,
+                <span>
+                  Build proof with coursework, practice files, volunteer admin
+                  work, bookkeeping samples, and references.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who are organized, careful with records, and interested
+                  in office work or low-overhead self-employment.
+                </span>
+              }
+            />
+          </div>
         </GuideSectionCard>
 
 <GuideSectionHeader
-          id="green-red-flags"
-          number="5"
-          title="Better leads and higher-friction leads"
-          subtitle="Some opportunities are easier to evaluate than others."
-          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+          id="more-pathways"
+          number="4"
+          title="More credential paths to consider"
+          subtitle="Some paths need extra checking but can still be worth exploring."
+          icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <div className="grid gap-4 md:grid-cols-2">
-            <GuideCallout
-              tone="success"
-              icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
-              title="Better signs"
-            >
-              <GuideProse>
-                <ul>
-                  <li>The employer says it uses case-by-case review.</li>
-                  <li>The job has a clear adult worksite.</li>
-                  <li>The duties are visible and easy to explain.</li>
-                  <li>
-                    The role does not involve schools, child care, youth
-                    programs, private homes, or unsupervised access to minors.
-                  </li>
-                  <li>
-                    A local reentry organization has placed people there before.
-                  </li>
-                  <li>
-                    The employer has HR staff who can explain the background-check
-                    process.
-                  </li>
-                  <li>
-                    The job offers training, certifications, advancement, or a
-                    stable schedule.
-                  </li>
-                </ul>
-              </GuideProse>
-            </GuideCallout>
+            <PathwayCard
+              title="Healthcare support and medical admin"
+              subtitle="Medical billing, coding, records, sterile processing, phlebotomy, non-patient-facing support."
+              icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Healthcare is a large field with both patient-facing and
+                  non-patient-facing roles. Medical admin, billing, coding, and
+                  records may be more realistic for some people than direct care.
+                </span>
+              }
+              steps={[
+                <span>
+                  Before enrolling, ask about clinical placements, facility
+                  policies, vulnerable-person access, registry rules, and state
+                  credential requirements.
+                </span>,
+                <span>
+                  If considering phlebotomy, review certifying options such as{" "}
+                  <a
+                    href={sourceLinks.nhaPhlebotomy}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    NHA Certified Phlebotomy Technician
+                  </a>{" "}
+                  and ask about placement barriers.
+                </span>,
+                <span>
+                  Consider medical billing, coding, scheduling, records, or
+                  supply roles if direct patient care is not realistic.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who want stable sector work and can carefully check
+                  facility, placement, and background-review rules before paying.
+                </span>
+              }
+            />
 
-            <GuideCallout
-              tone="warning"
-              icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-              title="Higher-friction signs"
-            >
-              <GuideProse>
-                <ul>
-                  <li>
-                    The job involves minors, schools, child care, youth sports,
-                    camps, parks, or recreation programs.
-                  </li>
-                  <li>
-                    The role requires entering private homes or hotel rooms alone.
-                  </li>
-                  <li>
-                    The platform uses automated background screening with no
-                    clear human review.
-                  </li>
-                  <li>
-                    The role requires rideshare, passenger driving, in-home
-                    delivery, or vulnerable-person access.
-                  </li>
-                  <li>
-                    The job requires internet use that may conflict with
-                    supervision rules.
-                  </li>
-                  <li>
-                    The credential has moral-character, licensing, or insurance
-                    barriers.
-                  </li>
-                  <li>
-                    The employer cannot tell you who makes the background-check
-                    decision.
-                  </li>
-                </ul>
-              </GuideProse>
-            </GuideCallout>
+            <PathwayCard
+              title="Home repair, inspection, and service businesses"
+              subtitle="Home inspection, appliance repair, cleaning, landscaping, handyman-style services where lawful."
+              icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Repair and service skills can support wage work or business
+                  ownership. A credential can help customers and insurers see
+                  skill and professionalism.
+                </span>
+              }
+              steps={[
+                <span>
+                  Check private-home access, local business licensing, insurance,
+                  bonding, advertising, transportation, and supervision rules.
+                </span>,
+                <span>
+                  Consider commercial-only work, subcontracting, shop-based
+                  repair, landscaping, or facilities roles if private homes are a
+                  problem.
+                </span>,
+                <span>
+                  Save before-and-after photos, customer references, training
+                  certificates, and written scope-of-work records.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with practical skills who want a path that may connect
+                  to self-employment after careful rule-checking.
+                </span>
+              }
+            />
           </div>
 
-          <SoftDivider />
-
-          <GuideProse>
-            <p>
-              Rideshare and passenger-driving platforms are often high-friction
-              for people on sex offender registries. Lyft publicly states that a
-              person may be ineligible to drive if listed on the National Sex
-              Offender Registry, and Uber publicly says drivers with reported
-              sexual assault convictions are permanently banned. Check current
-              platform rules before spending time or money on this path.
-            </p>
-          </GuideProse>
-
-          <CommonMistakes
-            title="Directory mistakes to avoid"
-            mistakes={[
-              {
-                mistake:
-                  "Treating “felony friendly” as the same as registry-aware.",
-                whyItMatters:
-                  "Many programs and employers are open to some records but use separate rules for sex offense convictions, public registry status, or certain job duties.",
-                betterMove:
-                  "Ask whether they have worked with people with sex offense convictions or registry requirements specifically.",
-              },
-              {
-                mistake: "Applying to every large employer without checking the role.",
-                whyItMatters:
-                  "One company may have warehouse roles, delivery roles, school-site contracts, and different local decision-makers.",
-                betterMove:
-                  "Check the exact location, duties, background-check stage, and decision-maker.",
-              },
-              {
-                mistake: "Paying for training before checking placement barriers.",
-                whyItMatters:
-                  "A training provider may accept payment even if a later internship, license, or employer placement creates a barrier.",
-                betterMove:
-                  "Ask written questions about placement, licensing, background checks, and registry-specific barriers before enrolling.",
-              },
-              {
-                mistake: "Assuming remote work is automatically easier.",
-                whyItMatters:
-                  "Remote work can involve internet monitoring, customer data, minors, platform rules, background checks, or supervision restrictions.",
-                betterMove:
-                  "Verify internet use, device rules, customer contact, platform policies, and data-access limits.",
-              },
-              {
-                mistake: "Giving up after a few dead ends.",
-                whyItMatters:
-                  "Some leads will not work. That does not mean all work is closed off.",
-                betterMove:
-                  "Track results, adjust your target list, ask local reentry staff for recent employer leads, and keep building proof of reliability.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="employer-reassurance"
-          number="6"
-          title="Employer reassurance tools"
-          subtitle="Some employers need help understanding support, bonding, and current hiring resources."
-          icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Some hiring managers are nervous about people with records and do
-              not know what tools exist. If the conversation is respectful and
-              the role appears workable, a short mention of employer support
-              programs can help.
-            </p>
-          </GuideProse>
-
-          <ResourceLinkGrid
-            title="Employer-facing tools"
-            resources={[
-              {
-                label: "Federal Bonding Program",
-                href: sourceLinks.federalBonding,
-                badge: "Hiring support",
-                description:
-                  "No-cost fidelity bonding that may reduce perceived hiring risk for some employers considering job seekers with barriers.",
-              },
-              {
-                label: "DOL WOTC page",
-                href: sourceLinks.dolWotc,
-                badge: "Check status",
-                description:
-                  "Official Department of Labor page for the Work Opportunity Tax Credit. Verify current status before mentioning it.",
-              },
-              {
-                label: "IRS WOTC page",
-                href: sourceLinks.irsWotc,
-                badge: "Check status",
-                description:
-                  "Official IRS page explaining WOTC eligibility, timing, and current authorization language.",
-              },
-              {
-                label: "SCBC employer resources",
-                href: sourceLinks.secondChanceBusinessCoalition,
-                badge: "Employer tools",
-                description:
-                  "Employer-facing second-chance hiring resources that may help a company understand case-by-case hiring practices.",
-              },
-              {
-                label: "Jails to Jobs",
-                href: sourceLinks.jailsToJobs,
-                badge: "Practical",
-                description:
-                  "Job-search and employer-education resources for people coming home from incarceration.",
-              },
-            ]}
-          />
-
           <GuideCallout
-            tone="info"
-            icon={<FileText className="h-5 w-5" aria-hidden="true" />}
-            title="Work Opportunity Tax Credit context"
+            tone="reentry"
+            icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
+            title="Credentials can support self-employment"
           >
             <p>
-              Some employer-facing resources mention the Work Opportunity Tax
-              Credit. As of this guide’s review, DOL and IRS pages describe WOTC
-              as authorized through December 31, 2025. Do not rely on WOTC as a
-              current hiring incentive unless an employer, workforce office, tax
-              professional, or official source confirms that it applies to the
-              job and hiring date.
+              Some people use licenses or certifications to move into small
+              business ownership: repair, cleaning, bookkeeping, tax prep, food
+              service, grooming, landscaping, inspection, or trade work. That can
+              be a real path. It still requires planning around internet use,
+              advertising, home visits, customer contact, insurance, taxes,
+              permits, and any supervision or registry rules.
             </p>
-          </GuideCallout>
 
-          <GuideCallout
-            tone="success"
-            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
-            title="Simple way to mention bonding"
-          >
             <p>
-              “I understand employers sometimes have concerns when hiring people
-              with records. There is a Federal Bonding Program that may provide a
-              no-cost fidelity bond for eligible workers. I can send you the
-              official information if that would help.”
+              SOLAR’s business ownership guide can go deeper on business setup,
+              taxes, pricing, customer boundaries, and risk management once that
+              path looks realistic.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="local-strategy"
-          number="7"
-          title="How to find local leads that are actually useful"
-          subtitle="Local knowledge often beats national lists."
+          id="funding"
+          number="5"
+          title="Find lower-cost training and support"
+          subtitle="Do not assume you have to pay full price upfront."
           icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              National lists can get you started, but the strongest leads often
-              come from local people who know which employers have recently hired
-              registry-impacted workers. A workforce counselor, reentry case
-              manager, faith-based job club, public defender reentry staff,
-              treatment provider, or trusted mentor may know which employers are
-              worth your limited time.
+              A credential does not have to start with an expensive private
+              school. American Job Centers, community colleges, apprenticeships,
+              employers, unions, adult education programs, and reentry
+              organizations may help with training, tools, exam fees,
+              transportation, books, or job placement.
+            </p>
+
+            <p>
+              Ask who pays, whether the training is approved, whether credits or
+              hours transfer, whether job placement is realistic, and whether
+              there is a paid apprenticeship or employer-sponsored route.
             </p>
           </GuideProse>
 
-          <GuideChecklist
-            id="local-lead-plan"
-            title="Local lead plan"
-            columns={1}
-            items={[
-              {
-                id: "ajc",
-                label:
-                  "Call or visit your nearest American Job Center and ask whether they have justice-involved job seeker services.",
-              },
-              {
-                id: "reentry",
-                label:
-                  "Search CareerOneStop's reentry program finder and the National H.I.R.E. Network Clearinghouse for local organizations.",
-              },
-              {
-                id: "specific",
-                label:
-                  "Ask every helper the specific question: “Have you placed someone with a sex offense conviction or registry status recently?”",
-              },
-              {
-                id: "fields",
-                label:
-                  "Ask which fields have worked locally: warehouse, food service, trades, maintenance, manufacturing, staffing, or small employers.",
-              },
-              {
-                id: "names",
-                label:
-                  "Ask for names of programs, hiring managers, staffing agencies, job fairs, and training providers.",
-              },
-              {
-                id: "log",
-                label:
-                  "Write down every lead and result so you can see patterns instead of starting over each week.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="family"
-            icon={<Users className="h-5 w-5" aria-hidden="true" />}
-            title="For family and supporters"
-          >
-            <p>
-              A helpful supporter can research employers, print applications,
-              drive to appointments, practice interviews, organize a job log, or
-              call programs to ask what services they offer. Try not to take over
-              the job search. The person applying still needs ownership,
-              preparation, and accurate information.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="limited-access"
-          number="8"
-          title="If internet access, privacy, or transportation is limited"
-          subtitle="A directory should still work for phone-only, paper-based, supervised, or recently released readers."
-          icon={<Phone className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <OfflineOptions
-            title="Lower-internet ways to use this guide"
-            icon={<Laptop className="h-5 w-5" aria-hidden="true" />}
-            note={
-              <span>
-                These steps can help if you have no printer, limited internet,
-                supervision restrictions, unreliable transportation, or no
-                private computer.
-              </span>
-            }
-            items={[
-              <span>
-                Call an American Job Center and ask for help finding local
-                reentry employment services, job fairs, and training programs.
-              </span>,
-              <span>
-                Ask for mailed or printed information if you cannot easily use a
-                website.
-              </span>,
-              <span>
-                Keep a paper job lead log with employer name, role, location,
-                phone number, date, restriction question, and result.
-              </span>,
-              <span>
-                Ask a trusted person to print job postings, bus directions,
-                application confirmations, and program contacts.
-              </span>,
-              <span>
-                Use a public library, workforce center, or reentry office for
-                computer access only if your supervision and internet rules allow
-                it.
-              </span>,
-              <span>
-                If you are incarcerated or preparing for release, ask family or a
-                reentry worker to print nearby American Job Centers, reentry
-                programs, apprenticeships, and training providers.
-              </span>,
-            ]}
-          />
-
-          <GuideCallout
-            tone="privacy"
-            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
-            title="Check technology rules first"
-          >
-            <p>
-              If you have internet restrictions, monitoring rules, device
-              restrictions, or limits on social media or job platforms, verify
-              what job-search technology is allowed before using public
-              computers, apps, job boards, or remote-work platforms.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="lead-vetting"
-          number="9"
-          title="Lead-vetting checklist"
-          subtitle="Use this before applying, interviewing, accepting, or paying for training."
-          icon={<ClipboardCheck className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <GuideChecklist
-            id="lead-vetting-checklist"
-            title="Check the lead"
-            columns={2}
-            items={[
-              {
-                id: "exact-location",
-                label: "Do I know the exact worksite or training location?",
-              },
-              {
-                id: "allowed-location",
-                label:
-                  "Is the location allowed under registry, supervision, court, and local rules?",
-              },
-              {
-                id: "duties",
-                label:
-                  "Do the duties involve minors, schools, child care, parks, homes, hospitals, nursing facilities, travel, driving, or internet use?",
-              },
-              {
-                id: "policy",
-                label:
-                  "Does the employer, platform, franchise, contractor, or staffing agency have a policy that affects registry status?",
-              },
-              {
-                id: "background-stage",
-                label:
-                  "When does the background check happen, and who makes the decision?",
-              },
-              {
-                id: "case-review",
-                label:
-                  "Is there case-by-case review, or is the background screen automatic?",
-              },
-              {
-                id: "license",
-                label:
-                  "Does the job or training path require a license, credential, placement, or insurance approval?",
-              },
-              {
-                id: "save-answer",
-                label:
-                  "Did I save the posting, names, dates, answers, and written confirmation if possible?",
-              },
-            ]}
-          />
-
-          <PullQuoteBlock>
-            The goal is not to find a perfect employer. The goal is to find a
-            lawful, realistic next step that can become proof of stability.
-          </PullQuoteBlock>
-
-          <GuideCallout
-            tone="reentry"
-            icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
-            title="Use this with the Employment Strategies guide"
-          >
-            <p>
-              This directory helps you find leads. For resume structure,
-              disclosure scripts, interview preparation, documentation packets,
-              and first-90-days job planning, use SOLAR’s{" "}
-              <Link
-                to={sourceLinks.jobSearchGuide}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Employment Strategies for People on Sex Offender Registries
-              </Link>
-              .
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="resources"
-          number="10"
-          title="Resources, related guides, and sources"
-          subtitle="Keep going with practical next steps and source links."
-          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
           <ResourceLinkGrid
-            title="Core employment resources"
+            title="Training and funding starting points"
             resources={[
-              {
-                label: "CareerOneStop Justice-Impacted Job Seekers",
-                href: sourceLinks.careerOneStopJustice,
-                badge: "Official",
-                description:
-                  "Career, training, and job-search tools for people with criminal records.",
-              },
               {
                 label: "American Job Center Finder",
                 href: sourceLinks.careerOneStopAjc,
                 badge: "Official",
                 description:
-                  "Find local workforce offices for resume help, training referrals, job search support, and workshops.",
+                  "Find local workforce offices that may help with training referrals, WIOA-funded programs, job search, and support services.",
               },
               {
-                label: "CareerOneStop Reentry Program Finder",
-                href: sourceLinks.careerOneStopReentry,
+                label: "CareerOneStop Justice-Impacted Job Seekers",
+                href: sourceLinks.careerOneStopJustice,
                 badge: "Official",
                 description:
-                  "Find local reentry programs that may offer job search, housing, and other support.",
+                  "Career and training tools for people with criminal records.",
               },
               {
                 label: "Apprenticeship.gov",
                 href: sourceLinks.apprenticeshipHome,
                 badge: "Official",
                 description:
-                  "Search registered apprenticeships and learn about paid earn-while-you-learn paths.",
+                  "Learn about Registered Apprenticeships and search paid earn-while-you-learn opportunities.",
               },
               {
-                label: "Honest Jobs",
-                href: sourceLinks.honestJobs,
-                badge: "Fair chance",
-                description:
-                  "Fair-chance job board for people with criminal records.",
-              },
-              {
-                label: "Federal Bonding Program",
-                href: sourceLinks.federalBonding,
-                badge: "Hiring support",
-                description:
-                  "No-cost fidelity bonding information for eligible workers and employers.",
-              },
-              {
-                label: "FTC background-check rights",
-                href: sourceLinks.ftcBackgroundChecks,
+                label: "Apprenticeship.gov — Barriers to Employment",
+                href: sourceLinks.apprenticeshipBarriers,
                 badge: "Official",
                 description:
-                  "Federal guidance on applicant rights when employers use background reporting companies.",
+                  "Apprenticeship resources for career seekers with barriers to employment, including justice-involved people.",
               },
               {
-                label: "EEOC arrest and conviction record resources",
-                href: sourceLinks.eeocArrestConviction,
+                label: "DOL Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
                 badge: "Official",
                 description:
-                  "Employment-rights resources about arrest and conviction records.",
+                  "Federal reentry employment and workforce resources.",
+              },
+              {
+                label: "NICCC Collateral Consequences Inventory",
+                href: sourceLinks.nicccConsequences,
+                badge: "Research tool",
+                description:
+                  "Search legal and regulatory restrictions by jurisdiction and category, then verify with the controlling agency.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="success"
+            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+            title="Ask for the practical answer"
+          >
+            <p>
+              “Can I enroll?” is not enough. Ask: “Can people with my background
+              complete this program, sit for the exam, get placed, receive the
+              license or certificate, and get hired or self-employed in this
+              field?”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="proof-packet"
+          number="6"
+          title="Build your credential proof packet"
+          subtitle="A good packet helps a board, employer, sponsor, or program see current readiness."
+          icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Do not wait until the application deadline to gather proof. Build
+              the packet while you train. The goal is to show the whole picture:
+              skill, reliability, accountability, stability, and current
+              readiness.
+            </p>
+
+            <p>
+              You do not need to hand every document to every person. Keep a
+              complete packet for yourself, then share only what is required,
+              strategic, and safe.
+            </p>
+          </GuideProse>
+
+          <DocumentPacket
+            title="Credential proof packet"
+            intro={
+              <span>
+                Keep copies in a paper folder and a secure digital folder if
+                allowed.
+              </span>
+            }
+            categories={[
+              {
+                title: "Training proof",
+                items: [
+                  "Certificates, completion letters, attendance records, grades, transcripts, and exam results.",
+                  "Instructor evaluations, apprenticeship reviews, work samples, project photos, or portfolios.",
+                  "OSHA, food-handler, forklift, CompTIA, CDL training, or other credential records.",
+                ],
+              },
+              {
+                title: "Application proof",
+                items: [
+                  "Licensing board emails, printed rules, screenshots, forms, deadlines, fees, and written answers.",
+                  "Personal statement, rehabilitation evidence, compliance proof, and letters of support if appropriate.",
+                  "Employment history, volunteer records, supervisor references, and proof of stable housing or community support.",
+                ],
+              },
+              {
+                title: "Backup and appeal records",
+                items: [
+                  "Denial letters, delay notices, missing-document requests, appeal deadlines, and reconsideration instructions.",
+                  "Notes from calls with board staff, training providers, workforce offices, attorneys, or legal aid.",
+                  "Alternative credential paths if the first route takes longer than expected.",
+                ],
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="privacy"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Share carefully"
+          >
+            <p>
+              Some records are sensitive. Do not automatically give employers,
+              schools, or boards treatment records, supervision paperwork, court
+              documents, or personal history details unless they are required,
+              legally appropriate, and useful to the application.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="denial-delay"
+          number="7"
+          title="If a board says no, delays, or asks for more"
+          subtitle="A setback may mean more proof, a waiting period, an appeal, or a related path."
+          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A denial or delay is not always the end of the path. Sometimes the
+              board needs more documents. Sometimes the rule allows
+              reconsideration, waiver, predetermination, appeal, rehabilitation
+              evidence, or reapplication after a waiting period. Sometimes the
+              wiser move is a related credential that gets you working sooner.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="denial-delay-checklist"
+            title="What to ask next"
+            columns={1}
+            items={[
+              {
+                id: "written-reason",
+                label:
+                  "Ask for the decision, missing-document request, or concern in writing.",
+              },
+              {
+                id: "rule",
+                label:
+                  "Ask what statute, regulation, board rule, or policy controls the decision.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Ask what proof would matter: training, references, work history, treatment completion, compliance, time since offense, or supervision status.",
+              },
+              {
+                id: "review",
+                label:
+                  "Ask whether appeal, waiver, predetermination, reconsideration, hearing, or later reapplication is available.",
+              },
+              {
+                id: "deadline",
+                label:
+                  "Write down every deadline and save envelopes, emails, notices, and portal messages.",
+              },
+              {
+                id: "help",
+                label:
+                  "Contact legal aid, an occupational licensing clinic, public defender reentry staff, or an attorney if the license is important to your future.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="common-mistakes"
+          number="8"
+          title="Avoid costly detours"
+          subtitle="These mistakes are common, understandable, and usually preventable."
+          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Choosing the most expensive program first.",
+                whyItMatters:
+                  "A costly program is not always the best path to work, licensing, or self-employment.",
+                betterMove:
+                  "Compare community college, apprenticeship, employer-paid, American Job Center, and shorter certificate routes before signing.",
+              },
+              {
+                mistake: "Confusing school admission with license approval.",
+                whyItMatters:
+                  "A school may admit you even if a board, clinical site, employer, or placement partner later raises a barrier.",
+                betterMove:
+                  "Ask about the final license, placement, exam, employer background check, and worksite rules before paying.",
+              },
+              {
+                mistake: "Ignoring apprenticeships.",
+                whyItMatters:
+                  "Apprenticeships can combine paid work, training, mentorship, and a recognized credential.",
+                betterMove:
+                  "Search Apprenticeship.gov and ask local workforce offices about sponsors willing to consider people with records.",
+              },
+              {
+                mistake: "Assuming a certification means no background check.",
+                whyItMatters:
+                  "A certificate may be available, but employers, clients, platforms, or placement sites may still screen applicants.",
+                betterMove:
+                  "Check the full chain: training, exam, placement, license, employer, insurance, and job duties.",
+              },
+              {
+                mistake: "Picking a path with unavoidable restricted contact.",
+                whyItMatters:
+                  "Some roles regularly involve minors, schools, homes, healthcare facilities, travel, or internet use.",
+                betterMove:
+                  "Look for related roles with safer settings, such as commercial sites, shop-based repair, back-of-house work, admin support, or adult worksites.",
+              },
+              {
+                mistake: "Not building proof while training.",
+                whyItMatters:
+                  "A board, sponsor, or employer may need more than a completed class.",
+                betterMove:
+                  "Collect certificates, attendance, evaluations, references, work samples, and written answers as you go.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="limited-access"
+          number="9"
+          title="If internet, transportation, or printing is limited"
+          subtitle="You can still research credentials with phone calls, paper records, and local help."
+          icon={<Phone className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet credential research"
+            icon={<Phone className="h-5 w-5" aria-hidden="true" />}
+            note={
+              <span>
+                Use these steps if you are phone-only, recently released,
+                incarcerated, under internet restrictions, without a printer, or
+                relying on someone else for research.
+              </span>
+            }
+            items={[
+              <span>
+                Call the licensing board and ask for mailed forms, printed rules,
+                and the correct person for criminal-history questions.
+              </span>,
+              <span>
+                Call an American Job Center and ask about approved training,
+                WIOA funding, reentry employment programs, apprenticeships, and
+                transportation help.
+              </span>,
+              <span>
+                Ask a trusted person to print licensing rules, program costs,
+                board applications, apprenticeship listings, and email
+                confirmations.
+              </span>,
+              <span>
+                Keep a paper folder with names, dates, phone numbers, board
+                rules, program brochures, receipts, and written answers.
+              </span>,
+              <span>
+                Visit a public library, community college, workforce office, or
+                reentry program for computer access only if your restrictions
+                allow it.
+              </span>,
+              <span>
+                If you are incarcerated, ask family or reentry staff to gather
+                board rules, local training programs, and apprenticeship contacts
+                before release.
+              </span>,
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="10"
+          title="Resources, related guides, and sources"
+          subtitle="Use these tools to research, compare, and keep moving."
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Credential research tools"
+            resources={[
+              {
+                label: "NICCC Collateral Consequences Inventory",
+                href: sourceLinks.nicccConsequences,
+                badge: "Research tool",
+                description:
+                  "Search legal and regulatory restrictions by jurisdiction and category, then verify with the controlling board or agency.",
+              },
+              {
+                label: "American Job Center Finder",
+                href: sourceLinks.careerOneStopAjc,
+                badge: "Official",
+                description:
+                  "Find local workforce offices that may help with approved training, employment services, and support programs.",
+              },
+              {
+                label: "Apprenticeship.gov Job Finder",
+                href: sourceLinks.apprenticeshipFinder,
+                badge: "Official",
+                description:
+                  "Search apprenticeship openings and apply directly with employers or program sponsors.",
+              },
+              {
+                label: "FMCSA Training Provider Registry",
+                href: sourceLinks.fmcsaTpr,
+                badge: "CDL",
+                description:
+                  "Check CDL training providers for entry-level driver training paths.",
+              },
+              {
+                label: "TSA HazMat Endorsement",
+                href: sourceLinks.tsaHazmat,
+                badge: "CDL",
+                description:
+                  "Review federal background-check information before planning around a HazMat endorsement.",
+              },
+              {
+                label: "IRS PTIN Requirements",
+                href: sourceLinks.irsPtin,
+                badge: "Tax prep",
+                description:
+                  "Official IRS information for paid tax return preparer PTIN requirements.",
               },
             ]}
           />
@@ -1393,44 +1181,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Employment Strategies for People on Sex Offender Registries",
                 description:
-                  "Use this companion guide for resumes, disclosure scripts, interviews, documentation, and first-90-days planning.",
-                to: sourceLinks.jobSearchGuide,
+                  "Use this for resumes, disclosure scripts, interviews, documentation packets, and first-90-days planning.",
+                to: sourceLinks.employmentStrategies,
               },
               {
-                title: "Professional Licensing & Certification Paths",
+                title: "Employment Directory for People on Sex Offender Registries",
                 description:
-                  "Use this before paying for a credential, trade program, CDL path, or licensed field.",
-                to: sourceLinks.professionalLicensing,
+                  "Use this to find job boards, workforce offices, apprenticeships, training leads, and employer lead sources.",
+                to: sourceLinks.employmentDirectory,
               },
               {
                 title: "Small Business & Entrepreneurship Guide",
                 description:
-                  "Use this if traditional hiring is blocked and self-employment may be a realistic path.",
+                  "Use this when a credential may support self-employment, contracting, repair work, food service, bookkeeping, or a trade business.",
                 to: sourceLinks.smallBusinessGuide,
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "Use this to coordinate credential planning with IDs, housing, supervision, registration, and employment tasks.",
+                to: sourceLinks.reentryChecklist,
               },
               {
                 title: "Know Your Rights Guide",
                 description:
-                  "Use this for broader rights, documentation, background-check, and safe communication guidance.",
+                  "Use this for documentation, legal-risk questions, background-check issues, and safe communication.",
                 to: sourceLinks.knowYourRights,
               },
               {
                 title: "Housing Search Guide",
                 description:
-                  "Employment and housing often affect each other. Use this for restriction-aware housing planning.",
+                  "Stable housing, work, training, and supervision planning often affect each other.",
                 to: sourceLinks.housingSearch,
-              },
-              {
-                title: "Reentry Checklist",
-                description:
-                  "Use this to coordinate employment with IDs, housing, health care, supervision, and registration tasks.",
-                to: sourceLinks.reentryChecklist,
-              },
-              {
-                title: "Mental Health & Support Directory",
-                description:
-                  "Use this if the job search is affecting anxiety, shame, depression, or family stress.",
-                to: sourceLinks.mentalHealthDirectory,
               },
             ]}
           />
@@ -1440,120 +1222,126 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="legal"
             icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Legal and employment note"
+            title="Legal and licensing note"
           >
             <p>
-              This directory is a lead-finding tool, not legal advice or
-              employer approval. A listing here does not mean a job is available,
-              lawful for your situation, or open to every conviction or registry
-              status. Before applying, accepting work, or paying for training,
-              verify the exact role, location, background-check process, employer
-              policy, and any supervision, court, registry, or local restrictions
-              that apply to you.
+              This guide is a planning tool, not legal advice or licensing
+              approval. A credential path may depend on your state, conviction
+              history, registry status, supervision or court conditions, the
+              exact license or certification, placement sites, employer policy,
+              insurance, and local rules. Before paying for training, applying
+              for a license, accepting placement, or starting a business, verify
+              the current rules with the board, program, employer, supervising
+              authority, or a qualified legal professional.
             </p>
           </GuideCallout>
 
           <div id="sources">
             <SourceList
               title="Sources and verification"
-              note="These links support the directory's core lead sources, training paths, background-check rights, and high-friction platform cautions. Local registry, supervision, employer, and licensing rules still need case-specific verification."
+              note="These sources support credential research, apprenticeships, CDL training, HazMat checks, tax-prep requirements, and employment-barrier planning. State licensing and registry rules still need case-specific verification."
               sources={[
+                {
+                  label: "National Inventory of Collateral Consequences of Conviction",
+                  href: sourceLinks.nicccHome,
+                  description:
+                    "Explains collateral consequences affecting employment, occupational licensing, housing, education, and other opportunities.",
+                },
+                {
+                  label: "NICCC Collateral Consequences Inventory",
+                  href: sourceLinks.nicccConsequences,
+                  description:
+                    "Search tool for legal and regulatory restrictions by jurisdiction and category.",
+                },
+                {
+                  label: "CareerOneStop — American Job Centers",
+                  href: sourceLinks.careerOneStopAjc,
+                  description:
+                    "Official finder for local workforce offices and training support.",
+                },
                 {
                   label: "CareerOneStop — Justice-Impacted Job Seekers",
                   href: sourceLinks.careerOneStopJustice,
                   description:
-                    "Official job search, training, and career resources for people with criminal records.",
-                },
-                {
-                  label: "CareerOneStop — American Job Center Finder",
-                  href: sourceLinks.careerOneStopAjc,
-                  description:
-                    "Official finder for American Job Centers and local workforce help.",
-                },
-                {
-                  label: "CareerOneStop — Reentry Program Finder",
-                  href: sourceLinks.careerOneStopReentry,
-                  description:
-                    "Official finder for local reentry employment programs.",
+                    "Career and training tools for people with criminal records.",
                 },
                 {
                   label: "Apprenticeship.gov",
                   href: sourceLinks.apprenticeshipHome,
                   description:
-                    "Official federal apprenticeship search and career-seeker resource.",
+                    "Federal apprenticeship resource for career seekers, employers, and education partners.",
+                },
+                {
+                  label: "Apprenticeship.gov Job Finder",
+                  href: sourceLinks.apprenticeshipFinder,
+                  description:
+                    "Search tool for apprenticeship job opportunities and direct application to employers or sponsors.",
                 },
                 {
                   label: "Apprenticeship.gov — Career Seekers with Barriers",
                   href: sourceLinks.apprenticeshipBarriers,
                   description:
-                    "Federal apprenticeship information for career seekers with barriers to employment.",
+                    "Apprenticeship information for career seekers with employment barriers, including justice-involved people.",
                 },
                 {
-                  label:
-                    "U.S. Department of Labor — Reentry Employment Opportunities",
+                  label: "U.S. Department of Labor — Reentry Employment Opportunities",
                   href: sourceLinks.dolReentry,
                   description:
-                    "Federal reentry employment program information.",
+                    "Federal reentry employment and workforce resources.",
                 },
                 {
-                  label: "Second Chance Business Coalition Community Partners Map",
-                  href: sourceLinks.scbcPartnerMap,
+                  label: "FMCSA — Entry-Level Driver Training",
+                  href: sourceLinks.fmcsaEldt,
                   description:
-                    "Local partner map used as a lead source for reentry and workforce organizations.",
+                    "Federal CDL entry-level driver training requirements.",
                 },
                 {
-                  label: "Honest Jobs",
-                  href: sourceLinks.honestJobs,
+                  label: "FMCSA Training Provider Registry",
+                  href: sourceLinks.fmcsaTpr,
                   description:
-                    "Fair-chance job board and job-seeker resource for people with criminal records.",
+                    "Registry for CDL training providers subject to entry-level driver training rules.",
                 },
                 {
-                  label: "National H.I.R.E. Network Clearinghouse",
-                  href: sourceLinks.hireNetworkClearinghouse,
+                  label: "TSA — HazMat Endorsement",
+                  href: sourceLinks.tsaHazmat,
                   description:
-                    "State-specific reentry, legal, and employment resource clearinghouse.",
+                    "Federal information about HazMat endorsement security threat assessment.",
                 },
                 {
-                  label: "Federal Bonding Program",
-                  href: sourceLinks.federalBonding,
+                  label: "TSA — Disqualifying Offenses and Other Factors",
+                  href: sourceLinks.tsaDisqualifying,
                   description:
-                    "Employer and job seeker information about fidelity bonding.",
+                    "Federal information about offenses and factors that may affect certain TSA security threat assessments.",
                 },
                 {
-                  label: "DOL — Work Opportunity Tax Credit",
-                  href: sourceLinks.dolWotc,
+                  label: "IRS — PTIN Requirements for Tax Return Preparers",
+                  href: sourceLinks.irsPtin,
                   description:
-                    "Official WOTC source included because some employer-facing resources mention the credit; current applicability should be verified.",
+                    "Official IRS information for paid tax return preparer PTIN requirements.",
                 },
                 {
-                  label: "IRS — Work Opportunity Tax Credit",
-                  href: sourceLinks.irsWotc,
+                  label: "CompTIA A+",
+                  href: sourceLinks.comptiaAPlus,
                   description:
-                    "Official IRS WOTC source included to verify authorization language and hiring-date rules.",
+                    "Entry-level IT certification referenced as an example credential path.",
                 },
                 {
-                  label: "FTC — Employer Background Checks and Your Rights",
-                  href: sourceLinks.ftcBackgroundChecks,
+                  label: "OSHA Outreach Training Program",
+                  href: sourceLinks.oshaTraining,
                   description:
-                    "Federal background-check rights information for job applicants.",
+                    "Safety training referenced as a possible stackable trade credential.",
                 },
                 {
-                  label: "EEOC — Arrest and Conviction Records",
-                  href: sourceLinks.eeocArrestConviction,
+                  label: "ServSafe",
+                  href: sourceLinks.servSafe,
                   description:
-                    "EEOC resources about arrest and conviction records in employment.",
+                    "Food safety certification referenced as a possible culinary or food-service credential.",
                 },
                 {
-                  label: "Lyft Driver Requirements",
-                  href: sourceLinks.lyftDriverRequirements,
+                  label: "NHA Certified Phlebotomy Technician",
+                  href: sourceLinks.nhaPhlebotomy,
                   description:
-                    "Example of rideshare platform background-check restrictions involving the National Sex Offender Registry.",
-                },
-                {
-                  label: "Uber Background Checks",
-                  href: sourceLinks.uberBackgroundChecks,
-                  description:
-                    "Example of rideshare background-check and disqualification information.",
+                    "Healthcare support certification referenced as an example that requires careful placement and facility-policy review.",
                 },
               ]}
             />
