@@ -8,17 +8,17 @@ import {
   CheckCircle2,
   ClipboardCheck,
   FileText,
-  GraduationCap,
   Hammer,
   Laptop,
   MapPinned,
+  Megaphone,
   Phone,
-  Route,
+  PiggyBank,
+  ReceiptText,
   Search,
   ShieldCheck,
-  Truck,
+  Sparkles,
   Users,
-  Utensils,
   Wrench,
 } from "lucide-react";
 import SEO from "../../components/SEO";
@@ -33,6 +33,7 @@ import {
   SoftDivider,
   QuickStartPanel,
   GuideChecklist,
+  ScriptBox,
   OfflineOptions,
   DocumentPacket,
   VerifyBeforeActing,
@@ -47,31 +48,31 @@ import {
 const sourceLinks = {
   employmentStrategies: "/resources/job-search-guide",
   employmentDirectory: "/resources/employment-directory",
-  smallBusinessGuide: "/resources/small-business-guide",
+  professionalLicensing: "/resources/professional-licensing",
   reentryChecklist: "/resources/reentry-checklist",
   knowYourRights: "/resources/know-your-rights",
   housingSearch: "/resources/housing-search-guide",
 
-  nicccHome: "https://niccc.nationalreentryresourcecenter.org/",
-  nicccConsequences: "https://niccc.nationalreentryresourcecenter.org/consequences",
+  irsEin: "https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number",
+  irsSelfEmployed:
+    "https://www.irs.gov/businesses/small-businesses-self-employed/self-employed-individuals-tax-center",
+  irsSmallBusiness:
+    "https://www.irs.gov/businesses/small-businesses-self-employed",
+  sbaLearning: "https://www.sba.gov/sba-learning-platform",
+  sbaLocalAssistance: "https://www.sba.gov/local-assistance",
+  sbaMicroloans: "https://www.sba.gov/funding-programs/loans/microloans",
+  sbaMicrolenderList:
+    "https://www.sba.gov/funding-programs/loans/microloans/list-microlenders",
+  score: "https://www.score.org/",
+  sbdc: "https://americassbdc.org/find-your-sbdc/",
   careerOneStopAjc:
     "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx",
-  careerOneStopJustice: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
-  apprenticeshipHome: "https://www.apprenticeship.gov/",
-  apprenticeshipFinder: "https://www.apprenticeship.gov/apprenticeship-job-finder",
-  apprenticeshipBarriers:
-    "https://www.apprenticeship.gov/career-seekers/with-employment-barriers",
-  dolReentry: "https://www.dol.gov/agencies/eta/reentry",
-  fmcsaEldt:
-    "https://www.fmcsa.dot.gov/registration/commercial-drivers-license/entry-level-driver-training-eldt",
-  fmcsaTpr: "https://tpr.fmcsa.dot.gov/",
-  tsaHazmat: "https://www.tsa.gov/for-industry/hazmat-endorsement",
-  tsaDisqualifying: "https://www.tsa.gov/disqualifying-offenses-factors",
-  irsPtin: "https://www.irs.gov/tax-professionals/ptin-requirements-for-tax-return-preparers",
-  comptiaAPlus: "https://www.comptia.org/certifications/a",
-  servSafe: "https://www.servsafe.com/",
-  oshaTraining: "https://www.osha.gov/training/outreach",
-  nhaPhlebotomy: "https://www.nhanow.com/certification/nha-certifications/certified-phlebotomy-technician-(cpt)",
+  ftcScams:
+    "https://www.ftc.gov/business-guidance/small-businesses/cybersecurity/scams",
+  youtube: "https://www.youtube.com/",
+  redditSmallBusiness: "https://www.reddit.com/r/smallbusiness/",
+  redditEntrepreneur: "https://www.reddit.com/r/Entrepreneur/",
+  redditAutoDetailing: "https://www.reddit.com/r/AutoDetailing/",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -80,9 +81,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Professional Licenses and Certifications for People on Sex Offender Registries | The SOLAR Project"
-        description="A practical guide to choosing realistic licenses, certifications, apprenticeships, trade credentials, and self-employment-ready skills for people with sex offense convictions, registry requirements, or both."
-        keywords="professional license sex offender registry, certifications for people on sex offender registry, occupational licensing felony conviction, sex offense conviction professional license, reentry careers, trade license registry, CDL sex offense conviction, certifications after incarceration"
+        title="Small Business and Self-Employment Guide for People on Sex Offender Registries | The SOLAR Project"
+        description="A practical, registry-aware guide to small business, freelancing, contracting, and self-employment for people with sex offense convictions, registry requirements, or both."
+        keywords="small business sex offender registry, self employment sex offender registry, start a business with felony conviction, entrepreneurship after incarceration, registrant self employment, reentry business ownership, freelancing with criminal record"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -99,13 +100,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Professional Licenses and Certifications for People on Sex Offender Registries
+            Small Business and Self-Employment Guide for People on Sex Offender Registries
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical guide to choosing credential paths, checking licensing
-            rules early, finding training, building proof, and using skills
-            toward employment or self-employment.
+            A practical guide to testing a simple business idea, getting first
+            customers, keeping records, managing supervision and registry limits,
+            and building toward stable self-employment.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -134,73 +135,66 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro
           title="Start here"
-          icon={<GraduationCap className="h-6 w-6" aria-hidden="true" />}
+          icon={<Briefcase className="h-6 w-6" aria-hidden="true" />}
         >
           <p>
-            A license or certification can be one of the strongest ways forward.
-            It can make your skills visible, help you compete when ordinary
-            hiring is difficult, support better pay, and sometimes open a path to
-            self-employment.
+            Self-employment is not easier than employment, but it can give you
+            more control. For some people on sex offender registries, a small
+            service business, freelance skill, trade, repair path, or local
+            customer base can become a route to income, stability, and dignity.
           </p>
 
           <p>
-            The key is to choose a path with a real shot. Some credentials have
-            licensing boards, background reviews, insurance rules, placement
-            sites, customer-contact issues, or worksite limits. Check those gates
-            early, then build proof while you train.
+            The goal is not to build a perfect company on day one. Start with one
+            useful service, one lawful customer, one clear price, and one record
+            of the work. Then repeat what works.
           </p>
 
           <p>
-            This guide is for people with sex offense convictions, registry
-            requirements, or both. It is not here to talk you out of getting
-            trained. It is here to help you choose carefully, ask better
-            questions, and move toward work that is lawful, stable, and
-            realistic.
+            Your business still has to fit your supervision, registry, internet,
+            travel, worksite, customer-contact, tax, licensing, and insurance
+            rules. Treat compliance as part of the business plan, not as the end
+            of the business idea.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="Build a credential plan"
-          subtitle="Start with the path, then check the gate, then build proof."
+          title="Start with one lawful, simple offer"
+          subtitle="A small business can begin with one service you can do safely and document clearly."
           icon={<ClipboardCheck className="h-6 w-6" aria-hidden="true" />}
           urgentActions={[
             <span>
-              Choose one field to explore first: trade work, CDL, IT support,
-              barber or cosmetology, food service, medical admin, bookkeeping,
-              tax preparation, repair, or another skill path.
+              Pick one service you can do with the tools, time, transportation,
+              internet access, and customer boundaries you actually have.
             </span>,
             <span>
-              Identify the credential needed for entry-level work: license,
-              certification, apprenticeship, endorsement, training card, or
-              degree.
+              Check supervision, registry, worksite, internet, travel, payment,
+              and customer-contact rules before advertising or accepting work.
             </span>,
             <span>
-              Find the licensing board, certifying body, apprenticeship sponsor,
-              training provider, or employer gatekeeper that controls the next
-              step.
+              Write one simple offer: what you do, who it helps, what it costs,
+              where you can do it, and what you will not do.
             </span>,
           ]}
           nextActions={[
             <span>
-              Ask whether sex offense convictions, registry requirements,
-              supervision rules, worksite limits, or background checks affect
-              eligibility.
+              Identify three possible first customers: a trusted person, small
+              business, church, nonprofit, landlord, shop owner, or repeat local
+              need.
             </span>,
             <span>
-              Compare at least two paths before paying out of pocket. An
-              apprenticeship, American Job Center, community college, or employer
-              training program may lower the cost.
+              Make one flyer, text message, paper handout, or short script to
+              explain the service.
             </span>,
             <span>
-              Start a proof packet now: certificates, attendance, evaluations,
-              references, compliance records, and written answers from boards or
-              programs.
+              Save proof of every job: date, customer, location, payment,
+              supplies, photos if appropriate, and any feedback.
             </span>,
           ]}
           reminder={
             <span>
-              A credential can be a bridge to stable work. Check the gate early,
-              then build the proof you need to walk through it.
+              A simple, lawful, well-documented first job is better than a
+              perfect business plan you never use.
             </span>
           }
         />
@@ -209,559 +203,505 @@ export default function ResourceGuideSandbox(): JSX.Element {
           columns={3}
           cards={[
             {
-              eyebrow: "Route 1",
-              title: "Certification",
-              icon: <FileText className="h-5 w-5" aria-hidden="true" />,
+              eyebrow: "Step 1",
+              title: "Choose a service",
+              icon: <Sparkles className="h-5 w-5" aria-hidden="true" />,
               tone: "success",
               description:
-                "Often faster than a license and useful for proving skills to employers, customers, or training programs.",
+                "Start with a problem people already pay to solve: cleaning, repair, yard work, admin help, food, resale, or practical support.",
             },
             {
-              eyebrow: "Route 2",
-              title: "Apprenticeship",
-              icon: <Hammer className="h-5 w-5" aria-hidden="true" />,
-              tone: "reentry",
-              description:
-                "Paid training tied to a trade or occupation. A strong option when available and compatible with your restrictions.",
-            },
-            {
-              eyebrow: "Route 3",
-              title: "State license",
+              eyebrow: "Step 2",
+              title: "Check the rules",
               icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />,
               tone: "legal",
               description:
-                "A formal permission to work in a regulated field. It can be powerful, but the board rules should be checked early.",
+                "Build around supervision, registry, internet, travel, customer-contact, licensing, tax, and insurance limits.",
             },
             {
-              eyebrow: "Route 4",
-              title: "Stackable path",
-              icon: <Route className="h-5 w-5" aria-hidden="true" />,
+              eyebrow: "Step 3",
+              title: "Get one customer",
+              icon: <Users className="h-5 w-5" aria-hidden="true" />,
               tone: "info",
               description:
-                "Start with a shorter credential, get work experience, then build toward a larger license or better role.",
+                "Test demand with a small job before spending heavily on tools, ads, websites, or courses.",
             },
             {
-              eyebrow: "Route 5",
-              title: "Self-employment path",
-              icon: <Wrench className="h-5 w-5" aria-hidden="true" />,
+              eyebrow: "Step 4",
+              title: "Document everything",
+              icon: <ReceiptText className="h-5 w-5" aria-hidden="true" />,
+              tone: "reentry",
+              description:
+                "Keep records for taxes, supervision, customer trust, pricing, and future growth.",
+            },
+            {
+              eyebrow: "Step 5",
+              title: "Reinvest slowly",
+              icon: <PiggyBank className="h-5 w-5" aria-hidden="true" />,
               tone: "success",
               description:
-                "Some credentials can support trade work, repair, food, grooming, bookkeeping, tax, cleaning, or specialty services.",
+                "Buy better tools, insurance, training, or marketing only after real customer interest appears.",
             },
             {
-              eyebrow: "Route 6",
-              title: "Degree or diploma",
-              icon: <BookOpen className="h-5 w-5" aria-hidden="true" />,
+              eyebrow: "Step 6",
+              title: "Formalize when ready",
+              icon: <Building2 className="h-5 w-5" aria-hidden="true" />,
               tone: "neutral",
               description:
-                "Education may help, but check whether the final job, internship, clinical site, or license has a separate background review.",
+                "As the idea proves itself, look at EINs, business registration, insurance, licenses, contracts, and tax planning.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="credential-types"
+          id="fit"
           number="1"
-          title="Know what kind of credential you are chasing"
-          subtitle="A license, certification, apprenticeship, and degree do different jobs."
+          title="Choose a business that fits your reality"
+          subtitle="The best first business is useful, lawful, repeatable, and easy to document."
           icon={<Search className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Before you choose a program, name the final goal. Are you trying to
-              get hired, enter an apprenticeship, qualify for a license, start a
-              small business, or build proof of skill? Each path has a different
-              gate.
+              Start with your actual life, not someone else’s idea of success.
+              A good business idea should fit your skills, restrictions,
+              transportation, internet access, tools, schedule, health, family
+              responsibilities, and comfort with customers.
             </p>
 
             <p>
-              A <strong>license</strong> is usually permission from a state or
-              government board to perform regulated work. A{" "}
-              <strong>certification</strong> usually proves training or skill
-              through a company, school, industry group, or testing provider. An{" "}
-              <strong>apprenticeship</strong> combines paid work and training. A{" "}
-              <strong>degree or diploma</strong> shows education, but it may not
-              answer whether the final job or license will be available.
-            </p>
-
-            <p>
-              The strongest plan usually works backward from the job you want:
-              final job → required credential → training provider → background
-              review → cost and funding → application packet.
+              Ask three questions: What can I do well? What do people nearby
+              already pay for? What can I do without creating supervision,
+              registry, internet, travel, or customer-contact problems?
             </p>
           </GuideProse>
+
+          <GuideChecklist
+            id="business-fit-checklist"
+            title="Reality check before choosing an idea"
+            columns={2}
+            items={[
+              {
+                id: "skills",
+                label:
+                  "List five skills you already have: cleaning, repair, writing, cooking, hauling, organizing, bookkeeping, yard work, tech help, or customer service.",
+              },
+              {
+                id: "limits",
+                label:
+                  "List limits you must build around: curfew, internet rules, travel radius, transportation, restricted zones, customer type, or worksite rules.",
+              },
+              {
+                id: "tools",
+                label:
+                  "List tools and supplies you already own or can borrow lawfully.",
+              },
+              {
+                id: "customers",
+                label:
+                  "Name three groups who might pay: small businesses, landlords, neighbors, churches, nonprofits, contractors, or repeat local customers.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Decide how you will document each job: receipt, invoice, job log, photo, signed note, text confirmation, or payment record.",
+              },
+              {
+                id: "first-offer",
+                label:
+                  "Write one plain sentence: “I help [type of customer] with [service] for [price or estimate process].”",
+              },
+            ]}
+          />
 
           <GuideCallout
             tone="success"
             icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
-            title="Look for stackable wins"
+            title="Start small enough to learn"
           >
             <p>
-              A shorter credential can sometimes lead to a first job, a better
-              reference, and a stronger application later. Examples include
-              OSHA training before a trade helper role, food-handler training
-              before kitchen work, CompTIA A+ before help desk, or forklift
-              training before warehouse work.
+              Your first offer does not have to become your final business. A
+              small job teaches pricing, timing, supplies, customer boundaries,
+              and whether people will pay for the service.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
 <GuideSectionHeader
-          id="check-the-gate"
+          id="rules"
           number="2"
-          title="Check the gate early"
-          subtitle="Do this as a planning step, not as a reason to stop."
+          title="Build the business around your rules"
+          subtitle="Compliance is part of the business plan."
           icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              People with criminal records can face licensing and employment
-              rules called collateral consequences. The{" "}
-              <a
-                href={sourceLinks.nicccHome}
-                target="_blank"
-                rel="noreferrer"
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                National Inventory of Collateral Consequences of Conviction
-              </a>{" "}
-              describes collateral consequences as legal and regulatory
-              restrictions that can affect employment, occupational licensing,
-              housing, education, and other opportunities. Use it as one
-              research tool, then confirm with the board or agency that controls
-              your field.
+              Self-employment can give you control, but it does not remove legal
+              or supervision responsibilities. Before you advertise, accept
+              customers, use platforms, enter homes, travel, hire help, or take
+              online payments, check the rules that apply to you.
             </p>
 
             <p>
-              Checking early helps you avoid expensive detours. It can also show
-              you what proof the board, employer, program, or sponsor wants to
-              see.
+              The answer can change depending on the exact service. Commercial
+              cleaning may be different from private-home cleaning. Shop-based
+              repair may be different from mobile repair. Local pickup may be
+              different from delivery to private homes.
             </p>
           </GuideProse>
 
           <VerifyBeforeActing
-            title="Ask before you invest heavily"
+            title="Verify the business setup"
             whoToAsk={
               <span>
-                The state licensing board, certifying organization, training
-                provider, apprenticeship sponsor, American Job Center, supervising
-                officer, registering agency, employer placement site, insurance
-                or bonding contact, and legal aid or an attorney when available.
+                Your supervising officer if you are on supervision; the
+                registering agency for registry-specific questions; an attorney
+                or legal aid office for legal-risk questions; and a licensing,
+                tax, insurance, or small-business advisor when the issue is
+                business-specific.
               </span>
             }
             whatToAsk={
               <span>
-                “For someone with my conviction history and registry
-                requirements, can this credential lead to the license, placement,
-                apprenticeship, job duties, worksite, driving, internet use, or
-                self-employment path I am planning?”
+                “Can I operate this exact service, in these locations, using
+                these tools, payment methods, advertisements, devices, websites,
+                customer contacts, and travel patterns?”
               </span>
             }
             whatToSave={
               <span>
-                Board rules, emails, screenshots, handbooks, application
-                deadlines, names, dates, written answers, appeal information,
-                and copies of any forms you submit.
+                Written approvals, call notes, names, dates, restrictions,
+                business plan summary, invoices, receipts, customer logs, and
+                permission to use any internet, device, platform, or payment app.
               </span>
             }
           />
 
-          <GuideChecklist
-            id="gate-check-checklist"
-            title="Gate-check questions"
-            columns={2}
-            items={[
-              {
-                id: "board",
-                label:
-                  "Is there a state board, licensing agency, or certifying body?",
-              },
-              {
-                id: "conviction",
-                label:
-                  "Does the rule mention criminal convictions, moral character, good cause, rehabilitation, or public safety?",
-              },
-              {
-                id: "registry",
-                label:
-                  "Does public registry status affect the license, placement, worksite, or employer policy?",
-              },
-              {
-                id: "placement",
-                label:
-                  "Will there be an internship, clinical site, ride-along, apprenticeship sponsor, or supervised placement?",
-              },
-              {
-                id: "duties",
-                label:
-                  "Will the work involve minors, schools, homes, healthcare facilities, vulnerable people, driving, travel, or internet access?",
-              },
-              {
-                id: "appeal",
-                label:
-                  "If denied, is there appeal, waiver, predetermination, reconsideration, or a waiting period?",
-              },
-            ]}
-          />
+          <GuideCallout
+            tone="legal"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Check before using online tools"
+          >
+            <p>
+              Free learning and online marketing can be valuable, but do not risk
+              a violation to watch tutorials, use social media, join forums, run
+              ads, or use payment apps. If you have internet, social media,
+              device, or platform restrictions, ask what is allowed and save the
+              answer.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="pathways"
+          id="idea-lanes"
           number="3"
-          title="Credential paths worth exploring"
-          subtitle="These paths can lead to stable work, better pay, or self-employment when chosen carefully."
-          icon={<Route className="h-5 w-5" aria-hidden="true" />}
+          title="Business idea lanes"
+          subtitle="These are idea lanes, not limits. Use them to expand your thinking."
+          icon={<Sparkles className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The paths below are not one-size-fits-all. They are starting points
-              that many people explore because they can be skill-based,
-              practical, stackable, or connected to real work. Use the cards to
-              compare the path, then check your state and situation.
+              The examples below are not the only businesses you can start. They
+              are work patterns. Use them to think about what fits your skills,
+              restrictions, transportation, tools, internet access, and customer
+              boundaries.
             </p>
           </GuideProse>
 
           <div className="grid gap-4 md:grid-cols-2">
             <PathwayCard
-              title="Trades and apprenticeships"
-              subtitle="Electrical helper, HVAC, plumbing, welding, carpentry, maintenance, facilities, repair."
+              title="Outdoor and property services"
+              subtitle="Visible work, repeat customers, local referrals."
               icon={<Hammer className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  Trade paths can be skill-based and stackable. Apprenticeships
-                  may let you earn while learning, and some trades can support
-                  later self-employment.
+                  Outdoor services can start small, often show clear before/after
+                  results, and may be marketed locally without complex online
+                  systems.
                 </span>
               }
               steps={[
                 <span>
-                  Search{" "}
-                  <a
-                    href={sourceLinks.apprenticeshipFinder}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Apprenticeship.gov's job finder
-                  </a>{" "}
-                  and ask local American Job Centers about trade training.
+                  Examples: mowing, leaf cleanup, snow removal, pressure
+                  washing, driveway sealing, yard debris hauling, fence repair,
+                  commercial groundskeeping.
                 </span>,
                 <span>
-                  Ask whether the sponsor, union, contractor, or licensing board
-                  has rules about convictions or registry status.
+                  Check travel radius, restricted zones, work near schools or
+                  parks, private-property access, water/runoff rules, insurance,
+                  and customer boundaries.
                 </span>,
                 <span>
-                  Check jobsite issues: schools, homes, youth facilities, travel,
-                  tools, driving, and insurance.
+                  Start with one small job, document the before/after result, and
+                  ask whether the customer wants a repeat schedule.
                 </span>,
               ]}
               bestFit={
                 <span>
-                  People who like hands-on work, want a visible skill, and can
-                  build proof through training, work samples, and supervisor
-                  references.
+                  People who can do physical work, keep appointments, and build a
+                  local reputation through visible results.
                 </span>
               }
             />
 
             <PathwayCard
-              title="CDL and transportation"
-              subtitle="Class A or B CDL, local delivery, warehouse-to-driver, yard work, non-passenger routes."
-              icon={<Truck className="h-5 w-5" aria-hidden="true" />}
+              title="Cleaning, turnover, and facilities support"
+              subtitle="Repeat contracts, checklists, business-to-business work."
+              icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  CDL training can create a clear credential and measurable
-                  skill. Local, warehouse, or non-passenger routes may be more
-                  realistic for some people than school bus, passenger, or HazMat
-                  paths.
+                  Cleaning and facilities work can become repeat income. Business
+                  clients may be easier to structure than private-home work for
+                  some people.
                 </span>
               }
               steps={[
                 <span>
-                  Review{" "}
-                  <a
-                    href={sourceLinks.fmcsaEldt}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    FMCSA Entry-Level Driver Training rules
-                  </a>{" "}
-                  and use the{" "}
-                  <a
-                    href={sourceLinks.fmcsaTpr}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    Training Provider Registry
-                  </a>{" "}
-                  to check providers.
+                  Examples: office cleaning, commercial cleaning, move-out
+                  cleaning, post-construction cleanup, trash-out services,
+                  janitorial support, restroom restock, laundry pickup if allowed.
                 </span>,
                 <span>
-                  Be careful with passenger, school bus, HazMat, interstate
-                  travel, overnight routes, and home delivery.
+                  Check private homes, keys, access codes, unsupervised entry,
+                  schools, child care, youth programs, insurance, and bonding.
                 </span>,
                 <span>
-                  Ask about employer insurance rules, supervision travel rules,
-                  and whether any endorsement requires a separate background
-                  review.
+                  Use a checklist, take supply notes, track time, and build
+                  repeat service agreements when possible.
                 </span>,
               ]}
               bestFit={
                 <span>
-                  People with driving eligibility, steady reporting habits, and a
-                  plan for routes that fit supervision and registry rules.
+                  People who are detail-oriented, reliable, and able to follow
+                  repeatable systems.
                 </span>
               }
             />
 
             <PathwayCard
-              title="IT support and device repair"
-              subtitle="CompTIA A+, help desk, computer repair, networking basics, inventory, technical support."
+              title="Repair, assembly, and practical help"
+              subtitle="Skill-based services with visible results."
+              icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Practical repair and assembly work lets customers see the
+                  value. It can also grow toward trade credentials or
+                  self-employment.
+                </span>
+              }
+              steps={[
+                <span>
+                  Examples: furniture assembly, bike repair, appliance repair,
+                  small engine repair, tool sharpening, screen repair, shop-based
+                  repair, commercial maintenance helper.
+                </span>,
+                <span>
+                  Check contractor licensing, private-home entry, tool rules,
+                  insurance, customer boundaries, and which jobs require a
+                  licensed professional.
+                </span>,
+                <span>
+                  Keep photos, parts receipts, repair notes, and a clear list of
+                  jobs you will not take without the right license.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who like solving practical problems and can explain
+                  what they fixed in plain language.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Vehicle, equipment, and surface services"
+              subtitle="Before/after work, fleet accounts, visible proof."
+              icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Surface and equipment services can be documented with photos
+                  and may grow through repeat commercial accounts.
+                </span>
+              }
+              steps={[
+                <span>
+                  Examples: auto detailing, fleet washing, equipment cleaning,
+                  dumpster pad cleaning, graffiti removal, parking lot cleanup,
+                  pressure washing, small equipment hauling.
+                </span>,
+                <span>
+                  Check local water and runoff rules, business permits, driving,
+                  customer-site restrictions, advertising rules, and where the
+                  work happens.
+                </span>,
+                <span>
+                  Build a simple photo portfolio with permission and track
+                  products, time, supplies, and repeat-service intervals.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can produce visible results and want a service that
+                  can be sold to individuals or businesses.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Food, craft, and local product sales"
+              subtitle="Small batches, local markets, repeat buyers."
+              icon={<Sparkles className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Product-based work can start small and grow through repeat
+                  buyers, local markets, and word of mouth.
+                </span>
+              }
+              steps={[
+                <span>
+                  Examples: cottage-food baking where lawful, jams, sauces,
+                  spice blends, crafts, woodworking products, repair/resale
+                  goods, market table items.
+                </span>,
+                <span>
+                  Check cottage-food rules, permits, labels, food safety, youth
+                  or school events, delivery, sales tax, product liability, and
+                  online marketplace access.
+                </span>,
+                <span>
+                  Test one product, track ingredient or supply cost, save a sales
+                  log, and ask customers what they would buy again.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who like making things, tracking costs, and improving a
+                  product through customer feedback.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Administrative, digital, and back-office services"
+              subtitle="Low physical startup cost if internet use is allowed."
               icon={<Laptop className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  Many IT certifications are not state licenses, and skills can
-                  be shown through certificates, projects, repair work, and
-                  practice labs.
+                  Back-office services can support local businesses and may pair
+                  well with bookkeeping, tax, tech, or office certifications.
                 </span>
               }
               steps={[
                 <span>
-                  Explore entry-level certifications such as{" "}
-                  <a
-                    href={sourceLinks.comptiaAPlus}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    CompTIA A+
-                  </a>{" "}
-                  and ask training providers about job placement.
+                  Examples: bookkeeping, tax prep if eligible, document
+                  formatting, data entry, resume formatting, virtual assistant
+                  work, basic website updates, tech support, device setup.
                 </span>,
                 <span>
-                  Check internet, device, monitoring, data-access, remote-work,
-                  and customer-contact rules before choosing a role.
+                  Check internet and device restrictions, customer data access,
+                  platform rules, background checks, financial information,
+                  remote-work policies, and contact with minors.
                 </span>,
                 <span>
-                  Build proof with labs, repair notes, volunteer tech support,
-                  certificates, and references.
+                  Build sample documents with private information removed and
+                  keep a clear confidentiality practice.
                 </span>,
               ]}
               bestFit={
                 <span>
-                  People who can use computers lawfully, learn independently,
-                  document work, and handle customer or internal support
-                  carefully.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Barber, cosmetology, grooming, and personal services"
-              subtitle="Barbering, cosmetology, nails, grooming, shop assistant, booth rental, future self-employment."
-              icon={<Users className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  These fields can combine practical skill, customer service, and
-                  business ownership potential. A license may help someone work
-                  in a shop or eventually operate independently.
-                </span>
-              }
-              steps={[
-                <span>
-                  Check your state board rules before enrolling in school.
-                </span>,
-                <span>
-                  Ask about background review, student clinic rules, minors,
-                  mobile services, booth rental, and shop ownership.
-                </span>,
-                <span>
-                  Build a portfolio, attendance record, instructor reference, and
-                  customer-service proof.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People who enjoy hands-on service work, can manage boundaries,
-                  and want a skill that may support future self-employment.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Food service and culinary credentials"
-              subtitle="Food handler, ServSafe, prep cook, bakery, catering, food truck, kitchen supervision."
-              icon={<Utensils className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  Food credentials can be faster and practical. Kitchen and
-                  back-of-house roles can help build recent references and may
-                  lead to catering, food trucks, or specialty food work.
-                </span>
-              }
-              steps={[
-                <span>
-                  Check local food-handler requirements and consider{" "}
-                  <a
-                    href={sourceLinks.servSafe}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    ServSafe
-                  </a>{" "}
-                  if it fits your local market.
-                </span>,
-                <span>
-                  Verify school, youth-event, delivery, catering, and business
-                  permit issues.
-                </span>,
-                <span>
-                  Ask whether a community college, workforce office, or employer
-                  offers low-cost training.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People who want a practical first credential, fast entry into
-                  work, and possible future business options.
-                </span>
-              }
-            />
-
-            <PathwayCard
-              title="Office, bookkeeping, tax, and notary-adjacent work"
-              subtitle="Bookkeeping, QuickBooks, payroll, tax preparation, admin support, notary where allowed."
-              icon={<FileText className="h-5 w-5" aria-hidden="true" />}
-              whyItWorks={
-                <span>
-                  Office credentials can support employment, freelance work, or a
-                  small service business. Some paths are certification-based
-                  rather than state-license-heavy.
-                </span>
-              }
-              steps={[
-                <span>
-                  For tax preparation, review{" "}
-                  <a
-                    href={sourceLinks.irsPtin}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    IRS PTIN requirements
-                  </a>{" "}
-                  and any state tax-preparer rules.
-                </span>,
-                <span>
-                  Check state notary rules, financial data access, employer
-                  background checks, and privacy duties.
-                </span>,
-                <span>
-                  Build proof with coursework, practice files, volunteer admin
-                  work, bookkeeping samples, and references.
-                </span>,
-              ]}
-              bestFit={
-                <span>
-                  People who are organized, careful with records, and interested
-                  in office work or low-overhead self-employment.
+                  People who are organized, careful with information, and allowed
+                  to use the needed technology.
                 </span>
               }
             />
           </div>
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="more-pathways"
+        <GuideSectionHeader
+          id="more-idea-lanes"
           number="4"
-          title="More credential paths to consider"
-          subtitle="Some paths need extra checking but can still be worth exploring."
-          icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
+          title="More idea lanes"
+          subtitle="Resale, credential-backed work, and hybrid paths can also be realistic."
+          icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <div className="grid gap-4 md:grid-cols-2">
             <PathwayCard
-              title="Healthcare support and medical admin"
-              subtitle="Medical billing, coding, records, sterile processing, phlebotomy, non-patient-facing support."
-              icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
+              title="Resale, refurbishing, and micro-commerce"
+              subtitle="Buy, repair, document, resell."
+              icon={<ReceiptText className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  Healthcare is a large field with both patient-facing and
-                  non-patient-facing roles. Medical admin, billing, coding, and
-                  records may be more realistic for some people than direct care.
+                  Resale can start with small inventory and teach pricing,
+                  records, customer communication, and profit tracking.
                 </span>
               }
               steps={[
                 <span>
-                  Before enrolling, ask about clinical placements, facility
-                  policies, vulnerable-person access, registry rules, and state
-                  credential requirements.
+                  Examples: flea market resale, tool resale, furniture flipping,
+                  appliance refurbishing, thrift-to-resale, consignment support,
+                  used book resale, repair-and-resell.
                 </span>,
                 <span>
-                  If considering phlebotomy, review certifying options such as{" "}
-                  <a
-                    href={sourceLinks.nhaPhlebotomy}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                  >
-                    NHA Certified Phlebotomy Technician
-                  </a>{" "}
-                  and ask about placement barriers.
+                  Check online marketplace rules, meeting locations,
+                  transportation, stolen-goods risk, receipts, proof of
+                  ownership, sales tax, and platform restrictions.
                 </span>,
                 <span>
-                  Consider medical billing, coding, scheduling, records, or
-                  supply roles if direct patient care is not realistic.
+                  Start with one low-cost item and track purchase price, repair
+                  cost, listing price, sale price, and profit.
                 </span>,
               ]}
               bestFit={
                 <span>
-                  People who want stable sector work and can carefully check
-                  facility, placement, and background-review rules before paying.
+                  People who like finding value, repairing or cleaning items, and
+                  keeping careful records.
                 </span>
               }
             />
 
             <PathwayCard
-              title="Home repair, inspection, and service businesses"
-              subtitle="Home inspection, appliance repair, cleaning, landscaping, handyman-style services where lawful."
-              icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+              title="Credential-backed or regulated services"
+              subtitle="A credential can raise trust and support better rates."
+              icon={<FileText className="h-5 w-5" aria-hidden="true" />}
               whyItWorks={
                 <span>
-                  Repair and service skills can support wage work or business
-                  ownership. A credential can help customers and insurers see
-                  skill and professionalism.
+                  A license or certification can help customers see skill and may
+                  support higher-value self-employment over time.
                 </span>
               }
               steps={[
                 <span>
-                  Check private-home access, local business licensing, insurance,
-                  bonding, advertising, transportation, and supervision rules.
+                  Examples: barbering, cosmetology, HVAC, electrical helper path,
+                  plumbing helper path, tax prep, bookkeeping certification, home
+                  inspection, food safety, cleaning certification.
                 </span>,
                 <span>
-                  Consider commercial-only work, subcontracting, shop-based
-                  repair, landscaping, or facilities roles if private homes are a
-                  problem.
+                  Use SOLAR’s{" "}
+                  <Link
+                    to={sourceLinks.professionalLicensing}
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    Professional Licenses and Certifications guide
+                  </Link>{" "}
+                  to check boards, exams, worksite rules, background review, and
+                  insurance.
                 </span>,
                 <span>
-                  Save before-and-after photos, customer references, training
-                  certificates, and written scope-of-work records.
+                  Ask whether the credential supports employment, contracting,
+                  booth rental, freelance work, or lawful business ownership.
                 </span>,
               ]}
               bestFit={
                 <span>
-                  People with practical skills who want a path that may connect
-                  to self-employment after careful rule-checking.
+                  People who want a longer-term skill path and are willing to
+                  check licensing rules before investing heavily.
                 </span>
               }
             />
@@ -769,250 +709,570 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideCallout
             tone="reentry"
-            icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
-            title="Credentials can support self-employment"
+            icon={<Sparkles className="h-5 w-5" aria-hidden="true" />}
+            title="Mix and match the lanes"
           >
             <p>
-              Some people use licenses or certifications to move into small
-              business ownership: repair, cleaning, bookkeeping, tax prep, food
-              service, grooming, landscaping, inspection, or trade work. That can
-              be a real path. It still requires planning around internet use,
-              advertising, home visits, customer contact, insurance, taxes,
-              permits, and any supervision or registry rules.
-            </p>
-
-            <p>
-              SOLAR’s business ownership guide can go deeper on business setup,
-              taxes, pricing, customer boundaries, and risk management once that
-              path looks realistic.
+              A business idea can combine lanes. A lawn service may add pressure
+              washing. A cleaning business may add restroom restock. A repair
+              service may add resale. A food product may start at local markets
+              and later add catering support. Think in patterns, not boxes.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="funding"
+<GuideSectionHeader
+          id="learn-first"
           number="5"
-          title="Find lower-cost training and support"
-          subtitle="Do not assume you have to pay full price upfront."
-          icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
+          title="Learn the skill without paying first"
+          subtitle="Free and low-cost learning can help you test an idea before buying a course or equipment."
+          icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A credential does not have to start with an expensive private
-              school. American Job Centers, community colleges, apprenticeships,
-              employers, unions, adult education programs, and reentry
-              organizations may help with training, tools, exam fees,
-              transportation, books, or job placement.
+              Formal training can help, especially when a license, certificate,
+              insurance policy, or employer requires it. But many small-business
+              skills can be explored for free or low cost before you pay for a
+              program.
             </p>
 
             <p>
-              Ask who pays, whether the training is approved, whether credits or
-              hours transfer, whether job placement is realistic, and whether
-              there is a paid apprenticeship or employer-sponsored route.
+              If your internet rules allow it,{" "}
+              <a
+                href={sourceLinks.youtube}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                YouTube
+              </a>{" "}
+              tutorials, niche forums, library resources, supplier websites,
+              product manuals, trade groups, and communities like{" "}
+              <a
+                href={sourceLinks.redditSmallBusiness}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                r/smallbusiness
+              </a>
+              ,{" "}
+              <a
+                href={sourceLinks.redditEntrepreneur}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                r/Entrepreneur
+              </a>
+              , and niche communities like{" "}
+              <a
+                href={sourceLinks.redditAutoDetailing}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                r/AutoDetailing
+              </a>{" "}
+              can help you compare tools, avoid beginner mistakes, and decide
+              whether an idea is worth testing.
             </p>
           </GuideProse>
 
-          <ResourceLinkGrid
-            title="Training and funding starting points"
-            resources={[
+          <GuideCallout
+            tone="privacy"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Use online learning only if allowed"
+          >
+            <p>
+              If you have internet, device, social media, app, or platform
+              restrictions, check what is allowed before using video platforms,
+              forums, social media groups, online marketplaces, or paid course
+              sites. Printed manuals, library books, community workshops, and
+              trusted helpers can be safer alternatives.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="learn-practice-prove"
+            title="Learn, practice, prove"
+            columns={1}
+            items={[
               {
-                label: "American Job Center Finder",
-                href: sourceLinks.careerOneStopAjc,
-                badge: "Official",
-                description:
-                  "Find local workforce offices that may help with training referrals, WIOA-funded programs, job search, and support services.",
+                id: "learn",
+                label:
+                  "Learn: watch, read, compare, ask questions, and study safety or legal basics before touching a customer job.",
               },
               {
-                label: "CareerOneStop Justice-Impacted Job Seekers",
-                href: sourceLinks.careerOneStopJustice,
-                badge: "Official",
-                description:
-                  "Career and training tools for people with criminal records.",
+                id: "practice",
+                label:
+                  "Practice: test the skill on your own property, a donated item, a sample project, or a trusted person’s small job with permission.",
               },
               {
-                label: "Apprenticeship.gov",
-                href: sourceLinks.apprenticeshipHome,
-                badge: "Official",
-                description:
-                  "Learn about Registered Apprenticeships and search paid earn-while-you-learn opportunities.",
+                id: "prove",
+                label:
+                  "Prove: save before/after photos where appropriate, receipts, time logs, supply lists, practice notes, and feedback.",
+              },
+            ]}
+          />
+
+          <SoftDivider label="Examples" />
+
+          <GuideProse>
+            <p>
+              <strong>Outdoor and surface work:</strong> learn mowing patterns,
+              edging, pressure-washer safety, runoff rules, tool maintenance, and
+              pricing. Practice on your own yard, a family driveway, or a small
+              cleanup project. Prove it with photos, time spent, supplies used,
+              and customer feedback.
+            </p>
+
+            <p>
+              <strong>Cleaning and facilities:</strong> learn commercial cleaning
+              checklists, safe chemical handling, restroom restock systems,
+              move-out cleaning standards, and pricing per room, square foot, or
+              job. Practice a room-by-room checklist. Prove it with a completed
+              checklist, supply list, time log, and written feedback.
+            </p>
+
+            <p>
+              <strong>Repair and assembly:</strong> learn manufacturer manuals,
+              furniture assembly videos, basic tool safety, bike repair, small
+              appliance troubleshooting, and when a job requires a licensed
+              professional. Practice on your own items or donated goods. Prove it
+              with parts receipts, photos, and short repair notes.
+            </p>
+
+            <p>
+              <strong>Admin and digital work:</strong> learn spreadsheets,
+              invoice templates, bookkeeping basics, document formatting,
+              privacy, and basic website maintenance. Practice with sample files
+              that contain no private information. Prove it with sanitized
+              examples, time logs, and client feedback.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="first-customer"
+          number="6"
+          title="Get your first customer"
+          subtitle="Do not wait for a perfect website, logo, or business plan."
+          icon={<Users className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Your first customer should be simple, safe, and documentable. The
+              goal is to prove that someone will pay for the service and that you
+              can deliver it within your rules.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="first-customer-checklist"
+            title="First-customer plan"
+            columns={2}
+            items={[
+              {
+                id: "offer",
+                label:
+                  "Write one clear offer: service, customer type, price or estimate method, location, and limits.",
               },
               {
-                label: "Apprenticeship.gov — Barriers to Employment",
-                href: sourceLinks.apprenticeshipBarriers,
-                badge: "Official",
-                description:
-                  "Apprenticeship resources for career seekers with barriers to employment, including justice-involved people.",
+                id: "list",
+                label:
+                  "Make a list of 10 possible customers or referral sources.",
               },
               {
-                label: "DOL Reentry Employment Opportunities",
-                href: sourceLinks.dolReentry,
-                badge: "Official",
-                description:
-                  "Federal reentry employment and workforce resources.",
+                id: "flyer",
+                label:
+                  "Create one flyer, text message, or short script that explains the offer.",
               },
               {
-                label: "NICCC Collateral Consequences Inventory",
-                href: sourceLinks.nicccConsequences,
-                badge: "Research tool",
-                description:
-                  "Search legal and regulatory restrictions by jurisdiction and category, then verify with the controlling agency.",
+                id: "deposit",
+                label:
+                  "For supply-heavy jobs, consider a reasonable deposit or customer-paid materials.",
+              },
+              {
+                id: "job-log",
+                label:
+                  "Log the date, location, service, price, payment, time spent, supplies, and customer feedback.",
+              },
+              {
+                id: "referral",
+                label:
+                  "After a good job, ask for one referral, review, repeat booking, or permission to use a before/after photo.",
+              },
+            ]}
+          />
+
+          <div className="space-y-4">
+            <ScriptBox
+              title="Simple first-customer script"
+              tone="success"
+              context="Use with a trusted person, small business, landlord, nonprofit, or referral source."
+              script={`Hi, I’m starting a small [service] business and taking on a few simple jobs to build references.
+
+I can help with [specific service] for [price or estimate method]. I’m keeping the work small, scheduled, and documented.
+
+Would you or someone you know be interested in a first job or referral?`}
+            />
+
+            <ScriptBox
+              title="Supervision approval script"
+              tone="legal"
+              context="Use before advertising, accepting jobs, using platforms, or taking payments if you are on supervision."
+              script={`I am considering a small self-employment service doing [service]. The work would involve [locations], [hours], [tools], [transportation], [payment method], and [customer contact].
+
+I want to make sure it stays fully compliant with my conditions. Can you tell me what is allowed, what I should avoid, and whether I can get that in writing?`}
+            />
+
+            <ScriptBox
+              title="Referral or review request"
+              tone="neutral"
+              context="Use after a completed job if the customer is satisfied."
+              script={`Thank you for trusting me with this job. I’m building my small business carefully and would be grateful for a referral or short review.
+
+If you know one person or business that could use [service], would you be willing to pass along my name?`}
+            />
+          </div>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="money"
+          number="7"
+          title="Money, funding, and avoiding traps"
+          subtitle="Start lean, prove demand, and avoid debt that puts pressure on your stability."
+          icon={<PiggyBank className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Many small businesses fail because they buy too much before
+              proving demand. Start with the smallest version that can be done
+              safely and well. Rent tools, borrow lawfully, buy used, require
+              customer-paid materials, or start with services that use supplies
+              you already have.
+            </p>
+
+            <p>
+              Official resources like the{" "}
+              <a
+                href={sourceLinks.sbaLearning}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                SBA Learning Platform
+              </a>
+              ,{" "}
+              <a
+                href={sourceLinks.score}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                SCORE
+              </a>
+              , and your local{" "}
+              <a
+                href={sourceLinks.sbdc}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Small Business Development Center
+              </a>{" "}
+              can help you think through pricing, planning, and growth before
+              you borrow money.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="funding-options"
+            title="Lower-risk funding ideas"
+            columns={2}
+            items={[
+              {
+                id: "bootstrap",
+                label:
+                  "Bootstrap: start with tools and supplies you already have.",
+              },
+              {
+                id: "deposit",
+                label:
+                  "Use deposits or customer-paid materials for jobs that require supplies.",
+              },
+              {
+                id: "anchor",
+                label:
+                  "Find one repeat customer before buying more equipment.",
+              },
+              {
+                id: "rent",
+                label:
+                  "Rent, borrow lawfully, or buy used tools before buying new.",
+              },
+              {
+                id: "micro",
+                label:
+                  "Research SBA microloans only after you understand repayment, demand, and risk.",
+              },
+              {
+                id: "reinvest",
+                label:
+                  "Reinvest from completed jobs instead of borrowing for an untested idea.",
               },
             ]}
           />
 
           <GuideCallout
-            tone="success"
-            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
-            title="Ask for the practical answer"
+            tone="warning"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Avoid fast-cash traps"
           >
             <p>
-              “Can I enroll?” is not enough. Ask: “Can people with my background
-              complete this program, sit for the exam, get placed, receive the
-              license or certificate, and get hired or self-employed in this
-              field?”
+              Be careful with expensive loans, “guaranteed approval” offers,
+              equipment financing you do not understand, fake grant promises,
+              and anyone charging to get an EIN. The{" "}
+              <a
+                href={sourceLinks.irsEin}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-amber-400 underline-offset-2 hover:text-amber-950"
+              >
+                IRS says you can get an EIN directly from the IRS for free
+              </a>
+              .
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="proof-packet"
-          number="6"
-          title="Build your credential proof packet"
-          subtitle="A good packet helps a board, employer, sponsor, or program see current readiness."
+<GuideSectionHeader
+          id="basics"
+          number="8"
+          title="Set up the basics"
+          subtitle="Simple structure and clean records protect you as the business grows."
           icon={<FileText className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Do not wait until the application deadline to gather proof. Build
-              the packet while you train. The goal is to show the whole picture:
-              skill, reliability, accountability, stability, and current
-              readiness.
+              You do not need to formalize everything before your first small
+              test job. But as soon as money starts moving, records matter. Good
+              records help with taxes, supervision, pricing, customer trust, and
+              future business decisions.
             </p>
 
             <p>
-              You do not need to hand every document to every person. Keep a
-              complete packet for yourself, then share only what is required,
-              strategic, and safe.
+              The{" "}
+              <a
+                href={sourceLinks.irsSelfEmployed}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                IRS Self-Employed Individuals Tax Center
+              </a>{" "}
+              and{" "}
+              <a
+                href={sourceLinks.irsSmallBusiness}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                IRS Small Business and Self-Employed Tax Center
+              </a>{" "}
+              are useful starting points for understanding tax basics.
             </p>
           </GuideProse>
 
-          <DocumentPacket
-            title="Credential proof packet"
-            intro={
-              <span>
-                Keep copies in a paper folder and a secure digital folder if
-                allowed.
-              </span>
-            }
-            categories={[
+          <GuideChecklist
+            id="business-basics"
+            title="Basic setup checklist"
+            columns={2}
+            items={[
               {
-                title: "Training proof",
-                items: [
-                  "Certificates, completion letters, attendance records, grades, transcripts, and exam results.",
-                  "Instructor evaluations, apprenticeship reviews, work samples, project photos, or portfolios.",
-                  "OSHA, food-handler, forklift, CompTIA, CDL training, or other credential records.",
-                ],
+                id: "name",
+                label:
+                  "Choose a simple business name, or start under your own name if that is simpler and allowed.",
               },
               {
-                title: "Application proof",
-                items: [
-                  "Licensing board emails, printed rules, screenshots, forms, deadlines, fees, and written answers.",
-                  "Personal statement, rehabilitation evidence, compliance proof, and letters of support if appropriate.",
-                  "Employment history, volunteer records, supervisor references, and proof of stable housing or community support.",
-                ],
+                id: "ein",
+                label:
+                  "If you need an EIN, use the official IRS EIN page instead of a paid third-party site.",
               },
               {
-                title: "Backup and appeal records",
-                items: [
-                  "Denial letters, delay notices, missing-document requests, appeal deadlines, and reconsideration instructions.",
-                  "Notes from calls with board staff, training providers, workforce offices, attorneys, or legal aid.",
-                  "Alternative credential paths if the first route takes longer than expected.",
-                ],
+                id: "money",
+                label:
+                  "Separate business money from personal money as early as you can.",
+              },
+              {
+                id: "receipts",
+                label:
+                  "Save receipts, invoices, mileage, supplies, customer payments, and refund records.",
+              },
+              {
+                id: "permits",
+                label:
+                  "Check local business registration, sales tax, food permits, contractor rules, or licensing requirements.",
+              },
+              {
+                id: "taxes",
+                label:
+                  "Ask a tax preparer, VITA site, SBDC, SCORE mentor, or local business advisor about tax filing and estimated payments.",
               },
             ]}
           />
 
-          <GuideCallout
-            tone="privacy"
-            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
-            title="Share carefully"
-          >
-            <p>
-              Some records are sensitive. Do not automatically give employers,
-              schools, or boards treatment records, supervision paperwork, court
-              documents, or personal history details unless they are required,
-              legally appropriate, and useful to the application.
-            </p>
-          </GuideCallout>
+          <DocumentPacket
+            title="Business records folder"
+            intro={
+              <span>
+                Keep a paper folder and, if allowed, a secure digital folder.
+              </span>
+            }
+            categories={[
+              {
+                title: "Compliance and setup",
+                items: [
+                  "Written supervision or registry approvals related to the business.",
+                  "Business name registration, EIN confirmation, local permits, licenses, insurance, or bonding records if needed.",
+                  "Notes from calls with agencies, boards, insurers, or business advisors.",
+                ],
+              },
+              {
+                title: "Customer and job records",
+                items: [
+                  "Job log with date, customer, location, service, price, payment, time spent, and supplies.",
+                  "Invoices, receipts, estimates, signed work notes, deposit records, refunds, and payment screenshots.",
+                  "Before/after photos only when appropriate and with permission.",
+                ],
+              },
+              {
+                title: "Growth records",
+                items: [
+                  "Marketing materials, flyers, business cards, testimonials, reviews, referral notes, and repeat-customer schedules.",
+                  "Tool purchases, mileage logs, training certificates, insurance quotes, and price changes.",
+                  "Monthly notes about what worked, what did not, and what to try next.",
+                ],
+              },
+            ]}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="denial-delay"
-          number="7"
-          title="If a board says no, delays, or asks for more"
-          subtitle="A setback may mean more proof, a waiting period, an appeal, or a related path."
-          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+          id="marketing"
+          number="9"
+          title="Market with privacy and stigma awareness"
+          subtitle="Build trust through service, records, referrals, and calm communication."
+          icon={<Megaphone className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A denial or delay is not always the end of the path. Sometimes the
-              board needs more documents. Sometimes the rule allows
-              reconsideration, waiver, predetermination, appeal, rehabilitation
-              evidence, or reapplication after a waiting period. Sometimes the
-              wiser move is a related credential that gets you working sooner.
+              Marketing does not have to start online. Flyers, business cards,
+              bulletin boards, local newsletters, chamber events, small business
+              referrals, and word of mouth can all work. Online profiles can help
+              too, but only if your rules allow them.
+            </p>
+
+            <p>
+              Keep your brand focused on the service. You do not need to argue
+              with strangers or explain your life story to every potential
+              customer. If stigma appears online, stay calm, document threats or
+              harassment, and keep the business message professional.
             </p>
           </GuideProse>
 
-          <GuideChecklist
-            id="denial-delay-checklist"
-            title="What to ask next"
-            columns={1}
+          <OfflineOptions
+            title="Lower-internet marketing options"
+            icon={<Phone className="h-5 w-5" aria-hidden="true" />}
             items={[
-              {
-                id: "written-reason",
-                label:
-                  "Ask for the decision, missing-document request, or concern in writing.",
-              },
-              {
-                id: "rule",
-                label:
-                  "Ask what statute, regulation, board rule, or policy controls the decision.",
-              },
-              {
-                id: "proof",
-                label:
-                  "Ask what proof would matter: training, references, work history, treatment completion, compliance, time since offense, or supervision status.",
-              },
-              {
-                id: "review",
-                label:
-                  "Ask whether appeal, waiver, predetermination, reconsideration, hearing, or later reapplication is available.",
-              },
-              {
-                id: "deadline",
-                label:
-                  "Write down every deadline and save envelopes, emails, notices, and portal messages.",
-              },
-              {
-                id: "help",
-                label:
-                  "Contact legal aid, an occupational licensing clinic, public defender reentry staff, or an attorney if the license is important to your future.",
-              },
+              "Post flyers on lawful community boards, laundromats, hardware stores, small shops, churches, libraries, or apartment offices.",
+              "Print simple business cards with service, phone number, area served, and one clear offer.",
+              "Ask satisfied customers for one referral instead of trying to reach everyone online.",
+              "Offer a founding-customer price for the first few jobs in exchange for honest feedback.",
+              "Ask a trusted helper to research business resources or print materials if internet access is limited or restricted.",
+              "Attend local small-business or chamber events only if travel, location, and contact rules allow it.",
             ]}
+          />
+
+          <ScriptBox
+            title="Calm response to online stigma"
+            tone="privacy"
+            context="Use only if a response is necessary. Often the safest move is to document and not engage."
+            script={`I understand people may have concerns. My business is focused on lawful, professional service, clear boundaries, and quality work. I follow my legal requirements and keep customer interactions respectful and documented.
+
+If you have a question about the service itself, I’m happy to answer it directly.`}
           />
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="common-mistakes"
-          number="8"
-          title="Avoid costly detours"
-          subtitle="These mistakes are common, understandable, and usually preventable."
+        <GuideSectionHeader
+          id="grow"
+          number="10"
+          title="Grow carefully"
+          subtitle="A stable small business grows from repeatable work, not pressure."
+          icon={<Building2 className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Stage 1",
+                title: "Solo proof",
+                icon: <CheckCircle2 className="h-5 w-5" aria-hidden="true" />,
+                tone: "success",
+                description:
+                  "Complete small jobs, save records, learn timing, improve pricing, and collect feedback.",
+              },
+              {
+                eyebrow: "Stage 2",
+                title: "Repeat work",
+                icon: <Users className="h-5 w-5" aria-hidden="true" />,
+                tone: "info",
+                description:
+                  "Look for repeat customers, simple service agreements, referral sources, and predictable schedules.",
+              },
+              {
+                eyebrow: "Stage 3",
+                title: "Formalize",
+                icon: <FileText className="h-5 w-5" aria-hidden="true" />,
+                tone: "reentry",
+                description:
+                  "Consider registration, EIN, insurance, licenses, better tools, written estimates, and tax planning.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="reminder"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Check before adding complexity"
+          >
+            <p>
+              Before hiring helpers, using subcontractors, adding online ads,
+              expanding travel, entering homes, using new payment apps, or
+              offering youth-facing services, check the rules again. Growth
+              should make the business stronger, not harder to keep compliant.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="11"
+          title="Common mistakes to avoid"
+          subtitle="These are understandable, but they can make the business harder or riskier."
           icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
         />
 
@@ -1020,156 +1280,118 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <CommonMistakes
             mistakes={[
               {
-                mistake: "Choosing the most expensive program first.",
+                mistake: "Starting with a business that depends on prohibited internet use.",
                 whyItMatters:
-                  "A costly program is not always the best path to work, licensing, or self-employment.",
+                  "Online learning, marketing, payment apps, marketplaces, or social media can create supervision or registry issues if not approved.",
                 betterMove:
-                  "Compare community college, apprenticeship, employer-paid, American Job Center, and shorter certificate routes before signing.",
+                  "Ask what is allowed, save the answer, and use offline marketing or trusted-helper options when needed.",
               },
               {
-                mistake: "Confusing school admission with license approval.",
+                mistake: "Taking private-home jobs without checking.",
                 whyItMatters:
-                  "A school may admit you even if a board, clinical site, employer, or placement partner later raises a barrier.",
+                  "Home access, keys, minors, schools, restricted zones, and unsupervised contact can create risk.",
                 betterMove:
-                  "Ask about the final license, placement, exam, employer background check, and worksite rules before paying.",
+                  "Check the exact service and consider commercial-only, outdoor-only, shop-based, or referral-only work.",
               },
               {
-                mistake: "Ignoring apprenticeships.",
+                mistake: "Mixing personal and business money.",
                 whyItMatters:
-                  "Apprenticeships can combine paid work, training, mentorship, and a recognized credential.",
+                  "Messy records can cause tax problems, supervision confusion, pricing mistakes, and stress.",
                 betterMove:
-                  "Search Apprenticeship.gov and ask local workforce offices about sponsors willing to consider people with records.",
+                  "Save receipts, keep a job log, and separate business income and expenses as early as possible.",
               },
               {
-                mistake: "Assuming a certification means no background check.",
+                mistake: "Borrowing heavily before proving demand.",
                 whyItMatters:
-                  "A certificate may be available, but employers, clients, platforms, or placement sites may still screen applicants.",
+                  "Debt creates pressure before you know whether customers will pay.",
                 betterMove:
-                  "Check the full chain: training, exam, placement, license, employer, insurance, and job duties.",
+                  "Start small, rent or borrow tools lawfully, use deposits, and reinvest from completed jobs.",
               },
               {
-                mistake: "Picking a path with unavoidable restricted contact.",
+                mistake: "Arguing online about your past.",
                 whyItMatters:
-                  "Some roles regularly involve minors, schools, homes, healthcare facilities, travel, or internet use.",
+                  "Online conflict can escalate, damage the business, and create documentation or supervision issues.",
                 betterMove:
-                  "Look for related roles with safer settings, such as commercial sites, shop-based repair, back-of-house work, admin support, or adult worksites.",
+                  "Document harassment, respond only if needed, stay service-focused, and ask for help if threats appear.",
               },
               {
-                mistake: "Not building proof while training.",
+                mistake: "Scaling faster than your records and rules can support.",
                 whyItMatters:
-                  "A board, sponsor, or employer may need more than a completed class.",
+                  "More customers, helpers, travel, tools, and platforms can create new risks.",
                 betterMove:
-                  "Collect certificates, attendance, evaluations, references, work samples, and written answers as you go.",
+                  "Grow in stages and check rules before adding complexity.",
               },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="limited-access"
-          number="9"
-          title="If internet, transportation, or printing is limited"
-          subtitle="You can still research credentials with phone calls, paper records, and local help."
-          icon={<Phone className="h-5 w-5" aria-hidden="true" />}
-        />
-
-        <GuideSectionCard>
-          <OfflineOptions
-            title="Lower-internet credential research"
-            icon={<Phone className="h-5 w-5" aria-hidden="true" />}
-            note={
-              <span>
-                Use these steps if you are phone-only, recently released,
-                incarcerated, under internet restrictions, without a printer, or
-                relying on someone else for research.
-              </span>
-            }
-            items={[
-              <span>
-                Call the licensing board and ask for mailed forms, printed rules,
-                and the correct person for criminal-history questions.
-              </span>,
-              <span>
-                Call an American Job Center and ask about approved training,
-                WIOA funding, reentry employment programs, apprenticeships, and
-                transportation help.
-              </span>,
-              <span>
-                Ask a trusted person to print licensing rules, program costs,
-                board applications, apprenticeship listings, and email
-                confirmations.
-              </span>,
-              <span>
-                Keep a paper folder with names, dates, phone numbers, board
-                rules, program brochures, receipts, and written answers.
-              </span>,
-              <span>
-                Visit a public library, community college, workforce office, or
-                reentry program for computer access only if your restrictions
-                allow it.
-              </span>,
-              <span>
-                If you are incarcerated, ask family or reentry staff to gather
-                board rules, local training programs, and apprenticeship contacts
-                before release.
-              </span>,
             ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="resources"
-          number="10"
+          number="12"
           title="Resources, related guides, and sources"
-          subtitle="Use these tools to research, compare, and keep moving."
+          subtitle="Use these tools to learn, plan, fund, document, and keep moving."
           icon={<BookOpen className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Credential research tools"
+            title="Small-business resources"
             resources={[
               {
-                label: "NICCC Collateral Consequences Inventory",
-                href: sourceLinks.nicccConsequences,
-                badge: "Research tool",
+                label: "SBA Learning Platform",
+                href: sourceLinks.sbaLearning,
+                badge: "Official",
                 description:
-                  "Search legal and regulatory restrictions by jurisdiction and category, then verify with the controlling board or agency.",
+                  "Free online business training from the U.S. Small Business Administration.",
+              },
+              {
+                label: "SCORE",
+                href: sourceLinks.score,
+                badge: "Mentoring",
+                description:
+                  "Free business mentoring, workshops, and practical resources.",
+              },
+              {
+                label: "Find Your SBDC",
+                href: sourceLinks.sbdc,
+                badge: "Local help",
+                description:
+                  "Find a Small Business Development Center for counseling and low-cost training.",
+              },
+              {
+                label: "IRS EIN Application",
+                href: sourceLinks.irsEin,
+                badge: "Official",
+                description:
+                  "Apply for an EIN directly from the IRS. The IRS does not charge for an EIN.",
+              },
+              {
+                label: "IRS Self-Employed Tax Center",
+                href: sourceLinks.irsSelfEmployed,
+                badge: "Tax",
+                description:
+                  "Federal tax information for people who work for themselves.",
+              },
+              {
+                label: "SBA Microloans",
+                href: sourceLinks.sbaMicroloans,
+                badge: "Funding",
+                description:
+                  "Information about SBA microloans and how the program works.",
+              },
+              {
+                label: "SBA Microlender List",
+                href: sourceLinks.sbaMicrolenderList,
+                badge: "Funding",
+                description:
+                  "Find authorized intermediary lenders participating in SBA's microloan program.",
               },
               {
                 label: "American Job Center Finder",
                 href: sourceLinks.careerOneStopAjc,
-                badge: "Official",
+                badge: "Workforce",
                 description:
-                  "Find local workforce offices that may help with approved training, employment services, and support programs.",
-              },
-              {
-                label: "Apprenticeship.gov Job Finder",
-                href: sourceLinks.apprenticeshipFinder,
-                badge: "Official",
-                description:
-                  "Search apprenticeship openings and apply directly with employers or program sponsors.",
-              },
-              {
-                label: "FMCSA Training Provider Registry",
-                href: sourceLinks.fmcsaTpr,
-                badge: "CDL",
-                description:
-                  "Check CDL training providers for entry-level driver training paths.",
-              },
-              {
-                label: "TSA HazMat Endorsement",
-                href: sourceLinks.tsaHazmat,
-                badge: "CDL",
-                description:
-                  "Review federal background-check information before planning around a HazMat endorsement.",
-              },
-              {
-                label: "IRS PTIN Requirements",
-                href: sourceLinks.irsPtin,
-                badge: "Tax prep",
-                description:
-                  "Official IRS information for paid tax return preparer PTIN requirements.",
+                  "Ask about training, reentry employment help, and local workforce support.",
               },
             ]}
           />
@@ -1181,7 +1403,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Employment Strategies for People on Sex Offender Registries",
                 description:
-                  "Use this for resumes, disclosure scripts, interviews, documentation packets, and first-90-days planning.",
+                  "Use this for resumes, disclosure scripts, documentation packets, interviews, and first-90-days planning.",
                 to: sourceLinks.employmentStrategies,
               },
               {
@@ -1191,15 +1413,15 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 to: sourceLinks.employmentDirectory,
               },
               {
-                title: "Small Business & Entrepreneurship Guide",
+                title: "Professional Licenses and Certifications for People on Sex Offender Registries",
                 description:
-                  "Use this when a credential may support self-employment, contracting, repair work, food service, bookkeeping, or a trade business.",
-                to: sourceLinks.smallBusinessGuide,
+                  "Use this when a business idea depends on a license, certification, trade credential, or regulated service.",
+                to: sourceLinks.professionalLicensing,
               },
               {
                 title: "Reentry Checklist",
                 description:
-                  "Use this to coordinate credential planning with IDs, housing, supervision, registration, and employment tasks.",
+                  "Use this to coordinate self-employment with IDs, housing, supervision, registration, and work planning.",
                 to: sourceLinks.reentryChecklist,
               },
               {
@@ -1211,7 +1433,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Housing Search Guide",
                 description:
-                  "Stable housing, work, training, and supervision planning often affect each other.",
+                  "Stable housing, work, transportation, and supervision planning often affect each other.",
                 to: sourceLinks.housingSearch,
               },
             ]}
@@ -1222,126 +1444,89 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="legal"
             icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
-            title="Legal and licensing note"
+            title="Legal, tax, and business note"
           >
             <p>
-              This guide is a planning tool, not legal advice or licensing
-              approval. A credential path may depend on your state, conviction
-              history, registry status, supervision or court conditions, the
-              exact license or certification, placement sites, employer policy,
-              insurance, and local rules. Before paying for training, applying
-              for a license, accepting placement, or starting a business, verify
-              the current rules with the board, program, employer, supervising
-              authority, or a qualified legal professional.
+              This guide is a planning tool, not legal, tax, insurance, or
+              supervision advice. A business idea may depend on your state,
+              registry status, supervision or court conditions, local business
+              rules, taxes, insurance, licensing, internet access, customer
+              contact, and worksite. Verify the exact service and setup before
+              advertising, accepting work, taking payments, entering homes,
+              hiring help, or paying for training.
             </p>
           </GuideCallout>
 
           <div id="sources">
             <SourceList
               title="Sources and verification"
-              note="These sources support credential research, apprenticeships, CDL training, HazMat checks, tax-prep requirements, and employment-barrier planning. State licensing and registry rules still need case-specific verification."
+              note="These sources support business planning, mentoring, EINs, self-employment taxes, microloans, workforce help, and scam awareness. Local registry, supervision, licensing, tax, and business rules still need case-specific verification."
               sources={[
                 {
-                  label: "National Inventory of Collateral Consequences of Conviction",
-                  href: sourceLinks.nicccHome,
+                  label: "IRS — Get an Employer Identification Number",
+                  href: sourceLinks.irsEin,
                   description:
-                    "Explains collateral consequences affecting employment, occupational licensing, housing, education, and other opportunities.",
+                    "Official IRS EIN application page; the IRS states you can get an EIN directly from the IRS for free.",
                 },
                 {
-                  label: "NICCC Collateral Consequences Inventory",
-                  href: sourceLinks.nicccConsequences,
+                  label: "IRS — Self-Employed Individuals Tax Center",
+                  href: sourceLinks.irsSelfEmployed,
                   description:
-                    "Search tool for legal and regulatory restrictions by jurisdiction and category.",
+                    "Federal tax information for people who work for themselves.",
+                },
+                {
+                  label: "IRS — Small Business and Self-Employed Tax Center",
+                  href: sourceLinks.irsSmallBusiness,
+                  description:
+                    "IRS forms, publications, and tax resources for small businesses and self-employed taxpayers.",
+                },
+                {
+                  label: "SBA Learning Platform",
+                  href: sourceLinks.sbaLearning,
+                  description:
+                    "Free SBA online business training and growth resources.",
+                },
+                {
+                  label: "SBA Local Assistance",
+                  href: sourceLinks.sbaLocalAssistance,
+                  description:
+                    "Find SBA district offices and local small-business help.",
+                },
+                {
+                  label: "SCORE",
+                  href: sourceLinks.score,
+                  description:
+                    "Free business mentoring, training, workshops, and resources.",
+                },
+                {
+                  label: "America's SBDC — Find Your SBDC",
+                  href: sourceLinks.sbdc,
+                  description:
+                    "Small Business Development Center locator for counseling and training.",
+                },
+                {
+                  label: "SBA Microloans",
+                  href: sourceLinks.sbaMicroloans,
+                  description:
+                    "Official SBA information about microloans for small businesses and certain nonprofit childcare centers.",
+                },
+                {
+                  label: "SBA List of Microlenders",
+                  href: sourceLinks.sbaMicrolenderList,
+                  description:
+                    "Official SBA list of authorized intermediary microloan lenders.",
                 },
                 {
                   label: "CareerOneStop — American Job Centers",
                   href: sourceLinks.careerOneStopAjc,
                   description:
-                    "Official finder for local workforce offices and training support.",
+                    "Official workforce office finder for training and employment support.",
                 },
                 {
-                  label: "CareerOneStop — Justice-Impacted Job Seekers",
-                  href: sourceLinks.careerOneStopJustice,
+                  label: "FTC — Small Business Scams",
+                  href: sourceLinks.ftcScams,
                   description:
-                    "Career and training tools for people with criminal records.",
-                },
-                {
-                  label: "Apprenticeship.gov",
-                  href: sourceLinks.apprenticeshipHome,
-                  description:
-                    "Federal apprenticeship resource for career seekers, employers, and education partners.",
-                },
-                {
-                  label: "Apprenticeship.gov Job Finder",
-                  href: sourceLinks.apprenticeshipFinder,
-                  description:
-                    "Search tool for apprenticeship job opportunities and direct application to employers or sponsors.",
-                },
-                {
-                  label: "Apprenticeship.gov — Career Seekers with Barriers",
-                  href: sourceLinks.apprenticeshipBarriers,
-                  description:
-                    "Apprenticeship information for career seekers with employment barriers, including justice-involved people.",
-                },
-                {
-                  label: "U.S. Department of Labor — Reentry Employment Opportunities",
-                  href: sourceLinks.dolReentry,
-                  description:
-                    "Federal reentry employment and workforce resources.",
-                },
-                {
-                  label: "FMCSA — Entry-Level Driver Training",
-                  href: sourceLinks.fmcsaEldt,
-                  description:
-                    "Federal CDL entry-level driver training requirements.",
-                },
-                {
-                  label: "FMCSA Training Provider Registry",
-                  href: sourceLinks.fmcsaTpr,
-                  description:
-                    "Registry for CDL training providers subject to entry-level driver training rules.",
-                },
-                {
-                  label: "TSA — HazMat Endorsement",
-                  href: sourceLinks.tsaHazmat,
-                  description:
-                    "Federal information about HazMat endorsement security threat assessment.",
-                },
-                {
-                  label: "TSA — Disqualifying Offenses and Other Factors",
-                  href: sourceLinks.tsaDisqualifying,
-                  description:
-                    "Federal information about offenses and factors that may affect certain TSA security threat assessments.",
-                },
-                {
-                  label: "IRS — PTIN Requirements for Tax Return Preparers",
-                  href: sourceLinks.irsPtin,
-                  description:
-                    "Official IRS information for paid tax return preparer PTIN requirements.",
-                },
-                {
-                  label: "CompTIA A+",
-                  href: sourceLinks.comptiaAPlus,
-                  description:
-                    "Entry-level IT certification referenced as an example credential path.",
-                },
-                {
-                  label: "OSHA Outreach Training Program",
-                  href: sourceLinks.oshaTraining,
-                  description:
-                    "Safety training referenced as a possible stackable trade credential.",
-                },
-                {
-                  label: "ServSafe",
-                  href: sourceLinks.servSafe,
-                  description:
-                    "Food safety certification referenced as a possible culinary or food-service credential.",
-                },
-                {
-                  label: "NHA Certified Phlebotomy Technician",
-                  href: sourceLinks.nhaPhlebotomy,
-                  description:
-                    "Healthcare support certification referenced as an example that requires careful placement and facility-policy review.",
+                    "Federal guidance on spotting and avoiding scams targeting small businesses.",
                 },
               ]}
             />
