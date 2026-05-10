@@ -1,5 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  AlertTriangle,
+  Briefcase,
+  CheckCircle2,
+  ClipboardCheck,
+  Factory,
+  FileText,
+  FolderOpen,
+  GraduationCap,
+  Hammer,
+  Laptop,
+  MapPinned,
+  MessageSquare,
+  Phone,
+  Search,
+  ShieldCheck,
+  Truck,
+  Utensils,
+  Wrench,
+} from "lucide-react";
 import SEO from "../../components/SEO";
 import ShareBar from "../../components/solar/ShareBar";
 import {
@@ -8,6 +28,8 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
@@ -19,80 +41,23 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  DualDepthSection,
-  RedFlagGreenFlag,
+  PathwayCard,
 } from "../../components/solar";
 
 const sourceLinks = {
-  hudComplaint: {
-    label: "HUD: Report Housing Discrimination",
-    href: "https://www.hud.gov/reporthousingdiscrimination",
-  },
-  cfpbTenantScreeningDenied: {
-    label: "CFPB: Rental application denied because of a tenant screening report",
-    href: "https://www.consumerfinance.gov/ask-cfpb/what-should-i-do-if-my-rental-application-is-denied-because-of-a-tenant-screening-report-en-2105/",
-  },
-  ftcTenantScreeningErrors: {
-    label: "FTC: Disputing errors on your tenant background check report",
-    href: "https://consumer.ftc.gov/articles/disputing-errors-your-tenant-background-check-report",
-  },
-  hudPihRescission2025: {
-    label: "HUD Notice PIH 2025-26 / H 2025-05",
-    href: "https://www.hud.gov/sites/dfiles/OCHCO/documents/Hsng2025-05.pdf",
-  },
-  hudPihNotices: {
-    label: "HUD: Public and Indian Housing Notices",
-    href: "https://www.hud.gov/hudclips/notices/pih",
-  },
-  voucherRule: {
-    label: "24 CFR § 982.553: Housing Choice Voucher admission and termination rules",
-    href: "https://www.law.cornell.edu/cfr/text/24/982.553",
-  },
-  publicHousingRule: {
-    label: "24 CFR § 960.204: Public housing admission rules",
-    href: "https://www.law.cornell.edu/cfr/text/24/960.204",
-  },
-  quietEnjoyment: {
-    label: "Cornell Wex: Quiet enjoyment",
-    href: "https://www.law.cornell.edu/wex/quiet_enjoyment",
-  },
-  covenantQuietEnjoyment: {
-    label: "Cornell Wex: Covenant of quiet enjoyment",
-    href: "https://www.law.cornell.edu/wex/covenant_of_quiet_enjoyment",
-  },
-  dojReasonableAccommodation: {
-    label: "DOJ/HUD Joint Statement: Reasonable accommodations under the Fair Housing Act",
-    href: "https://www.justice.gov/sites/default/files/crt/legacy/2010/12/14/joint_statement_ra.pdf",
-  },
-  justiceGuidanceIndex: {
-    label: "DOJ Civil Rights Division: Policy statements and guidance",
-    href: "https://www.justice.gov/crt/policy-statements-and-guidance",
-  },
-  usaGovLegalAid: {
-    label: "USA.gov: Find a lawyer and affordable legal aid",
-    href: "https://www.usa.gov/legal-aid",
-  },
-  lscLegalHelp: {
-    label: "Legal Services Corporation: I need legal help",
-    href: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
-  },
-  unitedWay211: {
-    label: "United Way 211",
-    href: "https://www.211.org/",
-  },
-  hudResidentRights: {
-    label: "HUD: Resident Rights and Responsibilities brochure",
-    href: "https://www.hud.gov/sites/dfiles/Housing/documents/resident_rights_brochure_8.pdf",
-  },
-  mnDocProximityStudy: {
-    label: "Minnesota DOC: Residential Proximity & Sex Offense Recidivism",
-    href: "https://mn.gov/doc/assets/04-07SexOffenderReport-Proximity_tcm1089-272769.pdf",
-  },
-  nrrcHudCriminalRecords: {
-    label: "National Reentry Resource Center: HUD fair-housing guidance on criminal records",
-    href: "https://nationalreentryresourcecenter.org/resources/office-general-counsel-guidance-application-fair-housing-act-standards-use-criminal",
-  },
-} as const;
+  americanJobCenterFinder:
+    "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/find-american-job-centers.aspx",
+  dolAmericanJobCenters: "https://www.dol.gov/agencies/eta/american-job-centers",
+  dolReentry: "https://www.dol.gov/agencies/eta/reentry",
+  honestJobs: "https://www.honestjobs.com/",
+  hireNetwork: "https://clearinghouse.lac.org/",
+  federalBonding: "https://bonds4jobs.com/",
+  ftcBackgroundChecks:
+    "https://consumer.ftc.gov/articles/employer-background-checks-and-your-rights",
+  eeocArrestConviction: "https://www.eeoc.gov/arrestandconviction",
+  eeocGuidance:
+    "https://www.eeoc.gov/laws/guidance/enforcement-guidance-consideration-arrest-and-conviction-records-employment-decisions",
+};
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -100,9 +65,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Tenant Rights and Housing Stability Guide | The SOLAR Project"
-        description="A practical, registry-aware tenant rights guide for protecting housing, documenting landlord problems, responding to screening denials, checking residency rules, and finding legal help."
-        keywords="tenant rights, sex offender registry housing, housing stability, eviction, lockout, tenant screening, public housing, residency restrictions, SOLAR Project"
+        title="Employment Strategies for People on Registries | The SOLAR Project"
+        description="A practical, sex-offense-specific employment guide for people living with registry restrictions, supervision conditions, background checks, and reentry barriers."
+        keywords="sex offense registry employment, registrant job search, reentry employment, fair chance hiring, background check rights, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -119,13 +84,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Tenant Rights and Housing Stability Guide
+            Employment Strategies for People on Registries
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Practical, registry-aware steps for protecting current housing,
-            responding to lockouts or denials, checking address restrictions,
-            and building the paper trail that helps you get help.
+            A practical guide to job searching, restrictions, resumes,
+            disclosure, interviews, and steady work for people with sex offense
+            convictions or registry requirements.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -152,1033 +117,1276 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🧭">
+        <GuideIntro
+          title="Start here"
+          icon={<Briefcase className="h-6 w-6" aria-hidden="true" />}
+        >
           <p>
-            Housing problems can make everything feel urgent. That is especially
-            true for people on registries, people under supervision, and
-            families trying to avoid homelessness, technical violations, or
-            another failed application.
+            Finding work while living on a registry is not a normal job search.
+            You may be dealing with public registry exposure, supervision rules,
+            employer fear, background checks, transportation limits, internet
+            restrictions, or worksite restrictions involving minors, schools,
+            parks, homes, or certain types of access.
           </p>
 
           <p>
-            Start with the safest assumption: <strong>protect the housing you
-            already have when you safely can.</strong> Finding new housing with
-            registry status can be harder than defending current housing. Do not
-            let pressure, shame, neighbor hostility, or a landlord’s verbal
-            demand turn into an unofficial eviction.
-          </p>
-
-          <p>
-            This guide is not legal advice. It is a practical plan for slowing
-            the situation down, saving proof, checking the right rules, and
-            asking the right people for help before you give up housing or sign
-            something risky.
+            That does not mean work is impossible. It means your job search has
+            to be more deliberate. Start by checking what work is legally safe,
+            then build a focused employment packet, choose realistic job paths,
+            and practice short, careful language for hard conversations.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If housing is at risk today"
-          subtitle="Use these steps before you pack, move, sign, or assume the worst."
-          icon="⚡"
+          title="Do this before you start applying"
+          subtitle="A few careful steps can prevent wasted applications, unsafe job offers, or accidental violations."
+          icon={<ClipboardCheck className="h-6 w-6" aria-hidden="true" />}
           urgentActions={[
             <span>
-              <strong>If you are locked out, utilities are shut off, or someone
-              says you must leave immediately:</strong> take photos, save texts
-              or notices, write down what happened, and contact legal aid or
-              emergency tenant help the same day.
+              Write down your known restrictions: supervision conditions,
+              registry rules, location limits, internet limits,
+              contact-with-minors limits, curfew, travel limits, and any court
+              order.
             </span>,
             <span>
-              <strong>If you received court papers:</strong> do not ignore
-              them. Circle the hearing date, deadline, court name, and case
-              number. Ask legal aid how to respond.
+              Ask the person or office with authority whether the type of work,
+              worksite, schedule, travel, internet use, and job duties are
+              allowed.
             </span>,
             <span>
-              <strong>If a landlord or PHA denied you because of a background
-              check:</strong> ask for the adverse action notice, the name of the
-              screening company, and your free copy of the report.
-            </span>,
-            <span>
-              <strong>If you are considering a new address:</strong> verify
-              registry rules, local residency restrictions, and supervision
-              approval before signing or moving.
+              Save the answer if possible. A short email, text, letter, case
+              note, or written approval can matter later.
             </span>,
           ]}
           nextActions={[
             <span>
-              Start a tenant binder with your lease, notices, messages, rent
-              proof, photos, screening reports, and address-verification notes.
+              Build a one-page resume, a short skills list, and a reference list
+              before you begin applying.
             </span>,
             <span>
-              Put important requests in writing. After phone calls, send a short
-              recap text or email and save the reply.
+              Choose job paths where the duties are less likely to conflict with
+              registry or supervision restrictions.
             </span>,
             <span>
-              Ask for written deadlines: court dates, appeal dates, dispute
-              windows, PHA hearing deadlines, and move-out dates.
+              Practice a brief disclosure script so you do not freeze, overshare,
+              or sound unprepared when background questions come up.
             </span>,
           ]}
           reminder={
             <span>
-              Pressure is not the same thing as a court order. This does not
-              mean ignoring real court papers, safety emergencies, supervision
-              instructions, or verified registration problems. It means do not
-              surrender housing just because someone is trying to scare you out.
+              You do not have to solve your whole career today. The first goal is
+              a lawful, stable next step.
             </span>
           }
         />
-<OverviewCards
-          columns={4}
+
+        <OverviewCards
+          columns={3}
           cards={[
             {
-              eyebrow: "Risk lane 1",
-              title: "Lease or eviction pressure",
-              icon: "📄",
+              eyebrow: "Step 1",
+              title: "Verify the risk",
+              icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />,
               tone: "legal",
               description:
-                "Know the difference between a threat, a written notice, and a court order. Save every paper.",
+                "Confirm whether the job duties, location, schedule, travel, internet use, and contact with minors are allowed.",
             },
             {
-              eyebrow: "Risk lane 2",
-              title: "Screening denial",
-              icon: "🔎",
-              tone: "warning",
+              eyebrow: "Step 2",
+              title: "Prepare your materials",
+              icon: <FolderOpen className="h-5 w-5" aria-hidden="true" />,
+              tone: "reentry",
               description:
-                "Ask for the adverse action notice, get the report, dispute errors, and request individualized review.",
+                "Turn training, work history, certificates, and references into a simple packet you can use quickly.",
             },
             {
-              eyebrow: "Risk lane 3",
-              title: "Registry address risk",
-              icon: "📍",
-              tone: "urgent",
+              eyebrow: "Step 3",
+              title: "Apply carefully",
+              icon: <MessageSquare className="h-5 w-5" aria-hidden="true" />,
+              tone: "success",
               description:
-                "Before signing or moving, check the exact address with the registry office and supervision if applicable.",
-            },
-            {
-              eyebrow: "Risk lane 4",
-              title: "PHA or voucher housing",
-              icon: "🏢",
-              tone: "info",
-              description:
-                "Public and subsidized housing can have special rules, hearing rights, and strict admission bars.",
+                "Target realistic employers, prepare for background checks, and use short, forward-looking language.",
             },
           ]}
         />
 
         <GuideSectionHeader
-          id="protect-current-housing"
+          id="restrictions"
           number="1"
-          title="Protect the housing you already have"
-          subtitle="For people on registries, staying housed is often the first safety plan."
+          title="Check restrictions before you apply"
+          subtitle="The safest job search starts with knowing what work is actually allowed."
+          icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A landlord, neighbor, property manager, or even a family member
-              may tell you that you have no choice but to leave. Sometimes that
-              is true because of a court order, safety emergency, supervision
-              instruction, or verified registry rule. But often it is pressure,
-              not process.
+              People with sex offense convictions may face restrictions that do
+              not appear in ordinary job-search advice. A job can look safe on a
+              job board but still create problems because of the worksite, job
+              duties, travel, schedule, internet use, customer contact, or
+              contact with minors.
             </p>
 
             <p>
-              For someone on a registry, losing current housing can create a
-              chain reaction: emergency shelter may be unavailable, a new lease
-              may require background screening, a new address may violate a
-              distance rule, and supervision may need approval before any move.
-              That is why protecting existing housing is often easier than
-              finding new housing from scratch.
+              Before you invest time, money, or personal credibility in an
+              application, check the rules that apply to you. The answer can come
+              from state law, local registry practice, a court order, supervision
+              conditions, treatment rules, employer policy, licensing rules, or
+              the specific physical location where the job happens.
+            </p>
+
+            <p>
+              Be especially careful with jobs involving schools, child care,
+              youth programs, home visits, rideshare or delivery to private
+              homes, security, healthcare, recreation facilities, internet
+              access, overnight travel, or unsupervised access to vulnerable
+              people.
             </p>
           </GuideProse>
 
-          <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="Do not confuse pressure with eviction"
-          >
-            <p>
-              In ordinary landlord-tenant housing, a landlord usually needs a
-              legal process before removing a tenant. A verbal demand, angry
-              text, neighbor complaint, or “you are not welcome here anymore” is
-              not the same as a court order. Save the communication, ask for
-              anything important in writing, and contact legal aid before moving
-              out.
-            </p>
-          </GuideCallout>
-
-          <RedFlagGreenFlag
-            red={
-              <p>
-                “You have 24 hours to get out,” “I changed the locks,” “I do not
-                need court,” or “people like you cannot live here” without a
-                written legal basis or court order.
-              </p>
+          <VerifyBeforeActing
+            title="Verify before applying or accepting"
+            whoToAsk={
+              <span>
+                Your supervising officer if you are on supervision; the
+                registering agency for registry-specific questions; an attorney,
+                legal aid office, or public defender office for legal-risk
+                questions; and the licensing board if the job requires a license.
+              </span>
             }
-            green={
-              <p>
-                Written notices with dates, clear lease sections, court
-                information if a case was filed, and an opportunity to respond,
-                cure, dispute, or attend a hearing.
-              </p>
+            whatToAsk={
+              <span>
+                “Am I allowed to work at this exact location, in this role, with
+                these duties, this schedule, this travel, this internet use, and
+                this level of contact with customers, minors, or private homes?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                The date, name, agency or department, exact question asked,
+                answer given, and written approval if you can get it.
+              </span>
             }
           />
 
-          <ScriptBox
-            title="Script: when someone is pressuring you to leave"
+          <GuideCallout
             tone="legal"
-            context="Use this when you need to stay calm and move the conversation into writing."
-            buttonLabel="Copy housing-pressure script"
-            script={`Hello, I am documenting an ongoing housing issue at [address].
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Do not rely on a general answer"
+          >
+            <p>
+              “Construction is usually okay” is not the same as “this
+              construction job at this school site is okay.” “Warehouse work is
+              usually okay” is not the same as “this delivery route with private
+              homes is okay.” Ask about the exact job before relying on the
+              answer.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-I am not refusing to communicate, but I need all notices, requests, and instructions in writing.
+        <GuideSectionHeader
+          id="skills"
+          number="2"
+          title="Translate your skills into job language"
+          subtitle="Training, work assignments, and survival skills can become employment language when framed carefully."
+          icon={<GraduationCap className="h-5 w-5" aria-hidden="true" />}
+        />
 
-Please identify the lease term, rule, court order, or legal notice you believe applies. If you are asking me to leave, please provide the written notice required by law.
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Many people come home with more skills than they think. In-custody
+              work, vocational programs, peer roles, religious or recovery group
+              service, tutoring, kitchen work, maintenance, warehouse
+              assignments, and clerical tasks can all show reliability and useful
+              experience.
+            </p>
 
-I am keeping records of dates, times, messages, entries, utility issues, and witness information.`}
+            <p>
+              The goal is not to hide where your experience came from. The goal
+              is to describe what you actually learned in language an employer
+              understands.
+            </p>
+
+            <ul>
+              <li>
+                <strong>Vocational training:</strong> carpentry, welding, HVAC,
+                culinary arts, electrical work, automotive repair, landscaping,
+                painting, or maintenance.
+              </li>
+              <li>
+                <strong>Clerical and administrative skills:</strong> typing,
+                filing, data entry, inventory, scheduling, phone etiquette, or
+                document organization.
+              </li>
+              <li>
+                <strong>Peer leadership:</strong> tutoring, group facilitation,
+                mentoring, conflict de-escalation, accountability work, or
+                helping others complete tasks.
+              </li>
+              <li>
+                <strong>Work release or prison industries:</strong> production,
+                quality control, food service, custodial work, warehouse work,
+                machine operation, or customer-service-adjacent duties.
+              </li>
+            </ul>
+          </GuideProse>
+<GuideCallout
+            tone="success"
+            icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+            title="Resume example"
+          >
+            <GuideProse>
+              <p>
+                Instead of writing only “Prison Vocational Program,” describe the
+                skill, hours, and tasks:
+              </p>
+
+              <p>
+                <strong>Carpentry Trainee — 1,200 hours</strong>
+                <br />
+                Department of Corrections Vocational Training Program, 2022–2023
+              </p>
+
+              <ul>
+                <li>Completed OSHA safety training.</li>
+                <li>
+                  Constructed furniture and completed finish carpentry for
+                  institutional use.
+                </li>
+                <li>
+                  Used hand tools, measured materials, followed safety
+                  procedures, and completed assigned projects on deadline.
+                </li>
+              </ul>
+            </GuideProse>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="skills-inventory"
+            title="Build a skills inventory"
+            columns={2}
+            items={[
+              {
+                id: "training",
+                label:
+                  "List every class, certificate, program, or apprenticeship you completed.",
+              },
+              {
+                id: "assignments",
+                label:
+                  "List every work assignment, even if it was unpaid or inside a facility.",
+              },
+              {
+                id: "tools",
+                label:
+                  "Write down tools, machines, software, equipment, or safety procedures you know.",
+              },
+              {
+                id: "soft-skills",
+                label:
+                  "Write examples of reliability, teamwork, problem-solving, leadership, and conflict management.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Gather certificates, program records, evaluations, letters, or proof of hours.",
+              },
+              {
+                id: "translation",
+                label:
+                  "Rewrite facility language into ordinary job language without lying or exaggerating.",
+              },
+            ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="lease-and-binder"
-          number="2"
-          title="Understand your lease and build your tenant binder"
-          subtitle="The person with organized proof is usually in a stronger position."
+          id="packet"
+          number="3"
+          title="Build an employment packet"
+          subtitle="A simple folder keeps you ready when someone asks for documents, references, or proof."
+          icon={<FolderOpen className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
-          <DualDepthSection
-            simpleTitle="Plain-language version"
-            deepTitle="Why this matters"
-            simple={
-              <GuideProse>
-                <p>
-                  A lease is a two-way promise. You promise to pay rent and
-                  follow the rules. The landlord promises to provide the home
-                  described in the lease and follow the law.
-                </p>
+          <GuideProse>
+            <p>
+              A job search can become chaotic quickly. You may apply to many
+              places, repeat the same explanation, lose track of who called back,
+              or need proof that a job is allowed. A paper or digital employment
+              packet helps you move faster and make fewer mistakes.
+            </p>
 
-                <p>
-                  Before you sign, you can ask questions and request changes.
-                  After you sign, the words matter. If a line says the landlord
-                  can remove you “immediately,” enter whenever they want, or end
-                  the lease without process, circle it and ask legal aid or a
-                  tenant clinic before relying on it.
-                </p>
-              </GuideProse>
-            }
-            deep={
-              <GuideProse>
-                <p>
-                  A lease is a contract, but landlord-tenant law can add rights
-                  and duties even when the lease is silent. State and local law
-                  control details such as notice periods, repairs, entry rules,
-                  deposits, lockouts, and eviction procedure.
-                </p>
-
-                <p>
-                  For registry-impacted households, the lease is only one layer.
-                  You may also need to check supervision conditions, local
-                  residency restrictions, public-housing rules, and whether a
-                  household member’s status creates a program-specific issue.
-                </p>
-              </GuideProse>
-            }
-          />
+            <p>
+              For many registry-impacted people, the packet should include both
+              ordinary job-search materials and compliance-related documentation.
+              Do not hand an employer more sensitive information than they need,
+              but keep your own records organized.
+            </p>
+          </GuideProse>
 
           <DocumentPacket
-            title="Build a tenant binder"
+            title="Employment packet"
             intro={
               <span>
-                Keep paper and digital copies if possible. If you only have a
-                phone, make one photo album for housing documents and one note
-                for dates, names, and case numbers.
+                Keep copies in a folder, envelope, binder, phone folder, or email
+                account you can access safely.
               </span>
             }
             categories={[
               {
-                title: "Lease and payment proof",
+                title: "Job-search basics",
                 items: [
-                  "Lease, rules, addenda, renewal notices, and house policies.",
-                  "Rent receipts, bank statements, money order copies, ledgers, and payment confirmations.",
-                  "Security deposit records and move-in / move-out inspection notes.",
+                  "One-page resume.",
+                  "Short skills inventory.",
+                  "Reference list with names, phone numbers, email addresses, and how each person knows your work.",
+                  "Certificates, licenses, training records, OSHA cards, apprenticeship records, or program completion letters.",
+                  "Photo ID, Social Security card, work authorization documents, or other hiring paperwork you may need.",
                 ],
               },
               {
-                title: "Condition and communication proof",
+                title: "Registry and supervision notes",
                 items: [
-                  "Photos or videos of the unit, repairs, locks, notices, utilities, pests, leaks, or damage.",
-                  "Texts, emails, letters, portal messages, voicemails, and screenshots.",
-                  "A call log with date, time, person, department, and what was said.",
+                  "Written supervision conditions or court conditions that affect work.",
+                  "Written answers about whether a specific job, location, schedule, internet use, or travel is allowed.",
+                  "Notes from calls with names, dates, departments, and exact instructions.",
+                  "A plain-language restrictions summary for your own use, not automatic employer disclosure.",
                 ],
               },
               {
-                title: "Registry, screening, and appeal proof",
+                title: "Application tracking",
                 items: [
-                  "Screening reports, adverse action notices, dispute letters, and landlord responses.",
-                  "Registry-office address confirmations, maps, GIS screenshots, and supervision approvals.",
-                  "References, employment proof, treatment or program certificates, and letters of support.",
+                  "Company name, position, date applied, contact person, and response.",
+                  "Interview notes and follow-up dates.",
+                  "Copies of rejection letters or adverse action notices.",
+                  "Background-check company information if an employer uses a background reporting company.",
                 ],
               },
             ]}
           />
 
-          <GuideChecklist
-            id="tenant-binder-first-week"
-            title="First-week binder checklist"
-            columns={1}
-            items={[
-              {
-                id: "lease",
-                label: "Put the lease and all rules in one folder.",
-              },
-              {
-                id: "rent-proof",
-                label: "Save the last six months of rent proof if you have it.",
-              },
-              {
-                id: "photo-home",
-                label: "Take photos of the current condition of the home.",
-              },
-              {
-                id: "call-log",
-                label:
-                  "Start a call log for landlord, court, PHA, legal aid, registry, and supervision contacts.",
-              },
-              {
-                id: "deadline-page",
-                label:
-                  "Make one deadline page for court dates, appeal dates, rent dates, and report-dispute windows.",
-              },
-            ]}
-          />
+          <GuideCallout
+            tone="privacy"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Keep sensitive documents controlled"
+          >
+            <p>
+              Your packet is for your organization. Do not automatically give an
+              employer supervision paperwork, treatment records, registry notices,
+              court documents, or personal history details. Share only what is
+              required, strategic, and safe after you understand the situation.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="lockouts-and-soft-eviction"
-          number="3"
-          title="Lockouts, harassment, and “soft eviction”"
-          subtitle="A landlord may try to make you leave without using the formal process."
+          id="pathways"
+          number="4"
+          title="Choose realistic job paths"
+          subtitle="The best job path is not only about interest. It also has to fit your restrictions, transportation, schedule, and background-check reality."
+          icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Some housing loss is obvious: a court case, a sheriff’s notice, or
-              a written termination. Other pressure is quieter: repeated threats,
-              surprise entries, utility shutoffs, selective rule enforcement,
-              hostile neighbors, ignored repair requests, or a manager trying to
-              make the home feel impossible so you leave on your own.
+              No field is automatically safe for every person on a registry.
+              Still, some paths may be easier to evaluate because they often have
+              clearer worksites, adult coworkers, less unsupervised access to
+              minors, and more visible job duties.
             </p>
 
             <p>
-              Do not argue every legal term in the moment. Document first. Save
-              proof while things are happening. Then ask legal aid, a tenant
-              attorney, or a court self-help center what the conduct may mean in
-              your state.
+              Use the options below as starting points, not guarantees. Confirm
+              the exact job and location before applying or accepting.
             </p>
           </GuideProse>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Trades, repair, and construction"
+              subtitle="Carpentry, painting, HVAC, welding, electrical helper, maintenance, landscaping."
+              icon={<Hammer className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Skills are concrete, experience can be demonstrated, and many
+                  roles focus on tools, safety, punctuality, and project work.
+                </span>
+              }
+              steps={[
+                <span>List tools, safety training, and completed projects.</span>,
+                <span>
+                  Check whether job sites include schools, child care, homes, or
+                  restricted locations.
+                </span>,
+                <span>
+                  Ask about crew structure, travel, and supervision before
+                  accepting.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with hands-on skills, certificates, apprenticeship
+                  interest, or comfort with physical work.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Manufacturing and warehouse"
+              subtitle="Assembly, packing, forklift, machine operation, inventory, shipping and receiving."
+              icon={<Factory className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  These roles often value reliability, safety, speed, and
+                  consistency. Some facilities also have clearer boundaries than
+                  public-facing work.
+                </span>
+              }
+              steps={[
+                <span>
+                  Highlight attendance, safety, production, inventory, or
+                  equipment experience.
+                </span>,
+                <span>
+                  Ask whether the role requires delivery, driving, or
+                  unsupervised access to private homes.
+                </span>,
+                <span>
+                  Check whether background checks are handled by HR or a staffing
+                  agency.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can work set shifts and want a structured
+                  environment with measurable duties.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Food service and back-of-house"
+              subtitle="Dishwashing, prep cook, line cook, bakery production, catering, food trucks."
+              icon={<Utensils className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Kitchens often need dependable workers and may care more about
+                  pace, cleanliness, teamwork, and attendance than perfect work
+                  history.
+                </span>
+              }
+              steps={[
+                <span>Check local health-card or food-handler requirements.</span>,
+                <span>
+                  Ask whether the job involves schools, youth programs, delivery,
+                  or events at restricted locations.
+                </span>,
+                <span>
+                  Use references who can speak to reliability under pressure.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People who can handle fast-paced work, teamwork, and clear
+                  routines.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Transportation and logistics"
+              subtitle="CDL, warehouse driver, yard work, parts delivery, dispatch support."
+              icon={<Truck className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Some roles are task-based and may offer stable pay, but route,
+                  travel, overnight, home-delivery, and licensing issues must be
+                  checked carefully.
+                </span>
+              }
+              steps={[
+                <span>
+                  Verify whether your conviction affects licensing or insurance
+                  eligibility.
+                </span>,
+                <span>
+                  Confirm whether routes include schools, child care, private
+                  homes, or restricted zones.
+                </span>,
+                <span>
+                  Check travel, curfew, and reporting requirements before
+                  accepting a schedule.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with driving eligibility, predictable reporting habits,
+                  and careful attention to route rules.
+                </span>
+              }
+            />
+
+            <PathwayCard
+              title="Reentry program or American Job Center route"
+              subtitle="Local workforce office, reentry nonprofit, job club, training grant, apprenticeship referral."
+              icon={<MapPinned className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  A local workforce office or reentry organization may know
+                  employers who have hired people with records before. You can
+                  search for nearby American Job Centers through{" "}
+                  <a
+                    href={sourceLinks.americanJobCenterFinder}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                  >
+                    CareerOneStop
+                  </a>
+                  .
+                </span>
+              }
+              steps={[
+                <span>
+                  Call first and ask whether they work with people with felony
+                  convictions or registry restrictions.
+                </span>,
+                <span>
+                  Ask about training, resume help, interview practice, job
+                  referrals, and transportation help.
+                </span>,
+                <span>
+                  Bring your resume draft, ID, restrictions summary, and skills
+                  list.
+                </span>,
+              ]}
+              offlineAlternatives={[
+                <span>Call 1-877-US-2JOBS if you cannot use the online finder.</span>,
+                <span>
+                  Ask a library, probation office, or reentry program to print
+                  local workforce contacts.
+                </span>,
+              ]}
+            />
+
+            <PathwayCard
+              title="Self-employment or small service work"
+              subtitle="Landscaping, hauling, repair, cleaning, detailing, crafts, bookkeeping, online work."
+              icon={<Wrench className="h-5 w-5" aria-hidden="true" />}
+              whyItWorks={
+                <span>
+                  Self-employment can reduce some hiring barriers, but it can
+                  create new risks around internet use, advertising, entering
+                  homes, customer contact, travel, licensing, and taxes.
+                </span>
+              }
+              steps={[
+                <span>
+                  Verify internet, advertising, contact, and location restrictions
+                  before starting.
+                </span>,
+                <span>
+                  Avoid private homes, youth-serving sites, or restricted
+                  locations unless clearly permitted.
+                </span>,
+                <span>
+                  Keep records of income, expenses, customer communications, and
+                  permissions.
+                </span>,
+              ]}
+              bestFit={
+                <span>
+                  People with a marketable skill, safe customer boundaries, and
+                  enough organization to track money and rules.
+                </span>
+              }
+            />
+          </div>
 <GuideCallout
-            tone="urgent"
-            icon="🚪"
-            title="If you are locked out or utilities are shut off"
+            tone="info"
+            icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
+            title="Ask about bonding if an employer is hesitant"
           >
             <p>
-              Stay as calm as you can. Take photos or video. Save the notice or
-              message. Call legal aid or emergency tenant help. If you call
-              non-emergency police, keep the script simple: you are a tenant,
-              you were locked out or utilities were shut off, and you are asking
-              for help documenting or restoring access.
+              The{" "}
+              <a
+                href={sourceLinks.federalBonding}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-blue-400 underline-offset-2 hover:text-blue-950"
+              >
+                Federal Bonding Program
+              </a>{" "}
+              can provide no-cost fidelity bonds for some job seekers who face
+              employment barriers. It will not solve every restriction, but it
+              may help reassure some employers about hiring risk.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resume"
+          number="5"
+          title="Build a resume that leads with value"
+          subtitle="A resume should help an employer see what you can do before they make assumptions about your past."
+          icon={<FileText className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A functional or skills-forward resume can help when your work
+              history has incarceration gaps, unstable housing periods, treatment
+              obligations, supervision restrictions, or informal work that does
+              not fit a clean timeline.
+            </p>
+
+            <p>
+              Keep the resume honest, but do not make the conviction or registry
+              the headline. Lead with reliability, skills, certificates, and the
+              type of work you are ready to do now.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="resume-structure"
+            title="Functional resume structure"
+            columns={1}
+            items={[
+              {
+                id: "contact",
+                label:
+                  "Contact information: phone number, professional email, city/state, and transportation note only if useful.",
+              },
+              {
+                id: "summary",
+                label:
+                  "Professional summary: two or three lines focused on reliability, skills, safety, and motivation.",
+              },
+              {
+                id: "skills",
+                label:
+                  "Core skills: tools, equipment, software, safety procedures, communication, customer service, or production skills.",
+              },
+              {
+                id: "experience",
+                label:
+                  "Relevant experience: group by category, such as construction, kitchen, warehouse, maintenance, clerical, or leadership.",
+              },
+              {
+                id: "education",
+                label:
+                  "Education and certifications: GED, college coursework, OSHA, food handler, forklift, trade certificates, or program completion.",
+              },
+              {
+                id: "references",
+                label:
+                  "References available on request: keep the full reference list separate unless asked.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Professional summary example"
+            tone="success"
+            context="Use this as a model, not a script you must copy exactly."
+            script={`Reliable entry-level maintenance and warehouse worker with hands-on experience in tool safety, inventory, cleaning, basic repairs, and team-based work. Known for showing up prepared, following instructions carefully, and staying calm under pressure. Seeking a stable role where I can contribute consistent work and continue building long-term skills.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="disclosure"
+          number="6"
+          title="Disclosure, background checks, and interviews"
+          subtitle="Prepare short, careful language before the hard question comes up."
+          icon={<MessageSquare className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Disclosure is not one-size-fits-all. Sometimes the law, employer
+              policy, licensing process, background check, or supervision
+              conditions will force the issue. Sometimes early disclosure may be
+              strategic. Sometimes oversharing too soon can close a door before
+              the employer understands your value.
+            </p>
+
+            <p>
+              When an employer uses a background reporting company, the{" "}
+              <a
+                href={sourceLinks.ftcBackgroundChecks}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Federal Trade Commission explains background-check rights for job
+                applicants
+              </a>
+              . The{" "}
+              <a
+                href={sourceLinks.eeocArrestConviction}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                EEOC has resources for job seekers and workers with arrest or
+                conviction records
+              </a>
+              . These resources are not registry-specific, but they can help you
+              understand the general employment-rights framework.
+            </p>
+          </GuideProse>
+
+          <GuideCallout
+            tone="privacy"
+            icon={<ShieldCheck className="h-5 w-5" aria-hidden="true" />}
+            title="Keep the explanation brief"
+          >
+            <p>
+              You do not need to describe the offense in graphic detail. You do
+              need to be truthful when a truthful answer is required. A safer
+              explanation usually accepts responsibility, names compliance,
+              points to current stability, and returns to the job duties.
             </p>
           </GuideCallout>
 
-          <DualDepthSection
-            simpleTitle="Quiet enjoyment, in plain language"
-            deepTitle="Deeper detail"
-            simple={
-              <GuideProse>
-                <p>
-                  “Quiet enjoyment” does not just mean quiet neighbors. In
-                  landlord-tenant law, it usually means you have a right to live
-                  in and use the home you rent without serious interference from
-                  the landlord or people acting through the landlord.
-                </p>
+          <div className="space-y-4">
+            <ScriptBox
+              title="Brief disclosure script"
+              tone="neutral"
+              context="Use when disclosure is required, a background check is certain, or you decide disclosure is strategically necessary."
+              script={`Before we go further, I want to be transparent about something that may appear in a background check. I have a past conviction that I take seriously, and I am fully compliant with my legal requirements. Since then, I have focused on training, stability, and being dependable at work. I am prepared to discuss how I can safely and reliably perform the duties of this job.`}
+            />
 
-                <p>
-                  If a landlord, manager, or hostile neighbor is trying to make
-                  the home unlivable so you leave, that may matter. Write down
-                  dates, times, names, witnesses, photos, utility issues,
-                  repair requests, entries, and every message.
-                </p>
-              </GuideProse>
-            }
-            deep={
-              <GuideProse>
-                <p>
-                  Quiet-enjoyment rules vary by state. Many leases say it
-                  directly, and many jurisdictions recognize some version of the
-                  right even when the lease does not use those words. The key
-                  issue is usually serious interference, not minor annoyance.
-                </p>
+            <ScriptBox
+              title="Work-history gap script"
+              tone="neutral"
+              context="Use when the employer asks about a gap without needing details about the conviction."
+              script={`During that period, I was in a structured environment where I completed training and built skills in [skill], [skill], and [skill]. I am focused now on using those skills in steady work and showing that I can be reliable, prepared, and accountable.`}
+            />
 
-                <p>
-                  Do not break a lease, withhold rent, or move out based only on
-                  a phrase you read online. Build the record first and verify
-                  your options with legal aid or a tenant attorney.
-                </p>
-              </GuideProse>
-            }
-          />
+            <ScriptBox
+              title="Restrictions question script"
+              tone="legal"
+              context="Use when you need to understand whether the job duties create a compliance problem."
+              script={`I want to make sure I understand the duties of this role clearly. Would this job involve work at schools, child care sites, parks, private homes, youth programs, overnight travel, internet access, or unsupervised contact with minors? I need to verify any restrictions before accepting a position.`}
+            />
 
-          <ScriptBox
-            title="Script: illegal lockout or utility shutoff"
-            tone="urgent"
-            context="Use with non-emergency police, legal aid, or a tenant hotline. If there is immediate danger, call emergency services."
-            buttonLabel="Copy lockout script"
-            script={`Hello, my name is [Name]. I am a tenant at [address].
+            <ScriptBox
+              title="Cold call script"
+              tone="reentry"
+              context="Use for small employers, trade shops, restaurants, warehouses, and local businesses."
+              script={`Hi, my name is [Name]. I am calling to ask whether you are hiring for [type of work]. I have experience with [skills] and I am looking for steady work where reliability, safety, and willingness to learn matter. Is there a manager or hiring person I could speak with about current openings?`}
+            />
 
-My landlord or property manager [changed the locks / shut off utilities / removed my property / blocked access] without showing me a court order.
+            <ScriptBox
+              title="Follow-up email"
+              tone="success"
+              context="Use after an interview, phone call, or referral."
+              script={`Dear [Hiring Manager],
 
-I have my lease, ID, messages, and photos. I am asking for help documenting this and finding out how to regain lawful access.
+Thank you for taking the time to speak with me about the [position] role. I appreciated learning more about the work and the kind of person you need on the team.
 
-The landlord or manager is [name, phone, company if known].`}
-          />
+I am interested in the opportunity to contribute my skills in [specific skill], [specific skill], and [specific skill]. I am committed to being dependable, prepared, and accountable on the job.
 
-          <ScriptBox
-            title="Script: follow-up after a hostile interaction"
-            tone="neutral"
-            context="Send this after a call, hallway conversation, or threat so your records show what happened."
-            buttonLabel="Copy follow-up script"
-            script={`Hello [Name],
+Thank you again for your time. I look forward to hearing from you.
 
-I am writing to confirm what happened on [date/time]. You told me [briefly describe what was said or done].
+Sincerely,
+[Name]`}
+            />
 
-Please send any lease section, written notice, court order, or policy you believe applies.
+            <ScriptBox
+              title="Reference request"
+              tone="neutral"
+              context="Use with a former supervisor, instructor, counselor, faith leader, volunteer coordinator, or reentry mentor."
+              script={`Hi [Name], I hope you are doing well. I am actively looking for work and wanted to ask whether you would be willing to serve as a reference for me.
 
-I am keeping a written record so we can handle this clearly and avoid misunderstandings.`}
-          />
+I am applying for [type of positions]. It would help if you could speak to my reliability, work ethic, skills, growth, and commitment to doing things the right way.
+
+I understand if you are not able to do this, but I would be grateful for your support. Thank you for considering it.`}
+            />
+          </div>
+
+          <SoftDivider label="Interview preparation" />
+
+          <GuideProse>
+            <p>
+              Practice the STAR method for behavioral questions: situation, task,
+              action, result. Prepare examples that show problem-solving,
+              reliability, learning from mistakes, calm communication, and
+              commitment to safe, accountable work.
+            </p>
+
+            <p>
+              For registry-impacted applicants, interview preparation is not just
+              about confidence. It is about staying steady when stigma enters the
+              room. Practice with a trusted person, reentry counselor, sponsor,
+              family member, or job coach before the real interview.
+            </p>
+          </GuideProse>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="screening-denials"
-          number="4"
-          title="Background checks, denials, and individualized review"
-          subtitle="A denial is not always the end of the conversation."
+          id="first-90-days"
+          number="7"
+          title="Protect the job once you get it"
+          subtitle="The first weeks are about reliability, communication, boundaries, and documentation."
+          icon={<CheckCircle2 className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Landlords and property managers often use tenant-screening
-              companies. Those reports can include criminal-history information,
-              eviction records, credit information, rental history, or matching
-              errors. If a report was used against you, ask for the adverse
-              action notice and the report.
+              Getting hired is only one part of the process. The first 90 days
+              matter because an employer is deciding whether you are dependable,
+              trainable, safe, and worth keeping.
             </p>
 
             <p>
-              Registry status is not itself a protected class under federal fair
-              housing law. But screening decisions can still involve report
-              errors, unlawful discrimination, disability issues, state or local
-              fair-chance rules, or policies that deserve review.
+              You do not have to be perfect. You do need to communicate early,
+              follow rules carefully, ask questions, and keep your life organized
+              enough that transportation, supervision, appointments, reporting,
+              and work do not collide.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="screening-denial-steps"
-            title="If a rental application is denied"
-            columns={1}
+            id="first-90-days-checklist"
+            title="First 90 days"
+            columns={2}
             items={[
               {
-                id: "adverse-action",
-                label:
-                  "Ask for the adverse action notice and the name of the screening company.",
+                id: "arrive",
+                label: "Arrive on time and ready to work.",
               },
               {
-                id: "free-report",
+                id: "notes",
                 label:
-                  "Request your free copy of the tenant-screening report within the deadline stated in the notice.",
+                  "Take notes during training instead of pretending you understand everything.",
               },
               {
-                id: "check-errors",
-                label:
-                  "Check for wrong identity, duplicate cases, old records, sealed or expunged records, wrong disposition, or misleading labels.",
+                id: "names",
+                label: "Learn names, roles, schedules, and who to ask for help.",
               },
               {
-                id: "dispute",
+                id: "communicate",
                 label:
-                  "Dispute errors in writing with the screening company and save proof of the dispute.",
+                  "Communicate early if supervision, transportation, illness, or family issues affect work.",
               },
               {
-                id: "individual-review",
+                id: "boundaries",
                 label:
-                  "Ask the landlord or manager for individualized review using proof of stability, rent history, references, work, treatment, or time since offense.",
+                  "Avoid conversations, locations, internet use, or customer contact that could create compliance risk.",
+              },
+              {
+                id: "mistakes",
+                label: "Own mistakes quickly and ask how to fix them.",
+              },
+              {
+                id: "records",
+                label:
+                  "Keep pay stubs, schedules, manager messages, and any discipline or praise.",
+              },
+              {
+                id: "growth",
+                label:
+                  "Ask what you should learn next after you have proven basic reliability.",
               },
             ]}
           />
 
           <GuideCallout
             tone="warning"
-            icon="🧾"
-            title="Important 2026 source caution"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="If coworkers discover your background"
           >
             <p>
-              Older HUD arrest-record guidance is no longer safe to cite as
-              current HUD policy without qualification. HUD Notice PIH 2025-26 /
-              H 2025-05 rescinded Joint Notice PIH 2015-19 / H 2015-10. If an
-              assisted-housing decision relies on an arrest, ask for the current
-              PHA or owner policy, the evidence being relied on, written reasons,
-              and the appeal or hearing deadline.
-            </p>
-          </GuideCallout>
-
-          <ScriptBox
-            title="Script: adverse action and screening report request"
-            tone="legal"
-            context="Use this after a denial, higher deposit, co-signer demand, or different terms based on a screening report."
-            buttonLabel="Copy adverse-action script"
-            script={`Hello [Manager],
-
-I was told my application was [denied / approved only with different terms] based on a tenant-screening or background-check report.
-
-Please send me the adverse action notice, the name and contact information of the screening company, and instructions for requesting my free copy of the report.
-
-I also request an individualized review of my application. I can provide documentation of rent history, income, references, current stability, and other relevant information.
-
-Thank you.`}
-          />
-
-          <ScriptBox
-            title="Script: individualized review request"
-            tone="neutral"
-            context="Attach only documents that help your request. You do not need to overshare every detail."
-            buttonLabel="Copy individualized-review script"
-            script={`Subject: Request for individualized review
-
-Hello [Name],
-
-Please reconsider my application using an individualized review.
-
-I understand you have concerns about [background check / registry status / criminal history]. I am asking you to also consider the specific facts: [time since offense], [stable housing history], [on-time rent history], [employment or income], [treatment or program completion], [references], and [other stability factors].
-
-I can provide documents that show I would be a reliable tenant and follow the lease.
-
-Please let me know what information would be most helpful and whether there is a deadline for submitting it.
-
-Thank you.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="registry-address-checks"
-          number="5"
-          title="Registry, supervision, and address checks before signing"
-          subtitle="Do not let a good apartment become a compliance problem."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Residency rules can be invisible tripwires. You may qualify for
-              an apartment, pass the landlord’s screening, and still face
-              problems if the address is too close to a restricted place, not
-              approved by supervision, or treated differently under a local rule.
-            </p>
-
-            <p>
-              The safest move is to verify the exact address before signing,
-              paying deposits you cannot afford to lose, moving property, or
-              registering the address.
-            </p>
-          </GuideProse>
-
-          <VerifyBeforeActing
-            title="Verify the exact address before you rely on it"
-            whoToAsk={
-              <span>
-                The registering agency or registry unit for the address, your
-                supervising officer if you are under supervision, and legal aid
-                if the answer is unclear or not in writing.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                Ask whether <strong>[exact address, unit number]</strong> is
-                compliant; whether city, county, or state distance rules apply;
-                how distance is measured; whether parks, schools, daycares,
-                shelters, bus stops, or other locations count; and whether you
-                can receive written confirmation.
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save names, dates, departments, emails, letters, map screenshots,
-                GIS searches, supervision approvals, and any instruction about
-                when or how to register the address.
-              </span>
-            }
-          />
-<ScriptBox
-            title="Script: registry or supervision address check"
-            tone="urgent"
-            context="Use before signing a lease, paying a deposit, moving property, or registering an address."
-            buttonLabel="Copy address-check script"
-            script={`Hello, my name is [Name]. I am considering renting [full address, unit number, city, state].
-
-Before I sign or move, I need to verify whether this address is compliant for me.
-
-Can you tell me:
-1. Whether this exact address is allowed?
-2. Whether any state, county, city, supervision, or local ordinance restriction applies?
-3. How distance is measured here?
-4. Whether you can provide written confirmation or tell me how to document the answer?
-
-I am taking notes. Could you please give me your name, department, and the date of this call?`}
-          />
-
-          <GuideCallout tone="research" icon="📚" title="Research note">
-            <p>
-              Research has repeatedly raised concerns that broad residence
-              restrictions can increase instability without clearly improving
-              public safety. That research is important for advocacy, but it
-              does not decide whether your exact address is legal today. For
-              your own housing decision, verify the rule that applies where you
-              are.
+              Stay calm and do not argue in the moment. If you are safe, respond
+              briefly: “I understand why people have questions. I am compliant
+              with my requirements, focused on doing good work, and I would like
+              to keep the workplace respectful.” Document threats, harassment, or
+              policy violations and consider speaking with HR, a supervisor, or a
+              legal aid organization.
             </p>
           </GuideCallout>
         </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="public-subsidized-housing"
-          number="6"
-          title="Public housing, vouchers, and subsidized housing"
-          subtitle="PHA rules can be strict, local, and deadline-heavy."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Public Housing Authorities, often called PHAs, run public housing
-              and Housing Choice Voucher programs. HUD-assisted multifamily
-              housing can have its own owner or management agent. The rules can
-              be different depending on the program.
-            </p>
-
-            <p>
-              If anyone in the household is subject to a lifetime sex-offender
-              registration requirement, federal rules require PHAs to prohibit
-              admission to public housing and the voucher program. If you are
-              applying, ask about this early so you do not lose months waiting
-              on a path that may be closed.
-            </p>
-
-            <p>
-              If you are already housed, do not assume the same rule applies in
-              the same way. Ask for the written reason, the program rule, the
-              grievance or hearing deadline, and a copy of any record they are
-              relying on.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="legal"
-            icon="🏛️"
-            title="Ask for the local policy, not just a verbal answer"
-          >
-            <p>
-              For voucher cases, ask for the PHA Administrative Plan. For public
-              housing, ask for the ACOP. For HUD-assisted multifamily housing,
-              ask for the house rules, tenant selection plan, lease, and any
-              written notice. Save the appeal or hearing deadline immediately.
-            </p>
-          </GuideCallout>
-
-          <GuideChecklist
-            id="pha-paperwork"
-            title="If a PHA or assisted-housing provider takes action"
-            columns={1}
-            items={[
-              {
-                id: "written-reason",
-                label: "Ask for the written reason for the decision.",
-              },
-              {
-                id: "record-copy",
-                label:
-                  "Ask for a copy of any criminal record, registry record, screening report, or evidence being used.",
-              },
-              {
-                id: "deadline",
-                label:
-                  "Ask for the exact deadline to request an informal review, grievance hearing, or appeal.",
-              },
-              {
-                id: "policy",
-                label:
-                  "Ask for the Administrative Plan, ACOP, tenant selection plan, house rules, or other policy being applied.",
-              },
-              {
-                id: "legal-aid",
-                label:
-                  "Contact legal aid quickly. Assisted-housing deadlines can be short.",
-              },
-            ]}
-          />
-
-          <ScriptBox
-            title="Script: PHA or assisted-housing decision"
-            tone="legal"
-            context="Use after denial, proposed termination, voucher issue, or assisted-housing notice."
-            buttonLabel="Copy PHA script"
-            script={`Hello [Name],
-
-I received a notice about [denial / termination / voucher issue / housing decision].
-
-Please send me:
-1. The written reason for the decision;
-2. The specific rule, policy, or lease term being used;
-3. A copy of any record or report being relied on;
-4. The deadline and instructions for requesting an informal review, grievance hearing, or appeal; and
-5. The current Administrative Plan, ACOP, tenant selection plan, or house rules that apply.
-
-I am requesting this information so I can understand the decision and respond by the deadline.
-
-Thank you.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="reasonable-accommodation"
-          number="7"
-          title="Reasonable accommodations"
-          subtitle="Disability-related requests are about access to housing, not registry status itself."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              If you or someone in your household has a disability, including
-              some mental-health conditions, you may be able to ask the landlord,
-              PHA, or housing provider to adjust a rule, policy, practice, or
-              service so the person with a disability has an equal opportunity
-              to use and enjoy the home.
-            </p>
-
-            <p>
-              Registry status itself is not a disability. The accommodation
-              request should be tied to a qualifying disability and a specific
-              housing-related need.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="privacy" icon="🔐" title="Share only what is needed">
-            <p>
-              You usually do not need to explain every diagnosis, conviction
-              detail, treatment history, or family crisis. State the disability
-              connection, the accommodation requested, and how it helps the
-              person use and enjoy the housing. Ask for the response in writing.
-            </p>
-          </GuideCallout>
-
-          <ScriptBox
-            title="Script: reasonable accommodation request"
-            tone="privacy"
-            context="Use only when the request is connected to a disability-related housing need."
-            buttonLabel="Copy accommodation script"
-            script={`Subject: Reasonable accommodation request
-
-Hello [Name],
-
-I am requesting a reasonable accommodation because of a disability-related housing need.
-
-The accommodation I am requesting is: [state the specific change, exception, extra time, transfer, communication method, assistance animal, or other request].
-
-This accommodation is needed because it will help [me / household member] have an equal opportunity to use and enjoy the housing.
-
-Please respond in writing. If you need verification, please tell me exactly what information you need and where it should be sent.
-
-Thank you.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="common-mistakes"
+<GuideSectionHeader
+          id="mistakes"
           number="8"
-          title="Common mistakes that can make housing problems worse"
-          subtitle="These are understandable mistakes. The goal is to catch them early."
+          title="Common mistakes to avoid"
+          subtitle="These mistakes are understandable, especially under stress, but they can make the job search harder or riskier."
+          icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <CommonMistakes
             mistakes={[
               {
-                mistake: "Leaving because of pressure instead of process.",
+                mistake: "Applying everywhere without checking restrictions.",
                 whyItMatters:
-                  "For people on registries, replacement housing may be much harder to find than current housing is to defend.",
+                  "A job offer can become a compliance problem if the location, duties, travel, internet access, or contact rules are not allowed.",
                 betterMove:
-                  "Ask for written notice, save proof, verify whether there is a court order or legal deadline, and call legal aid before moving out.",
+                  "Target jobs that seem realistic, then verify the exact job before accepting.",
               },
               {
-                mistake: "Ignoring court papers because the landlord was unfair.",
+                mistake: "Oversharing offense details too early.",
                 whyItMatters:
-                  "Even a bad or unfair eviction case can move forward if you miss the hearing or response deadline.",
+                  "Graphic or unnecessary detail can overwhelm the conversation and shift attention away from your ability to do the job.",
                 betterMove:
-                  "Circle the deadline, save the papers, and contact legal aid, a tenant hotline, or the court self-help center.",
+                  "Use short, truthful, forward-looking language and return to job duties and compliance.",
               },
               {
-                mistake: "Signing a lease before checking registry or supervision rules.",
+                mistake:
+                  "Hiding a background issue when a background check is certain.",
                 whyItMatters:
-                  "A lease can be valid with the landlord but still create a registration or supervision problem.",
-                betterMove: "Verify the exact address first and save the answer.",
+                  "An employer may feel misled, even if you were scared or unsure what to say.",
+                betterMove:
+                  "Prepare a disclosure plan before the background check stage.",
               },
               {
-                mistake: "Relying only on verbal answers.",
+                mistake: "Assuming one employer's answer applies everywhere.",
                 whyItMatters:
-                  "Verbal promises are hard to prove later, especially with landlords, PHAs, registry offices, or supervision staff.",
-                betterMove:
-                  "Send a short follow-up message: “I am writing to confirm what I understood from our call.”",
+                  "Different worksites, duties, licensing rules, and supervision conditions can change the answer.",
+                betterMove: "Verify each job on its own facts.",
               },
               {
-                mistake: "Oversharing without a purpose.",
+                mistake:
+                  "Not saving written permission or important conversations.",
                 whyItMatters:
-                  "Extra details can distract from the housing issue and may create new stigma or confusion.",
+                  "If someone later questions your choice, memory alone may not protect you.",
                 betterMove:
-                  "Answer the narrow question, provide relevant proof, and ask what policy or deadline applies.",
+                  "Write down names, dates, departments, and exact instructions. Ask for written confirmation when possible.",
               },
               {
-                mistake: "Using legal terms before building proof.",
+                mistake: "Giving up after a few rejections.",
                 whyItMatters:
-                  "Saying “quiet enjoyment,” “discrimination,” or “illegal eviction” may be accurate, but proof usually carries more weight than labels.",
+                  "Registry stigma creates real barriers. Rejection does not prove you are unemployable.",
                 betterMove:
-                  "Document dates, names, messages, photos, witnesses, and consequences. Then ask legal aid what the legal theory may be.",
+                  "Track applications, adjust your target list, practice scripts, and ask for help from workforce or reentry programs.",
               },
-            ]}
-          />
-
-          <OfflineOptions
-            title="If internet access is limited"
-            icon="📞"
-            note={
-              <span>
-                You can still make progress with a phone, paper folder, and one
-                trusted helper.
-              </span>
-            }
-            items={[
-              "Call 211 and ask for local rental assistance, shelter diversion, legal aid, tenant hotline, or utility help.",
-              "Ask legal aid or the court clerk whether forms can be mailed, picked up, or filed in person.",
-              "Ask a trusted person to print notices, screenshots, maps, applications, or hearing paperwork.",
-              "Keep one paper folder with lease, notices, rent proof, court papers, screening reports, and registry/supervision notes.",
-              "Write down names, dates, departments, phone numbers, confirmation numbers, and instructions after every call.",
             ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
+          id="limited-access"
           number="9"
-          title="Resources and next steps"
-          subtitle="Use official sources and local legal help whenever the answer could change your housing."
+          title="If internet access, transportation, or printing is limited"
+          subtitle="A job search should not depend on perfect technology or unlimited privacy."
+          icon={<Phone className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Many people on registries are phone-only, lack a printer, cannot
+              use some websites, have internet restrictions, rely on family for
+              transportation, or are trying to search while under close
+              supervision. Build your job search around what you can actually
+              access.
+            </p>
+          </GuideProse>
+
+          <OfflineOptions
+            title="Lower-internet options"
+            icon={<Laptop className="h-5 w-5" aria-hidden="true" />}
+            note={
+              <span>
+                These options can help if you have limited privacy, limited
+                internet, supervision restrictions, or no printer.
+              </span>
+            }
+            items={[
+              <span>
+                Call your nearest{" "}
+                <a
+                  href={sourceLinks.americanJobCenterFinder}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                >
+                  American Job Center
+                </a>{" "}
+                and ask about resume help, computer access, workshops, job
+                referrals, and training programs.
+              </span>,
+              <span>
+                Ask for mailed or printed information if you cannot safely use a
+                website.
+              </span>,
+              <span>
+                Keep a paper job-search log with employer name, date, contact
+                person, phone number, result, and follow-up date.
+              </span>,
+              <span>
+                Ask a trusted person to print resumes, job postings, directions,
+                and appointment confirmations.
+              </span>,
+              <span>
+                Use libraries, workforce centers, reentry programs, faith
+                communities, or legal aid offices for computer access only if
+                allowed by your restrictions.
+              </span>,
+              <span>
+                If internet use is restricted, ask your supervising officer or
+                attorney what job-search technology is allowed and save the
+                answer.
+              </span>,
+            ]}
+          />
+
+          <GuideCallout
+            tone="family"
+            icon={<Search className="h-5 w-5" aria-hidden="true" />}
+            title="For loved ones helping with the search"
+          >
+            <p>
+              Support is helpful, but do not apply to jobs, send disclosures, or
+              answer legal-risk questions for the person without their knowledge.
+              A better role is helping print materials, track applications,
+              practice interviews, find local workforce offices, and organize
+              documents.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="growth"
+          number="10"
+          title="Long-term career growth"
+          subtitle="The first job may not be the final goal. Stability can become a platform."
+          icon={<Briefcase className="h-5 w-5" aria-hidden="true" />}
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Many people have to start with the job they can get, not the job
+              they want forever. That is not failure. A stable first job can help
+              you build references, pay bills, satisfy supervision expectations,
+              learn current workplace norms, and move toward better options.
+            </p>
+
+            <p>
+              Once you have some stability, look for training that fits your
+              restrictions: trade certificates, apprenticeships, community college
+              programs, forklift training, food safety credentials, bookkeeping,
+              repair skills, or small-business basics. Verify licensing and
+              placement rules before spending money.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Months 1–3",
+                title: "Stabilize",
+                icon: <CheckCircle2 className="h-5 w-5" aria-hidden="true" />,
+                tone: "success",
+                description:
+                  "Show up, learn the job, communicate early, keep records, and avoid compliance surprises.",
+              },
+              {
+                eyebrow: "Months 4–12",
+                title: "Build proof",
+                icon: <FileText className="h-5 w-5" aria-hidden="true" />,
+                tone: "info",
+                description:
+                  "Collect references, certificates, pay records, positive feedback, and examples of reliability.",
+              },
+              {
+                eyebrow: "Year 2+",
+                title: "Move carefully",
+                icon: <MapPinned className="h-5 w-5" aria-hidden="true" />,
+                tone: "reentry",
+                description:
+                  "Look for better pay, safer schedules, training, leadership, or self-employment only after checking restrictions.",
+              },
+            ]}
+          />
+
+          <PullQuoteBlock>
+            A first job is not a verdict on your worth. It can be a bridge to
+            stability, proof, and better options.
+          </PullQuoteBlock>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="11"
+          title="Employment resources and next steps"
+          subtitle="Use these links to look for local help, understand background-check rights, and continue planning."
+          icon={<Search className="h-5 w-5" aria-hidden="true" />}
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Where to look next"
+            title="Job-search and reentry resources"
             description={
               <span>
-                Start with legal aid for eviction, lockout, voucher, PHA,
-                screening, fair-housing, and deadline questions. Use emergency
-                resource lines when you need rent, utilities, shelter diversion,
-                food, or transportation help.
+                These resources are starting points. Always check whether a
+                program understands registry restrictions before relying on its
+                advice.
               </span>
             }
             resources={[
               {
-                label: "HUD housing discrimination complaint",
-                href: sourceLinks.hudComplaint.href,
+                label: "American Job Center Finder",
+                href: sourceLinks.americanJobCenterFinder,
                 badge: "Official",
                 description:
-                  "File or learn about fair-housing complaints with HUD FHEO. HUD lists online, phone, and mail options.",
-                phone: "1-800-669-9777",
+                  "Find local workforce offices that may offer job search help, computer access, training referrals, and workshops.",
               },
               {
-                label: "CFPB tenant-screening denial guidance",
-                href: sourceLinks.cfpbTenantScreeningDenied.href,
+                label: "DOL Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
                 badge: "Official",
                 description:
-                  "Explains adverse action notices, free report rights, and dispute rights when a tenant-screening report is used.",
+                  "U.S. Department of Labor information about reentry employment programs and workforce strategies.",
               },
               {
-                label: "FTC tenant background-check disputes",
-                href: sourceLinks.ftcTenantScreeningErrors.href,
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                badge: "Job board",
+                description:
+                  "Fair-chance employment and reentry support platform for people with criminal records.",
+              },
+              {
+                label: "National H.I.R.E. Network Clearinghouse",
+                href: sourceLinks.hireNetwork,
+                badge: "Nonprofit",
+                description:
+                  "State-by-state reentry employment resources from the Legal Action Center's H.I.R.E. Network clearinghouse.",
+              },
+              {
+                label: "Federal Bonding Program",
+                href: sourceLinks.federalBonding,
+                badge: "Hiring support",
+                description:
+                  "No-cost fidelity bonding for some job seekers who face employment barriers.",
+              },
+              {
+                label: "FTC background-check rights",
+                href: sourceLinks.ftcBackgroundChecks,
                 badge: "Official",
                 description:
-                  "Plain-language steps for getting your report and disputing tenant-background-check errors.",
+                  "Explains rights when an employer uses a background reporting company.",
               },
               {
-                label: "Legal Services Corporation legal aid finder",
-                href: sourceLinks.lscLegalHelp.href,
-                badge: "Legal aid",
-                description:
-                  "Find an LSC-funded civil legal aid organization near you.",
-              },
-              {
-                label: "USA.gov legal aid overview",
-                href: sourceLinks.usaGovLegalAid.href,
+                label: "EEOC arrest and conviction record resources",
+                href: sourceLinks.eeocArrestConviction,
                 badge: "Official",
                 description:
-                  "Federal public-information page listing legal aid, LSC, LawHelp, and pro bono options.",
-              },
-              {
-                label: "United Way 211",
-                href: sourceLinks.unitedWay211.href,
-                badge: "Emergency help",
-                description:
-                  "Find local help with housing, utilities, food, health, disaster recovery, and other emergency needs.",
-                phone: "Call 211",
+                  "Resources for job seekers, workers, and employers about arrest and conviction records in employment.",
               },
             ]}
           />
+
+          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "Housing Search Guide",
-                description:
-                  "Use this when you are actively looking for housing or building an application packet.",
-                to: "/resources/housing-search",
-              },
-              {
-                title: "Reentry Planning Guide",
-                description:
-                  "Helps organize housing, documents, supervision, family support, and first-week stability after release.",
-                to: "/resources/reentry-planning",
-              },
-              {
                 title: "Know Your Rights Guide",
                 description:
-                  "Use alongside this guide when you are dealing with officials, supervision, court, or unclear legal instructions.",
+                  "Use this when you need broader information about constitutional rights, legal protections, documentation, and safe communication.",
                 to: "/resources/know-your-rights",
               },
               {
-                title: "Financial Support Strategies",
+                title: "Housing Search Guide",
                 description:
-                  "Practical steps for rent, utilities, food, emergency help, and family budgeting under stress.",
-                to: "/resources/financial-support",
+                  "Employment and housing often affect each other. This guide helps with landlord communication, documentation, and restriction checks.",
+                to: "/resources/housing-search",
+              },
+              {
+                title: "Federal Process Guide",
+                description:
+                  "Use this if you or a loved one is still moving through a federal case, sentencing, incarceration, release, or registration planning.",
+                to: "/resources/federal-process",
               },
             ]}
           />
 
+          <SoftDivider />
+
+          <GuideCallout
+            tone="legal"
+            icon={<AlertTriangle className="h-5 w-5" aria-hidden="true" />}
+            title="Legal and professional advice disclaimer"
+          >
+            <p>
+              This guide provides general information only. It is not legal
+              advice, employment advice, supervision approval, or a promise that a
+              particular job is safe for you. Employment laws, registry rules,
+              supervision conditions, licensing rules, and employer policies vary.
+              Verify your specific situation before applying, accepting work, or
+              relying on any general guidance.
+            </p>
+          </GuideCallout>
+
           <SourceList
-            title="Sources and verification links"
-            note={
-              <span>
-                Links were live-checked during the sandbox rebuild. Rules change,
-                and tenant law is state-specific, so verify local deadlines,
-                court procedure, registry rules, and PHA policies before acting.
-              </span>
-            }
+            title="Sources and verification"
+            note="Links were selected for official, nonprofit, or practical job-search value. Registry-specific employment restrictions still need local verification."
             sources={[
               {
-                label: sourceLinks.hudComplaint.label,
-                href: sourceLinks.hudComplaint.href,
+                label: "CareerOneStop American Job Center Finder",
+                href: sourceLinks.americanJobCenterFinder,
                 description:
-                  "Official HUD FHEO page for reporting housing discrimination and finding online, phone, and mail complaint options.",
+                  "Local workforce office lookup for job search help, training support, and employment services.",
               },
               {
-                label: sourceLinks.cfpbTenantScreeningDenied.label,
-                href: sourceLinks.cfpbTenantScreeningDenied.href,
+                label: "U.S. Department of Labor — American Job Centers",
+                href: sourceLinks.dolAmericanJobCenters,
                 description:
-                  "Official CFPB guidance on adverse action notices, free tenant-screening reports, and dispute rights.",
+                  "Official DOL page explaining American Job Center services and the 1-877-US-2JOBS help line.",
               },
               {
-                label: sourceLinks.ftcTenantScreeningErrors.label,
-                href: sourceLinks.ftcTenantScreeningErrors.href,
+                label:
+                  "U.S. Department of Labor — Reentry Employment Opportunities",
+                href: sourceLinks.dolReentry,
                 description:
-                  "Official FTC guidance on disputing errors in tenant background-check reports.",
+                  "Official DOL reentry employment program information.",
               },
               {
-                label: sourceLinks.hudPihRescission2025.label,
-                href: sourceLinks.hudPihRescission2025.href,
-                description:
-                  "Current HUD notice rescinding PIH 2015-19 / H 2015-10 on arrest records in housing decisions.",
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                description: "Fair-chance employment and reentry support platform.",
               },
               {
-                label: sourceLinks.hudPihNotices.label,
-                href: sourceLinks.hudPihNotices.href,
+                label: "National H.I.R.E. Network Clearinghouse",
+                href: sourceLinks.hireNetwork,
                 description:
-                  "HUD PIH notice index showing the status of current PIH notices.",
+                  "Legal Action Center clearinghouse for state reentry employment resources.",
               },
               {
-                label: sourceLinks.voucherRule.label,
-                href: sourceLinks.voucherRule.href,
+                label: "Federal Bonding Program",
+                href: sourceLinks.federalBonding,
                 description:
-                  "Federal voucher-program rule including lifetime sex-offender registration admission bar and record-dispute language.",
+                  "Information about fidelity bonding for job seekers facing employment barriers.",
               },
               {
-                label: sourceLinks.publicHousingRule.label,
-                href: sourceLinks.publicHousingRule.href,
+                label: "FTC — Employer Background Checks and Your Rights",
+                href: sourceLinks.ftcBackgroundChecks,
                 description:
-                  "Federal public-housing admission rule including lifetime sex-offender registration admission bar and record-dispute language.",
+                  "Federal background-check rights information for job applicants.",
               },
               {
-                label: sourceLinks.quietEnjoyment.label,
-                href: sourceLinks.quietEnjoyment.href,
+                label: "EEOC — Arrest and Conviction Records",
+                href: sourceLinks.eeocArrestConviction,
                 description:
-                  "Plain-language legal encyclopedia entry explaining quiet enjoyment as the right to use property without serious disturbance.",
+                  "Resources for job seekers, workers, and employers about arrest and conviction records.",
               },
               {
-                label: sourceLinks.covenantQuietEnjoyment.label,
-                href: sourceLinks.covenantQuietEnjoyment.href,
+                label:
+                  "EEOC — Enforcement Guidance on Arrest and Conviction Records",
+                href: sourceLinks.eeocGuidance,
                 description:
-                  "Legal encyclopedia entry explaining the implied covenant of quiet enjoyment in leases.",
-              },
-              {
-                label: sourceLinks.dojReasonableAccommodation.label,
-                href: sourceLinks.dojReasonableAccommodation.href,
-                description:
-                  "DOJ/HUD joint statement on reasonable accommodations under the Fair Housing Act.",
-              },
-              {
-                label: sourceLinks.justiceGuidanceIndex.label,
-                href: sourceLinks.justiceGuidanceIndex.href,
-                description:
-                  "DOJ Civil Rights Division index confirming reasonable-accommodation guidance availability.",
-              },
-              {
-                label: sourceLinks.hudResidentRights.label,
-                href: sourceLinks.hudResidentRights.href,
-                description:
-                  "HUD resident rights brochure for HUD-assisted multifamily housing; not a universal public-housing or voucher guide.",
-              },
-              {
-                label: sourceLinks.mnDocProximityStudy.label,
-                href: sourceLinks.mnDocProximityStudy.href,
-                description:
-                  "Research source on residential proximity and sex-offense recidivism; useful for policy context, not address-level legal advice.",
-              },
-              {
-                label: sourceLinks.nrrcHudCriminalRecords.label,
-                href: sourceLinks.nrrcHudCriminalRecords.href,
-                description:
-                  "Reentry resource page summarizing HUD fair-housing guidance on criminal-record screening.",
-              },
-              {
-                label: sourceLinks.usaGovLegalAid.label,
-                href: sourceLinks.usaGovLegalAid.href,
-                description:
-                  "Federal public-information page for legal aid and pro bono options.",
-              },
-              {
-                label: sourceLinks.lscLegalHelp.label,
-                href: sourceLinks.lscLegalHelp.href,
-                description:
-                  "Legal Services Corporation page for finding LSC-funded civil legal aid.",
-              },
-              {
-                label: sourceLinks.unitedWay211.label,
-                href: sourceLinks.unitedWay211.href,
-                description:
-                  "National 211 resource finder for housing, utility, food, and other local emergency needs.",
+                  "Federal enforcement guidance about use of arrest and conviction records in employment decisions under Title VII.",
               },
             ]}
           />
