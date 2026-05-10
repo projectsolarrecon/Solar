@@ -8,7 +8,6 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
@@ -20,117 +19,80 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  TimelineGuidanceGrid,
+  DualDepthSection,
+  RedFlagGreenFlag,
 } from "../../components/solar";
 
-const sourceLinks = [
-  {
-    label: "Federal Rule of Appellate Procedure 4",
-    href: "https://www.law.cornell.edu/rules/frap/rule_4",
-    description:
-      "Readable rule text for federal appeal timing, including criminal notice-of-appeal timing and the prisoner mailbox rule.",
+const sourceLinks = {
+  hudComplaint: {
+    label: "HUD: Report Housing Discrimination",
+    href: "https://www.hud.gov/reporthousingdiscrimination",
   },
-  {
-    label: "Federal Rule of Appellate Procedure 9",
-    href: "https://www.law.cornell.edu/rules/frap/rule_9",
-    description:
-      "Readable rule text for release in a criminal case and related custody review during appeal.",
+  cfpbTenantScreeningDenied: {
+    label: "CFPB: Rental application denied because of a tenant screening report",
+    href: "https://www.consumerfinance.gov/ask-cfpb/what-should-i-do-if-my-rental-application-is-denied-because-of-a-tenant-screening-report-en-2105/",
   },
-  {
-    label: "Federal Rule of Appellate Procedure 24",
-    href: "https://www.law.cornell.edu/rules/frap/rule_24",
-    description:
-      "Readable rule text for proceeding in forma pauperis on appeal in federal court.",
+  ftcTenantScreeningErrors: {
+    label: "FTC: Disputing errors on your tenant background check report",
+    href: "https://consumer.ftc.gov/articles/disputing-errors-your-tenant-background-check-report",
   },
-  {
-    label: "Federal Rules of Appellate Procedure — official PDF",
-    href: "https://www.uscourts.gov/sites/default/files/2025-02/federal-rules-of-appellate-procedure-dec-1-2024_0.pdf",
-    description:
-      "Official U.S. Courts rules PDF for federal appellate procedure verification.",
+  hudPihRescission2025: {
+    label: "HUD Notice PIH 2025-26 / H 2025-05",
+    href: "https://www.hud.gov/sites/dfiles/OCHCO/documents/Hsng2025-05.pdf",
   },
-  {
-    label: "U.S. Courts AO 435 Transcript Order",
-    href: "https://www.uscourts.gov/forms-rules/forms/transcript-order",
-    description:
-      "Official federal transcript order form page for ordering trial, hearing, and sentencing transcripts.",
+  hudPihNotices: {
+    label: "HUD: Public and Indian Housing Notices",
+    href: "https://www.hud.gov/hudclips/notices/pih",
   },
-  {
-    label: "Supreme Court Guide for Prospective Indigent Petitioners",
-    href: "https://www.supremecourt.gov/casehand/IFPGuide2026.pdf",
-    description:
-      "Official Supreme Court self-represented guide, including certiorari timing basics.",
+  voucherRule: {
+    label: "24 CFR § 982.553: Housing Choice Voucher admission and termination rules",
+    href: "https://www.law.cornell.edu/cfr/text/24/982.553",
   },
-  {
-    label: "California Courts CR-415",
-    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415",
-    description:
-      "Official California petition form to ask a court to terminate a sex offender registration requirement.",
+  publicHousingRule: {
+    label: "24 CFR § 960.204: Public housing admission rules",
+    href: "https://www.law.cornell.edu/cfr/text/24/960.204",
   },
-  {
-    label: "California Courts CR-415-INFO",
-    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415-INFO",
-    description:
-      "Official California information sheet explaining steps for a court to consider registry termination.",
+  quietEnjoyment: {
+    label: "Cornell Wex: Quiet enjoyment",
+    href: "https://www.law.cornell.edu/wex/quiet_enjoyment",
   },
-  {
-    label: "California Courts — how to ask to end registration",
-    href: "https://selfhelp.courts.ca.gov/clean-your-record/ask-PC290-relief",
-    description:
-      "Official California self-help page explaining basic filing steps and attachments for Penal Code 290 relief.",
+  covenantQuietEnjoyment: {
+    label: "Cornell Wex: Covenant of quiet enjoyment",
+    href: "https://www.law.cornell.edu/wex/covenant_of_quiet_enjoyment",
   },
-];
-
-const resourceLinks = [
-  {
-    label: "Federal appeal timing rule",
-    href: "https://www.law.cornell.edu/rules/frap/rule_4",
-    badge: "Federal rule",
-    description:
-      "Use this to verify federal appeal deadlines. State and agency deadlines may be different.",
+  dojReasonableAccommodation: {
+    label: "DOJ/HUD Joint Statement: Reasonable accommodations under the Fair Housing Act",
+    href: "https://www.justice.gov/sites/default/files/crt/legacy/2010/12/14/joint_statement_ra.pdf",
   },
-  {
-    label: "Release during federal criminal appeal",
-    href: "https://www.law.cornell.edu/rules/frap/rule_9",
-    badge: "Federal rule",
-    description:
-      "Federal rule source for release or detention review in a criminal case during appeal.",
+  justiceGuidanceIndex: {
+    label: "DOJ Civil Rights Division: Policy statements and guidance",
+    href: "https://www.justice.gov/crt/policy-statements-and-guidance",
   },
-  {
-    label: "Federal in forma pauperis rule",
-    href: "https://www.law.cornell.edu/rules/frap/rule_24",
-    badge: "Federal rule",
-    description:
-      "Federal rule source for asking to proceed without prepaying fees on appeal.",
+  usaGovLegalAid: {
+    label: "USA.gov: Find a lawyer and affordable legal aid",
+    href: "https://www.usa.gov/legal-aid",
   },
-  {
-    label: "AO 435 Transcript Order",
-    href: "https://www.uscourts.gov/forms-rules/forms/transcript-order",
-    badge: "Official form",
-    description:
-      "Use this federal form page when transcripts are needed for an appeal record.",
+  lscLegalHelp: {
+    label: "Legal Services Corporation: I need legal help",
+    href: "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
   },
-  {
-    label: "Supreme Court IFP guide",
-    href: "https://www.supremecourt.gov/casehand/IFPGuide2026.pdf",
-    badge: "Official guide",
-    description:
-      "For people considering a petition for certiorari without prepaying Supreme Court filing costs.",
+  unitedWay211: {
+    label: "United Way 211",
+    href: "https://www.211.org/",
   },
-  {
-    label: "California CR-415 registry termination petition",
-    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415",
-    badge: "State example",
-    description:
-      "Example of a state-specific registration relief form. Your state may use a different process.",
+  hudResidentRights: {
+    label: "HUD: Resident Rights and Responsibilities brochure",
+    href: "https://www.hud.gov/sites/dfiles/Housing/documents/resident_rights_brochure_8.pdf",
   },
-  {
-    label: "California CR-415-INFO",
-    href: "https://selfhelp.courts.ca.gov/jcc-form/CR-415-INFO",
-    badge: "State example",
-    description:
-      "Explains the California registration termination petition process in plain language.",
+  mnDocProximityStudy: {
+    label: "Minnesota DOC: Residential Proximity & Sex Offense Recidivism",
+    href: "https://mn.gov/doc/assets/04-07SexOffenderReport-Proximity_tcm1089-272769.pdf",
   },
-];
+  nrrcHudCriminalRecords: {
+    label: "National Reentry Resource Center: HUD fair-housing guidance on criminal records",
+    href: "https://nationalreentryresourcecenter.org/resources/office-general-counsel-guidance-application-fair-housing-act-standards-use-criminal",
+  },
+} as const;
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -138,9 +100,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="SOLAR Appeals Guide | The SOLAR Project"
-        description="A calm, practical guide for people charged with or convicted of sex offenses, registrants, and families trying to protect appeal deadlines, preserve records, and understand legal review options."
-        keywords="sex offense appeal guide, registry appeal, supervision condition appeal, notice of appeal, post-conviction relief, SOLAR Project"
+        title="Tenant Rights and Housing Stability Guide | The SOLAR Project"
+        description="A practical, registry-aware tenant rights guide for protecting housing, documenting landlord problems, responding to screening denials, checking residency rules, and finding legal help."
+        keywords="tenant rights, sex offender registry housing, housing stability, eviction, lockout, tenant screening, public housing, residency restrictions, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -157,14 +119,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            SOLAR Appeals Guide
+            Tenant Rights and Housing Stability Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A step-by-step hand-holder for people charged with or convicted of
-            sex offenses, registrants, and families trying to challenge a ruling,
-            protect deadlines, preserve records, or understand what review path
-            may still exist.
+            Practical, registry-aware steps for protecting current housing,
+            responding to lockouts or denials, checking address restrictions,
+            and building the paper trail that helps you get help.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -193,974 +154,1034 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            If you are reading this, something may have just happened that feels
-            frightening, unfair, confusing, or final: a conviction, sentence,
-            plea-related ruling, supervision condition, registry classification,
-            parole decision, civil commitment order, or agency notice.
+            Housing problems can make everything feel urgent. That is especially
+            true for people on registries, people under supervision, and
+            families trying to avoid homelessness, technical violations, or
+            another failed application.
           </p>
 
           <p>
-            A bad ruling does not always mean there are no options. But appeal
-            and review deadlines can be short, technical, and unforgiving. You do
-            not have to solve the whole case today. Your first job is to protect
-            deadlines, save proof, and find out exactly what was entered, when it
-            was entered, and who has authority to review it.
+            Start with the safest assumption: <strong>protect the housing you
+            already have when you safely can.</strong> Finding new housing with
+            registry status can be harder than defending current housing. Do not
+            let pressure, shame, neighbor hostility, or a landlord’s verbal
+            demand turn into an unofficial eviction.
+          </p>
+
+          <p>
+            This guide is not legal advice. It is a practical plan for slowing
+            the situation down, saving proof, checking the right rules, and
+            asking the right people for help before you give up housing or sign
+            something risky.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If a ruling just landed"
-          subtitle="Use this first when a conviction, sentence, condition, registry notice, or agency decision just came in."
+          title="If housing is at risk today"
+          subtitle="Use these steps before you pack, move, sign, or assume the worst."
           icon="⚡"
           urgentActions={[
             <span>
-              Write down the decision date, the docket entry date if there is
-              one, and the date you received notice. These may not be the same.
+              <strong>If you are locked out, utilities are shut off, or someone
+              says you must leave immediately:</strong> take photos, save texts
+              or notices, write down what happened, and contact legal aid or
+              emergency tenant help the same day.
             </span>,
             <span>
-              Ask the clerk, lawyer, public defender, or agency what deadline
-              applies and where the notice, petition, or review request must be
-              filed.
+              <strong>If you received court papers:</strong> do not ignore
+              them. Circle the hearing date, deadline, court name, and case
+              number. Ask legal aid how to respond.
             </span>,
             <span>
-              Save proof of everything: envelopes, mail logs, receipts, stamped
-              copies, screenshots, confirmation numbers, and the name of anyone
-              who gave instructions.
+              <strong>If a landlord or PHA denied you because of a background
+              check:</strong> ask for the adverse action notice, the name of the
+              screening company, and your free copy of the report.
+            </span>,
+            <span>
+              <strong>If you are considering a new address:</strong> verify
+              registry rules, local residency restrictions, and supervision
+              approval before signing or moving.
             </span>,
           ]}
           nextActions={[
             <span>
-              Ask whether a notice of appeal, request for appointed counsel, fee
-              waiver, transcript order, or administrative review request is
-              needed immediately.
+              Start a tenant binder with your lease, notices, messages, rent
+              proof, photos, screening reports, and address-verification notes.
             </span>,
             <span>
-              Start one paper or digital appeal folder with the judgment, order,
-              registry notice, supervision condition, docket sheet, and all
-              mailing proof.
+              Put important requests in writing. After phone calls, send a short
+              recap text or email and save the reply.
             </span>,
             <span>
-              If you are incarcerated, use legal-mail procedures and ask for
-              proof of the date you deposited the filing.
+              Ask for written deadlines: court dates, appeal dates, dispute
+              windows, PHA hearing deadlines, and move-out dates.
             </span>,
           ]}
           reminder={
             <span>
-              This guide is educational, not legal advice. For your own case,
-              rely on your lawyer or the court or agency with authority over the
-              decision. When in doubt, verify the deadline before doing anything
-              else.
+              Pressure is not the same thing as a court order. This does not
+              mean ignoring real court papers, safety emergencies, supervision
+              instructions, or verified registration problems. It means do not
+              surrender housing just because someone is trying to scare you out.
             </span>
           }
         />
-
-        <OverviewCards
-          columns={3}
+<OverviewCards
+          columns={4}
           cards={[
             {
-              eyebrow: "Path 1",
-              title: "Direct appeal",
-              icon: "⚖️",
+              eyebrow: "Risk lane 1",
+              title: "Lease or eviction pressure",
+              icon: "📄",
               tone: "legal",
               description:
-                "A higher court reviews legal errors from a conviction, sentence, suppression ruling, trial ruling, or other appealable order.",
+                "Know the difference between a threat, a written notice, and a court order. Save every paper.",
             },
             {
-              eyebrow: "Path 2",
-              title: "Post-conviction relief",
-              icon: "🧾",
+              eyebrow: "Risk lane 2",
+              title: "Screening denial",
+              icon: "🔎",
               tone: "warning",
               description:
-                "A later challenge may raise issues such as constitutional violations, ineffective assistance, newly discovered evidence, or other claims allowed by law.",
+                "Ask for the adverse action notice, get the report, dispute errors, and request individualized review.",
             },
             {
-              eyebrow: "Path 3",
-              title: "Registry, supervision, or agency review",
-              icon: "🗂️",
-              tone: "reentry",
+              eyebrow: "Risk lane 3",
+              title: "Registry address risk",
+              icon: "📍",
+              tone: "urgent",
               description:
-                "Some decisions are challenged through petitions, agency review, hearings, motions to modify conditions, or state-specific registration relief processes.",
+                "Before signing or moving, check the exact address with the registry office and supervision if applicable.",
+            },
+            {
+              eyebrow: "Risk lane 4",
+              title: "PHA or voucher housing",
+              icon: "🏢",
+              tone: "info",
+              description:
+                "Public and subsidized housing can have special rules, hearing rights, and strict admission bars.",
             },
           ]}
         />
 
-        <GuideCallout tone="legal" icon="⚠️" title="Deadlines come first">
-          <p>
-            Federal criminal appeals often use a 14-day notice-of-appeal rule,
-            but that is not the deadline for every case, state, agency, registry
-            petition, civil commitment order, probation decision, or supervision
-            condition. Treat every decision as having its own deadline until you
-            verify otherwise.
-          </p>
-        </GuideCallout>
-<GuideSectionHeader
-          id="what-appeals-are"
+        <GuideSectionHeader
+          id="protect-current-housing"
           number="1"
-          title="What appeals really are"
-          subtitle="Appeals are not just for trial verdicts. They are review paths for decisions that may be legally wrong, unfair, unsupported, or entered through the wrong process."
+          title="Protect the housing you already have"
+          subtitle="For people on registries, staying housed is often the first safety plan."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              In a criminal case, an appeal usually means asking a higher court
-              to review whether the trial court made legal errors that affected
-              the outcome. That may involve a conviction, sentence, suppression
-              ruling, plea issue, probation condition, restitution order, or
-              another order the law allows someone to challenge.
+              A landlord, neighbor, property manager, or even a family member
+              may tell you that you have no choice but to leave. Sometimes that
+              is true because of a court order, safety emergency, supervision
+              instruction, or verified registry rule. But often it is pressure,
+              not process.
             </p>
 
             <p>
-              For people charged with or convicted of sex offenses, appeal work
-              may also involve issues outside the ordinary courtroom path:
-              registration tiers, lifetime registration, residence restrictions,
-              internet conditions, treatment requirements, GPS monitoring,
-              no-contact conditions, parole board decisions, civil commitment,
-              immigration consequences, or agency classifications.
-            </p>
-
-            <p>
-              The unifying question is simple: who made the decision, what rule
-              gives them authority, what review process exists, and what deadline
-              controls the next step?
+              For someone on a registry, losing current housing can create a
+              chain reaction: emergency shelter may be unavailable, a new lease
+              may require background screening, a new address may violate a
+              distance rule, and supervision may need approval before any move.
+              That is why protecting existing housing is often easier than
+              finding new housing from scratch.
             </p>
           </GuideProse>
 
-          <SoftDivider />
-
-          <GuideCallout tone="reminder" icon="🧭" title="Appeals are not retrials">
+          <GuideCallout
+            tone="legal"
+            icon="⚖️"
+            title="Do not confuse pressure with eviction"
+          >
             <p>
-              Most appellate courts do not simply start over. They usually review
-              the record that already exists. That is why objections, motions,
-              transcripts, exhibits, written orders, and proof of notice matter
-              so much.
+              In ordinary landlord-tenant housing, a landlord usually needs a
+              legal process before removing a tenant. A verbal demand, angry
+              text, neighbor complaint, or “you are not welcome here anymore” is
+              not the same as a court order. Save the communication, ask for
+              anything important in writing, and contact legal aid before moving
+              out.
             </p>
           </GuideCallout>
+
+          <RedFlagGreenFlag
+            red={
+              <p>
+                “You have 24 hours to get out,” “I changed the locks,” “I do not
+                need court,” or “people like you cannot live here” without a
+                written legal basis or court order.
+              </p>
+            }
+            green={
+              <p>
+                Written notices with dates, clear lease sections, court
+                information if a case was filed, and an opportunity to respond,
+                cure, dispute, or attend a hearing.
+              </p>
+            }
+          />
+
+          <ScriptBox
+            title="Script: when someone is pressuring you to leave"
+            tone="legal"
+            context="Use this when you need to stay calm and move the conversation into writing."
+            buttonLabel="Copy housing-pressure script"
+            script={`Hello, I am documenting an ongoing housing issue at [address].
+
+I am not refusing to communicate, but I need all notices, requests, and instructions in writing.
+
+Please identify the lease term, rule, court order, or legal notice you believe applies. If you are asking me to leave, please provide the written notice required by law.
+
+I am keeping records of dates, times, messages, entries, utility issues, and witness information.`}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="timeline"
+          id="lease-and-binder"
           number="2"
-          title="What to do by stage"
-          subtitle="The right move changes depending on where the case is. Use this as a map, then verify the rule in your court, agency, or state."
+          title="Understand your lease and build your tenant binder"
+          subtitle="The person with organized proof is usually in a stronger position."
         />
 
         <GuideSectionCard>
-          <TimelineGuidanceGrid
-            title="Appeal and review timeline"
-            stages={[
+          <DualDepthSection
+            simpleTitle="Plain-language version"
+            deepTitle="Why this matters"
+            simple={
+              <GuideProse>
+                <p>
+                  A lease is a two-way promise. You promise to pay rent and
+                  follow the rules. The landlord promises to provide the home
+                  described in the lease and follow the law.
+                </p>
+
+                <p>
+                  Before you sign, you can ask questions and request changes.
+                  After you sign, the words matter. If a line says the landlord
+                  can remove you “immediately,” enter whenever they want, or end
+                  the lease without process, circle it and ask legal aid or a
+                  tenant clinic before relying on it.
+                </p>
+              </GuideProse>
+            }
+            deep={
+              <GuideProse>
+                <p>
+                  A lease is a contract, but landlord-tenant law can add rights
+                  and duties even when the lease is silent. State and local law
+                  control details such as notice periods, repairs, entry rules,
+                  deposits, lockouts, and eviction procedure.
+                </p>
+
+                <p>
+                  For registry-impacted households, the lease is only one layer.
+                  You may also need to check supervision conditions, local
+                  residency restrictions, public-housing rules, and whether a
+                  household member’s status creates a program-specific issue.
+                </p>
+              </GuideProse>
+            }
+          />
+
+          <DocumentPacket
+            title="Build a tenant binder"
+            intro={
+              <span>
+                Keep paper and digital copies if possible. If you only have a
+                phone, make one photo album for housing documents and one note
+                for dates, names, and case numbers.
+              </span>
+            }
+            categories={[
               {
-                stage: "Same day or immediately",
-                icon: "⏰",
-                whatChanges:
-                  "The clock may already be running. A spoken ruling, written order, docket entry, agency notice, or mailed decision can each matter differently.",
-                whatToDo:
-                  "Write down every date. Ask what was entered, when it was entered, what deadline applies, and where the notice or review request must be filed.",
+                title: "Lease and payment proof",
+                items: [
+                  "Lease, rules, addenda, renewal notices, and house policies.",
+                  "Rent receipts, bank statements, money order copies, ledgers, and payment confirmations.",
+                  "Security deposit records and move-in / move-out inspection notes.",
+                ],
               },
               {
-                stage: "First few days",
-                icon: "📄",
-                whatChanges:
-                  "The safest first filing may be a notice of appeal, request for review, request for counsel, fee waiver, or motion to modify conditions.",
-                whatToDo:
-                  "Confirm whether counsel will file. If not, ask the clerk for self-represented forms and filing instructions. Keep stamped copies and mailing proof.",
+                title: "Condition and communication proof",
+                items: [
+                  "Photos or videos of the unit, repairs, locks, notices, utilities, pests, leaks, or damage.",
+                  "Texts, emails, letters, portal messages, voicemails, and screenshots.",
+                  "A call log with date, time, person, department, and what was said.",
+                ],
               },
               {
-                stage: "First weeks",
-                icon: "🗂️",
-                whatChanges:
-                  "The appeal may shift from deadline protection to record-building: transcripts, exhibits, orders, docket entries, and agency records.",
-                whatToDo:
-                  "Order transcripts, request the docket sheet, gather notices and conditions, and make a simple index so a lawyer or clinic can understand the file quickly.",
-              },
-              {
-                stage: "While review is pending",
-                icon: "☎️",
-                whatChanges:
-                  "Housing, supervision, registration, treatment, travel, device access, and family contact restrictions may continue while the appeal moves slowly.",
-                whatToDo:
-                  "Ask whether a stay, release request, condition modification, or agency hold is available. Do not violate a condition because you believe it is wrong.",
-              },
-              {
-                stage: "After a decision",
-                icon: "🔁",
-                whatChanges:
-                  "There may be limited next steps: rehearing, mandate, higher-court review, remand, post-conviction relief, or a later registry-relief petition.",
-                whatToDo:
-                  "Save the decision, calendar the next deadline, ask what the mandate or remand requires, and update your appeal folder before documents disappear.",
+                title: "Registry, screening, and appeal proof",
+                items: [
+                  "Screening reports, adverse action notices, dispute letters, and landlord responses.",
+                  "Registry-office address confirmations, maps, GIS screenshots, and supervision approvals.",
+                  "References, employment proof, treatment or program certificates, and letters of support.",
+                ],
               },
             ]}
           />
 
-          <GuideCallout tone="family" icon="👥" title="For family and supporters">
+          <GuideChecklist
+            id="tenant-binder-first-week"
+            title="First-week binder checklist"
+            columns={1}
+            items={[
+              {
+                id: "lease",
+                label: "Put the lease and all rules in one folder.",
+              },
+              {
+                id: "rent-proof",
+                label: "Save the last six months of rent proof if you have it.",
+              },
+              {
+                id: "photo-home",
+                label: "Take photos of the current condition of the home.",
+              },
+              {
+                id: "call-log",
+                label:
+                  "Start a call log for landlord, court, PHA, legal aid, registry, and supervision contacts.",
+              },
+              {
+                id: "deadline-page",
+                label:
+                  "Make one deadline page for court dates, appeal dates, rent dates, and report-dispute windows.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="lockouts-and-soft-eviction"
+          number="3"
+          title="Lockouts, harassment, and “soft eviction”"
+          subtitle="A landlord may try to make you leave without using the formal process."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              A family member can help without becoming the legal expert. The
-              most useful support is often practical: make calls, print forms,
-              organize records, keep a calendar, save envelopes, and help the
-              person ask counsel clear written questions.
+              Some housing loss is obvious: a court case, a sheriff’s notice, or
+              a written termination. Other pressure is quieter: repeated threats,
+              surprise entries, utility shutoffs, selective rule enforcement,
+              hostile neighbors, ignored repair requests, or a manager trying to
+              make the home feel impossible so you leave on your own.
+            </p>
+
+            <p>
+              Do not argue every legal term in the moment. Document first. Save
+              proof while things are happening. Then ask legal aid, a tenant
+              attorney, or a court self-help center what the conduct may mean in
+              your state.
+            </p>
+          </GuideProse>
+<GuideCallout
+            tone="urgent"
+            icon="🚪"
+            title="If you are locked out or utilities are shut off"
+          >
+            <p>
+              Stay as calm as you can. Take photos or video. Save the notice or
+              message. Call legal aid or emergency tenant help. If you call
+              non-emergency police, keep the script simple: you are a tenant,
+              you were locked out or utilities were shut off, and you are asking
+              for help documenting or restoring access.
             </p>
           </GuideCallout>
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="deadlines"
-          number="3"
-          title="Deadlines, notices, and the first filing"
-          subtitle="The first filing often protects the right to be heard. Do not wait for the whole record before asking what must be filed now."
-        />
+          <DualDepthSection
+            simpleTitle="Quiet enjoyment, in plain language"
+            deepTitle="Deeper detail"
+            simple={
+              <GuideProse>
+                <p>
+                  “Quiet enjoyment” does not just mean quiet neighbors. In
+                  landlord-tenant law, it usually means you have a right to live
+                  in and use the home you rent without serious interference from
+                  the landlord or people acting through the landlord.
+                </p>
 
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A notice of appeal is often the gateway document. In many cases, it
-              does not need to contain the full argument. Its job is to tell the
-              court that you are appealing a specific judgment, sentence, order,
-              or decision.
-            </p>
+                <p>
+                  If a landlord, manager, or hostile neighbor is trying to make
+                  the home unlivable so you leave, that may matter. Write down
+                  dates, times, names, witnesses, photos, utility issues,
+                  repair requests, entries, and every message.
+                </p>
+              </GuideProse>
+            }
+            deep={
+              <GuideProse>
+                <p>
+                  Quiet-enjoyment rules vary by state. Many leases say it
+                  directly, and many jurisdictions recognize some version of the
+                  right even when the lease does not use those words. The key
+                  issue is usually serious interference, not minor annoyance.
+                </p>
 
-            <p>
-              In federal criminal cases, the defendant’s notice of appeal is
-              often due within 14 days after the judgment or order is entered, or
-              after the government files its notice of appeal. But federal rules
-              are only one example. State criminal appeals, civil commitment
-              orders, probation decisions, parole decisions, administrative
-              classifications, and registry petitions can have different timing.
-            </p>
-
-            <p>
-              If you are incarcerated, legal-mail rules may matter. Ask staff how
-              to send legal mail, how to document the deposit date, and how to get
-              a receipt, log entry, or other proof. Keep a copy of what you sent.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="first-filing-checklist"
-            title="First-filing checklist"
-            columns={1}
-            items={[
-              {
-                id: "decision",
-                label:
-                  "Identify the decision you are challenging: conviction, sentence, order, supervision condition, registry notice, civil commitment decision, agency classification, or parole decision.",
-              },
-              {
-                id: "entry-date",
-                label:
-                  "Ask for the entry date or official decision date, not just the day someone told you about it.",
-              },
-              {
-                id: "deadline",
-                label:
-                  "Ask what deadline applies and whether weekends, holidays, mail delays, or post-trial motions change the calculation.",
-              },
-              {
-                id: "where-file",
-                label:
-                  "Ask where the notice, petition, or review request must be filed and how service must be completed.",
-              },
-              {
-                id: "proof",
-                label:
-                  "Keep stamped copies, legal-mail logs, receipts, envelopes, confirmation numbers, and written instructions.",
-              },
-            ]}
+                <p>
+                  Do not break a lease, withhold rent, or move out based only on
+                  a phrase you read online. Build the record first and verify
+                  your options with legal aid or a tenant attorney.
+                </p>
+              </GuideProse>
+            }
           />
 
-          <VerifyBeforeActing
-            title="Verify before relying on a deadline"
-            whoToAsk={
-              <span>
-                The clerk of the court that entered the judgment or order, the
-                appellate clerk, your lawyer or public defender, or the agency
-                office that issued the decision.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “What was entered, on what date, what deadline applies, where do
-                I file the notice or review request, and is there a local rule,
-                form, or service requirement?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                The name, office, date and time of the answer, the docket entry,
-                the written instruction if available, and proof of filing or
-                mailing.
-              </span>
-            }
+          <ScriptBox
+            title="Script: illegal lockout or utility shutoff"
+            tone="urgent"
+            context="Use with non-emergency police, legal aid, or a tenant hotline. If there is immediate danger, call emergency services."
+            buttonLabel="Copy lockout script"
+            script={`Hello, my name is [Name]. I am a tenant at [address].
+
+My landlord or property manager [changed the locks / shut off utilities / removed my property / blocked access] without showing me a court order.
+
+I have my lease, ID, messages, and photos. I am asking for help documenting this and finding out how to regain lawful access.
+
+The landlord or manager is [name, phone, company if known].`}
+          />
+
+          <ScriptBox
+            title="Script: follow-up after a hostile interaction"
+            tone="neutral"
+            context="Send this after a call, hallway conversation, or threat so your records show what happened."
+            buttonLabel="Copy follow-up script"
+            script={`Hello [Name],
+
+I am writing to confirm what happened on [date/time]. You told me [briefly describe what was said or done].
+
+Please send any lease section, written notice, court order, or policy you believe applies.
+
+I am keeping a written record so we can handle this clearly and avoid misunderstandings.`}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="counsel-fees-conditions"
+          id="screening-denials"
           number="4"
-          title="Ask about counsel, fees, transcripts, release, and conditions"
-          subtitle="These are practical support requests, not side issues. They can affect whether the appeal can actually move forward."
+          title="Background checks, denials, and individualized review"
+          subtitle="A denial is not always the end of the conversation."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The first filing protects the door. The next question is whether
-              the person has the tools to walk through it: counsel, forms, filing
-              access, transcripts, and a safe plan for custody or supervision
-              conditions while review is pending.
+              Landlords and property managers often use tenant-screening
+              companies. Those reports can include criminal-history information,
+              eviction records, credit information, rental history, or matching
+              errors. If a report was used against you, ask for the adverse
+              action notice and the report.
             </p>
 
             <p>
-              In sex-offense cases, this can matter immediately. A person may be
-              trying to appeal from custody, comply with registration, follow
-              device restrictions, maintain housing, preserve family contact, or
-              challenge a condition that makes ordinary life impossible.
+              Registry status is not itself a protected class under federal fair
+              housing law. But screening decisions can still involve report
+              errors, unlawful discrimination, disability issues, state or local
+              fair-chance rules, or policies that deserve review.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="support-requests-checklist"
-            title="Practical requests to ask about"
+            id="screening-denial-steps"
+            title="If a rental application is denied"
             columns={1}
             items={[
               {
-                id: "appointed-counsel",
+                id: "adverse-action",
                 label:
-                  "Ask whether appointed appellate counsel, an appellate defender, conflict counsel, or a public defender can be requested.",
+                  "Ask for the adverse action notice and the name of the screening company.",
               },
               {
-                id: "fee-waiver",
+                id: "free-report",
                 label:
-                  "Ask for fee waiver or in forma pauperis forms if filing costs, transcript costs, or copying costs are a barrier.",
+                  "Request your free copy of the tenant-screening report within the deadline stated in the notice.",
               },
               {
-                id: "transcripts",
+                id: "check-errors",
                 label:
-                  "Ask how to order transcripts, whether a transcript-cost waiver exists, and whether any hearing needs to be ordered quickly.",
+                  "Check for wrong identity, duplicate cases, old records, sealed or expunged records, wrong disposition, or misleading labels.",
               },
               {
-                id: "release-pending-appeal",
+                id: "dispute",
                 label:
-                  "If the person is in custody, ask counsel whether release pending appeal, bond review, or detention review is legally available.",
+                  "Dispute errors in writing with the screening company and save proof of the dispute.",
               },
               {
-                id: "conditions",
+                id: "individual-review",
                 label:
-                  "If a supervision, registry, GPS, internet, housing, travel, treatment, or no-contact condition is causing immediate harm, ask whether clarification, modification, stay, or emergency review is available.",
-              },
-              {
-                id: "written-confirmation",
-                label:
-                  "Ask for the answer in writing when possible, especially if the issue affects a deadline, custody, registration, supervision, housing, or family contact.",
+                  "Ask the landlord or manager for individualized review using proof of stability, rent history, references, work, treatment, or time since offense.",
               },
             ]}
           />
 
           <GuideCallout
             tone="warning"
-            icon="🧷"
-            title="Do not confuse challenge with permission"
+            icon="🧾"
+            title="Important 2026 source caution"
           >
             <p>
-              Challenging a condition usually does not mean the person can ignore
-              it. Until a court, agency, or supervising authority changes the
-              rule, treat the condition as active and ask how to seek relief
-              safely.
+              Older HUD arrest-record guidance is no longer safe to cite as
+              current HUD policy without qualification. HUD Notice PIH 2025-26 /
+              H 2025-05 rescinded Joint Notice PIH 2015-19 / H 2015-10. If an
+              assisted-housing decision relies on an arrest, ask for the current
+              PHA or owner policy, the evidence being relied on, written reasons,
+              and the appeal or hearing deadline.
             </p>
           </GuideCallout>
+
+          <ScriptBox
+            title="Script: adverse action and screening report request"
+            tone="legal"
+            context="Use this after a denial, higher deposit, co-signer demand, or different terms based on a screening report."
+            buttonLabel="Copy adverse-action script"
+            script={`Hello [Manager],
+
+I was told my application was [denied / approved only with different terms] based on a tenant-screening or background-check report.
+
+Please send me the adverse action notice, the name and contact information of the screening company, and instructions for requesting my free copy of the report.
+
+I also request an individualized review of my application. I can provide documentation of rent history, income, references, current stability, and other relevant information.
+
+Thank you.`}
+          />
+
+          <ScriptBox
+            title="Script: individualized review request"
+            tone="neutral"
+            context="Attach only documents that help your request. You do not need to overshare every detail."
+            buttonLabel="Copy individualized-review script"
+            script={`Subject: Request for individualized review
+
+Hello [Name],
+
+Please reconsider my application using an individualized review.
+
+I understand you have concerns about [background check / registry status / criminal history]. I am asking you to also consider the specific facts: [time since offense], [stable housing history], [on-time rent history], [employment or income], [treatment or program completion], [references], and [other stability factors].
+
+I can provide documents that show I would be a reliable tenant and follow the lease.
+
+Please let me know what information would be most helpful and whether there is a deadline for submitting it.
+
+Thank you.`}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="record"
+          id="registry-address-checks"
           number="5"
-          title="Build the record"
-          subtitle="Appeals usually depend on what is in the file. A clean record packet helps counsel, clinics, family, and self-represented people move faster."
+          title="Registry, supervision, and address checks before signing"
+          subtitle="Do not let a good apartment become a compliance problem."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Appellate courts generally review the record, not rumors or memory.
-              If an issue was never raised, never written down, never transcribed,
-              or never included in the file, it may be harder to use later.
+              Residency rules can be invisible tripwires. You may qualify for
+              an apartment, pass the landlord’s screening, and still face
+              problems if the address is too close to a restricted place, not
+              approved by supervision, or treated differently under a local rule.
             </p>
 
             <p>
-              For sex-offense cases, the record may include more than trial
-              documents. It may include psychosexual evaluations, treatment
-              reports, risk assessments, presentence reports, registration
-              notices, supervision conditions, device-search terms, no-contact
-              orders, exclusion-zone maps, civil commitment filings, and agency
-              classification letters.
+              The safest move is to verify the exact address before signing,
+              paying deposits you cannot afford to lose, moving property, or
+              registering the address.
             </p>
           </GuideProse>
-<DocumentPacket
-            title="Appeal and review packet"
-            intro={
+
+          <VerifyBeforeActing
+            title="Verify the exact address before you rely on it"
+            whoToAsk={
               <span>
-                Use one folder, binder, envelope, or digital folder. Add a simple
-                index page at the front with document names and dates.
+                The registering agency or registry unit for the address, your
+                supervising officer if you are under supervision, and legal aid
+                if the answer is unclear or not in writing.
               </span>
             }
-            categories={[
-              {
-                title: "Court documents",
-                items: [
-                  "Judgment, sentencing order, written ruling, minute order, or agency decision.",
-                  "Docket sheet and case number.",
-                  "Notice of appeal or review request, plus stamped copy or proof of submission.",
-                  "Motions, objections, plea paperwork, sentencing memoranda, and written orders.",
-                ],
-              },
-              {
-                title: "Record materials",
-                items: [
-                  "Transcript order forms and receipts.",
-                  "Trial, plea, suppression, sentencing, revocation, or commitment hearing transcripts.",
-                  "Exhibits, exhibit lists, admitted evidence, and excluded evidence if preserved.",
-                  "Rulings on objections, jury instructions, verdict forms, and special findings.",
-                ],
-              },
-              {
-                title: "Sex-offense-specific materials",
-                items: [
-                  "Registration tier notices, classification letters, and termination or relief notices.",
-                  "Probation, parole, supervised release, or treatment conditions.",
-                  "Polygraph, GPS, internet, device-search, travel, housing, employment, or family-contact restrictions.",
-                  "Civil commitment filings, risk assessments, treatment reports, and review decisions.",
-                ],
-              },
-              {
-                title: "Proof and access records",
-                items: [
-                  "Envelopes, postmarks, legal-mail logs, certified mail receipts, and confirmation numbers.",
-                  "Names, departments, dates, and instructions from clerks, lawyers, officers, or agencies.",
-                  "Requests for law library access, transcript access, forms, or legal mail, including denials or delays.",
-                ],
-              },
-            ]}
+            whatToAsk={
+              <span>
+                Ask whether <strong>[exact address, unit number]</strong> is
+                compliant; whether city, county, or state distance rules apply;
+                how distance is measured; whether parks, schools, daycares,
+                shelters, bus stops, or other locations count; and whether you
+                can receive written confirmation.
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save names, dates, departments, emails, letters, map screenshots,
+                GIS searches, supervision approvals, and any instruction about
+                when or how to register the address.
+              </span>
+            }
+          />
+<ScriptBox
+            title="Script: registry or supervision address check"
+            tone="urgent"
+            context="Use before signing a lease, paying a deposit, moving property, or registering an address."
+            buttonLabel="Copy address-check script"
+            script={`Hello, my name is [Name]. I am considering renting [full address, unit number, city, state].
+
+Before I sign or move, I need to verify whether this address is compliant for me.
+
+Can you tell me:
+1. Whether this exact address is allowed?
+2. Whether any state, county, city, supervision, or local ordinance restriction applies?
+3. How distance is measured here?
+4. Whether you can provide written confirmation or tell me how to document the answer?
+
+I am taking notes. Could you please give me your name, department, and the date of this call?`}
           />
 
-          <GuideCallout tone="privacy" icon="🔒" title="Be careful with sensitive records">
+          <GuideCallout tone="research" icon="📚" title="Research note">
             <p>
-              Some records may contain victim information, child-protection
-              information, sealed material, treatment records, mental-health
-              records, or private family information. Share only what is needed,
-              use secure storage when possible, and ask counsel before sending
-              sensitive documents widely.
+              Research has repeatedly raised concerns that broad residence
+              restrictions can increase instability without clearly improving
+              public safety. That research is important for advocacy, but it
+              does not decide whether your exact address is legal today. For
+              your own housing decision, verify the rule that applies where you
+              are.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="registry-supervision"
+          id="public-subsidized-housing"
           number="6"
-          title="Registry, supervision, and sex-offense-specific review paths"
-          subtitle="Some of the most serious consequences happen outside the trial itself. They may have their own review process."
+          title="Public housing, vouchers, and subsidized housing"
+          subtitle="PHA rules can be strict, local, and deadline-heavy."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A person charged with or convicted of a sex offense may face
-              decisions that do not look like a traditional conviction appeal but
-              still shape daily life: registration length, tier level, public
-              website placement, exclusion zones, housing restrictions,
-              employment limits, internet conditions, GPS monitoring, treatment
-              requirements, or family-contact rules.
+              Public Housing Authorities, often called PHAs, run public housing
+              and Housing Choice Voucher programs. HUD-assisted multifamily
+              housing can have its own owner or management agent. The rules can
+              be different depending on the program.
             </p>
 
             <p>
-              These decisions may be reviewed through different paths depending
-              on the state, supervision status, sentence, agency, and court
-              order. Some require an administrative appeal. Some require a motion
-              in the sentencing court. Some require a statutory petition. Some
-              require exhausting an internal process before going to court.
+              If anyone in the household is subject to a lifetime sex-offender
+              registration requirement, federal rules require PHAs to prohibit
+              admission to public housing and the voucher program. If you are
+              applying, ask about this early so you do not lose months waiting
+              on a path that may be closed.
+            </p>
+
+            <p>
+              If you are already housed, do not assume the same rule applies in
+              the same way. Ask for the written reason, the program rule, the
+              grievance or hearing deadline, and a copy of any record they are
+              relying on.
             </p>
           </GuideProse>
 
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Classification",
-                title: "Registry tier or public listing",
-                icon: "📌",
-                tone: "warning",
-                description:
-                  "Save the notice, tier letter, score sheet, and instructions. Ask whether there is a hearing, objection deadline, or petition process.",
-              },
-              {
-                eyebrow: "Conditions",
-                title: "Supervision or release terms",
-                icon: "🧭",
-                tone: "legal",
-                description:
-                  "Do not violate a condition because you think it is unconstitutional. Ask whether modification, clarification, stay, or appeal is available.",
-              },
-              {
-                eyebrow: "Relief",
-                title: "Termination, reduction, or exemption",
-                icon: "🕊️",
-                tone: "success",
-                description:
-                  "Some states allow petitions to reduce or end registration duties after eligibility rules are met. The process is state-specific.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="reentry" icon="🏠" title="Practical risk">
+          <GuideCallout
+            tone="legal"
+            icon="🏛️"
+            title="Ask for the local policy, not just a verbal answer"
+          >
             <p>
-              Registry and supervision decisions can affect housing, work,
-              travel, treatment, family contact, internet use, and safety. Treat
-              every notice as something to save, calendar, and verify before
-              relying on memory or informal advice.
+              For voucher cases, ask for the PHA Administrative Plan. For public
+              housing, ask for the ACOP. For HUD-assisted multifamily housing,
+              ask for the house rules, tenant selection plan, lease, and any
+              written notice. Save the appeal or hearing deadline immediately.
             </p>
           </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="self-advocacy"
-          number="7"
-          title="Brief or explain the issue clearly"
-          subtitle="Even when a lawyer is involved, a simple issue summary can help everyone understand what happened and what relief is being requested."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Appeals often turn on structured questions: what ruling was wrong,
-              where it appears in the record, what legal standard applies, why it
-              mattered, and what remedy is being requested. You do not need to
-              sound like a lawyer to organize the issue clearly.
-            </p>
-
-            <p>
-              For a person convicted of or charged with a sex offense, this can
-              include trial errors, sentencing issues, plea problems, overbroad
-              supervision conditions, registry classifications, civil commitment
-              findings, treatment-related decisions, or restrictions affecting
-              family contact, housing, work, travel, or internet access.
-            </p>
-          </GuideProse>
 
           <GuideChecklist
-            id="issue-summary-checklist"
-            title="One-page issue summary"
+            id="pha-paperwork"
+            title="If a PHA or assisted-housing provider takes action"
             columns={1}
             items={[
               {
-                id: "ruling",
-                label:
-                  "Name the exact ruling, condition, classification, sentence, or agency decision being challenged.",
+                id: "written-reason",
+                label: "Ask for the written reason for the decision.",
               },
               {
-                id: "record-citation",
+                id: "record-copy",
                 label:
-                  "List where it appears: docket number, transcript date and page if known, exhibit number, written order, notice, or letter.",
+                  "Ask for a copy of any criminal record, registry record, screening report, or evidence being used.",
               },
               {
-                id: "error",
+                id: "deadline",
                 label:
-                  "Write one plain sentence explaining what seems legally wrong, unsupported, unconstitutional, unfair, or procedurally defective.",
+                  "Ask for the exact deadline to request an informal review, grievance hearing, or appeal.",
               },
               {
-                id: "harm",
+                id: "policy",
                 label:
-                  "Explain the practical harm: custody, registration, housing loss, family contact, employment, treatment access, travel, internet use, or future relief.",
+                  "Ask for the Administrative Plan, ACOP, tenant selection plan, house rules, or other policy being applied.",
               },
               {
-                id: "standard",
+                id: "legal-aid",
                 label:
-                  "If counsel has identified a standard of review, write it down. If not, leave space for counsel or a clinic to add it later.",
-              },
-              {
-                id: "relief",
-                label:
-                  "State what is being requested: reversal, new hearing, resentencing, condition modification, tier correction, remand, stay, or another specific remedy.",
+                  "Contact legal aid quickly. Assisted-housing deadlines can be short.",
               },
             ]}
+          />
+
+          <ScriptBox
+            title="Script: PHA or assisted-housing decision"
+            tone="legal"
+            context="Use after denial, proposed termination, voucher issue, or assisted-housing notice."
+            buttonLabel="Copy PHA script"
+            script={`Hello [Name],
+
+I received a notice about [denial / termination / voucher issue / housing decision].
+
+Please send me:
+1. The written reason for the decision;
+2. The specific rule, policy, or lease term being used;
+3. A copy of any record or report being relied on;
+4. The deadline and instructions for requesting an informal review, grievance hearing, or appeal; and
+5. The current Administrative Plan, ACOP, tenant selection plan, or house rules that apply.
+
+I am requesting this information so I can understand the decision and respond by the deadline.
+
+Thank you.`}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="scripts"
-          number="8"
-          title="Words to use"
-          subtitle="Use calm, narrow questions. You do not need to explain your whole life story to ask for the next procedural step."
+          id="reasonable-accommodation"
+          number="7"
+          title="Reasonable accommodations"
+          subtitle="Disability-related requests are about access to housing, not registry status itself."
         />
 
         <GuideSectionCard>
-          <ScriptBox
-            title="One-page triage script"
-            tone="legal"
-            context="Use this when you need to ask about several urgent appeal tasks in one call or message."
-            script={`Hello, my name is [Name]. I am trying to protect rights in case number [case number].
-
-I need to know:
-1. What judgment, order, condition, registry decision, or agency decision was entered?
-2. What is the official entry date or decision date?
-3. What deadline applies to a notice of appeal, review request, petition, or motion?
-4. Where do I file it, and how must it be served?
-5. Are there forms for appointment of counsel, fee waiver / in forma pauperis, transcript order, extension of time, release pending appeal, condition modification, or registry/supervision review?
-6. If I am incarcerated or under supervision, is there a specific legal-mail, filing, or permission process I must use?
-
-I am taking notes. Could you please repeat your name, department, and the best number or address for follow-up?`}
-          />
-
-          <ScriptBox
-            title="Clerk script: appeal deadline and first filing"
-            tone="legal"
-            context="Use this with a court clerk when you need to protect a deadline."
-            script={`Hello, my name is [Name]. I am calling about case number [case number].
-
-I am trying to protect an appeal or review deadline. Can you tell me what judgment, order, or decision was entered, the entry date, where a notice of appeal or review request is filed, and whether your court has a self-represented packet or local rule sheet?
-
-I am taking notes. Could you please repeat your name or department so I can write it down correctly?`}
-          />
-
-          <ScriptBox
-            title="Counsel script: confirm who is filing"
-            tone="neutral"
-            context="Use this with trial counsel, public defender, appellate defender, or post-conviction counsel."
-            script={`Hello [Counsel Name],
-
-I am writing to confirm the appeal deadline in [case number]. Will you be filing the notice of appeal or any immediate review request? If yes, please tell me the filing date when it is done.
-
-If you will not be filing it, please tell me immediately so I can ask the clerk how to protect the deadline myself. Thank you.`}
-          />
-
-          <ScriptBox
-            title="Legal mail script: incarcerated filing proof"
-            tone="warning"
-            context="Use this when a person in custody needs proof that legal mail was deposited on time."
-            script={`I need to send legal mail for case number [case number]. This filing may involve an appeal or review deadline.
-
-Please provide proof of the date I deposited the filing, the address used, and any legal-mail log number or receipt available. I also need to keep a copy for my records.`}
-          />
-
-          <ScriptBox
-            title="Registry or supervision script: ask for the review path"
-            tone="reentry"
-            context="Use this for registry offices, probation, parole, treatment providers, or agencies."
-            script={`Hello, my name is [Name]. I received a decision or condition about [registry tier / registration duty / supervision condition / GPS / internet access / housing / travel / treatment].
-
-I am not asking you for legal advice. I am asking what review process exists, what deadline applies, what form or office handles it, and how I can get the answer in writing.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="offline"
-          number="9"
-          title="If internet, phone, or printer access is limited"
-          subtitle="Appeals can still move forward with paper, phone calls, courthouse forms, legal mail, and careful notes."
-        />
-
-        <GuideSectionCard>
-          <OfflineOptions
-            title="Offline and limited-access options"
-            icon="📬"
-            note={
-              <span>
-                This section is especially important for people in jail or
-                prison, people on device restrictions, families without printers,
-                and anyone relying on public computers.
-              </span>
-            }
-            items={[
-              "Ask the clerk for paper appeal forms, self-represented packets, local rule sheets, and the mailing address for filings.",
-              "Use courthouse terminals, public law libraries, prison law libraries, or public libraries to print rules and forms.",
-              "Ask a trusted person to print official forms and mail them, but keep copies of exactly what was sent.",
-              "Use legal-mail procedures if incarcerated. Keep the log, receipt, or written proof of deposit date.",
-              "Write down every call: date, time, number called, person or department, question asked, and answer received.",
-              "Keep a paper calendar with the appeal deadline, transcript deadline, briefing dates, hearing dates, and agency review dates.",
-            ]}
-          />
-
-          <GuideCallout tone="reminder" icon="✍️" title="Paper notes count">
+          <GuideProse>
             <p>
-              A simple notebook can protect you. Write down names, dates,
-              addresses, instructions, case numbers, and confirmation numbers.
-              Put copies of filings and envelopes behind the note page.
+              If you or someone in your household has a disability, including
+              some mental-health conditions, you may be able to ask the landlord,
+              PHA, or housing provider to adjust a rule, policy, practice, or
+              service so the person with a disability has an equal opportunity
+              to use and enjoy the home.
+            </p>
+
+            <p>
+              Registry status itself is not a disability. The accommodation
+              request should be tied to a qualifying disability and a specific
+              housing-related need.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="privacy" icon="🔐" title="Share only what is needed">
+            <p>
+              You usually do not need to explain every diagnosis, conviction
+              detail, treatment history, or family crisis. State the disability
+              connection, the accommodation requested, and how it helps the
+              person use and enjoy the housing. Ask for the response in writing.
             </p>
           </GuideCallout>
+
+          <ScriptBox
+            title="Script: reasonable accommodation request"
+            tone="privacy"
+            context="Use only when the request is connected to a disability-related housing need."
+            buttonLabel="Copy accommodation script"
+            script={`Subject: Reasonable accommodation request
+
+Hello [Name],
+
+I am requesting a reasonable accommodation because of a disability-related housing need.
+
+The accommodation I am requesting is: [state the specific change, exception, extra time, transfer, communication method, assistance animal, or other request].
+
+This accommodation is needed because it will help [me / household member] have an equal opportunity to use and enjoy the housing.
+
+Please respond in writing. If you need verification, please tell me exactly what information you need and where it should be sent.
+
+Thank you.`}
+          />
         </GuideSectionCard>
-<GuideSectionHeader
-          id="mistakes"
-          number="10"
-          title="Common mistakes to avoid"
-          subtitle="These are normal mistakes under stress. The goal is not shame. The goal is prevention."
+
+        <GuideSectionHeader
+          id="common-mistakes"
+          number="8"
+          title="Common mistakes that can make housing problems worse"
+          subtitle="These are understandable mistakes. The goal is to catch them early."
         />
 
         <GuideSectionCard>
           <CommonMistakes
             mistakes={[
               {
-                mistake: "Waiting for transcripts before filing the first notice.",
+                mistake: "Leaving because of pressure instead of process.",
                 whyItMatters:
-                  "The notice deadline may arrive before transcripts are ready.",
+                  "For people on registries, replacement housing may be much harder to find than current housing is to defend.",
                 betterMove:
-                  "Ask whether a notice of appeal or review request must be filed now, then order transcripts and build the record.",
+                  "Ask for written notice, save proof, verify whether there is a court order or legal deadline, and call legal aid before moving out.",
               },
               {
-                mistake: "Assuming an appeal is a new trial.",
+                mistake: "Ignoring court papers because the landlord was unfair.",
                 whyItMatters:
-                  "Most appellate courts review legal errors in the existing record.",
+                  "Even a bad or unfair eviction case can move forward if you miss the hearing or response deadline.",
                 betterMove:
-                  "Focus on orders, objections, rulings, transcript pages, exhibits, and the relief you are asking for.",
+                  "Circle the deadline, save the papers, and contact legal aid, a tenant hotline, or the court self-help center.",
               },
               {
-                mistake: "Relying on a phone answer without writing it down.",
+                mistake: "Signing a lease before checking registry or supervision rules.",
                 whyItMatters:
-                  "People forget names, departments, and instructions. Agencies may disagree later.",
-                betterMove:
-                  "Record the date, time, name, department, question, answer, and whether a written confirmation is available.",
+                  "A lease can be valid with the landlord but still create a registration or supervision problem.",
+                betterMove: "Verify the exact address first and save the answer.",
               },
               {
-                mistake:
-                  "Assuming registry or supervision relief uses the same rules as a criminal appeal.",
+                mistake: "Relying only on verbal answers.",
                 whyItMatters:
-                  "A tier challenge, termination petition, probation condition, or agency classification may have a different process.",
+                  "Verbal promises are hard to prove later, especially with landlords, PHAs, registry offices, or supervision staff.",
                 betterMove:
-                  "Identify the decision-maker and ask what review path applies to that exact decision.",
+                  "Send a short follow-up message: “I am writing to confirm what I understood from our call.”",
               },
               {
-                mistake: "Throwing away envelopes, receipts, and mail logs.",
+                mistake: "Oversharing without a purpose.",
                 whyItMatters:
-                  "Proof of mailing, notice, or legal-mail deposit can matter when timing is disputed.",
+                  "Extra details can distract from the housing issue and may create new stigma or confusion.",
                 betterMove:
-                  "Save envelopes, postmarks, legal-mail logs, certified mail receipts, tracking numbers, and stamped copies.",
+                  "Answer the narrow question, provide relevant proof, and ask what policy or deadline applies.",
               },
               {
-                mistake:
-                  "Violating a condition because you believe it is unfair or unconstitutional.",
+                mistake: "Using legal terms before building proof.",
                 whyItMatters:
-                  "A violation can create new custody, supervision, housing, or registry consequences while the challenge is pending.",
+                  "Saying “quiet enjoyment,” “discrimination,” or “illegal eviction” may be accurate, but proof usually carries more weight than labels.",
                 betterMove:
-                  "Ask about modification, clarification, stay, appeal, or emergency relief before acting against the condition.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="after-decision"
-          number="11"
-          title="After the decision"
-          subtitle="An appellate decision may create a new deadline, a new court step, or a new practical problem to solve."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              When a court or agency issues a decision, save the full decision,
-              the date it was entered, the envelope or notice, and any docket
-              update. The next step may depend on whether the case is over,
-              remanded, reopened, denied, partly granted, or sent back for more
-              proceedings.
-            </p>
-
-            <p>
-              Depending on the case and court, possible next steps may include
-              rehearing, reconsideration, en banc review, mandate, remand, a
-              petition for higher-court review, Supreme Court certiorari,
-              post-conviction relief, or a later registry-relief petition. The
-              terms sound technical, but the practical question is still the same:
-              what deadline applies now, and who has authority over the next
-              step?
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="after-decision-checklist"
-            title="After-decision checklist"
-            columns={1}
-            items={[
-              {
-                id: "save-decision",
-                label:
-                  "Save the decision, order, mandate notice, docket entry, and envelope or electronic notice.",
-              },
-              {
-                id: "ask-next-deadline",
-                label:
-                  "Ask counsel or the clerk whether there is a rehearing, reconsideration, mandate, remand, certiorari, or other deadline.",
-              },
-              {
-                id: "remand",
-                label:
-                  "If the case is remanded, ask what the lower court or agency must do next and whether a hearing will be scheduled.",
-              },
-              {
-                id: "conditions-after",
-                label:
-                  "If custody, supervision, registration, treatment, housing, travel, internet, or family-contact conditions change after the decision, ask for the new rule in writing.",
-              },
-              {
-                id: "future-remedies",
-                label:
-                  "Ask whether the issue should be preserved for post-conviction relief, later law changes, registry termination, or another future remedy.",
+                  "Document dates, names, messages, photos, witnesses, and consequences. Then ask legal aid what the legal theory may be.",
               },
             ]}
           />
 
-          <GuideCallout tone="legal" icon="⏳" title="Supreme Court timing is separate">
-            <p>
-              A petition for Supreme Court review has its own rules and timing.
-              Do not assume the same deadline as the lower appeal. If Supreme
-              Court review is being considered, verify the deadline immediately
-              with counsel or the Supreme Court’s current filing guidance.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="resources-next"
-          number="12"
-          title="Resources and next steps"
-          subtitle="Use official sources first, then ask the court, agency, or counsel how they apply to your case."
-        />
-
-        <GuideSectionCard>
-          <GuideChecklist
-            id="forms-to-ask-for"
-            title="Common forms to ask for"
-            columns={1}
-            items={[
-              {
-                id: "notice-appeal",
-                label:
-                  "Notice of appeal, notice of review, administrative appeal request, or petition form.",
-              },
-              {
-                id: "extension",
-                label:
-                  "Motion or application for extension of time, if a deadline problem exists and the rules allow it.",
-              },
-              {
-                id: "ifp",
-                label:
-                  "Fee waiver, in forma pauperis, or indigency affidavit forms.",
-              },
-              {
-                id: "counsel",
-                label:
-                  "Request for appointed counsel, appellate defender referral, or conflict counsel request.",
-              },
-              {
-                id: "transcript",
-                label:
-                  "Transcript order form, transcript-cost waiver request, or court-reporter contact instructions.",
-              },
-              {
-                id: "custody-conditions",
-                label:
-                  "Release pending appeal, bond review, detention review, stay request, or supervision-condition modification form.",
-              },
-              {
-                id: "registry",
-                label:
-                  "Registry tier review, registration termination petition, agency appeal, or condition clarification form if applicable.",
-              },
-            ]}
-          />
-
-          <SoftDivider />
-
-          <ResourceLinkGrid
-            title="Official resources and forms"
-            description={
+          <OfflineOptions
+            title="If internet access is limited"
+            icon="📞"
+            note={
               <span>
-                These links are starting points, not a substitute for the rule in
-                your exact court, state, agency, or supervision order.
+                You can still make progress with a phone, paper folder, and one
+                trusted helper.
               </span>
             }
-            resources={resourceLinks}
+            items={[
+              "Call 211 and ask for local rental assistance, shelter diversion, legal aid, tenant hotline, or utility help.",
+              "Ask legal aid or the court clerk whether forms can be mailed, picked up, or filed in person.",
+              "Ask a trusted person to print notices, screenshots, maps, applications, or hearing paperwork.",
+              "Keep one paper folder with lease, notices, rent proof, court papers, screening reports, and registry/supervision notes.",
+              "Write down names, dates, departments, phone numbers, confirmation numbers, and instructions after every call.",
+            ]}
           />
+        </GuideSectionCard>
 
-          <SoftDivider />
+        <GuideSectionHeader
+          id="resources"
+          number="9"
+          title="Resources and next steps"
+          subtitle="Use official sources and local legal help whenever the answer could change your housing."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Where to look next"
+            description={
+              <span>
+                Start with legal aid for eviction, lockout, voucher, PHA,
+                screening, fair-housing, and deadline questions. Use emergency
+                resource lines when you need rent, utilities, shelter diversion,
+                food, or transportation help.
+              </span>
+            }
+            resources={[
+              {
+                label: "HUD housing discrimination complaint",
+                href: sourceLinks.hudComplaint.href,
+                badge: "Official",
+                description:
+                  "File or learn about fair-housing complaints with HUD FHEO. HUD lists online, phone, and mail options.",
+                phone: "1-800-669-9777",
+              },
+              {
+                label: "CFPB tenant-screening denial guidance",
+                href: sourceLinks.cfpbTenantScreeningDenied.href,
+                badge: "Official",
+                description:
+                  "Explains adverse action notices, free report rights, and dispute rights when a tenant-screening report is used.",
+              },
+              {
+                label: "FTC tenant background-check disputes",
+                href: sourceLinks.ftcTenantScreeningErrors.href,
+                badge: "Official",
+                description:
+                  "Plain-language steps for getting your report and disputing tenant-background-check errors.",
+              },
+              {
+                label: "Legal Services Corporation legal aid finder",
+                href: sourceLinks.lscLegalHelp.href,
+                badge: "Legal aid",
+                description:
+                  "Find an LSC-funded civil legal aid organization near you.",
+              },
+              {
+                label: "USA.gov legal aid overview",
+                href: sourceLinks.usaGovLegalAid.href,
+                badge: "Official",
+                description:
+                  "Federal public-information page listing legal aid, LSC, LawHelp, and pro bono options.",
+              },
+              {
+                label: "United Way 211",
+                href: sourceLinks.unitedWay211.href,
+                badge: "Emergency help",
+                description:
+                  "Find local help with housing, utilities, food, health, disaster recovery, and other emergency needs.",
+                phone: "Call 211",
+              },
+            ]}
+          />
 
           <RelatedGuides
             guides={[
               {
-                title: "Federal Sex-Crime Process Guide",
+                title: "Housing Search Guide",
                 description:
-                  "Useful if the appeal grows out of a federal investigation, plea, trial, sentencing, or BOP-related issue.",
-                to: "/resources/federal-process-guide",
+                  "Use this when you are actively looking for housing or building an application packet.",
+                to: "/resources/housing-search",
               },
               {
-                title: "State Sex-Crime Process Guide",
+                title: "Reentry Planning Guide",
                 description:
-                  "Useful if the appeal or post-conviction issue comes from a state prosecution, sentence, or state-court order.",
-                to: "/resources/state-process-guide",
+                  "Helps organize housing, documents, supervision, family support, and first-week stability after release.",
+                to: "/resources/reentry-planning",
               },
               {
-                title: "Your Rights at Every Stage",
+                title: "Know Your Rights Guide",
                 description:
-                  "Helpful for understanding rights during investigation, prosecution, custody, supervision, and reentry.",
+                  "Use alongside this guide when you are dealing with officials, supervision, court, or unclear legal instructions.",
                 to: "/resources/know-your-rights",
               },
               {
-                title: "Registry Rules by State",
+                title: "Financial Support Strategies",
                 description:
-                  "Use this when the issue involves registration duties, state-specific rules, travel, relief eligibility, or compliance risk.",
-                to: "/resources/state-registry",
-              },
-              {
-                title: "Family & Allies Guide",
-                description:
-                  "For supporters helping with paperwork, calls, transportation, money, emotional strain, and practical follow-through.",
-                to: "/resources/family-support-guide",
+                  "Practical steps for rent, utilities, food, emergency help, and family budgeting under stress.",
+                to: "/resources/financial-support",
               },
             ]}
           />
 
-          <SoftDivider />
-
           <SourceList
-            title="Sources & verification"
-            note="These sources were selected because they are official court/government sources or stable legal rule references. Always verify the local rule, state rule, agency rule, and current deadline before relying on any general guide."
-            sources={sourceLinks}
+            title="Sources and verification links"
+            note={
+              <span>
+                Links were live-checked during the sandbox rebuild. Rules change,
+                and tenant law is state-specific, so verify local deadlines,
+                court procedure, registry rules, and PHA policies before acting.
+              </span>
+            }
+            sources={[
+              {
+                label: sourceLinks.hudComplaint.label,
+                href: sourceLinks.hudComplaint.href,
+                description:
+                  "Official HUD FHEO page for reporting housing discrimination and finding online, phone, and mail complaint options.",
+              },
+              {
+                label: sourceLinks.cfpbTenantScreeningDenied.label,
+                href: sourceLinks.cfpbTenantScreeningDenied.href,
+                description:
+                  "Official CFPB guidance on adverse action notices, free tenant-screening reports, and dispute rights.",
+              },
+              {
+                label: sourceLinks.ftcTenantScreeningErrors.label,
+                href: sourceLinks.ftcTenantScreeningErrors.href,
+                description:
+                  "Official FTC guidance on disputing errors in tenant background-check reports.",
+              },
+              {
+                label: sourceLinks.hudPihRescission2025.label,
+                href: sourceLinks.hudPihRescission2025.href,
+                description:
+                  "Current HUD notice rescinding PIH 2015-19 / H 2015-10 on arrest records in housing decisions.",
+              },
+              {
+                label: sourceLinks.hudPihNotices.label,
+                href: sourceLinks.hudPihNotices.href,
+                description:
+                  "HUD PIH notice index showing the status of current PIH notices.",
+              },
+              {
+                label: sourceLinks.voucherRule.label,
+                href: sourceLinks.voucherRule.href,
+                description:
+                  "Federal voucher-program rule including lifetime sex-offender registration admission bar and record-dispute language.",
+              },
+              {
+                label: sourceLinks.publicHousingRule.label,
+                href: sourceLinks.publicHousingRule.href,
+                description:
+                  "Federal public-housing admission rule including lifetime sex-offender registration admission bar and record-dispute language.",
+              },
+              {
+                label: sourceLinks.quietEnjoyment.label,
+                href: sourceLinks.quietEnjoyment.href,
+                description:
+                  "Plain-language legal encyclopedia entry explaining quiet enjoyment as the right to use property without serious disturbance.",
+              },
+              {
+                label: sourceLinks.covenantQuietEnjoyment.label,
+                href: sourceLinks.covenantQuietEnjoyment.href,
+                description:
+                  "Legal encyclopedia entry explaining the implied covenant of quiet enjoyment in leases.",
+              },
+              {
+                label: sourceLinks.dojReasonableAccommodation.label,
+                href: sourceLinks.dojReasonableAccommodation.href,
+                description:
+                  "DOJ/HUD joint statement on reasonable accommodations under the Fair Housing Act.",
+              },
+              {
+                label: sourceLinks.justiceGuidanceIndex.label,
+                href: sourceLinks.justiceGuidanceIndex.href,
+                description:
+                  "DOJ Civil Rights Division index confirming reasonable-accommodation guidance availability.",
+              },
+              {
+                label: sourceLinks.hudResidentRights.label,
+                href: sourceLinks.hudResidentRights.href,
+                description:
+                  "HUD resident rights brochure for HUD-assisted multifamily housing; not a universal public-housing or voucher guide.",
+              },
+              {
+                label: sourceLinks.mnDocProximityStudy.label,
+                href: sourceLinks.mnDocProximityStudy.href,
+                description:
+                  "Research source on residential proximity and sex-offense recidivism; useful for policy context, not address-level legal advice.",
+              },
+              {
+                label: sourceLinks.nrrcHudCriminalRecords.label,
+                href: sourceLinks.nrrcHudCriminalRecords.href,
+                description:
+                  "Reentry resource page summarizing HUD fair-housing guidance on criminal-record screening.",
+              },
+              {
+                label: sourceLinks.usaGovLegalAid.label,
+                href: sourceLinks.usaGovLegalAid.href,
+                description:
+                  "Federal public-information page for legal aid and pro bono options.",
+              },
+              {
+                label: sourceLinks.lscLegalHelp.label,
+                href: sourceLinks.lscLegalHelp.href,
+                description:
+                  "Legal Services Corporation page for finding LSC-funded civil legal aid.",
+              },
+              {
+                label: sourceLinks.unitedWay211.label,
+                href: sourceLinks.unitedWay211.href,
+                description:
+                  "National 211 resource finder for housing, utility, food, and other local emergency needs.",
+              },
+            ]}
           />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="closing"
-          number="13"
-          title="Moving forward with realism and hope"
-          subtitle="Appeals are technical and often slow, but preserving rights is still meaningful work."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Appeals and review petitions are not easy. They can be slow,
-              technical, expensive, and emotionally draining. Many are denied.
-              Standards of review can feel stacked against the person trying to
-              challenge the decision.
-            </p>
-
-            <p>
-              But appeal work still matters. It can correct errors, reduce
-              punishment, change conditions, preserve issues for later law
-              changes, challenge overbroad restrictions, protect family contact,
-              and create a record that future lawyers, clinics, courts, and
-              reform advocates can use.
-            </p>
-
-            <p>
-              You do not have to do everything perfectly today. Start with the
-              next safe step: calendar the deadline, save the proof, ask the
-              narrow question, and keep the paper trail moving.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="success" icon="🕊️" title="Keep momentum, not perfection">
-            <p>
-              Calendar every deadline, save every receipt, and keep a one-page
-              case log. Progress compounds even when today’s answer is “not
-              yet.”
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
       </main>
     </div>
