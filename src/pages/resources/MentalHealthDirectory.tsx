@@ -1,663 +1,963 @@
-  import { useState } from 'react';
-import SEO from '../../components/SEO';
+import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  QuickStartPanel,
+  OfflineOptions,
+  VerifyBeforeActing,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+} from "../../components/solar";
 
-function MentalHealthDirectory() {
-  const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({});
+type DirectoryResource = {
+  label: string;
+  description: string;
+  href: string;
+  badge?: string;
+};
 
-  const toggleSection = (sectionId: string) => {
-    setExpandedSections(prev => ({
-      ...prev,
-      [sectionId]: !prev[sectionId]
-    }));
-  };
+type StateOrganization = {
+  state: string;
+  org: string;
+  href?: string;
+  phone?: string;
+  status?: string;
+  note?: string;
+};
 
-  const handlePrint = () => {
-    window.print();
-  };
+const lastChecked = "May 10, 2026";
 
-  const emergencyResources = [
-    {
-      name: '988 Suicide & Crisis Lifeline',
-      description: 'Free, confidential support by call, text, or chat',
-      phone: '988',
-      phoneLink: 'tel:988',
-      textLink: 'sms:988',
-      website: 'https://988lifeline.org',
-      chat: 'https://988lifeline.org/chat'
-    },
-    {
-      name: 'Crisis Text Line',
-      description: 'Text with a trained crisis counselor',
-      textInfo: 'HOME to 741741',
-      textLink: 'sms:+1741741?&body=HOME',
-      website: 'https://www.crisistextline.org'
+const crisisResources: DirectoryResource[] = [
+  {
+    label: "988 Suicide & Crisis Lifeline",
+    description:
+      "Call, text, or chat 988 for free, confidential crisis support in the United States. Use this first if someone may hurt themselves, feels unable to stay safe, or needs immediate emotional support.",
+    href: "https://988lifeline.org/",
+    badge: "24/7 crisis support",
+  },
+  {
+    label: "988 Lifeline chat",
+    description:
+      "Online chat option for people who cannot safely or privately call. If you are on supervision or have internet restrictions, verify whether chat access is allowed before using a restricted device.",
+    href: "https://chat.988lifeline.org/",
+    badge: "Chat",
+  },
+  {
+    label: "Crisis Text Line",
+    description:
+      "Text HOME to 741741 from anywhere in the United States for free, confidential support from a trained crisis counselor.",
+    href: "https://www.crisistextline.org/",
+    badge: "Text HOME to 741741",
+  },
+  {
+    label: "SAMHSA National Helpline",
+    description:
+      "Free, confidential treatment referral and information service for mental health and substance-use concerns. Call 1-800-662-HELP (4357).",
+    href: "https://www.samhsa.gov/find-help/helplines/national-helpline",
+    badge: "Treatment referral",
+  },
+  {
+    label: "FindTreatment.gov",
+    description:
+      "SAMHSA’s confidential treatment locator for mental health and substance-use services in the United States and territories. Always confirm details directly with the provider.",
+    href: "https://findtreatment.gov/",
+    badge: "Official locator",
+  },
+];
+
+const peerSupportResources: DirectoryResource[] = [
+  {
+    label: "NARSOL",
+    description:
+      "National advocacy, education, state affiliate referrals, and community resources for people and families affected by sex offense laws and registries.",
+    href: "https://www.narsol.org/",
+    badge: "National advocacy",
+  },
+  {
+    label: "NARSOL Connections",
+    description:
+      "A social platform intended for people on registries and sympathetic family or friends. Verify reporting requirements before creating any account or username.",
+    href: "https://www.narsol.org/community/narsol-connections/",
+    badge: "Peer connection",
+  },
+  {
+    label: "NARSOL Fearless Project",
+    description:
+      "Support-group project for people on registries and adult family members or friends. Check current availability through NARSOL.",
+    href: "https://www.narsol.org/community/fearless-project/",
+    badge: "Support groups",
+  },
+  {
+    label: "ACSOL meetings",
+    description:
+      "Alliance for Constitutional Sex Offense Laws meetings, calls, recordings, and support opportunities, especially useful for California readers and national observers.",
+    href: "https://all4consolaws.org/acsol-monthly-meetings/",
+    badge: "Meetings",
+  },
+  {
+    label: "Women Against Registry",
+    description:
+      "Family and registrant support hotline and advocacy organization. WAR states that its support line is not professional counseling, treatment, or legal assistance.",
+    href: "https://womenagainstregistry.org/page-1730789",
+    badge: "Support hotline",
+  },
+  {
+    label: "CURE-SORT",
+    description:
+      "Sex Offenders Restored through Treatment, an issue chapter of CURE. Provides information, correspondence, and support resources; it is not a treatment program or legal service.",
+    href: "https://www.cure-sort.org/contact-us.html",
+    badge: "Support / information",
+  },
+];
+
+const clinicalResources: DirectoryResource[] = [
+  {
+    label: "ATSA Member Directory",
+    description:
+      "Provider referral directory from the Association for the Treatment and Prevention of Sexual Abuse. Use for treatment-focused provider searches; do not send clinical details through directory tools unless you understand the privacy limits.",
+    href: "https://members.atsa.com/directory",
+    badge: "Specialized provider directory",
+  },
+  {
+    label: "Safer Society treatment referrals",
+    description:
+      "Directory of clinicians in North America who work with people who have sexually abused, people with problematic sexual behaviors, and survivors of abuse.",
+    href: "https://safersociety.org/foundation/treatment-referrals/",
+    badge: "Specialized treatment referrals",
+  },
+  {
+    label: "IITAP Therapist Directory",
+    description:
+      "Directory for IITAP members and Certified Sex Addiction Therapists. Best suited for compulsive sexual behavior, betrayal trauma, addiction, and related treatment needs; verify court/supervision compatibility separately.",
+    href: "https://iitap.com/page/TherapistDirectory",
+    badge: "CSAT / addiction treatment",
+  },
+  {
+    label: "AAMFT Find a Therapist",
+    description:
+      "Marriage and family therapist locator. Useful for family, relationship, trauma, anxiety, depression, and reintegration stress; not all providers handle forensic or registry-related issues.",
+    href: "https://www.aamft.org/Directories/Find_a_Therapist.aspx",
+    badge: "Family therapy",
+  },
+  {
+    label: "NCSBY",
+    description:
+      "National Center on the Sexual Behavior of Youth. Information and training resources for youth problematic sexual behavior, caregivers, and professionals.",
+    href: "https://www.ncsby.org/",
+    badge: "Youth PSB resources",
+  },
+];
+
+const legalReferralResources: DirectoryResource[] = [
+  {
+    label: "NACDL Find a Lawyer",
+    description:
+      "Criminal-defense lawyer directory. Use when you need attorney referrals, especially for criminal, appellate, supervision, or post-conviction questions.",
+    href: "https://www.nacdl.org/Content/FindaLawyer",
+    badge: "Attorney directory",
+  },
+  {
+    label: "NARSOL contact form",
+    description:
+      "NARSOL says state affiliates and local contacts are its primary source for local affairs and that it does not provide legal advice or recommend attorneys.",
+    href: "https://www.narsol.org/contact-us/",
+    badge: "Local referral routing",
+  },
+];
+
+const stateOrganizations: StateOrganization[] = [
+  {
+    state: "Alabama",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Alaska",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Arizona",
+    org: "Arizonans for Rational Sex Offense Laws",
+    href: "https://azrsol.org",
+    phone: "623-296-2904",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Arkansas",
+    org: "Arkansas Time After Time",
+    href: "https://arkansastimeaftertime.org",
+    phone: "501-444-2828",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "California",
+    org: "Alliance for Constitutional Sex Offense Laws",
+    href: "https://all4consolaws.org",
+    phone: "279-444-7956",
+    status: "National/state advocacy organization; not shown on NARSOL affiliate page",
+  },
+  {
+    state: "Colorado",
+    org: "Colorado Advocates for Change",
+    href: "https://advocates4change.org/registry-rights/",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Connecticut",
+    org: "One Standard of Justice",
+    href: "https://onestandardofjustice.org",
+    phone: "203-680-0567",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Delaware",
+    org: "Delaware Advocates for the Reform of Sexual Offense Laws",
+    href: "https://darsol.org",
+    phone: "302-635-0468",
+    status: "NARSOL associated group",
+  },
+  {
+    state: "District of Columbia",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Florida",
+    org: "Florida Action Committee",
+    href: "https://floridaactioncommittee.org",
+    phone: "833-273-7325",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Georgia",
+    org: "Restore Georgia",
+    href: "https://restore-georgia.org",
+    phone: "678-962-7765",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Hawaii",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Idaho",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Illinois",
+    org: "Illinois Voices",
+    href: "https://ilvoices.com",
+    phone: "888-686-4237",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Indiana",
+    org: "Indiana Voices",
+    href: "https://indianavoices.org",
+    phone: "317-662-0250",
+    status: "NARSOL associated group",
+  },
+  {
+    state: "Iowa",
+    org: "Iowans Unafraid",
+    href: "https://www.iowansunafraid.org",
+    phone: "515-518-7189",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Kansas",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Kentucky",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Louisiana",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Maine",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Maryland",
+    org: "Families Advocating Intelligent Registries",
+    href: "https://fairregistry.org",
+    phone: "301-779-1965",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Massachusetts",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Michigan",
+    org: "Michigan Citizens for Justice",
+    href: "https://micitizensforjustice.com",
+    status: "NARSOL associated group",
+  },
+  {
+    state: "Minnesota",
+    org: "Minnesota for Our Rights",
+    phone: "651-755-4348",
+    status: "NARSOL associated group",
+  },
+  {
+    state: "Mississippi",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Missouri",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Montana",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Nebraska",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Nevada",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "New Hampshire",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "New Jersey",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "New Mexico",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "New York",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "North Carolina",
+    org: "North Carolinians for Rational Sexual Offense Laws",
+    href: "https://ncrsol.org",
+    phone: "919-780-4510",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "North Dakota",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Ohio",
+    org: "Ohio Rational Sex Offense Laws",
+    href: "https://ohrsol.com",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Oklahoma",
+    org: "Oklahoma for Rational Sexual Offense Laws",
+    href: "https://ok-rsol.org",
+    phone: "405-294-4299",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Oklahoma",
+    org: "OK Voices",
+    href: "https://ok-voices.com",
+    phone: "918-261-1757",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Oregon",
+    org: "Oregon Voices",
+    href: "https://www.oregonvoices.org",
+    phone: "971-317-6868",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Pennsylvania",
+    org: "Pennsylvania Association for Rational Sex Offense Laws",
+    href: "https://parsol.org",
+    phone: "717-820-2237",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Rhode Island",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "South Carolina",
+    org: "South Carolinians for Rational Sex Offense Laws",
+    href: "https://scrsol.org",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "South Dakota",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Tennessee",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Texas",
+    org: "Texas Voices for Reason and Justice",
+    href: "https://texasvoices.org",
+    phone: "877-215-6688",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Utah",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Vermont",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Virginia",
+    org: "Safer Virginia",
+    href: "https://safervirginia.org",
+    phone: "864-525-9186",
+    status: "NARSOL affiliate",
+  },
+  {
+    state: "Washington",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "West Virginia",
+    org: "West Virginians for Rational Sexual Offense Laws",
+    href: "https://wvrsol.org",
+    phone: "304-760-9030",
+    status: "NARSOL associated group",
+  },
+  {
+    state: "Wisconsin",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+  {
+    state: "Wyoming",
+    org: "No NARSOL affiliate listed",
+    note: "Contact NARSOL for a local contact or regional coordinator.",
+  },
+];
+
+const sourceLinks: DirectoryResource[] = [
+  {
+    label: "988 Suicide & Crisis Lifeline",
+    href: "https://988lifeline.org/",
+    description: "Supports the crisis call/text/chat listing.",
+  },
+  {
+    label: "Crisis Text Line",
+    href: "https://www.crisistextline.org/",
+    description: "Supports the HOME to 741741 crisis-text listing.",
+  },
+  {
+    label: "SAMHSA National Helpline",
+    href: "https://www.samhsa.gov/find-help/helplines/national-helpline",
+    description: "Supports the free, confidential 24/7 treatment-referral listing.",
+  },
+  {
+    label: "FindTreatment.gov",
+    href: "https://findtreatment.gov/",
+    description: "Supports the official federal treatment-locator listing.",
+  },
+  {
+    label: "NARSOL State Affiliates",
+    href: "https://www.narsol.org/about/affiliates/",
+    description: "Supports the state organization list and affiliate/associated-group status.",
+  },
+  {
+    label: "NARSOL Contact Us",
+    href: "https://www.narsol.org/contact-us/",
+    description:
+      "Supports the instruction to contact NARSOL when no affiliate is listed and the note that NARSOL does not provide legal advice or recommend attorneys.",
+  },
+  {
+    label: "NARSOL Connections",
+    href: "https://www.narsol.org/community/narsol-connections/",
+    description: "Supports the peer social-platform listing and social-media reporting caution.",
+  },
+  {
+    label: "ACSOL Monthly Meetings",
+    href: "https://all4consolaws.org/acsol-monthly-meetings/",
+    description: "Supports the ACSOL meetings listing.",
+  },
+  {
+    label: "Women Against Registry Contact / Support Hotline",
+    href: "https://womenagainstregistry.org/page-1730789",
+    description: "Supports WAR contact, hotline, live-hours, and non-clinical-support caveat.",
+  },
+  {
+    label: "CURE-SORT Contact",
+    href: "https://www.cure-sort.org/contact-us.html",
+    description: "Supports CURE-SORT contact and mailing information.",
+  },
+  {
+    label: "ATSA Member Directory",
+    href: "https://members.atsa.com/directory",
+    description: "Supports the specialized provider-directory listing and privacy caution.",
+  },
+  {
+    label: "Safer Society Treatment Referrals",
+    href: "https://safersociety.org/foundation/treatment-referrals/",
+    description: "Supports the treatment-referral directory listing.",
+  },
+  {
+    label: "IITAP Therapist Directory",
+    href: "https://iitap.com/page/TherapistDirectory",
+    description: "Supports the CSAT/IITAP therapist-directory listing.",
+  },
+  {
+    label: "AAMFT Find a Therapist",
+    href: "https://www.aamft.org/Directories/Find_a_Therapist.aspx",
+    description: "Supports the marriage and family therapist locator listing.",
+  },
+  {
+    label: "NCSBY",
+    href: "https://www.ncsby.org/",
+    description: "Supports the youth problematic-sexual-behavior resource listing.",
+  },
+  {
+    label: "NACDL Find a Lawyer",
+    href: "https://www.nacdl.org/Content/FindaLawyer",
+    description: "Supports the attorney-directory listing.",
+  },
+];
+
+export default function MentalHealthDirectory(): JSX.Element {
+  const [stateQuery, setStateQuery] = useState("");
+  const [showAllStates, setShowAllStates] = useState(false);
+
+  const handlePrint = () => window.print();
+
+  const normalizedStateQuery = stateQuery.trim().toLowerCase();
+
+  const filteredStateOrganizations = useMemo(() => {
+    if (!normalizedStateQuery) {
+      return stateOrganizations;
     }
-  ];
 
-  const nationalOrganizations = [
-    {
-      name: 'NARSOL (National Association for Rational Sexual Offense Laws)',
-      website: 'https://www.narsol.org',
-      phone: '888-997-7765',
-      phoneLink: 'tel:+18889977765',
-      email: 'communications@narsol.org',
-      address: 'PO Box 36123, Albuquerque, NM 87176',
-      features: [
-        { name: 'Community forum', link: 'https://www.narsol.org/community/narsol-connections/', text: 'NARSOL Connections' },
-        { name: 'Peer support', link: 'https://www.narsol.org/community/fearless-project/', text: 'Fearless Project' }
+    return stateOrganizations.filter((item) => {
+      const searchableText = [
+        item.state,
+        item.org,
+        item.phone,
+        item.status,
+        item.note,
       ]
-    },
-    {
-      name: 'ACSOL (Alliance for Constitutional Sex Offense Laws)',
-      website: 'https://all4consolaws.org',
-      phone: '279-444-7956',
-      phoneLink: 'tel:+12794447956',
-      address: '2110 K Street, Sacramento, CA 95816',
-      features: [
-        { name: 'Meetings', link: 'https://all4consolaws.org/acsol-monthly-meetings/', text: 'ACSOL Monthly Meetings' }
-      ]
-    },
-    {
-      name: 'Women Against Registry (WAR)',
-      website: 'https://womenagainstregistry.org',
-      phone: '800-311-3764 (Option 1; live 10am–10pm CT)',
-      phoneLink: 'tel:+18003113764',
-      email: 'contact@womenagainstregistry.com'
-    },
-    {
-      name: 'CURE-SORT (Sex Offenders Restored Through Treatment)',
-      website: 'https://www.cure-sort.org',
-      phone: '405-639-7262',
-      phoneLink: 'tel:+14056397262',
-      email: 'info@cure-sort.org',
-      address: 'PO Box 1022, Norman, OK 73070-1022'
-    },
-    {
-      name: 'Fellow Travelers Recovery Intergroup',
-      description: '12-step support including MAPs recovery',
-      features: [
-        { name: 'Meetings', link: 'https://ftrecovery.org/meetings', text: 'ftrecovery.org/meetings' }
-      ]
-    }
-  ];
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
-  const therapyDirectories = [
-    {
-      name: 'ATSA Referral Directory',
-      description: 'Association for the Treatment of Sexual Abusers certified providers',
-      website: 'https://members.atsa.com/asaimis/contacts/search',
-      linkText: 'Find a provider'
-    },
-    {
-      name: 'IITAP (Certified Sex Addiction Therapists)',
-      website: 'https://iitap.com',
-      linkText: 'iitap.com'
-    },
-    {
-      name: 'AAMFT Therapist Locator',
-      description: 'American Association for Marriage and Family Therapy',
-      website: 'https://www.aamft.org/therapistlocator/',
-      linkText: 'aamft.org/therapistlocator'
-    },
-    {
-      name: 'Safer Society Foundation',
-      website: 'https://safersociety.org',
-      linkText: 'safersociety.org'
-    },
-    {
-      name: 'NCSBY (National Center on the Sexual Behavior of Youth)',
-      website: 'https://www.ncsby.org',
-      linkText: 'ncsby.org'
-    }
-  ];
+      return searchableText.includes(normalizedStateQuery);
+    });
+  }, [normalizedStateQuery]);
 
-  const legalResources = [
-    {
-      name: 'NACDL (National Association of Criminal Defense Lawyers)',
-      phone: '202-872-8600',
-      phoneLink: 'tel:+12028728600',
-      email: 'assist@nacdl.org',
-      website: 'https://www.nacdl.org/Content/FindaLawyer',
-      linkText: 'Find a Lawyer'
-    },
-    {
-      name: 'NARSOL Attorney Database',
-      website: 'https://www.narsol.org/2023/09/narsols-attorney-database-is-open-for-business/',
-      linkText: 'Attorney Referrals'
+  const visibleStateOrganizations = useMemo(() => {
+    if (normalizedStateQuery || showAllStates) {
+      return filteredStateOrganizations;
     }
-  ];
 
-  const stateOrganizations = [
-    { state: 'Alabama', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Alaska', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Arizona', org: 'AZRSOL', website: 'https://azrsol.org', phone: '623-296-2904', phoneLink: 'tel:+16232962904' },
-    { state: 'Arkansas', org: 'Arkansas Time After Time', website: 'https://arkansastimeaftertime.org', phone: '501-444-2828', phoneLink: 'tel:+15014442828' },
-    { state: 'California', org: 'ACSOL', website: 'https://all4consolaws.org', phone: '279-444-7956', phoneLink: 'tel:+12794447956' },
-    { state: 'Colorado', org: 'CSOR', website: 'https://csor-home.org', phone: '720-690-7125', phoneLink: 'tel:+17206907125' },
-    { state: 'Connecticut', org: 'One Standard of Justice', website: 'https://onestandardofjustice.org', phone: '203-680-0567', phoneLink: 'tel:+12036800567' },
-    { state: 'Delaware', org: 'DARSOL', website: 'https://darsol.org', phone: '302-635-0468', phoneLink: 'tel:+13026350468' },
-    { state: 'Florida', org: 'Florida Action Committee', website: 'https://floridaactioncommittee.org', phone: '833-273-7325', phoneLink: 'tel:+18332737325' },
-    { state: 'Georgia', org: 'Restore Georgia', website: 'https://restore-georgia.org', phone: '678-962-7765', phoneLink: 'tel:+16789627765' },
-    { state: 'Hawaii', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Idaho', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Illinois', org: 'Illinois Voices', website: 'https://ilvoices.com', phone: '888-686-4237', phoneLink: 'tel:+18886864237' },
-    { state: 'Indiana', org: 'Indiana Voices', website: 'https://indianavoices.org', phone: '317-662-0250', phoneLink: 'tel:+13176620250' },
-    { state: 'Iowa', org: 'Iowans Unafraid', website: 'https://www.iowansunafraid.org', phone: '515-518-7189', phoneLink: 'tel:+15155187189' },
-    { state: 'Kansas', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Kentucky', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Louisiana', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Maine', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Maryland', org: 'FAIR', website: 'https://fairregistry.org', phone: '301-779-1965', phoneLink: 'tel:+13017791965' },
-    { state: 'Massachusetts', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Michigan', org: 'Michigan Citizens for Justice', website: 'https://micitizensforjustice.com' },
-    { state: 'Minnesota', org: 'Minnesota for Our Rights', website: 'https://mnforourrights.org', phone: '651-755-4348', phoneLink: 'tel:+16517554348' },
-    { state: 'Mississippi', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Missouri', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Montana', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Nebraska', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Nevada', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'New Hampshire', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'New Jersey', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'New Mexico', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'New York', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'North Carolina', org: 'NCRSOL', website: 'https://ncrsol.org', phone: '919-780-4510', phoneLink: 'tel:+19197804510' },
-    { state: 'North Dakota', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Ohio', org: 'OHRsol', website: 'https://ohrsol.com' },
-    { state: 'Oklahoma', org: 'OK-RSOL', website: 'https://ok-rsol.org', phone: '405-294-4299', phoneLink: 'tel:+14052944299' },
-    { state: 'Oregon', org: 'Oregon Voices', website: 'https://www.oregonvoices.org', phone: '971-317-6868', phoneLink: 'tel:+19713176868' },
-    { state: 'Pennsylvania', org: 'PARSOL', website: 'https://parsol.org', phone: '717-820-2237', phoneLink: 'tel:+17178202237' },
-    { state: 'Rhode Island', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'South Carolina', org: 'SCRSOL', website: 'https://scrsol.org' },
-    { state: 'South Dakota', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Tennessee', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Texas', org: 'Texas Voices', website: 'https://texasvoices.org', phone: '877-215-6688', phoneLink: 'tel:+18772156688' },
-    { state: 'Utah', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Vermont', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Virginia', org: 'Safer Virginia', website: 'https://safervirginia.org', phone: '864-525-9186', phoneLink: 'tel:+18645259186' },
-    { state: 'Washington', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'West Virginia', org: 'WVRSOL', website: 'https://wvrsol.org', phone: '304-760-9030', phoneLink: 'tel:+13047609030' },
-    { state: 'Wisconsin', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'Wyoming', org: 'No active affiliate', contact: 'Contact NARSOL' },
-    { state: 'District of Columbia', org: 'No active affiliate', contact: 'Contact NARSOL' }
-  ];
-
-  const reentryResources = [
-    {
-      name: 'CSOR (Colorado)',
-      description: 'Mentoring & resource referrals',
-      phone: '720-690-7125',
-      phoneLink: 'tel:+17206907125'
-    },
-    {
-      name: 'Unbroken Dreams (Florida)',
-      description: 'Housing & reentry support',
-      website: 'https://unbrokendreamsinc.org',
-      phone: '813-440-7740',
-      phoneLink: 'tel:+18134407740'
-    }
-  ];
+    return stateOrganizations.slice(0, 8);
+  }, [filteredStateOrganizations, normalizedStateQuery, showAllStates]);
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="Mental Health & Support Directory - Resources for Registry-Affected Individuals | The SOLAR Project"
-        description="Comprehensive directory of mental health, legal, and support resources for individuals and families affected by sex offense laws and registry requirements. Find therapists, advocacy groups, and crisis support."
-        keywords="mental health resources, sex offense support, registry support, therapy directory, crisis support, advocacy organizations, legal help, peer support groups, NARSOL, ACSOL, 988 crisis line"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Mental Health & Support Directory | The SOLAR Project"
+        description="A verified mental health, crisis, peer support, treatment, legal referral, and state organization directory for people and families affected by sex offense laws and registries."
+        keywords="mental health directory, registry support, sex offense laws, crisis support, treatment referrals, NARSOL affiliates, SOLAR Project"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="mb-4">
-              <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-                Resource Directory
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Mental Health & Support Directory
-            </h1>
-            
-            <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
-              Support & Mental Health Resources for People Affected by Sex-Crime Justice & Registry Laws (U.S.)
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Mental Health & Support Directory
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Crisis support, treatment directories, peer support, legal referral tools, and state organizations for people and families affected by sex offense laws and registry systems.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
+          </div>
+
+          <p className="mt-4 text-sm text-slate-200">
+            Links last checked: {lastChecked}
+          </p>
+        </div>
+      </section>
+
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
+
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            This directory is for people who need support but do not know where to start: people on registries, people facing charges or supervision, people preparing for reentry, family members, partners, caregivers, and advocates.
+          </p>
+          <p>
+            Start with immediate safety, then look for the right kind of support. A crisis line, peer group, therapist, attorney, and state advocacy organization do different jobs. You may need more than one kind of help.
+          </p>
+        </GuideIntro>
+
+        <GuideCallout tone="legal" icon="⚖️" title="This is a directory, not legal or clinical advice">
+          <p>
+            Listings can change. A link in this guide does not mean the provider is available, affordable, licensed in your state, approved by a court, compatible with supervision, or right for your situation. Confirm details directly before relying on any listing.
+          </p>
+        </GuideCallout>
+
+        <QuickStartPanel
+          title="If you need help now"
+          subtitle="Use these before trying to sort through the rest of the directory."
+          icon="🆘"
+          urgentActions={[
+            <span>Call or text <strong>988</strong>, or use the 988 online chat, if you are in emotional distress or worried about staying safe.</span>,
+            <span>Text <strong>HOME</strong> to <strong>741741</strong> to reach Crisis Text Line from anywhere in the United States.</span>,
+          ]}
+          nextActions={[
+            <span>Ask for a local referral, mobile crisis option, or treatment provider if you need continuing support after the immediate conversation.</span>,
+            <span>If you are under supervision, save the name of any provider or agency before attending, paying, or sharing details.</span>,
+          ]}
+          reminder={<span>You do not have to solve everything in one call. The first job is to get through the next safe step.</span>}
+        />
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Start here",
+              title: "Crisis support",
+              icon: "🆘",
+              tone: "urgent",
+              description: "Use 988, Crisis Text Line, or SAMHSA when someone needs immediate emotional support or treatment referral.",
+            },
+            {
+              eyebrow: "Connection",
+              title: "Peer and family support",
+              icon: "🤝",
+              tone: "family",
+              description: "Find advocacy groups, support hotlines, and communities that understand registry-related stress.",
+            },
+            {
+              eyebrow: "Care",
+              title: "Clinical directories",
+              icon: "🩺",
+              tone: "info",
+              description: "Search for therapists or specialized treatment providers, then verify fit, privacy, cost, and supervision compatibility.",
+            },
+            {
+              eyebrow: "Local help",
+              title: "State organizations",
+              icon: "🗺️",
+              tone: "neutral",
+              description: "Use the compact state list to find NARSOL affiliates or learn when to contact NARSOL for a regional referral.",
+            },
+            {
+              eyebrow: "Legal questions",
+              title: "Attorney referrals",
+              icon: "⚖️",
+              tone: "legal",
+              description: "Use legal directories for attorney searches. Advocacy groups generally cannot give legal advice.",
+            },
+            {
+              eyebrow: "Before acting",
+              title: "Verify details",
+              icon: "✅",
+              tone: "reminder",
+              description: "Confirm provider availability, credentials, costs, confidentiality limits, and court or supervision requirements.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="crisis-support"
+          number="1"
+          title="Crisis and treatment-referral resources"
+          subtitle="Use these when the need is immediate, urgent, or too heavy to carry alone."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid title="Immediate support and treatment locators" resources={crisisResources} />
+
+          <GuideCallout tone="urgent" icon="🚨" title="When there is immediate danger">
+            <p>
+              If someone is in immediate physical danger, call local emergency services. If calling emergency services could create special risk because of supervision, warrants, housing, or family circumstances, 988 can still help talk through safer next steps in the moment.
             </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handlePrint}
-                className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                Print Directory
-              </button>
-            </div>
+        <GuideSectionHeader
+          id="peer-support"
+          number="2"
+          title="Peer support, family support, and advocacy organizations"
+          subtitle="These resources can reduce isolation, help families understand the system, and connect readers to people who know registry-related stress."
+        />
 
-            <div className="mt-6 text-sm text-slate-300">
-              <strong>Last updated:</strong> August 17, 2025<br />
-              <strong>Note:</strong> This guide is informational, not legal or clinical advice. Availability and schedules can change; always confirm directly with the organization.
-            </div>
-          </div>
-        </div>
-      </section>
+        <GuideSectionCard>
+          <ResourceLinkGrid title="National and community support" resources={peerSupportResources} />
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+          <GuideCallout tone="privacy" icon="🔐" title="Social platforms and registration rules">
+            <p>
+              Some people must report online identifiers, social media accounts, screen names, or internet activity. Before joining any online community, check supervision conditions, registry reporting rules, court orders, and device restrictions.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-      {/* How to Use This Directory */}
-      <section className="py-12 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use This Directory</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">If you're in emotional distress</h3>
-                  <p className="text-gray-600">
-                    Use <a href="tel:988" className="text-red-600 font-semibold hover:text-red-800">988</a> or text{' '}
-                    <a href="sms:+1741741?&body=HOME" className="text-red-600 font-semibold hover:text-red-800">HOME to 741741</a>.
-                  </p>
-                </div>
-              </div>
+<GuideSectionHeader
+          id="clinical-care"
+          number="3"
+          title="Therapy and clinical-care directories"
+          subtitle="Directories help you start a search. They do not replace careful screening."
+        />
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">For peer support & advocacy</h3>
-                  <p className="text-gray-600">
-                    Contact a state organization or join{' '}
-                    <a href="https://www.narsol.org/community/fearless-project/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Fearless</a> or{' '}
-                    <a href="https://all4consolaws.org/acsol-monthly-meetings/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">ACSOL's meetings</a>.
-                  </p>
-                </div>
-              </div>
+        <GuideSectionCard>
+          <ResourceLinkGrid title="Treatment and therapist directories" resources={clinicalResources} />
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">For therapy</h3>
-                  <p className="text-gray-600">
-                    Check{' '}
-                    <a href="https://members.atsa.com/asaimis/contacts/search" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">ATSA</a>,{' '}
-                    <a href="https://iitap.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">IITAP</a>, or{' '}
-                    <a href="https://www.aamft.org/therapistlocator/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">AAMFT</a>.
-                  </p>
-                </div>
-              </div>
+          <GuideProse>
+            <p>
+              When you contact a provider, ask whether they work with people affected by sex offense charges, convictions, registries, supervision, family reintegration, compulsive sexual behavior, trauma, shame, anxiety, depression, or youth problematic sexual behavior. Not every good therapist is trained for every situation.
+            </p>
+            <p>
+              If treatment is court-ordered or supervision-related, ask the supervising officer or attorney whether the provider must meet specific approval rules before you schedule or pay.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">For legal help</h3>
-                  <p className="text-gray-600">
-                    See{' '}
-                    <a href="https://www.nacdl.org/Content/FindaLawyer" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">NACDL's directory</a> or{' '}
-                    <a href="https://www.narsol.org/2023/09/narsols-attorney-database-is-open-for-business/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">NARSOL's attorney list</a>.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <GuideSectionHeader
+          id="legal-referrals"
+          number="4"
+          title="Legal referral tools"
+          subtitle="Use these when the question is legal, supervision-related, court-related, or about rights and obligations."
+        />
 
-      {/* Emergency/Crisis Support */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-red-50 border-l-4 border-red-400 rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="bg-gradient-to-r from-red-600 to-red-500 text-white p-6">
-              <div className="flex items-center">
-                <div className="text-3xl mr-4">🚨</div>
-                <div>
-                  <h3 className="text-2xl font-bold">Emergency / Crisis Support (24/7)</h3>
-                  <p className="text-red-100">Immediate help when you need it most</p>
-                </div>
-              </div>
-            </div>
+        <GuideSectionCard>
+          <ResourceLinkGrid title="Attorney and referral resources" resources={legalReferralResources} />
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {emergencyResources.map((resource, index) => (
-                  <div key={index} className="bg-white rounded-lg p-6 shadow-sm border border-red-200">
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">{resource.name}</h4>
-                    <p className="text-gray-600 mb-3">{resource.description}</p>
-                    <div className="space-y-2">
-                      {resource.phone && (
-                        <p>
-                          <strong>Call:</strong>{' '}
-                          <a href={resource.phoneLink} className="text-red-600 font-semibold hover:text-red-800">{resource.phone}</a>
-                          {resource.textLink && (
-                            <>
-                              {' · '}
-                              <strong>Text:</strong>{' '}
-                              <a href={resource.textLink} className="text-red-600 font-semibold hover:text-red-800">988</a>
-                            </>
-                          )}
-                        </p>
-                      )}
-                      {resource.textInfo && (
-                        <p>
-                          <strong>Text:</strong>{' '}
-                          <a href={resource.textLink} className="text-red-600 font-semibold hover:text-red-800">{resource.textInfo}</a>
-                        </p>
-                      )}
-                      {resource.website && (
-                        <p>
-                          <strong>Website:</strong>{' '}
-                          <a href={resource.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                            {resource.website.replace('https://', '')}
-                          </a>
-                        </p>
-                      )}
-                      {resource.chat && (
-                        <p>
-                          <a href={resource.chat} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                            Chat online
-                          </a>
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <GuideCallout tone="legal" icon="⚖️" title="Advocacy support is not the same as legal advice">
+            <p>
+              Advocacy organizations may help you understand the landscape, find a local contact, or identify referral paths. They usually cannot tell you what the law requires in your case. For legal strategy, deadlines, court orders, probation or parole conditions, registration duties, or appeals, speak with a qualified attorney.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-          {/* National Advocacy & Peer Support */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="text-3xl mr-4">🤝</div>
-                <div>
-                  <h3 className="text-2xl font-bold">National Advocacy & Peer Support</h3>
-                  <p className="text-slate-200">Organizations providing advocacy, community, and peer support</p>
-                </div>
-              </div>
-            </div>
+        <GuideSectionHeader
+          id="state-organizations"
+          number="5"
+          title="State organizations and affiliate lookup"
+          subtitle="Search by state, organization, status, or phone number without scrolling through the full national list."
+        />
 
-            <div className="p-6">
-              <div className="space-y-6">
-                {nationalOrganizations.map((org, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-6">
-                    <h4 className="font-bold text-gray-900 text-lg mb-3">{org.name}</h4>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                      <div className="space-y-2">
-                        {org.website && (
-                          <p>
-                            <strong>Website:</strong>{' '}
-                            <a href={org.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                              {org.website.replace('https://', '').replace('www.', '')}
-                            </a>
-                          </p>
-                        )}
-                        {org.phone && (
-                          <p>
-                            <strong>Phone:</strong>{' '}
-                            <a href={org.phoneLink} className="text-blue-600 hover:text-blue-800">{org.phone}</a>
-                          </p>
-                        )}
-                        {org.email && (
-                          <p>
-                            <strong>Email:</strong>{' '}
-                            <a href={`mailto:${org.email}`} className="text-blue-600 hover:text-blue-800">{org.email}</a>
-                          </p>
-                        )}
-                      </div>
-                      <div>
-                        {org.address && <p><strong>Mailing:</strong> {org.address}</p>}
-                      </div>
-                    </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              NARSOL says many states have groups or individuals who work with them, but the names can change frequently. If your state does not show an established group, contact NARSOL directly and ask for a state-level volunteer or regional coordinator.
+            </p>
+          </GuideProse>
 
-                    {org.features && (
-                      <div>
-                        <strong className="text-gray-900">Features:</strong>
-                        <ul className="list-disc list-inside mt-2 text-gray-700">
-                          {org.features.map((feature, featureIndex) => (
-                            <li key={featureIndex}>
-                              <strong>{feature.name}:</strong>{' '}
-                              <a href={feature.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                                {feature.text}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {org.description && (
-                      <p className="text-gray-600 mt-2">{org.description}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+            <label htmlFor="state-directory-search" className="block text-sm font-semibold text-slate-900">
+              Search by state, organization, status, or phone
+            </label>
 
-          {/* Therapy & Clinical Care */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="text-3xl mr-4">🏥</div>
-                <div>
-                  <h3 className="text-2xl font-bold">Therapy & Clinical Care (Find a Provider)</h3>
-                  <p className="text-slate-200">Professional directories for finding qualified therapists</p>
-                </div>
-              </div>
-            </div>
+            <input
+              id="state-directory-search"
+              type="search"
+              value={stateQuery}
+              onChange={(event) => setStateQuery(event.target.value)}
+              placeholder="Try “Florida,” “Texas,” “no affiliate,” or “NARSOL affiliate”"
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-slate-500 focus:ring-2 focus:ring-slate-200"
+            />
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {therapyDirectories.map((directory, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-6">
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">{directory.name}</h4>
-                    {directory.description && <p className="text-gray-600 mb-3">{directory.description}</p>}
-                    <a 
-                      href={directory.website} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 underline font-medium"
-                    >
-                      {directory.linkText} →
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <p className="text-sm text-slate-600">
+                Showing {visibleStateOrganizations.length} of {filteredStateOrganizations.length} matching entries.
+              </p>
 
-          {/* Legal Help */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="text-3xl mr-4">⚖️</div>
-                <div>
-                  <h3 className="text-2xl font-bold">Legal Help & Know-Your-Rights</h3>
-                  <p className="text-slate-200">Find qualified attorneys experienced with sex offense cases</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {legalResources.map((resource, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-6">
-                    <h4 className="font-bold text-gray-900 text-lg mb-3">{resource.name}</h4>
-                    <div className="space-y-2">
-                      <p>
-                        <strong>Directory:</strong>{' '}
-                        <a 
-                          href={resource.website} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:text-blue-800 underline font-medium"
-                        >
-                          {resource.linkText}
-                        </a>
-                      </p>
-                      {resource.phone && (
-                        <p>
-                          <strong>Phone:</strong>{' '}
-                          <a href={resource.phoneLink} className="text-blue-600 hover:text-blue-800">{resource.phone}</a>
-                        </p>
-                      )}
-                      {resource.email && (
-                        <p>
-                          <strong>Email:</strong>{' '}
-                          <a href={`mailto:${resource.email}`} className="text-blue-600 hover:text-blue-800">{resource.email}</a>
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* State Organizations */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="text-3xl mr-4">🗺️</div>
-                  <div>
-                    <h3 className="text-2xl font-bold">State-by-State Organizations</h3>
-                    <p className="text-slate-200">Local advocacy and support organizations by state</p>
-                  </div>
-                </div>
+              {!normalizedStateQuery && (
                 <button
-                  onClick={() => toggleSection('states')}
-                  className="bg-slate-600 hover:bg-slate-500 text-white px-4 py-2 rounded-lg transition-colors"
+                  type="button"
+                  onClick={() => setShowAllStates((current) => !current)}
+                  className="text-left text-sm font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
                 >
-                  {expandedSections['states'] ? 'Collapse' : 'Expand All'}
+                  {showAllStates ? "Show fewer states" : "Show all states"}
                 </button>
-              </div>
-            </div>
-
-            <div className="p-6">
-              <div className="mb-4 bg-slate-50 border-l-4 border-slate-400 p-4 rounded-r-lg">
-                <p className="text-slate-700">
-                  <strong>Note:</strong> If your state is not listed, contact NARSOL for referrals:{' '}
-                  <a href="https://www.narsol.org/contact-us" target="_blank" rel="noopener noreferrer" className="underline">narsol.org/contact-us</a> ·{' '}
-                  <a href="tel:+18889977765" className="underline">888-997-7765</a>
-                </p>
-              </div>
-
-              <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${expandedSections['states'] ? '' : 'max-h-96 overflow-hidden'}`}>
-                {stateOrganizations.map((state, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-4">
-                    <h4 className="font-bold text-gray-900 mb-2">{state.state}</h4>
-                    <div className="space-y-1">
-                      {state.website ? (
-                        <p>
-                          <a href={state.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline font-medium">
-                            {state.org}
-                          </a>
-                        </p>
-                      ) : (
-                        <p className="text-gray-700 italic">{state.org}</p>
-                      )}
-                      {state.phone && (
-                        <p className="text-sm text-gray-600">
-                          <strong>Phone:</strong>{' '}
-                          <a href={state.phoneLink} className="text-blue-600 hover:text-blue-800">{state.phone}</a>
-                        </p>
-                      )}
-                      {state.contact && (
-                        <p className="text-sm text-gray-500">{state.contact}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {!expandedSections['states'] && (
-                <div className="mt-4 text-center">
-                  <button
-                    onClick={() => toggleSection('states')}
-                    className="bg-slate-600 hover:bg-slate-700 text-white px-6 py-2 rounded-lg transition-colors"
-                  >
-                    Show All States
-                  </button>
-                </div>
               )}
             </div>
           </div>
 
-          {/* Reentry & Practical Help */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-              <div className="flex items-center">
-                <div className="text-3xl mr-4">🏠</div>
-                <div>
-                  <h3 className="text-2xl font-bold">Reentry & Practical Help (selected)</h3>
-                  <p className="text-slate-200">Organizations providing housing, mentoring, and reentry support</p>
-                </div>
-              </div>
-            </div>
+          <div className="mt-4 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            {visibleStateOrganizations.length > 0 ? (
+              <div className="grid grid-cols-1 divide-y divide-slate-200">
+                {visibleStateOrganizations.map((item, index) => (
+                  <div key={`${item.state}-${item.org}-${index}`} className="p-4 sm:p-5">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <h3 className="text-base font-semibold text-slate-900">{item.state}</h3>
+                        <p className="mt-1 text-sm text-slate-700">
+                          {item.href ? (
+                            <a
+                              href={item.href}
+                              className="font-medium text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+                            >
+                              {item.org}
+                            </a>
+                          ) : (
+                            <span className="font-medium text-slate-900">{item.org}</span>
+                          )}
+                        </p>
+                        {item.note && <p className="mt-1 text-sm text-slate-600">{item.note}</p>}
+                      </div>
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {reentryResources.map((resource, index) => (
-                  <div key={index} className="border border-gray-200 rounded-lg p-6">
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">{resource.name}</h4>
-                    <p className="text-gray-600 mb-3">{resource.description}</p>
-                    <div className="space-y-2">
-                      {resource.phone && (
-                        <p>
-                          <strong>Phone:</strong>{' '}
-                          <a href={resource.phoneLink} className="text-blue-600 hover:text-blue-800">{resource.phone}</a>
-                        </p>
-                      )}
-                      {resource.website && (
-                        <p>
-                          <strong>Website:</strong>{' '}
-                          <a href={resource.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">
-                            {resource.website.replace('https://', '')}
-                          </a>
-                        </p>
-                      )}
+                      <div className="text-sm text-slate-600 sm:text-right">
+                        {item.phone && <p>Phone: {item.phone}</p>}
+                        {item.status && <p className="mt-1">{item.status}</p>}
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            ) : (
+              <div className="p-5">
+                <p className="text-sm text-slate-700">
+                  No matching state organization found. Try a state name, “affiliate,” “associated group,” or contact NARSOL directly for a regional referral.
+                </p>
+              </div>
+            )}
           </div>
-        </div>
-      </section>
 
-      {/* Footer Note */}
-      <section className="bg-gray-50 py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-lg p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Keep This Directory Updated</h3>
-            <p className="text-gray-600">
-              Organizations and contact information change frequently. If you find outdated information or know of 
-              resources that should be included, please help us keep this directory current by contacting The SOLAR Project.
+          <GuideCallout tone="reminder" icon="📌" title="Why this list is intentionally conservative">
+            <p>
+              This page favors sources that could be validated through official pages during rebuild. Some older resource packets list additional state groups, but this directory should not publish stale contacts unless they are rechecked and clearly sourced.
             </p>
-          </div>
-        </div>
-      </section>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offline-access"
+          number="6"
+          title="If internet access is limited"
+          subtitle="Many readers are phone-only, incarcerated, under internet restrictions, or relying on family for research."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet ways to use this directory"
+            items={[
+              "Print this page or copy the crisis numbers and state contact information onto one sheet of paper.",
+              "Ask a trusted person to call a provider or organization and write down the name, date, phone number, and next step.",
+              "Ask organizations to mail forms, meeting schedules, referral lists, or written instructions when possible.",
+              "Use a library, reentry office, public defender office, legal aid office, or family member only if doing so is allowed by supervision and device rules.",
+              "Keep a paper folder with call notes, referrals, appointment confirmations, payment information, and provider requirements.",
+            ]}
+          />
+
+          <VerifyBeforeActing
+            whoToAsk="The organization, provider office, attorney, supervising officer, or agency with authority over the step you are about to take."
+            whatToAsk="Ask whether the listing is current, whether they serve your situation, what it costs, whether there are privacy limits, and whether court or supervision approval is required."
+            whatToSave="Save the date, name, phone number, email address, instructions, appointment confirmation, and any written answer or screenshot."
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sources"
+          number="7"
+          title="Sources and related SOLAR guides"
+          subtitle="Use the source list to recheck links before publication and during future maintenance."
+        />
+
+        <GuideSectionCard>
+          <RelatedGuides
+            guides={[
+              {
+                title: "Reentry Checklist",
+                description: "Use with this directory when mental-health support is part of housing, work, supervision, or family reintegration planning.",
+                to: "/resources/reentry-checklist",
+              },
+              {
+                title: "Family Support Guide",
+                description: "Helpful for spouses, parents, adult children, and loved ones trying to support someone without carrying everything alone.",
+                to: "/resources/family-support",
+              },
+              {
+                title: "Know Your Rights Guide",
+                description: "Useful when a support, treatment, supervision, or registry issue becomes legal or rights-related.",
+                to: "/resources/know-your-rights",
+              },
+            ]}
+          />
+
+          <SourceList
+            note={`Links and contact information were checked during production rebuild on ${lastChecked}. Recheck state affiliates and provider directories before future publication updates because organizations, meetings, providers, and phone numbers change.`}
+            sources={sourceLinks}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
-
-export default MentalHealthDirectory;
