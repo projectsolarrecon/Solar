@@ -1,1333 +1,1179 @@
-// /src/pages/resources/Prison_Dos_and_Donts_Guide.tsx
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
+  RedFlagGreenFlag,
+  DualDepthSection,
+} from "../../components/solar";
 
-/** Local helper: lightweight callout (same as Pro Licensing Guide) */
-function Callout({
-  tone = "info",
-  title,
-  children,
-}: {
-  tone?: "info" | "note" | "warn" | "danger" | "success";
-  title?: string;
-  children: React.ReactNode;
-}) {
-  const tones: Record<string, string> = {
-    info: "bg-blue-50 border-blue-200 text-blue-900",
-    note: "bg-slate-50 border-slate-200 text-slate-900",
-    warn: "bg-amber-50 border-amber-200 text-amber-900",
-    danger: "bg-red-50 border-red-200 text-red-900",
-    success: "bg-emerald-50 border-emerald-200 text-emerald-900",
-  };
-  const cls = tones[tone] ?? tones.info;
-  return (
-    <div className={`rounded-xl border p-5 md:p-6 ${cls}`}>
-      {title && <h4 className="font-semibold mb-2">{title}</h4>}
-      <div className="space-y-3">{children}</div>
-    </div>
-  );
-}
+const sourceLinks = [
+  {
+    label: "Federal Bureau of Prisons — Sex Offender Treatment Programs",
+    href: "https://www.bop.gov/inmates/custody_and_care/sex_offenders.jsp",
+    description:
+      "Official BOP overview of residential and non-residential sex offender treatment programming.",
+  },
+  {
+    label: "BOP Program Statement 5324.10 — Sex Offender Programs",
+    href: "https://www.bop.gov/policy/progstat/5324_010.pdf",
+    description:
+      "Official BOP policy on sex offender management, assessment, treatment, and specialized correctional management.",
+  },
+  {
+    label: "BOP Program Statement 5290.14 — Admission and Orientation Program",
+    href: "https://www.bop.gov/policy/progstat/5290_014.pdf",
+    description:
+      "Official BOP policy describing admission and orientation expectations for people entering federal custody.",
+  },
+  {
+    label: "eCFR — National Standards to Prevent, Detect, and Respond to Prison Rape",
+    href: "https://www.ecfr.gov/current/title-28/chapter-I/part-115",
+    description:
+      "Federal PREA standards, including facility obligations around sexual safety, reporting, screening, and response.",
+  },
+  {
+    label: "PREA Resource Center — Reporting to Other Confinement Facilities",
+    href: "https://www.prearesourcecenter.org/standard/115-63",
+    description:
+      "Plain-language PREA resource explaining reporting duties when abuse allegations involve another confinement facility.",
+  },
+  {
+    label: "Bureau of Justice Assistance — PREA Overview",
+    href: "https://bja.ojp.gov/program/prea/overview",
+    description:
+      "Federal overview of the Prison Rape Elimination Act and national implementation support.",
+  },
+  {
+    label: "National Institute of Corrections — Reentry Resources",
+    href: "https://nicic.gov/resources/resources-topics-and-roles/topics/reentry",
+    description:
+      "Federal correctional resources related to reentry planning, transition, and correctional practice.",
+  },
+];
 
-/** Local helper: section header band (identical to Pro Licensing Guide) */
-function BandHeader({
-  k,
-  title,
-  subtitle,
-  icon,
-}: {
-  k: string;
-  title: string;
-  subtitle?: string;
-  icon?: string;
-}) {
-  return (
-    <div id={k} className="rounded-xl overflow-hidden mb-6">
-      <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white px-5 py-4 flex items-center gap-3">
-        {icon && <span aria-hidden className="text-xl">{icon}</span>}
-        <div>
-          <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
-          {subtitle && <p className="text-white/85 text-sm">{subtitle}</p>}
-        </div>
-      </div>
-    </div>
-  );
-}
+const languageTerms = [
+  {
+    term: "Check in",
+    means:
+      "Asking staff for protective custody, separation, or removal from a unit because of safety concerns.",
+    notMean:
+      "It does not mean you are weak, doomed, or have failed. It also does not mean every uncomfortable moment requires protective custody.",
+    response:
+      "Do not use it as a drama phrase. If there is a real threat, sexual pressure, extortion, assault risk, or targeted harassment, use the safest official reporting or separation channel available.",
+  },
+  {
+    term: "Chomo",
+    means:
+      "A hostile prison slur often aimed at people with child-sex-related convictions, sometimes used inaccurately or just to provoke a reaction.",
+    notMean:
+      "It does not mean the person saying it knows your case. It does not automatically mean violence is about to happen.",
+    response:
+      "Do not argue the facts of your case in the dayroom. Do not explain details. Use a short, boring response and disengage.",
+  },
+  {
+    term: "Paperwork",
+    means:
+      "Legal or case documents people may use to identify a charge, conviction, cooperation history, or sentence details.",
+    notMean:
+      "Not every request for paperwork is official. Not every incarcerated person has a right to see your documents.",
+    response:
+      "Know what documents you have and what you are allowed to possess. Do not fake paperwork. Do not casually pass around sensitive legal papers.",
+  },
+  {
+    term: "PC / protective custody",
+    means:
+      "A safety housing status or separation process used when someone may not be safe in a regular housing setting.",
+    notMean:
+      "It is not always a simple safety upgrade. It can help with immediate danger, but it may also bring restrictions or program tradeoffs.",
+    response:
+      "If safety is at issue, ask staff what options exist: separation, a move, investigation, PREA report, mental-health contact, or formal protective custody.",
+  },
+  {
+    term: "Kite",
+    means:
+      "A written request, note, grievance, medical slip, counselor request, or other written communication, depending on the facility.",
+    notMean:
+      "It does not always mean an official grievance. Facility language varies.",
+    response:
+      "Use official forms for serious issues. Write down when you submitted it, who received it, and what it said.",
+  },
+  {
+    term: "Car",
+    means:
+      "A group connected by race, geography, gang affiliation, prison politics, or shared background.",
+    notMean:
+      "You do not need to join a group to survive. A friendly cluster is not the same thing as an obligation.",
+    response:
+      "Be respectful without joining drama. Avoid favors, messages, contraband, debt, or holding property.",
+  },
+  {
+    term: "Store / commissary / on the books",
+    means:
+      "Commissary goods, informal lending, trade, debt, or someone tracking what another person owes.",
+    notMean:
+      "A small snack is not always just kindness. It may become leverage.",
+    response:
+      "Do not borrow, lend, run tabs, or let someone use your account, PIN, phone, or commissary.",
+  },
+  {
+    term: "Shot caller",
+    means:
+      "A person with informal influence in a group or housing unit.",
+    notMean:
+      "They are not staff and do not have official authority over you.",
+    response:
+      "Stay respectful and boring. Do not seek protection, favors, permission, or status.",
+  },
+  {
+    term: "Cellie / bunkie",
+    means: "A cellmate or bunkmate.",
+    notMean:
+      "It does not automatically mean friend, ally, or trusted person.",
+    response:
+      "Respect space. Keep clean. Ask before touching anything. Do not casually discuss sex, charges, money, or family details.",
+  },
+  {
+    term: "Snitch",
+    means:
+      "A label used for someone accused of cooperating, reporting, or violating prison norms.",
+    notMean: "It may be used loosely, falsely, or strategically.",
+    response:
+      "Do not debate labels. Do not discuss other people’s cases. If there is a real safety threat, use official safety channels and document what happened.",
+  },
+  {
+    term: "Active yard",
+    means:
+      "A yard or unit where prison politics, gang or racial dynamics, violence, debt enforcement, or informal rules are especially present.",
+    notMean:
+      "It does not mean violence is constant or unavoidable. It also does not mean every person there is gang-involved.",
+    response:
+      "Move slowly. Watch routines before joining activities. Avoid debts, gambling, favors, gossip, group politics, and performative toughness.",
+  },
+  {
+    term: "Affiliated",
+    means:
+      "Connected to a gang, prison group, street organization, or sometimes a racial or geographic group.",
+    notMean:
+      "It does not always mean someone is violent. It also does not mean you should claim an affiliation or accept obligations.",
+    response:
+      "Do not falsely claim membership or connections. Do not carry messages, hold property, accept protection, or take sides.",
+  },
+  {
+    term: "Dropout",
+    means:
+      "Someone who left a gang or prison group, debriefed, entered protective housing, or is no longer considered active by a group.",
+    notMean:
+      "It does not tell you the whole story. It does not automatically mean the person is safe, unsafe, truthful, or untrustworthy.",
+    response:
+      "Do not ask for details. Do not repeat labels. Do not get pulled into another person’s politics.",
+  },
+  {
+    term: "GP / general population",
+    means:
+      "Ordinary prison housing, separate from protective custody, segregation, reception, medical, mental-health, or special housing.",
+    notMean:
+      "It does not mean safe or unsafe by itself. Conditions vary by facility, unit, custody level, and local dynamics.",
+    response:
+      "Learn the unit before assuming anything. Ask official questions about rules, movement, programs, and safety options.",
+  },
+  {
+    term: "Politics",
+    means:
+      "Informal power structures and expectations inside: race, geography, gangs, debts, seating, messages, conflicts, and group pressure.",
+    notMean:
+      "It does not mean you need to understand or participate in everything. It also does not override official rules.",
+    response:
+      "Observe first. Do not take sides. Do not carry messages. Do not gossip. Do not repeat what you hear.",
+  },
+];
 
 export default function PrisonDosAndDontsGuide(): JSX.Element {
-  const [checked, setChecked] = useState<Record<string, boolean>>({});
-  const toggle = (id: string) => setChecked((p) => ({ ...p, [id]: !p[id] }));
   const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Prison Dos & Don’ts for People with Sex-Offense Convictions"
-        description="A practical survival guide for incarcerated people and their families."
-        keywords="prison survival guide, sex-offense conviction, incarceration safety, SO units, reentry"
+        title="Prison Survival Guide for People with Sex-Offense Convictions | The SOLAR Project"
+        description="A calm, practical prison preparation and survival guide for people with sex-offense convictions and the families supporting them."
+        keywords="prison survival guide, sex offense conviction prison, prison dos and donts, protective custody, PREA, reentry planning, prison family support"
       />
 
-      {/* Hero */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 text-white py-14">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-4">
-            <Link
-              to="/resources"
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors group"
-            >
-              <svg
-                className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            Incarceration & Reentry
           </div>
 
-          <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-            Safety & Adaptation Toolkit
-          </span>
-
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-4 leading-tight">
-            Prison Dos & Don’ts for People with Sex-Offense Convictions
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Prison Survival Guide for People with Sex-Offense Convictions
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-100 mt-4 max-w-3xl">
-            🧭 A practical survival guide for incarcerated people and their families — what to do, what to avoid, and how to stay safe, stable, and focused throughout your sentence.
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Dos, don’ts, routines, boundaries, prison language, and family preparation for getting through incarceration safely and steadily.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors shadow"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
               🖨️ Print Guide
             </button>
+
             <a
-              href="#references"
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors shadow text-center"
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              📚 Skip to Sources
+              Jump to Sources
             </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      {/* Body */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        {/* 0. Who This Guide Is For */}
-        <BandHeader
-          k="section-0"
-          title="0. Who This Guide Is For (And What It Is Not)"
-          icon="🎯"
-          subtitle="Purpose, audience, and sources"
+        <GuideIntro title="Start here" icon="🧭">
+          <p>
+            If you are reading this before prison, you may be scared. Your family may be terrified. That fear is understandable. Prison is serious, and no guide can promise that everything will be easy.
+          </p>
+          <p>
+            But fear is not the same thing as a forecast. Many people get through prison by becoming steady, quiet, clean, respectful, and consistent. This guide is built around that kind of survival: not toughness, not performance, not denial — just daily choices that reduce risk and help you keep your mind intact.
+          </p>
+          <p>
+            This guide is for people entering state or federal prison after a sex-offense conviction, people already inside who need a grounded reference, and families trying to understand what to expect without relying on internet horror stories.
+          </p>
+        </GuideIntro>
+
+        <QuickStartPanel
+          title="If you remember nothing else"
+          subtitle="These four principles carry most of the guide. They are simple, but they matter."
+          icon="⚓"
+          urgentActions={[
+            <span>
+              <strong>Calm is currency.</strong> Move slowly, speak plainly, and do not perform anger or toughness.
+            </span>,
+            <span>
+              <strong>Routine is safety.</strong> Work, shower, exercise, write, sleep, and repeat.
+            </span>,
+            <span>
+              <strong>Debt is danger.</strong> Do not borrow, lend, gamble, run tabs, share PINs, or accept “protection.”
+            </span>,
+            <span>
+              <strong>Honest but brief is safer than lying.</strong> Do not give graphic details. Do not invent a different charge.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Learn the written rules during orientation and ask official questions when something affects your safety, discipline, release, or treatment programming.
+            </span>,
+            <span>
+              Keep family contact steady and boring: predictable calls, short updates, and practical planning instead of panic.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              You do not have to solve the whole sentence today. The first job is to get through the next day without debt, drama, lies, or avoidable conflict.
+            </span>
+          }
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <h3 className="text-lg font-semibold">
-              PRISON DOS & DON’TS FOR PEOPLE WITH SEX-OFFENSE CONVICTIONS
-            </h3>
-            <p>
-              <em>A Practical Survival Guide for Incarcerated People and Their Families</em>
-            </p>
 
-            <p>This guide is written for:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                People heading to <strong>U.S. state or federal prison</strong> on a{" "}
-                <strong>sex-offense conviction</strong>, especially first-time, non-violent,
-                or online-only cases.
-              </li>
-              <li>
-                Families who are terrified about what will happen to their loved one inside.
-              </li>
-              <li>
-                People already in custody who need a clear, grounded reference on how to stay safe and stable.
-              </li>
-            </ul>
-
-            <p>What this guide is <strong>not</strong>:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>It is <strong>not legal advice</strong>.</li>
-              <li>
-                It is <strong>not tailored to any one specific prison</strong> — details differ by state, facility, and security level.
-              </li>
-              <li>
-                It is <strong>not a playbook for breaking rules or evading supervision</strong>. Everything here assumes you are{" "}
-                <strong>following the rules</strong>, not trying to game them.
-              </li>
-            </ul>
-
-            <p>
-              Instead, this is meant to be the <strong>authoritative “dos and don’ts” manual</strong> for people with sex-offense convictions, built from:
-            </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                General prison handbooks and policy statements — e.g., the{" "}
-                <a
-                  href="https://thegordonlawfirm.com/linked/bop_inmate_information_handbook.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  BOP Inmate Information Handbook
-                </a>
-              </li>
-              <li>
-                Federal Bureau of Prisons (BOP) classification and security-level designations — e.g.,{" "}
-                <a
-                  href="https://www.bop.gov/about/facilities/federal_prisons.jsp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  BOP Security Levels
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://www.bop.gov/about/statistics/statistics_inmate_sec_levels.jsp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  Security Level Statistics
-                </a>
-              </li>
-              <li>
-                National Prison Rape Elimination Act (PREA) standards — e.g.,{" "}
-                <a
-                  href="https://www.federalregister.gov/documents/2012/06/20/2012-12427/national-standards-to-prevent-detect-and-respond-to-prison-rape"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  DOJ PREA Final Rule
-                </a>{" "}
-                and{" "}
-                <a
-                  href="https://www.prearesourcecenter.org/about/prison-rape-elimination-act"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  PREA Resource Center
-                </a>
-              </li>
-              <li>
-                Broad data on U.S. prison populations and offense categories — e.g.,{" "}
-                <a
-                  href="https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  The Sentencing Project – “Responding to Crimes of a Sexual Nature”
-                </a>
-              </li>
-            </ul>
-
-            <p>
-              The guidance is <strong>population-agnostic at the source</strong> (meaning these rules apply to everyone), then interpreted specifically for{" "}
-              <strong>people with sex-offense convictions</strong>, given the realities of stigma, placement, and daily life in SO-heavy facilities.
-            </p>
-          </div>
-        </section>
-
-        {/* 1. Core Principles */}
-        <BandHeader
-          k="section-1"
-          title="1. Core Principles: The Four Rules That Matter Everywhere"
-          icon="📘"
-          subtitle="Universal habits for safety and stability"
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Different",
+              title: "Sex-offense convictions carry stigma",
+              icon: "⚠️",
+              tone: "warning",
+              description:
+                "People may use ugly labels. Your case may affect placement, programming, paperwork questions, and post-release restrictions.",
+            },
+            {
+              eyebrow: "Also true",
+              title: "Most daily safety rules are ordinary",
+              icon: "🧼",
+              tone: "info",
+              description:
+                "Cleanliness, debt avoidance, privacy, quiet routine, and respectful boundaries matter no matter what your conviction is.",
+            },
+            {
+              eyebrow: "Safest posture",
+              title: "Boring, steady, and accountable",
+              icon: "🛠️",
+              tone: "success",
+              description:
+                "You are not there to win arguments, prove yourself, or become someone else. You are there to do your time and come home alive, stable, and prepared.",
+            },
+          ]}
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              No matter what state, security level, or yard you land on, four principles are almost universal:
-            </p>
-            <ol className="list-decimal pl-6 space-y-1">
-              <li><strong>Calm is currency.</strong></li>
-              <li><strong>Routine is safety.</strong></li>
-              <li><strong>Debt is danger.</strong></li>
-              <li><strong>Honest but brief about your case is safer than lying.</strong></li>
-            </ol>
 
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> carry yourself calmly — walk, talk, and move at a measured pace.</li>
-              <li><strong>DO</strong> build a predictable daily routine (work, rec, shower, sleep at roughly the same times).</li>
-              <li><strong>DO</strong> give simple, honest answers about your case when asked.</li>
-              <li><strong>DO</strong> focus on your own program: work, classes, exercise, reading.</li>
-            </ul>
-            {/* ...continues with DON’Ts and Use-Your-Judgment next part */}
-<h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                <strong>DON’T</strong> gamble, run tabs, or borrow commissary from others (nearly every inmate handbook
-                bans gambling or incurring debts — see BOP handbooks such as the one linked above).
-              </li>
-              <li><strong>DON’T</strong> use or sell drugs.</li>
-              <li><strong>DON’T</strong> yell, brag, posture, or act like you’re in a movie.</li>
-              <li><strong>DON’T</strong> lie about your charges — it often gets exposed and destroys trust.</li>
-            </ul>
+        <PullQuoteBlock>
+          The goal is not to look fearless. The goal is to become predictable, respectful, debt-free, and hard to pull into drama.
+        </PullQuoteBlock>
 
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                <strong>DO</strong> adjust how much you talk depending on the yard culture — in some prisons,
-                more conversation is normal; in others, quiet is safer.
-              </li>
-              <li>
-                <strong>DO</strong> pay attention to who seems stable and who brings drama; align yourself with
-                the former, stay away from the latter.
-              </li>
-            </ul>
+        <GuideCallout tone="legal" icon="⚖️" title="This is a practical guide, not legal advice">
+          <p>
+            Prison rules differ by state, facility, custody level, housing unit, staff practice, and individual circumstances. Verify facility rules, classification decisions, treatment eligibility, PREA reporting options, grievance steps, and reentry requirements with the people or offices that actually control them.
+          </p>
+        </GuideCallout>
 
-            <p>If you remember nothing else from this guide, remember these four principles.</p>
-          </div>
-        </section>
-
-        {/* 2. Housing & Living Space Etiquette */}
-        <BandHeader
-          k="section-2"
-          title="2. Housing & Living Space Etiquette"
-          icon="🛏️"
-          subtitle="Cleanliness, respect, and boundaries"
+<GuideSectionHeader
+          id="what-is-different"
+          number="1"
+          title="What makes sex-offense prison time different — and what stays the same"
+          subtitle="Your conviction may affect stigma, programming, paperwork pressure, and release planning. It does not change every basic survival rule."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>Your bunk, cell, or cube is your anchor. How you behave there sets your reputation.</p>
 
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> keep your area clean and organized (bed made, property stacked, floor clear).</li>
-              <li><strong>DO</strong> ask before sitting on someone else’s bunk or at their usual table.</li>
-              <li><strong>DO</strong> keep noise down during early morning and late night.</li>
-              <li><strong>DO</strong> participate in basic cleaning if it’s a shared space (trash, floor, sink, shower if it’s a unit job).</li>
-              <li><strong>DO</strong> lock up or secure your property if your facility has lockers or footlockers.</li>
-            </ul>
+        <GuideSectionCard>
+          <DualDepthSection
+            simpleTitle="Plain-language version"
+            deepTitle="A little more detail"
+            simple={
+              <GuideProse>
+                <p>
+                  Some things may be different for people with sex-offense convictions. You may hear slurs. People may ask about paperwork. You may be assigned to a facility, unit, or program where many people have similar convictions. You may also face sex-offender treatment, registration, supervision, and housing issues after release.
+                </p>
+                <p>
+                  But prison is not only about your conviction. Many everyday conflicts come from debt, drugs, disrespect, gossip, property, noise, hygiene, and people getting pulled into other people’s problems. Those are areas where your choices matter every day.
+                </p>
+              </GuideProse>
+            }
+            deep={
+              <GuideProse>
+                <p>
+                  In the federal system, the Bureau of Prisons has specific sex offender treatment programming and policy guidance. Some institutions with treatment programs may house a higher number of people with sex-offense convictions. State systems vary widely, so the exact answer depends on your facility.
+                </p>
+                <p>
+                  The practical point is this: do not assume your conviction controls every interaction. Also do not pretend it does not matter. Prepare for stigma, keep your answers brief, follow rules, document serious issues, and focus on the daily habits that lower risk.
+                </p>
+              </GuideProse>
+            }
+          />
 
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> touch other people’s property without permission — not even to “straighten” it.</li>
-              <li><strong>DON’T</strong> go into someone else’s cell or cube without them present unless the prison’s rules explicitly require it.</li>
-              <li><strong>DON’T</strong> use someone else’s hygiene items, clothes, or commissary.</li>
-              <li><strong>DON’T</strong> slam doors, bang on rails, or blast TV/radio in ways that disturb others.</li>
-            </ul>
+          <SoftDivider label="What may be different" />
 
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>In some units, certain seats (TV area, dayroom tables) are informally “claimed.”</li>
-              <li><strong>DO</strong> watch for a few days to see where people consistently sit.</li>
-              <li><strong>DO</strong> ask quietly, “Is anyone sitting here?”</li>
-              <li><strong>DON’T</strong> dig in or argue if someone asks you to move — it’s not worth it.</li>
-            </ul>
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Stigma",
+                title: "Labels and testing",
+                icon: "🗣️",
+                tone: "warning",
+                description:
+                  "You may hear slurs, direct questions, or comments meant to test your reaction. The safest response is usually brief, calm, and non-graphic.",
+              },
+              {
+                eyebrow: "Paperwork",
+                title: "People may ask what your case says",
+                icon: "📄",
+                tone: "legal",
+                description:
+                  "Know what your documents say and what you are allowed to possess. Do not fake paperwork or casually pass legal papers around.",
+              },
+              {
+                eyebrow: "Programs",
+                title: "Treatment may affect your path",
+                icon: "🧭",
+                tone: "info",
+                description:
+                  "Sex-offender treatment, facility placement, release planning, and supervision requirements can matter. Ask official questions and save answers when possible.",
+              },
+              {
+                eyebrow: "Family",
+                title: "Loved ones may be especially afraid",
+                icon: "❤️",
+                tone: "family",
+                description:
+                  "Families often imagine the worst. A steady communication plan can reduce panic and help everyone focus on practical next steps.",
+              },
+              {
+                eyebrow: "Release",
+                title: "Reentry may be more complicated",
+                icon: "🏠",
+                tone: "reentry",
+                description:
+                  "Registration, housing restrictions, supervision rules, treatment, internet limits, and employment barriers may need planning long before release.",
+              },
+              {
+                eyebrow: "Shame",
+                title: "Mental pressure can be intense",
+                icon: "🧠",
+                tone: "reminder",
+                description:
+                  "Shame and fear can become safety issues. Routine, support, treatment, and asking for help early are not weakness.",
+              },
+            ]}
+          />
 
+          <SoftDivider label="What often stays the same" />
+
+          <GuideChecklist
+            id="what-stays-the-same"
+            title="Basic prison rules that still matter every day"
+            columns={1}
+            items={[
+              {
+                id: "debt-danger",
+                label: "Debt creates danger. Do not borrow, lend, gamble, run tabs, or accept protection.",
+              },
+              {
+                id: "hygiene-matters",
+                label: "Hygiene and cleanliness matter. Shower, wash clothes, clean your area, and respect shared space.",
+              },
+              {
+                id: "privacy-matters",
+                label: "Privacy matters. Do not stare, hover, touch property, ask case questions, or enter personal space.",
+              },
+              {
+                id: "gossip-danger",
+                label: "Gossip spreads fast. Do not repeat stories, carry messages, or comment on other people’s cases.",
+              },
+              {
+                id: "routine-protects",
+                label: "Routine protects mental health. A predictable day gives your mind something stable to hold onto.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🧠" title="A grounded way to think about fear">
             <p>
-              For people with sex-offense convictions, <strong>housing is usually calmer than imagined</strong> — especially
-              in low-security and SO-heavy units. Cleanliness, respect, and quiet routine go a long way.
+              Your mind may show you the worst possible version of every story you have heard. That does not mean those stories are your future. Fear may show up. You do not have to obey it.
             </p>
-          </div>
-        </section>
+          </GuideCallout>
+        </GuideSectionCard>
 
-        {/* 3. Social Navigation & Prison Culture */}
-        <BandHeader
-          k="section-3"
-          title="3. Social Navigation & Prison Culture"
-          icon="🤝"
-          subtitle="How to interact safely and respectfully"
+        <GuideSectionHeader
+          id="first-thirty-days"
+          number="2"
+          title="The first 30 days"
+          subtitle="Early prison survival is mostly about slowing down, learning rules, and not making fast mistakes."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              You do <strong>not</strong> need to be popular, tough, or socially dominant. You need to be predictable,
-              respectful, and boring.
-            </p>
 
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> greet people with simple, neutral respect: “Morning,” “What’s up,” “Excuse me.”</li>
-              <li><strong>DO</strong> introduce yourself to bunkies or immediate neighbors early.</li>
-              <li><strong>DO</strong> keep conversation light unless you know someone well.</li>
-              <li><strong>DO</strong> spend your time around people whose behavior you want to mirror (walkers, readers, workers, guys in classes).</li>
-            </ul>
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="What to focus on by stage"
+            stages={[
+              {
+                stage: "Before arrival or self-surrender",
+                icon: "🧳",
+                whatChanges:
+                  "You may still have access to family, documents, doctors, counsel, phone numbers, and a printer.",
+                whatToDo:
+                  "Create a paper contact list, medication list, legal-document list, family communication plan, and reentry folder. Do not rely on your phone being available later.",
+              },
+              {
+                stage: "Intake and orientation",
+                icon: "📋",
+                whatChanges:
+                  "You are learning count, movement, housing, mail, phone, commissary, medical, grievance, PREA, and staff expectations.",
+                whatToDo:
+                  "Listen more than you talk. Read the handbook. Ask procedural questions. Do not make fast friends or tell long stories.",
+              },
+              {
+                stage: "First housing assignment",
+                icon: "🏠",
+                whatChanges:
+                  "People may be watching how you carry yourself, how clean you are, whether you borrow, and whether you respect space.",
+                whatToDo:
+                  "Keep your area clean, ask before sitting or using shared space, do not touch property, and avoid borrowing even small items.",
+              },
+              {
+                stage: "First month",
+                icon: "🗓️",
+                whatChanges:
+                  "The shock starts becoming routine. This is when you build habits that either protect you or create problems.",
+                whatToDo:
+                  "Set a daily rhythm: work or program, shower, exercise, meals, writing, reading, sleep, and steady family contact.",
+              },
+            ]}
+          />
 
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> gossip or repeat what you’ve heard about others.</li>
-              <li><strong>DON’T</strong> comment on anyone’s charges, sentence, case, or past.</li>
-              <li><strong>DON’T</strong> try to be funny by disrespecting people.</li>
-              <li><strong>DON’T</strong> ask about someone’s crime; let them share if they want to.</li>
-            </ul>
+          <SoftDivider label="First-month checklist" />
 
-            <h3 className="text-lg font-semibold">Daily Etiquette Everyone Follows (Even if Unspoken)</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> look into other people’s cells or cubes — even a quick glance is intrusive.</li>
-              <li><strong>DO</strong> walk with your eyes forward, not scanning faces or property.</li>
-              <li><strong>DON’T</strong> watch other people’s interactions with staff.</li>
-              <li><strong>DON’T</strong> hover near phone calls or listen in.</li>
-              <li><strong>DON’T</strong> stand too close behind someone in line.</li>
-              <li><strong>DO</strong> give people space in tight areas (microwaves, phones, showers).</li>
-              <li><strong>DON’T</strong> interject yourself into someone else’s conversation — it can look like you were eavesdropping.</li>
-              <li><strong>DO</strong> mind your own business at all times.</li>
-            </ul>
+          <GuideChecklist
+            id="first-month-checklist"
+            title="Tasks that help you stabilize"
+            columns={1}
+            items={[
+              {
+                id: "read-handbook",
+                label: "Read the facility handbook or orientation materials when available.",
+              },
+              {
+                id: "learn-count",
+                label: "Learn count times, movement rules, meal routines, mail, phone, commissary, medical, and request procedures.",
+              },
+              {
+                id: "clean-space",
+                label: "Keep your bunk, locker, cube, or cell clean from the beginning.",
+              },
+              {
+                id: "no-debt",
+                label: "Make a personal rule: no borrowing, lending, gambling, tabs, shared PINs, or commissary favors.",
+              },
+              {
+                id: "family-rhythm",
+                label: "Set a realistic family communication rhythm so everyone knows when to expect contact.",
+              },
+              {
+                id: "mental-health",
+                label: "Ask for mental-health help early if panic, depression, or self-harm thoughts become intense.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
-            <p>This etiquette is not optional. In prison, privacy is symbolic, and violating it creates conflict.</p>
-
-            <h3 className="text-lg font-semibold">SO-Specific Notes</h3>
-            <p>
-              People with sex-offense convictions are often <strong>the majority</strong> in certain units or prisons. That changes
-              the social dynamic:
-            </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>“Chomo” gets used casually, sometimes about half the unit.</li>
-              <li>
-                Many others are in almost the same position as you — older, first-time, non-violent, online cases.
-              </li>
-            </ul>
-
-            <p>
-              You do <strong>not</strong> need to defend yourself from the label. What matters is how you behave, not what slang people use.
-            </p>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                Some yards have active “cars” (race- or region-based groups). Others (especially SO-heavy lows)
-                treat cars as loose social clusters.
-              </li>
-              <li><strong>DO</strong> keep a friendly but neutral stance — say hello, don’t pledge allegiance.</li>
-              <li><strong>DON’T</strong> jump into “we” language about any car; just be you.</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* 4. Money, Debt, and Commissary */}
-        <BandHeader
-          k="section-4"
-          title="4. Money, Debt, and Commissary"
-          icon="💰"
-          subtitle="Debt and gambling create danger — always"
+        <GuideSectionHeader
+          id="daily-dos-donts"
+          number="3"
+          title="Hard DOs, Hard DON’Ts, and use your judgment"
+          subtitle="These are the daily habits that keep many people safer."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
+
+        <GuideSectionCard>
+          <DoDontJudgment
+            dos={[
+              <span>Carry yourself calmly: walk, talk, and move at a measured pace.</span>,
+              <span>Build a predictable daily routine around work, program, meals, hygiene, exercise, reading, writing, and sleep.</span>,
+              <span>Keep your living area clean and your property organized.</span>,
+              <span>Give simple, honest, non-graphic answers about your case if you must answer.</span>,
+              <span>Follow staff instructions and use written request or grievance systems for non-emergency issues.</span>,
+              <span>Use medical, mental-health, and PREA channels when safety or health is at stake.</span>,
+            ]}
+            donts={[
+              <span>Do not gamble, borrow, lend, run tabs, or let anyone use your account, phone, commissary, or PIN.</span>,
+              <span>Do not lie about your conviction, cooperation history, or paperwork.</span>,
+              <span>Do not discuss graphic case details, sexual details, victims, fantasies, or other people’s cases.</span>,
+              <span>Do not touch other people’s property, sit on bunks without permission, hover near phones, or stare into private spaces.</span>,
+              <span>Do not carry messages, hold contraband, store property, accept protection, or take sides in conflicts.</span>,
+              <span>Do not try to act tough, connected, amused by violence, or “prison smart.” It usually backfires.</span>,
+            ]}
+            judgment={[
+              <span>How much to disclose depends on the setting. Brief truth is usually safer than long explanations.</span>,
+              <span>Some disrespect is better ignored. Repeated targeting, extortion, sexual pressure, threats, or blocked movement should be treated as safety issues.</span>,
+              <span>Not every staff interaction needs a grievance. Serious patterns, retaliation, abuse, medical neglect, or safety failures should be documented.</span>,
+              <span>Choose activities that regulate you, not activities that pull you into heat: walking, reading, classes, work, faith groups, writing, and quiet exercise.</span>,
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌱" title="You can still build a decent day">
             <p>
-              If there is one domain where rules are nearly universal, it’s this one:
-              <strong> debt and gambling create danger.</strong> Handbooks across the country — including the{" "}
-              <a
-                href="https://thegordonlawfirm.com/linked/bop_inmate_information_handbook.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
+              Prison can shrink your world. A routine expands it again. A clean bunk, a walk, a book, a letter, a completed class, a calm phone call, and one avoided argument are not small things. They are how people get through.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="case-paperwork-disclosure"
+          number="4"
+          title="Case questions, paperwork, and disclosure"
+          subtitle="Do not lie, do not over-explain, and do not give people more than they need."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People may ask what you are in for. They may ask directly, indirectly, aggressively, or casually. Some people ask because they are curious. Some are testing you. Some are trying to place you socially. Some are just repeating prison habits.
+            </p>
+            <p>
+              The safest general approach is brief, honest, non-graphic, and boring. Do not invent another charge. Do not argue legal details in the dayroom. Do not describe conduct. Do not talk about victims. Do not compare your case to someone else’s. Do not try to make your case sound better by making another person’s case sound worse.
+            </p>
+          </GuideProse>
+
+          <ScriptBox
+            title="If someone asks what you are in for"
+            tone="neutral"
+            context="Use calm, boring language. Then stop talking."
+            script={`Sex offense. I’m not proud of it. I’m doing my time and staying out of trouble.`}
+          />
+
+          <ScriptBox
+            title="If someone pushes for details"
+            tone="privacy"
+            context="Do not debate, explain, or provide graphic information."
+            script={`I’m not getting into details. I’m focused on doing my time right.`}
+          />
+
+          <ScriptBox
+            title="If someone asks for paperwork"
+            tone="legal"
+            context="Do not fake paperwork. Do not casually pass sensitive documents around."
+            script={`I’m not hiding anything, but I’m not passing my personal legal papers around.`}
+          />
+
+          <GuideCallout tone="warning" icon="⚠️" title="Never make up a different conviction">
+            <p>
+              Lying about your case can create more danger than telling a short truth. If the lie is exposed, people may treat the lie itself as the bigger issue. Brief truth, followed by silence, is usually safer than a story you have to maintain.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="language-you-may-hear"
+          number="5"
+          title="Prison language you may hear"
+          subtitle="What it may mean, what it does not mean, and how to respond without adopting it."
+        />
+
+        <GuideSectionCard>
+          <GuideCallout tone="privacy" icon="🗣️" title="This is a safety glossary, not a script for fitting in">
+            <p>
+              You may hear ugly, stigmatizing, or threatening language inside. This guide names a few terms because understanding them can help you stay calm and avoid mistakes. SOLAR does not endorse these labels. You do not need to repeat them, perform prison toughness, or accept anyone else’s label for you.
+            </p>
+          </GuideCallout>
+
+          <div className="mt-6 space-y-4">
+            {languageTerms.map((item) => (
+              <div
+                key={item.term}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
               >
-                BOP Inmate Information Handbook
-              </a>{" "}
-              — classify gambling and debt as misconduct.
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> live within your means.</li>
-              <li><strong>DO</strong> keep track of your spending and balance.</li>
-              <li><strong>DO</strong> send money home or save if you can — don’t let it become a status thing inside.</li>
-              <li><strong>DO</strong> say, “I don’t borrow and I don’t lend, but I appreciate you offering,” if someone pushes commissary on you.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> borrow food, coffee, stamps, or hygiene “until store.”</li>
-              <li><strong>DON’T</strong> gamble — cards, sports bets, any kind of pool.</li>
-              <li><strong>DON’T</strong> let others use your account, number, or PIN (explicitly banned in BOP policy and many states).</li>
-              <li><strong>DON’T</strong> run a store or reselling operation (common rule violation).</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>Generosity can create expectation. Be financially invisible.</p>
+                <h3 className="text-lg font-semibold text-slate-950">{item.term}</h3>
+                <div className="mt-3 grid gap-3 md:grid-cols-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      What it may mean
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-700">{item.means}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      What it does not automatically mean
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-700">{item.notMean}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      Safer response
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-700">{item.response}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </section>
 
-        {/* 5. Safety & Danger Zones */}
-        <BandHeader
-          k="section-5"
-          title="5. Safety & Danger Zones"
-          icon="🚨"
-          subtitle="Reducing your risk every day"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              There is no way to make prison risk-free, but you can dramatically reduce your risk.
-            </p>
+          <SoftDivider label="Ignore, redirect, document, or ask for help" />
 
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> stay away from known trouble spots: bathrooms when large groups congregate, dark corners, areas where people constantly argue.</li>
-              <li><strong>DO</strong> walk with purpose — not rushed, not lurking.</li>
-              <li><strong>DO</strong> leave immediately if an argument escalates near you.</li>
-              <li><strong>DO</strong> trust your gut: if a person or area feels “off,” quietly avoid it.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> play the hero in other people’s conflicts.</li>
-              <li><strong>DON’T</strong> respond to minor disrespect with aggression; a simple “My bad,” or walking away is usually enough.</li>
-              <li><strong>DON’T</strong> carry contraband or do favors that involve hiding items for others.</li>
-              <li><strong>DON’T</strong> agree to hold or move anything you don’t understand.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">PREA & Sexual Safety</h3>
-            <p>
-              Under PREA, facilities must provide ways to report sexual abuse or harassment, including outside channels. See:{" "}
-              <a
-                href="https://bja.ojp.gov/program/prea/overview"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                BJA PREA Overview
-              </a>{" "}
-              and{" "}
-              <a
-                href="https://www.prearesourcecenter.org/about/prison-rape-elimination-act"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                PREA Resource Center
-              </a>
-              .
-            </p>
-
-            <p><strong>Hard rules:</strong></p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> report sexual abuse or serious threats through the channels your facility provides.</li>
-              <li><strong>DO</strong> document what happened (dates, times, names) as soon as you safely can.</li>
-              <li><strong>DON’T</strong> assume you have no options; PREA requires multiple ways to report.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>
-              In SO-heavy environments, the biggest dangers are usually <strong>not</strong> about your offense — they’re about <strong>debt, drugs, and personal conflicts.</strong>
-            </p>
-          </div>
-        </section>
-{/* 6. Staff & Rules */}
-        <BandHeader
-          k="section-6"
-          title="6. Staff & Rules"
-          icon="🧑‍✈️"
-          subtitle="Working with staff and following procedures"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Staff can significantly shape your day-to-day life. Policies and handbooks emphasize following staff instructions,
-              reporting abuse, and using grievance systems for complaints. General examples include BOP handbooks such as the{" "}
-              <a
-                href="https://thegordonlawfirm.com/linked/bop_inmate_information_handbook.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                Inmate Information Handbook
-              </a>{" "}
-              and federal policy statements like the{" "}
-              <a
-                href="https://www.bop.gov/policy/progstat/5290_014.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                Admission & Orientation Program Statement 5290.14
-              </a>
-              .
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> follow direct orders unless they’re obviously illegal or clearly put you in immediate danger.</li>
-              <li><strong>DO</strong> keep interactions short, respectful, and businesslike.</li>
-              <li><strong>DO</strong> use grievance or request processes for non-emergency issues.</li>
-              <li><strong>DO</strong> attend admission and orientation (A&O) programs and actually read the handbook.</li>
-              <li>A&O attendance is required by BOP policy:{" "}
-                <a
-                  href="https://www.bop.gov/policy/progstat/5290_014.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  Program Statement 5290.14
-                </a>
-              </li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> argue, roll your eyes, or show open contempt to staff; they control counts, moves, passes, and write-ups.</li>
-              <li><strong>DON’T</strong> try to “befriend” staff or be overly familiar — that can cause problems both with staff and other incarcerated people.</li>
-              <li><strong>DON’T</strong> ask staff to break rules for you. If they do, it can backfire hard.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> adapt your expectations to the individual CO without sucking up.</li>
-              <li><strong>DO</strong> document important interactions (dates, times, what was said) if there’s a pattern of unfair treatment.</li>
-            </ul>
-
-            <p>
-              For SOs, <strong>staying off staff radar</strong> most of the time is ideal: follow rules, don’t create work for them,
-              and don’t make yourself their project.
-            </p>
-          </div>
-        </section>
-
-        {/* 7. Programs, Work, and Education */}
-        <BandHeader
-          k="section-7"
-          title="7. Programs, Work, and Education"
-          icon="📚"
-          subtitle="Why structured days matter"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Work and programs aren’t just about “checking boxes” — they structure your day and shape how staff and other incarcerated people see you.
-              The BOP and many state systems classify people, assign work, and prioritize program needs for security and rehabilitation. See, for example,{" "}
-              <a
-                href="https://www.bop.gov/about/facilities/federal_prisons.jsp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                BOP’s “Federal Prisons” overview
-              </a>
-              .
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> accept a work assignment and show up on time.</li>
-              <li><strong>DO</strong> put in a reasonable effort — you don’t have to be a star, but don’t be lazy.</li>
-              <li><strong>DO</strong> sign up for education programs you’re eligible for (GED, college, vocational training).</li>
-              <li><strong>DO</strong> use the library — for legal work and for your own mind.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> refuse jobs without a serious, documented reason.</li>
-              <li><strong>DON’T</strong> fake illness to get out of work on a regular basis — it builds a bad reputation.</li>
-              <li><strong>DON’T</strong> treat programs as a joke; your counselor’s notes can affect classification, transfers, and sometimes early-release opportunities.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> aim for programs that help your mind (education), your body (fitness), or your reentry (vocational).</li>
-              <li><strong>DO</strong> be strategic: a “good worker with no problems” is a label you want staff to use about you.</li>
-            </ul>
-
-            <p>
-              For SOs, consistent program participation reinforces the image that you are{" "}
-              <strong>low-risk, compliant, and trying to change</strong>, which helps in classification reviews and sometimes in post-release decisions.
-            </p>
-          </div>
-        </section>
-
-        {/* 8. Medical & Mental Health */}
-        <BandHeader
-          k="section-8"
-          title="8. Medical & Mental Health"
-          icon="⚕️"
-          subtitle="Using the system safely and proactively"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Most systems provide at least basic access to medical and mental-health services, but often with copays or delays;
-              handbooks typically describe sick-call procedures and mental-health referrals. Examples include general BOP handbooks and policy guidance. 
-              A good supplemental primer is the{" "}
-              <a
-                href="https://www.nacdl.org/getattachment/6dd87672-8ff3-4d7c-96ae-5712b55bb7a2/how-to-navigate-the-federal-prison-system-06252025.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                NACDL guide to navigating the federal prison system
-              </a>
-              .
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> report serious medical symptoms promptly.</li>
-              <li><strong>DO</strong> use sick call and follow procedure even if it’s slow.</li>
-              <li><strong>DO</strong> request mental-health support if you are experiencing panic, suicidal thoughts, or intense depression.</li>
-              <li><strong>DO</strong> be honest about self-harm thoughts; staff are required to respond.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> self-medicate with illegal drugs or hoarded meds.</li>
-              <li><strong>DON’T</strong> ignore chest pain, serious infection, or major injuries.</li>
-              <li><strong>DON’T</strong> threaten self-harm just to get a move — it can lead to restrictive placements that feel worse.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> use mental-health services anyway if you are in crisis.</li>
-              <li><strong>DO</strong> supplement with your own coping routines: walking, journaling, meditation, spiritual practices, structured days.</li>
-            </ul>
-
-            <p>
-              For people with sex-offense convictions — especially those with no prior criminal history — 
-              <strong>mental health is a survival domain</strong>, not an optional extra.
-            </p>
-          </div>
-        </section>
-
-        {/* 9. Yard, Recreation, and Movement */}
-        <BandHeader
-          k="section-9"
-          title="9. Yard, Recreation, and Movement"
-          icon="🏃"
-          subtitle="Staying active and avoiding trouble spots"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              The yard is where you’ll spend a lot of your “free” time. Security levels differ, but official BOP materials such as the{" "}
-              <a
-                href="https://www.bop.gov/about/facilities/federal_prisons.jsp"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                Security Levels overview
-              </a>{" "}
-              describe how minimum, low, medium, and high facilities differ in movement restrictions and programming.
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> use the yard regularly for exercise — it helps sleep, mood, and stress.</li>
-              <li><strong>DO</strong> walk or work out with a stable, low-drama partner or group.</li>
-              <li><strong>DO</strong> pay attention to movement rules (what time you must be back inside, where you can and can’t go).</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> hover near groups that are arguing or “politicking.”</li>
-              <li><strong>DON’T</strong> stand staring at people; it’s seen as intrusive.</li>
-              <li><strong>DON’T</strong> join pickup sports if they’re known to get heated and you don’t handle conflict well.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> find activities that regulate you emotionally — walking, light workouts, stretching, quiet conversation.</li>
-              <li><strong>DON’T</strong> feel pressured to join intense sports if you’re not that person.</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* 10. Hygiene & Cleanliness */}
-        <BandHeader
-          k="section-10"
-          title="10. Hygiene & Cleanliness"
-          icon="🧼"
-          subtitle="A quiet but powerful safety strategy"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Every handbook on earth cares about cleanliness and bans certain unsanitary behavior.
-              See any BOP institutional handbook (for example, the{" "}
-              <a
-                href="https://thegordonlawfirm.com/linked/bop_inmate_information_handbook.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 underline hover:text-blue-900"
-              >
-                Inmate Information Handbook
-              </a>
-              ).
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> shower regularly, within the norms of your unit (daily or every other day if possible).</li>
-              <li><strong>DO</strong> brush your teeth, wash your clothes, and keep your bedding reasonably clean.</li>
-              <li><strong>DO</strong> clean up after yourself in shared spaces (toilets, sinks, showers, microwaves).</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> leave hair, trash, or spilled food behind.</li>
-              <li><strong>DON’T</strong> skip showers for long stretches unless there’s a clear temporary reason (lockdowns, water issues).</li>
-              <li><strong>DON’T</strong> handle food with unwashed hands in front of others.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> budget commissary for basics: soap, toothpaste, maybe extra laundry soap if needed.</li>
-              <li><strong>DO</strong> respect how important smell and cleanliness are in cramped spaces.</li>
-            </ul>
-
-            <p>
-              Being clean and low-impact on others’ comfort is a <strong>quiet but powerful safety strategy</strong>.
-            </p>
-          </div>
-        </section>
-
-        {/* 11. Boundaries, Sex, and PREA */}
-        <BandHeader
-          k="section-11"
-          title="11. Boundaries, Sex, and PREA"
-          icon="🚫"
-          subtitle="Understanding PREA and sexual boundaries"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Sex in prison is <strong>never simple</strong> and is often prohibited outright, even when it appears consensual,
-              under many systems’ rules and PREA definitions.
-            </p>
-
-            <ul className="list-disc pl-6 space-y-2">
-  <li>
-    DOJ PREA Final Rule (full standards):{" "}
-    <a
-      href="https://www.federalregister.gov/documents/2012/06/20/2012-12427/national-standards-to-prevent-detect-and-respond-to-prison-rape"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-blue-700 underline hover:text-blue-900"
-    >
-      Federal Register – PREA Standards
-    </a>
-    . PREA applies to everyone: staff, contractors, and incarcerated people.
-  </li>
-</ul>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> maintain physical boundaries — no hugging, touching, or horseplay.</li>
-              <li><strong>DO</strong> report sexual harassment or abuse through official channels (PREA hotlines, written requests, trusted staff).</li>
-              <li><strong>DO</strong> keep detailed notes if you report — names, dates, times.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> joke sexually, make comments, or engage in innuendo — it’s all reportable under PREA.</li>
-              <li><strong>DON’T</strong> accept sexual favors, even if offered “consensually.” Both parties can face discipline.</li>
-              <li><strong>DON’T</strong> stare, comment, or linger in showers or bathrooms.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>
-              In SO units, sexual tension is lower than pop-culture myths suggest. Respect, privacy, and boundaries keep
-              you out of both trouble and rumor.
-            </p>
-
-            <Callout tone="info" title="💡 PREA Quick Facts">
-              <ul className="list-disc pl-6 space-y-1">
-                <li>PREA violations can be reported externally — many facilities post an outside hotline.</li>
-                <li>“Consensual” sex is still prohibited conduct under most handbooks.</li>
-                <li>False PREA claims are rare but serious; documentation protects you.</li>
-              </ul>
-            </Callout>
-          </div>
-        </section>
-
-        {/* 12. Paperwork & Verifying Cases */}
-        <BandHeader
-          k="section-12"
-          title="12. Paperwork & Verifying Cases"
-          icon="📄"
-          subtitle="Why honesty and documentation matter"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Inside, people constantly talk about “paperwork” — usually meaning your judgment, PSI/PSR, or docket sheet.
-              The culture around this varies widely.
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> keep a copy of your judgment and PSR if you’re allowed to.</li>
-              <li><strong>DO</strong> show it only when you feel safe and only the necessary pages.</li>
-              <li><strong>DO</strong> keep it clean and folded neatly; paperwork presentation oddly matters.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> lie — lies almost always unravel.</li>
-              <li><strong>DON’T</strong> over-explain or give graphic details about your charges.</li>
-              <li><strong>DON’T</strong> act defensive; it signals insecurity.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Common Prison Lingo</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>“Chomo”</strong> – anyone with a sex offense; not automatically a threat word.</li>
-              <li><strong>“Car”</strong> – informal group, often by race or region.</li>
-              <li><strong>“Checking in”</strong> – asking for protective custody; done for many reasons.</li>
-              <li><strong>“Kite”</strong> – a written note or message passed through official/unofficial channels.</li>
-              <li><strong>“Paperwork”</strong> – your judgment and PSR.</li>
-              <li><strong>“Shot caller”</strong> – informal influence holder within a car.</li>
-              <li><strong>“Active / non-active yard”</strong> – active = politics enforced; non-active = looser culture.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> learn the lingo so you don’t misinterpret normal conversation as a threat.</li>
-              <li><strong>DON’T</strong> try to use lingo to “sound tough” — it backfires.</li>
-            </ul>
-          </div>
-        </section>
-{/* 13. Conflict, Bullying, and Threats */}
-        <BandHeader
-          k="section-13"
-          title="13. Conflict, Bullying, and Threats"
-          icon="⚔️"
-          subtitle="Defusing tension and staying neutral"
-        />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>
-              Conflict happens in any confined environment, but people with sex-offense convictions are far{" "}
-              <em>less</em> likely than most other groups to be involved in violence — partly due to age, temperament, and placement in SO-heavy units.
-            </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> walk away early when something feels off.</li>
-              <li>
-                <strong>DO</strong> defuse tension with polite, simple language:
-                <ul className="list-disc pl-6 mt-2 space-y-1">
-                  <li>“My bad.”</li>
-                  <li>“All good.”</li>
-                  <li>“No disrespect.”</li>
+          <RedFlagGreenFlag
+            green={
+              <GuideProse>
+                <ul>
+                  <li>One-off insult with no follow-up.</li>
+                  <li>Someone testing you verbally, then moving on.</li>
+                  <li>General trash talk not tied to a demand.</li>
+                  <li>People asking routine questions without pressure.</li>
+                  <li>Someone saying “don’t talk about your case” and leaving it there.</li>
                 </ul>
-              </li>
-              <li><strong>DO</strong> change your routine quietly if someone is clearly targeting you for annoyance rather than violence.</li>
-              <li><strong>DO</strong> report credible threats through the channels your facility provides, especially if there is a safety concern.</li>
-            </ul>
+              </GuideProse>
+            }
+            red={
+              <GuideProse>
+                <ul>
+                  <li>Repeated targeted harassment.</li>
+                  <li>Demands for commissary, phone time, PINs, property, sex, protection money, or favors.</li>
+                  <li>Threats tied to your charge, paperwork, or refusal to join a group.</li>
+                  <li>Someone blocking movement, following you, entering your space, or refusing to leave you alone.</li>
+                  <li>Sexual comments, touching, coercion, threats, or staff ignoring safety reports.</li>
+                </ul>
+              </GuideProse>
+            }
+          />
 
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> mouth off, posture, or escalate arguments to “save face.”</li>
-              <li><strong>DON’T</strong> let pride override basic safety or common sense.</li>
-              <li><strong>DON’T</strong> try to “win” verbal confrontations — winning creates resentment; neutrality creates distance.</li>
-              <li><strong>DON’T</strong> borrow someone else’s problems by getting involved in fights or alliances.</li>
-            </ul>
+          <ScriptBox
+            title="Short responses to pressure"
+            tone="neutral"
+            context="Keep your voice low. Say less than you want to say. Then disengage."
+            script={`If someone uses a slur:
+“I’m not here for problems. I’m doing my time.”
 
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>Most conflict can be resolved by:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>walking away</li>
-              <li>changing seats</li>
-              <li>avoiding certain times of day</li>
-              <li>steering clear of specific people</li>
-            </ul>
+If someone asks for details:
+“I’m not discussing details.”
 
-            <p>
-              In SO units, most people <em>want no problems at all.</em> They’re older, quieter, and doing time the same way you are.
-            </p>
+If someone offers commissary or protection:
+“I appreciate it, but I don’t borrow and I don’t run tabs.”
 
-            <p>
-              If you think someone is trying to bait you into conflict, you’re probably right — and the safest move is{" "}
-              <strong>no reaction at all.</strong>
-            </p>
-          </div>
-        </section>
+If someone asks whether you are affiliated:
+“I’m not affiliated. I’m just doing my time and staying out of trouble.”`}
+          />
+        </GuideSectionCard>
 
-        {/* 14. Mental Health, Shame, and Identity */}
-        <BandHeader
-          k="section-14"
-          title="14. Mental Health, Shame, and Identity"
-          icon="🧠"
-          subtitle="Adapting, healing, and staying stable inside"
+        <GuideSectionHeader
+          id="safety-prea-boundaries"
+          number="6"
+          title="Safety, PREA, and sexual boundaries"
+          subtitle="Know the difference between ordinary discomfort and a real safety issue."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
+
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Prison forces a kind of internal reckoning that is painful, especially for people with no prior criminal history —
-              which includes a very large share of those convicted of sex-related offenses.
+              There is no way to make prison risk-free. But you can reduce risk by avoiding debt, staying out of other people’s conflicts, keeping physical boundaries, documenting serious issues, and using official channels when safety is at stake.
             </p>
-
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> acknowledge shame, fear, grief, and identity crises as normal.</li>
-              <li><strong>DO</strong> find one or two safe ways to process (journaling, walking, reading, meditation, faith practice).</li>
-              <li><strong>DO</strong> reach out for mental-health support if thoughts turn dark or hopeless.</li>
-              <li><strong>DO</strong> maintain small, daily habits that anchor you emotionally.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> numb yourself with fantasy or denial — it makes reentry harder.</li>
-              <li><strong>DON’T</strong> catastrophize (“My life is over”) — you are in a temporary environment, not a permanent state.</li>
-              <li><strong>DON’T</strong> hide depression or suicidal thoughts; vulnerability is not weakness here.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>You will see everything from:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>men collapsing emotionally in the first month</li>
-              <li>men who improve dramatically with structure</li>
-              <li>men who panic at release because the world outside feels overwhelming</li>
-            </ul>
-
             <p>
-              Your goal is not to “be strong.” Your goal is to <strong>adapt</strong>, <strong>heal</strong>,
-              and <strong>build the habits</strong> you’ll rely on later.
+              Sexual comments, pressure, harassment, touching, coercion, abuse, and threats should be treated as safety issues. PREA requires facilities to have ways to report sexual abuse and harassment. Your facility should provide information about reporting options during orientation or through posted materials.
             </p>
-          </div>
-        </section>
+          </GuideProse>
 
-        {/* 15. Religion, Groups, and Community */}
-        <BandHeader
-          k="section-15"
-          title="15. Religion, Groups, and Community"
-          icon="🕊️"
-          subtitle="Finding grounding without politics or conflict"
+          <DoDontJudgment
+            dos={[
+              <span>Keep physical boundaries: no horseplay, sexual jokes, touching, staring, or lingering in bathrooms or showers.</span>,
+              <span>Leave early when an argument, debt issue, gambling issue, or group conflict starts heating up.</span>,
+              <span>Use PREA, medical, mental-health, counselor, unit team, grievance, or other official channels when safety is at stake.</span>,
+              <span>Write down dates, times, locations, names, witnesses, exact words, forms submitted, and responses received when it is safe to do so.</span>,
+            ]}
+            donts={[
+              <span>Do not accept sexual favors, sexual attention, protection, gifts, debt forgiveness, or special treatment tied to sex or coercion.</span>,
+              <span>Do not assume you have no options because someone says reporting will make things worse.</span>,
+              <span>Do not make casual threats to report someone as a way to win an argument.</span>,
+              <span>Do not treat repeated pressure, extortion, blocked movement, or sexual harassment as “just prison talk.”</span>,
+            ]}
+            judgment={[
+              <span>For minor one-time disrespect, walking away may be safest.</span>,
+              <span>For repeated targeting or concrete threats, quiet documentation and official safety channels matter.</span>,
+              <span>For immediate danger, prioritize getting away and reaching staff or the safest available reporting point.</span>,
+            ]}
+          />
+
+          <DocumentPacket
+            title="Safety information to save or write down"
+            intro="If you cannot keep documents, keep notes in the safest way available. Families can also keep a copy outside."
+            categories={[
+              {
+                title: "Facility safety contacts",
+                items: [
+                  "PREA reporting hotline, outside reporting address, or posted reporting method.",
+                  "Counselor, case manager, unit team, mental-health, medical, and chaplain contact procedures.",
+                  "Grievance/request form process and deadlines.",
+                ],
+              },
+              {
+                title: "Incident notes",
+                items: [
+                  "Date, time, location, names, witnesses, and exact words used.",
+                  "What you did to leave, report, ask for help, or avoid escalation.",
+                  "Copies or descriptions of forms, kites, grievances, medical requests, and responses.",
+                ],
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            title="Verify safety steps before relying on them"
+            whoToAsk="Orientation staff, counselor, unit team, PREA coordinator, medical or mental-health staff, facility handbook, posted notices, or a trusted official channel."
+            whatToAsk="Ask exactly how to report sexual harassment, sexual abuse, threats, extortion, medical emergencies, mental-health crises, and requests for separation or protective custody."
+            whatToSave="Save the name, title, date, answer, form, hotline, address, and any confirmation number or written response when possible."
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mental-health-routine"
+          number="7"
+          title="Mental health, shame, and daily routine"
+          subtitle="Your mind is part of your safety plan."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
+
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Religion is often a refuge in prison. Most facilities allow multiple services and study groups,
-              including Christian, Jewish, Muslim, Buddhist, and sometimes secular or recovery-oriented gatherings.
+              Prison can hit first-time prisoners hard, especially people who never expected to be in custody. Panic, shame, grief, numbness, anger, and fear can all show up. That does not mean you are broken. It means your nervous system is trying to survive something serious.
             </p>
+            <p>
+              Mental health is not a luxury in prison. It is part of staying alive, staying steady, and coming home better prepared. If you are having thoughts of self-harm, intense panic, or feeling like you cannot stay safe, ask for help immediately through the safest available channel.
+            </p>
+          </GuideProse>
 
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> attend services if they keep you grounded.</li>
-              <li><strong>DO</strong> join faith or meditation groups if they help you stay centered.</li>
-              <li><strong>DO</strong> respect all faiths and practices.</li>
-            </ul>
+          <GuideChecklist
+            id="daily-stabilizers"
+            title="Daily stabilizers"
+            columns={1}
+            items={[
+              {
+                id: "shower",
+                label: "Shower, brush your teeth, wash clothes, and keep bedding reasonably clean.",
+              },
+              {
+                id: "move",
+                label: "Walk, stretch, or exercise when allowed.",
+              },
+              {
+                id: "write",
+                label: "Write something each day: a letter, a journal page, a reentry note, or a list of what you did right today.",
+              },
+              {
+                id: "read",
+                label: "Read something that is not only about your case.",
+              },
+              {
+                id: "program",
+                label: "Show up for work, education, treatment, faith, or other constructive programming when available.",
+              },
+              {
+                id: "family",
+                label: "Keep family communication steady and realistic.",
+              },
+              {
+                id: "ask-help",
+                label: "Ask for medical or mental-health help early if you are spiraling.",
+              },
+            ]}
+          />
 
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> join a religious group just for protection — it creates problems.</li>
-              <li><strong>DON’T</strong> argue doctrine or criticize someone else’s beliefs.</li>
-              <li><strong>DON’T</strong> use religion as a mask for manipulation; people see through it fast.</li>
-            </ul>
+          <GuideCallout tone="success" icon="🌤️" title="Hope can be practical">
+            <p>
+              Hope does not mean pretending prison is fine. Hope can mean making your bed, taking a shower, writing one honest letter, walking one more lap, apologizing when needed, refusing debt, and making tomorrow slightly easier than today.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
-            <p>Spiritual communities can be stabilizing, but stay <strong>low-drama</strong> and avoid groups known for conflict.</p>
-          </div>
-        </section>
-
-        {/* 16. Reentry Mindset */}
-        <BandHeader
-          k="section-16"
-          title="16. Reentry Mindset (Yes, From Day One)"
-          icon="🚪"
-          subtitle="Start preparing the day you arrive"
+<GuideSectionHeader
+          id="family-support"
+          number="8"
+          title="For families and loved ones"
+          subtitle="You cannot serve the sentence for them, but you can help them stay connected and prepared."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <h3 className="text-lg font-semibold">Hard DOs</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DO</strong> structure your day the way you hope to structure your life after release.</li>
-              <li><strong>DO</strong> maintain contact with family and future support networks.</li>
-              <li><strong>DO</strong> take programs seriously; document participation if you can.</li>
-              <li><strong>DO</strong> keep your disciplinary record clean. It matters — for jobs, transitions, and credibility with probation.</li>
-            </ul>
 
-            <h3 className="text-lg font-semibold">Hard DON’Ts</h3>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>DON’T</strong> adopt a “prison identity” that you can’t carry into the community.</li>
-              <li><strong>DON’T</strong> spend years gaming the system instead of improving yourself.</li>
-              <li><strong>DON’T</strong> assume reentry will be easy — start preparing early.</li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">Use-Your-Judgment</h3>
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Think of prison as a long, enforced pause. You can come out:
+              Families often imagine the worst because they love the person going inside and cannot control what happens next. That helplessness is real. The most useful support is usually steady, practical, and predictable.
             </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>more stable</li>
-              <li>more humbled</li>
-              <li>more structured</li>
-              <li>more disciplined</li>
-            </ul>
+            <p>
+              Try not to flood your loved one with internet horror stories. Do not use every call to relive the case or panic about rumors. Instead, help build rhythm: mail, phone, money boundaries, documents, reentry planning, and reminders that they are still a person with a future.
+            </p>
+          </GuideProse>
 
-            <p>…or more chaotic and defeated. Routine and mindset determine which outcome you choose.</p>
-          </div>
-        </section>
+          <RoleGuidanceGrid
+            title="How different supporters can help"
+            roles={[
+              {
+                role: "Spouse or partner",
+                icon: "🤝",
+                guidance:
+                  "Keep calls steady when possible. Talk about practical needs, home responsibilities, emotional support, and realistic reentry planning. Avoid making every call a crisis call.",
+              },
+              {
+                role: "Parent",
+                icon: "🏡",
+                guidance:
+                  "Offer grounding without pretending everything is fine. Save documents, write consistently, and help them remember that one bad day is not the whole sentence.",
+              },
+              {
+                role: "Adult child or sibling",
+                icon: "✉️",
+                guidance:
+                  "Short letters, photos allowed by policy, books through approved vendors, and ordinary updates can matter more than perfect words.",
+              },
+              {
+                role: "Friend or advocate",
+                icon: "📌",
+                guidance:
+                  "Help track facility contacts, PREA reporting information, approved mail rules, release planning, and official source links. Do not give legal advice unless you are qualified.",
+              },
+            ]}
+          />
 
-        {/* 17. What Makes SO Time Different — And What Doesn’t */}
-        <BandHeader
-          k="section-17"
-          title="17. What Makes SO Time Different — And What Doesn’t"
-          icon="⚖️"
-          subtitle="Understanding stigma and sameness"
+          <ScriptBox
+            title="A grounding message families can send"
+            tone="family"
+            context="Use your own voice, but keep it steady and concrete."
+            script={`I know this is hard, and I know you may be scared. You are not alone in this. Today, focus on staying calm, staying clean, avoiding debt and drama, and getting through the next day safely. We will keep taking this one step at a time.`}
+          />
+
+          <GuideCallout tone="family" icon="❤️" title="Connection matters">
+            <p>
+              A predictable letter or call can help someone remember who they are outside prison. You do not need perfect advice. Calm presence, practical help, and steady contact can be powerful.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes-offline"
+          number="9"
+          title="Common mistakes and offline preparation"
+          subtitle="Avoid the predictable traps and make the guide usable even without internet access."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <p>There are ways in which being incarcerated for a sex offense is truly different:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>stigma exists</li>
-              <li>family shame is heavier</li>
-              <li>supervision after release is restrictive</li>
-              <li>programming availability varies</li>
-              <li>
-                you are often isolated from general populations or barred from camps due to the{" "}
-                <a
-                  href="https://www.bop.gov/inmates/custody_and_care/classification.jsp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  Public Safety Factor — Sex Offender
-                </a>{" "}
-                in BOP policy
-              </li>
-            </ul>
 
-            <p>But there are also ways in which it is surprisingly <em>not</em> different:</p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>most people do not care about your case as long as you mind your business</li>
-              <li>most violence has nothing to do with sex-offense stigma</li>
-              <li>routine, mindset, and behavior matter far more than your charge</li>
-              <li>many units are majority-SO environments</li>
-              <li>safety comes from the same habits everyone else uses</li>
-            </ul>
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Believing every prison horror story online.",
+                whyItMatters:
+                  "Fear can make people freeze, overreact, or prepare for the wrong problem.",
+                betterMove:
+                  "Prepare for real risks: debt, disrespect, paperwork pressure, sexual safety, mental health, and routine.",
+              },
+              {
+                mistake: "Trying to buy friendship with commissary.",
+                whyItMatters:
+                  "Generosity can turn into expectation, debt, pressure, or resentment.",
+                betterMove:
+                  "Be polite, but financially boring. Do not borrow, lend, gamble, or run tabs.",
+              },
+              {
+                mistake: "Talking too much during the first week.",
+                whyItMatters:
+                  "Long stories give people more information to use, twist, or test.",
+                betterMove:
+                  "Listen more than you speak. Keep answers short and ordinary.",
+              },
+              {
+                mistake: "Arguing about labels or slurs.",
+                whyItMatters:
+                  "Some people are testing your reaction, not trying to understand your life.",
+                betterMove:
+                  "Use one calm sentence, then disengage.",
+              },
+              {
+                mistake: "Waiting until release to think about reentry.",
+                whyItMatters:
+                  "Housing, identification, treatment, supervision, registration, and employment all take time.",
+                betterMove:
+                  "Start a reentry folder early and update it as rules, dates, and documents become clearer.",
+              },
+            ]}
+          />
 
-            <p>Your job is to understand the environment, not fear the myths.</p>
-          </div>
-        </section>
+          <SoftDivider label="Make this usable inside" />
 
-        {/* 18. The 20 Most Reliable Dos and Don’ts */}
-        <BandHeader
-          k="section-18"
-          title="18. The 20 Most Reliable Dos and Don’ts (A One-Page Summary)"
-          icon="🧾"
-          subtitle="Quick reference checklist"
+          <OfflineOptions
+            title="If internet access is limited or this guide is being mailed in"
+            icon="📝"
+            note="Many readers will have limited internet, limited privacy, or no printer. Families can help by keeping outside copies."
+            items={[
+              "Print or copy the four core principles and the Hard DOs / Hard DON’Ts section.",
+              "Hand-copy the case-question scripts and keep them short.",
+              "Create a paper contact list with family, counsel, medical contacts, and emergency numbers.",
+              "Ask family to save official facility rules, mail rules, phone rules, money rules, and PREA reporting information.",
+              "Keep a simple notebook of dates, requests, program participation, medical issues, and important staff interactions if allowed.",
+              "Ask for mailed forms or written instructions when online access is not available.",
+            ]}
+          />
+
+          <DocumentPacket
+            title="Prison and reentry paper folder"
+            intro="Before arrival, families can help gather copies. Inside, keep only what the facility allows."
+            categories={[
+              {
+                title: "Identity and legal basics",
+                items: [
+                  "Judgment and sentencing documents, if allowed.",
+                  "Attorney contact information.",
+                  "Identification records and Social Security information stored safely outside.",
+                  "Release date, projected good-time information, and supervision contact information when available.",
+                ],
+              },
+              {
+                title: "Health and treatment",
+                items: [
+                  "Medication list, diagnoses, allergies, glasses, hearing aids, medical devices, and doctor information.",
+                  "Mental-health history or crisis plan if relevant.",
+                  "Treatment program requests, certificates, class records, and completion documents.",
+                ],
+              },
+              {
+                title: "Reentry planning",
+                items: [
+                  "Potential housing addresses to verify before release.",
+                  "Family contact plan and transportation plan.",
+                  "Registration, supervision, treatment, and court-condition questions to verify before acting.",
+                  "Job history, education records, certificates, and letters of support.",
+                ],
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="top-ten"
+          number="10"
+          title="Top 10 prison survival reminders"
+          subtitle="A short recap for printing, rereading, or mailing to someone inside."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <h3 className="text-lg font-semibold">Top 10 DOs</h3>
-            <ol className="list-decimal pl-6 space-y-1">
-              <li>Do walk, talk, and move calmly.</li>
-              <li>Do build a predictable daily routine.</li>
-              <li>Do live within your means — avoid all debt.</li>
-              <li>Do keep your cell/cube clean and low-impact.</li>
-              <li>Do stay close to low-drama people and activities.</li>
-              <li>Do use education, programs, and work as anchors.</li>
-              <li>Do protect your mental health with structured habits.</li>
-              <li>Do respect privacy — eyes forward, ears off others.</li>
-              <li>Do maintain solid family contact.</li>
-              <li>Do prepare for reentry from day one.</li>
-            </ol>
 
-            <h3 className="text-lg font-semibold">Top 10 DON’Ts</h3>
-            <ol className="list-decimal pl-6 space-y-1">
-              <li>Don’t gamble or borrow — ever.</li>
-              <li>Don’t lie about your case.</li>
-              <li>Don’t get pulled into other people’s conflicts.</li>
-              <li>Don’t act loud, aggressive, or perform toughness.</li>
-              <li>Don’t disrespect staff or try to befriend them.</li>
-              <li>Don’t ignore medical or mental-health issues.</li>
-              <li>Don’t drift into bad habits or bad company.</li>
-              <li>Don’t insert yourself into conversations or stare into cells.</li>
-              <li>Don’t make sexual jokes, comments, or gestures.</li>
-              <li>Don’t catastrophize — prison is survivable; panic is optional.</li>
-            </ol>
-          </div>
-        </section>
+        <GuideSectionCard>
+          <GuideChecklist
+            id="top-ten-prison-survival-reminders"
+            title="Keep this list simple and close"
+            columns={1}
+            items={[
+              {
+                id: "stay-calm",
+                label: "Stay calm, even when you are scared. A measured voice and slow movement protect you.",
+              },
+              {
+                id: "stay-clean",
+                label: "Keep your body, clothes, bunk, locker, and shared space clean.",
+              },
+              {
+                id: "no-debt-ever",
+                label: "Do not borrow, lend, gamble, run tabs, share PINs, or accept protection.",
+              },
+              {
+                id: "brief-truth",
+                label: "Tell brief truth about your case if necessary; do not give details or invent another charge.",
+              },
+              {
+                id: "respect-space",
+                label: "Do not touch other people’s property, sit on bunks, stare, hover, or enter personal space.",
+              },
+              {
+                id: "avoid-politics",
+                label: "Avoid gossip, politics, messages, group conflicts, and other people’s cases.",
+              },
+              {
+                id: "no-strings",
+                label: "Do not accept gifts, favors, protection, or special treatment with strings attached.",
+              },
+              {
+                id: "official-channels",
+                label: "Use official channels for safety, medical, mental-health, grievance, and PREA issues.",
+              },
+              {
+                id: "keep-notes",
+                label: "Keep notes, documents, dates, names, forms, and responses when allowed and safe.",
+              },
+              {
+                id: "routine-reentry",
+                label: "Build a daily routine and start reentry planning earlier than you think you need to.",
+              },
+            ]}
+          />
 
-        {/* 19. Final Words for You — and for Your Family */}
-        <BandHeader
-          k="section-19"
-          title="19. Final Words for You — and for Your Family"
-          icon="💬"
-          subtitle="Perspective for both sides of the fence"
+          <GuideCallout tone="reminder" icon="📌" title="For families printing this page">
+            <p>
+              The Top 10 list can be copied into a letter or kept in a paper folder. Sometimes a short, steady reminder is more useful than a long lecture.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="11"
+          title="Resources, verification, and next steps"
+          subtitle="Use official sources where possible, and verify facility-specific answers before relying on them."
         />
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <h3 className="text-lg font-semibold">For the person going inside:</h3>
-            <p>
-              You are not walking into the nightmare the internet sells. You are walking into a rigid, bureaucratic,
-              often boring world full of people trying to survive their own sentence.
-            </p>
 
-            <p>If you follow the simple habits in this guide:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>calm demeanor</li>
-              <li>predictable routine</li>
-              <li>clean area</li>
-              <li>debt-free life</li>
-              <li>eyes forward</li>
-              <li>low drama</li>
-              <li>honest but brief answers</li>
-              <li>structured days</li>
-            </ul>
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Official and practical resources"
+            description="These links are starting points. Facility-specific rules still control many day-to-day answers."
+            resources={[
+              {
+                label: "BOP Sex Offender Treatment Programs",
+                href: "https://www.bop.gov/inmates/custody_and_care/sex_offenders.jsp",
+                description:
+                  "Official federal overview of sex offender treatment programming in BOP custody.",
+                badge: "Official",
+              },
+              {
+                label: "BOP Sex Offender Programs Policy",
+                href: "https://www.bop.gov/policy/progstat/5324_010.pdf",
+                description:
+                  "BOP policy statement on sex offender management, assessment, and treatment.",
+                badge: "Policy",
+              },
+              {
+                label: "Federal PREA Standards",
+                href: "https://www.ecfr.gov/current/title-28/chapter-I/part-115",
+                description:
+                  "Federal regulations on preventing, detecting, and responding to sexual abuse in confinement.",
+                badge: "Official",
+              },
+              {
+                label: "BJA PREA Overview",
+                href: "https://bja.ojp.gov/program/prea/overview",
+                description:
+                  "Federal overview of the Prison Rape Elimination Act and implementation support.",
+                badge: "Federal",
+              },
+              {
+                label: "National Institute of Corrections Reentry Resources",
+                href: "https://nicic.gov/resources/resources-topics-and-roles/topics/reentry",
+                description:
+                  "Correctional resources related to reentry planning and transition support.",
+                badge: "Federal",
+              },
+            ]}
+          />
 
-            <p>
-              …you will be safer, more stable, and more emotionally grounded than you imagine right now. Prison is not the end of your life.
-              It is a <strong>season</strong> — a harsh one, yes, but temporary.
-            </p>
+          <RelatedGuides
+            guides={[
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Use this with the prison guide to start release planning before the last month.",
+                to: "/resources/reentry-planning",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "For loved ones trying to stay steady, communicate well, and prepare for reentry.",
+                to: "/resources/family-support",
+              },
+              {
+                title: "Registry Survival Guide",
+                description:
+                  "For post-release registration, verification, documentation, and avoiding preventable violations.",
+                to: "/resources/registry-survival",
+              },
+              {
+                title: "Mental Health Support Guide",
+                description:
+                  "For crisis planning, support options, and staying grounded during high-stress periods.",
+                to: "/resources/mental-health",
+              },
+            ]}
+          />
 
-            <h3 className="text-lg font-semibold">For families:</h3>
-            <p>
-              Your loved one is not walking into a gladiator arena. They are walking into a controlled environment with:
-            </p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>counts</li>
-              <li>staff</li>
-              <li>rules</li>
-              <li>routine</li>
-              <li>structure</li>
-              <li>hundreds of other people doing the exact same thing</li>
-            </ul>
+          <SourceList
+            title="Sources & verification"
+            note="Links should be checked again before production publication. Facility rules, state prison policies, PREA contacts, treatment eligibility, and reentry procedures can change."
+            sources={sourceLinks}
+          />
+        </GuideSectionCard>
 
-            <p>
-              Their fear is real because the unknown is terrifying. But once inside, routine replaces panic,
-              predictability replaces fear, and stability replaces overwhelm.
-            </p>
-
-            <p>
-              Stay connected. Stay grounded. Understand the reality, not the mythology. And remember:
-              most people with sex-offense convictions do their time safely and return home.
-            </p>
-          </div>
-        </section>
-
-        {/* 20. References & Further Reading */}
-        <BandHeader
-          k="section-20"
-          title="References & Further Reading"
-          icon="📚"
-          subtitle="Primary policy sources and research"
-        />
-        <section id="sources" className="bg-white rounded-lg shadow-lg overflow-hidden mb-10">
-          <div className="p-6 space-y-6 text-slate-800">
-            <h3 className="text-lg font-semibold">Primary Policy and System Sources</h3>
-            <ul className="list-disc pl-6 space-y-1">
-              <li><a href="https://thegordonlawfirm.com/linked/bop_inmate_information_handbook.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline hover:text-blue-900">Federal Bureau of Prisons – Inmate Information Handbook</a></li>
-              <li><a href="https://www.bop.gov/inmates/custody_and_care/classification.jsp" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline hover:text-blue-900">BOP – Custody & Classification Overview</a></li>
-              <li><a href="https://www.bop.gov/about/facilities/federal_prisons.jsp" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline hover:text-blue-900">BOP – Federal Prisons & Security Levels</a></li>
-              <li><a href="https://www.bop.gov/about/statistics/statistics_inmate_sec_levels.jsp" target="_blank" rel="noopener noreferrer" className="text-blue-700 underline hover:text-blue-900">BOP – Security Level Statistical Breakdown</a></li>
-
-     <li>
-                <a
-                  href="https://www.bop.gov/about/statistics/statistics_inmate_sec_levels.jsp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  BOP – Security Level Statistical Breakdown
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.federalregister.gov/documents/2012/06/20/2012-12427/national-standards-to-prevent-detect-and-respond-to-prison-rape"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  DOJ – PREA Final Rule (Federal Register)
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.prearesourcecenter.org/about/prison-rape-elimination-act"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  PREA Resource Center – Overview
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://bja.ojp.gov/program/prea/overview"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  BJA – PREA Program
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.nacdl.org/getattachment/6dd87672-8ff3-4d7c-96ae-5712b55bb7a2/how-to-navigate-the-federal-prison-system-06252025.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  NACDL – “How to Navigate the Federal Prison System”
-                </a>
-              </li>
-            </ul>
-
-            <h3 className="text-lg font-semibold">
-              Prison Population & Family Impact Research
-            </h3>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>
-                <a
-                  href="https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  The Sentencing Project – Responding to Crimes of a Sexual
-                  Nature
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.bjs.ojp.gov/content/pub/pdf/pimc16.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  BJS – Parents in Prison and Their Minor Children
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.prisonpolicy.org/blog/2022/08/11/parental_incarceration/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  Prison Policy Initiative – Parental Incarceration
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4229080/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-700 underline hover:text-blue-900"
-                >
-                  Poehlmann et al. – “Children’s Contact With Their Incarcerated
-                  Parents” (NIH/PMC)
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <div className="mt-10">
-          <ShareBar />
-        </div>
-      </article>
+        <GuideCallout tone="reentry" icon="🌅" title="Final word">
+          <p>
+            Prison is serious. It is also survivable for many people who stay steady, avoid debt, respect boundaries, document serious issues, and keep building a life beyond the sentence. You are allowed to prepare carefully and still believe you can get through this.
+          </p>
+        </GuideCallout>
+      </main>
     </div>
   );
 }
