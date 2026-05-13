@@ -217,6 +217,23 @@ const quickResources = [
   },
 ];
 
+const InlineResourceLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-2 hover:text-sky-900 hover:decoration-sky-500"
+  >
+    {children}
+  </a>
+);
+
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
 
@@ -315,8 +332,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </span>,
             <span>
               If food, shelter, transportation, medication, or emotional safety
-              is unstable, call 211, 988, a reentry program, or a trusted
-              supporter today.
+              is unstable, call{" "}
+              <InlineResourceLink href="https://www.211.org/">
+                211
+              </InlineResourceLink>
+              , call or text{" "}
+              <InlineResourceLink href="https://988lifeline.org/">
+                988
+              </InlineResourceLink>
+              , contact a reentry program, or ask a trusted supporter for one
+              concrete task today.
             </span>,
           ]}
           nextActions={[
@@ -383,7 +408,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
             registry office, or supervising authority.
           </p>
         </GuideCallout>
-
 <GuideSectionHeader
           id="verify-before-acting"
           number="1"
@@ -515,7 +539,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
               ID and documents are not “paperwork chores.” They affect housing,
               jobs, bank accounts, benefits, medical care, transportation,
               education, and supervision compliance. Start with the documents
-              you can request fastest, and save proof that you started.
+              you can request fastest, and save proof that you started. If you
+              are not sure which office handles a document, begin with{" "}
+              <InlineResourceLink href="https://www.usa.gov/replace-vital-documents">
+                USAGov’s vital documents page
+              </InlineResourceLink>
+              .
             </p>
           </GuideProse>
 
@@ -527,20 +556,44 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "id",
                 label: "Start the state ID or driver’s license process.",
-                helper:
-                  "First step: use USAGov’s ID replacement page to find the right state motor vehicle agency, or ask a reentry worker, library, or supporter to help identify the office.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/replace-vital-documents">
+                      USAGov’s ID replacement page
+                    </InlineResourceLink>{" "}
+                    to find the right state motor vehicle agency, or ask a
+                    reentry worker, library, or supporter to help identify the
+                    office.
+                  </span>
+                ),
               },
               {
                 id: "ss-card",
                 label: "Request or replace your Social Security card if needed.",
-                helper:
-                  "First step: use the SSA replacement-card page or call SSA if online access is not allowed or realistic.",
+                helper: (
+                  <span>
+                    First step: use the{" "}
+                    <InlineResourceLink href="https://www.ssa.gov/number-card/replace-card">
+                      SSA replacement-card page
+                    </InlineResourceLink>{" "}
+                    or call SSA if online access is not allowed or realistic.
+                  </span>
+                ),
               },
               {
                 id: "birth-certificate",
                 label: "Request a certified birth certificate if you do not have one.",
-                helper:
-                  "First step: contact the vital records office in the state or territory where you were born. Keep the receipt.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/birth-certificate">
+                      USAGov’s birth certificate page
+                    </InlineResourceLink>{" "}
+                    to find the vital records office in the state or territory
+                    where you were born. Keep the receipt.
+                  </span>
+                ),
               },
               {
                 id: "mail",
@@ -551,14 +604,41 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "phone",
                 label: "Get reliable phone access.",
-                helper:
-                  "First step: ask about Lifeline if income is low or you receive Medicaid, SNAP, or another qualifying benefit. Verify device and internet rules first.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-apply/">
+                      Lifeline application page
+                    </InlineResourceLink>{" "}
+                    and{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-qualify/">
+                      Lifeline eligibility page
+                    </InlineResourceLink>
+                    . Verify device and internet rules before applying or using
+                    a phone.
+                  </span>
+                ),
               },
               {
                 id: "benefits",
                 label: "Apply for food, medical, and emergency support if needed.",
-                helper:
-                  "First step: call 211, contact your state Medicaid office, and use the USDA SNAP state directory or local social services office.",
+                helper: (
+                  <span>
+                    First step: call{" "}
+                    <InlineResourceLink href="https://www.211.org/">
+                      211
+                    </InlineResourceLink>
+                    , contact your state Medicaid office through{" "}
+                    <InlineResourceLink href="https://www.healthcare.gov/medicaid-chip/">
+                      HealthCare.gov’s Medicaid and CHIP page
+                    </InlineResourceLink>
+                    , and use the{" "}
+                    <InlineResourceLink href="https://www.fns.usda.gov/snap/state-directory">
+                      USDA SNAP state directory
+                    </InlineResourceLink>
+                    .
+                  </span>
+                ),
               },
               {
                 id: "bank",
@@ -627,8 +707,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "local-help",
                 label: "Call 211 or a local reentry program if housing is unstable.",
-                helper:
-                  "Ask for emergency shelter, transitional housing, rent help, utility help, transportation help, and programs that work with people with registry restrictions.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.211.org/get-help/housing-expenses">
+                      211 housing help
+                    </InlineResourceLink>{" "}
+                    and ask for emergency shelter, transitional housing, rent
+                    help, utility help, transportation help, and programs that
+                    work with people with registry restrictions.
+                  </span>
+                ),
               },
               {
                 id: "paper-trail",
@@ -649,9 +738,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout tone="urgent" icon="🚫" title="Do not let desperation erase verification">
             <p>
               Housing pressure is real. So is violation risk. If you are about
-              to sleep outside, call 211, your supervising officer, a reentry
-              program, legal aid, or a trusted supporter and document every
-              attempt to find an allowed place.
+              to sleep outside, call{" "}
+              <InlineResourceLink href="https://www.211.org/get-help/housing-expenses">
+                211 housing help
+              </InlineResourceLink>
+              , your supervising officer, a reentry program, legal aid, or a
+              trusted supporter and document every attempt to find an allowed
+              place.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -675,10 +768,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
             <p>
               Start with job paths that can be verified, documented, and
-              explained. Use American Job Centers, reentry programs, fair-chance
-              job boards, certificates earned while incarcerated, and employers
-              that are willing to evaluate skills instead of relying only on
-              stigma.
+              explained. Use{" "}
+              <InlineResourceLink href="https://www.dol.gov/agencies/eta/american-job-centers">
+                American Job Centers
+              </InlineResourceLink>
+              , reentry programs, fair-chance job boards, certificates earned
+              while incarcerated, and employers that are willing to evaluate
+              skills instead of relying only on stigma.
             </p>
           </GuideProse>
 
@@ -690,8 +786,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "job-center",
                 label: "Contact an American Job Center.",
-                helper:
-                  "Ask for resume help, interview practice, training, job leads, and paper or in-person support if you cannot use the internet freely.",
+                helper: (
+                  <span>
+                    First step: use the{" "}
+                    <InlineResourceLink href="https://www.dol.gov/agencies/eta/american-job-centers">
+                      American Job Center locator
+                    </InlineResourceLink>{" "}
+                    or call 1-877-US-2JOBS. Ask for resume help, training
+                    options, and staff who work with justice-impacted job
+                    seekers.
+                  </span>
+                ),
               },
               {
                 id: "job-rules",
@@ -714,8 +819,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "wotc",
                 label: "Learn whether WOTC or the Federal Bonding Program may help an employer.",
-                helper:
-                  "These are employer tools, not guarantees. Bring a short explanation and let the job center or employer verify eligibility.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit">
+                      IRS Work Opportunity Tax Credit page
+                    </InlineResourceLink>{" "}
+                    and the{" "}
+                    <InlineResourceLink href="https://bonds4jobs.com/">
+                      Federal Bonding Program
+                    </InlineResourceLink>
+                    . These are employer tools, not guarantees.
+                  </span>
+                ),
               },
               {
                 id: "reporting",
@@ -773,8 +889,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "coverage",
                 label: "Apply for Medicaid, Marketplace coverage, or local clinic help.",
-                helper:
-                  "First step: use HealthCare.gov, contact your state Medicaid agency, or ask a health department or social services office for paper/in-person help.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.healthcare.gov/medicaid-chip/">
+                      HealthCare.gov’s Medicaid and CHIP page
+                    </InlineResourceLink>
+                    , contact your state Medicaid agency, or ask a health
+                    department or social services office for paper/in-person
+                    help.
+                  </span>
+                ),
               },
               {
                 id: "appointments",
@@ -785,14 +910,35 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "treatment",
                 label: "Use FindTreatment.gov or SAMHSA’s helpline for treatment referrals.",
-                helper:
-                  "Ask about mental health care, substance use treatment, outpatient services, telehealth, sliding-scale fees, and transportation options.",
+                helper: (
+                  <span>
+                    First step: search{" "}
+                    <InlineResourceLink href="https://findtreatment.gov/">
+                      FindTreatment.gov
+                    </InlineResourceLink>{" "}
+                    or call the{" "}
+                    <InlineResourceLink href="https://www.samhsa.gov/find-help/helplines/national-helpline">
+                      SAMHSA National Helpline
+                    </InlineResourceLink>{" "}
+                    at 1-800-662-HELP. Ask about mental health care, substance
+                    use treatment, outpatient services, telehealth, sliding-scale
+                    fees, and transportation options.
+                  </span>
+                ),
               },
               {
                 id: "crisis",
                 label: "Use 988 if you are in emotional crisis or afraid you may hurt yourself.",
-                helper:
-                  "Call, text, or chat. If there is immediate physical danger, call emergency services.",
+                helper: (
+                  <span>
+                    First step: call, text, or chat through the{" "}
+                    <InlineResourceLink href="https://988lifeline.org/">
+                      988 Suicide & Crisis Lifeline
+                    </InlineResourceLink>
+                    . If there is immediate physical danger, call emergency
+                    services.
+                  </span>
+                ),
               },
               {
                 id: "support",
@@ -834,7 +980,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               Do not assume a free phone, library computer, job-center computer,
               Gmail account, maps app, or telehealth visit is allowed just
-              because it is normal for everyone else.
+              because it is normal for everyone else. Federal courts recognize
+              that some supervision cases can include{" "}
+              <InlineResourceLink href="https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised">
+                computer and internet-related supervision conditions
+              </InlineResourceLink>
+              ; your own written conditions control your situation.
             </p>
           </GuideProse>
 
@@ -846,14 +997,35 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "device-rules",
                 label: "Get clear device and internet instructions in writing if possible.",
-                helper:
-                  "Ask what devices, apps, browsers, email, job sites, maps, banking, telehealth, social media, and public computers are allowed or restricted.",
+                helper: (
+                  <span>
+                    Ask what devices, apps, browsers, email, job sites, maps,
+                    banking, telehealth, social media, and public computers are
+                    allowed or restricted. For background only, review the U.S.
+                    Courts page on{" "}
+                    <InlineResourceLink href="https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised">
+                      cybercrime-related supervision conditions
+                    </InlineResourceLink>
+                    .
+                  </span>
+                ),
               },
               {
                 id: "lifeline",
                 label: "Apply for Lifeline phone or internet support if eligible and allowed.",
-                helper:
-                  "Lifeline may be available based on income or participation in programs such as SNAP or Medicaid. Verify device rules first.",
+                helper: (
+                  <span>
+                    First step: review{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-apply/">
+                      how to apply for Lifeline
+                    </InlineResourceLink>{" "}
+                    and{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-qualify/">
+                      how to qualify for Lifeline
+                    </InlineResourceLink>
+                    . Verify device and internet rules first.
+                  </span>
+                ),
               },
               {
                 id: "contacts",
@@ -906,14 +1078,25 @@ export default function ResourceGuideSandbox(): JSX.Element {
               Registration and supervision duties are not background noise.
               They can control address changes, employment, travel, schooling,
               vehicles, identifiers, internet use, treatment, curfew, contact,
-              payment plans, and check-ins. Federal SORNA concepts include
-              registration where a person lives, works, or goes to school, but
-              states and local offices have their own procedures and deadlines.
+              payment plans, and check-ins. Federal{" "}
+              <InlineResourceLink href="https://smart.ojp.gov/sorna/current-law">
+                SORNA
+              </InlineResourceLink>{" "}
+              concepts include registration where a person lives, works, or
+              goes to school, but states and local offices have their own
+              procedures and deadlines.
             </p>
 
             <p>
               Your safest move is to follow your written instructions, ask
-              narrow questions before acting, and save proof of compliance.
+              narrow questions before acting, and save proof of compliance. You
+              can use{" "}
+              <InlineResourceLink href="https://www.nsopw.gov/">
+                NSOPW
+              </InlineResourceLink>{" "}
+              and your state registry website as starting points, but rely on
+              the office with authority over your reporting duty for exact
+              instructions.
             </p>
           </GuideProse>
 
@@ -937,8 +1120,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "registration",
                 label: "Confirm registration duties with the office that handles them.",
-                helper:
-                  "Ask about address, work, school, vehicle, email, online identifier, travel, temporary lodging, homeless/transient, and in-person reporting rules if they apply.",
+                helper: (
+                  <span>
+                    Ask about address, work, school, vehicle, email, online
+                    identifier, travel, temporary lodging, homeless/transient,
+                    and in-person reporting rules if they apply. Use the SMART
+                    Office page on{" "}
+                    <InlineResourceLink href="https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification">
+                      SORNA in-person registration requirements
+                    </InlineResourceLink>{" "}
+                    as background, not as a substitute for your local
+                    instructions.
+                  </span>
+                ),
               },
               {
                 id: "travel",
@@ -1078,8 +1272,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "food",
                 label: "Stabilize food access.",
-                helper:
-                  "Call 211, apply for SNAP if eligible, ask about food pantries, and keep simple shelf-stable meals available.",
+                helper: (
+                  <span>
+                    First step: call{" "}
+                    <InlineResourceLink href="https://www.211.org/">
+                      211
+                    </InlineResourceLink>
+                    , apply for SNAP through the{" "}
+                    <InlineResourceLink href="https://www.fns.usda.gov/snap/state-directory">
+                      USDA SNAP state directory
+                    </InlineResourceLink>{" "}
+                    if eligible, and ask about food pantries.
+                  </span>
+                ),
               },
               {
                 id: "budget",
@@ -1139,14 +1344,31 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 id: "pell",
                 label: "Check Pell Grant and financial aid options.",
-                helper:
-                  "Federal Student Aid explains Pell Grants, including eligibility notes for approved Prison Education Programs. Ask the school’s financial aid office for your situation.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://studentaid.gov/understand-aid/types/grants/pell">
+                      Federal Student Aid Pell Grant page
+                    </InlineResourceLink>
+                    , then ask the school’s financial aid office about your
+                    specific situation.
+                  </span>
+                ),
               },
               {
                 id: "relief",
                 label: "Learn whether registry relief, reduction, sealing, expungement, appeal, or supervision modification is possible.",
-                helper:
-                  "This is state- and case-specific. Start with legal aid, a qualified attorney, court self-help resources, or official state information.",
+                helper: (
+                  <span>
+                    This is state- and case-specific. First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/legal-aid">
+                      USAGov’s legal aid finder
+                    </InlineResourceLink>{" "}
+                    to look for free or low-cost legal help, then ask about
+                    qualified attorneys, court self-help resources, or official
+                    state information.
+                  </span>
+                ),
               },
               {
                 id: "community",
