@@ -1,535 +1,1727 @@
-import { useState } from 'react';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+} from "../../components/solar";
 
-function ReentryChecklist() {
-  const [checkedItems, setCheckedItems] = useState<{[key: string]: boolean}>({});
+const sourceLinks = [
+  {
+    label: "USAGov — Replace vital documents and ID cards",
+    href: "https://www.usa.gov/replace-vital-documents",
+    description:
+      "Official starting point for replacing government-issued ID cards and vital records.",
+  },
+  {
+    label: "USAGov — Get a certified copy of a U.S. birth certificate",
+    href: "https://www.usa.gov/birth-certificate",
+    description:
+      "Explains that birth certificate requests usually go through the vital records office in the birth state or territory.",
+  },
+  {
+    label: "Social Security Administration — Replace Social Security card",
+    href: "https://www.ssa.gov/number-card/replace-card",
+    description:
+      "Official SSA replacement card page, including online, phone, and office options.",
+  },
+  {
+    label: "CFPB — Second-chance bank account explainer",
+    href: "https://www.consumerfinance.gov/ask-cfpb/what-is-a-second-chance-bank-account-and-who-is-it-for-en-2153/",
+    description:
+      "Plain-language explanation of second-chance bank accounts for people who cannot open a regular bank account because of banking-history problems.",
+  },
+  {
+    label: "Bank On — Certified accounts directory",
+    href: "https://joinbankon.org/accounts/",
+    description:
+      "Directory of Bank On-certified accounts by state and institution, useful for comparing low-cost checking options without choosing a specific bank for the reader.",
+  },
+  {
+    label: "FDIC — GetBanked",
+    href: "https://www.fdic.gov/getbanked",
+    description:
+      "FDIC consumer resource explaining banking access, second-chance banking, and Bank On-certified account features.",
+  },
+  {
+    label: "211 — Housing expenses",
+    href: "https://www.211.org/get-help/housing-expenses",
+    description:
+      "National 211 entry point for local housing, rent, mortgage, and utility help.",
+  },
+  {
+    label: "211 — Utilities expenses",
+    href: "https://www.211.org/get-help/utilities-expenses",
+    description:
+      "Local help for utility bills, phone, internet, and related emergency support.",
+  },
+  {
+    label: "U.S. Department of Labor — American Job Centers",
+    href: "https://www.dol.gov/agencies/eta/american-job-centers",
+    description:
+      "Official DOL page explaining how to find American Job Centers and the 1-877-US-2JOBS help line.",
+  },
+  {
+    label: "CareerOneStop — Justice-Impacted job seeker resources",
+    href: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
+    description:
+      "CareerOneStop resources for people with records who need job search, training, and career help.",
+  },
+  {
+    label: "Internal Revenue Service — Work Opportunity Tax Credit",
+    href: "https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit",
+    description:
+      "Official IRS WOTC page, including targeted groups such as formerly incarcerated people or people previously convicted of a felony.",
+  },
+  {
+    label: "U.S. Department of Labor — Work Opportunity Tax Credit",
+    href: "https://www.dol.gov/agencies/eta/wotc",
+    description:
+      "Official DOL overview of WOTC as a federal tax credit for employers hiring people from targeted groups.",
+  },
+  {
+    label: "Federal Bonding Program",
+    href: "https://bonds4jobs.com/",
+    description:
+      "Official Federal Bonding Program site for no-cost fidelity bonds for job seekers facing employment barriers.",
+  },
+  {
+    label: "Lifeline Support — How to apply",
+    href: "https://www.lifelinesupport.org/how-to-apply/",
+    description:
+      "Official Lifeline application page with online, company-assisted, and mail options.",
+  },
+  {
+    label: "Lifeline Support — How to qualify",
+    href: "https://www.lifelinesupport.org/how-to-qualify/",
+    description:
+      "Official Lifeline eligibility information based on income or participation in programs such as SNAP or Medicaid.",
+  },
+  {
+    label: "HealthCare.gov — Medicaid and CHIP coverage",
+    href: "https://www.healthcare.gov/medicaid-chip/",
+    description:
+      "Official health coverage page explaining Marketplace and state Medicaid application options.",
+  },
+  {
+    label: "USDA — SNAP State Directory",
+    href: "https://www.fns.usda.gov/snap/state-directory",
+    description:
+      "Official state-by-state contact and application directory for SNAP food assistance.",
+  },
+  {
+    label: "USAGov — Food stamps / SNAP",
+    href: "https://www.usa.gov/food-stamps",
+    description:
+      "Plain-language federal page explaining that SNAP applications go through state or local SNAP offices.",
+  },
+  {
+    label: "SAMHSA — National Helpline",
+    href: "https://www.samhsa.gov/find-help/helplines/national-helpline",
+    description:
+      "Free, confidential, 24/7 treatment referral and information service for mental health and substance use concerns.",
+  },
+  {
+    label: "FindTreatment.gov",
+    href: "https://findtreatment.gov/",
+    description:
+      "SAMHSA confidential and anonymous locator for mental health and substance use treatment.",
+  },
+  {
+    label: "988 Suicide & Crisis Lifeline",
+    href: "https://988lifeline.org/",
+    description:
+      "Call, text, or chat support for emotional distress, crisis, substance use concerns, or needing someone to talk to.",
+  },
+  {
+    label: "USAGov — Find affordable legal aid",
+    href: "https://www.usa.gov/legal-aid",
+    description:
+      "Federal starting point for finding free or low-cost legal help.",
+  },
+  {
+    label: "NSOPW — Public sex offender registry search",
+    href: "https://www.nsopw.gov/",
+    description:
+      "U.S. Department of Justice public search across participating state, territory, tribal, and District of Columbia registry websites.",
+  },
+  {
+    label: "SMART Office — SORNA current law",
+    href: "https://smart.ojp.gov/sorna/current-law",
+    description:
+      "Federal SMART Office summary of SORNA registration framework, including living, working, and school jurisdiction concepts.",
+  },
+  {
+    label: "SMART Office — SORNA in-person registration requirements",
+    href: "https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification",
+    description:
+      "Federal SMART Office explanation of in-person registration and verification concepts under SORNA.",
+  },
+  {
+    label: "U.S. Courts — Cybercrime-related supervision conditions",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised",
+    description:
+      "Federal courts resource describing computer-device and internet-use conditions that may be imposed in qualifying supervision cases.",
+  },
+  {
+    label: "Federal Student Aid — Pell Grants",
+    href: "https://studentaid.gov/understand-aid/types/grants/pell",
+    description:
+      "Official Federal Student Aid page, including Pell Grant information and notes about approved Prison Education Programs.",
+  },
+];
 
-  const toggleCheck = (id: string) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+const quickResources = [
+  {
+    label: "Call 211",
+    description:
+      "Ask for local housing, food, utility, transportation, health care, and reentry support. Use this when you do not know where to start.",
+    phone: "Dial 211",
+    href: "https://www.211.org/",
+    badge: "Immediate help",
+  },
+  {
+    label: "Call or text 988",
+    description:
+      "Use 988 for emotional crisis, suicidal thoughts, substance use distress, or when you need someone to talk to right now.",
+    phone: "Call or text 988",
+    href: "https://988lifeline.org/",
+    badge: "Crisis support",
+  },
+  {
+    label: "Find your local American Job Center",
+    description:
+      "Ask for resume help, job leads, interview practice, training options, and paper or in-person support if internet access is restricted.",
+    phone: "1-877-US-2JOBS",
+    href: "https://www.dol.gov/agencies/eta/american-job-centers",
+    badge: "Employment",
+  },
+  {
+    label: "Find treatment",
+    description:
+      "Search for mental health or substance use treatment, including outpatient, inpatient, and telehealth options.",
+    href: "https://findtreatment.gov/",
+    badge: "Health",
+  },
+  {
+    label: "Find legal aid",
+    description:
+      "Use this when you need help understanding supervision, registration, housing, family law, benefits, or relief options.",
+    href: "https://www.usa.gov/legal-aid",
+    badge: "Legal help",
+  },
+  {
+    label: "Check official registry sources",
+    description:
+      "Use NSOPW and your state registry office as a starting point, but rely on the agency with authority for your specific reporting duty.",
+    href: "https://www.nsopw.gov/",
+    badge: "Verify",
+  },
+];
 
-  const handlePrint = () => {
-    window.print();
-  };
+const InlineResourceLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-2 hover:text-sky-900 hover:decoration-sky-500"
+  >
+    {children}
+  </a>
+);
 
-  const checklistSections = [
-    {
-      id: 'first-steps',
-      title: '1. First Steps',
-      icon: '🏁',
-      description: 'Essential documents and basic setup for reentry',
-      items: [
-        'Get your state ID or driver\'s license (DMV)',
-        'Apply for/recover Social Security card & birth certificate',
-        'Open a bank account (ask about "second chance" accounts)',
-        'Organize documents in a binder: supervision papers, ID, certificates, medical records'
-      ],
-      tips: [
-        'Start with ID and Social Security card - you\'ll need these for everything else',
-        'Many banks offer second chance programs for people with banking history issues',
-        'Keep all important documents in one secure, organized place',
-        'Make copies of everything and store them separately'
-      ]
-    },
-    {
-      id: 'housing',
-      title: '2. Housing',
-      icon: '🏠',
-      description: 'Securing safe, compliant housing arrangements',
-      items: [
-        'Confirm residency restrictions (ask supervising officer before signing a lease)',
-        'Apply to transitional housing/halfway house if no stable family housing',
-        'Call 211 for local shelters or housing support',
-        'Save money for a deposit & rent'
-      ],
-      tips: [
-        'NEVER sign a lease without confirming address compliance with your supervising officer',
-        'Transitional housing can provide structure and support during early reentry',
-        '211 is available 24/7 and connects you to local housing resources',
-        'Start saving for housing costs as early as possible - deposits can be substantial'
-      ]
-    },
-    {
-      id: 'employment',
-      title: '3. Employment & Income',
-      icon: '💼',
-      description: 'Finding work and building financial stability',
-      items: [
-        'Register with CareerOneStop Reentry Portal or local American Job Center',
-        'Search on HonestJobs.com or other "fair chance" job boards',
-        'Practice an interview script: take responsibility + focus on skills & growth',
-        'Use certificates/skills earned in prison (GED, trades, custodial, clerical)',
-        'Apply for jobs in construction, trucking (CDL), manufacturing, hospitality',
-        'Ask employers about WOTC tax credit & Federal Bonding Program'
-      ],
-      tips: [
-        'American Job Centers offer free services including resume help and interview practice',
-        'Be honest about your background but focus on your skills and commitment to change',
-        'Highlight any education, training, or certifications you earned while incarcerated',
-        'Some industries are more open to hiring people with records - research these first',
-        'WOTC and Federal Bonding can make you more attractive to employers'
-      ],
-      offlineAlternatives: [
-        'Visit the Job Center in person; ask for paper job postings and staff support',
-        'Use newspaper classifieds; ask local nonprofits for employer lists'
-      ]
-    },
-    {
-      id: 'health',
-      title: '4. Health & Wellness',
-      icon: '🏥',
-      description: 'Maintaining physical and mental health',
-      items: [
-        'Schedule a medical & dental check-up',
-        'Apply for Medicaid/insurance ASAP',
-        'Fill/refill prescriptions before running out',
-        'Call 988 if in emotional crisis',
-        'Join a support group (NAMI, AA/NA, therapy if required)',
-        'Try simple coping: 4-4-8 breathing (inhale 4s, hold 4s, exhale 8s)'
-      ],
-      tips: [
-        'Don\'t wait for health problems to get worse - preventive care is cheaper',
-        'Medicaid applications can take time, so apply immediately upon release',
-        'Never let prescriptions run out - plan refills in advance',
-        '988 is free, confidential, and available 24/7 for mental health crises',
-        'Support groups provide community and accountability',
-        'Simple breathing exercises can help manage stress and anxiety'
-      ],
-      offlineAlternatives: [
-        'Go to your local health department or social services office for Medicaid help'
-      ]
-    },
-    {
-      id: 'technology',
-      title: '5. Technology Basics',
-      icon: '📱',
-      description: 'Essential digital skills for modern life',
-      items: [
-        'Get a smartphone (ask about Lifeline free phone program)',
-        'Learn: calls, texts, saving contacts, email setup',
-        'Create a Gmail account for jobs & services',
-        'Use Google Maps for directions & bus routes',
-        'Visit the library for computer/internet basics classes'
-      ],
-      tips: [
-        'Lifeline provides free or low-cost phones for qualifying individuals',
-        'Start with basic functions before moving to advanced features',
-        'Email is essential for job applications and communicating with services',
-        'GPS navigation can help you get to appointments and interviews on time',
-        'Libraries offer free computer classes and internet access'
-      ],
-      offlineAlternatives: [
-        'Ask supervising officer or reentry program if they provide phones',
-        'Ask Job Center staff to help set up email on their computers',
-        'Ask for a paper bus schedule or transit map'
-      ]
-    },
-    {
-      id: 'legal',
-      title: '6. Legal Obligations',
-      icon: '⚖️',
-      description: 'Staying compliant with supervision requirements',
-      items: [
-        'Meet with supervising officer on time — every time',
-        'Keep a calendar of check-ins, curfew, treatment sessions',
-        'Ask before traveling outside your area',
-        'Report job changes, new residence, or medications to supervising officer',
-        'Set up a payment plan for fines/restitution; keep receipts',
-        'Keep copies of compliance documents (drug test results, pay stubs, certificates)'
-      ],
-      tips: [
-        'Punctuality shows respect and responsibility - arrive early to appointments',
-        'Use a physical calendar or phone calendar to track all requirements',
-        'When in doubt about travel, ask first - violations aren\'t worth the risk',
-        'Over-communicate with your supervising officer rather than under-communicate',
-        'Payment plans show good faith effort even when money is tight',
-        'Documentation protects you if there are ever questions about compliance'
-      ]
-    },
-    {
-      id: 'family',
-      title: '7. Family & Support Network',
-      icon: '👨‍👩‍👧‍👦',
-      description: 'Rebuilding relationships and community connections',
-      items: [
-        'Rebuild relationships with honest communication & patience',
-        'Spend quality time (walks, shared meals, family activities)',
-        'Avoid old negative influences & unhealthy friendships',
-        'Join community or faith groups open to returning citizens',
-        'Supporters: learn supervision rules so you don\'t cause violations by accident'
-      ],
-      tips: [
-        'Relationships take time to heal - be patient and consistent',
-        'Actions speak louder than words - show change through behavior',
-        'It\'s okay to end relationships that threaten your progress',
-        'Community involvement helps build positive social connections',
-        'Family members should understand supervision rules to avoid accidental violations'
-      ]
-    },
-    {
-      id: 'daily-living',
-      title: '8. Daily Living',
-      icon: '🌅',
-      description: 'Building healthy routines and life skills',
-      items: [
-        'Create a daily routine (wake/sleep, meals, work, exercise)',
-        'Practice cooking & budgeting for independence',
-        'Plan transportation (bus card, bike, ride-shares)',
-        'Celebrate small wins (first week violation-free, first paycheck)'
-      ],
-      tips: [
-        'Consistent routines provide structure and reduce decision fatigue',
-        'Basic life skills like cooking and budgeting build confidence and save money',
-        'Reliable transportation is crucial for maintaining employment and appointments',
-        'Acknowledging progress, even small steps, helps maintain motivation'
-      ],
-      offlineAlternatives: [
-        'Ask supervising officer about approved transportation resources'
-      ]
-    },
-    {
-      id: 'long-term',
-      title: '9. Long-Term Growth',
-      icon: '🌱',
-      description: 'Building toward a better future',
-      items: [
-        'Set SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound)',
-        'Enroll in GED, trade school, or certificate program',
-        'Explore community college or vocational training with Pell Grants',
-        'Volunteer or mentor when able to give back',
-        'Learn about registry relief/removal options in your state'
-      ],
-      tips: [
-        'SMART goals help you focus on achievable, meaningful objectives',
-        'Education and training open doors to better employment opportunities',
-        'Pell Grants can make education affordable for eligible individuals',
-        'Giving back to your community helps build purpose and connections',
-        'Some states offer pathways to reduce or remove registry requirements'
-      ],
-      offlineAlternatives: [
-        'Visit your local community college or adult education center'
-      ]
-    }
-  ];
-
-  const emergencyResources = [
-    { name: '211', description: 'Local housing, food, and reentry services', contact: 'Dial 211' },
-    { name: '988 Suicide & Crisis Lifeline', description: 'Mental health crisis support', contact: 'Dial 988' },
-    { name: 'CareerOneStop Reentry Portal', description: 'Employment resources for returning citizens', url: 'https://www.careeronestop.org/ReEntry/reentry.aspx' },
-    { name: 'HonestJobs', description: 'Job board for people with criminal records', url: 'https://honestjobs.com' },
-    { name: 'SAMHSA Treatment Locator', description: 'Find mental health and substance abuse treatment', url: 'https://findtreatment.gov' },
-    { name: 'NAMI', description: 'Mental health support and resources', url: 'https://nami.org' },
-    { name: 'Root & Rebound', description: 'Legal hotline and reentry guides', url: 'https://rootandrebound.org' }
-  ];
+export default function ReentryChecklist(): JSX.Element {
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="Reentry Checklist - Complete Guide for Returning Citizens | The SOLAR Project"
-        description="Comprehensive reentry checklist for returning citizens and their families. Step-by-step guide covering housing, employment, health, legal obligations, and long-term success after incarceration."
-        keywords="reentry checklist, returning citizens, post-incarceration, reentry planning, prison release, supervision compliance, employment after prison, housing after prison, reentry resources"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Reentry Checklist for People on Registries | The SOLAR Project"
+        description="A practical, registry-aware reentry guide for people coming home after incarceration and the supporters helping them stabilize, document, verify, comply, and rebuild."
+        keywords="reentry checklist, sex offense registry reentry, supervision checklist, registrant housing, registrant employment, reentry support, SOLAR Project"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="mb-4">
-              <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-                Resource Guide
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Reentry Checklist for Returning Citizens
-            </h1>
-            
-            <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
-              A comprehensive, step-by-step guide to successful reentry after incarceration. 
-              Break down the big picture into manageable steps for staying safe, staying free, and building a better life.
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Reentry Checklist for People on Registries
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A practical, registry-aware roadmap for coming home: documents,
+            housing, work, health care, supervision, technology, family support,
+            and the next small step.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
+
+        <GuideIntro title="Start here" icon="🧭">
+          <p>
+            Coming home with registry duties or sex-offense-specific
+            supervision is not the same as ordinary reentry. Housing, internet
+            use, travel, employment changes, family contact, treatment, and
+            registration can all carry consequences if you guess wrong.
+          </p>
+
+          <p>
+            This checklist is meant to reduce panic and help you move in order:
+            protect your freedom, stabilize your basic needs, document
+            everything, ask the right questions, and build from there. You do
+            not have to solve your whole life today. You do need to protect the
+            steps that can create violations, missed deadlines, or avoidable
+            instability.
+          </p>
+        </GuideIntro>
+
+        <QuickStartPanel
+          title="First moves: protect freedom, health, and shelter"
+          subtitle="Use this when you are newly released, helping someone come home, or trying to recover after a chaotic first week."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Confirm your reporting instructions, registration deadline, curfew,
+              travel limits, contact limits, treatment requirements, and any
+              internet or device restrictions.
+            </span>,
+            <span>
+              Write every deadline on paper and in a calendar. Include who gave
+              the instruction, the date, the phone number, and what you were
+              told.
+            </span>,
+            <span>
+              Do not sign a lease, move addresses, start a job, leave your
+              approved area, or use restricted technology until the person with
+              authority confirms the step is allowed.
+            </span>,
+            <span>
+              If food, shelter, transportation, medication, or emotional safety
+              is unstable, call{" "}
+              <InlineResourceLink href="https://www.211.org/">
+                211
+              </InlineResourceLink>
+              , call or text{" "}
+              <InlineResourceLink href="https://988lifeline.org/">
+                988
+              </InlineResourceLink>
+              , contact a reentry program, or ask a trusted supporter for one
+              concrete task today.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Start a paper reentry folder with ID documents, supervision
+              conditions, registry instructions, receipts, certificates, medical
+              records, and written confirmations.
+            </span>,
+            <span>
+              Begin replacement ID, Social Security card, birth certificate,
+              Medicaid or insurance, Lifeline phone, SNAP, and job-center steps
+              as soon as possible.
+            </span>,
+            <span>
+              Ask one trusted person to help with printing, phone calls, rides,
+              or note-taking if internet access, transportation, stress, or
+              literacy barriers make this harder.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              The safer pattern is simple: ask first, write it down, save proof,
+              and keep moving one manageable step at a time.
+            </span>
+          }
+        />
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Priority 1",
+              title: "Protect your freedom",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Registration, supervision, travel, housing approval, treatment, curfew, device use, and contact rules come before convenience.",
+            },
+            {
+              eyebrow: "Priority 2",
+              title: "Build basic stability",
+              icon: "🏠",
+              tone: "reentry",
+              description:
+                "ID, shelter, food, medication, phone access, transportation, income, and a simple routine make compliance easier.",
+            },
+            {
+              eyebrow: "Priority 3",
+              title: "Document everything",
+              icon: "🗂️",
+              tone: "success",
+              description:
+                "A paper trail protects you when memories differ, offices change staff, websites go down, or someone asks for proof later.",
+            },
+          ]}
+        />
+
+        <GuideCallout tone="legal" icon="⚠️" title="This guide is not a substitute for your conditions">
+          <p>
+            Registry and supervision rules can change by state, court order,
+            parole or probation office, local policy, treatment provider, and
+            the exact facts of your case. Use this guide to organize your next
+            steps, not to override written instructions from the court,
+            registry office, or supervising authority.
+          </p>
+        </GuideCallout>
+
+<GuideSectionHeader
+          id="verify-before-acting"
+          number="1"
+          title="Verify before acting"
+          subtitle="When a step could affect your freedom, housing, job, travel, treatment, or registration, do not rely on guesses."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A lot of reentry advice says, “get a job,” “find housing,” or
+              “use online resources.” That advice can be risky for someone on a
+              registry or under sex-offense-specific supervision. The same step
+              that helps one person may create a violation for another if there
+              are address restrictions, internet limits, victim-contact rules,
+              job-reporting requirements, school-zone restrictions, treatment
+              conditions, or travel notice rules.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={handlePrint}
-                className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center"
-              >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                </svg>
-                Print Checklist
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+            <p>
+              Your goal is not to ask vague questions like “Is this okay?” Your
+              goal is to ask a narrow question about the exact action you are
+              about to take, then save the answer.
+            </p>
+          </GuideProse>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+          <VerifyBeforeActing
+            title="Use this verification habit"
+            whoToAsk={
+              <span>
+                The person or office with authority: supervising officer, parole
+                or probation office, registry office, court clerk, treatment
+                provider, housing program, legal aid attorney, or another
+                official source depending on the issue.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Before I do this, is this exact step allowed under my written
+                conditions, registration duties, local rules, and your office’s
+                instructions?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Name, title, office, phone number, date, exact question, exact
+                answer, confirmation number, email, letter, screenshot if
+                allowed, receipt, appointment card, or handwritten notes.
+              </span>
+            }
+          />
 
-      {/* Introduction */}
-      <section className="py-12 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-lg shadow-sm p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use This Checklist</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Go Step by Step</h3>
-                  <p className="text-gray-600">Don't try to do everything in one day. Pick a few items each week and work through them.</p>
-                </div>
-              </div>
+          <ScriptBox
+            title="Script: asking a compliance question"
+            tone="legal"
+            context="Use this when asking about housing, travel, internet use, employment changes, treatment, family contact, or registration."
+            script={`Hello, my name is [Name]. I am trying to avoid making a mistake.\n\nBefore I take this step, I need to confirm whether it is allowed under my conditions and any registration rules.\n\nThe exact step is: [describe the address, job, trip, device, contact, program, or deadline].\n\nWho has authority to approve or deny this? Is there a form, deadline, or written instruction I need? I am taking notes. Could you please repeat your name, title, and office so I can write it down correctly?`}
+          />
+        </GuideSectionCard>
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Check Things Off</h3>
-                  <p className="text-gray-600">Mark your progress as you go. Small victories add up quickly.</p>
-                </div>
-              </div>
+        <GuideSectionHeader
+          id="document-packet"
+          number="2"
+          title="Build a reentry folder"
+          subtitle="A simple folder can prevent chaos from becoming a crisis."
+        />
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Ask for Help</h3>
-                  <p className="text-gray-600">Family, friends, reentry case managers, and mentors can walk through steps with you.</p>
-                </div>
-              </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Keep one paper folder even if you also use a phone. Phones get
+              lost, accounts get locked, internet access may be restricted, and
+              agencies still often ask for paper proof. A folder also helps
+              supporters assist without needing access to private accounts.
+            </p>
+          </GuideProse>
 
-              <div className="flex items-start">
-                <div className="w-8 h-8 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mr-4 mt-1 flex-shrink-0">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Keep It Handy</h3>
-                  <p className="text-gray-600">Carry a copy in your folder, wallet, or post it somewhere you'll see daily.</p>
-                </div>
-              </div>
-            </div>
+          <DocumentPacket
+            title="Reentry folder checklist"
+            intro={
+              <span>
+                Start with what you have. Add receipts and proof as you go.
+                Make copies when possible and keep originals somewhere safe.
+              </span>
+            }
+            categories={[
+              {
+                title: "Identity and records",
+                items: [
+                  "State ID, driver’s license, or DMV/state ID appointment receipt",
+                  "Social Security card or SSA replacement-card confirmation",
+                  "Birth certificate request, receipt, or certified copy",
+                  "Release paperwork, prison certificates, GED, trade certificates, and program records",
+                  "Medical records, medication list, glasses/dental information, and insurance paperwork",
+                ],
+              },
+              {
+                title: "Compliance and supervision",
+                items: [
+                  "Judgment, sentence, supervision conditions, parole/probation instructions, and court orders",
+                  "Registry instructions, reporting schedule, registration receipts, and address-verification paperwork",
+                  "Treatment schedule, attendance proof, payment receipts, and completion certificates",
+                  "Drug test receipts, check-in cards, travel approvals, curfew instructions, and written permissions",
+                ],
+              },
+              {
+                title: "Housing, work, and benefits",
+                items: [
+                  "Housing applications, landlord notes, address-approval proof, lease paperwork, and rent receipts",
+                  "Resume, job applications, interview notes, WOTC or bonding information, pay stubs, and offer letters",
+                  "Medicaid, SNAP, Lifeline, disability, unemployment, or other benefits applications and notices",
+                  "A phone log with date, person called, number, what was said, and the next step",
+                ],
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <h3 className="text-lg font-medium text-yellow-800 mb-2">Important Note</h3>
-                  <p className="text-yellow-700">
-                    This list is not one-size-fits-all. Everyone's conditions are different — supervision rules vary by state, 
-                    supervising officer, and individual circumstances. Use this checklist as a guide, not a substitute for your 
-                    supervision requirements. <strong>Always confirm anything you're unsure about with your supervising officer.</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <GuideSectionHeader
+          id="first-steps"
+          number="3"
+          title="First steps: ID, documents, phone, benefits"
+          subtitle="Many doors stay closed until you can prove who you are and receive calls or mail."
+        />
 
-      {/* Internet Restrictions Notice */}
-      <section className="bg-blue-50 border-l-4 border-blue-400 py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-lg font-medium text-blue-800 mb-4">If You Have Internet Restrictions</h3>
-              <p className="text-blue-700 mb-4">
-                Some parts of this checklist mention websites or online applications. If your supervision limits internet use, 
-                practical alternatives are provided throughout this guide, including:
-              </p>
-              <div className="text-blue-700 space-y-2">
-                <p>• <strong>Job search:</strong> Visit your local American Job Center for paper applications and in-person assistance</p>
-                <p>• <strong>Housing search:</strong> Check newspaper classifieds or ask community organizations for help</p>
-                <p>• <strong>Health services:</strong> Dial 211 from any phone to connect with local services</p>
-                <p>• <strong>Education:</strong> Visit community colleges or libraries directly for program information</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              ID and documents are not “paperwork chores.” They affect housing,
+              jobs, bank accounts, benefits, medical care, transportation,
+              education, and supervision compliance. Start with the documents
+              you can request fastest, and save proof that you started. If you
+              are not sure which office handles a document, begin with{" "}
+              <InlineResourceLink href="https://www.usa.gov/replace-vital-documents">
+                USAGov’s vital documents page
+              </InlineResourceLink>
+              .
+            </p>
+          </GuideProse>
 
-      {/* Checklist Sections */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
-            {checklistSections.map((section) => (
-              <div key={section.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-                  <div className="flex items-center">
-                    <div className="text-3xl mr-4">{section.icon}</div>
-                    <div>
-                      <h3 className="text-2xl font-bold">{section.title}</h3>
-                      <p className="text-slate-200">{section.description}</p>
-                    </div>
-                  </div>
-                </div>
+          <GuideChecklist
+            id="first-steps-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "id",
+                label: "Start the state ID or driver’s license process.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/replace-vital-documents">
+                      USAGov’s ID replacement page
+                    </InlineResourceLink>{" "}
+                    to find the right state motor vehicle agency, or ask a
+                    reentry worker, library, or supporter to help identify the
+                    office.
+                  </span>
+                ),
+              },
+              {
+                id: "ss-card",
+                label: "Request or replace your Social Security card if needed.",
+                helper: (
+                  <span>
+                    First step: use the{" "}
+                    <InlineResourceLink href="https://www.ssa.gov/number-card/replace-card">
+                      SSA replacement-card page
+                    </InlineResourceLink>{" "}
+                    or call SSA if online access is not allowed or realistic.
+                  </span>
+                ),
+              },
+              {
+                id: "birth-certificate",
+                label: "Request a certified birth certificate if you do not have one.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/birth-certificate">
+                      USAGov’s birth certificate page
+                    </InlineResourceLink>{" "}
+                    to find the vital records office in the state or territory
+                    where you were born. Keep the receipt.
+                  </span>
+                ),
+              },
+              {
+                id: "mail",
+                label: "Choose a safe mailing address.",
+                helper:
+                  "Use an approved residence, trusted supporter, reentry program, or agency address only if allowed. Ask before using any address that could affect registration or supervision.",
+              },
+              {
+                id: "phone",
+                label: "Get reliable phone access.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-apply/">
+                      Lifeline application page
+                    </InlineResourceLink>{" "}
+                    and{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-qualify/">
+                      Lifeline eligibility page
+                    </InlineResourceLink>
+                    . Verify device and internet rules before applying or using
+                    a phone.
+                  </span>
+                ),
+              },
+              {
+                id: "benefits",
+                label: "Apply for food, medical, and emergency support if needed.",
+                helper: (
+                  <span>
+                    First step: call{" "}
+                    <InlineResourceLink href="https://www.211.org/">
+                      211
+                    </InlineResourceLink>
+                    , contact your state Medicaid office through{" "}
+                    <InlineResourceLink href="https://www.healthcare.gov/medicaid-chip/">
+                      HealthCare.gov’s Medicaid and CHIP page
+                    </InlineResourceLink>
+                    , and use the{" "}
+                    <InlineResourceLink href="https://www.fns.usda.gov/snap/state-directory">
+                      USDA SNAP state directory
+                    </InlineResourceLink>
+                    .
+                  </span>
+                ),
+              },
+              {
+                id: "bank",
+                label: "Ask about a basic, Bank On-certified, or second-chance bank account.",
+                helper: (
+                  <span>
+                    First step: read the{" "}
+                    <InlineResourceLink href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-second-chance-bank-account-and-who-is-it-for-en-2153/">
+                      CFPB second-chance bank account explainer
+                    </InlineResourceLink>{" "}
+                    and search the{" "}
+                    <InlineResourceLink href="https://joinbankon.org/accounts/">
+                      Bank On certified accounts directory
+                    </InlineResourceLink>
+                    . Ask about monthly fees, minimum balance, overdraft rules,
+                    ID requirements, direct deposit, debit card access, and
+                    whether the account can help you build a stable banking
+                    history.
+                  </span>
+                ),
+              },
+            ]}
+          />
 
-                <div className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Checklist Items */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                        </svg>
-                        Action Items
-                      </h4>
-                      <ul className="space-y-3">
-                        {section.items.map((item, itemIndex) => {
-                          const checkId = `${section.id}-${itemIndex}`;
-                          return (
-                            <li key={itemIndex} className="flex items-start">
-                              <input
-                                type="checkbox"
-                                id={checkId}
-                                checked={checkedItems[checkId] || false}
-                                onChange={() => toggleCheck(checkId)}
-                                className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                              />
-                              <label 
-                                htmlFor={checkId}
-                                className={`text-gray-700 cursor-pointer ${checkedItems[checkId] ? 'line-through text-gray-500' : ''}`}
-                              >
-                                {item}
-                              </label>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
+          <GuideCallout tone="reminder" icon="📝" title="Receipts count">
+            <p>
+              If you do not have the document yet, a receipt, appointment card,
+              application confirmation, case number, or note from an agency can
+              still help show progress.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-                    {/* Tips */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
-                        Helpful Tips
-                      </h4>
-                      <ul className="space-y-2">
-                        {section.tips.map((tip, tipIndex) => (
-                          <li key={tipIndex} className="flex items-start">
-                            <svg className="w-4 h-4 text-blue-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-gray-700">{tip}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+        <GuideSectionHeader
+          id="housing"
+          number="4"
+          title="Housing: do not sign first and ask later"
+          subtitle="For people on registries, housing is both a stability issue and a compliance issue."
+        />
 
-                  {/* Offline Alternatives */}
-                  {section.offlineAlternatives && (
-                    <div className="mt-8 pt-6 border-t border-gray-200">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <svg className="w-5 h-5 mr-2 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                        </svg>
-                        Offline Alternatives
-                      </h4>
-                      <ul className="space-y-2">
-                        {section.offlineAlternatives.map((alternative, altIndex) => (
-                          <li key={altIndex} className="flex items-start">
-                            <svg className="w-4 h-4 text-orange-500 mt-1 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                            </svg>
-                            <span className="text-gray-700">{alternative}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Housing may be affected by supervision conditions, state registry
+              rules, local restrictions, landlord policy, treatment rules,
+              curfew, transportation, and who else lives in the home. A cheap or
+              available room is not safe if the address is not allowed.
+            </p>
+          </GuideProse>
 
-      {/* Emergency Resources */}
-      <section className="bg-red-50 border-l-4 border-red-400 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-6 w-6 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3 flex-1">
-              <h3 className="text-xl font-medium text-red-800 mb-6">Emergency & Essential Resources</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {emergencyResources.map((resource, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 shadow-sm">
-                    <h4 className="font-semibold text-gray-900 mb-2">{resource.name}</h4>
-                    <p className="text-gray-600 text-sm mb-2">{resource.description}</p>
-                    {resource.contact && (
-                      <p className="text-red-600 font-medium">{resource.contact}</p>
-                    )}
-                    {resource.url && (
-                      <a 
-                        href={resource.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-red-600 hover:text-red-800 font-medium text-sm"
-                      >
-                        Visit Website →
-                      </a>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          <GuideChecklist
+            id="housing-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "exact-address",
+                label: "Write down the exact address before agreeing to move in.",
+                helper:
+                  "Include apartment number, unit, hotel room, shelter name, cross streets, and whether children live nearby or in the home if that matters under your rules.",
+              },
+              {
+                id: "approval",
+                label: "Ask the supervising officer or registry office whether the exact address is allowed.",
+                helper:
+                  "Do this before signing a lease, paying a deposit, moving property in, or using the address for registration.",
+              },
+              {
+                id: "temporary",
+                label: "Ask how temporary, transitional, shelter, motel, or homeless status must be reported.",
+                helper:
+                  "Do not assume temporary housing has the same reporting rules as a permanent lease.",
+              },
+              {
+                id: "supporter-home",
+                label: "If staying with family or a supporter, review the household risks.",
+                helper:
+                  "Ask about minors, schools, daycare, internet access, curfew, visitors, weapons, alcohol, and any contact restrictions.",
+              },
+              {
+                id: "local-help",
+                label: "Call 211 or a local reentry program if housing is unstable.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.211.org/get-help/housing-expenses">
+                      211 housing help
+                    </InlineResourceLink>{" "}
+                    and ask for emergency shelter, transitional housing, rent
+                    help, utility help, transportation help, and programs that
+                    work with people with registry restrictions.
+                  </span>
+                ),
+              },
+              {
+                id: "paper-trail",
+                label: "Save all housing-related proof.",
+                helper:
+                  "Keep address approvals, denial notes, application copies, landlord messages, rent receipts, utility bills, and agency instructions.",
+              },
+            ]}
+          />
 
-      {/* Final Encouragement */}
-      <section className="bg-green-50 border-l-4 border-green-400 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <div className="ml-3">
-              <h3 className="text-lg font-medium text-green-800 mb-2">Remember</h3>
-              <p className="text-green-700">
-                <strong>This list is a living document.</strong> Check things off as you complete them, and keep adding goals as you move forward. 
-                Every small step is progress toward building the life you want. You've got this! 💪
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+          <ScriptBox
+            title="Script: checking an address before signing"
+            tone="legal"
+            context="Use this before paying money, signing a lease, moving in, or registering an address."
+            script={`Hello, I need to confirm whether an address is allowed before I sign anything or move in.\n\nThe exact address is: [full address, unit, city, state, ZIP].\n\nCan you tell me whether this address is allowed under my supervision conditions, registration duties, and any local restrictions your office applies? If you cannot approve it, who can? Is there a form or written confirmation I should request?`}
+          />
+
+          <GuideCallout tone="urgent" icon="🚫" title="Do not let desperation erase verification">
+            <p>
+              Housing pressure is real. So is violation risk. If you are about
+              to sleep outside, call{" "}
+              <InlineResourceLink href="https://www.211.org/get-help/housing-expenses">
+                211 housing help
+              </InlineResourceLink>
+              , your supervising officer, a reentry program, legal aid, or a
+              trusted supporter and document every attempt to find an allowed
+              place.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="employment"
+          number="5"
+          title="Employment and income"
+          subtitle="The goal is steady, reportable work that does not create hidden compliance problems."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Work can support stability, treatment, restitution, housing, and
+              dignity. But some jobs may be off-limits because of your
+              conditions, the worksite, internet requirements, contact with
+              minors, travel, licensing rules, background checks, or schedule
+              conflicts with curfew and treatment.
+            </p>
+
+            <p>
+              Start with job paths that can be verified, documented, and
+              explained. Use{" "}
+              <InlineResourceLink href="https://www.dol.gov/agencies/eta/american-job-centers">
+                American Job Centers
+              </InlineResourceLink>
+              , reentry programs, fair-chance job boards, certificates earned
+              while incarcerated, and employers that are willing to evaluate
+              skills instead of relying only on stigma.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="employment-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "job-center",
+                label: "Contact an American Job Center.",
+                helper: (
+                  <span>
+                    First step: use the{" "}
+                    <InlineResourceLink href="https://www.dol.gov/agencies/eta/american-job-centers">
+                      American Job Center locator
+                    </InlineResourceLink>{" "}
+                    or call 1-877-US-2JOBS. Ask for resume help, training
+                    options, and staff who work with justice-impacted job
+                    seekers.
+                  </span>
+                ),
+              },
+              {
+                id: "job-rules",
+                label: "Check whether the job type, location, schedule, devices, or duties create supervision or registry problems.",
+                helper:
+                  "Ask before accepting work involving schools, childcare settings, delivery routes, travel, internet devices, social media, or unsupervised access to minors.",
+              },
+              {
+                id: "resume",
+                label: "Build a simple resume around skills, reliability, training, and work history.",
+                helper:
+                  "Include GED, trades, custodial, warehouse, kitchen, clerical, maintenance, CDL prep, safety training, or certificates earned inside.",
+              },
+              {
+                id: "disclosure",
+                label: "Prepare a short, truthful background explanation.",
+                helper:
+                  "Do not overshare. Take responsibility where appropriate, then move quickly to skills, accountability, restrictions you can comply with, and why you can do the job safely.",
+              },
+              {
+                id: "wotc",
+                label: "Learn whether WOTC or the Federal Bonding Program may help an employer.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit">
+                      IRS Work Opportunity Tax Credit page
+                    </InlineResourceLink>{" "}
+                    and the{" "}
+                    <InlineResourceLink href="https://bonds4jobs.com/">
+                      Federal Bonding Program
+                    </InlineResourceLink>
+                    . These are employer tools, not guarantees.
+                  </span>
+                ),
+              },
+              {
+                id: "reporting",
+                label: "Report job offers, job changes, income, or schedule changes when your conditions require it.",
+                helper:
+                  "Save pay stubs, offer letters, employer contact information, schedules, and proof that you reported changes.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking a job center for help"
+            tone="reentry"
+            context="Use by phone or in person at an American Job Center."
+            script={`Hello, my name is [Name]. I am recently released and looking for work.\n\nI have background-related barriers and may have supervision or registry restrictions that affect job sites, travel, schedules, and internet use.\n\nCan I meet with someone who helps justice-impacted job seekers? I need help with a resume, job leads, interview practice, training options, and employers that consider people with records.`}
+          />
+
+          <ScriptBox
+            title="Script: brief employer explanation"
+            tone="neutral"
+            context="Adapt this carefully. Do not use it if your lawyer, supervising officer, or program gives you different instructions."
+            script={`I want to be direct. I have a criminal conviction in my background, and I understand that may raise questions.\n\nSince then, I have focused on accountability, stability, and work skills. I can follow workplace rules, show up on time, and do the job described. I also want to make sure the schedule, location, and duties comply with my current requirements.\n\nI am happy to talk about my qualifications and what I can do to be a reliable employee.`}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="health"
+          number="6"
+          title="Health, treatment, and emotional stability"
+          subtitle="Medical care, medication, counseling, and crisis support are reentry infrastructure."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Reentry stress can hit the body hard. Sleep changes, shame,
+              conflict, fear, medication gaps, substance use triggers, and
+              treatment requirements can all pile up. Health care is not a side
+              issue. It can affect appointments, work, housing, emotional
+              control, and compliance.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="health-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "meds",
+                label: "Make a medication plan before anything runs out.",
+                helper:
+                  "Write down medication names, dosage, prescribing doctor, pharmacy, refill date, and what to do if you need a bridge prescription.",
+              },
+              {
+                id: "coverage",
+                label: "Apply for Medicaid, Marketplace coverage, or local clinic help.",
+                helper: (
+                  <span>
+                    First step: use{" "}
+                    <InlineResourceLink href="https://www.healthcare.gov/medicaid-chip/">
+                      HealthCare.gov’s Medicaid and CHIP page
+                    </InlineResourceLink>
+                    , contact your state Medicaid agency, or ask a health
+                    department or social services office for paper/in-person
+                    help.
+                  </span>
+                ),
+              },
+              {
+                id: "appointments",
+                label: "Schedule primary care, dental, vision, mental health, and required treatment appointments.",
+                helper:
+                  "Bring release paperwork, medication list, ID if available, insurance paperwork, and supervision or treatment instructions if relevant.",
+              },
+              {
+                id: "treatment",
+                label: "Use FindTreatment.gov or SAMHSA’s helpline for treatment referrals.",
+                helper: (
+                  <span>
+                    First step: search{" "}
+                    <InlineResourceLink href="https://findtreatment.gov/">
+                      FindTreatment.gov
+                    </InlineResourceLink>{" "}
+                    or call the{" "}
+                    <InlineResourceLink href="https://www.samhsa.gov/find-help/helplines/national-helpline">
+                      SAMHSA National Helpline
+                    </InlineResourceLink>{" "}
+                    at 1-800-662-HELP. Ask about mental health care, substance
+                    use treatment, outpatient services, telehealth, sliding-scale
+                    fees, and transportation options.
+                  </span>
+                ),
+              },
+              {
+                id: "crisis",
+                label: "Use 988 if you are in emotional crisis or afraid you may hurt yourself.",
+                helper: (
+                  <span>
+                    First step: call, text, or chat through the{" "}
+                    <InlineResourceLink href="https://988lifeline.org/">
+                      988 Suicide & Crisis Lifeline
+                    </InlineResourceLink>
+                    . If there is immediate physical danger, call emergency
+                    services.
+                  </span>
+                ),
+              },
+              {
+                id: "support",
+                label: "Build one low-drama support habit.",
+                helper:
+                  "Examples: walking, support group, faith group, therapy, journaling, breathing practice, or weekly call with a safe supporter.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reentry" icon="🫁" title="A simple grounding tool">
+            <p>
+              Try 4-4-8 breathing: inhale for four seconds, hold for four
+              seconds, exhale for eight seconds. It will not fix the situation,
+              but it can help your body slow down before a call, appointment, or
+              hard conversation.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="technology"
+          number="7"
+          title="Technology basics without creating violations"
+          subtitle="Phones, email, maps, and job applications matter — but restrictions must come first."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Modern reentry often requires phone access, email, online
+              applications, maps, transit schedules, telehealth, and electronic
+              documents. But people under sex-offense-specific supervision may
+              have limits on devices, apps, internet access, social media,
+              passwords, monitoring software, public computers, or unsupervised
+              online activity.
+            </p>
+
+            <p>
+              Do not assume a free phone, library computer, job-center computer,
+              Gmail account, maps app, or telehealth visit is allowed just
+              because it is normal for everyone else. Federal courts recognize
+              that some supervision cases can include{" "}
+              <InlineResourceLink href="https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised">
+                computer and internet-related supervision conditions
+              </InlineResourceLink>
+              ; your own written conditions control your situation.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="technology-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "device-rules",
+                label: "Get clear device and internet instructions in writing if possible.",
+                helper: (
+                  <span>
+                    Ask what devices, apps, browsers, email, job sites, maps,
+                    banking, telehealth, social media, and public computers are
+                    allowed or restricted. For background only, review the U.S.
+                    Courts page on{" "}
+                    <InlineResourceLink href="https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised">
+                      cybercrime-related supervision conditions
+                    </InlineResourceLink>
+                    .
+                  </span>
+                ),
+              },
+              {
+                id: "lifeline",
+                label: "Apply for Lifeline phone or internet support if eligible and allowed.",
+                helper: (
+                  <span>
+                    First step: review{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-apply/">
+                      how to apply for Lifeline
+                    </InlineResourceLink>{" "}
+                    and{" "}
+                    <InlineResourceLink href="https://www.lifelinesupport.org/how-to-qualify/">
+                      how to qualify for Lifeline
+                    </InlineResourceLink>
+                    . Verify device and internet rules first.
+                  </span>
+                ),
+              },
+              {
+                id: "contacts",
+                label: "Save key phone numbers on paper and in your phone if allowed.",
+                helper:
+                  "Include supervising officer, registry office, treatment provider, doctor, pharmacy, job center, 211, 988, family supporter, and legal aid.",
+              },
+              {
+                id: "email",
+                label: "Create or recover one professional email account if allowed.",
+                helper:
+                  "Use it for jobs, health care, benefits, and school. Keep the password somewhere safe and permitted.",
+              },
+              {
+                id: "maps",
+                label: "Plan transportation before appointment days.",
+                helper:
+                  "If maps apps are restricted, ask for printed bus schedules, paper maps, transit office help, or supporter assistance.",
+              },
+              {
+                id: "library",
+                label: "Use libraries and job centers carefully.",
+                helper:
+                  "Ask whether public computer use is allowed. If it is, keep use job- and benefits-related and save any required documentation.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔐" title="Ask about monitoring before using a device">
+            <p>
+              Some supervision conditions allow devices only with monitoring or
+              approval. Others restrict specific apps, websites, or internet
+              access. The practical question is not “Can people use phones?”
+              The practical question is “What am I allowed to use, for what
+              purpose, on what device, with what reporting or monitoring?”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="legal-obligations"
+          number="8"
+          title="Supervision, registration, and legal obligations"
+          subtitle="This is the section to treat slowly, carefully, and in writing."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Registration and supervision duties are not background noise.
+              They can control address changes, employment, travel, schooling,
+              vehicles, identifiers, internet use, treatment, curfew, contact,
+              payment plans, and check-ins. Federal{" "}
+              <InlineResourceLink href="https://smart.ojp.gov/sorna/current-law">
+                SORNA
+              </InlineResourceLink>{" "}
+              concepts include registration where a person lives, works, or
+              goes to school, but states and local offices have their own
+              procedures and deadlines.
+            </p>
+
+            <p>
+              Your safest move is to follow your written instructions, ask
+              narrow questions before acting, and save proof of compliance. You
+              can use{" "}
+              <InlineResourceLink href="https://www.nsopw.gov/">
+                NSOPW
+              </InlineResourceLink>{" "}
+              and your state registry website as starting points, but rely on
+              the office with authority over your reporting duty for exact
+              instructions.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="legal-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "first-meeting",
+                label: "Attend every supervision meeting on time.",
+                helper:
+                  "Arrive early if possible. Bring your folder, calendar, questions, documents, receipts, medication list, job information, and housing information.",
+              },
+              {
+                id: "calendar",
+                label: "Keep a calendar for every deadline.",
+                helper:
+                  "Include reporting, registration, treatment, curfew, drug tests, polygraph, payments, court dates, travel deadlines, and benefit appointments.",
+              },
+              {
+                id: "registration",
+                label: "Confirm registration duties with the office that handles them.",
+                helper: (
+                  <span>
+                    Ask about address, work, school, vehicle, email, online
+                    identifier, travel, temporary lodging, homeless/transient,
+                    and in-person reporting rules if they apply. Use the SMART
+                    Office page on{" "}
+                    <InlineResourceLink href="https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification">
+                      SORNA in-person registration requirements
+                    </InlineResourceLink>{" "}
+                    as background, not as a substitute for your local
+                    instructions.
+                  </span>
+                ),
+              },
+              {
+                id: "travel",
+                label: "Ask before leaving your approved area.",
+                helper:
+                  "Travel can involve supervision approval, registry notice, destination rules, lodging rules, and return-reporting duties.",
+              },
+              {
+                id: "changes",
+                label: "Report changes exactly as required.",
+                helper:
+                  "This may include residence, job, school, phone, vehicle, email, online identifiers, relationship changes, medication, or treatment provider changes.",
+              },
+              {
+                id: "payments",
+                label: "Set up payment plans when money is tight.",
+                helper:
+                  "Ask for the minimum accepted payment, due date, receipt process, and what to do if you cannot pay on time.",
+              },
+              {
+                id: "proof",
+                label: "Keep proof of every compliance step.",
+                helper:
+                  "Save check-in receipts, registration receipts, treatment attendance, drug test slips, payment receipts, emails, letters, and notes from calls.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking what must be reported"
+            tone="legal"
+            context="Use when you are unsure whether a change must be reported."
+            script={`I want to make sure I report changes correctly.\n\nCan you tell me exactly what changes I must report, how quickly I must report them, and whether I must report them in person, by phone, online, or in writing?\n\nI am especially asking about residence, temporary lodging, employment, school, phone number, vehicle, email, online identifiers, travel, medication, and treatment changes.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family-support"
+          number="9"
+          title="Family and supporter guidance"
+          subtitle="Support helps most when it reduces risk instead of adding pressure."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Families and supporters often want to help immediately: offer a
+              couch, hand over a phone, create an email account, drive someone
+              somewhere, invite people over, or push for a job. Those actions
+              may be loving, but they can still cause problems if they conflict
+              with supervision, registry duties, treatment rules, or household
+              restrictions.
+            </p>
+
+            <p>
+              The best support is calm, practical, and documented. Help the
+              person verify, print, call, travel safely, keep appointments, and
+              avoid rushed choices.
+            </p>
+          </GuideProse>
+
+          <RoleGuidanceGrid
+            title="What different people can do"
+            roles={[
+              {
+                role: "Person coming home",
+                icon: "🧭",
+                guidance:
+                  "Be honest about what you know and what you do not know. Do not promise a supporter that something is allowed until you verify it. Bring your folder to appointments and write down answers.",
+              },
+              {
+                role: "Family member or partner",
+                icon: "🤝",
+                guidance:
+                  "Ask before offering housing, devices, rides, childcare, internet access, or social events. Help with calls and paperwork without pressuring the person to take risky shortcuts.",
+              },
+              {
+                role: "Friend, mentor, or advocate",
+                icon: "📋",
+                guidance:
+                  "Help with transportation, printing, job leads, calendars, and notes. Avoid legal advice unless you are qualified. Encourage written verification and professional help when rules are unclear.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking a supporter for specific help"
+            tone="family"
+            context="Use this when you need help but do not want to overwhelm someone."
+            script={`I am trying to stay organized and avoid mistakes. I do not need you to solve everything.\n\nThis week, could you help me with one specific thing: [ride / printing / phone call / documents / job center visit / grocery trip]?\n\nIf something involves housing, internet, travel, children, or supervision rules, I need to verify it before we do it.`}
+          />
+
+          <GuideCallout tone="family" icon="💛" title="Supporters: do not take confusion personally">
+            <p>
+              A person coming home may be overwhelmed, embarrassed, defensive,
+              or afraid of making a mistake. Keep help concrete: one ride, one
+              folder, one phone call, one appointment, one meal, one calm
+              conversation.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="daily-living"
+          number="10"
+          title="Daily living and stability"
+          subtitle="Small routines make big obligations easier to carry."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Reentry can feel like every hour belongs to an agency, employer,
+              landlord, treatment provider, or crisis. A simple routine lowers
+              the chance of missed appointments, impulsive choices, conflict,
+              and paperwork loss.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="daily-living-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "routine",
+                label: "Create a basic daily routine.",
+                helper:
+                  "Wake time, medication, meals, work search, treatment, check-ins, exercise, sleep, and one paperwork task.",
+              },
+              {
+                id: "transportation",
+                label: "Plan transportation for the whole week.",
+                helper:
+                  "Write down bus routes, ride times, backup rides, bike routes, walking time, and what to do if a ride falls through.",
+              },
+              {
+                id: "food",
+                label: "Stabilize food access.",
+                helper: (
+                  <span>
+                    First step: call{" "}
+                    <InlineResourceLink href="https://www.211.org/">
+                      211
+                    </InlineResourceLink>
+                    , apply for SNAP through the{" "}
+                    <InlineResourceLink href="https://www.fns.usda.gov/snap/state-directory">
+                      USDA SNAP state directory
+                    </InlineResourceLink>{" "}
+                    if eligible, and ask about food pantries.
+                  </span>
+                ),
+              },
+              {
+                id: "budget",
+                label: "Make a one-page budget.",
+                helper:
+                  "Track rent, phone, transportation, food, medications, supervision fees, treatment fees, court payments, and emergency savings.",
+              },
+              {
+                id: "wins",
+                label: "Track small wins.",
+                helper:
+                  "Examples: first week without a missed appointment, first job application, first paycheck, first document replaced, first treatment session completed.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="long-term"
+          number="11"
+          title="Long-term growth"
+          subtitle="Once the urgent pieces are steadier, build toward education, work paths, relief options, and community."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Long-term reentry is not only about avoiding violations. It is
+              also about creating a life that is stable enough to support
+              accountability, relationships, work, health, and purpose.
+            </p>
+
+            <p>
+              Move slowly. Some education, licensing, volunteering, housing,
+              travel, and relief paths have registry or supervision issues that
+              must be checked first.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="long-term-checklist"
+            title="Action checklist"
+            columns={1}
+            items={[
+              {
+                id: "goals",
+                label: "Set one 30-day goal, one 6-month goal, and one 1-year goal.",
+                helper:
+                  "Make each goal specific and measurable. Example: replace ID, complete 20 job applications, finish a certificate, save $300, or attend all treatment sessions.",
+              },
+              {
+                id: "education",
+                label: "Explore GED, adult education, trade school, community college, or certificate programs.",
+                helper:
+                  "Ask about admission rules, background checks, campus restrictions, online access, financial aid, and whether supervision approval is needed.",
+              },
+              {
+                id: "pell",
+                label: "Check Pell Grant and financial aid options.",
+                helper: (
+                  <span>
+                    First step: review the{" "}
+                    <InlineResourceLink href="https://studentaid.gov/understand-aid/types/grants/pell">
+                      Federal Student Aid Pell Grant page
+                    </InlineResourceLink>
+                    , then ask the school’s financial aid office about your
+                    specific situation.
+                  </span>
+                ),
+              },
+              {
+                id: "relief",
+                label: "Learn whether registry relief, reduction, sealing, expungement, appeal, or supervision modification is possible.",
+                helper: (
+                  <span>
+                    This is state- and case-specific. First step: use{" "}
+                    <InlineResourceLink href="https://www.usa.gov/legal-aid">
+                      USAGov’s legal aid finder
+                    </InlineResourceLink>{" "}
+                    to look for free or low-cost legal help, then ask about
+                    qualified attorneys, court self-help resources, or official
+                    state information.
+                  </span>
+                ),
+              },
+              {
+                id: "community",
+                label: "Build community carefully.",
+                helper:
+                  "Choose spaces that are lawful, stable, and low-drama. Verify restrictions before volunteering, joining groups involving minors, or using online communities.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="12"
+          title="Common mistakes to avoid"
+          subtitle="Most mistakes are not about bad intentions. They happen when pressure, confusion, and silence collide."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Signing a lease or moving before address approval.",
+                whyItMatters:
+                  "An address can be unavailable because of supervision, registry, local rules, household members, or program policy.",
+                betterMove:
+                  "Write down the exact address and ask the supervising officer or registry office before paying money or moving in.",
+              },
+              {
+                mistake: "Using a phone, computer, email, or social media before checking device and internet rules.",
+                whyItMatters:
+                  "Technology rules may be case-specific and may involve monitoring, approval, app limits, or internet restrictions.",
+                betterMove:
+                  "Ask what devices and online uses are allowed, what must be installed, and what must be reported.",
+              },
+              {
+                mistake: "Relying on a verbal answer without notes.",
+                whyItMatters:
+                  "Staff change, memories differ, and agencies may later ask for proof.",
+                betterMove:
+                  "Save the name, date, office, number, exact question, exact answer, and written confirmation when possible.",
+              },
+              {
+                mistake: "Waiting until medication runs out.",
+                whyItMatters:
+                  "Medication gaps can destabilize sleep, mood, health, treatment, work, and appointments.",
+                betterMove:
+                  "Ask for refills, bridge prescriptions, clinic appointments, and insurance help before the last week of medication.",
+              },
+              {
+                mistake: "Letting shame stop you from asking for help.",
+                whyItMatters:
+                  "Isolation increases the chance of missed deadlines, unstable housing, emotional crisis, and bad decisions.",
+                betterMove:
+                  "Ask for one concrete task: a ride, a printed form, a phone call, a meal, a job-center visit, or help organizing papers.",
+              },
+              {
+                mistake: "Assuming another registrant’s rule is your rule.",
+                whyItMatters:
+                  "Conditions can differ by state, court, supervision office, offense, risk level, date of conviction, and individual order.",
+                betterMove:
+                  "Verify your own written conditions and your own agency instructions before acting.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offline"
+          number="13"
+          title="If internet access is limited or restricted"
+          subtitle="This guide includes websites, but the safer path may be phone, paper, in-person help, or a trusted helper."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Offline and low-internet options"
+            note={
+              <span>
+                Use these options if you are incarcerated, newly released,
+                phone-only, without a printer, under device restrictions, or
+                unsure whether internet use is allowed.
+              </span>
+            }
+            items={[
+              "Call 211 from any phone and ask for housing, food, utility, medical, transportation, and reentry support.",
+              "Visit or call an American Job Center and ask for paper job leads, resume help, interview practice, and staff support.",
+              "Ask SSA, DMV/state ID offices, Medicaid/SNAP offices, and vital records offices for mail, phone, or in-person options.",
+              "Ask a trusted supporter to print forms, but do not have them create accounts, use addresses, or submit information that could affect registration or supervision until verified.",
+              "Use a public library for printing, computer classes, paper maps, and local information only if public computer or internet use is allowed under your conditions.",
+              "Keep a paper calendar, paper phone list, paper folder, and handwritten call log.",
+              "Ask agencies to mail forms or appointment letters when possible.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Supporters should protect privacy too">
+            <p>
+              Do not post updates, addresses, case details, employer names,
+              treatment information, or registry-related questions on social
+              media. Ask privately, document carefully, and share only what is
+              needed with the person or agency that can actually help.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="14"
+          title="Resources and next steps"
+          subtitle="Start with official sources, then local programs and legal help."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Immediate and practical help"
+            description={
+              <span>
+                These links are starting points. For supervision or registration
+                decisions, verify with the authority responsible for your case
+                before relying on general information.
+              </span>
+            }
+            resources={quickResources}
+          />
+
+          <ResourceLinkGrid
+            title="Documents, banking, benefits, work, and health"
+            resources={[
+              {
+                label: "Replace vital documents and ID",
+                href: "https://www.usa.gov/replace-vital-documents",
+                description:
+                  "Use this to find state ID, vital records, and document replacement starting points.",
+                badge: "Official",
+              },
+              {
+                label: "Replace Social Security card",
+                href: "https://www.ssa.gov/number-card/replace-card",
+                description:
+                  "SSA replacement-card page, including online and phone/in-person paths.",
+                badge: "Official",
+              },
+              {
+                label: "CFPB second-chance bank account explainer",
+                href: "https://www.consumerfinance.gov/ask-cfpb/what-is-a-second-chance-bank-account-and-who-is-it-for-en-2153/",
+                description:
+                  "Plain-language explanation of second-chance bank accounts and who they may help.",
+                badge: "Banking",
+              },
+              {
+                label: "Bank On certified accounts directory",
+                href: "https://joinbankon.org/accounts/",
+                description:
+                  "Directory of certified low-cost accounts by state and institution.",
+                badge: "Banking",
+              },
+              {
+                label: "FDIC GetBanked",
+                href: "https://www.fdic.gov/getbanked",
+                description:
+                  "FDIC consumer resource on safe banking access and Bank On-certified account features.",
+                badge: "Banking",
+              },
+              {
+                label: "Apply for Medicaid or CHIP",
+                href: "https://www.healthcare.gov/medicaid-chip/",
+                description:
+                  "Marketplace and state Medicaid agency application paths.",
+                badge: "Health",
+              },
+              {
+                label: "Find SNAP office",
+                href: "https://www.fns.usda.gov/snap/state-directory",
+                description:
+                  "USDA state directory for food assistance application information.",
+                badge: "Food",
+              },
+              {
+                label: "Apply for Lifeline",
+                href: "https://www.lifelinesupport.org/how-to-apply/",
+                description:
+                  "Phone or internet discount application options. Verify device/internet rules first.",
+                badge: "Phone",
+              },
+              {
+                label: "CareerOneStop Justice-Impacted resources",
+                href: "https://www.careeronestop.org/JusticeImpacted/default.aspx",
+                description:
+                  "Career, training, and job search resources for people with records.",
+                badge: "Jobs",
+              },
+              {
+                label: "Work Opportunity Tax Credit",
+                href: "https://www.irs.gov/businesses/small-businesses-self-employed/work-opportunity-tax-credit",
+                description:
+                  "Employer tax credit information that may help with some hires.",
+                badge: "Employer tool",
+              },
+              {
+                label: "Federal Bonding Program",
+                href: "https://bonds4jobs.com/",
+                description:
+                  "No-cost fidelity bonds for some hard-to-place job seekers and employers.",
+                badge: "Employer tool",
+              },
+              {
+                label: "SAMHSA National Helpline",
+                href: "https://www.samhsa.gov/find-help/helplines/national-helpline",
+                description:
+                  "Free, confidential treatment referral and information service.",
+                phone: "1-800-662-HELP",
+                badge: "Health",
+              },
+            ]}
+          />
+
+          <ResourceLinkGrid
+            title="Registry, supervision, and legal verification"
+            resources={[
+              {
+                label: "NSOPW public registry search",
+                href: "https://www.nsopw.gov/",
+                description:
+                  "DOJ public search across state, territory, tribal, and D.C. public registry websites.",
+                badge: "Registry",
+              },
+              {
+                label: "SMART Office SORNA current law",
+                href: "https://smart.ojp.gov/sorna/current-law",
+                description:
+                  "Federal SORNA framework. State and local registration rules still need case-specific verification.",
+                badge: "Federal",
+              },
+              {
+                label: "SORNA in-person registration requirements",
+                href: "https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification",
+                description:
+                  "Federal SMART Office explanation of in-person registration and verification concepts.",
+                badge: "Federal",
+              },
+              {
+                label: "U.S. Courts cybercrime-related conditions",
+                href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-cybercrime-related-conditions-probation-and-supervised",
+                description:
+                  "Useful background for understanding why some cases involve computer or internet-related supervision conditions.",
+                badge: "Court",
+              },
+              {
+                label: "Find affordable legal aid",
+                href: "https://www.usa.gov/legal-aid",
+                description:
+                  "Federal starting point for free or low-cost legal help.",
+                badge: "Legal aid",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Use this next when you need a deeper plan for finding housing with registry restrictions.",
+                to: "/resources/housing-search-guide",
+              },
+              {
+                title: "Job Search Strategies",
+                description:
+                  "Use this next for applications, interviews, disclosure planning, and realistic job pathways.",
+                to: "/resources/job-search-guide",
+              },
+              {
+                title: "Mental Health & Support Directory",
+                description:
+                  "Use this for crisis, therapy, support, and family mental-health resources.",
+                to: "/resources/mental-health-directory",
+              },
+              {
+                title: "Family & Allies Guide",
+                description:
+                  "Use this with supporters who want to help without accidentally creating risk.",
+                to: "/resources/family-support-guide",
+              },
+              {
+                title: "Interstate Moving Guide",
+                description:
+                  "Use this before moving or traveling across state lines while registered or supervised.",
+                to: "/resources/interstate-moving-guide",
+              },
+              {
+                title: "Financial Planning Guide",
+                description:
+                  "Use this for budgeting, debt, banking, credit, payments, and long-term stability.",
+                to: "/resources/financial-planning-guide",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sources"
+          number="15"
+          title="Sources and verification"
+          subtitle="These are starting points for action and verification, not substitutes for case-specific legal advice."
+        />
+
+        <GuideSectionCard>
+          <SourceList
+            note={
+              <span>
+                Links were selected for official status, practical usefulness,
+                or direct relevance to reentry tasks. Registry and supervision
+                rules still require case-specific verification with the
+                authority responsible for the person’s conditions.
+              </span>
+            }
+            sources={sourceLinks}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
-
-export default ReentryChecklist;
