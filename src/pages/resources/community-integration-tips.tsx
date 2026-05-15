@@ -1,715 +1,950 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import GuideLayout from "../../components/layouts/GuideLayout";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
 import {
-  SectionBand,
-  SectionCard,
-  Callout,
-  Checklist,
-  SourcesOffline,
-  TOC,
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  RedFlagGreenFlag,
 } from "../../components/solar";
 
-const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
+const sourceLinks = {
+  belongingReentry: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/",
+  selfStigma: "https://pubmed.ncbi.nlm.nih.gov/38212591/",
+  cjilReentry: "https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/",
+  fortuneComingHome: "https://fortunesociety.org/coming-home/",
+  fortuneSociety: "https://fortunesociety.org/",
+  honestJobs: "https://www.honestjobs.com/",
+  peerMentorReentry: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/peer-mentored-community-reentry-reduces-recidivism",
+  volunteeringReview: "https://www.ncbi.nlm.nih.gov/books/NBK159301/",
+  volunteeringSocialMental:
+    "https://pmc.ncbi.nlm.nih.gov/articles/PMC10159229/",
+  mnCosaEvaluation:
+    "https://mn.gov/doc/assets/2018%20MnCOSA%20Outcome%20Evaluation_tcm1089-326700.pdf",
+  cosaOverview:
+    "https://csgjusticecenter.org/publications/circles-of-support-and-accountability/",
+  cosaSystematicReview:
+    "https://pubmed.ncbi.nlm.nih.gov/26369806/",
+  lifeline988: "https://988lifeline.org/",
+  samhsaHelpline: "https://www.samhsa.gov/find-help/helplines/national-helpline",
+};
 
 export default function CommunityIntegrationGuide(): JSX.Element {
+  const handlePrint = () => window.print();
+
   return (
-    <GuideLayout
-      title="Community Integration Tips"
-      description="Practical advice for rebuilding relationships and becoming an active member of your community after incarceration or registration."
-      keywords="reentry, community integration, stigma, relationships, rehabilitation"
-      date="Oct 5, 2025"
-      readTime="20 min"
-      badge="📘 RESOURCE GUIDE"
-      lede="Practical, evidence-based strategies to rebuild trust, navigate stigma, and engage meaningfully in community life."
-      showTOC={true}
-    >
-      <div className="mb-6">
-        <TOC />
-      </div>
-
-      {/* I. Introduction */}
-      <SectionBand title="Introduction: The Challenge of Rebuilding a Life" emblem="🌱" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Reintegration is a process, not a test. Small, consistent actions
-            (showing up on time, keeping promises) rebuild trust far more than
-            speeches. See the idea of “belonging as practice” echoed in
-            qualitative reentry research on being seen as a person, not a label.{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/"
-              target="_blank"
-              rel="noopener"
-            >
-              Evidence
-            </a>
-            .
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            Expect friction: stigma, self-doubt, and social awkwardness are
-            common. Research shows stigma (including <strong>self-stigma</strong>)
-            undermines mental health and participation; naming it helps you
-            counter it.{" "}
-            <a
-              className={linkCls}
-              href="https://onlinelibrary.wiley.com/doi/full/10.1002/cbm.2326"
-              target="_blank"
-              rel="noopener"
-            >
-              Overview
-            </a>
-            .
-          </p>
-        </Callout>
-
-        <Callout variant="reminder" title="Reminder" icon="🕒">
-          <p>
-            Progress is uneven. Anchor to routines (sleep, meals, movement) so
-            setbacks don’t derail you. Practical routines make social steps
-            easier.
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* II. Understanding Social Reintegration */}
-      <SectionBand title="Understanding Social Reintegration" emblem="🤝" />
-      <SectionCard>
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            “Community” = relationships + roles + routines. It’s less about
-            convincing everyone, more about <strong>safe participation</strong>{" "}
-            and steady contribution.
-          </p>
-        </Callout>
-
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Evidence consistently links <strong>pro-social ties</strong> (mentors,
-            peer groups, faith/service circles) with improved adjustment and
-            lower risk.{" "}
-            <a
-              className={linkCls}
-              href="https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/"
-              target="_blank"
-              rel="noopener"
-            >
-              Summary
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://www.continuumct.org/files/news/Sells%20et%20al%202020%20Mentors%20Reduce%20Recidivism%20SCPS%20pg%205.pdf"
-              target="_blank"
-              rel="noopener"
-            >
-              Peer-Mentor RCT
-            </a>
-            .
-          </p>
-        </Callout>
-
-        <Callout variant="reminder" title="Reminder" icon="🕒">
-          <p>
-            Pair social goals with stability supports (housing, health,
-            transport). Integrated (“wraparound”) help outperforms single-issue
-            services.{" "}
-            <a
-              className={linkCls}
-              href="https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/"
-              target="_blank"
-              rel="noopener"
-            >
-              Evidence
-            </a>
-            .
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* III. Rebuilding Relationships */}
-      <SectionBand title="Rebuilding Relationships" emblem="💬" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            <strong>Friendships:</strong> Start small — one or two people you
-            trust or meet through shared activities (support groups, community
-            centers, volunteering, faith circles). Boundaries are healthy; you
-            don’t owe full disclosure to everyone.
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            <strong>Family bonds:</strong> Reliability beats speeches. Keep
-            appointments, communicate respectfully, and let actions rebuild
-            confidence. Family healing often benefits from structured support
-            (counseling, mediated conversations).
-          </p>
-        </Callout>
-
-        <Callout variant="privacy" title="Privacy" icon="🔒">
-          <p>
-            It’s okay to limit contact with people who pry, gossip, or weaponize
-            your past. Protecting your peace aligns with evidence on reducing
-            stress load that otherwise “gets under the skin.”{" "}
-            <a
-              className={linkCls}
-              href="https://www.sciencedirect.com/science/article/abs/pii/S0277953619306136"
-              target="_blank"
-              rel="noopener"
-            >
-              Background
-            </a>
-            .
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* IV. Dating and Romantic Relationships */}
-      <SectionBand title="Dating and Romantic Relationships" emblem="💞" />
-      <SectionCard>
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            <strong>Readiness check:</strong> Build confidence in non-romantic
-            interactions first. Skills from CBT-style interventions (breathing,
-            reframing) improve emotional regulation during stressful
-            conversations.{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8376657/"
-              target="_blank"
-              rel="noopener"
-            >
-              Overview
-            </a>
-            .
-          </p>
-        </Callout>
-
-        <Callout variant="privacy" title="Privacy" icon="🔒">
-          <p>
-            <strong>Disclosure:</strong> Be honest when it’s legally/ethically
-            required, but time it thoughtfully. Keep it brief and calm; pivot to
-            who you are now (stability, values, boundaries).
-          </p>
-        </Callout>
-
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            <strong>Safety:</strong> Anyone who pressures you to hide, rush
-            intimacy, or <strong>break supervision rules</strong> is not a safe
-            partner. Move on without self-blame.
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* V. Being a Good Neighbor */}
-      <SectionBand title="Being a Good Neighbor" emblem="🏡" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Small courtesies (greeting, tidy shared spaces, noise awareness)
-            create normalcy and ease. You don’t need to make announcements —
-            consistency speaks for itself.
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            If curiosity or gossip arises, keep responses short or decline
-            politely. Over-explaining can escalate tension; quiet steadiness
-            usually de-escalates.
-          </p>
-        </Callout>
-
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            Harassment is not “part of it.” Document incidents and seek help
-            (supervision officer, mediation, local advocacy). Steady
-            participation + safety planning fosters durable belonging.
-          </p>
-        </Callout>
-      </SectionCard>
-{/* VI. Rebuilding Your Reputation at Work */}
-      <SectionBand title="Rebuilding Your Reputation at Work" emblem="💼" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Show up as reliable, professional, and coachable. These behaviors
-            reshape how coworkers see you—identity change (“I’m a dependable
-            teammate”) drives desistance more than income alone.
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            If disclosure is required, keep it factual and time-boxed, then
-            pivot to your role and goals. Mentor or ally relationships at work
-            improve climate and advancement prospects.
-          </p>
-        </Callout>
-
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            Document inappropriate comments or differential treatment; consult
-            HR or employment-rights resources. Quality workplace ties matter
-            more than staying in a toxic environment. (For job search support,
-            see{" "}
-            <a
-              className={linkCls}
-              href="https://www.honestjobs.com/for-job-seekers"
-              target="_blank"
-              rel="noopener"
-            >
-              Honest Jobs
-            </a>
-            .)
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* VII. Participating in Community Life */}
-      <SectionBand title="Participating in Community Life" emblem="🌍" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            <strong>Volunteering</strong> is a fast route to purpose +
-            connection. Reviews associate volunteering with improved mental
-            health and even reduced mortality.{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10159229/"
-              target="_blank"
-              rel="noopener"
-            >
-              Systematic review
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/1471-2458-13-773"
-              target="_blank"
-              rel="noopener"
-            >
-              Public health view
-            </a>
-            .
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            Start with low-risk roles: food pantries, cleanups, animal shelters,
-            community gardens. Confirm the site is legally permissible and clear
-            about your role.
-          </p>
-        </Callout>
-
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            Avoid placements that are vague about duties or nudge you toward
-            restricted zones. Legitimate orgs vet and respect boundaries.
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* VIII. Religious and Spiritual Belonging */}
-      <SectionBand title="Religious and Spiritual Belonging" emblem="🙏" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Healthy faith communities emphasize compassion, inclusion, and
-            service—often providing structure and belonging during reentry.
-          </p>
-        </Callout>
-
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            Ask leaders about their stance on reentry and acceptance. Consider
-            small-group settings where relationships grow through weekly contact
-            and shared tasks.
-          </p>
-        </Callout>
-
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            Leave spaces that shame, coerce confessions, or use your past as
-            control. Private practices (meditation, prayer, gratitude) also
-            build resilience.
-          </p>
-        </Callout>
-      </SectionCard>
-
-      {/* IX. Managing Rejection, Setbacks, and Stigma */}
-      <SectionBand
-        title="Managing Rejection, Setbacks, and Stigma"
-        emblem="🧩"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="A Practical Guide to Belonging, Relationships, and Reintegration | The SOLAR Project"
+        description="A practical SOLAR guide for rebuilding routines, relationships, roles, and repair after conviction, incarceration, supervision, or registry life."
+        keywords="reentry, reintegration, community integration, relationships after incarceration, registry support, family support, belonging after conviction"
       />
-      <SectionCard>
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            Rejection = friction, not a verdict on your worth. Some doors
-            re-open after people witness your consistency; others won’t—that’s
-            about their fear, not your value.
-          </p>
-        </Callout>
 
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Use micro-skills from CBT-style approaches: 3-breath reset, STOP
-            skill, values check, and “next small step.” Psychological skills are
-            associated with better post-release functioning.{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8376657/"
-              target="_blank"
-              rel="noopener"
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            A Practical Guide to Belonging, Relationships, and Reintegration
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Meaningful community life is not only something to hope for. It is
+            something people can practice, plan for, protect, and rebuild with
+            support, boundaries, accountability, and time.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              Review
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
             </a>
-            .
-          </p>
-        </Callout>
+          </div>
+        </div>
+      </section>
 
-        <Callout variant="reminder" title="Reminder" icon="🕒">
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
+
+        <GuideIntro title="Start Here" icon="🧭">
           <p>
-            Keep a weekly routine: movement, journaling, therapy/peer group,
-            creative outlet. Routines blunt the impact of setbacks.
+            Reintegration is a process, not a test. Small, consistent actions —
+            showing up on time, keeping promises, respecting boundaries, and
+            asking clear questions — rebuild trust more than speeches do.
           </p>
-        </Callout>
-      </SectionCard>
 
-      {/* X. Building Supportive Networks */}
-      <SectionBand title="Building Supportive Networks" emblem="🌐" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
           <p>
-            Peer mentors and structured circles build confidence and navigation
-            skills; an RCT found <strong>lower recidivism</strong> when
-            mentorship augmented standard reentry services.{" "}
-            <a
-              className={linkCls}
-              href="https://www.continuumct.org/files/news/Sells%20et%20al%202020%20Mentors%20Reduce%20Recidivism%20SCPS%20pg%205.pdf"
-              target="_blank"
-              rel="noopener"
-            >
-              Trial
-            </a>
-            .
+            Some people will not accept you. Some rejection may come from stigma,
+            fear, or the label itself. Some boundaries may also come from real
+            harm, broken trust, safety concerns, court orders, supervision rules,
+            or community policies. This guide does not promise that everyone will
+            come around.
           </p>
-        </Callout>
 
-        <Callout variant="info" title="Info" icon="ℹ️">
           <p>
-            <strong>CoSA (Circles of Support & Accountability):</strong> Evidence
-            is mixed but promising across contexts; Minnesota’s work and newer
-            syntheses suggest potential benefits when implemented well.{" "}
-            <a
-              className={linkCls}
-              href="https://mn.gov/doc/assets/2018%20MnCOSA%20Outcome%20Evaluation_tcm1089-326700.pdf"
-              target="_blank"
-              rel="noopener"
-            >
-              MN report
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://www.tandfonline.com/doi/full/10.1080/2997965X.2025.2537643"
-              target="_blank"
-              rel="noopener"
-            >
-              2025 review
-            </a>
-            .
+            It does offer a path. Reintegration means building a lawful, stable,
+            accountable life with the people and places where trust, safety,
+            boundaries, and contribution are possible.
           </p>
-        </Callout>
+        </GuideIntro>
 
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
+        <GuideCallout
+          tone="reentry"
+          icon="🌱"
+          title="Hope without false promises"
+        >
           <p>
-            Quick screen for fit: clear roles, trained facilitators, boundaries,
-            legal compliance, grievance process, and{" "}
-            <strong>no pressure</strong> to ignore restrictions.
+            You do not have to rely only on hope. Hope matters, but reintegration
+            also has skills: routines, relationships, roles, and repair. You can
+            actively manage your own return to community life. Families, friends,
+            neighbors, faith communities, employers, and supporters can help by
+            offering clear boundaries, practical support, dignity, and realistic
+            chances to participate.
           </p>
-        </Callout>
-      </SectionCard>
-{/* XI. Giving Yourself Permission to Belong Again */}
-      <SectionBand title="Giving Yourself Permission to Belong Again" emblem="💖" />
-      <SectionCard>
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            You have a right to stability, friendship, and peace. Identity
-            shifts through repeated, ordinary acts of reliability and service.
-          </p>
-        </Callout>
+        </GuideCallout>
 
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            Voice and narrative matter: people thrive when seen as individuals
-            with strengths and goals. Build small rituals of belonging (weekly
-            coffee, monthly service night).{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/"
-              target="_blank"
-              rel="noopener"
-            >
-              Qualitative synthesis
-            </a>
-            .
-          </p>
-        </Callout>
+        <QuickStartPanel
+          title="Your first moves"
+          subtitle="Start small enough that you can repeat it. Consistency matters more than intensity."
+          icon="🛠️"
+          urgentActions={[
+            <span key="routine">
+              Choose one stabilizing routine for this week: sleep, meals,
+              movement, appointments, medication, journaling, treatment, work, or
+              a daily check-in.
+            </span>,
+            <span key="person">
+              Identify one safer person or place where contact is respectful,
+              lawful, and not built around shame or secrecy.
+            </span>,
+            <span key="verify">
+              Before joining a group, volunteering, visiting a location, dating,
+              traveling, or taking a role near children or restricted places,
+              verify supervision, registry, court, and local rules.
+            </span>,
+          ]}
+          nextActions={[
+            <span key="useful">
+              Pick one low-risk way to be useful: clean up a shared space, help a
+              relative with a task, attend a support meeting, apply for work, or
+              show up consistently somewhere appropriate.
+            </span>,
+            <span key="script">
+              Prepare a short script for questions, boundaries, or disclosure so
+              you are not inventing words under pressure.
+            </span>,
+            <span key="notes">
+              Start a paper or phone note for names, dates, rules, approvals,
+              denials, schedules, and next steps.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              You do not have to solve your whole life this week. Build one
+              repeatable step, then protect it.
+            </span>
+          }
+        />
 
-        <Callout variant="reminder" title="Reminder" icon="🕒">
-          <p>
-            You don’t have to earn your humanity—you practice it. Keep going.
-          </p>
-        </Callout>
-      </SectionCard>
+        <OverviewCards
+          columns={4}
+          cards={[
+            {
+              eyebrow: "Building block 1",
+              title: "Routines",
+              icon: "🔁",
+              tone: "reentry",
+              description:
+                "Repeated habits make life steadier. A routine gives you something to return to after stress, rejection, or confusion.",
+            },
+            {
+              eyebrow: "Building block 2",
+              title: "Relationships",
+              icon: "🤝",
+              tone: "family",
+              description:
+                "Trust rebuilds slowly through honesty, boundaries, time, and repeated evidence that you can be safe and reliable.",
+            },
+            {
+              eyebrow: "Building block 3",
+              title: "Roles",
+              icon: "🧰",
+              tone: "info",
+              description:
+                "People become known through what they do: worker, neighbor, parent, friend, student, volunteer, faith member, or helper.",
+            },
+            {
+              eyebrow: "Building block 4",
+              title: "Repair",
+              icon: "🧭",
+              tone: "legal",
+              description:
+                "Repair means accepting accountability, respecting limits, making amends where appropriate, and not demanding instant trust.",
+            },
+          ]}
+        />
 
-      {/* XII. Recognizing Red Flags */}
-      <SectionBand title="Recognizing Red Flags" emblem="🚩" />
-      <SectionCard>
-        <Callout variant="warning" title="Boundaries" icon="⚠️">
-          <p>
-            Watch for: (1) exploitative relationships (money/favors/secrets),
-            (2) pressure to lie or break rules, (3) leaders who shame or
-            control, (4) “support” groups demanding money/loyalty, (5) emotional
-            burnout marked by isolation and relentless negative self-talk.
-          </p>
-        </Callout>
+<GuideSectionHeader
+          id="stages"
+          number="1"
+          title="Rebuilding belonging by stage"
+          subtitle="Community life changes over time. The goal is not to rush intimacy or acceptance; it is to build safe, lawful, repeatable participation."
+        />
 
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            <strong>Response plan:</strong> Pause → Step back → Seek support
-            (mentor/counselor/advocate) → Reset boundaries. Discernment protects
-            your progress.
-          </p>
-        </Callout>
-      </SectionCard>
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="What to focus on at each stage"
+            stages={[
+              {
+                stage: "First days and weeks",
+                icon: "🧱",
+                whatChanges:
+                  "Life may feel narrow, watched, awkward, or unstable. You may be dealing with supervision, housing, work, family tension, transportation, and shame all at once.",
+                whatToDo:
+                  "Stabilize the basics. Keep appointments. Learn your actual conditions. Avoid rushing into dating, volunteering, disclosure, or intense new groups before you understand the rules and risks.",
+              },
+              {
+                stage: "First few months",
+                icon: "🗓️",
+                whatChanges:
+                  "Patterns start to form. People may notice consistency. Some relationships may open; others may stay distant or closed.",
+                whatToDo:
+                  "Choose a few steady roles: work, treatment, family responsibilities, support meetings, faith participation, school, or low-risk service. Practice scripts for boundaries, gossip, and private questions.",
+              },
+              {
+                stage: "Longer-term rebuilding",
+                icon: "🌿",
+                whatChanges:
+                  "Belonging becomes less about one dramatic breakthrough and more about durable routines, trustworthy relationships, and meaningful contribution.",
+                whatToDo:
+                  "Deepen the relationships and roles that are lawful, healthy, and mutual. Keep verifying before major changes. Use setbacks as information, not proof that rebuilding is impossible.",
+              },
+            ]}
+          />
 
-      {/* XIII. Resources & Tools */}
-      <SectionBand title="Resources & Tools" emblem="🧭" />
-      <SectionCard>
-        <Callout variant="reminder" title="Reminder" icon="🕒">
-          <p>
-            Verify local legality and supervision conditions before engaging.
-          </p>
-        </Callout>
+          <SoftDivider />
 
-        <ul className="list-disc pl-6 space-y-2">
-          <li>
-            <strong>Reentry & Peer Support</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://fortunesociety.org/coming-home/"
-              target="_blank"
-              rel="noopener"
-            >
-              The Fortune Society – Reentry: Coming Home
-            </a>{" "}
-            and{" "}
-            <a
-              className={linkCls}
-              href="https://fortunesociety.org/"
-              target="_blank"
-              rel="noopener"
-            >
-              Fortune Society (main)
-            </a>{" "}
-            — housing, employment, services, and community programs.
-          </li>
+          <GuideProse>
+            <p>
+              The first goal is not to become accepted everywhere. It is to
+              become steady enough to notice where participation is possible,
+              where boundaries are needed, and where the safest next step is to
+              walk away.
+            </p>
 
-          <li>
-            <strong>Employment</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://www.honestjobs.com/for-job-seekers"
-              target="_blank"
-              rel="noopener"
-            >
-              Honest Jobs (Fair-Chance Employment)
-            </a>{" "}
-            — national job platform for people with records.
-          </li>
+            <p>
+              Quality matters more than quantity. A few reliable relationships, a
+              repeatable routine, and one meaningful role can do more for
+              reintegration than chasing universal approval.
+            </p>
+          </GuideProse>
 
-          <li>
-            <strong>Community Models</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://mn.gov/doc/assets/2018%20MnCOSA%20Outcome%20Evaluation_tcm1089-326700.pdf"
-              target="_blank"
-              rel="noopener"
-            >
-              2018 MN CoSA Evaluation
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://www.tandfonline.com/doi/full/10.1080/2997965X.2025.2537643"
-              target="_blank"
-              rel="noopener"
-            >
-              2025 CoSA Overview
-            </a>
-            .
-          </li>
+          <PullQuoteBlock>
+            Reintegration does not mean convincing everyone to accept you. It
+            means building a lawful, stable, accountable life where trust,
+            safety, boundaries, and contribution are possible.
+          </PullQuoteBlock>
+        </GuideSectionCard>
 
-          <li>
-            <strong>Mental Health & Crisis</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://988lifeline.org/"
-              target="_blank"
-              rel="noopener"
-            >
-              988 Suicide & Crisis Lifeline
-            </a>{" "}
-            — call/text/chat 988 (24/7).{" "}
-            <a
-              className={linkCls}
-              href="https://www.samhsa.gov/find-help/helplines"
-              target="_blank"
-              rel="noopener"
-            >
-              SAMHSA Helpline (1-800-662-HELP)
-            </a>
-            .
-          </li>
+        <GuideSectionHeader
+          id="relationships"
+          number="2"
+          title="Relationships that help you rebuild"
+          subtitle="Healthy relationships are not built on secrecy, humiliation, pressure, or instant forgiveness. They are built through care, honesty, boundaries, and time."
+        />
 
-          <li>
-            <strong>Volunteering – Evidence & Ideas</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10159229/"
-              target="_blank"
-              rel="noopener"
-            >
-              2023 Systematic Review
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/1471-2458-13-773"
-              target="_blank"
-              rel="noopener"
-            >
-              Public Health Review
-            </a>
-            .
-          </li>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Start small. One or two people who are steady, respectful, and
+              realistic can matter more than a large social circle. Look for
+              relationships where you are encouraged to follow the law, keep your
+              commitments, tell the truth where it is needed, and stay connected
+              to support.
+            </p>
 
-          <li>
-            <strong>Stigma & Skills</strong> —{" "}
-            <a
-              className={linkCls}
-              href="https://onlinelibrary.wiley.com/doi/full/10.1002/cbm.2326"
-              target="_blank"
-              rel="noopener"
-            >
-              Self-Stigma and Health Impacts (2024)
-            </a>{" "}
-            |{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8376657/"
-              target="_blank"
-              rel="noopener"
-            >
-              Psychological Skills & Post-Release Outcomes (2021)
-            </a>
-            .
-          </li>
-        </ul>
-      </SectionCard>
+            <p>
+              You do not owe your full story to every neighbor, coworker,
+              acquaintance, or group member. At the same time, some situations
+              may require legal, ethical, or practical disclosure. The safer
+              approach is to know your conditions, understand the setting, and
+              get advice before guessing.
+            </p>
+          </GuideProse>
 
-      {/* XIV. Important Reminders */}
-      <SectionBand title="Important Reminders" emblem="📎" />
-      <SectionCard>
-        <Callout variant="reminder" title="Reminder" icon="🕒">
-          <p>
-            Reintegration isn’t about earning permission to exist—it’s about{" "}
-            <strong>showing up</strong> safely and consistently.
-          </p>
-        </Callout>
+          <GuideCallout
+            tone="privacy"
+            icon="💙"
+            title="Dating and romantic relationships need extra care"
+          >
+            <p>
+              Dating can be part of a meaningful life, but it should not be rushed
+              as proof that reintegration is working. Before dating, be honest
+              with yourself about readiness, loneliness, legal limits, treatment
+              guidance, supervision rules, internet or contact restrictions, and
+              whether the relationship can be built without secrecy or pressure.
+            </p>
 
-        <Callout variant="success" title="Positive" icon="🌱">
-          <p>
-            Quality over quantity: a few good relationships, a reliable routine,
-            and one meaningful role (work/volunteer/faith) beat chasing
-            universal approval.
-          </p>
-        </Callout>
+            <p>
+              Disclosure is not one-size-fits-all. Some people may need to know
+              because of safety, parenting, housing, legal, or relationship
+              realities. Others may not be entitled to private details. When the
+              stakes are high, talk with a trusted attorney, supervision officer,
+              treatment provider, or counselor before guessing.
+            </p>
+          </GuideCallout>
 
-        <Callout variant="info" title="Info" icon="ℹ️">
-          <p>
-            If you feel stuck, scale down to the <strong>next small step</strong>{" "}
-            and ask for help. Progress compounds.
-          </p>
-        </Callout>
-      </SectionCard>
+          <RedFlagGreenFlag
+            red={
+              <ul>
+                <li>
+                  Someone pressures you to lie, hide required information, break
+                  conditions, or ignore supervision or registry rules.
+                </li>
+                <li>
+                  A person, leader, group, or romantic partner uses your past to
+                  control you, shame you, demand money, or isolate you from other
+                  support.
+                </li>
+                <li>
+                  A relationship moves very fast, asks for secrecy, or makes you
+                  feel like you must accept unsafe treatment because you are
+                  lucky anyone accepts you.
+                </li>
+              </ul>
+            }
+            green={
+              <ul>
+                <li>
+                  People respect clear rules, written policies, legal limits, and
+                  personal boundaries.
+                </li>
+                <li>
+                  Support includes ordinary life: rides, meals, reminders,
+                  conversation, work leads, accountability, and encouragement.
+                </li>
+                <li>
+                  You are treated as a whole person without anyone denying harm,
+                  ignoring safety, or reducing you permanently to a label.
+                </li>
+              </ul>
+            }
+          />
 
-      {/* Data Sources */}
-      <SectionBand title="Data Sources" emblem="📚" />
-      <SectionCard>
-        <ul className="list-disc pl-6">
-          <li>
-            PMC – Belonging and Reintegration —{" "}
-            <a
-              className={linkCls}
-              href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/"
-              target="_blank"
-              rel="noopener"
-            >
-              https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/
-            </a>
-          </li>
-          <li>
-            Wiley – Self-Stigma & Health —{" "}
-            <a
-              className={linkCls}
-              href="https://onlinelibrary.wiley.com/doi/full/10.1002/cbm.2326"
-              target="_blank"
-              rel="noopener"
-            >
-              https://onlinelibrary.wiley.com/doi/full/10.1002/cbm.2326
-            </a>
-          </li>
-          <li>
-            CJIL – Reentry Effectiveness —{" "}
-            <a
-              className={linkCls}
-              href="https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/"
-              target="_blank"
-              rel="noopener"
-            >
-              https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/
-            </a>
-          </li>
-        </ul>
-      </SectionCard>
+          <GuideCallout tone="family" icon="🏠" title="For family and loved ones">
+            <p>
+              Support does not mean pretending nothing happened. It also does not
+              mean making shame the center of every conversation. Useful support
+              is steady and specific: help with transportation, paperwork,
+              meals, schedules, emotional steadiness, and honest boundaries.
+            </p>
+          </GuideCallout>
 
-      {/* Related Reading */}
-      <SectionBand title="Related Reading" emblem="🔗" />
-      <SectionCard>
-        <ul className="list-disc pl-6">
-          <li>
-            <Link className={linkCls} to="/blog/community-ties">
-              Community Ties (Blog)
-            </Link>
-          </li>
-          <li>
-            <Link className={linkCls} to="/guides/employment-rights">
-              Employment Rights Guide
-            </Link>
-          </li>
-        </ul>
-      </SectionCard>
-    </GuideLayout>
+          <RoleGuidanceGrid
+            title="How different people can help"
+            roles={[
+              {
+                role: "Person rebuilding community life",
+                icon: "🧭",
+                guidance:
+                  "Focus on what you can practice: showing up, keeping promises, verifying rules, choosing safer people, accepting lawful boundaries, and taking the next small step after setbacks.",
+              },
+              {
+                role: "Family or loved one",
+                icon: "🧡",
+                guidance:
+                  "Offer practical help without becoming the whole supervision system. Support routines, transportation, paperwork, meals, treatment, and honest conversations. Do not pressure the person to ignore rules or move faster than trust allows.",
+              },
+              {
+                role: "Friend, neighbor, or coworker",
+                icon: "🤝",
+                guidance:
+                  "Practice ordinary respect. You do not have to become a counselor or investigator. Clear boundaries, fair treatment, and not spreading gossip can make reintegration safer and more realistic.",
+              },
+              {
+                role: "Faith or community leader",
+                icon: "🕊️",
+                guidance:
+                  "Use clear policies, trained leadership, appropriate boundaries, and written expectations. Compassion and safety belong together. Do not confuse forgiveness with secrecy or lack of accountability.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="community"
+          number="3"
+          title="Neighbors, work, volunteering, and community spaces"
+          subtitle="Community is built through roles. Choose roles that are lawful, clear, low-risk, and repeatable."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Being a good neighbor often starts with ordinary things: greeting
+              people politely, keeping shared spaces clean, managing noise,
+              following housing rules, and not over-explaining. Consistency can
+              lower tension over time, even when some people remain distant.
+            </p>
+
+            <p>
+              At work, reliability matters. Show up on time, be coachable, take
+              feedback seriously, and document inappropriate comments or
+              different treatment when needed. A toxic workplace is not the only
+              place where you can rebuild.
+            </p>
+
+            <p>
+              Volunteering, faith communities, support meetings, service
+              projects, community gardens, food pantries, animal shelters, and
+              cleanups can offer structure and meaning. But not every role is
+              safe or allowed. Roles involving children, schools, parks, housing,
+              transportation, internet access, private contact, or overnight
+              events may require extra verification.
+            </p>
+
+            <p>
+              Faith and spiritual communities can be powerful places of support
+              when they combine compassion with clear boundaries. They can also
+              become harmful when leaders demand secrecy, use shame as control,
+              pressure someone to ignore rules, or treat forgiveness as a reason
+              to skip safety planning. You are allowed to leave coercive,
+              humiliating, or unsafe spaces.
+            </p>
+          </GuideProse>
+
+          <VerifyBeforeActing
+            title="Verify before joining, volunteering, traveling, dating, or disclosing"
+            whoToAsk={
+              <span>
+                Ask the person or office with actual authority: supervising
+                officer, registering agency, attorney, treatment provider, court
+                clerk, housing provider, volunteer coordinator, faith/community
+                leader, or employer policy contact.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask the narrow question tied to the action you are about to take:
+                “Am I allowed to be at this location, in this role, with these
+                duties, on this schedule, with these people, under my current
+                conditions?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the date, name, title, department, phone number or email,
+                written policy, approval, denial, and any conditions or limits
+                you were given.
+              </span>
+            }
+          />
+
+<DocumentPacket
+            title="Keep a reintegration folder"
+            intro={
+              <span>
+                A folder turns confusion into proof. Use paper, phone notes,
+                screenshots, email folders, or all of them.
+              </span>
+            }
+            categories={[
+              {
+                title: "Rules and permissions",
+                items: [
+                  "Supervision conditions, registry instructions, court orders, treatment rules, and written permissions.",
+                  "Names, dates, and notes from calls with agencies, supervisors, employers, housing providers, or community organizations.",
+                ],
+              },
+              {
+                title: "Stability records",
+                items: [
+                  "Work schedules, pay stubs, appointment records, class schedules, certificates, volunteer hours, and attendance notes.",
+                  "Housing documents, transportation plans, medication lists, crisis contacts, and support meeting information.",
+                ],
+              },
+              {
+                title: "Problem records",
+                items: [
+                  "Harassment notes, screenshots, voicemails, letters, unfair treatment records, and dates of concerning incidents.",
+                  "Steps you took to report, de-escalate, ask for help, or move away from unsafe situations.",
+                ],
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts"
+          number="4"
+          title="Scripts for hard moments"
+          subtitle="Stress makes it harder to find words. Short scripts help you stay calm, honest, and boundaried."
+        />
+
+        <GuideSectionCard>
+          <ScriptBox
+            title="Asking a community group about eligibility"
+            tone="neutral"
+            context="Use this when you want to participate but need to avoid guessing about rules, restrictions, or policies."
+            script={`Hello, my name is [Name]. I am interested in participating, and I want to make sure I follow all rules and policies.\n\nIs there someone I can speak with privately about eligibility, boundaries, and any written requirements for this role or activity?`}
+          />
+
+          <ScriptBox
+            title="Responding to gossip or intrusive questions"
+            tone="privacy"
+            context="Use this when someone asks for details in a public, unsafe, or unnecessary setting."
+            script={`I understand people may have questions. I am focused on living responsibly, following my conditions, and rebuilding my life.\n\nI am not going to discuss private details here.`}
+          />
+
+          <ScriptBox
+            title="Asking family for practical support"
+            tone="family"
+            context="Use this when loved ones want to help but everyone is overwhelmed or unclear."
+            script={`What helps me most right now is steady support: rides, reminders, meals, help with paperwork, and honest conversations.\n\nI also need us to respect any legal, supervision, treatment, or safety boundaries. I am not asking you to pretend this is easy. I am asking if we can focus on the next practical step.`}
+          />
+
+          <ScriptBox
+            title="Supporter script for welcoming someone back"
+            tone="reentry"
+            context="Use this when explaining a balanced support approach to relatives, neighbors, faith groups, or community members."
+            script={`We are trying to support stability and accountability. We are not asking anyone to ignore harm, safety, or legal restrictions.\n\nWe are asking for clear rules, dignity, and a fair chance to participate where appropriate.`}
+          />
+
+          <GuideCallout
+            tone="reminder"
+            icon="💬"
+            title="Keep scripts short"
+          >
+            <p>
+              A script is not a courtroom argument. It should name the issue, ask
+              one clear question, avoid oversharing, and help you take notes. If
+              the person cannot answer, ask who can.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="setbacks"
+          number="5"
+          title="When rejection, stigma, or setbacks happen"
+          subtitle="Rejection can hurt badly. It is also information, not a verdict on whether your life can have meaning."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some doors will not open. Some people may never want contact. Some
+              family members may need distance. Some employers, landlords,
+              groups, or neighbors may react to the label instead of the whole
+              person. Sometimes a boundary is connected to real past conduct,
+              harm, or broken trust. Sometimes it is stigma. Often it is mixed.
+            </p>
+
+            <p>
+              You do not have to pretend rejection does not hurt. But do not let
+              one rejection push you toward unsafe people, secrecy, isolation, or
+              giving up on all community. Scale down to the next lawful, steady
+              step.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="setback-micro-skills"
+            title="A small reset when shame or panic spikes"
+            columns={1}
+            items={[
+              {
+                id: "pause",
+                label: "Pause before reacting.",
+                helper:
+                  "Do not send the angry text, argue with gossip, quit the job, disappear from support, or make a major decision while flooded.",
+              },
+              {
+                id: "breathe",
+                label: "Breathe and name what is happening.",
+                helper:
+                  "Try: “This is shame,” “This is fear,” “This is rejection,” or “This is a setback, not the whole story.”",
+              },
+              {
+                id: "facts",
+                label: "Separate facts from conclusions.",
+                helper:
+                  "Fact: one person said no. Conclusion to challenge: nobody will ever accept me.",
+              },
+              {
+                id: "support",
+                label: "Contact one steady support person.",
+                helper:
+                  "Use someone who helps you slow down, stay lawful, and choose the next safe step.",
+              },
+              {
+                id: "next-step",
+                label: "Choose one next small action.",
+                helper:
+                  "Return to a routine, attend an appointment, write down what happened, verify a rule, or make one safe contact.",
+              },
+            ]}
+          />
+
+          <CommonMistakes
+            title="Common mistakes that can make reintegration harder"
+            mistakes={[
+              {
+                mistake: "Trying to explain everything to everyone.",
+                whyItMatters:
+                  "Over-explaining can escalate conflict, invite gossip, or create disclosure problems.",
+                betterMove:
+                  "Use short scripts. Share details only when legally, ethically, or practically needed.",
+              },
+              {
+                mistake: "Rushing into the first group or person that offers acceptance.",
+                whyItMatters:
+                  "Instant acceptance can feel relieving, but unsafe people and groups may use shame, secrecy, money, or loyalty to control you.",
+                betterMove:
+                  "Look for clear rules, trained leadership, written expectations, and respect for boundaries.",
+              },
+              {
+                mistake: "Hiding restrictions from people who need to know.",
+                whyItMatters:
+                  "Guessing or hiding can create legal, housing, employment, supervision, or safety risk.",
+                betterMove:
+                  "Verify the specific action before relying on your assumptions. Save the answer when possible.",
+              },
+              {
+                mistake: "Giving up on all community after one rejection.",
+                whyItMatters:
+                  "A painful no can feel final, but it may only tell you that one person, place, or role is not workable.",
+                betterMove:
+                  "Pause, talk to a steady support person, adjust the plan, and choose the next small step.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌤️" title="A setback plan">
+            <p>
+              Try this sequence: pause, breathe, write down what happened, check
+              whether any rule or safety issue is involved, talk to a trusted
+              support person, and choose one small action that keeps you
+              connected to your routine.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="plan"
+          number="6"
+          title="Make a weekly belonging plan"
+          subtitle="Belonging grows through repeatable practice. A simple weekly plan keeps hope connected to action."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="weekly-belonging-plan"
+            title="This week, I will:"
+            columns={1}
+            items={[
+              {
+                id: "routine",
+                label: "Repeat one stabilizing routine.",
+                helper:
+                  "Examples: sleep schedule, meals, movement, treatment, work, medication, journaling, or a daily check-in.",
+              },
+              {
+                id: "contact",
+                label: "Contact one safe or steady person.",
+                helper:
+                  "Keep it simple: a text, call, coffee, meeting, ride request, or honest check-in.",
+              },
+              {
+                id: "place",
+                label: "Show up responsibly in one appropriate place.",
+                helper:
+                  "Examples: work, class, appointment, support meeting, faith service, library, community center, or family task.",
+              },
+              {
+                id: "verify",
+                label: "Verify one rule, boundary, or permission before acting.",
+                helper:
+                  "Do this before volunteering, joining activities, changing housing, traveling, dating, or entering restricted settings.",
+              },
+              {
+                id: "contribute",
+                label: "Choose one way to be useful.",
+                helper:
+                  "Help with a chore, apply for work, assist a relative, clean a shared space, attend a service project, or follow through on a promise.",
+              },
+              {
+                id: "setback",
+                label: "Name one setback without letting it define the week.",
+                helper:
+                  "Write down what happened, what it means, what it does not mean, and the next small step.",
+              },
+              {
+                id: "record",
+                label: "Save one important note or document.",
+                helper:
+                  "Names, dates, approvals, denials, policies, schedules, incident notes, or contact information.",
+              },
+            ]}
+          />
+
+<OfflineOptions
+            title="If internet access, privacy, or transportation is limited"
+            icon="📎"
+            note={
+              <span>
+                Reintegration planning should still work for people who are
+                phone-only, supervised, recently released, without a printer, or
+                relying on family for help.
+              </span>
+            }
+            items={[
+              "Use a paper calendar or notebook for appointments, calls, approvals, denials, and weekly goals.",
+              "Ask agencies, employers, treatment providers, or community groups for mailed forms or printed policies.",
+              "Use a public library, reentry office, legal aid office, clerk’s office, or trusted helper for printing and forms when appropriate.",
+              "Keep a written contact list with supervision, registry office, attorney, treatment provider, crisis line, family contacts, transportation options, and support meetings.",
+              "When privacy is limited, write only what you need to remember and store sensitive papers somewhere safer.",
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              You do not have to earn your humanity. You practice belonging
+              through ordinary acts of stability, honesty, contribution, and care.
+              Keep going.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="7"
+          title="Resources and next steps"
+          subtitle="Use outside resources for support, but verify local rules and personal conditions before relying on any general guide."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Outside resources"
+            description={
+              <span>
+                These links can help with reentry support, employment, crisis
+                support, mental health, peer support, and research. Availability
+                and relevance vary by location.
+              </span>
+            }
+            resources={[
+              {
+                label: "The Fortune Society — Coming Home",
+                href: sourceLinks.fortuneComingHome,
+                badge: "Reentry",
+                description:
+                  "Reentry information and services from a long-running nonprofit focused on people impacted by incarceration.",
+              },
+              {
+                label: "The Fortune Society",
+                href: sourceLinks.fortuneSociety,
+                badge: "Support",
+                description:
+                  "Programs and advocacy related to housing, employment, education, health, and community reintegration.",
+              },
+              {
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                badge: "Employment",
+                description:
+                  "A fair-chance employment platform for people with records. Use it as a job-search tool, not legal advice.",
+              },
+              {
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
+                badge: "Crisis",
+                phone: "Call or text 988",
+                description:
+                  "Free crisis support for people in suicidal crisis, emotional distress, or mental health crisis.",
+              },
+              {
+                label: "SAMHSA National Helpline",
+                href: sourceLinks.samhsaHelpline,
+                badge: "Helpline",
+                phone: "1-800-662-HELP (4357)",
+                description:
+                  "Treatment referral and information service for mental health and substance-use concerns.",
+              },
+              {
+                label: "Council of State Governments Justice Center — CoSA",
+                href: sourceLinks.cosaOverview,
+                badge: "Community model",
+                description:
+                  "Plain-language overview of Circles of Support and Accountability and related implementation materials.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Employment Rights and Job Search Support",
+                description:
+                  "Use this with the work and reputation-building sections when employment is part of your reintegration plan.",
+                to: "/resources/employment-rights",
+              },
+              {
+                title: "Housing Search and Stability",
+                description:
+                  "Housing affects routines, relationships, transportation, supervision, and community participation.",
+                to: "/resources/housing-search",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "A companion guide for loved ones trying to offer practical support without ignoring boundaries or safety.",
+                to: "/resources/family-support",
+              },
+              {
+                title: "Mental Health and Crisis Resources",
+                description:
+                  "Use this if shame, isolation, rejection, or stress is becoming too heavy to carry alone.",
+                to: "/resources/mental-health-resources",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <SourceList
+            title="Sources and verification"
+            note={
+              <span>
+                Research on reentry, volunteering, mentorship, stigma, and
+                community support is useful but should not be overread. Local
+                law, supervision, registry requirements, court orders, and agency
+                policies can change the answer for a specific person.
+              </span>
+            }
+            sources={[
+              {
+                label: "Belonging and reintegration research",
+                href: sourceLinks.belongingReentry,
+                description:
+                  "Supports the guide’s framing that being seen as a person, not only a label, matters during reintegration.",
+              },
+              {
+                label: "Self-stigma of incarceration and community integration",
+                href: sourceLinks.selfStigma,
+                description:
+                  "Supports discussion of stigma, self-stigma, mental health, and participation barriers.",
+              },
+              {
+                label: "UNC Criminal Justice Innovation Lab — Reentry effectiveness",
+                href: sourceLinks.cjilReentry,
+                description:
+                  "Supports careful discussion of reentry services, employment, housing, treatment, and wraparound support.",
+              },
+              {
+                label: "Peer-mentored community reentry",
+                href: sourceLinks.peerMentorReentry,
+                description:
+                  "Supports cautious discussion of mentoring, social navigation, and structured reentry support.",
+              },
+              {
+                label: "Volunteering as a public health intervention",
+                href: sourceLinks.volunteeringReview,
+                description:
+                  "Supports the general idea that volunteering and contribution can support wellbeing, while still requiring legal and practical verification.",
+              },
+              {
+                label: "Volunteering and social, mental, and physical health",
+                href: sourceLinks.volunteeringSocialMental,
+                description:
+                  "Additional research context on volunteering and health-related outcomes.",
+              },
+              {
+                label: "Minnesota Circles of Support and Accountability evaluation",
+                href: sourceLinks.mnCosaEvaluation,
+                description:
+                  "Supports cautious discussion of structured circles, roles, boundaries, and accountability models.",
+              },
+              {
+                label: "Council of State Governments Justice Center — CoSA",
+                href: sourceLinks.cosaOverview,
+                description:
+                  "Plain-language overview and implementation materials for Circles of Support and Accountability.",
+              },
+              {
+                label: "CoSA systematic review abstract",
+                href: sourceLinks.cosaSystematicReview,
+                description:
+                  "Research context on CoSA outcomes. Use carefully because the evidence base is limited and implementation-dependent.",
+              },
+              {
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
+                description:
+                  "Official crisis support resource for emotional distress or suicidal crisis.",
+              },
+              {
+                label: "SAMHSA National Helpline",
+                href: sourceLinks.samhsaHelpline,
+                description:
+                  "Official helpline for mental health and substance-use treatment referral.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="This is a guide, not legal advice">
+            <p>
+              General reentry guidance cannot tell you what your specific court
+              order, supervision condition, registry obligation, housing rule, or
+              local policy allows. Before acting on something that could create
+              legal, housing, employment, travel, supervision, or registration
+              risk, verify the specific step with the right authority and save
+              the answer when possible.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+      </main>
+    </div>
   );
 }
