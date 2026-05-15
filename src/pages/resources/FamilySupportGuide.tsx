@@ -1,708 +1,1155 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
+  DualDepthSection,
+} from "../../components/solar";
+
+const sourceLinks = {
+  acluPoliceRights: "https://www.aclu.org/know-your-rights/stopped-by-police",
+  fdOrg: "https://www.fd.org/",
+  bjsRecidivism:
+    "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
+  rainnChildrenTeens:
+    "https://rainn.org/facts-statistics-the-scope-of-the-problem/statistics-children-teens/",
+  smartCurrentLaw: "https://smart.ojp.gov/sorna/current-law",
+  ecfrRegistration: "https://www.ecfr.gov/current/title-28/chapter-I/part-72",
+  niccc: "https://niccc.nationalreentryresourcecenter.org/",
+  cfpbCreditFreeze:
+    "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/answers/key-terms/#credit-freeze",
+  optOutPrescreen: "https://www.optoutprescreen.com/",
+  lifeline988: "https://988lifeline.org/",
+  findTreatment: "https://findtreatment.gov/",
+  saferSociety: "https://safersociety.org/foundation/treatment-referrals/",
+  narsol: "https://narsol.org/",
+  acsol: "https://all4consolaws.org/",
+};
 
 export default function FamilySupportGuide(): JSX.Element {
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="The SOLAR Family & Allies Guide | The SOLAR Project"
-        description="Supporting a loved one through a sex-offense case—from arrest to reentry (and beyond). A grounded, action-oriented roadmap for families and allies, with scripts, checklists, and links."
-        keywords="Family guide, allies, sex offense case, arrest, pretrial, incarceration, reentry, registry, scripts, checklists, resources"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Family & Allies Guide | The SOLAR Project"
+        description="A calm, practical guide for families and loved ones supporting someone through a sex-offense case, incarceration, reentry, registry rules, and long-term stability."
+        keywords="family support, sex offense case, reentry, registry, loved one arrested, incarceration support, supervision, SOLAR Project"
       />
 
-      <style jsx>{`
-        @media print {
-          .no-print { display: none !important; }
-          .print-bg-none { background: none !important; }
-          .print-shadow-none { box-shadow: none !important; }
-          .avoid-break { page-break-inside: avoid; break-inside: avoid; }
-        }
-        @page { margin: 0.5in; }
-        a { text-decoration: underline; }
-      `}</style>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 text-white py-16 print-bg-none">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-4">
-            <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-              Family & Allies Guide
-            </span>
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             The SOLAR Family & Allies Guide
           </h1>
-          <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
-            <span className="font-semibold">Supporting a loved one through a sex-offense case—from arrest to reentry (and beyond)</span>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Supporting a loved one through a sex-offense case, incarceration,
+            reentry, registry rules, and the long work of staying steady.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center no-print">
-            <button 
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-100 transition-colors flex items-center justify-center"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Print Guide
+              🖨️ Print Guide
             </button>
-            <Link
-              to="/resources"
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors flex items-center justify-center"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to Resources
-            </Link>
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600 print-bg-none"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      {/* Important Notice */}
-      <section className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg avoid-break">
-            <div className="flex items-center mb-3">
-              <svg className="w-6 h-6 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h2 className="text-xl font-bold text-blue-800">Important Notice</h2>
-            </div>
-            <p className="text-blue-700">
-              <em>Note: This is not legal advice. Laws and procedures vary by state and case. Use this as a grounded, action-oriented roadmap, and confirm steps with your attorney.</em>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
+
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            If you are reading this, you probably already see your loved one as
+            more than a charge, conviction, prison sentence, or registry listing.
+            That does not mean ignoring harm, excusing behavior, or pretending
+            the road ahead is simple. It means you are trying to support a whole
+            person through a serious situation while protecting yourself, your
+            household, and the people around you.
+          </p>
+
+          <p>
+            You may feel shocked, loyal, angry, embarrassed, afraid, protective,
+            numb, or unsure. Those reactions can exist at the same time. This
+            guide is not therapy and it is not legal advice. It is a practical
+            starting place: what to do first, what to avoid, what to document,
+            what to verify, and how to communicate when the pressure is high.
+          </p>
+        </GuideIntro>
+
+        <PullQuoteBlock>
+          Loving someone through this may not be easy. But meaningful
+          relationships are rarely simple. Support can be compassionate, honest,
+          boundaried, and practical at the same time.
+        </PullQuoteBlock>
+
+        <QuickStartPanel
+          title="If this just happened"
+          subtitle="Use these steps before trying to explain, fix, defend, or debate the situation."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Do not discuss case facts with police, agents, relatives, social
+              media, jail phones, texts, or recorded messaging systems. The{" "}
+              <a
+                href={sourceLinks.acluPoliceRights}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                ACLU’s police-rights guidance
+              </a>{" "}
+              is a useful starting point for understanding why silence and legal
+              counsel matter.
+            </span>,
+            <span>
+              Use simple words: “I am not answering questions. I want a lawyer.”
+              Then stop talking. If officers search anyway, stay calm, do not
+              interfere, and write down names, agencies, badge numbers, and what
+              happened as soon as possible.
+            </span>,
+            <span>
+              If your loved one is already in custody, keep calls focused on
+              safety, logistics, money, medications, children, housing, and
+              attorney contact. Save case facts for the lawyer.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Start locating counsel. For federal cases, begin with{" "}
+              <a
+                href={sourceLinks.fdOrg}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                Federal Defender resources
+              </a>
+              . For state cases, ask about court-appointed counsel or look for a
+              defense attorney with real sex-offense case experience.
+            </span>,
+            <span>
+              Gather release and stability documents: ID, lease or mortgage,
+              pay stubs, medical needs, caregiving responsibilities, treatment
+              enrollment, and names of people who can provide practical support.
+            </span>,
+            <span>
+              Prepare for possible no-contact orders, device limits, internet
+              restrictions, location rules, GPS, curfews, surprise searches, or
+              evaluation requirements. Do not guess; verify.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              You do not have to solve the whole future today. Protect the legal
+              case first. Protect the household next. Move one square at a time.
+            </span>
+          }
+        />
+
+        <GuideCallout tone="family" icon="💛" title="You are allowed to care">
+          <p>
+            Caring about your loved one does not require you to minimize harm,
+            ignore victims, violate court orders, or abandon your own needs.
+            You are allowed to love someone and still need facts, boundaries,
+            support, privacy, and time.
+          </p>
+        </GuideCallout>
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "First priority",
+              title: "Protect the case",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Avoid recorded case talk, direct contact with protected people, public statements, and guesses about legal rules.",
+            },
+            {
+              eyebrow: "Second priority",
+              title: "Protect the household",
+              icon: "🏠",
+              tone: "privacy",
+              description:
+                "Stabilize children, housing, money, devices, mail, privacy, transportation, and documentation.",
+            },
+            {
+              eyebrow: "Longer work",
+              title: "Build steady support",
+              icon: "🧱",
+              tone: "family",
+              description:
+                "Support works best when it is honest, lawful, consistent, boundaried, and connected to treatment and accountability.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="grounding"
+          number="1"
+          title="Facts that may help you stay grounded"
+          subtitle="Facts do not erase accountability. They help families resist panic, stigma, and hopelessness."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Public conversation often treats people accused or convicted of
+              sexual misconduct as uniquely hopeless or uniquely certain to
+              repeat the same kind of harm. The data does not support that.
+              National{" "}
+              <a
+                href={sourceLinks.bjsRecidivism}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                Bureau of Justice Statistics prison-release data
+              </a>{" "}
+              shows same-category rearrest for sexual misconduct was far lower
+              than same-category rearrest for drug, property, or violent offense
+              categories.
             </p>
-          </div>
-        </div>
-      </section>
 
-      {/* Main Sections */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <p>
+              That does not mean risk is zero. It means families should make
+              decisions from facts, treatment needs, supervision rules, safety
+              planning, boundaries, housing stability, sobriety, internet and
+              device rules, child-contact rules, and the person’s actual
+              behavior — not from the myth that everyone with this kind of case
+              is doomed to reoffend.
+            </p>
+          </GuideProse>
 
-          {/* Section 1 - Quick Start */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">1</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Quick-start: the first 48 hours</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-6">
-              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-red-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-red-900 mb-2">If police or agents call/text/knock:</p>
-                    <ul className="space-y-2 text-red-800">
-                      <li>Don't explain, debate, or "clear things up." Say: <em>"I'm invoking the right to remain silent. I want a lawyer."</em> Then stop talking (<a href="https://www.aclu.org/know-your-rights/what-do-if-youre-stopped-police" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800 underline">ACLU</a>).</li>
-                      <li>If your loved one is already in custody, <strong>do not</strong> discuss facts of the case on recorded jail phones or messages. Save facts for the attorney.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-blue-900 mb-2">Get counsel moving, fast:</p>
-                    <ul className="space-y-2 text-blue-800">
-                      <li><strong>If it's federal:</strong> contact your district's <a href="https://www.fd.org/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Federal Public Defender</a> office (they regularly handle sex-offense cases).</li>
-                      <li><strong>If it's state and money is tight:</strong> court-appointed defenders are an option; if hiring privately, choose an attorney with demonstrated sex-offense experience (review actual case dockets, not just marketing).</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-yellow-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-yellow-900 mb-2">Bail/release prep (day 1–2):</p>
-                    <ul className="space-y-2 text-yellow-800">
-                      <li>Gather pay stubs, lease/mortgage, proof of caregiving, treatment enrollment, and letters of community support to help with release arguments.</li>
-                      <li>Expect possible <strong>no-contact orders, GPS/curfew, internet/device limits, and surprise searches</strong> as pretrial conditions.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DualDepthSection
+            simpleTitle="Plain-language grounding"
+            deepTitle="Why this matters"
+            simple={
+              <p>
+                A charge, conviction, or registry listing is serious, but it is
+                not a complete description of a person, a family, a relationship,
+                or a future.
+              </p>
+            }
+            deep={
+              <p>
+                “Sex offense” is a broad legal category. Cases differ by facts,
+                ages, conduct, risk, treatment needs, plea posture, supervision
+                conditions, and state law. Precise language helps families make
+                safer decisions than public labels do.
+              </p>
+            }
+          />
 
-          {/* Section 2 - Ground Truths */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">2</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Ground truths to steady you</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-6">
-              <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-green-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  <div>
-                    <p className="text-green-800 font-semibold mb-2">
-                      <strong>Most people convicted of sex offenses do not commit a new sex crime after release.</strong>
-                    </p>
-                    <p className="text-green-700">
-                      In a major DOJ study, only about <strong>8%</strong> were arrested for a new sexual offense over nine years (<a href="https://bjs.ojp.gov/library/publications/recidivism-persons-released-prison-34-states-2012-2017" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800 underline">BJS report</a>).
-                    </p>
-                  </div>
-                </div>
-              </div>
+          <GuideCallout tone="research" icon="📌" title="Real safety is specific">
+            <p>
+              Real prevention is not built by imagining one type of monster.{" "}
+              <a
+                href={sourceLinks.rainnChildrenTeens}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                RAINN’s child and teen statistics
+              </a>{" "}
+              show why prevention has to pay attention to access, secrecy,
+              familiarity, power, and trust — not only strangers or registry
+              labels.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <div>
-                    <p className="text-blue-800 font-semibold mb-2">
-                      <strong>Most child sexual abuse is by someone the child knows</strong>, not a stranger.
-                    </p>
-                    <p className="text-blue-700">
-                      Reference: <a href="https://www.rainn.org/statistics/perpetrators-sexual-violence" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">RAINN Statistics</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
+<GuideSectionHeader
+          id="support-with-boundaries"
+          number="2"
+          title="Support without making things worse"
+          subtitle="Care is strongest when it is honest, lawful, and boundaried."
+        />
 
-              <div className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-purple-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <div>
-                    <p className="text-purple-800 font-semibold mb-2">
-                      <strong>Families get targeted too.</strong>
-                    </p>
-                    <p className="text-purple-700">
-                      In one national study, <strong>44%</strong> of registrants reported harassment or threats, and <strong>30%</strong> said their families experienced it as well (<a href="https://www.researchgate.net/publication/237510245_Collateral_Damage_Family_Members_of_Registered_Sex_Offenders" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Levenson & Tewksbury, 2009</a>).
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Support does not mean becoming the lawyer, investigator,
+              therapist, probation officer, public-relations manager, or rescuer.
+              It means helping with the next safe step while refusing to create
+              new risk.
+            </p>
 
-              <div className="bg-teal-50 border-l-4 border-teal-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-teal-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  <div>
-                    <p className="text-teal-800 font-semibold mb-2">
-                      <strong>Family contact matters.</strong>
-                    </p>
-                    <p className="text-teal-700">
-                      Regular visitation is associated with <strong>lower recidivism</strong> after release (<a href="https://nij.ojp.gov/topics/articles/importance-families-and-social-support-networking-reentry" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:text-teal-800 underline">NIJ summary</a>).
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            <p>
+              In practice, that usually means: do not discuss case facts on
+              recorded lines; do not contact an alleged victim or protected
+              person; do not post about the case; do not hide devices, evidence,
+              travel, employment, housing, or rule violations; and do not rely on
+              “someone said it was probably fine.”
+            </p>
+          </GuideProse>
 
-          {/* Section 3 - Communication Playbook */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">3</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Your communication playbook</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-6">
-              <div className="bg-indigo-50 border-l-4 border-indigo-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-indigo-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-indigo-900 mb-2">With your loved one (recorded calls/visits):</p>
-                    <ul className="space-y-2 text-indigo-800">
-                      <li>"I love you. I won't discuss case facts on this line. Let's save everything for your lawyer. Here's what I <em>can</em> do today: (1) call attorneys, (2) gather paperwork, (3) check on housing/work/kids."</li>
-                      <li>"I hear you're scared. Me too. We'll move one square at a time—lawyer first, basic needs next."</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-red-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-red-900 mb-2">With police/agents:</p>
-                    <ul className="space-y-2 text-red-800">
-                      <li>"I'm not answering questions. I want a lawyer." (Repeat. Do not consent to searches. If they search anyway, stay calm, don't interfere; note names/badge numbers.)</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-green-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-green-900 mb-2">With kids (truthful, age-appropriate):</p>
-                    <ul className="space-y-2 text-green-800">
-                      <li>"Dad/Mom is in a serious kind of trouble with the law. Adults are working on it. You are safe and loved. You can ask questions anytime."</li>
-                      <li>If there's a no-contact order: "For now, the rules say you can't see/talk to ___; it's not because of you. We'll keep you updated."</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-blue-900 mb-2">With extended family & friends:</p>
-                    <ul className="space-y-2 text-blue-800">
-                      <li>"We're following the legal process and keeping details private. If you want to help, here's how: rides for kids, letters for the court, showing up without judgment."</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-purple-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-purple-900 mb-2">With employer/school:</p>
-                    <ul className="space-y-2 text-purple-800">
-                      <li>"A legal matter requires my loved one's absence/modified schedule. We're complying with court orders. I'll keep you posted only on what affects work/school logistics."</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <DoDontJudgment
+            dos={[
+              "Use lawyers, court orders, supervision conditions, and written instructions as your source of truth.",
+              "Keep notes with names, dates, agencies, phone numbers, and what was said.",
+              "Help with logistics: rides, childcare, paperwork, medications, housing searches, treatment appointments, and calendars.",
+              "Set boundaries early: what you can do, what you cannot do, and what you will not risk.",
+            ]}
+            donts={[
+              "Do not debate case facts with police, relatives, reporters, neighbors, employers, or online commenters.",
+              "Do not contact protected people, witnesses, alleged victims, or their families unless counsel says it is allowed.",
+              "Do not ignore small rules about devices, passwords, locations, travel, school events, curfews, or appointments.",
+              "Do not promise children, relatives, or your loved one an outcome you cannot control.",
+            ]}
+            judgment={[
+              "You can decide how much contact is healthy for you.",
+              "You can support accountability and still reject public cruelty.",
+              "You can love someone and still require treatment, honesty, compliance, and changed behavior.",
+              "You can step back if the relationship becomes unsafe, manipulative, or impossible to sustain.",
+            ]}
+          />
 
-          {/* Section 4 - Protecting Privacy */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">4</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Protecting your household & privacy</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-4">
-              <div className="bg-purple-50 border-l-4 border-purple-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-purple-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-purple-800">
-                      <li><strong>Data broker opt-outs:</strong> use consolidated services (e.g., <a href="https://www.optoutprescreen.com/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">OptOutPrescreen</a>, <a href="https://privacyrights.org/resources/online-information-brokers" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Privacy Rights Clearinghouse list</a>).</li>
-                      <li><strong>Credit freeze:</strong> free through <a href="https://www.equifax.com/personal/credit-report-services/credit-freeze/" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Equifax</a>, <a href="https://www.experian.com/freeze/center.html" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">Experian</a>, and <a href="https://www.transunion.com/credit-freeze" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:text-purple-800 underline">TransUnion</a>.</li>
-                      <li><strong>P.O. box</strong> for mail, tighten social media privacy, remove home address where possible.</li>
-                      <li>If harassment escalates: document, save screenshots, and report. Ask your attorney before taking civil action.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <VerifyBeforeActing
+            title="Verify before acting"
+            whoToAsk={
+              <span>
+                The defense attorney, court clerk, supervising officer,
+                treatment provider, registry office, school administrator,
+                housing provider, or agency with actual authority over the
+                question.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask the narrow question tied to the action you are about to
+                take: “Is this address allowed?” “Can this person attend this
+                school event?” “Are these devices permitted?” “What travel
+                approval is required?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the rule, date, person’s name, department, written answer,
+                confirmation number, email, screenshot, form, or note from the
+                call. When possible, ask for the answer in writing.
+              </span>
+            }
+          />
+        </GuideSectionCard>
 
-          {/* Section 5 - Pretrial */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">5</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Pretrial: what families can do</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-6">
-              <div className="bg-orange-50 border-l-4 border-orange-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-orange-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-orange-900 mb-2">Conditions to expect:</p>
-                    <ul className="space-y-2 text-orange-800">
-                      <li>No-contact orders, restricted internet/computer use, device searches, location restrictions, mandated evaluations, or polygraphs.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-blue-900 mb-2">Practical supports:</p>
-                    <ul className="space-y-2 text-blue-800">
-                      <li>Transportation to court, childcare, pillbox for meds, appointment calendars, "court-day folder" with essentials.</li>
-                      <li>If internet/device limits apply, create separate devices for kids' schoolwork; log usage.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <GuideSectionHeader
+          id="roles"
+          number="3"
+          title="What different supporters can do"
+          subtitle="Not every supporter has the same role, capacity, or boundary."
+        />
 
-          {/* Section 6 - Incarceration */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">6</div>
-                <div>
-                  <h2 className="text-2xl font-bold">If incarceration happens</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-gray-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-gray-800">
-                      <li><strong>Visits:</strong> Prioritize steady, predictable visits or letters. Contact near release is especially protective against reoffending (<a href="https://nij.ojp.gov/topics/articles/importance-families-and-social-support-networking-reentry" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800 underline">NIJ</a>).</li>
-                      <li><strong>What to send/do:</strong> Photos (if permitted), hobby books, reentry prep (IDs checklist, resumes, housing leads).</li>
-                      <li><strong>Routine contact:</strong> Letters, scheduled calls, and short but frequent check-ins matter more than occasional "grand gestures."</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <RoleGuidanceGrid
+            title="Choose a role you can actually sustain"
+            roles={[
+              {
+                role: "Spouse or partner",
+                icon: "🤝",
+                guidance:
+                  "Focus on legal logistics, household stability, money, children, communication boundaries, and your own support system. You do not have to carry every task alone.",
+              },
+              {
+                role: "Parent or adult child",
+                icon: "🌱",
+                guidance:
+                  "Offer steady contact, paperwork help, court transportation, release planning, and emotional steadiness without taking over decisions that belong to counsel or supervision.",
+              },
+              {
+                role: "Sibling or close friend",
+                icon: "🧭",
+                guidance:
+                  "You may be most useful as the practical helper: rides, calendars, meals, mail, storage, job leads, or being the person who answers one specific weekly need.",
+              },
+              {
+                role: "Caregiver for children",
+                icon: "🧸",
+                guidance:
+                  "Keep children’s routines as stable as possible. Use truthful, age-appropriate language. Follow all no-contact, custody, school, and safety rules exactly.",
+              },
+              {
+                role: "Extended family",
+                icon: "🏡",
+                guidance:
+                  "Help without demanding private details. Offer concrete support: childcare, groceries, transportation, letters if counsel requests them, or calm presence at court.",
+              },
+              {
+                role: "Advocate, faith, or community support",
+                icon: "🕯️",
+                guidance:
+                  "Provide nonjudgmental support, practical help, and accountability. Do not pressure the family to disclose more than they safely can.",
+              },
+            ]}
+          />
 
-          {/* Section 7 - Reentry & Registry */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">7</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Reentry & the registry</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-emerald-50 border-l-4 border-emerald-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-emerald-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-emerald-800">
-                      <li><strong>Day 1–3:</strong> <strong className="text-red-600">Register immediately</strong>. Most states require registration within <strong>24–72 hours of release</strong> (<a href="https://smart.ojp.gov/sorna-map" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline">SMART Office state directory</a>). Keep copies of all forms and confirmations.</li>
-                      <li><strong>Housing:</strong> Plan early; broad residency bans create homelessness (<a href="https://www.ncsl.org/civil-and-criminal-justice/housing-for-people-with-criminal-records" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline">NCSL housing report</a>). Ask probation/parole for compliant lists.</li>
-                      <li><strong>Employment:</strong> Explore trade programs, supportive employers, or small business options. Use the <a href="https://niccc.nationalreentryresourcecenter.org/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-800 underline">National Inventory of Collateral Consequences of Conviction</a> to understand restrictions.</li>
-                      <li><strong>Conditions:</strong> Review in writing with your supervising officer; comply exactly. Even small violations (missed check-in, forgotten password) can return someone to custody.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GuideCallout tone="reminder" icon="🧩" title="Support can be specific">
+            <p>
+              “Let me know if you need anything” is kind, but often too vague.
+              Better: “I can drive to court on Tuesdays,” “I can print forms,”
+              “I can watch the kids during attorney calls,” or “I can help build
+              the reentry binder.”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-          {/* Section 8 - Mental Health */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">8</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Mental health: support for you and them</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-pink-50 border-l-4 border-pink-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-pink-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-pink-800">
-                      <li><strong>Crisis line:</strong> Call or text <strong>988</strong> (<a href="https://988lifeline.org/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800 underline">988 Lifeline</a>) for confidential support.</li>
-                      <li><strong>Treatment locator:</strong> <a href="https://findtreatment.gov/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800 underline">FindTreatment.gov</a> for therapy, psychiatry, or substance-use help.</li>
-                      <li><strong>Sex-offense-specific programs:</strong> <a href="https://www.safersociety.org/" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-800 underline">Safer Society</a> provides directories of specialized treatment providers.</li>
-                      <li><strong>Family self-care:</strong> Join support groups, seek therapy for yourself, and create private outlets for stress.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <GuideSectionHeader
+          id="timeline"
+          number="4"
+          title="From crisis to stability: what to focus on first"
+          subtitle="Support changes as the case moves from emergency response to planning, reentry, and long-term life."
+        />
 
-          {/* Section 9 - Advocacy */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">9</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Advocacy & information hubs</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-cyan-50 border-l-4 border-cyan-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-cyan-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-cyan-800">
-                      <li><a href="https://narsol.org/" target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:text-cyan-800 underline font-semibold">NARSOL</a> — National Association for Rational Sex Offense Laws (policy, reform, state affiliates).</li>
-                      <li><a href="https://all4consolaws.org/" target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:text-cyan-800 underline font-semibold">ACSOL</a> — Alliance for Constitutional Sex Offense Laws (litigation, education).</li>
-                      <li><a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:text-cyan-800 underline font-semibold">SMART Office</a> — DOJ's registry standards and state-by-state information.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="Stage-by-stage family plan"
+            stages={[
+              {
+                stage: "Investigation and arrest",
+                icon: "🚨",
+                whatChanges:
+                  "In the first hours or days, the safest support is usually practical and quiet: protect the right to counsel, avoid discussing case facts, stabilize children and housing, and save every instruction or condition in writing.",
+                whatToDo:
+                  "Protect counsel, silence, children, housing, and documents. Write down what happened, who was involved, what was taken or searched, and any release or contact conditions.",
+              },
+              {
+                stage: "Pretrial and release conditions",
+                icon: "⚖️",
+                whatChanges:
+                  "Bond, release conditions, no-contact orders, internet limits, travel limits, search rules, curfews, testing, evaluations, and household restrictions may shape daily life before the case is resolved.",
+                whatToDo:
+                  "Understand bond, no-contact orders, internet limits, travel limits, and household rules before assuming what is allowed. Calendar every court date, appointment, deadline, and reporting requirement.",
+              },
+              {
+                stage: "Incarceration or custody",
+                icon: "✉️",
+                whatChanges:
+                  "Communication becomes rule-bound. Calls may be recorded. Mail, visits, money, books, photos, property, programming, and family contact may all depend on facility rules.",
+                whatToDo:
+                  "Keep communication steady, practical, and rule-compliant. Avoid case facts, learn the facility rules, keep records, and support programming when possible.",
+              },
+              {
+                stage: "Release planning and preparation",
+                icon: "🗂️",
+                whatChanges:
+                  "Before release, practical needs can become urgent: housing approval, IDs, medication, transportation, treatment, phone access, work options, reporting instructions, and registration deadlines.",
+                whatToDo:
+                  "Prepare documents and reentry needs early. Confirm the proposed address before release, ask what must happen on day one, build the first-week calendar, and save written instructions whenever possible.",
+              },
+              {
+                stage: "Reentry and registry life",
+                icon: "🏠",
+                whatChanges:
+                  "Rules may affect addresses, deadlines, supervision, treatment, work, school events, internet use, devices, travel, family contact, and privacy.",
+                whatToDo:
+                  "Verify addresses, deadlines, supervision rules, treatment expectations, work limits, and family boundaries. Save proof of registration, approvals, appointments, treatment attendance, and written instructions.",
+              },
+              {
+                stage: "Long-term stability",
+                icon: "🌤️",
+                whatChanges:
+                  "The work shifts from crisis response to sustainable routines, support networks, privacy habits, treatment follow-through, lawful work, documentation, and realistic advocacy.",
+                whatToDo:
+                  "Build routines, support, documentation habits, privacy practices, and realistic advocacy. Review rules regularly, update the family support folder, and adjust boundaries as life changes.",
+              },
+            ]}
+          />
 
-          {/* Section 10 - Scripts */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">10</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Scripts for tough moments</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-6">
-              <div className="bg-amber-50 border-l-4 border-amber-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-amber-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="font-semibold text-amber-900 mb-2">To supervising officer:</p>
-                      <p className="text-amber-800 italic">"We want to get this right. Can you confirm in writing the internet, contact, and travel conditions for our home?"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-amber-900 mb-2">To school administrator:</p>
-                      <p className="text-amber-800 italic">"I'm (child's) guardian. I have school-zone restrictions. How can we handle pickups, conferences, and events within the rules?"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-amber-900 mb-2">To skeptical relatives:</p>
-                      <p className="text-amber-800 italic">"You don't have to approve of everything to support us. We're focused on accountability, compliance, and safety. If you can't be constructive, we'll take some space."</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-amber-900 mb-2">If a reporter/neighbor confronts you:</p>
-                      <p className="text-amber-800 italic">"We're cooperating with the legal process and have no comment. Please direct questions to our attorney."</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <GuideProse>
+            <p>
+              For federal background, the{" "}
+              <a
+                href={sourceLinks.smartCurrentLaw}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                SMART Office
+              </a>{" "}
+              and{" "}
+              <a
+                href={sourceLinks.ecfrRegistration}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                federal registration regulations
+              </a>{" "}
+              can help you understand the larger framework. They are not a
+              substitute for checking the exact state, local, court, and
+              supervision rules that apply to your loved one.
+            </p>
+          </GuideProse>
 
-          {/* Section 11 - Pitfalls */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">11</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Common pitfalls to avoid</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-red-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <div>
-                    <ul className="space-y-2 text-red-800">
-                      <li>Talking about case facts on jail calls or texts.</li>
-                      <li>Contacting the alleged victim or family directly.</li>
-                      <li>Ignoring "minor" rules like device passwords or curfews.</li>
-                      <li>Waiting until the last minute for housing or employment solutions.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <OfflineOptions
+            title="If internet access is limited"
+            icon="📞"
+            note="This guide assumes some readers are phone-only, supervised, incarcerated, without a printer, or relying on someone else for research."
+            items={[
+              "Call the court clerk, public defender office, supervision office, treatment provider, or registry office and ask for mailed forms or written instructions.",
+              "Use a paper notebook for names, dates, confirmation numbers, and exact instructions.",
+              "Ask a trusted person to print court notices, conditions, maps, forms, treatment referrals, and housing notes.",
+              "Use a public library, reentry office, legal aid clinic, or courthouse self-help center when safe and allowed.",
+            ]}
+          />
+        </GuideSectionCard>
 
-          {/* Section 12 - Stage Plans */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">12</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Stage-by-stage starter plan (first 90 days of each phase)</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-8">
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-blue-900 mb-2">Pretrial (first 90 days):</h4>
-                <ul className="space-y-2 text-blue-800">
-                  <li><strong>Weeks 1–2:</strong> Secure counsel; invoke silence; gather documents; lock down privacy.</li>
-                  <li><strong>Weeks 3–4:</strong> Prepare for bail/release; adjust household tech use; build support network.</li>
-                  <li><strong>Month 2:</strong> Manage court logistics, support groups, childcare routines.</li>
-                  <li><strong>Month 3:</strong> Draft support letters for possible sentencing; maintain compliance.</li>
-                </ul>
-              </div>
-              <div className="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-gray-900 mb-2">Incarceration (first 90 days):</h4>
-                <ul className="space-y-2 text-gray-800">
-                  <li><strong>Weeks 1–2:</strong> Learn facility rules; put funds on commissary.</li>
-                  <li><strong>Weeks 3–4:</strong> Set up steady letters/visits; encourage early programming.</li>
-                  <li><strong>Month 2:</strong> Build a reentry binder; send educational/work prep materials.</li>
-                  <li><strong>Month 3:</strong> Identify facility support (chaplain, reentry coordinators); manage expectations around contact.</li>
-                </ul>
-              </div>
-              <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-green-900 mb-2">Reentry & Registry (first 90 days):</h4>
-                <ul className="space-y-2 text-green-800">
-                  <li><strong>Days 1–3:</strong> <strong className="text-red-600">Register immediately</strong> (24–72 hours in most states); confirm housing with parole/probation; get conditions in writing.</li>
-                  <li><strong>Weeks 1–2:</strong> Secure basic housing and income; start therapy and treatment.</li>
-                  <li><strong>Weeks 3–4:</strong> Document compliance; begin early job/vocational training.</li>
-                  <li><strong>Month 2:</strong> Establish family routines; explore volunteering or trade programs.</li>
-                  <li><strong>Month 3:</strong> Review long-term goals (education, career, community reintegration).</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+<GuideSectionHeader
+          id="scripts"
+          number="5"
+          title="Scripts for hard moments"
+          subtitle="Use calm, narrow language. Do not overshare when privacy or legal risk is high."
+        />
 
-          {/* Section 13 - Why Support Matters */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">13</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Why your support matters</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6">
-              <div className="bg-teal-50 border-l-4 border-teal-400 p-6 rounded-r-lg">
-                <div className="flex items-start">
-                  <svg className="w-6 h-6 text-teal-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  </svg>
-                  <div className="space-y-4">
-                    <p className="text-teal-800">Families often feel isolated and judged, but research shows:</p>
-                    <ul className="space-y-2 text-teal-800">
-                      <li><strong>Sex-offense recidivism is lower than most think</strong>.</li>
-                      <li><strong>Pro-social family contact is protective.</strong></li>
-                      <li><strong>Steady, realistic support helps rebuild lives</strong>.</li>
-                    </ul>
-                    <p className="text-teal-800">Your presence—paired with clear boundaries and compliance—can change outcomes.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <ScriptBox
+            title="With your loved one on a recorded call"
+            tone="family"
+            context="Use this when you want to be loving without discussing case facts."
+            script={`I love you. I am not going to discuss case facts on this line. We need to save that for your lawyer.\n\nHere is what I can do today: call attorneys, gather paperwork, check on housing, check on the kids, and write down deadlines.\n\nWe will move one square at a time.`}
+          />
 
-          {/* Section 14 - Expanded Checklist */}
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden avoid-break print-shadow-none">
-            <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6 print-bg-none">
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">14</div>
-                <div>
-                  <h2 className="text-2xl font-bold">Expanded checklist</h2>
-                </div>
-              </div>
-            </div>
-            <div className="p-6 space-y-8">
-              <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-blue-900 mb-3">Pretrial:</h4>
-                <ul className="space-y-2 text-blue-800">
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Invoke silence & request lawyer.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Secure counsel; prepare bail package.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Gather IDs, medical, financial records.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Lock down privacy (opt-outs, credit freeze, P.O. box).</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Create court-day binder.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Set home compliance plan.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-blue-600 border-gray-300 rounded" /> Draft scripts for work, school, family.</li>
-                </ul>
-              </div>
+          <ScriptBox
+            title="With police or agents"
+            tone="legal"
+            context={
+              <span>
+                This reflects the basic posture recommended in{" "}
+                <a
+                  href={sourceLinks.acluPoliceRights}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue-700 underline underline-offset-2"
+                >
+                  know-your-rights guidance
+                </a>
+                : stay calm, do not debate, and request counsel.
+              </span>
+            }
+            script={`I am not answering questions. I want a lawyer.\n\nI do not consent to a search. If you search anyway, I will not interfere.`}
+          />
 
-              <div className="bg-gray-50 border-l-4 border-gray-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">During incarceration:</h4>
-                <ul className="space-y-2 text-gray-800">
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Learn mail/call/visit rules.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Send regular, small support (letters, books, commissary).</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Encourage education, treatment, and reentry prep.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Build reentry binder.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Maintain outside contact lists.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-gray-600 border-gray-300 rounded" /> Balance family support with self-care.</li>
-                </ul>
-              </div>
+          <ScriptBox
+            title="With children"
+            tone="family"
+            context="Keep it truthful, age-appropriate, and non-graphic. Follow all court and custody rules."
+            script={`[Parent/Loved one] is in serious trouble with the law. Adults are working on it.\n\nYou are safe and loved. This is not your fault. You can ask questions, and if I do not know the answer yet, I will tell you that honestly.`}
+          />
 
-              <div className="bg-green-50 border-l-4 border-green-400 p-6 rounded-r-lg">
-                <h4 className="text-lg font-semibold text-green-900 mb-3">Reentry & Registry:</h4>
-                <ul className="space-y-2 text-green-800">
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> <strong className="text-red-600">Register within 24–72 hours of release</strong>; keep proof.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Confirm housing compliance with supervision.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Get all conditions in writing from supervising officer.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Start therapy/treatment programs immediately.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Document all compliance efforts.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Explore employment/vocational training options.</li>
-                  <li className="flex items-center"><input type="checkbox" className="mr-3 h-4 w-4 text-green-600 border-gray-300 rounded" /> Build sustainable family routines and support systems.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <ScriptBox
+            title="If there is a no-contact order"
+            tone="legal"
+            context="Do not criticize the order or promise when it will change."
+            script={`For now, the rules say you cannot see or talk to [Name]. That is not because of you.\n\nWe are going to follow the rules carefully, and I will keep you updated in a way that is safe and honest.`}
+          />
 
-        </div>
-      </section>
+          <ScriptBox
+            title="With extended family or friends"
+            tone="neutral"
+            context="Use this when people want details you cannot safely share."
+            script={`We are following the legal process and keeping details private.\n\nIf you want to help, concrete support would mean a lot: rides, childcare, meals, printing documents, or showing up without judgment.`}
+          />
 
-      {/* Important Reminders */}
-      <div className="py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg shadow-sm">
-            <div className="flex items-center mb-2">
-              <svg className="w-6 h-6 text-yellow-600 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <h2 className="text-lg font-semibold text-yellow-800">Important Reminders</h2>
-            </div>
-            <ul className="list-disc list-inside text-yellow-700 space-y-1">
-              <li>This guide is not a substitute for legal advice. Always consult your attorney about case-specific decisions.</li>
-              <li>Confirm deadlines for registration, court appearances, and supervision requirements — missing even small ones can lead to serious consequences.</li>
-              <li>Take care of yourself as well as your loved one — family stability is a protective factor during and after legal proceedings.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          <ScriptBox
+            title="With a supervising officer"
+            tone="reentry"
+            context="Use this to get clear instructions before acting."
+            script={`We want to get this right. Can you confirm in writing the rules for internet use, devices, contact, travel, housing, and family events?\n\nIf there is a form or approval process, please tell us exactly what to use and when it is due.`}
+          />
 
+          <ScriptBox
+            title="With skeptical relatives"
+            tone="reminder"
+            context="This protects boundaries without demanding agreement."
+            script={`You do not have to approve of everything to be constructive.\n\nWe are focused on accountability, compliance, safety, and keeping the household stable. If the conversation turns cruel or unsafe, we are going to take space.`}
+          />
+
+          <ScriptBox
+            title="If a reporter, neighbor, or online stranger confronts you"
+            tone="privacy"
+            context="Do not litigate the case in public."
+            script={`We are cooperating with the legal process and have no comment.\n\nPlease direct questions to the attorney. We are asking for privacy for the family.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="privacy"
+          number="6"
+          title="Protecting your household and privacy"
+          subtitle="Families can become targets too. Plan for privacy without escalating conflict."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some families experience harassment, doxxing, job pressure,
+              school conflict, unwanted media attention, or threats. You cannot
+              control every reaction, but you can reduce exposure, document
+              harm, and avoid feeding public conflict.
+            </p>
+
+            <p>
+              Privacy steps may include a P.O. box, tighter social media
+              settings, careful device separation, removal from marketing and
+              people-search lists, and a credit freeze if identity theft or
+              financial targeting is a concern. The{" "}
+              <a
+                href={sourceLinks.cfpbCreditFreeze}
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-700 underline underline-offset-2"
+              >
+                CFPB explains how credit freezes work
+              </a>
+              .
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="privacy-steps"
+            title="Household privacy checklist"
+            columns={1}
+            items={[
+              {
+                id: "social-media",
+                label:
+                  "Review social media privacy settings for every household member.",
+              },
+              {
+                id: "mail",
+                label:
+                  "Consider a P.O. box or safer mailing address when appropriate.",
+              },
+              {
+                id: "optout",
+                label: (
+                  <span>
+                    Use{" "}
+                    <a
+                      href={sourceLinks.optOutPrescreen}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-700 underline underline-offset-2"
+                    >
+                      OptOutPrescreen
+                    </a>{" "}
+                    and privacy-rights resources as starting points for reducing
+                    marketing and public-data exposure.
+                  </span>
+                ),
+              },
+              {
+                id: "freeze",
+                label:
+                  "Freeze credit if there is risk of fraud, identity theft, or financial targeting.",
+              },
+              {
+                id: "screenshots",
+                label:
+                  "Save screenshots of threats, harassment, doxxing, or workplace/school pressure.",
+              },
+              {
+                id: "attorney",
+                label:
+                  "Ask the attorney before sending cease-and-desist letters, threatening civil action, or responding publicly.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🛡️" title="Do not fight every comment">
+            <p>
+              Public arguments can spread private details, create screenshots,
+              and make the situation harder to control. Often the safer move is
+              to document, block, report when necessary, and talk with counsel
+              before responding.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family-folder"
+          number="7"
+          title="Build a family support folder"
+          subtitle="A paper or digital folder turns chaos into a practical task."
+        />
+
+        <GuideSectionCard>
+          <DocumentPacket
+            title="What to keep together"
+            intro="Use a binder, folder, encrypted drive, or shared folder only with people who truly need access. If privacy is a concern, keep paper copies in a safe place."
+            categories={[
+              {
+                title: "Legal and court",
+                items: [
+                  "Attorney name, phone, email, and emergency instructions.",
+                  "Court notices, case number, next hearing date, bond or release papers.",
+                  "No-contact orders, search conditions, device rules, travel rules, and written court conditions.",
+                  "Notes from attorney calls that do not include privileged strategy unless counsel says how to store them.",
+                ],
+              },
+              {
+                title: "Household stability",
+                items: [
+                  "Lease, mortgage, utility bills, pay stubs, caregiving proof, school schedules, childcare plans.",
+                  "Medication list, insurance cards, medical needs, disability paperwork, and emergency contacts.",
+                  "Transportation plan for court, treatment, supervision, registry appointments, and work.",
+                ],
+              },
+              {
+                title: "Incarceration and release",
+                items: [
+                  "Facility mail, phone, visitation, book, commissary, photo, and property rules.",
+                  "ID replacement steps, resume, housing leads, treatment referrals, and reentry contacts.",
+                  "Release date estimates, supervision contact, registration instructions, and first-week calendar.",
+                ],
+              },
+              {
+                title: "Compliance proof",
+                items: [
+                  "Registry confirmations, supervision approvals, treatment attendance proof, travel permissions.",
+                  "Housing approval notes, employment disclosures if required, device approvals, and password instructions.",
+                  "Screenshots, emails, forms, receipts, confirmation numbers, and dated call notes.",
+                ],
+              },
+            ]}
+          />
+
+<GuideChecklist
+            id="stage-checklist"
+            title="Expanded starter checklist"
+            columns={2}
+            items={[
+              {
+                id: "silence-lawyer",
+                label: "Invoke silence and request a lawyer.",
+              },
+              {
+                id: "secure-counsel",
+                label: "Secure counsel or apply for appointed counsel.",
+              },
+              {
+                id: "bail-package",
+                label: "Prepare release or bail documents.",
+              },
+              {
+                id: "privacy-lockdown",
+                label: "Lock down privacy and document harassment.",
+              },
+              {
+                id: "court-calendar",
+                label: "Create a court and deadline calendar.",
+              },
+              {
+                id: "facility-rules",
+                label: "Learn facility mail, phone, visit, and property rules.",
+              },
+              {
+                id: "release-plan",
+                label:
+                  "Start release planning early: housing, ID, medications, transportation, treatment, and first-week reporting.",
+              },
+              {
+                id: "reentry-binder",
+                label: "Start the reentry binder before release.",
+              },
+              {
+                id: "housing-confirm",
+                label: "Confirm housing compliance before moving in.",
+              },
+              {
+                id: "conditions-writing",
+                label:
+                  "Get supervision and registry instructions in writing when possible.",
+              },
+              {
+                id: "treatment",
+                label: (
+                  <span>
+                    Use{" "}
+                    <a
+                      href={sourceLinks.findTreatment}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-700 underline underline-offset-2"
+                    >
+                      FindTreatment.gov
+                    </a>{" "}
+                    and specialized referrals to look for appropriate support.
+                  </span>
+                ),
+              },
+              {
+                id: "niccc",
+                label: (
+                  <span>
+                    Use the{" "}
+                    <a
+                      href={sourceLinks.niccc}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-700 underline underline-offset-2"
+                    >
+                      National Inventory of Collateral Consequences of Conviction
+                    </a>{" "}
+                    to begin identifying legal barriers to work, licensing,
+                    housing, voting, education, and other opportunities.
+                  </span>
+                ),
+              },
+              {
+                id: "routine",
+                label:
+                  "Build sustainable routines instead of emergency-only support.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="8"
+          title="Common mistakes to avoid"
+          subtitle="These are not moral failures. They are predictable stress reactions that can create real risk."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake:
+                  "Talking about case facts on jail calls, texts, visits, or social media.",
+                whyItMatters:
+                  "Those communications may be recorded, saved, misunderstood, subpoenaed, or shared.",
+                betterMove:
+                  "Use calls for logistics and support. Save facts and strategy for the attorney.",
+              },
+              {
+                mistake:
+                  "Contacting an alleged victim, protected person, witness, school, employer, or family member to explain or smooth things over.",
+                whyItMatters:
+                  "Even well-meant contact can violate an order or look like pressure.",
+                betterMove:
+                  "Ask counsel what contact is allowed, if any. When in doubt, do not contact.",
+              },
+              {
+                mistake:
+                  "Treating “small” supervision or registry rules as flexible.",
+                whyItMatters:
+                  "Missed appointments, unapproved addresses, device issues, travel mistakes, passwords, or school-event confusion can have serious consequences.",
+                betterMove:
+                  "Verify the exact rule, write it down, calendar it, and save proof.",
+              },
+              {
+                mistake:
+                  "Waiting until release week to solve housing or treatment.",
+                whyItMatters:
+                  "Housing, treatment, transportation, IDs, and registration planning can take time, and some addresses may not be approved.",
+                betterMove:
+                  "Start early. Ask for written housing and reporting instructions before release when possible.",
+              },
+              {
+                mistake:
+                  "Letting shame make the family disappear from every healthy support system.",
+                whyItMatters:
+                  "Isolation can make practical problems harder and emotional stress heavier.",
+                betterMove:
+                  "Choose a small circle of safe, discreet, constructive people and give them specific tasks.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="help"
+          number="9"
+          title="Mental health, treatment, and outside support"
+          subtitle="This guide is not therapy, but support systems matter."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              You may need more than information. You may need someone to talk
+              to, a treatment referral, a family support group, a lawyer, a
+              reentry contact, or a crisis line. Getting help is not a sign that
+              you are failing. It is often how families stay steady.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Places to start"
+            description="Use these links as starting points. Confirm local rules, provider fit, insurance, confidentiality, and eligibility before relying on any outside resource."
+            resources={[
+              {
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
+                badge: "Crisis",
+                phone: "Call or text 988",
+                description:
+                  "Free, confidential crisis and emotional support for people in distress and people worried about someone else.",
+              },
+              {
+                label: "FindTreatment.gov",
+                href: sourceLinks.findTreatment,
+                badge: "Official",
+                description:
+                  "SAMHSA treatment locator for mental health, substance use, and related treatment services.",
+              },
+              {
+                label: "Safer Society Treatment Referrals",
+                href: sourceLinks.saferSociety,
+                badge: "Treatment",
+                description:
+                  "Directory-oriented starting point for specialized providers working with sexual behavior problems, people who have caused harm, and survivors.",
+              },
+              {
+                label: "Federal Defender resources",
+                href: sourceLinks.fdOrg,
+                badge: "Legal",
+                description:
+                  "Starting point for federal defender and CJA-related resources in federal criminal cases.",
+              },
+              {
+                label: "SMART Office",
+                href: sourceLinks.smartCurrentLaw,
+                badge: "Official",
+                description:
+                  "Federal SORNA and registry-framework information. Use as background, not a substitute for state-specific verification.",
+              },
+              {
+                label: "NICCC",
+                href: sourceLinks.niccc,
+                badge: "Reentry",
+                description:
+                  "Searchable inventory of collateral consequences affecting employment, licensing, housing, education, voting, and other opportunities.",
+              },
+              {
+                label: "NARSOL",
+                href: sourceLinks.narsol,
+                badge: "Advocacy",
+                description:
+                  "National advocacy organization focused on rational sex-offense laws, education, and reform.",
+              },
+              {
+                label: "ACSOL",
+                href: sourceLinks.acsol,
+                badge: "Advocacy",
+                description:
+                  "Advocacy and legal-education organization focused on constitutional sex-offense laws.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="warning" icon="⚠️" title="When support becomes unsafe">
+            <p>
+              If your loved one pressures you to lie, hide information, violate
+              conditions, contact protected people, ignore child-safety rules, or
+              keep secrets from counsel or supervision, pause and get advice.
+              Support does not require you to participate in unsafe or unlawful
+              behavior.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="why-support-matters"
+          number="10"
+          title="Why steady support matters"
+          subtitle="Support is not a cure-all. But isolation, instability, and panic rarely help."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Families often feel judged from every direction: judged if they
+              stay, judged if they leave, judged if they ask questions, judged if
+              they do not already know what to do. This guide starts from a
+              different place: you are allowed to move carefully.
+            </p>
+
+            <p>
+              Steady support can mean letters, rides, childcare, paperwork,
+              treatment encouragement, privacy protection, housing planning,
+              job-search help, or simply not turning a person’s whole identity
+              into the worst allegation, conviction, or public label attached to
+              them.
+            </p>
+
+            <p>
+              Support also has limits. Real accountability matters. Victims and
+              safety matter. Children’s boundaries matter. Court orders matter.
+              Your health and stability matter. The goal is not blind loyalty.
+              The goal is a careful, honest, humane path forward.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="success" icon="🌤️" title="The future is not decided by panic">
+            <p>
+              Some relationships will change. Some will end. Some will become
+              more boundaried. Some will survive and become steadier. The point
+              is not to predict that today. The point is to make the next
+              decision with care, facts, safety, and dignity.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="next-steps"
+          number="11"
+          title="Resources, related guides, and sources"
+          subtitle="Use these to keep going without relying on memory or guesswork."
+        />
+
+        <GuideSectionCard>
+          <RelatedGuides
+            guides={[
+              {
+                title: "Federal Process Guide",
+                description:
+                  "Use this when the case is federal or may involve federal court, federal custody, or federal supervision.",
+                to: "/resources/federal-process-guide",
+              },
+              {
+                title: "Reentry Guide",
+                description:
+                  "Use this for release planning, housing, documents, employment, treatment, and first-week stability.",
+                to: "/resources/reentry-guide",
+              },
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Use this when registry rules, supervision, or local restrictions affect housing options.",
+                to: "/resources/housing-search-guide",
+              },
+              {
+                title: "Employment Guide",
+                description:
+                  "Use this for job-search planning, disclosure decisions, records, and practical employment paths.",
+                to: "/resources/employment-guide",
+              },
+            ]}
+          />
+
+          <SoftDivider label="Source list" />
+
+          <SourceList
+            title="Sources & verification"
+            note="State law, local practice, court orders, and supervision conditions still need case-specific verification."
+            sources={[
+              {
+                label: "ACLU — Stopped by Police",
+                href: sourceLinks.acluPoliceRights,
+                description:
+                  "Supports the guidance to stay calm, avoid answering questions, and request a lawyer during police contact.",
+              },
+              {
+                label:
+                  "Bureau of Justice Statistics — Recidivism of Sex Offenders Released from State Prison: A 9-Year Follow-Up",
+                href: sourceLinks.bjsRecidivism,
+                description:
+                  "Primary source for same-category rearrest comparisons and research grounding about public assumptions versus observed recidivism patterns.",
+              },
+              {
+                label: "RAINN — Statistics: Children & Teens",
+                href: sourceLinks.rainnChildrenTeens,
+                description:
+                  "Supports the prevention framing that child sexual abuse often involves people known to the child, not only strangers.",
+              },
+              {
+                label: "SMART Office — SORNA Current Law",
+                href: sourceLinks.smartCurrentLaw,
+                description:
+                  "Federal background on SORNA and registry framework. State and local requirements still need direct verification.",
+              },
+              {
+                label: "eCFR — 28 CFR Part 72",
+                href: sourceLinks.ecfrRegistration,
+                description:
+                  "Federal registration regulation background, including where registration may be required under federal rules.",
+              },
+              {
+                label:
+                  "National Inventory of Collateral Consequences of Conviction",
+                href: sourceLinks.niccc,
+                description:
+                  "Searchable inventory for legal and regulatory consequences affecting work, licensing, housing, education, voting, and other opportunities.",
+              },
+              {
+                label: "Consumer Financial Protection Bureau — Security Freeze",
+                href: sourceLinks.cfpbCreditFreeze,
+                description:
+                  "Supports the household privacy recommendation to consider a credit freeze when identity theft or financial targeting is a concern.",
+              },
+              {
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
+                description:
+                  "Crisis and emotional support resource for people in distress or worried about someone else.",
+              },
+              {
+                label: "FindTreatment.gov",
+                href: sourceLinks.findTreatment,
+                description:
+                  "Official treatment locator for mental health, substance use, and related treatment services.",
+              },
+              {
+                label: "Safer Society — Treatment Referrals",
+                href: sourceLinks.saferSociety,
+                description:
+                  "Specialized treatment-referral starting point for people seeking help related to sexual behavior problems, abuse prevention, or support.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
