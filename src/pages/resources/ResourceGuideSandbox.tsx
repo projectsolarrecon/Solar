@@ -21,51 +21,38 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  PathwayCard,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
   RedFlagGreenFlag,
 } from "../../components/solar";
 
 const sourceLinks = {
-  ssaCard: "https://www.ssa.gov/number-card",
-  bankOnAccounts: "https://joinbankon.org/accounts/",
-  annualCreditReport: "https://www.annualcreditreport.com/index.action",
-  ftcCreditDisputes: "https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports",
-  ftcCreditRepairFaq: "https://consumer.ftc.gov/articles/fixing-your-credit-faqs",
-  cfpbCreditRebuild:
-    "https://www.consumerfinance.gov/ask-cfpb/what-are-some-ways-to-start-or-rebuild-a-good-credit-history-en-2155/",
-  cfpbReentryGuide:
-    "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/companion-guides/",
-  cfpbMyMoneyPicture:
-    "https://files.consumerfinance.gov/f/documents/cfpb_my-money-picture_tool_2021-08.pdf",
-  studentAidIdr: "https://studentaid.gov/manage-loans/repayment/plans/income-driven",
-  apprenticeship:
-    "https://www.apprenticeship.gov/career-seekers",
-  americanJobCenters:
-    "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx",
-  sbaReentry:
-    "https://www.sba.gov/business-guide/grow-your-business/entrepreneurship-formerly-incarcerated-people",
-  healthcare:
-    "https://www.healthcare.gov/quick-guide/dates-and-deadlines/",
-  benefits:
-    "https://www.usa.gov/benefit-finder",
-  twoOneOne: "https://www.211.org/",
-  nfcc: "https://www.nfcc.org/",
-  fdicMoneySmart: "https://www.fdic.gov/consumer-resource-center/money-smart",
-  ftcPaydayLoans: "https://consumer.ftc.gov/node/77512",
+  belongingReentry: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5962031/",
+  selfStigma: "https://onlinelibrary.wiley.com/doi/full/10.1002/cbm.2326",
+  cjilReentry: "https://cjil.sog.unc.edu/resource/research-on-the-effectiveness-of-reentry-treatments/",
+  fortuneComingHome: "https://fortunesociety.org/coming-home/",
+  fortuneSociety: "https://fortunesociety.org/",
+  honestJobs: "https://www.honestjobs.com/",
+  volunteeringReview: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10380526/",
+  volunteeringPublicHealth:
+    "https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-020-08734-8",
+  mnCosaEvaluation:
+    "https://mn.gov/doc/assets/MnCoSA%20Evaluation%20Final%20Report_tcm1089-336802.pdf",
+  cosaOverview:
+    "https://www.tandfonline.com/doi/full/10.1080/10509674.2025.2453877",
+  lifeline988: "https://988lifeline.org/",
+  samhsaHelpline: "https://www.samhsa.gov/find-help/helplines/national-helpline",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
 
-  const linkClass =
-    "font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:text-slate-700 hover:decoration-slate-600";
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Financial Planning After Conviction and Reentry | The SOLAR Project"
-        description="A practical SOLAR guide to rebuilding financial credibility after conviction or reentry through small wins, documentation, safer banking, credit repair, income planning, and long-term strategy."
-        keywords="reentry financial planning, rebuild credit after conviction, secured credit card reentry, financial stability after incarceration, Bank On account, credit report dispute, court debt reentry"
+        title="A Practical Guide to Belonging, Relationships, and Reintegration | The SOLAR Project"
+        description="A practical SOLAR guide for rebuilding routines, relationships, roles, and repair after conviction, incarceration, supervision, or registry life."
+        keywords="reentry, reintegration, community integration, relationships after incarceration, registry support, family support, belonging after conviction"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -82,13 +69,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Financial Planning After Conviction and Reentry
+            A Practical Guide to Belonging, Relationships, and Reintegration
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Small money steps can become proof of reliability. This guide helps
-            you stabilize cash flow, repair old damage, build credit carefully,
-            and turn today’s quick wins into tomorrow’s stronger applications.
+            Meaningful community life is not only something to hope for. It is
+            something people can practice, plan for, protect, and rebuild with
+            support, boundaries, accountability, and time.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -99,13 +86,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
             >
               🖨️ Print Guide
             </button>
-
-            <a
-              href="#quick-wins"
-              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
-            >
-              Start with Quick Wins
-            </a>
 
             <a
               href="#sources"
@@ -124,1282 +104,842 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            Reentry is more than walking out the door. It is rebuilding a life,
-            piece by piece. Money can feel like the most overwhelming piece,
-            especially if you are behind on bills, missing documents, dealing
-            with court debt, or unsure what a landlord, bank, employer, or lender
-            will see.
+            Reintegration is a process, not a test. Small, consistent actions —
+            showing up on time, keeping promises, respecting boundaries, and
+            asking clear questions — rebuild trust more than speeches do.
           </p>
 
           <p>
-            The goal is not to look financially perfect. The goal is to build
-            proof, month by month, that you can receive money safely, pay what
-            you agree to pay, avoid preventable setbacks, and make your next
-            “yes” easier to get.
+            Some people will not accept you. Some rejection may come from stigma,
+            fear, or the label itself. Some boundaries may also come from real
+            harm, broken trust, safety concerns, court orders, supervision rules,
+            or community policies. This guide does not promise that everyone will
+            come around.
+          </p>
+
+          <p>
+            It does offer a path. Reintegration means building a lawful, stable,
+            accountable life with the people and places where trust, safety,
+            boundaries, and contribution are possible.
           </p>
         </GuideIntro>
 
-        <PullQuoteBlock>
-          Every small step should do two jobs: help you right now and create
-          evidence that you are becoming easier to trust with housing, work,
-          credit, transportation, and long-term responsibility.
-        </PullQuoteBlock>
+        <GuideCallout
+          tone="reentry"
+          icon="🌱"
+          title="Hope without false promises"
+        >
+          <p>
+            You do not have to rely only on hope. Hope matters, but reintegration
+            also has skills: routines, relationships, roles, and repair. You can
+            actively manage your own return to community life. Families, friends,
+            neighbors, faith communities, employers, and supporters can help by
+            offering clear boundaries, practical support, dignity, and realistic
+            chances to participate.
+          </p>
+        </GuideCallout>
 
         <QuickStartPanel
-          title="The first 7–30 days"
-          subtitle="Start with the steps that reduce chaos and create proof quickly."
-          icon="⚡"
+          title="Your first moves"
+          subtitle="Start small enough that you can repeat it. Consistency matters more than intensity."
+          icon="🛠️"
           urgentActions={[
-            <span>
-              Start or replace your key identity documents, including your{" "}
-              <a href={sourceLinks.ssaCard} className={linkClass}>
-                Social Security card through SSA
-              </a>
-              , birth certificate, and state ID.
+            <span key="routine">
+              Choose one stabilizing routine for this week: sleep, meals,
+              movement, appointments, medication, journaling, treatment, work, or
+              a daily check-in.
             </span>,
-            <span>
-              Look for a low-fee, no-overdraft checking account using the{" "}
-              <a href={sourceLinks.bankOnAccounts} className={linkClass}>
-                Bank On certified account finder
-              </a>
-              .
+            <span key="person">
+              Identify one safer person or place where contact is respectful,
+              lawful, and not built around shame or secrecy.
             </span>,
-            <span>
-              Pull your free credit reports from{" "}
-              <a href={sourceLinks.annualCreditReport} className={linkClass}>
-                AnnualCreditReport.com
-              </a>{" "}
-              before a landlord, lender, employer, or insurer sees problems
-              first.
+            <span key="verify">
+              Before joining a group, volunteering, visiting a location, dating,
+              traveling, or taking a role near children or restricted places,
+              verify supervision, registry, court, and local rules.
             </span>,
           ]}
           nextActions={[
-            <span>
-              Write a bare-bones 30-day budget using a simple worksheet like the{" "}
-              <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
-                CFPB My Money Picture tool
-              </a>
-              .
+            <span key="useful">
+              Pick one low-risk way to be useful: clean up a shared space, help a
+              relative with a task, attend a support meeting, apply for work, or
+              show up consistently somewhere appropriate.
             </span>,
-            <span>
-              Check benefits and local help through{" "}
-              <a href={sourceLinks.benefits} className={linkClass}>
-                USA.gov’s benefit finder
-              </a>{" "}
-              and{" "}
-              <a href={sourceLinks.twoOneOne} className={linkClass}>
-                211 local resource referrals
-              </a>
-              .
+            <span key="script">
+              Prepare a short script for questions, boundaries, or disclosure so
+              you are not inventing words under pressure.
             </span>,
-            <span>
-              Make a written list of court debt, restitution, supervision fees,
-              child support, old collections, and any payment deadlines.
+            <span key="notes">
+              Start a paper or phone note for names, dates, rules, approvals,
+              denials, schedules, and next steps.
             </span>,
           ]}
           reminder={
             <span>
-              You do not have to solve everything today. The first job is to stop
-              avoidable damage and create a clean paper trail.
+              You do not have to solve your whole life this week. Build one
+              repeatable step, then protect it.
             </span>
           }
         />
 
         <OverviewCards
-          columns={3}
+          columns={4}
           cards={[
             {
-              eyebrow: "Phase 1",
-              title: "Stabilize",
-              icon: "🧱",
+              eyebrow: "Building block 1",
+              title: "Routines",
+              icon: "🔁",
               tone: "reentry",
               description:
-                "Get ID, open a safer account, find immediate help, and make a 30-day plan so one small problem does not become a crisis.",
+                "Repeated habits make life steadier. A routine gives you something to return to after stress, rejection, or confusion.",
             },
             {
-              eyebrow: "Phase 2",
+              eyebrow: "Building block 2",
+              title: "Relationships",
+              icon: "🤝",
+              tone: "family",
+              description:
+                "Trust rebuilds slowly through honesty, boundaries, time, and repeated evidence that you can be safe and reliable.",
+            },
+            {
+              eyebrow: "Building block 3",
+              title: "Roles",
+              icon: "🧰",
+              tone: "info",
+              description:
+                "People become known through what they do: worker, neighbor, parent, friend, student, volunteer, faith member, or helper.",
+            },
+            {
+              eyebrow: "Building block 4",
               title: "Repair",
-              icon: "🛠️",
-              tone: "warning",
+              icon: "🧭",
+              tone: "legal",
               description:
-                "Pull reports, dispute errors, organize old debts, and create written repayment records where possible.",
-            },
-            {
-              eyebrow: "Phase 3",
-              title: "Build",
-              icon: "📈",
-              tone: "success",
-              description:
-                "Use steady income, careful credit tools, savings, and documentation to show reliability over time.",
+                "Repair means accepting accountability, respecting limits, making amends where appropriate, and not demanding instant trust.",
             },
           ]}
         />
 
 <GuideSectionHeader
-          id="financial-credibility"
+          id="stages"
           number="1"
-          title="The Larger Strategy: Build Financial Credibility"
-          subtitle="The small steps matter because they create proof that other people and systems can rely on."
+          title="Rebuilding belonging by stage"
+          subtitle="Community life changes over time. The goal is not to rush intimacy or acceptance; it is to build safe, lawful, repeatable participation."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Financial planning after conviction or incarceration is not just
-              about saving money or improving a credit score. It is about
-              rebuilding trust in practical ways. A bank may want to see account
-              history. A landlord may care about payment patterns. A car lender
-              may look for recent positive credit. A supervising officer may want
-              proof that court debt is being handled. A family member may feel
-              safer helping if there is a plan.
-            </p>
-
-            <p>
-              Each step below follows the same pattern: what to do, why it
-              matters, what proof it builds, and one quick action you can take.
-              That keeps the guide from becoming a random checklist. The point is
-              to connect today’s small win to tomorrow’s stronger application.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="legal" icon="⚖️" title="Verify before relying on financial advice">
-            <p>
-              This guide is educational, not personalized financial, legal, tax,
-              or credit advice. Court debt, restitution, child support, benefits,
-              supervision rules, banking access, and business licensing can vary
-              by state, court order, agency, and individual situation.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider label="The proof ladder" />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <PathwayCard
-              title="Immediate stability"
-              subtitle="Reduce preventable emergencies."
-              icon="🧯"
-              whyItWorks="A safer account, current documents, and a basic budget make it easier to receive money, avoid missed notices, and keep small problems from becoming housing, work, or supervision problems."
-              steps={[
-                "Gather ID and release documents.",
-                "Open a low-fee account if possible.",
-                "List income, essentials, court debt, and deadlines.",
-              ]}
-              bestFit="The first days or weeks after release, job loss, housing disruption, or a financial shock."
-            />
-
-            <PathwayCard
-              title="Documented reliability"
-              subtitle="Create a record that other people can see."
-              icon="🧾"
-              whyItWorks="Written proof changes the conversation. Payment confirmations, account statements, dispute letters, and repayment plans can show effort and follow-through even before everything is fixed."
-              steps={[
-                "Save reports and letters.",
-                "Get payment plans in writing.",
-                "Keep receipts, confirmation numbers, and names of people you spoke with.",
-              ]}
-              bestFit="Anyone applying for housing, credit, transportation, benefits, employment, or relief from a court or agency."
-            />
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="quick-wins"
-          number="2"
-          title="Quick Wins That Create Proof"
-          subtitle="These are small actions, but each one supports a bigger long-term strategy."
-        />
-
-        <GuideSectionCard>
-          <GuideChecklist
-            id="financial-quick-wins"
-            title="Start here: 10 quick wins"
-            columns={1}
-            items={[
+          <TimelineGuidanceGrid
+            title="What to focus on at each stage"
+            stages={[
               {
-                id: "id-documents",
-                label: (
-                  <span>
-                    Start or replace ID documents, including your{" "}
-                    <a href={sourceLinks.ssaCard} className={linkClass}>
-                      Social Security card
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: ID unlocks banking, employment forms, benefits, housing applications, medical care, and many training programs.",
+                stage: "First days and weeks",
+                icon: "🧱",
+                whatChanges:
+                  "Life may feel narrow, watched, awkward, or unstable. You may be dealing with supervision, housing, work, family tension, transportation, and shame all at once.",
+                whatToDo:
+                  "Stabilize the basics. Keep appointments. Learn your actual conditions. Avoid rushing into dating, volunteering, disclosure, or intense new groups before you understand the rules and risks.",
               },
               {
-                id: "safe-account",
-                label: (
-                  <span>
-                    Search for a{" "}
-                    <a href={sourceLinks.bankOnAccounts} className={linkClass}>
-                      Bank On certified checking account
-                    </a>{" "}
-                    or ask a local credit union about second-chance banking.
-                  </span>
-                ),
-                helper:
-                  "Why it matters: a safer account can reduce check-cashing fees, support direct deposit, and begin a banking relationship.",
+                stage: "First few months",
+                icon: "🗓️",
+                whatChanges:
+                  "Patterns start to form. People may notice consistency. Some relationships may open; others may stay distant or closed.",
+                whatToDo:
+                  "Choose a few steady roles: work, treatment, family responsibilities, support meetings, faith participation, school, or low-risk service. Practice scripts for boundaries, gossip, and private questions.",
               },
               {
-                id: "credit-reports",
-                label: (
-                  <span>
-                    Pull your reports through{" "}
-                    <a href={sourceLinks.annualCreditReport} className={linkClass}>
-                      AnnualCreditReport.com
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: you want to find mistakes, fraud, collections, and old addresses before someone else uses them to decide about you.",
-              },
-              {
-                id: "budget",
-                label: (
-                  <span>
-                    Make a one-page money snapshot using the{" "}
-                    <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
-                      CFPB My Money Picture tool
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: a simple budget shows what is realistic before you agree to rent, car payments, debt plans, or family repayment promises.",
-              },
-              {
-                id: "benefits",
-                label: (
-                  <span>
-                    Check benefits through{" "}
-                    <a href={sourceLinks.benefits} className={linkClass}>
-                      USA.gov’s benefit finder
-                    </a>{" "}
-                    and local help through{" "}
-                    <a href={sourceLinks.twoOneOne} className={linkClass}>
-                      211
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: food, health, utility, and housing support can protect your first paycheck from being swallowed by emergencies.",
-              },
-              {
-                id: "court-debt",
-                label:
-                  "Create a written court-debt and restitution list with amounts, offices, deadlines, case numbers, and payment instructions.",
-                helper:
-                  "Why it matters: court-related debt may affect supervision, warrants, relief requests, or future planning. Guessing is risky.",
-              },
-              {
-                id: "dispute-errors",
-                label: (
-                  <span>
-                    Mark inaccurate credit-report items and use the{" "}
-                    <a href={sourceLinks.ftcCreditDisputes} className={linkClass}>
-                      FTC credit-report dispute guidance
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: removing inaccurate barriers is different from pretending real debt does not exist.",
-              },
-              {
-                id: "starter-credit",
-                label: (
-                  <span>
-                    Compare a secured card or credit-builder loan using{" "}
-                    <a href={sourceLinks.cfpbCreditRebuild} className={linkClass}>
-                      CFPB credit-building guidance
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: the goal is recent positive payment history, not more debt.",
-              },
-              {
-                id: "training",
-                label: (
-                  <span>
-                    Search paid training through{" "}
-                    <a href={sourceLinks.apprenticeship} className={linkClass}>
-                      Apprenticeship.gov
-                    </a>{" "}
-                    or a local American Job Center.
-                  </span>
-                ),
-                helper:
-                  "Why it matters: income stability is one of the strongest foundations for housing, transportation, savings, and credit repair.",
-              },
-              {
-                id: "free-counseling",
-                label: (
-                  <span>
-                    Schedule one nonprofit credit-counseling or financial-education session through{" "}
-                    <a href={sourceLinks.nfcc} className={linkClass}>
-                      NFCC
-                    </a>{" "}
-                    or{" "}
-                    <a href={sourceLinks.fdicMoneySmart} className={linkClass}>
-                      FDIC Money Smart
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: you can get another set of eyes on the plan before signing up for high-fee products or unrealistic repayment terms.",
+                stage: "Longer-term rebuilding",
+                icon: "🌿",
+                whatChanges:
+                  "Belonging becomes less about one dramatic breakthrough and more about durable routines, trustworthy relationships, and meaningful contribution.",
+                whatToDo:
+                  "Deepen the relationships and roles that are lawful, healthy, and mutual. Keep verifying before major changes. Use setbacks as information, not proof that rebuilding is impossible.",
               },
             ]}
           />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="stabilize"
-          number="3"
-          title="Stabilize Cash Flow First"
-          subtitle="Before credit repair or long-term planning, make money safer to receive, track, and protect."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Stabilizing money means building a basic system: identification,
-              a safer place to receive money, a simple plan for the next 30 days,
-              and a list of urgent obligations. This is not glamorous, but it is
-              the foundation everything else sits on.
-            </p>
-          </GuideProse>
-
-          <div className="grid gap-4 lg:grid-cols-3">
-            <PathwayCard
-              title="Get ID"
-              subtitle="Proof of identity comes first."
-              icon="🪪"
-              whyItWorks={
-                <span>
-                  ID is often required for work, benefits, banking, housing,
-                  health coverage, and training. Start with your{" "}
-                  <a href={sourceLinks.ssaCard} className={linkClass}>
-                    SSA number/card options
-                  </a>{" "}
-                  and your state ID or driver’s license office.
-                </span>
-              }
-              steps={[
-                "List missing documents.",
-                "Ask whether release papers, prison ID, or court papers can help prove identity.",
-                "Keep copies in a paper folder and a secure digital folder if safe.",
-              ]}
-              bestFit="Anyone who cannot open accounts, apply for work, or complete benefit forms because documents are missing."
-            />
-
-            <PathwayCard
-              title="Open a safer account"
-              subtitle="Reduce fees and create banking history."
-              icon="🏦"
-              whyItWorks={
-                <span>
-                  A bank or credit-union account can support direct deposit,
-                  lower-cost bill payment, account statements, and a banking
-                  relationship.{" "}
-                  <a href={sourceLinks.bankOnAccounts} className={linkClass}>
-                    Bank On certified accounts
-                  </a>{" "}
-                  are designed as low-cost, no-overdraft options.
-                </span>
-              }
-              steps={[
-                "Ask about no-overdraft checking.",
-                "Ask about second-chance or fresh-start accounts if you were denied before.",
-                "Avoid accounts that rely on overdraft fees to function.",
-              ]}
-              bestFit="Anyone using check cashing, prepaid cards with high fees, cash only, or another person’s account."
-            />
-
-            <PathwayCard
-              title="Make a 30-day budget"
-              subtitle="Know what is realistic before promising money."
-              icon="📋"
-              whyItWorks={
-                <span>
-                  A budget is not punishment. It shows what you can actually
-                  handle before agreeing to rent, car payments, repayment plans,
-                  or family promises. The{" "}
-                  <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
-                    CFPB My Money Picture tool
-                  </a>{" "}
-                  can help you start without needing a spreadsheet.
-                </span>
-              }
-              steps={[
-                "Write expected income for the next 30 days.",
-                "List essentials: housing, food, phone, transportation, supervision fees, court debt, medication, and utilities.",
-                "Circle anything that could cause a crisis if missed.",
-              ]}
-              bestFit="Anyone whose income is irregular, new, cash-based, or dependent on family help."
-            />
-          </div>
 
           <SoftDivider />
 
-          <DocumentPacket
-            title="Build a financial proof folder"
-            intro="Use one paper folder, envelope, binder, or secure digital folder. The goal is to make proof easy to find when someone asks."
-            categories={[
-              {
-                title: "Identity and reentry documents",
-                items: [
-                  "State ID or driver’s license.",
-                  "Social Security card or SSA replacement confirmation.",
-                  "Birth certificate request, receipt, or copy.",
-                  "Release papers, supervision paperwork, court orders, and case numbers.",
-                ],
-              },
-              {
-                title: "Money and account records",
-                items: [
-                  "Bank or credit-union account opening documents.",
-                  "Direct deposit forms or pay stubs.",
-                  "Benefit notices and health coverage letters.",
-                  "Monthly budget, payment calendar, and emergency contacts.",
-                ],
-              },
-              {
-                title: "Debt and credit records",
-                items: [
-                  "Credit reports from all three bureaus.",
-                  "Dispute letters and responses.",
-                  "Court debt, restitution, fines, fees, child support, and payment-plan records.",
-                  "Receipts, confirmation numbers, and names of people you spoke with.",
-                ],
-              },
-            ]}
-          />
+          <GuideProse>
+            <p>
+              The first goal is not to become accepted everywhere. It is to
+              become steady enough to notice where participation is possible,
+              where boundaries are needed, and where the safest next step is to
+              walk away.
+            </p>
+
+            <p>
+              Quality matters more than quantity. A few reliable relationships, a
+              repeatable routine, and one meaningful role can do more for
+              reintegration than chasing universal approval.
+            </p>
+          </GuideProse>
+
+          <PullQuoteBlock>
+            Reintegration does not mean convincing everyone to accept you. It
+            means building a lawful, stable, accountable life where trust,
+            safety, boundaries, and contribution are possible.
+          </PullQuoteBlock>
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="repair"
-          number="4"
-          title="Repair Old Damage Without Making New Damage"
-          subtitle="Credit reports, old debt, court debt, and student loans need a plan — not panic."
+        <GuideSectionHeader
+          id="relationships"
+          number="2"
+          title="Relationships that help you rebuild"
+          subtitle="Healthy relationships are not built on secrecy, humiliation, pressure, or instant forgiveness. They are built through care, honesty, boundaries, and time."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Repair starts with knowing what is actually on paper. Credit
-              reports can contain old addresses, accounts you forgot about,
-              collections, identity errors, or information that does not belong
-              to you. Pulling reports is not about shame. It is about seeing the
-              same information a landlord, lender, insurer, or employer may see.
+              Start small. One or two people who are steady, respectful, and
+              realistic can matter more than a large social circle. Look for
+              relationships where you are encouraged to follow the law, keep your
+              commitments, tell the truth where it is needed, and stay connected
+              to support.
+            </p>
+
+            <p>
+              You do not owe your full story to every neighbor, coworker,
+              acquaintance, or group member. At the same time, some situations
+              may require legal, ethical, or practical disclosure. The safer
+              approach is to know your conditions, understand the setting, and
+              get advice before guessing.
             </p>
           </GuideProse>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <PathwayCard
-              title="Pull all three reports"
-              subtitle="Find problems before decision-makers do."
-              icon="🔎"
-              whyItWorks={
-                <span>
-                  Use{" "}
-                  <a href={sourceLinks.annualCreditReport} className={linkClass}>
-                    AnnualCreditReport.com
-                  </a>{" "}
-                  to review reports from the three major credit bureaus. The goal
-                  is to identify errors, fraud, collections, old accounts, and
-                  address history before they affect housing, credit, insurance,
-                  or employment.
-                </span>
-              }
-              steps={[
-                "Save or print each report.",
-                "Highlight inaccurate names, addresses, accounts, balances, dates, and duplicate collections.",
-                "Put each report in your financial proof folder.",
-              ]}
-              bestFit="Anyone preparing for housing, transportation financing, credit rebuilding, or debt cleanup."
-            />
+          <RedFlagGreenFlag
+            red={
+              <ul>
+                <li>
+                  Someone pressures you to lie, hide required information, break
+                  conditions, or ignore supervision or registry rules.
+                </li>
+                <li>
+                  A person, leader, group, or romantic partner uses your past to
+                  control you, shame you, demand money, or isolate you from other
+                  support.
+                </li>
+                <li>
+                  A relationship moves very fast, asks for secrecy, or makes you
+                  feel like you must accept unsafe treatment because you are
+                  lucky anyone accepts you.
+                </li>
+              </ul>
+            }
+            green={
+              <ul>
+                <li>
+                  People respect clear rules, written policies, legal limits, and
+                  personal boundaries.
+                </li>
+                <li>
+                  Support includes ordinary life: rides, meals, reminders,
+                  conversation, work leads, accountability, and encouragement.
+                </li>
+                <li>
+                  You are treated as a whole person without anyone denying harm,
+                  ignoring safety, or reducing you permanently to a label.
+                </li>
+              </ul>
+            }
+          />
 
-            <PathwayCard
-              title="Dispute inaccurate information"
-              subtitle="Do not pay to fix mistakes you can challenge."
-              icon="✉️"
-              whyItWorks={
-                <span>
-                  The{" "}
-                  <a href={sourceLinks.ftcCreditDisputes} className={linkClass}>
-                    FTC explains how to dispute credit-report errors
-                  </a>{" "}
-                  with the credit bureau and the company that supplied the
-                  information. Inaccurate barriers should not quietly become part
-                  of your reentry story.
-                </span>
-              }
-              steps={[
-                "Circle the exact item you believe is wrong.",
-                "Gather proof: receipts, letters, court documents, identity-theft reports, or account statements.",
-                "Send disputes in writing when possible and save every response.",
-              ]}
-              bestFit="Anyone who sees inaccurate, incomplete, duplicate, outdated, or unfamiliar credit-report information."
-            />
-          </div>
-
-          <GuideCallout tone="warning" icon="⚠️" title="Be careful with credit-repair promises">
+          <GuideCallout tone="family" icon="🏠" title="For family and loved ones">
             <p>
-              Paid credit-repair companies cannot legally remove accurate,
-              current negative information just because it hurts your score. The{" "}
-              <a href={sourceLinks.ftcCreditRepairFaq} className={linkClass}>
-                FTC credit-repair guidance
-              </a>{" "}
-              warns readers to watch for scams, upfront fees, and advice to
-              dispute accurate information or lie on applications.
+              Support does not mean pretending nothing happened. It also does not
+              mean making shame the center of every conversation. Useful support
+              is steady and specific: help with transportation, paperwork,
+              meals, schedules, emotional steadiness, and honest boundaries.
             </p>
           </GuideCallout>
 
-          <SoftDivider label="Debt strategy" />
-
-          <GuideProse>
-            <p>
-              Valid debt still needs sorting. Some debt is urgent because it is
-              tied to court, supervision, housing, utilities, child support, or
-              transportation. Some debt may be old, negotiable, or lower priority.
-              A clear list helps you decide what must be handled now and what can
-              wait.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="debt-repair-checklist"
-            title="Debt cleanup quick wins"
-            columns={1}
-            items={[
+          <RoleGuidanceGrid
+            title="How different people can help"
+            roles={[
               {
-                id: "sort-debts",
-                label:
-                  "Sort debts into court-related debt, housing/utility debt, transportation debt, student loans, medical debt, collections, and family debt.",
-                helper:
-                  "Why it matters: not all debt carries the same risk. Court debt, rent, utilities, and transportation may affect freedom, housing, or work more quickly than older consumer collections.",
+                role: "Person rebuilding community life",
+                icon: "🧭",
+                guidance:
+                  "Focus on what you can practice: showing up, keeping promises, verifying rules, choosing safer people, accepting lawful boundaries, and taking the next small step after setbacks.",
               },
               {
-                id: "student-loans",
-                label: (
-                  <span>
-                    If you have federal student loans, check{" "}
-                    <a href={sourceLinks.studentAidIdr} className={linkClass}>
-                      income-driven repayment options on StudentAid.gov
-                    </a>
-                    .
-                  </span>
-                ),
-                helper:
-                  "Why it matters: a plan based on income may be safer than ignoring federal student-loan notices.",
+                role: "Family or loved one",
+                icon: "🧡",
+                guidance:
+                  "Offer practical help without becoming the whole supervision system. Support routines, transportation, paperwork, meals, treatment, and honest conversations. Do not pressure the person to ignore rules or move faster than trust allows.",
               },
               {
-                id: "call-creditor",
-                label:
-                  "For valid debts you cannot pay in full, call and ask whether a reduced payoff, hardship plan, or monthly payment plan is available.",
-                helper:
-                  "Why it matters: the point is to create a written agreement you can actually keep, not to promise money you do not have.",
+                role: "Friend, neighbor, or coworker",
+                icon: "🤝",
+                guidance:
+                  "Practice ordinary respect. You do not have to become a counselor or investigator. Clear boundaries, fair treatment, and not spreading gossip can make reintegration safer and more realistic.",
               },
               {
-                id: "confirm-in-writing",
-                label:
-                  "Before paying a collector, ask for the agreement in writing and save the letter, email, or account screenshot.",
-                helper:
-                  "Why it matters: documentation protects you if the account is resold, misapplied, or reported incorrectly later.",
+                role: "Faith or community leader",
+                icon: "🕊️",
+                guidance:
+                  "Use clear policies, trained leadership, appropriate boundaries, and written expectations. Compassion and safety belong together. Do not confuse forgiveness with secrecy or lack of accountability.",
               },
             ]}
           />
+        </GuideSectionCard>
 
-          <ScriptBox
-            title="Script: asking for a realistic payment plan"
-            tone="neutral"
-            context="Use this when a debt is valid, but the full amount is not realistic right now."
-            buttonLabel="Copy payment-plan script"
-            script={`Hello, my name is [Name]. I am trying to resolve account or case number [number]. I want to pay what I can, but I cannot pay the full amount today.
+        <GuideSectionHeader
+          id="community"
+          number="3"
+          title="Neighbors, work, volunteering, and community spaces"
+          subtitle="Community is built through roles. Choose roles that are lawful, clear, low-risk, and repeatable."
+        />
 
-Can you tell me whether there is a hardship plan, reduced settlement, or monthly payment option? Before I agree, I need the total amount, due dates, payment method, and any reporting or collection terms in writing.
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Being a good neighbor often starts with ordinary things: greeting
+              people politely, keeping shared spaces clean, managing noise,
+              following housing rules, and not over-explaining. Consistency can
+              lower tension over time, even when some people remain distant.
+            </p>
 
-I am taking notes. Could you please repeat your name, department, and the best callback number?`}
-          />
+            <p>
+              At work, reliability matters. Show up on time, be coachable, take
+              feedback seriously, and document inappropriate comments or
+              different treatment when needed. A toxic workplace is not the only
+              place where you can rebuild.
+            </p>
+
+            <p>
+              Volunteering, faith communities, support meetings, service
+              projects, community gardens, food pantries, animal shelters, and
+              cleanups can offer structure and meaning. But not every role is
+              safe or allowed. Roles involving children, schools, parks, housing,
+              transportation, internet access, private contact, or overnight
+              events may require extra verification.
+            </p>
+          </GuideProse>
 
           <VerifyBeforeActing
-            title="Verify before paying, settling, or ignoring debt"
+            title="Verify before joining, volunteering, traveling, dating, or disclosing"
             whoToAsk={
               <span>
-                Ask the court clerk, probation/parole officer, child-support
-                office, creditor, collector, student-loan servicer, or nonprofit
-                credit counselor who has authority over that specific debt.
+                Ask the person or office with actual authority: supervising
+                officer, registering agency, attorney, treatment provider, court
+                clerk, housing provider, volunteer coordinator, faith/community
+                leader, or employer policy contact.
               </span>
             }
             whatToAsk={
               <span>
-                Ask: “Is this debt valid, who receives payment, what happens if I
-                miss a payment, can I get a written plan, and will this affect my
-                supervision, license, housing, benefits, or credit report?”
+                Ask the narrow question tied to the action you are about to take:
+                “Am I allowed to be at this location, in this role, with these
+                duties, on this schedule, with these people, under my current
+                conditions?”
               </span>
             }
             whatToSave={
               <span>
-                Save written agreements, receipts, confirmation numbers, names,
-                dates, letters, emails, screenshots, and copies of mailed forms.
+                Save the date, name, title, department, phone number or email,
+                written policy, approval, denial, and any conditions or limits
+                you were given.
               </span>
             }
           />
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="credit"
-          number="5"
-          title="Build Credit as Evidence, Not as Debt"
-          subtitle="A secured card or credit-builder loan can help, but only if it creates clean payment history."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Rebuilding credit is not about getting access to debt for its own
-              sake. The strategy is to create recent proof that you can borrow a
-              small amount, keep balances low, and pay on time. That proof can
-              matter later for housing, transportation, insurance pricing,
-              business banking, or emergency borrowing.
-            </p>
-
-            <p>
-              The{" "}
-              <a href={sourceLinks.cfpbCreditRebuild} className={linkClass}>
-                CFPB identifies secured cards and credit-builder loans
-              </a>{" "}
-              as common ways to start or rebuild credit history. The safer goal is
-              boring: one small recurring charge, automatic payments if possible,
-              low balance, and no missed due dates.
-            </p>
-          </GuideProse>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <PathwayCard
-              title="Secured credit card"
-              subtitle="Use a deposit to build payment history."
-              icon="💳"
-              whyItWorks="A secured card can report on-time payments to credit bureaus. Over time, that can show capacity and intent to pay, support credit-line increases, and strengthen a banking relationship."
-              steps={[
-                "Compare fees, deposit amount, reporting to all three credit bureaus, and upgrade options.",
-                "Put one small recurring bill or planned purchase on the card.",
-                "Pay in full on time and keep utilization low.",
-              ]}
-              details={[
-                {
-                  label: "Quick win",
-                  value:
-                    "Choose one small purchase you already planned to make; do not use the card for emergencies or impulse spending.",
-                },
-                {
-                  label: "Proof built",
-                  value:
-                    "Recent on-time payment history, low utilization, and responsible account management.",
-                },
-              ]}
-              bestFit="Someone with enough cash for a deposit and enough income stability to avoid missed payments."
-            />
-
-            <PathwayCard
-              title="Credit-builder loan"
-              subtitle="Build history while saving."
-              icon="🔐"
-              whyItWorks="Some credit unions and community lenders offer loans where the borrowed money is held while you make payments. If reported to credit bureaus, payments may help build history."
-              steps={[
-                "Ask a credit union whether the loan reports to credit bureaus.",
-                "Confirm total cost, monthly payment, late fees, and when funds are released.",
-                "Only agree if the payment fits your 30-day budget.",
-              ]}
-              details={[
-                {
-                  label: "Quick win",
-                  value:
-                    "Call one local credit union and ask whether they offer a credit-builder loan or second-chance banking program.",
-                },
-                {
-                  label: "Proof built",
-                  value:
-                    "Installment payment history and a relationship with a financial institution.",
-                },
-              ]}
-              bestFit="Someone who wants structure, can handle a fixed monthly payment, and does not need a credit card right now."
-            />
-          </div>
-
-          <RedFlagGreenFlag
-            red={
-              <p>
-                A card with high monthly fees, unclear reporting, pressure to
-                carry a balance, or promises of “guaranteed” credit repair.
-              </p>
+          <DocumentPacket
+            title="Keep a reintegration folder"
+            intro={
+              <span>
+                A folder turns confusion into proof. Use paper, phone notes,
+                screenshots, email folders, or all of them.
+              </span>
             }
-            green={
-              <p>
-                A low-fee product that reports payments, explains all costs, lets
-                you pay in full, and fits inside the budget you already wrote.
-              </p>
-            }
-          />
-
-          <GuideChecklist
-            id="credit-builder-checklist"
-            title="Credit-building quick wins"
-            columns={1}
-            items={[
+            categories={[
               {
-                id: "compare-costs",
-                label:
-                  "Compare the deposit, annual fee, monthly fee, interest rate, late fee, and whether the account reports to credit bureaus.",
-                helper:
-                  "Why it matters: a credit tool that eats your money or does not report payment history may not build the proof you need.",
+                title: "Rules and permissions",
+                items: [
+                  "Supervision conditions, registry instructions, court orders, treatment rules, and written permissions.",
+                  "Names, dates, and notes from calls with agencies, supervisors, employers, housing providers, or community organizations.",
+                ],
               },
               {
-                id: "one-small-charge",
-                label:
-                  "Use one small recurring charge or planned purchase, then pay it in full by the due date.",
-                helper:
-                  "Why it matters: the point is payment history, not carrying debt.",
+                title: "Stability records",
+                items: [
+                  "Work schedules, pay stubs, appointment records, class schedules, certificates, volunteer hours, and attendance notes.",
+                  "Housing documents, transportation plans, medication lists, crisis contacts, and support meeting information.",
+                ],
               },
               {
-                id: "autopay-calendar",
-                label:
-                  "Set autopay if safe, and put the due date on a paper or phone calendar.",
-                helper:
-                  "Why it matters: one missed payment can damage the same record you are trying to build.",
-              },
-              {
-                id: "six-month-review",
-                label:
-                  "After six months of on-time payments, ask whether the issuer reviews accounts for credit-line increases or graduation to an unsecured card.",
-                helper:
-                  "Why it matters: a stronger account history can become a stepping stone to better terms later.",
+                title: "Problem records",
+                items: [
+                  "Harassment notes, screenshots, voicemails, letters, unfair treatment records, and dates of concerning incidents.",
+                  "Steps you took to report, de-escalate, ask for help, or move away from unsafe situations.",
+                ],
               },
             ]}
           />
         </GuideSectionCard>
 
 <GuideSectionHeader
-          id="income"
-          number="6"
-          title="Build Income and Reduce Fragile Gaps"
-          subtitle="Stable income makes every other financial step more realistic."
+          id="scripts"
+          number="4"
+          title="Scripts for hard moments"
+          subtitle="Stress makes it harder to find words. Short scripts help you stay calm, honest, and boundaried."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Income stability is not only about the amount of money coming in.
-              It is also about predictability, documentation, and whether the
-              work fits your supervision rules, transportation, health, family
-              needs, and background-check realities.
-            </p>
-          </GuideProse>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <PathwayCard
-              title="Paid training and apprenticeships"
-              subtitle="Earn while building a portable credential."
-              icon="🧰"
-              whyItWorks={
-                <span>
-                  <a href={sourceLinks.apprenticeship} className={linkClass}>
-                    Apprenticeship.gov
-                  </a>{" "}
-                  describes registered apprenticeship as paid work with on-the-job
-                  learning, classroom instruction, progressive wage increases,
-                  and an industry-recognized credential.
-                </span>
-              }
-              steps={[
-                "Search by occupation and location.",
-                "Ask whether the program has background-check requirements.",
-                "Save applications, contacts, interviews, and rejection or acceptance notices.",
-              ]}
-              bestFit="Someone who wants a wage path, a credential, and proof of work development over time."
-              offlineAlternatives={[
-                "Call a local American Job Center.",
-                "Ask a reentry program or supervising officer for apprenticeship or union pre-apprenticeship contacts.",
-                "Visit a public library and print application instructions.",
-              ]}
-            />
-
-            <PathwayCard
-              title="Small business or self-employment"
-              subtitle="Plan before spending money."
-              icon="🧑‍🔧"
-              whyItWorks={
-                <span>
-                  Self-employment can help some people work around hiring
-                  barriers, but it may create tax, licensing, registration,
-                  insurance, supervision, and cash-flow issues. Use the{" "}
-                  <a href={sourceLinks.sbaReentry} className={linkClass}>
-                    SBA entrepreneurship guidance for formerly incarcerated people
-                  </a>{" "}
-                  as a starting point before paying for tools, ads, websites, or
-                  inventory.
-                </span>
-              }
-              steps={[
-                "Verify supervision, licensing, and local business rules first.",
-                "Start with a low-cost service or skill you can document.",
-                "Track income and expenses from day one.",
-              ]}
-              bestFit="Someone with a realistic skill, low startup costs, and a plan to handle taxes and recordkeeping."
-            />
-          </div>
-
-          <GuideCallout tone="warning" icon="🚧" title="Gig work needs verification">
-            <p>
-              Delivery, rideshare, app-based tasks, day labor, or independent
-              contracting may help with cash flow, but do not assume they are
-              allowed. Some jobs involve driving, entering restricted places,
-              interacting with minors, using the internet, handling customer data,
-              or crossing county/state lines. Verify supervision conditions and
-              platform rules before signing up.
-            </p>
-          </GuideCallout>
+          <ScriptBox
+            title="Asking a community group about eligibility"
+            tone="neutral"
+            context="Use this when you want to participate but need to avoid guessing about rules, restrictions, or policies."
+            script={`Hello, my name is [Name]. I am interested in participating, and I want to make sure I follow all rules and policies.\n\nIs there someone I can speak with privately about eligibility, boundaries, and any written requirements for this role or activity?`}
+          />
 
           <ScriptBox
-            title="Script: asking about a job, training, or gig-work restriction"
-            tone="legal"
-            context="Use this with a supervising officer, case manager, attorney, or program contact when work rules could affect compliance."
-            buttonLabel="Copy verification script"
-            script={`Hello, I am considering [job/training/gig platform/business idea]. Before I apply or start, I want to verify whether it conflicts with any supervision condition, court order, registry rule, travel restriction, internet restriction, workplace restriction, or contact restriction.
-
-Can you tell me what I need to check, who has authority to approve it, and whether I can get the answer in writing?`}
+            title="Responding to gossip or intrusive questions"
+            tone="privacy"
+            context="Use this when someone asks for details in a public, unsafe, or unnecessary setting."
+            script={`I understand people may have questions. I am focused on living responsibly, following my conditions, and rebuilding my life.\n\nI am not going to discuss private details here.`}
           />
 
-          <VerifyBeforeActing
-            title="Verify before accepting work or starting a business"
-            whoToAsk="Your supervising officer, attorney, licensing board, employer/program sponsor, state registration agency if relevant, tax professional, or local small-business office."
-            whatToAsk="Ask whether the work conflicts with supervision, registration, travel, internet, licensing, workplace, tax, insurance, or reporting rules."
-            whatToSave="Save written approval, emails, job descriptions, program requirements, license guidance, business filings, mileage logs, income records, and tax documents."
+          <ScriptBox
+            title="Asking family for practical support"
+            tone="family"
+            context="Use this when loved ones want to help but everyone is overwhelmed or unclear."
+            script={`What helps me most right now is steady support: rides, reminders, meals, help with paperwork, and honest conversations.\n\nI also need us to respect any legal, supervision, treatment, or safety boundaries. I am not asking you to pretend this is easy. I am asking if we can focus on the next practical step.`}
           />
+
+          <ScriptBox
+            title="Supporter script for welcoming someone back"
+            tone="reentry"
+            context="Use this when explaining a balanced support approach to relatives, neighbors, faith groups, or community members."
+            script={`We are trying to support stability and accountability. We are not asking anyone to ignore harm, safety, or legal restrictions.\n\nWe are asking for clear rules, dignity, and a fair chance to participate where appropriate.`}
+          />
+
+          <GuideCallout
+            tone="reminder"
+            icon="💬"
+            title="Keep scripts short"
+          >
+            <p>
+              A script is not a courtroom argument. It should name the issue, ask
+              one clear question, avoid oversharing, and help you take notes. If
+              the person cannot answer, ask who can.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="stability"
-          number="7"
-          title="Turn Stability Into Long-Term Options"
-          subtitle="The long-term goal is more choice: safer housing, better work, transportation, credit access, and family stability."
+          id="setbacks"
+          number="5"
+          title="When rejection, stigma, or setbacks happen"
+          subtitle="Rejection can hurt badly. It is also information, not a verdict on whether your life can have meaning."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Once the basics are in place, the strategy shifts from emergency
-              survival to durable stability. That does not mean everything is
-              fixed. It means you are creating enough margin that one bad week
-              does not erase months of work.
+              Some doors will not open. Some people may never want contact. Some
+              family members may need distance. Some employers, landlords,
+              groups, or neighbors may react to the label instead of the whole
+              person. Sometimes a boundary is connected to real past conduct,
+              harm, or broken trust. Sometimes it is stigma. Often it is mixed.
+            </p>
+
+            <p>
+              You do not have to pretend rejection does not hurt. But do not let
+              one rejection push you toward unsafe people, secrecy, isolation, or
+              giving up on all community. Scale down to the next lawful, steady
+              step.
             </p>
           </GuideProse>
 
+          <CommonMistakes
+            title="Common mistakes that can make reintegration harder"
+            mistakes={[
+              {
+                mistake: "Trying to explain everything to everyone.",
+                whyItMatters:
+                  "Over-explaining can escalate conflict, invite gossip, or create disclosure problems.",
+                betterMove:
+                  "Use short scripts. Share details only when legally, ethically, or practically needed.",
+              },
+              {
+                mistake: "Rushing into the first group or person that offers acceptance.",
+                whyItMatters:
+                  "Instant acceptance can feel relieving, but unsafe people and groups may use shame, secrecy, money, or loyalty to control you.",
+                betterMove:
+                  "Look for clear rules, trained leadership, written expectations, and respect for boundaries.",
+              },
+              {
+                mistake: "Hiding restrictions from people who need to know.",
+                whyItMatters:
+                  "Guessing or hiding can create legal, housing, employment, supervision, or safety risk.",
+                betterMove:
+                  "Verify the specific action before relying on your assumptions. Save the answer when possible.",
+              },
+              {
+                mistake: "Giving up on all community after one rejection.",
+                whyItMatters:
+                  "A painful no can feel final, but it may only tell you that one person, place, or role is not workable.",
+                betterMove:
+                  "Pause, talk to a steady support person, adjust the plan, and choose the next small step.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌤️" title="A setback plan">
+            <p>
+              Try this sequence: pause, breathe, write down what happened, check
+              whether any rule or safety issue is involved, talk to a trusted
+              support person, and choose one small action that keeps you
+              connected to your routine.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="plan"
+          number="6"
+          title="Make a weekly belonging plan"
+          subtitle="Belonging grows through repeatable practice. A simple weekly plan keeps hope connected to action."
+        />
+
+        <GuideSectionCard>
           <GuideChecklist
-            id="long-term-stability"
-            title="Long-term strategy quick wins"
+            id="weekly-belonging-plan"
+            title="This week, I will:"
             columns={1}
             items={[
               {
-                id: "emergency-buffer",
-                label:
-                  "Start a small emergency buffer, even $10–$25 at a time, in a separate account or envelope.",
+                id: "routine",
+                label: "Repeat one stabilizing routine.",
                 helper:
-                  "Why it matters: a small buffer can prevent a flat tire, phone shutoff, medication gap, or missed bus pass from becoming a job, housing, or supervision crisis.",
+                  "Examples: sleep schedule, meals, movement, treatment, work, medication, journaling, or a daily check-in.",
               },
               {
-                id: "health-coverage",
-                label: (
-                  <span>
-                    Check health coverage timing through{" "}
-                    <a href={sourceLinks.healthcare} className={linkClass}>
-                      HealthCare.gov enrollment information
-                    </a>{" "}
-                    or your state Medicaid office.
-                  </span>
-                ),
+                id: "contact",
+                label: "Contact one safe or steady person.",
                 helper:
-                  "Why it matters: untreated health costs can quickly become debt, missed work, and instability.",
+                  "Keep it simple: a text, call, coffee, meeting, ride request, or honest check-in.",
               },
               {
-                id: "benefit-review",
-                label: (
-                  <span>
-                    Use{" "}
-                    <a href={sourceLinks.benefits} className={linkClass}>
-                      USA.gov’s benefit finder
-                    </a>{" "}
-                    and{" "}
-                    <a href={sourceLinks.twoOneOne} className={linkClass}>
-                      211
-                    </a>{" "}
-                    to check food, housing, utility, health, transportation, and local emergency help.
-                  </span>
-                ),
+                id: "place",
+                label: "Show up responsibly in one appropriate place.",
                 helper:
-                  "Why it matters: temporary support can protect your first paychecks while you rebuild.",
+                  "Examples: work, class, appointment, support meeting, faith service, library, community center, or family task.",
               },
               {
-                id: "free-education",
-                label: (
-                  <span>
-                    Complete one free lesson through{" "}
-                    <a href={sourceLinks.fdicMoneySmart} className={linkClass}>
-                      FDIC Money Smart
-                    </a>{" "}
-                    or speak with a nonprofit counselor through{" "}
-                    <a href={sourceLinks.nfcc} className={linkClass}>
-                      NFCC
-                    </a>
-                    .
-                  </span>
-                ),
+                id: "verify",
+                label: "Verify one rule, boundary, or permission before acting.",
                 helper:
-                  "Why it matters: coaching can help you avoid expensive mistakes before you sign anything.",
+                  "Do this before volunteering, joining activities, changing housing, traveling, dating, or entering restricted settings.",
               },
               {
-                id: "quarterly-review",
-                label:
-                  "Every three months, review your budget, credit reports, debts, savings, income, and next application goal.",
+                id: "contribute",
+                label: "Choose one way to be useful.",
                 helper:
-                  "Why it matters: financial credibility grows when your records show steady follow-through over time.",
+                  "Help with a chore, apply for work, assist a relative, clean a shared space, attend a service project, or follow through on a promise.",
+              },
+              {
+                id: "setback",
+                label: "Name one setback without letting it define the week.",
+                helper:
+                  "Write down what happened, what it means, what it does not mean, and the next small step.",
+              },
+              {
+                id: "record",
+                label: "Save one important note or document.",
+                helper:
+                  "Names, dates, approvals, denials, policies, schedules, incident notes, or contact information.",
               },
             ]}
           />
 
-          <CommonMistakes
-            title="Common mistakes that can undo progress"
-            mistakes={[
-              {
-                mistake: "Using payday loans, title loans, or high-cost cash advances as a routine budget tool.",
-                whyItMatters: (
-                  <span>
-                    The{" "}
-                    <a href={sourceLinks.ftcPaydayLoans} className={linkClass}>
-                      FTC warns about payday and car-title loan risks
-                    </a>
-                    , including fees and repayment pressure that can trap people
-                    in repeated borrowing.
-                  </span>
-                ),
-                betterMove:
-                  "Call 211, ask creditors for hardship options, speak with a nonprofit counselor, or delay a non-essential expense before taking high-cost debt.",
-              },
-              {
-                mistake: "Agreeing to a payment plan that only works on a perfect month.",
-                whyItMatters:
-                  "Reentry months are rarely perfect. Transportation, phone, housing, health, supervision, and job schedules can shift quickly.",
-                betterMove:
-                  "Use your 30-day budget first, then offer a payment you can keep even in a hard month.",
-              },
-              {
-                mistake: "Using someone else’s bank account, card, or app login to receive money.",
-                whyItMatters:
-                  "It can create tax confusion, control problems, benefit issues, family conflict, and unclear proof of income.",
-                betterMove:
-                  "Open your own safer account if possible, or ask a nonprofit, credit union, or reentry program about alternatives.",
-              },
-              {
-                mistake: "Carrying a balance on a secured card to “build credit faster.”",
-                whyItMatters:
-                  "Carrying debt can create interest, stress, and missed-payment risk. On-time payment history and low balances matter more than carrying a balance.",
-                betterMove:
-                  "Use one small planned charge and pay it in full on time whenever possible.",
-              },
-              {
-                mistake: "Ignoring court debt, restitution, child support, or supervision fees because the amount feels impossible.",
-                whyItMatters:
-                  "Silence can make the record look worse than good-faith effort. In some places, missed payments may create legal or supervision consequences.",
-                betterMove:
-                  "Ask who handles the debt, whether a payment plan exists, what proof is needed, and how to document hardship.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="offline"
-          number="8"
-          title="If Internet, Phone, or Privacy Access Is Limited"
-          subtitle="A financial plan should still work for people who are phone-only, supervised, newly released, or relying on paper."
-        />
-
-        <GuideSectionCard>
           <OfflineOptions
-            title="Offline and low-access options"
-            icon="📞"
-            note="Use these when online forms, printers, private internet, transportation, or unrestricted phone access are not realistic."
+            title="If internet access, privacy, or transportation is limited"
+            icon="📎"
+            note={
+              <span>
+                Reintegration planning should still work for people who are
+                phone-only, supervised, recently released, without a printer, or
+                relying on family for help.
+              </span>
+            }
             items={[
-              "Call 211 and ask for local help with food, rent, utilities, health care, transportation, and financial counseling.",
-              "Ask the library, clerk’s office, reentry program, probation/parole office, or community center where forms can be printed.",
-              "Ask banks or credit unions whether they can mail account information or accept in-person applications.",
-              "Keep a paper folder with names, dates, phone numbers, confirmation numbers, receipts, and copies of mailed documents.",
-              "If someone helps you online, ask them to print or send you copies of every confirmation page and email.",
-              "Avoid entering sensitive information on public computers unless you know how to log out fully and avoid saving passwords.",
+              "Use a paper calendar or notebook for appointments, calls, approvals, denials, and weekly goals.",
+              "Ask agencies, employers, treatment providers, or community groups for mailed forms or printed policies.",
+              "Use a public library, reentry office, legal aid office, clerk’s office, or trusted helper for printing and forms when appropriate.",
+              "Keep a written contact list with supervision, registry office, attorney, treatment provider, crisis line, family contacts, transportation options, and support meetings.",
+              "When privacy is limited, write only what you need to remember and store sensitive papers somewhere safer.",
             ]}
           />
 
-          <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
+          <GuideProse>
             <p>
-              Financial documents can include Social Security numbers, birth
-              dates, addresses, account numbers, court information, and medical or
-              benefit details. Share only what is needed, use official websites
-              when possible, and avoid saving passwords on shared devices.
+              You do not have to earn your humanity. You practice belonging
+              through ordinary acts of stability, honesty, contribution, and care.
+              Keep going.
             </p>
-          </GuideCallout>
+          </GuideProse>
         </GuideSectionCard>
 
-        <GuideSectionHeader
+<GuideSectionHeader
           id="resources"
-          number="9"
-          title="Resources and Next Steps"
-          subtitle="Use these links to act, verify, document, and keep learning."
+          number="7"
+          title="Resources and next steps"
+          subtitle="Use outside resources for support, but verify local rules and personal conditions before relying on any general guide."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Proof and practice links"
-            description="These are the links used throughout the guide. They are included here again so readers can take action without hunting through the page."
+            title="Outside resources"
+            description={
+              <span>
+                These links can help with reentry support, employment, crisis
+                support, mental health, and research. Availability and relevance
+                vary by location.
+              </span>
+            }
             resources={[
               {
-                label: "SSA Social Security number and card",
-                href: sourceLinks.ssaCard,
-                badge: "Official",
+                label: "The Fortune Society — Coming Home",
+                href: sourceLinks.fortuneComingHome,
+                badge: "Reentry",
                 description:
-                  "Replace or manage a Social Security card, which may be needed for work, benefits, banking, and housing.",
+                  "Reentry information and services from a long-running nonprofit focused on people impacted by incarceration.",
               },
               {
-                label: "Bank On certified accounts",
-                href: sourceLinks.bankOnAccounts,
-                badge: "Practice",
+                label: "The Fortune Society",
+                href: sourceLinks.fortuneSociety,
+                badge: "Support",
                 description:
-                  "Find low-cost accounts designed around safer banking access and no overdraft features.",
+                  "Programs and advocacy related to housing, employment, education, health, and community reintegration.",
               },
               {
-                label: "AnnualCreditReport.com",
-                href: sourceLinks.annualCreditReport,
-                badge: "Official",
+                label: "Honest Jobs",
+                href: sourceLinks.honestJobs,
+                badge: "Employment",
                 description:
-                  "Request free credit reports from the three major credit bureaus.",
+                  "A fair-chance employment platform for people with records. Use it as a job-search tool, not legal advice.",
               },
               {
-                label: "FTC credit-report dispute guidance",
-                href: sourceLinks.ftcCreditDisputes,
-                badge: "Official",
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
+                badge: "Crisis",
+                phone: "Call or text 988",
                 description:
-                  "Learn how to dispute inaccurate credit-report information.",
+                  "Free crisis support for people in suicidal crisis, emotional distress, or mental health crisis.",
               },
               {
-                label: "CFPB credit rebuilding guidance",
-                href: sourceLinks.cfpbCreditRebuild,
-                badge: "Official",
+                label: "SAMHSA National Helpline",
+                href: sourceLinks.samhsaHelpline,
+                badge: "Helpline",
+                phone: "1-800-662-HELP (4357)",
                 description:
-                  "Learn about secured cards, credit-builder loans, and other ways to start or rebuild credit.",
-              },
-              {
-                label: "StudentAid.gov income-driven repayment",
-                href: sourceLinks.studentAidIdr,
-                badge: "Official",
-                description:
-                  "Review federal student-loan repayment options tied to income.",
-              },
-              {
-                label: "Apprenticeship.gov career seekers",
-                href: sourceLinks.apprenticeship,
-                badge: "Official",
-                description:
-                  "Search paid training and apprenticeship opportunities.",
-              },
-              {
-                label: "USA.gov benefit finder",
-                href: sourceLinks.benefits,
-                badge: "Official",
-                description:
-                  "Check possible government benefits and financial help.",
-              },
-              {
-                label: "211 local help",
-                href: sourceLinks.twoOneOne,
-                badge: "Help",
-                description:
-                  "Find local help with housing, food, utilities, health care, and other needs.",
-              },
-              {
-                label: "FDIC Money Smart",
-                href: sourceLinks.fdicMoneySmart,
-                badge: "Education",
-                description:
-                  "Use free financial education materials from the FDIC.",
-              },
-              {
-                label: "NFCC nonprofit credit counseling",
-                href: sourceLinks.nfcc,
-                badge: "Nonprofit",
-                description:
-                  "Find nonprofit credit counseling and debt-management support.",
-              },
-              {
-                label: "FTC payday and car-title loan guidance",
-                href: sourceLinks.ftcPaydayLoans,
-                badge: "Warning",
-                description:
-                  "Understand risks before using high-cost short-term loans.",
+                  "Treatment referral and information service for mental health and substance-use concerns.",
               },
             ]}
           />
+
+          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "Employment Guide",
+                title: "Employment Rights and Job Search Support",
                 description:
-                  "Use with this guide when income, disclosure, applications, interviews, or background checks are the next barrier.",
-                to: "/resources/employment-guide",
+                  "Use this with the work and reputation-building sections when employment is part of your reintegration plan.",
+                to: "/resources/employment-rights",
               },
               {
-                title: "Housing Guide",
+                title: "Housing Search and Stability",
                 description:
-                  "Use when financial credibility, documentation, deposits, rental applications, or housing restrictions are part of the plan.",
-                to: "/resources/housing-guide",
+                  "Housing affects routines, relationships, transportation, supervision, and community participation.",
+                to: "/resources/housing-search",
               },
               {
-                title: "Reentry Guide",
+                title: "Family Support Guide",
                 description:
-                  "Use for the broader release, supervision, documentation, housing, work, and support roadmap.",
-                to: "/resources/reentry-guide",
+                  "A companion guide for loved ones trying to offer practical support without ignoring boundaries or safety.",
+                to: "/resources/family-support",
               },
               {
-                title: "Small Business Guide",
+                title: "Mental Health and Crisis Resources",
                 description:
-                  "Use when self-employment or contract work may be part of a realistic income strategy.",
-                to: "/resources/small-business-guide",
+                  "Use this if shame, isolation, rejection, or stress is becoming too heavy to carry alone.",
+                to: "/resources/mental-health-resources",
               },
             ]}
           />
 
+          <SoftDivider />
+
           <SourceList
             title="Sources and verification"
-            note="Links should be rechecked before production publication. Product-specific credit-card links are intentionally avoided here because fees, eligibility, underwriting, and terms change frequently."
+            note={
+              <span>
+                Research on reentry, volunteering, mentorship, stigma, and
+                community support is useful but should not be overread. Local
+                law, supervision, registry requirements, court orders, and agency
+                policies can change the answer for a specific person.
+              </span>
+            }
             sources={[
               {
-                label: "Social Security Administration — Social Security number and card",
-                href: sourceLinks.ssaCard,
+                label: "Belonging and reintegration research",
+                href: sourceLinks.belongingReentry,
                 description:
-                  "Supports identity-document planning and Social Security card replacement.",
+                  "Supports the guide’s framing that being seen as a person, not only a label, matters during reintegration.",
               },
               {
-                label: "Bank On — certified accounts",
-                href: sourceLinks.bankOnAccounts,
+                label: "Self-stigma and health impacts",
+                href: sourceLinks.selfStigma,
                 description:
-                  "Supports low-cost, safer checking-account guidance and no-overdraft account search.",
+                  "Supports discussion of stigma, self-stigma, mental health, and participation barriers.",
               },
               {
-                label: "AnnualCreditReport.com",
-                href: sourceLinks.annualCreditReport,
+                label: "UNC Criminal Justice Innovation Lab — Reentry effectiveness",
+                href: sourceLinks.cjilReentry,
                 description:
-                  "Supports free credit-report access and credit-report review steps.",
+                  "Supports careful discussion of reentry services, employment, housing, treatment, and wraparound support.",
               },
               {
-                label: "FTC — Disputing Errors on Your Credit Reports",
-                href: sourceLinks.ftcCreditDisputes,
+                label: "Volunteering and health systematic review",
+                href: sourceLinks.volunteeringReview,
                 description:
-                  "Supports credit-report error dispute guidance.",
+                  "Supports the general idea that volunteering and contribution can support wellbeing, while still requiring legal and practical verification.",
               },
               {
-                label: "FTC — Fixing Your Credit FAQs",
-                href: sourceLinks.ftcCreditRepairFaq,
+                label: "Volunteering as a public health intervention",
+                href: sourceLinks.volunteeringPublicHealth,
                 description:
-                  "Supports caution about credit-repair scams and limits of paid credit repair.",
+                  "Supports discussion of structured service, health, and social connection.",
               },
               {
-                label: "CFPB — Ways to start or rebuild credit history",
-                href: sourceLinks.cfpbCreditRebuild,
+                label: "Minnesota Circles of Support and Accountability evaluation",
+                href: sourceLinks.mnCosaEvaluation,
                 description:
-                  "Supports secured-card and credit-builder-loan guidance.",
+                  "Supports cautious discussion of structured circles, roles, boundaries, and accountability models.",
               },
               {
-                label: "CFPB — Your Money, Your Goals companion guides",
-                href: sourceLinks.cfpbReentryGuide,
+                label: "Circles of Support and Accountability overview",
+                href: sourceLinks.cosaOverview,
                 description:
-                  "Supports reentry-specific financial coaching and planning resources.",
+                  "Additional research context. Check access and publication details before relying on it in production.",
               },
               {
-                label: "CFPB — My Money Picture tool",
-                href: sourceLinks.cfpbMyMoneyPicture,
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks.lifeline988,
                 description:
-                  "Supports one-page budgeting and values-based money planning.",
+                  "Official crisis support resource for emotional distress or suicidal crisis.",
               },
               {
-                label: "Federal Student Aid — Income-driven repayment plans",
-                href: sourceLinks.studentAidIdr,
+                label: "SAMHSA National Helpline",
+                href: sourceLinks.samhsaHelpline,
                 description:
-                  "Supports student-loan repayment planning tied to income.",
-              },
-              {
-                label: "Apprenticeship.gov — Career Seekers",
-                href: sourceLinks.apprenticeship,
-                description:
-                  "Supports paid training, wage progression, and credential pathway guidance.",
-              },
-              {
-                label: "CareerOneStop — American Job Centers",
-                href: sourceLinks.americanJobCenters,
-                description:
-                  "Supports local employment and training help.",
-              },
-              {
-                label: "SBA — Entrepreneurship for formerly incarcerated people",
-                href: sourceLinks.sbaReentry,
-                description:
-                  "Supports self-employment and small-business planning guidance.",
-              },
-              {
-                label: "HealthCare.gov — Enrollment dates and deadlines",
-                href: sourceLinks.healthcare,
-                description:
-                  "Supports health coverage planning and enrollment timing.",
-              },
-              {
-                label: "USA.gov — Benefit finder",
-                href: sourceLinks.benefits,
-                description:
-                  "Supports government benefits and financial-help lookup.",
-              },
-              {
-                label: "211 — Local help",
-                href: sourceLinks.twoOneOne,
-                description:
-                  "Supports local referrals for food, housing, utility, health, and emergency help.",
-              },
-              {
-                label: "NFCC — Nonprofit credit counseling",
-                href: sourceLinks.nfcc,
-                description:
-                  "Supports nonprofit credit-counseling referrals.",
-              },
-              {
-                label: "FDIC — Money Smart",
-                href: sourceLinks.fdicMoneySmart,
-                description:
-                  "Supports free financial education.",
-              },
-              {
-                label: "FTC — Payday and car-title loan guidance",
-                href: sourceLinks.ftcPaydayLoans,
-                description:
-                  "Supports warning against high-cost short-term debt traps.",
+                  "Official helpline for mental health and substance-use treatment referral.",
               },
             ]}
           />
+
+          <GuideCallout tone="legal" icon="⚖️" title="This is a guide, not legal advice">
+            <p>
+              General reentry guidance cannot tell you what your specific court
+              order, supervision condition, registry obligation, housing rule, or
+              local policy allows. Before acting on something that could create
+              legal, housing, employment, travel, supervision, or registration
+              risk, verify the specific step with the right authority and save
+              the answer when possible.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
+
+        <section
+          id="sources"
+          className="mt-10 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+        >
+          <h2 className="text-xl font-bold text-slate-950">
+            Source & Link Manifest
+          </h2>
+
+          <div className="mt-4 overflow-x-auto">
+            <table className="min-w-full text-left text-sm">
+              <thead className="border-b border-slate-200 text-xs uppercase tracking-wide text-slate-500">
+                <tr>
+                  <th className="py-2 pr-4 font-semibold">Label</th>
+                  <th className="py-2 pr-4 font-semibold">Used for</th>
+                  <th className="py-2 pr-4 font-semibold">Type</th>
+                  <th className="py-2 pr-4 font-semibold">Status</th>
+                  <th className="py-2 pr-4 font-semibold">Concern</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-700">
+                <tr>
+                  <td className="py-3 pr-4">Belonging and reintegration research</td>
+                  <td className="py-3 pr-4">
+                    Person-first reintegration framing; belonging as practice.
+                  </td>
+                  <td className="py-3 pr-4">Research</td>
+                  <td className="py-3 pr-4">Needs production validation</td>
+                  <td className="py-3 pr-4">
+                    Confirm article scope before making narrow claims.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4">Self-stigma and health impacts</td>
+                  <td className="py-3 pr-4">
+                    Stigma, self-stigma, mental health, and participation barriers.
+                  </td>
+                  <td className="py-3 pr-4">Research</td>
+                  <td className="py-3 pr-4">Needs production validation</td>
+                  <td className="py-3 pr-4">
+                    Wiley access may vary; replace with accessible abstract if needed.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4">UNC CJIL reentry effectiveness</td>
+                  <td className="py-3 pr-4">
+                    Reentry services, wraparound supports, and careful evidence claims.
+                  </td>
+                  <td className="py-3 pr-4">Research / academic center</td>
+                  <td className="py-3 pr-4">Live-checked during planning</td>
+                  <td className="py-3 pr-4">
+                    Findings are mixed; avoid saying all reentry programs work.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4">Honest Jobs</td>
+                  <td className="py-3 pr-4">
+                    Fair-chance job search resource.
+                  </td>
+                  <td className="py-3 pr-4">Nonprofit / platform</td>
+                  <td className="py-3 pr-4">Live-checked during planning</td>
+                  <td className="py-3 pr-4">
+                    Job platform, not legal advice or rights enforcement.
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4">988 Lifeline</td>
+                  <td className="py-3 pr-4">
+                    Crisis and emotional distress support.
+                  </td>
+                  <td className="py-3 pr-4">Official / crisis support</td>
+                  <td className="py-3 pr-4">Live-checked during planning</td>
+                  <td className="py-3 pr-4">None noted.</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-4">SAMHSA National Helpline</td>
+                  <td className="py-3 pr-4">
+                    Mental health and substance-use treatment referral.
+                  </td>
+                  <td className="py-3 pr-4">Official agency</td>
+                  <td className="py-3 pr-4">Live-checked during planning</td>
+                  <td className="py-3 pr-4">None noted.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
   );
