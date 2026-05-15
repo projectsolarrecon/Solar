@@ -130,6 +130,14 @@ export default function FinancialPlanningGuide(): JSX.Element {
           </p>
 
           <p>
+            For people on registries or under supervision, money planning often
+            has to account for court debt, restitution, supervision fees,
+            treatment costs, transportation limits, housing restrictions, job
+            exclusions, internet rules, registration-related travel, and
+            background checks all at once.
+          </p>
+
+          <p>
             The goal is not to look financially perfect. The goal is to build
             proof, month by month, that you can receive money safely, pay what
             you agree to pay, avoid preventable setbacks, and make your next
@@ -192,7 +200,8 @@ export default function FinancialPlanningGuide(): JSX.Element {
             </span>,
             <span>
               Make a written list of court debt, restitution, supervision fees,
-              child support, old collections, and any payment deadlines.
+              treatment costs, registration-related travel, child support, old
+              collections, and any payment deadlines.
             </span>,
           ]}
           reminder={
@@ -280,7 +289,7 @@ export default function FinancialPlanningGuide(): JSX.Element {
               steps={[
                 "Gather ID and release documents.",
                 "Open a low-fee account if possible.",
-                "List income, essentials, court debt, and deadlines.",
+                "List income, essentials, compliance-related costs, court debt, and deadlines.",
               ]}
               bestFit="The first days or weeks after release, job loss, housing disruption, or a financial shock."
             />
@@ -289,10 +298,10 @@ export default function FinancialPlanningGuide(): JSX.Element {
               title="Documented reliability"
               subtitle="Create a record that other people can see."
               icon="🧾"
-              whyItWorks="Written proof changes the conversation. Payment confirmations, account statements, dispute letters, and repayment plans can show effort and follow-through even before everything is fixed."
+              whyItWorks="Written proof changes the conversation. Payment confirmations, account statements, dispute letters, appointment records, and repayment plans can show effort and follow-through even before everything is fixed."
               steps={[
-                "Save reports and letters.",
-                "Get payment plans in writing.",
+                "Save reports, letters, receipts, and attendance records.",
+                "Get payment plans and approvals in writing.",
                 "Keep receipts, confirmation numbers, and names of people you spoke with.",
               ]}
               bestFit="Anyone applying for housing, credit, transportation, benefits, employment, or relief from a court or agency."
@@ -367,7 +376,7 @@ export default function FinancialPlanningGuide(): JSX.Element {
                   </span>
                 ),
                 helper:
-                  "Why it matters: a simple budget shows what is realistic before you agree to rent, car payments, debt plans, or family repayment promises.",
+                  "Why it matters: a simple budget shows what is realistic before you agree to rent, car payments, debt plans, family repayment promises, or compliance-related costs.",
               },
               {
                 id: "benefits",
@@ -390,9 +399,9 @@ export default function FinancialPlanningGuide(): JSX.Element {
               {
                 id: "court-debt",
                 label:
-                  "Create a written court-debt and restitution list with amounts, offices, deadlines, case numbers, and payment instructions.",
+                  "Create a written list of court debt, restitution, supervision fees, treatment fees, registration-related travel, child support, required classes, testing fees, old collections, and payment instructions.",
                 helper:
-                  "Why it matters: court-related debt may affect supervision, warrants, relief requests, or future planning. Guessing is risky.",
+                  "Why it matters: court-related and compliance-related costs may affect supervision, warrants, relief requests, housing, transportation, or future planning. Guessing is risky.",
               },
               {
                 id: "dispute-errors",
@@ -530,7 +539,8 @@ export default function FinancialPlanningGuide(): JSX.Element {
                 <span>
                   A budget is not punishment. It shows what you can actually
                   handle before agreeing to rent, car payments, repayment plans,
-                  or family promises. The{" "}
+                  supervision fees, registration-related travel, or family
+                  promises. The{" "}
                   <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
                     CFPB My Money Picture tool
                   </a>{" "}
@@ -539,7 +549,7 @@ export default function FinancialPlanningGuide(): JSX.Element {
               }
               steps={[
                 "Write expected income for the next 30 days.",
-                "List essentials: housing, food, phone, transportation, supervision fees, court debt, medication, and utilities.",
+                "List essentials: housing, food, phone, transportation, medication, utilities, documents, court debt, restitution, supervision fees, treatment fees, registration-related travel, required classes, testing fees, and phone/internet limits.",
                 "Circle anything that could cause a crisis if missed.",
               ]}
               bestFit="Anyone whose income is irregular, new, cash-based, or dependent on family help."
@@ -558,7 +568,7 @@ export default function FinancialPlanningGuide(): JSX.Element {
                   "State ID or driver’s license.",
                   "Social Security card or SSA replacement confirmation.",
                   "Birth certificate request, receipt, or copy.",
-                  "Release papers, supervision paperwork, court orders, and case numbers.",
+                  "Release papers, supervision paperwork, court orders, registration instructions, and case numbers.",
                 ],
               },
               {
@@ -571,12 +581,12 @@ export default function FinancialPlanningGuide(): JSX.Element {
                 ],
               },
               {
-                title: "Debt and credit records",
+                title: "Debt, compliance, and application records",
                 items: [
                   "Credit reports from all three bureaus.",
                   "Dispute letters and responses.",
-                  "Court debt, restitution, fines, fees, child support, and payment-plan records.",
-                  "Receipts, confirmation numbers, and names of people you spoke with.",
+                  "Court debt, restitution, fines, fees, child support, treatment invoices, supervision-fee receipts, and payment-plan records.",
+                  "Registration-office receipts, appointment attendance proof, written approvals, job-search logs, benefit applications, housing applications, receipts, confirmation numbers, and names of people you spoke with.",
                 ],
               },
             ]}
@@ -598,6 +608,14 @@ export default function FinancialPlanningGuide(): JSX.Element {
               collections, identity errors, or information that does not belong
               to you. Pulling reports is not about shame. It is about seeing the
               same information a landlord, lender, insurer, or employer may see.
+            </p>
+
+            <p>
+              Treat legal debt differently from ordinary consumer debt.
+              Restitution, court costs, supervision fees, child support, and
+              treatment-related costs may have legal or supervision consequences,
+              so verify who handles them, what payment plan exists, and how
+              hardship should be documented.
             </p>
           </GuideProse>
 
@@ -667,10 +685,10 @@ export default function FinancialPlanningGuide(): JSX.Element {
           <GuideProse>
             <p>
               Valid debt still needs sorting. Some debt is urgent because it is
-              tied to court, supervision, housing, utilities, child support, or
-              transportation. Some debt may be old, negotiable, or lower priority.
-              A clear list helps you decide what must be handled now and what can
-              wait.
+              tied to court, supervision, treatment, housing, utilities, child
+              support, or transportation. Some debt may be old, negotiable, or
+              lower priority. A clear list helps you decide what must be handled
+              now and what can wait.
             </p>
           </GuideProse>
 
@@ -682,9 +700,9 @@ export default function FinancialPlanningGuide(): JSX.Element {
               {
                 id: "sort-debts",
                 label:
-                  "Sort debts into court-related debt, housing/utility debt, transportation debt, student loans, medical debt, collections, and family debt.",
+                  "Sort debts into court-related debt, restitution, supervision fees, treatment costs, housing/utility debt, transportation debt, student loans, medical debt, collections, and family debt.",
                 helper:
-                  "Why it matters: not all debt carries the same risk. Court debt, rent, utilities, and transportation may affect freedom, housing, or work more quickly than older consumer collections.",
+                  "Why it matters: not all debt carries the same risk. Court debt, restitution, rent, utilities, treatment, supervision, and transportation may affect freedom, housing, or work more quickly than older consumer collections.",
               },
               {
                 id: "student-loans",
@@ -710,9 +728,9 @@ export default function FinancialPlanningGuide(): JSX.Element {
               {
                 id: "confirm-in-writing",
                 label:
-                  "Before paying a collector, ask for the agreement in writing and save the letter, email, or account screenshot.",
+                  "Before paying a collector, court office, agency, or creditor, ask for the agreement in writing and save the letter, email, receipt, or account screenshot.",
                 helper:
-                  "Why it matters: documentation protects you if the account is resold, misapplied, or reported incorrectly later.",
+                  "Why it matters: documentation protects you if the account is resold, misapplied, reported incorrectly, or questioned later.",
               },
             ]}
           />
@@ -724,7 +742,7 @@ export default function FinancialPlanningGuide(): JSX.Element {
             buttonLabel="Copy payment-plan script"
             script={`Hello, my name is [Name]. I am trying to resolve account or case number [number]. I want to pay what I can, but I cannot pay the full amount today.
 
-Can you tell me whether there is a hardship plan, reduced settlement, or monthly payment option? Before I agree, I need the total amount, due dates, payment method, and any reporting or collection terms in writing.
+Can you tell me whether there is a hardship plan, reduced settlement, or monthly payment option? Before I agree, I need the total amount, due dates, payment method, and any reporting, collection, court, or supervision terms in writing.
 
 I am taking notes. Could you please repeat your name, department, and the best callback number?`}
           />
@@ -734,21 +752,24 @@ I am taking notes. Could you please repeat your name, department, and the best c
             whoToAsk={
               <span>
                 Ask the court clerk, probation/parole officer, child-support
-                office, creditor, collector, student-loan servicer, or nonprofit
-                credit counselor who has authority over that specific debt.
+                office, treatment provider, creditor, collector, student-loan
+                servicer, or nonprofit credit counselor who has authority over
+                that specific debt.
               </span>
             }
             whatToAsk={
               <span>
                 Ask: “Is this debt valid, who receives payment, what happens if I
                 miss a payment, can I get a written plan, and will this affect my
-                supervision, license, housing, benefits, or credit report?”
+                supervision, license, housing, benefits, registration compliance,
+                or credit report?”
               </span>
             }
             whatToSave={
               <span>
                 Save written agreements, receipts, confirmation numbers, names,
-                dates, letters, emails, screenshots, and copies of mailed forms.
+                dates, letters, emails, screenshots, appointment records, and
+                copies of mailed forms.
               </span>
             }
           />
@@ -920,7 +941,7 @@ I am taking notes. Could you please repeat your name, department, and the best c
               }
               steps={[
                 "Search by occupation and location.",
-                "Ask whether the program has background-check requirements.",
+                "Ask whether the program has background-check, licensing, worksite, or minors-on-site requirements.",
                 "Save applications, contacts, interviews, and rejection or acceptance notices.",
               ]}
               bestFit="Someone who wants a wage path, a credential, and proof of work development over time."
@@ -948,7 +969,7 @@ I am taking notes. Could you please repeat your name, department, and the best c
                 </span>
               }
               steps={[
-                "Verify supervision, licensing, and local business rules first.",
+                "Verify supervision, licensing, work-location, internet, customer-contact, travel, and local business rules first.",
                 "Start with a low-cost service or skill you can document.",
                 "Track income and expenses from day one.",
               ]}
@@ -960,10 +981,12 @@ I am taking notes. Could you please repeat your name, department, and the best c
             <p>
               Delivery, rideshare, app-based tasks, day labor, or independent
               contracting may help with cash flow, but do not assume they are
-              allowed. Some jobs involve driving, entering restricted places,
-              interacting with minors, using the internet, handling customer
-              data, or crossing county/state lines. Verify supervision conditions
-              and platform rules before signing up.
+              allowed. Some jobs involve work locations, delivery zones, driving,
+              entering restricted places, interacting with minors or minors-on-site
+              environments, using the internet or apps, handling customer data,
+              overnight travel, or crossing county/state lines. Verify
+              supervision conditions, registry obligations, and platform rules
+              before signing up.
             </p>
           </GuideCallout>
 
@@ -972,7 +995,7 @@ I am taking notes. Could you please repeat your name, department, and the best c
             tone="legal"
             context="Use this with a supervising officer, case manager, attorney, or program contact when work rules could affect compliance."
             buttonLabel="Copy verification script"
-            script={`Hello, I am considering [job/training/gig platform/business idea]. Before I apply or start, I want to verify whether it conflicts with any supervision condition, court order, registry rule, travel restriction, internet restriction, workplace restriction, or contact restriction.
+            script={`Hello, I am considering [job/training/gig platform/business idea]. Before I apply or start, I want to verify whether it conflicts with any supervision condition, court order, registry rule, travel restriction, internet restriction, workplace restriction, contact restriction, licensing rule, or minors-on-site rule.
 
 Can you tell me what I need to check, who has authority to approve it, and whether I can get the answer in writing?`}
           />
@@ -980,7 +1003,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
           <VerifyBeforeActing
             title="Verify before accepting work or starting a business"
             whoToAsk="Your supervising officer, attorney, licensing board, employer/program sponsor, state registration agency if relevant, tax professional, or local small-business office."
-            whatToAsk="Ask whether the work conflicts with supervision, registration, travel, internet, licensing, workplace, tax, insurance, or reporting rules."
+            whatToAsk="Ask whether the work conflicts with supervision, registration, travel, internet, licensing, workplace, customer-contact, minors-on-site, tax, insurance, or reporting rules."
             whatToSave="Save written approval, emails, job descriptions, program requirements, license guidance, business filings, mileage logs, income records, and tax documents."
           />
         </GuideSectionCard>
@@ -1000,6 +1023,14 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
               fixed. It means you are creating enough margin that one bad week
               does not erase months of work.
             </p>
+
+            <p>
+              Good records may not erase a background check or remove a registry
+              barrier, but they can help you show landlords, housing programs,
+              case managers, employers, lenders, and family supporters that you
+              have a plan, a payment history, and documentation instead of only
+              promises.
+            </p>
           </GuideProse>
 
           <GuideChecklist
@@ -1012,7 +1043,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
                 label:
                   "Start a small emergency buffer, even $10–$25 at a time, in a separate account or envelope.",
                 helper:
-                  "Why it matters: a small buffer can prevent a flat tire, phone shutoff, medication gap, or missed bus pass from becoming a job, housing, or supervision crisis.",
+                  "Why it matters: a small buffer can prevent a flat tire, phone shutoff, medication gap, missed appointment, or missed bus pass from becoming a job, housing, or supervision crisis.",
               },
               {
                 id: "health-coverage",
@@ -1030,7 +1061,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
                   </span>
                 ),
                 helper:
-                  "Why it matters: untreated health costs can quickly become debt, missed work, and instability.",
+                  "Why it matters: untreated health costs can quickly become debt, missed work, missed treatment, and instability.",
               },
               {
                 id: "benefit-review",
@@ -1071,7 +1102,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
               {
                 id: "quarterly-review",
                 label:
-                  "Every three months, review your budget, credit reports, debts, savings, income, and next application goal.",
+                  "Every three months, review your budget, credit reports, debts, savings, income, compliance-related costs, and next application goal.",
                 helper:
                   "Why it matters: financial credibility grows when your records show steady follow-through over time.",
               },
@@ -1101,7 +1132,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
                 mistake:
                   "Agreeing to a payment plan that only works on a perfect month.",
                 whyItMatters:
-                  "Reentry months are rarely perfect. Transportation, phone, housing, health, supervision, and job schedules can shift quickly.",
+                  "Reentry months are rarely perfect. Transportation, phone, housing, health, treatment, supervision, registration travel, and job schedules can shift quickly.",
                 betterMove:
                   "Use your 30-day budget first, then offer a payment you can keep even in a hard month.",
               },
@@ -1109,7 +1140,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
                 mistake:
                   "Using someone else’s bank account, card, or app login to receive money.",
                 whyItMatters:
-                  "It can create tax confusion, control problems, benefit issues, family conflict, and unclear proof of income.",
+                  "It can create tax confusion, control problems, benefit issues, family conflict, supervision questions, and unclear proof of income.",
                 betterMove:
                   "Open your own safer account if possible, or ask a nonprofit, credit union, or reentry program about alternatives.",
               },
@@ -1123,7 +1154,7 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
               },
               {
                 mistake:
-                  "Ignoring court debt, restitution, child support, or supervision fees because the amount feels impossible.",
+                  "Ignoring court debt, restitution, child support, treatment costs, or supervision fees because the amount feels impossible.",
                 whyItMatters:
                   "Silence can make the record look worse than good-faith effort. In some places, missed payments may create legal or supervision consequences.",
                 betterMove:
@@ -1147,9 +1178,9 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
             note="Use these when online forms, printers, private internet, transportation, or unrestricted phone access are not realistic."
             items={[
               "Call 211 and ask for local help with food, rent, utilities, health care, transportation, and financial counseling.",
-              "Ask the library, clerk’s office, reentry program, probation/parole office, or community center where forms can be printed.",
+              "Ask the library, clerk’s office, reentry program, probation/parole office, registration office if appropriate, or community center where forms can be printed.",
               "Ask banks or credit unions whether they can mail account information or accept in-person applications.",
-              "Keep a paper folder with names, dates, phone numbers, confirmation numbers, receipts, and copies of mailed documents.",
+              "Keep a paper folder with names, dates, phone numbers, confirmation numbers, receipts, appointment records, payment records, and copies of mailed documents.",
               "If someone helps you online, ask them to print or send you copies of every confirmation page and email.",
               "Avoid entering sensitive information on public computers unless you know how to log out fully and avoid saving passwords.",
             ]}
@@ -1158,10 +1189,10 @@ Can you tell me what I need to check, who has authority to approve it, and wheth
           <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
             <p>
               Financial documents can include Social Security numbers, birth
-              dates, addresses, account numbers, court information, and medical
-              or benefit details. Share only what is needed, use official
-              websites when possible, and avoid saving passwords on shared
-              devices.
+              dates, addresses, account numbers, court information, supervision
+              information, registration-related records, and medical or benefit
+              details. Share only what is needed, use official websites when
+              possible, and avoid saving passwords on shared devices.
             </p>
           </GuideCallout>
         </GuideSectionCard>
