@@ -1,521 +1,1434 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  PathwayCard,
+  RedFlagGreenFlag,
+} from "../../components/solar";
+
+const sourceLinks = {
+  ssaCard: "https://www.ssa.gov/number-card",
+  bankOnAccounts: "https://joinbankon.org/accounts/",
+  annualCreditReport: "https://www.annualcreditreport.com/index.action",
+  ftcCreditDisputes: "https://consumer.ftc.gov/articles/disputing-errors-your-credit-reports",
+  ftcCreditRepairFaq: "https://consumer.ftc.gov/articles/fixing-your-credit-faqs",
+  cfpbCreditRebuild:
+    "https://www.consumerfinance.gov/ask-cfpb/what-are-some-ways-to-start-or-rebuild-a-good-credit-history-en-2155/",
+  cfpbReentryGuide:
+    "https://www.consumerfinance.gov/consumer-tools/educator-tools/your-money-your-goals/companion-guides/",
+  cfpbMyMoneyPicture:
+    "https://files.consumerfinance.gov/f/documents/cfpb_my-money-picture_tool_2021-08.pdf",
+  studentAidIdr: "https://studentaid.gov/manage-loans/repayment/plans/income-driven",
+  apprenticeship: "https://www.apprenticeship.gov/career-seekers",
+  americanJobCenters:
+    "https://www.careeronestop.org/LocalHelp/AmericanJobCenters/american-job-centers.aspx",
+  sbaReentry:
+    "https://www.sba.gov/business-guide/grow-your-business/entrepreneurship-formerly-incarcerated-people",
+  healthcareMedicaidChip: "https://www.healthcare.gov/medicaid-chip/",
+  healthcareScreener: "https://www.healthcare.gov/screener/",
+  benefits: "https://www.usa.gov/benefit-finder",
+  twoOneOne: "https://www.211.org/",
+  nfcc: "https://www.nfcc.org/",
+  fdicMoneySmart: "https://www.fdic.gov/consumer-resource-center/money-smart",
+  ftcPaydayLoans: "https://consumer.ftc.gov/node/77512",
+};
 
 export default function FinancialPlanningGuide(): JSX.Element {
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
+
+  const linkClass =
+    "font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:text-blue-900 hover:decoration-blue-700";
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <SEO 
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
         title="Financial Planning After Conviction and Reentry | The SOLAR Project"
-        description="Managing finances, building credit, and planning for the future after a conviction and reentry. Step-by-step guide with trusted resources and practical actions."
-        keywords="financial planning after conviction, reentry financial guide, rebuilding credit after prison, post-conviction budgeting, second chance banking, financial recovery"
+        description="A practical SOLAR guide to rebuilding financial credibility after conviction or reentry through small wins, documentation, safer banking, credit repair, income planning, and long-term strategy."
+        keywords="reentry financial planning, rebuild credit after conviction, secured credit card reentry, financial stability after incarceration, Bank On account, credit report dispute, court debt reentry"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 via-slate-700/90 to-slate-600/90 text-white shadow-xl print:bg-none print:shadow-none">
-        <div className="max-w-5xl mx-auto px-6 py-10">
-          <div className="mb-6">
-            <Link to="/resources" className="inline-flex items-center text-slate-200 hover:text-white transition-colors group">
-              <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-              Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          
-          <div className="flex items-center gap-3 mb-3">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs tracking-wide font-medium">
-              💰 RESOURCE GUIDE
-            </span>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl font-semibold leading-tight mb-3">
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Financial Planning After Conviction and Reentry
           </h1>
-          
-          <p className="text-white/90 max-w-3xl text-lg">
-            Managing finances, building credit, and planning for the future after a conviction and reentry.
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            Small money steps can become proof of reliability. This guide helps
+            you stabilize cash flow, repair old damage, build credit carefully,
+            and turn today’s quick wins into tomorrow’s stronger applications.
           </p>
-          
-          <div className="mt-6 flex flex-wrap gap-3 no-print">
-            <button 
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
               onClick={handlePrint}
-              className="rounded-2xl bg-white/90 text-slate-900 hover:bg-white px-4 py-2 font-medium shadow transition-colors"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
               🖨️ Print Guide
             </button>
-            <Link
-              to="/resources"
-              className="rounded-2xl bg-slate-600/50 text-white hover:bg-slate-600/70 px-4 py-2 font-medium shadow transition-colors"
+
+            <a
+              href="#quick-wins"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              📚 More Resources
-            </Link>
+              Start with Quick Wins
+            </a>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      <main className="max-w-5xl mx-auto px-6 py-10 space-y-10">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-        {/* Important Notice */}
-        <section className="rounded-xl border border-blue-200 bg-blue-50 p-5 avoid-break">
-          <div className="flex items-start gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-blue-600 flex-shrink-0">
-              <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm.75 5a.75.75 0 10-1.5 0v6.25c0 .414.336.75.75.75h4a.75.75 0 100-1.5H12.75V7z"/>
-            </svg>
-            <p className="text-sm leading-relaxed text-blue-800">
-              <span className="font-semibold">This guide is educational, not personalized financial advice.</span> It provides step-by-step actions and credible resources tailored to common reentry challenges; verify eligibility and rules in your state.
-            </p>
-          </div>
-        </section>
-
-        {/* Introduction */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-            </div>
-            <h2 className="text-xl font-semibold text-slate-800">Getting Started</h2>
-          </div>
-          
-          <p className="text-slate-700 leading-relaxed">
-            Reentry is more than just walking out the door — it's rebuilding a life, piece by piece. Money can feel like the most overwhelming piece. You may be behind on bills, unsure about credit, or not sure how to plan for a future that feels uncertain. That's normal.
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            Reentry is more than walking out the door. It is rebuilding a life,
+            piece by piece. Money can feel like the most overwhelming piece,
+            especially if you are behind on bills, missing documents, dealing
+            with court debt, or unsure what a landlord, bank, employer, or lender
+            will see.
           </p>
-          <p className="text-slate-700 leading-relaxed">
-            This guide is designed to <strong>meet you where you are.</strong> Start with the basics — get your ID, open a safe account, make a simple budget — then move step by step into rebuilding credit, finding stable income, and creating a sense of financial security. Each section offers small, doable actions with links to trusted resources.
+
+          <p>
+            The goal is not to look financially perfect. The goal is to build
+            proof, month by month, that you can receive money safely, pay what
+            you agree to pay, avoid preventable setbacks, and make your next
+            “yes” easier to get.
           </p>
-        </section>
+        </GuideIntro>
 
-        {/* Overview */}
-        <section className="grid md:grid-cols-3 gap-4">
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-blue-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                <span className="text-blue-600 font-bold text-sm">1</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Phase 1</p>
-                <h3 className="font-semibold text-slate-800">Stabilize</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Get ID, open account, make a 30-day budget.</p>
-          </div>
-          
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-amber-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
-                <span className="text-amber-600 font-bold text-sm">2</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Phase 2</p>
-                <h3 className="font-semibold text-slate-800">Repair</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Clean credit reports, address debts, set plans.</p>
-          </div>
-          
-          <div className="rounded-2xl bg-white shadow-lg p-6 border-l-4 border-green-500">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                <span className="text-green-600 font-bold text-sm">3</span>
-              </div>
-              <div>
-                <p className="text-xs text-slate-500 uppercase tracking-wide">Phase 3</p>
-                <h3 className="font-semibold text-slate-800">Build</h3>
-              </div>
-            </div>
-            <p className="text-sm text-slate-600">Rebuild credit, grow income, save & insure.</p>
-          </div>
-        </section>
+        <PullQuoteBlock>
+          Every small step should do two jobs: help you right now and create
+          evidence that you are becoming easier to trust with housing, work,
+          credit, transportation, and long-term responsibility.
+        </PullQuoteBlock>
 
-        {/* Start With the Basics */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              1
+        <QuickStartPanel
+          title="The first 7–30 days"
+          subtitle="Start with the steps that reduce chaos and create proof quickly."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Start or replace your key identity documents, including your{" "}
+              <a href={sourceLinks.ssaCard} className={linkClass}>
+                Social Security card through SSA
+              </a>
+              , birth certificate, and state ID.
+            </span>,
+            <span>
+              Look for a low-fee, no-overdraft checking account using the{" "}
+              <a href={sourceLinks.bankOnAccounts} className={linkClass}>
+                Bank On certified account finder
+              </a>
+              .
+            </span>,
+            <span>
+              Pull your free credit reports from{" "}
+              <a href={sourceLinks.annualCreditReport} className={linkClass}>
+                AnnualCreditReport.com
+              </a>{" "}
+              before a landlord, lender, employer, or insurer sees problems
+              first.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Write a bare-bones 30-day budget using a simple worksheet like the{" "}
+              <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
+                CFPB My Money Picture tool
+              </a>
+              .
+            </span>,
+            <span>
+              Check benefits and local help through{" "}
+              <a href={sourceLinks.benefits} className={linkClass}>
+                USA.gov’s benefit finder
+              </a>{" "}
+              and{" "}
+              <a href={sourceLinks.twoOneOne} className={linkClass}>
+                211 local resource referrals
+              </a>
+              .
+            </span>,
+            <span>
+              Make a written list of court debt, restitution, supervision fees,
+              child support, old collections, and any payment deadlines.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              You do not have to solve everything today. The first job is to stop
+              avoidable damage and create a clean paper trail.
             </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Start With the Basics</h2>
-              <p className="text-sm text-slate-600">Essential first steps for financial stability</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Get your ID.</strong> Birth certificate (from state of birth), Social Security card (<a href="https://www.ssa.gov/ssnumber/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">SSA.gov</a>), and a state ID/driver's license (bring release papers if needed).
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Open a safe bank account.</strong> Ask about "Second Chance" or "Fresh Start" accounts if you've been denied before. Prefer a <a href="https://joinbankon.org/accounts/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Bank On certified account</a> (low fees, no overdraft).
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Make a 30-day budget.</strong> List income (job, benefits, family help) and essentials (rent, utilities, food, parole/probation fees). Templates: <a href="https://consumer.gov/managing-your-money/make-budget" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Consumer.gov budget worksheets</a>.
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
+          }
+        />
 
-        {/* Clean Up Old Debts */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              2
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Clean Up Old Debts</h2>
-              <p className="text-sm text-slate-600">Address past financial obligations systematically</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ol className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-red-600 font-bold text-xs">1</span>
-                </div>
-                <div>
-                  Pull all three reports at <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">AnnualCreditReport.com</a> (free weekly).
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-red-600 font-bold text-xs">2</span>
-                </div>
-                <div>
-                  Highlight errors; dispute with <a href="https://consumer.ftc.gov/articles/sample-letters-credit-bureau" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">FTC sample letters</a>.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-red-600 font-bold text-xs">3</span>
-                </div>
-                <div>
-                  For valid debts, call creditors: "I want to pay, but can't pay in full. Can you reduce it or set a monthly plan?"
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-red-600 font-bold text-xs">4</span>
-                </div>
-                <div>
-                  Student loans: apply for <a href="https://studentaid.gov/manage-loans/repayment/plans/income-driven" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Income-Driven Repayment</a> (payments can be as low as $0 based on income).
-                </div>
-              </li>
-            </ol>
-          </div>
-        </section>
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Phase 1",
+              title: "Stabilize",
+              icon: "🧱",
+              tone: "reentry",
+              description:
+                "Get ID, open a safer account, find immediate help, and make a 30-day plan so one small problem does not become a crisis.",
+            },
+            {
+              eyebrow: "Phase 2",
+              title: "Repair",
+              icon: "🛠️",
+              tone: "warning",
+              description:
+                "Pull reports, dispute errors, organize old debts, and create written repayment records where possible.",
+            },
+            {
+              eyebrow: "Phase 3",
+              title: "Build",
+              icon: "📈",
+              tone: "success",
+              description:
+                "Use steady income, careful credit tools, savings, and documentation to show reliability over time.",
+            },
+          ]}
+        />
 
-        {/* Rebuild Credit */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              3
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Rebuild Credit</h2>
-              <p className="text-sm text-slate-600">Establish positive credit history step by step</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4 space-y-4">
-            <div>
-              <p className="text-sm leading-6 mb-3">
-                <strong>Secured credit cards</strong> (you place a deposit, typically $200–$300). National options:
-              </p>
-              <ul className="space-y-2 text-sm leading-6">
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <a href="https://www.discover.com/credit-cards/secured/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Discover it® Secured</a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <a href="https://www.capitalone.com/credit-cards/platinum-secured/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Capital One Platinum Secured</a>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <a href="https://www.openskycc.com/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">OpenSky® Secured Visa</a> (no credit check)
-                </li>
-              </ul>
-            </div>
-            
-            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
-              <p className="text-sm leading-6 text-green-800">
-                <strong>How to use:</strong> Make one small purchase per month, then pay in full on time. After 6–12 months, your score should begin to rise.
-              </p>
-            </div>
-            
-            <p className="text-sm leading-6">
-              <strong>Alternative:</strong> Ask your credit union about a <a href="https://www.consumerfinance.gov/consumer-tools/credit-builder-loans/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">credit-builder loan</a>.
-            </p>
-          </div>
-        </section>
+<GuideSectionHeader
+          id="financial-credibility"
+          number="1"
+          title="The Larger Strategy: Build Financial Credibility"
+          subtitle="The small steps matter because they create proof that other people and systems can rely on."
+        />
 
-        {/* Make Money and Build Skills */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              4
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Make Money and Build Skills</h2>
-              <p className="text-sm text-slate-600">Find income opportunities and develop marketable skills</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Employment:</strong> Reentry-friendly employers, staffing agencies, and apprenticeships at <a href="https://www.apprenticeship.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Apprenticeship.gov</a>. Ask your supervising officer for local leads.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Gig work:</strong> Delivery/rideshare/trades can help, but confirm your supervision conditions before signing up.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <strong>Small business:</strong> Explore the <a href="https://www.sba.gov/business-guide/plan-your-business/prepare-your-business-reentry" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">SBA reentry guide</a> for low-cost ways to start legally.
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Build Stability */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              5
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Build Stability</h2>
-              <p className="text-sm text-slate-600">Create long-term financial security</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4 space-y-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <p className="text-sm leading-6 text-blue-800">
-                <strong>Emergency fund:</strong> Start with $10–$25/month in a separate savings account (prevents accidental spending).
-              </p>
-            </div>
-            
-            <p className="text-sm leading-6">
-              <strong>Retirement:</strong> If available, enroll in your employer's 401(k). Otherwise open an IRA with low-fee providers like <a href="https://www.fidelity.com/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Fidelity</a> or <a href="https://investor.vanguard.com/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Vanguard</a>.
-            </p>
-            
-            <p className="text-sm leading-6">
-              <strong>Insurance:</strong> Health coverage via <a href="https://www.healthcare.gov/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">Healthcare.gov</a>; consider renters insurance ($10–$20/mo); shop auto insurance for state-minimum coverage.
-            </p>
-          </div>
-        </section>
-
-        {/* Keep Learning */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 space-y-4 avoid-break">
-          <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-white font-semibold">
-              6
-            </span>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Keep Learning</h2>
-              <p className="text-sm text-slate-600">Continue your financial education journey</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                </div>
-                <div>
-                  Free credit counseling: <a href="https://www.nfcc.org/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">NFCC</a>.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                </div>
-                <div>
-                  Free money education: <a href="https://www.fdic.gov/resources/consumers/money-smart/" target="_blank" rel="noopener" className="text-blue-600 hover:text-blue-800 underline">FDIC Money Smart</a>.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                </div>
-                <div>
-                  Local reentry classes: ask your supervising officer or community center.
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Reentry Checklist */}
-        <section className="rounded-2xl bg-white shadow-lg p-6 avoid-break">
-          <div className="flex items-center gap-3 mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75l2.25 2.25L15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            <div>
-              <h2 className="text-xl font-semibold text-slate-800">Reentry Checklist</h2>
-              <p className="text-sm text-slate-600">Track your progress with these essential steps</p>
-            </div>
-          </div>
-          
-          <div className="bg-slate-50 rounded-lg p-4">
-            <ul className="space-y-3 text-sm leading-6">
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Get ID, Social Security card, and birth certificate</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Open a Bank On or Second Chance account</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Make a 30-day budget</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Pull and clean up credit reports</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Apply for a secured credit card or credit-builder loan</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Negotiate old debts or repayment plans</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Apply for benefits you qualify for</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Find a reentry-friendly job or training program</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Start an emergency savings account</label>
-              </li>
-              <li className="flex items-center gap-3">
-                <input type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" />
-                <label className="text-slate-700">Take a free financial counseling session or class</label>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Closing */}
-        <section className="rounded-2xl border border-yellow-200 bg-yellow-50 p-6 avoid-break">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
-            </div>
-            <h2 className="font-semibold text-lg text-yellow-800">Closing</h2>
-          </div>
-          
-          <div className="space-y-4 text-sm leading-6 text-yellow-800">
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Reentry is not just about surviving — it's about laying the groundwork to thrive. The road may be long, but every action you take, no matter how small, is a building block for your future.
+              Financial planning after conviction or incarceration is not just
+              about saving money or improving a credit score. It is about
+              rebuilding trust in practical ways. A bank may want to see account
+              history. A landlord may care about payment patterns. A car lender
+              may look for recent positive credit. A supervising officer may want
+              proof that court debt is being handled. A family member may feel
+              safer helping if there is a plan.
             </p>
+
             <p>
-              When you pull your first credit report, open your first safe bank account, or set aside your first $10 in savings, you are proving to yourself that you have what it takes to rebuild. And you don't have to do it alone — there are counselors, nonprofits, and reentry programs ready to walk beside you. <strong>You are more than your conviction.</strong>
+              Each step below follows the same pattern: what to do, why it
+              matters, what proof it builds, and one quick action you can take.
+              That keeps the guide from becoming a random checklist. The point is
+              to connect today’s small win to tomorrow’s stronger application.
             </p>
-          </div>
-        </section>
+          </GuideProse>
 
-        {/* Related Resources */}
-        <section className="rounded-2xl bg-gradient-to-r from-slate-100 to-slate-50 p-6">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Related Resources</h3>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link to="/resources/employment-guide" className="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800">Employment Guide</h4>
-                  <p className="text-sm text-slate-600">Finding work after conviction</p>
-                </div>
-              </div>
-            </Link>
-            
-            <Link to="/resources/housing-guide" className="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-800">Housing Guide</h4>
-                  <p className="text-sm text-slate-600">Securing stable housing</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </section>
+          <GuideCallout tone="legal" icon="⚖️" title="Verify before relying on financial advice">
+            <p>
+              This guide is educational, not personalized financial, legal, tax,
+              or credit advice. Court debt, restitution, child support, benefits,
+              supervision rules, banking access, and business licensing can vary
+              by state, court order, agency, and individual situation.
+            </p>
+          </GuideCallout>
 
+          <SoftDivider label="The proof ladder" />
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Immediate stability"
+              subtitle="Reduce preventable emergencies."
+              icon="🧯"
+              whyItWorks="A safer account, current documents, and a basic budget make it easier to receive money, avoid missed notices, and keep small problems from becoming housing, work, or supervision problems."
+              steps={[
+                "Gather ID and release documents.",
+                "Open a low-fee account if possible.",
+                "List income, essentials, court debt, and deadlines.",
+              ]}
+              bestFit="The first days or weeks after release, job loss, housing disruption, or a financial shock."
+            />
+
+            <PathwayCard
+              title="Documented reliability"
+              subtitle="Create a record that other people can see."
+              icon="🧾"
+              whyItWorks="Written proof changes the conversation. Payment confirmations, account statements, dispute letters, and repayment plans can show effort and follow-through even before everything is fixed."
+              steps={[
+                "Save reports and letters.",
+                "Get payment plans in writing.",
+                "Keep receipts, confirmation numbers, and names of people you spoke with.",
+              ]}
+              bestFit="Anyone applying for housing, credit, transportation, benefits, employment, or relief from a court or agency."
+            />
+          </div>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="quick-wins"
+          number="2"
+          title="Quick Wins That Create Proof"
+          subtitle="These are small actions, but each one supports a bigger long-term strategy."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="financial-quick-wins"
+            title="Start here: 10 quick wins"
+            columns={1}
+            items={[
+              {
+                id: "id-documents",
+                label: (
+                  <span>
+                    Start or replace ID documents, including your{" "}
+                    <a href={sourceLinks.ssaCard} className={linkClass}>
+                      Social Security card
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: ID unlocks banking, employment forms, benefits, housing applications, medical care, and many training programs.",
+              },
+              {
+                id: "safe-account",
+                label: (
+                  <span>
+                    Search for a{" "}
+                    <a href={sourceLinks.bankOnAccounts} className={linkClass}>
+                      Bank On certified checking account
+                    </a>{" "}
+                    or ask a local credit union about second-chance banking.
+                  </span>
+                ),
+                helper:
+                  "Why it matters: a safer account can reduce check-cashing fees, support direct deposit, and begin a banking relationship.",
+              },
+              {
+                id: "credit-reports",
+                label: (
+                  <span>
+                    Pull your reports through{" "}
+                    <a href={sourceLinks.annualCreditReport} className={linkClass}>
+                      AnnualCreditReport.com
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: you want to find mistakes, fraud, collections, and old addresses before someone else uses them to decide about you.",
+              },
+              {
+                id: "budget",
+                label: (
+                  <span>
+                    Make a one-page money snapshot using the{" "}
+                    <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
+                      CFPB My Money Picture tool
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: a simple budget shows what is realistic before you agree to rent, car payments, debt plans, or family repayment promises.",
+              },
+              {
+                id: "benefits",
+                label: (
+                  <span>
+                    Check benefits through{" "}
+                    <a href={sourceLinks.benefits} className={linkClass}>
+                      USA.gov’s benefit finder
+                    </a>{" "}
+                    and local help through{" "}
+                    <a href={sourceLinks.twoOneOne} className={linkClass}>
+                      211
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: food, health, utility, and housing support can protect your first paycheck from being swallowed by emergencies.",
+              },
+              {
+                id: "court-debt",
+                label:
+                  "Create a written court-debt and restitution list with amounts, offices, deadlines, case numbers, and payment instructions.",
+                helper:
+                  "Why it matters: court-related debt may affect supervision, warrants, relief requests, or future planning. Guessing is risky.",
+              },
+              {
+                id: "dispute-errors",
+                label: (
+                  <span>
+                    Mark inaccurate credit-report items and use the{" "}
+                    <a href={sourceLinks.ftcCreditDisputes} className={linkClass}>
+                      FTC credit-report dispute guidance
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: removing inaccurate barriers is different from pretending real debt does not exist.",
+              },
+              {
+                id: "starter-credit",
+                label: (
+                  <span>
+                    Compare a secured card or credit-builder loan using{" "}
+                    <a href={sourceLinks.cfpbCreditRebuild} className={linkClass}>
+                      CFPB credit-building guidance
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: the goal is recent positive payment history, not more debt.",
+              },
+              {
+                id: "training",
+                label: (
+                  <span>
+                    Search paid training through{" "}
+                    <a href={sourceLinks.apprenticeship} className={linkClass}>
+                      Apprenticeship.gov
+                    </a>{" "}
+                    or a local American Job Center.
+                  </span>
+                ),
+                helper:
+                  "Why it matters: income stability is one of the strongest foundations for housing, transportation, savings, and credit repair.",
+              },
+              {
+                id: "free-counseling",
+                label: (
+                  <span>
+                    Schedule one nonprofit credit-counseling or financial-education
+                    session through{" "}
+                    <a href={sourceLinks.nfcc} className={linkClass}>
+                      NFCC
+                    </a>{" "}
+                    or{" "}
+                    <a href={sourceLinks.fdicMoneySmart} className={linkClass}>
+                      FDIC Money Smart
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: you can get another set of eyes on the plan before signing up for high-fee products or unrealistic repayment terms.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="stabilize"
+          number="3"
+          title="Stabilize Cash Flow First"
+          subtitle="Before credit repair or long-term planning, make money safer to receive, track, and protect."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Stabilizing money means building a basic system: identification,
+              a safer place to receive money, a simple plan for the next 30 days,
+              and a list of urgent obligations. This is not glamorous, but it is
+              the foundation everything else sits on.
+            </p>
+          </GuideProse>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            <PathwayCard
+              title="Get ID"
+              subtitle="Proof of identity comes first."
+              icon="🪪"
+              whyItWorks={
+                <span>
+                  ID is often required for work, benefits, banking, housing,
+                  health coverage, and training. Start with your{" "}
+                  <a href={sourceLinks.ssaCard} className={linkClass}>
+                    SSA number/card options
+                  </a>{" "}
+                  and your state ID or driver’s license office.
+                </span>
+              }
+              steps={[
+                "List missing documents.",
+                "Ask whether release papers, prison ID, or court papers can help prove identity.",
+                "Keep copies in a paper folder and a secure digital folder if safe.",
+              ]}
+              bestFit="Anyone who cannot open accounts, apply for work, or complete benefit forms because documents are missing."
+            />
+
+            <PathwayCard
+              title="Open a safer account"
+              subtitle="Reduce fees and create banking history."
+              icon="🏦"
+              whyItWorks={
+                <span>
+                  A bank or credit-union account can support direct deposit,
+                  lower-cost bill payment, account statements, and a banking
+                  relationship.{" "}
+                  <a href={sourceLinks.bankOnAccounts} className={linkClass}>
+                    Bank On certified accounts
+                  </a>{" "}
+                  are designed as low-cost, no-overdraft options.
+                </span>
+              }
+              steps={[
+                "Ask about no-overdraft checking.",
+                "Ask about second-chance or fresh-start accounts if you were denied before.",
+                "Avoid accounts that rely on overdraft fees to function.",
+              ]}
+              bestFit="Anyone using check cashing, prepaid cards with high fees, cash only, or another person’s account."
+            />
+
+            <PathwayCard
+              title="Make a 30-day budget"
+              subtitle="Know what is realistic before promising money."
+              icon="📋"
+              whyItWorks={
+                <span>
+                  A budget is not punishment. It shows what you can actually
+                  handle before agreeing to rent, car payments, repayment plans,
+                  or family promises. The{" "}
+                  <a href={sourceLinks.cfpbMyMoneyPicture} className={linkClass}>
+                    CFPB My Money Picture tool
+                  </a>{" "}
+                  can help you start without needing a spreadsheet.
+                </span>
+              }
+              steps={[
+                "Write expected income for the next 30 days.",
+                "List essentials: housing, food, phone, transportation, supervision fees, court debt, medication, and utilities.",
+                "Circle anything that could cause a crisis if missed.",
+              ]}
+              bestFit="Anyone whose income is irregular, new, cash-based, or dependent on family help."
+            />
+          </div>
+
+          <SoftDivider />
+
+          <DocumentPacket
+            title="Build a financial proof folder"
+            intro="Use one paper folder, envelope, binder, or secure digital folder. The goal is to make proof easy to find when someone asks."
+            categories={[
+              {
+                title: "Identity and reentry documents",
+                items: [
+                  "State ID or driver’s license.",
+                  "Social Security card or SSA replacement confirmation.",
+                  "Birth certificate request, receipt, or copy.",
+                  "Release papers, supervision paperwork, court orders, and case numbers.",
+                ],
+              },
+              {
+                title: "Money and account records",
+                items: [
+                  "Bank or credit-union account opening documents.",
+                  "Direct deposit forms or pay stubs.",
+                  "Benefit notices and health coverage letters.",
+                  "Monthly budget, payment calendar, and emergency contacts.",
+                ],
+              },
+              {
+                title: "Debt and credit records",
+                items: [
+                  "Credit reports from all three bureaus.",
+                  "Dispute letters and responses.",
+                  "Court debt, restitution, fines, fees, child support, and payment-plan records.",
+                  "Receipts, confirmation numbers, and names of people you spoke with.",
+                ],
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="repair"
+          number="4"
+          title="Repair Old Damage Without Making New Damage"
+          subtitle="Credit reports, old debt, court debt, and student loans need a plan — not panic."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Repair starts with knowing what is actually on paper. Credit
+              reports can contain old addresses, accounts you forgot about,
+              collections, identity errors, or information that does not belong
+              to you. Pulling reports is not about shame. It is about seeing the
+              same information a landlord, lender, insurer, or employer may see.
+            </p>
+          </GuideProse>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Pull all three reports"
+              subtitle="Find problems before decision-makers do."
+              icon="🔎"
+              whyItWorks={
+                <span>
+                  Use{" "}
+                  <a href={sourceLinks.annualCreditReport} className={linkClass}>
+                    AnnualCreditReport.com
+                  </a>{" "}
+                  to review reports from the three major credit bureaus. The goal
+                  is to identify errors, fraud, collections, old accounts, and
+                  address history before they affect housing, credit, insurance,
+                  or employment.
+                </span>
+              }
+              steps={[
+                "Save or print each report.",
+                "Highlight inaccurate names, addresses, accounts, balances, dates, and duplicate collections.",
+                "Put each report in your financial proof folder.",
+              ]}
+              bestFit="Anyone preparing for housing, transportation financing, credit rebuilding, or debt cleanup."
+            />
+
+            <PathwayCard
+              title="Dispute inaccurate information"
+              subtitle="Do not pay to fix mistakes you can challenge."
+              icon="✉️"
+              whyItWorks={
+                <span>
+                  The{" "}
+                  <a href={sourceLinks.ftcCreditDisputes} className={linkClass}>
+                    FTC explains how to dispute credit-report errors
+                  </a>{" "}
+                  with the credit bureau and the company that supplied the
+                  information. Inaccurate barriers should not quietly become part
+                  of your reentry story.
+                </span>
+              }
+              steps={[
+                "Circle the exact item you believe is wrong.",
+                "Gather proof: receipts, letters, court documents, identity-theft reports, or account statements.",
+                "Send disputes in writing when possible and save every response.",
+              ]}
+              bestFit="Anyone who sees inaccurate, incomplete, duplicate, outdated, or unfamiliar credit-report information."
+            />
+          </div>
+
+          <GuideCallout tone="warning" icon="⚠️" title="Be careful with credit-repair promises">
+            <p>
+              Paid credit-repair companies cannot legally remove accurate,
+              current negative information just because it hurts your score. The{" "}
+              <a href={sourceLinks.ftcCreditRepairFaq} className={linkClass}>
+                FTC credit-repair guidance
+              </a>{" "}
+              warns readers to watch for scams, upfront fees, and advice to
+              dispute accurate information or lie on applications.
+            </p>
+          </GuideCallout>
+
+          <SoftDivider label="Debt strategy" />
+
+          <GuideProse>
+            <p>
+              Valid debt still needs sorting. Some debt is urgent because it is
+              tied to court, supervision, housing, utilities, child support, or
+              transportation. Some debt may be old, negotiable, or lower priority.
+              A clear list helps you decide what must be handled now and what can
+              wait.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="debt-repair-checklist"
+            title="Debt cleanup quick wins"
+            columns={1}
+            items={[
+              {
+                id: "sort-debts",
+                label:
+                  "Sort debts into court-related debt, housing/utility debt, transportation debt, student loans, medical debt, collections, and family debt.",
+                helper:
+                  "Why it matters: not all debt carries the same risk. Court debt, rent, utilities, and transportation may affect freedom, housing, or work more quickly than older consumer collections.",
+              },
+              {
+                id: "student-loans",
+                label: (
+                  <span>
+                    If you have federal student loans, check{" "}
+                    <a href={sourceLinks.studentAidIdr} className={linkClass}>
+                      income-driven repayment options on StudentAid.gov
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: a plan based on income may be safer than ignoring federal student-loan notices.",
+              },
+              {
+                id: "call-creditor",
+                label:
+                  "For valid debts you cannot pay in full, call and ask whether a reduced payoff, hardship plan, or monthly payment plan is available.",
+                helper:
+                  "Why it matters: the point is to create a written agreement you can actually keep, not to promise money you do not have.",
+              },
+              {
+                id: "confirm-in-writing",
+                label:
+                  "Before paying a collector, ask for the agreement in writing and save the letter, email, or account screenshot.",
+                helper:
+                  "Why it matters: documentation protects you if the account is resold, misapplied, or reported incorrectly later.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking for a realistic payment plan"
+            tone="neutral"
+            context="Use this when a debt is valid, but the full amount is not realistic right now."
+            buttonLabel="Copy payment-plan script"
+            script={`Hello, my name is [Name]. I am trying to resolve account or case number [number]. I want to pay what I can, but I cannot pay the full amount today.
+
+Can you tell me whether there is a hardship plan, reduced settlement, or monthly payment option? Before I agree, I need the total amount, due dates, payment method, and any reporting or collection terms in writing.
+
+I am taking notes. Could you please repeat your name, department, and the best callback number?`}
+          />
+
+          <VerifyBeforeActing
+            title="Verify before paying, settling, or ignoring debt"
+            whoToAsk={
+              <span>
+                Ask the court clerk, probation/parole officer, child-support
+                office, creditor, collector, student-loan servicer, or nonprofit
+                credit counselor who has authority over that specific debt.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask: “Is this debt valid, who receives payment, what happens if I
+                miss a payment, can I get a written plan, and will this affect my
+                supervision, license, housing, benefits, or credit report?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save written agreements, receipts, confirmation numbers, names,
+                dates, letters, emails, screenshots, and copies of mailed forms.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="credit"
+          number="5"
+          title="Build Credit as Evidence, Not as Debt"
+          subtitle="A secured card or credit-builder loan can help, but only if it creates clean payment history."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Rebuilding credit is not about getting access to debt for its own
+              sake. The strategy is to create recent proof that you can borrow a
+              small amount, keep balances low, and pay on time. That proof can
+              matter later for housing, transportation, insurance pricing,
+              business banking, or emergency borrowing.
+            </p>
+
+            <p>
+              The{" "}
+              <a href={sourceLinks.cfpbCreditRebuild} className={linkClass}>
+                CFPB identifies secured cards and credit-builder loans
+              </a>{" "}
+              as common ways to start or rebuild credit history. The safer goal
+              is boring: one small recurring charge, automatic payments if
+              possible, low balance, and no missed due dates.
+            </p>
+          </GuideProse>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Secured credit card"
+              subtitle="Use a deposit to build payment history."
+              icon="💳"
+              whyItWorks="A secured card can report on-time payments to credit bureaus. Over time, that can show capacity and intent to pay, support credit-line increases, and strengthen a banking relationship."
+              steps={[
+                "Compare fees, deposit amount, reporting to all three credit bureaus, and upgrade options.",
+                "Put one small recurring bill or planned purchase on the card.",
+                "Pay in full on time and keep utilization low.",
+              ]}
+              details={[
+                {
+                  label: "Quick win",
+                  value:
+                    "Choose one small purchase you already planned to make; do not use the card for emergencies or impulse spending.",
+                },
+                {
+                  label: "Proof built",
+                  value:
+                    "Recent on-time payment history, low utilization, and responsible account management.",
+                },
+              ]}
+              bestFit="Someone with enough cash for a deposit and enough income stability to avoid missed payments."
+            />
+
+            <PathwayCard
+              title="Credit-builder loan"
+              subtitle="Build history while saving."
+              icon="🔐"
+              whyItWorks="Some credit unions and community lenders offer loans where the borrowed money is held while you make payments. If reported to credit bureaus, payments may help build history."
+              steps={[
+                "Ask a credit union whether the loan reports to credit bureaus.",
+                "Confirm total cost, monthly payment, late fees, and when funds are released.",
+                "Only agree if the payment fits your 30-day budget.",
+              ]}
+              details={[
+                {
+                  label: "Quick win",
+                  value:
+                    "Call one local credit union and ask whether they offer a credit-builder loan or second-chance banking program.",
+                },
+                {
+                  label: "Proof built",
+                  value:
+                    "Installment payment history and a relationship with a financial institution.",
+                },
+              ]}
+              bestFit="Someone who wants structure, can handle a fixed monthly payment, and does not need a credit card right now."
+            />
+          </div>
+
+          <RedFlagGreenFlag
+            red={
+              <p>
+                A card with high monthly fees, unclear reporting, pressure to
+                carry a balance, or promises of “guaranteed” credit repair.
+              </p>
+            }
+            green={
+              <p>
+                A low-fee product that reports payments, explains all costs, lets
+                you pay in full, and fits inside the budget you already wrote.
+              </p>
+            }
+          />
+
+          <GuideChecklist
+            id="credit-builder-checklist"
+            title="Credit-building quick wins"
+            columns={1}
+            items={[
+              {
+                id: "compare-costs",
+                label:
+                  "Compare the deposit, annual fee, monthly fee, interest rate, late fee, and whether the account reports to credit bureaus.",
+                helper:
+                  "Why it matters: a credit tool that eats your money or does not report payment history may not build the proof you need.",
+              },
+              {
+                id: "one-small-charge",
+                label:
+                  "Use one small recurring charge or planned purchase, then pay it in full by the due date.",
+                helper:
+                  "Why it matters: the point is payment history, not carrying debt.",
+              },
+              {
+                id: "autopay-calendar",
+                label:
+                  "Set autopay if safe, and put the due date on a paper or phone calendar.",
+                helper:
+                  "Why it matters: one missed payment can damage the same record you are trying to build.",
+              },
+              {
+                id: "six-month-review",
+                label:
+                  "After six months of on-time payments, ask whether the issuer reviews accounts for credit-line increases or graduation to an unsecured card.",
+                helper:
+                  "Why it matters: a stronger account history can become a stepping stone to better terms later.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="income"
+          number="6"
+          title="Build Income and Reduce Fragile Gaps"
+          subtitle="Stable income makes every other financial step more realistic."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Income stability is not only about the amount of money coming in.
+              It is also about predictability, documentation, and whether the
+              work fits your supervision rules, transportation, health, family
+              needs, and background-check realities.
+            </p>
+          </GuideProse>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <PathwayCard
+              title="Paid training and apprenticeships"
+              subtitle="Earn while building a portable credential."
+              icon="🧰"
+              whyItWorks={
+                <span>
+                  <a href={sourceLinks.apprenticeship} className={linkClass}>
+                    Apprenticeship.gov
+                  </a>{" "}
+                  describes registered apprenticeship as paid work with
+                  on-the-job learning, classroom instruction, progressive wage
+                  increases, and an industry-recognized credential.
+                </span>
+              }
+              steps={[
+                "Search by occupation and location.",
+                "Ask whether the program has background-check requirements.",
+                "Save applications, contacts, interviews, and rejection or acceptance notices.",
+              ]}
+              bestFit="Someone who wants a wage path, a credential, and proof of work development over time."
+              offlineAlternatives={[
+                "Call a local American Job Center.",
+                "Ask a reentry program or supervising officer for apprenticeship or union pre-apprenticeship contacts.",
+                "Visit a public library and print application instructions.",
+              ]}
+            />
+
+            <PathwayCard
+              title="Small business or self-employment"
+              subtitle="Plan before spending money."
+              icon="🧑‍🔧"
+              whyItWorks={
+                <span>
+                  Self-employment can help some people work around hiring
+                  barriers, but it may create tax, licensing, registration,
+                  insurance, supervision, and cash-flow issues. Use the{" "}
+                  <a href={sourceLinks.sbaReentry} className={linkClass}>
+                    SBA entrepreneurship guidance for formerly incarcerated people
+                  </a>{" "}
+                  as a starting point before paying for tools, ads, websites, or
+                  inventory.
+                </span>
+              }
+              steps={[
+                "Verify supervision, licensing, and local business rules first.",
+                "Start with a low-cost service or skill you can document.",
+                "Track income and expenses from day one.",
+              ]}
+              bestFit="Someone with a realistic skill, low startup costs, and a plan to handle taxes and recordkeeping."
+            />
+          </div>
+
+          <GuideCallout tone="warning" icon="🚧" title="Gig work needs verification">
+            <p>
+              Delivery, rideshare, app-based tasks, day labor, or independent
+              contracting may help with cash flow, but do not assume they are
+              allowed. Some jobs involve driving, entering restricted places,
+              interacting with minors, using the internet, handling customer
+              data, or crossing county/state lines. Verify supervision conditions
+              and platform rules before signing up.
+            </p>
+          </GuideCallout>
+
+          <ScriptBox
+            title="Script: asking about a job, training, or gig-work restriction"
+            tone="legal"
+            context="Use this with a supervising officer, case manager, attorney, or program contact when work rules could affect compliance."
+            buttonLabel="Copy verification script"
+            script={`Hello, I am considering [job/training/gig platform/business idea]. Before I apply or start, I want to verify whether it conflicts with any supervision condition, court order, registry rule, travel restriction, internet restriction, workplace restriction, or contact restriction.
+
+Can you tell me what I need to check, who has authority to approve it, and whether I can get the answer in writing?`}
+          />
+
+          <VerifyBeforeActing
+            title="Verify before accepting work or starting a business"
+            whoToAsk="Your supervising officer, attorney, licensing board, employer/program sponsor, state registration agency if relevant, tax professional, or local small-business office."
+            whatToAsk="Ask whether the work conflicts with supervision, registration, travel, internet, licensing, workplace, tax, insurance, or reporting rules."
+            whatToSave="Save written approval, emails, job descriptions, program requirements, license guidance, business filings, mileage logs, income records, and tax documents."
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="stability"
+          number="7"
+          title="Turn Stability Into Long-Term Options"
+          subtitle="The long-term goal is more choice: safer housing, better work, transportation, credit access, and family stability."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Once the basics are in place, the strategy shifts from emergency
+              survival to durable stability. That does not mean everything is
+              fixed. It means you are creating enough margin that one bad week
+              does not erase months of work.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="long-term-stability"
+            title="Long-term strategy quick wins"
+            columns={1}
+            items={[
+              {
+                id: "emergency-buffer",
+                label:
+                  "Start a small emergency buffer, even $10–$25 at a time, in a separate account or envelope.",
+                helper:
+                  "Why it matters: a small buffer can prevent a flat tire, phone shutoff, medication gap, or missed bus pass from becoming a job, housing, or supervision crisis.",
+              },
+              {
+                id: "health-coverage",
+                label: (
+                  <span>
+                    Check Medicaid and CHIP coverage through{" "}
+                    <a href={sourceLinks.healthcareMedicaidChip} className={linkClass}>
+                      HealthCare.gov’s Medicaid and CHIP page
+                    </a>
+                    , or use the{" "}
+                    <a href={sourceLinks.healthcareScreener} className={linkClass}>
+                      HealthCare.gov coverage screener
+                    </a>{" "}
+                    to see whether you may be able to get or change coverage now.
+                  </span>
+                ),
+                helper:
+                  "Why it matters: untreated health costs can quickly become debt, missed work, and instability.",
+              },
+              {
+                id: "benefit-review",
+                label: (
+                  <span>
+                    Use{" "}
+                    <a href={sourceLinks.benefits} className={linkClass}>
+                      USA.gov’s benefit finder
+                    </a>{" "}
+                    and{" "}
+                    <a href={sourceLinks.twoOneOne} className={linkClass}>
+                      211
+                    </a>{" "}
+                    to check food, housing, utility, health, transportation, and local emergency help.
+                  </span>
+                ),
+                helper:
+                  "Why it matters: temporary support can protect your first paychecks while you rebuild.",
+              },
+              {
+                id: "free-education",
+                label: (
+                  <span>
+                    Complete one free lesson through{" "}
+                    <a href={sourceLinks.fdicMoneySmart} className={linkClass}>
+                      FDIC Money Smart
+                    </a>{" "}
+                    or speak with a nonprofit counselor through{" "}
+                    <a href={sourceLinks.nfcc} className={linkClass}>
+                      NFCC
+                    </a>
+                    .
+                  </span>
+                ),
+                helper:
+                  "Why it matters: coaching can help you avoid expensive mistakes before you sign anything.",
+              },
+              {
+                id: "quarterly-review",
+                label:
+                  "Every three months, review your budget, credit reports, debts, savings, income, and next application goal.",
+                helper:
+                  "Why it matters: financial credibility grows when your records show steady follow-through over time.",
+              },
+            ]}
+          />
+
+          <CommonMistakes
+            title="Common mistakes that can undo progress"
+            mistakes={[
+              {
+                mistake:
+                  "Using payday loans, title loans, or high-cost cash advances as a routine budget tool.",
+                whyItMatters: (
+                  <span>
+                    The{" "}
+                    <a href={sourceLinks.ftcPaydayLoans} className={linkClass}>
+                      FTC warns about payday and car-title loan risks
+                    </a>
+                    , including fees and repayment pressure that can trap people
+                    in repeated borrowing.
+                  </span>
+                ),
+                betterMove:
+                  "Call 211, ask creditors for hardship options, speak with a nonprofit counselor, or delay a non-essential expense before taking high-cost debt.",
+              },
+              {
+                mistake:
+                  "Agreeing to a payment plan that only works on a perfect month.",
+                whyItMatters:
+                  "Reentry months are rarely perfect. Transportation, phone, housing, health, supervision, and job schedules can shift quickly.",
+                betterMove:
+                  "Use your 30-day budget first, then offer a payment you can keep even in a hard month.",
+              },
+              {
+                mistake:
+                  "Using someone else’s bank account, card, or app login to receive money.",
+                whyItMatters:
+                  "It can create tax confusion, control problems, benefit issues, family conflict, and unclear proof of income.",
+                betterMove:
+                  "Open your own safer account if possible, or ask a nonprofit, credit union, or reentry program about alternatives.",
+              },
+              {
+                mistake:
+                  "Carrying a balance on a secured card to “build credit faster.”",
+                whyItMatters:
+                  "Carrying debt can create interest, stress, and missed-payment risk. On-time payment history and low balances matter more than carrying a balance.",
+                betterMove:
+                  "Use one small planned charge and pay it in full on time whenever possible.",
+              },
+              {
+                mistake:
+                  "Ignoring court debt, restitution, child support, or supervision fees because the amount feels impossible.",
+                whyItMatters:
+                  "Silence can make the record look worse than good-faith effort. In some places, missed payments may create legal or supervision consequences.",
+                betterMove:
+                  "Ask who handles the debt, whether a payment plan exists, what proof is needed, and how to document hardship.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offline"
+          number="8"
+          title="If Internet, Phone, or Privacy Access Is Limited"
+          subtitle="A financial plan should still work for people who are phone-only, supervised, newly released, or relying on paper."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Offline and low-access options"
+            icon="📞"
+            note="Use these when online forms, printers, private internet, transportation, or unrestricted phone access are not realistic."
+            items={[
+              "Call 211 and ask for local help with food, rent, utilities, health care, transportation, and financial counseling.",
+              "Ask the library, clerk’s office, reentry program, probation/parole office, or community center where forms can be printed.",
+              "Ask banks or credit unions whether they can mail account information or accept in-person applications.",
+              "Keep a paper folder with names, dates, phone numbers, confirmation numbers, receipts, and copies of mailed documents.",
+              "If someone helps you online, ask them to print or send you copies of every confirmation page and email.",
+              "Avoid entering sensitive information on public computers unless you know how to log out fully and avoid saving passwords.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
+            <p>
+              Financial documents can include Social Security numbers, birth
+              dates, addresses, account numbers, court information, and medical
+              or benefit details. Share only what is needed, use official
+              websites when possible, and avoid saving passwords on shared
+              devices.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="9"
+          title="Resources and Next Steps"
+          subtitle="Use these links to act, verify, document, and keep learning."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Proof and practice links"
+            description="These are the links used throughout the guide. They are included here again so readers can take action without hunting through the page."
+            resources={[
+              {
+                label: "SSA Social Security number and card",
+                href: sourceLinks.ssaCard,
+                badge: "Official",
+                description:
+                  "Replace or manage a Social Security card, which may be needed for work, benefits, banking, and housing.",
+              },
+              {
+                label: "Bank On certified accounts",
+                href: sourceLinks.bankOnAccounts,
+                badge: "Practice",
+                description:
+                  "Find low-cost accounts designed around safer banking access and no overdraft features.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                badge: "Official",
+                description:
+                  "Request free credit reports from the three major credit bureaus.",
+              },
+              {
+                label: "FTC credit-report dispute guidance",
+                href: sourceLinks.ftcCreditDisputes,
+                badge: "Official",
+                description:
+                  "Learn how to dispute inaccurate credit-report information.",
+              },
+              {
+                label: "CFPB credit rebuilding guidance",
+                href: sourceLinks.cfpbCreditRebuild,
+                badge: "Official",
+                description:
+                  "Learn about secured cards, credit-builder loans, and other ways to start or rebuild credit.",
+              },
+              {
+                label: "StudentAid.gov income-driven repayment",
+                href: sourceLinks.studentAidIdr,
+                badge: "Official",
+                description:
+                  "Review federal student-loan repayment options tied to income.",
+              },
+              {
+                label: "Apprenticeship.gov career seekers",
+                href: sourceLinks.apprenticeship,
+                badge: "Official",
+                description:
+                  "Search paid training and apprenticeship opportunities.",
+              },
+              {
+                label: "HealthCare.gov Medicaid & CHIP coverage",
+                href: sourceLinks.healthcareMedicaidChip,
+                badge: "Official",
+                description:
+                  "Check Medicaid and CHIP coverage options and state-specific next steps.",
+              },
+              {
+                label: "HealthCare.gov coverage screener",
+                href: sourceLinks.healthcareScreener,
+                badge: "Official",
+                description:
+                  "See whether you may be able to get or change health coverage now.",
+              },
+              {
+                label: "USA.gov benefit finder",
+                href: sourceLinks.benefits,
+                badge: "Official",
+                description:
+                  "Check possible government benefits and financial help.",
+              },
+              {
+                label: "211 local help",
+                href: sourceLinks.twoOneOne,
+                badge: "Help",
+                description:
+                  "Find local help with housing, food, utilities, health care, and other needs.",
+              },
+              {
+                label: "FDIC Money Smart",
+                href: sourceLinks.fdicMoneySmart,
+                badge: "Education",
+                description:
+                  "Use free financial education materials from the FDIC.",
+              },
+              {
+                label: "NFCC nonprofit credit counseling",
+                href: sourceLinks.nfcc,
+                badge: "Nonprofit",
+                description:
+                  "Find nonprofit credit counseling and debt-management support.",
+              },
+              {
+                label: "FTC payday and car-title loan guidance",
+                href: sourceLinks.ftcPaydayLoans,
+                badge: "Warning",
+                description:
+                  "Understand risks before using high-cost short-term loans.",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Employment Guide",
+                description:
+                  "Use with this guide when income, disclosure, applications, interviews, or background checks are the next barrier.",
+                to: "/resources/employment-guide",
+              },
+              {
+                title: "Housing Guide",
+                description:
+                  "Use when financial credibility, documentation, deposits, rental applications, or housing restrictions are part of the plan.",
+                to: "/resources/housing-guide",
+              },
+              {
+                title: "Reentry Guide",
+                description:
+                  "Use for the broader release, supervision, documentation, housing, work, and support roadmap.",
+                to: "/resources/reentry-guide",
+              },
+              {
+                title: "Small Business Guide",
+                description:
+                  "Use when self-employment or contract work may be part of a realistic income strategy.",
+                to: "/resources/small-business-guide",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources and verification"
+            note="Links should be rechecked before production publication. Product-specific credit-card links are intentionally avoided here because fees, eligibility, underwriting, and terms change frequently."
+            sources={[
+              {
+                label: "Social Security Administration — Social Security number and card",
+                href: sourceLinks.ssaCard,
+                description:
+                  "Supports identity-document planning and Social Security card replacement.",
+              },
+              {
+                label: "Bank On — certified accounts",
+                href: sourceLinks.bankOnAccounts,
+                description:
+                  "Supports low-cost, safer checking-account guidance and no-overdraft account search.",
+              },
+              {
+                label: "AnnualCreditReport.com",
+                href: sourceLinks.annualCreditReport,
+                description:
+                  "Supports free credit-report access and credit-report review steps.",
+              },
+              {
+                label: "FTC — Disputing Errors on Your Credit Reports",
+                href: sourceLinks.ftcCreditDisputes,
+                description:
+                  "Supports credit-report error dispute guidance.",
+              },
+              {
+                label: "FTC — Fixing Your Credit FAQs",
+                href: sourceLinks.ftcCreditRepairFaq,
+                description:
+                  "Supports caution about credit-repair scams and limits of paid credit repair.",
+              },
+              {
+                label: "CFPB — Ways to start or rebuild credit history",
+                href: sourceLinks.cfpbCreditRebuild,
+                description:
+                  "Supports secured-card and credit-builder-loan guidance.",
+              },
+              {
+                label: "CFPB — Your Money, Your Goals companion guides",
+                href: sourceLinks.cfpbReentryGuide,
+                description:
+                  "Supports reentry-specific financial coaching and planning resources.",
+              },
+              {
+                label: "CFPB — My Money Picture tool",
+                href: sourceLinks.cfpbMyMoneyPicture,
+                description:
+                  "Supports one-page budgeting and values-based money planning.",
+              },
+              {
+                label: "Federal Student Aid — Income-driven repayment plans",
+                href: sourceLinks.studentAidIdr,
+                description:
+                  "Supports student-loan repayment planning tied to income.",
+              },
+              {
+                label: "Apprenticeship.gov — Career Seekers",
+                href: sourceLinks.apprenticeship,
+                description:
+                  "Supports paid training, wage progression, and credential pathway guidance.",
+              },
+              {
+                label: "CareerOneStop — American Job Centers",
+                href: sourceLinks.americanJobCenters,
+                description:
+                  "Supports local employment and training help.",
+              },
+              {
+                label: "SBA — Entrepreneurship for formerly incarcerated people",
+                href: sourceLinks.sbaReentry,
+                description:
+                  "Supports self-employment and small-business planning guidance.",
+              },
+              {
+                label: "HealthCare.gov — Medicaid & CHIP coverage",
+                href: sourceLinks.healthcareMedicaidChip,
+                description:
+                  "Supports health coverage guidance for Medicaid, CHIP, and state-specific coverage options.",
+              },
+              {
+                label: "HealthCare.gov — Coverage screener",
+                href: sourceLinks.healthcareScreener,
+                description:
+                  "Supports action-oriented health coverage screening.",
+              },
+              {
+                label: "USA.gov — Benefit finder",
+                href: sourceLinks.benefits,
+                description:
+                  "Supports government benefits and financial-help lookup.",
+              },
+              {
+                label: "211 — Local help",
+                href: sourceLinks.twoOneOne,
+                description:
+                  "Supports local referrals for food, housing, utility, health, and emergency help.",
+              },
+              {
+                label: "NFCC — Nonprofit credit counseling",
+                href: sourceLinks.nfcc,
+                description:
+                  "Supports nonprofit credit-counseling referrals.",
+              },
+              {
+                label: "FDIC — Money Smart",
+                href: sourceLinks.fdicMoneySmart,
+                description:
+                  "Supports free financial education.",
+              },
+              {
+                label: "FTC — Payday and car-title loan guidance",
+                href: sourceLinks.ftcPaydayLoans,
+                description:
+                  "Supports warning against high-cost short-term debt traps.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
       </main>
     </div>
   );
