@@ -20,7 +20,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "The SOLAR Project",
   date: "2026-05-05",
   readTime: "8–10 minutes",
-  category: "Systemic Accountability",
+  category: "Prevention & Public Safety",
   tags: [
     "child safety theater",
     "performative child safety",
@@ -64,7 +64,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "The SOLAR Project",
   date: "2026-05-03",
   readTime: "8–10 min read",
-  category: "Systemic Accountability",
+  category: "Institutional Abuse",
   tags: [
     "prison staff sexual abuse",
     "FCI Bryan sexual misconduct",
@@ -126,7 +126,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "SOLAR Project",
   date: "2026-04-22",
   readTime: "10 min read",
-  category: "Systemic Accountability",
+  category: "Registry Policy & Reform",
   tags: [
     "child safety",
     "registry reform",
@@ -163,7 +163,7 @@ export const allBlogPosts: BlogPost[] = [
     "A targeted killing in Florida raises a question registry defenders avoid: when the state publishes a permanent label, is it preventing violence—or reshaping it?",
   date: "2026-04-11",
   readTime: "8 min read",
-  category: "Policy Analysis",
+  category: "Registry Policy & Reform",
   tags: [
     "registry vigilantism",
     "public registry violence",
@@ -183,7 +183,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "SOLAR Project",
   date: "2026-01-07",
   readTime: "9 min read",
-  category: "Policy & Reform",
+  category: "Prevention & Public Safety",
   tags: [
     "Uber",
     "background checks",
@@ -204,7 +204,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "SOLAR Project",
   date: "2025-12-12",
   readTime: "11 min read",
-  category: "Policy & Reform",
+  category: "Research & Evidence Literacy",
   tags: [
     "sex offender registry",
     "risk assessment",
@@ -224,7 +224,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "SOLAR Project",
   date: "2025-12-07",
   readTime: "20 min read",
-  category: "Incarceration & Reality",
+  category: "Incarceration & Prison Reality",
   tags: [
     "prison life",
     "sex-offense",
