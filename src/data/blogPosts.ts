@@ -653,7 +653,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'A comprehensive guide for partners, parents, siblings, friends, and chosen family supporting a loved one through a sex-offense case—while protecting your own wellbeing.',
     date: 'August 14, 2025',
     readTime: '15 min read',
-    category: 'Family Support Guide',
+    category: 'Families & Support Systems',
     tags: ['Family Support', 'Crisis Management', 'Children\'s Wellbeing', 'Prison Visitation', 'Boundaries', 'Self-Care', 'Evidence-Based'],
     path: '/blog/when-someone-you-love-is-accused'
   },
@@ -663,7 +663,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'A compassionate, data-driven look at how public sex-offender registries affect families—especially children—with research, real stories, and hopeful reforms.',
     date: 'August 13, 2025',
     readTime: '10 min read',
-    category: 'Policy Analysis',
+    category: 'Families & Support Systems',
     tags: ['Family Impact', 'Policy Analysis', 'Children\'s Rights', 'Collateral Consequences', 'Registry Reform', 'Research Data'],
     path: '/blog/hidden-costs-registries'
   },
@@ -673,7 +673,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'Understanding the documented risks of registry-linked vigilantism, including mistaken identity cases, and practical safety strategies for registrants and their families.',
     date: 'August 11, 2025',
     readTime: '8 min read',
-    category: 'Safety & Security',
+    category: 'Families & Support Systems',
     tags: ['Safety', 'Vigilantism', 'Registry Risks', 'Family Protection'],
     path: '/blog/vigilantism-registry'
   },
@@ -683,7 +683,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'Understanding the critical decision between pleading and going to trial in sex offense cases. Learn about the trial penalty, federal vs. state differences, and key factors for informed decision-making.',
     date: 'August 10, 2025',
     readTime: '12 min read',
-    category: 'Legal Strategy',
+    category: 'Legal Process & Defense',
     tags: ['Legal Strategy', 'Plea Bargain', 'Trial Defense', 'Federal Court', 'State Court'],
     path: '/blog/plea-vs-trial'
   },
@@ -693,7 +693,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'Evidence-based analysis to help families choose between private defense attorneys and public defenders, with special considerations for sex offense cases in state and federal court.',
     date: 'August 9, 2025',
     readTime: '15 min read',
-    category: 'Legal Guide',
+    category: 'Legal Process & Defense',
     tags: ['Legal Defense', 'Criminal Attorney', 'Public Defender', 'Federal Court', 'State Court'],
     path: '/blog/private-vs-public-defender'
   },
@@ -703,7 +703,7 @@ export const allBlogPosts: BlogPost[] = [
     excerpt: 'A supportive guide for registrants and their families, offering practical steps, community resources, and reasons for hope during the adjustment period.',
     date: 'July 26, 2025',
     readTime: '12 min read',
-    category: 'Personal Stories',
+    category: 'Reentry & Reintegration',
     tags: ['Personal Experience', 'Hope', 'Reintegration', 'Support'],
     path: '/blog/life-on-registry'
   },
@@ -711,7 +711,7 @@ export const allBlogPosts: BlogPost[] = [
     id: 'rethinking-registry',
     title: 'Rethinking the Sex Offender Registry: A Critical Look at Its History and Global Context',
     excerpt: 'A critical examination of America\'s sex offender registry system, built on moral panic rather than evidence, and how it makes us outliers among peer nations while failing to improve public safety.',
-    category: 'Policy Analysis',
+    category: 'Registry Policy & Reform',
     date: 'July 18, 2025',
     readTime: '18 min read',
     tags: ['Registry Reform', 'International Comparison', 'Evidence-Based Policy', 'Public Safety'],
@@ -721,7 +721,7 @@ export const allBlogPosts: BlogPost[] = [
     id: 'legal-rights',
     title: 'Understanding the Legal Rights of Individuals Accused or Convicted of Sex Offenses',
     excerpt: 'Navigating the criminal justice system can be overwhelming, especially when facing charges as serious and stigmatized as sex offenses. This comprehensive guide outlines your legal rights at every stage of the process.',
-    category: 'Legal Updates',
+    category: 'Legal Process & Defense',
     date: 'July 12, 2025',
     readTime: '15 min read',
     tags: ['Legal Rights', 'Constitutional Law', 'Criminal Defense', 'Due Process'],
@@ -731,7 +731,7 @@ export const allBlogPosts: BlogPost[] = [
     id: 'dangerous-myth',
     title: 'The Dangerous Myth That Sex Offenders "Cannot Be Cured"',
     excerpt: 'Debunking misconceptions with research, compassion, and facts. A common, disturbing sentiment gaining traction is that pedophiles cannot be cured and should be executed or permanently ostracized. This idea is not only morally indefensible—it is also flatly contradicted by decades of research and clinical evidence.',
-    category: 'Policy Analysis',
+    category: 'Research & Evidence Literacy',
     date: 'July 12, 2025',
     readTime: '12 min read',
     tags: ['Treatment', 'Research', 'Rehabilitation', 'Mental Health'],
@@ -741,7 +741,7 @@ export const allBlogPosts: BlogPost[] = [
     id: 'register-all-felons',
     title: 'If You\'re Bullish on Registries, Let\'s Register Everything—And I Mean Everything',
     excerpt: 'A satirical yet evidence-based blog post exploring why, if sex offender registries are truly about public safety, we don\'t register all serious felons.',
-    category: 'Policy Analysis',
+    category: 'Registry Policy & Reform',
     date: 'July 5, 2025',
     readTime: '10 min read',
     tags: ['Registry Reform', 'Recidivism', 'Public Safety', 'Criminal Justice'],
@@ -754,7 +754,7 @@ export const allBlogPosts: BlogPost[] = [
   author: 'The SOLAR Project',
   date: '2025-07-04',
   readTime: '12–15 min',
-  category: 'Advocacy',
+  category: 'Prevention & Public Safety',
   tags: ['SOLAR', 'Registry Reform', 'Evidence-Based Policy', 'RECON', 'Civil Rights'],
   path: '/blog/who-is-solar'
   }
@@ -773,15 +773,14 @@ export const getPostsByCategory = (category: string): BlogPost[] => {
 
 export const categories = [
   "All Posts",
-  "Investigation",
-  "Employment & Reentry",
-  "Safety & Security",
-  "Policy Analysis", 
-  "Legal Updates",
-  "Personal Stories",
-  "Resources",
-  "Legal Guide",
-  "Legal Strategy",
-  "Legal Analysis",
-  "Family Support Guide"
+  "Systemic Accountability",
+  "Prevention & Public Safety",
+  "Registry Policy & Reform",
+  "Reentry & Reintegration",
+  "Incarceration & Prison Reality",
+  "Legal Process & Defense",
+  "Families & Support Systems",
+  "Research & Evidence Literacy",
+  "Institutional Abuse",
+  "Legislative & Policy Tracking"
 ];
