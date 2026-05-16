@@ -457,7 +457,7 @@ export const allBlogPosts: BlogPost[] = [
     author: "The SOLAR Project",
     date: "September 14, 2025",
     readTime: "8 min read",
-    category: "Investigative Series",
+    category: "Prevention & Public Safety",
     tags: ["registry", "child safety", "prevention", "family"],
     path: "/blog/inside-the-house",
   },
@@ -469,7 +469,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "The SOLAR Project",
   date: "September 11, 2025",
   readTime: "7 min read",
-  category: "Policy & Culture",
+  category: "Institutional Abuse",
   tags: ["sex offender registry", "employment", "youth safety", "corporate accountability"],
   path: "/blog/community-ties",
 },
@@ -481,7 +481,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "The SOLAR Project",
   date: "2025-09-09",
   readTime: "15 min",
-  category: "Investigative",
+  category: "Institutional Abuse",
   tags: [
     "Larry Nassar",
     "Robert Hadden",
@@ -506,7 +506,7 @@ export const allBlogPosts: BlogPost[] = [
   author: "The SOLAR Project",
   date: "2025-09-08",
   readTime: "12–14 min",
-  category: "Policy",
+  category: "Research & Evidence Literacy",
   tags: ["violent crime classification",
     "sentencing guidelines",
     "sex offender registry",
@@ -522,7 +522,7 @@ export const allBlogPosts: BlogPost[] = [
   author: 'The SOLAR Project',
   date: 'September 5, 2025',
   readTime: '8 min read',
-  category: 'Investigation',
+  category: 'Registry Policy & Reform',
   tags: ['Justice', 'Registry Reform', 'Policy', 'Comparative Sentencing', 'Investigative Feature'],
   path: '/blog/two-men-one-release-date'
   },
@@ -533,7 +533,7 @@ export const allBlogPosts: BlogPost[] = [
   author: 'The SOLAR Project',
   date: 'September 4, 2025',
   readTime: '15 min read',
-  category: 'Investigation',
+  category: 'Institutional Abuse',
   tags: ['Boy Scouts', 'YMCA', 'Boys & Girls Clubs', 'Big Brothers Big Sisters', 'Registry Myth', 'Investigative Series'],
   path: '/blog/community-betrayal'
   },
@@ -544,7 +544,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 29, 2025',
     readTime: '16 min read',
-    category: 'Investigation',
+    category: 'Institutional Abuse',
     tags: ['School Abuse', 'Sports Abuse', 'Registry Reform', 'Child Protection', 'Investigative Series'],
     path: '/blog/playing-fields-and-schoolyards'
   },
@@ -555,7 +555,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 28, 2025',
     readTime: '18 min read',
-    category: 'Investigation',
+    category: 'Institutional Abuse',
     tags: ['Clergy Abuse', 'Faith Institutions', 'Registry Reform', 'Child Protection', 'Investigative Series'],
     path: '/blog/sanctuary-and-silence'
   },
@@ -566,7 +566,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 26, 2025',
     readTime: '20 min read',
-    category: 'Investigation',
+    category: 'Institutional Abuse',
     tags: ['Police Sexual Abuse', 'Judicial Misconduct', 'Prosecutorial Abuse', 'Probation Officer Abuse', 'Investigative Series'],
     path: '/blog/the-enforcers'
   },
@@ -577,7 +577,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 27, 2025',
     readTime: '14 min read',
-    category: 'Legal Analysis',
+    category: 'Legal Process & Defense',
     tags: ['Habeas Corpus', 'Clements Case', 'Florida Registry', 'Custody Standard', 'Eleventh Circuit', 'Civil Rights'],
     path: '/blog/custody-without-cages'
   },
@@ -588,7 +588,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 25, 2025',
     readTime: '12 min read',
-    category: 'Policy Analysis',
+    category: 'Registry Policy & Reform',
     tags: ['Evidence-Based Research', 'Policy Analysis', 'Recidivism Data', 'Public Safety', 'Criminal Justice Reform', 'Registry Effectiveness'],
     path: '/blog/political-theater'
   },
@@ -599,7 +599,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 25, 2025',
     readTime: '12 min read',
-    category: 'Policy Analysis',
+    category: 'Systemic Accountability',
     tags: ['Political Hypocrisy', 'Congressional Scandals', 'Registry Reform', 'Institutional Abuse', 'Investigative Series'],
     path: '/blog/politics-and-hypocrisy'
   },
@@ -610,7 +610,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 24, 2025',
     readTime: '15 min read',
-    category: 'Employment & Reentry',
+    category: 'Reentry & Reintegration',
     tags: ['Employment', 'Job Search', 'Fair Chance Hiring', 'Second Chance', 'Reentry'],
     path: '/blog/finding-work-after-registry'
   },
@@ -621,7 +621,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 21, 2025',
     readTime: '15 min read',
-    category: 'Policy Analysis',
+    category: 'Institutional Abuse',
     tags: ['High-Profile Cases', 'Stranger Danger Myth', 'Registry Reform', 'Institutional Abuse', 'Policy Analysis'],
     path: '/blog/high-profile-cases-stranger-danger'
   },
@@ -632,7 +632,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 17, 2025',
     readTime: '15 min read',
-    category: 'Legal Guide',
+    category: 'Legal Process & Defense',
     tags: ['Federal Courts', 'Criminal Process', 'Legal Guide', 'BOP'],
     path: '/blog/federal-sex-crime-process'
   },
@@ -643,7 +643,7 @@ export const allBlogPosts: BlogPost[] = [
     author: 'The SOLAR Project',
     date: 'August 17, 2025',
     readTime: '12 min read',
-    category: 'Legal Guide',
+    category: 'Legal Process & Defense',
     tags: ['State Courts', 'Criminal Process', 'Legal Guide', 'Family Resources'],
     path: '/blog/state-sex-crime-process'
   },
