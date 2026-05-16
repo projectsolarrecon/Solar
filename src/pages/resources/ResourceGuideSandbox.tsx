@@ -75,7 +75,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
         title="Talking With Children About a Loved One’s Legal Situation | The SOLAR Project"
-        description="A calm, practical SOLAR guide for caregivers and supporters talking with children about arrest, incarceration, supervision, registry rules, and family change."
+        description="A calm, practical SOLAR guide for caregivers and supporters talking with children about arrest, incarceration, supervision, registry rules, public stigma, and family change."
         keywords="children disclosure, family support, incarceration, registry family guide, reentry family support, talking to children about prison"
       />
 
@@ -99,7 +99,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
             A disclosure and family-trust toolkit for caregivers, parents, and
             supporters navigating investigation, incarceration, supervision,
-            registry rules, and family change.
+            registry rules, public stigma, and family change.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -141,17 +141,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </p>
 
           <p>
-            This guide is for the adults around a child: the caregiver at home,
-            the impacted individual, a spouse or partner, grandparents, trusted
-            relatives, and supporters trying to help without making things
-            worse.
+            Much of this guidance applies to any serious family legal crisis.
+            What is different here is that sex-offense cases can involve
+            stricter child-contact rules, stronger public stigma, searchable
+            registry information, and long-term restrictions that affect
+            ordinary family life.
           </p>
 
           <p>
-            It is not a script for discussing evidence, allegations, interviews,
-            testimony, or legal strategy. When a child may be involved in a
-            case, custody matter, supervision condition, no-contact order, or
-            safety plan, verify the rules before acting.
+            Children still need the same basic things: truth, safety, love,
+            routines, and adults who do not make them carry adult burdens.
           </p>
         </GuideIntro>
 
@@ -202,7 +201,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               eyebrow: "Step 1",
               title: "Stabilize first",
               icon: "🧯",
-              tone: "warning",
+              tone: "info",
               description:
                 "Children feel adult panic. Pause, write down the basic facts, and decide who is safe to involve.",
             },
@@ -225,9 +224,52 @@ export default function ResourceGuideSandbox(): JSX.Element {
           ]}
         />
 
+        <GuideSectionHeader
+          id="what-is-different"
+          number="1"
+          title="What is universal, and what is different here"
+          subtitle="The child-centered basics are familiar. The legal, stigma, and registry layers need extra care."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The basic child guidance does not change just because the legal
+              situation involves a sex offense or registry issue. Children still
+              need calm adults, honest but age-appropriate words, protection
+              from adult conflict, and permission to feel more than one thing at
+              once.
+            </p>
+
+            <p>
+              What changes is the practical environment around the child.
+              Contact may be restricted. Court, custody, supervision, treatment,
+              facility, school, or registry rules may affect ordinary family
+              routines. Information may be public, searchable, or repeated by
+              other people in cruel or incomplete ways.
+            </p>
+
+            <p>
+              That means this guide avoids two extremes. It does not minimize
+              harm or hide behind vague language. It also does not make a child
+              carry shame, adult fear, legal strategy, or advocacy arguments.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="reminder" icon="🪷" title="The SOLAR-specific layer">
+            <p>
+              In this context, adults should be especially careful about child
+              contact rules, public stigma, searchable information, school and
+              community gossip, and long-term restrictions that may affect
+              visits, housing, travel, technology, school events, and family
+              routines.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
 <GuideSectionHeader
           id="what-children-need"
-          number="1"
+          number="2"
           title="What children need to hear"
           subtitle="Simple truth, direct reassurance, and steady adults matter more than a perfect explanation."
         />
@@ -286,9 +328,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Say directly that the child did not cause the situation and is not responsible for fixing it.",
               },
               {
+                id: "harm",
+                label:
+                  "Do not minimize serious harm, but do not make the child responsible for understanding adult details.",
+              },
+              {
                 id: "feelings",
                 label:
-                  "Accept tears, silence, anger, confusion, embarrassment, or repeated questions.",
+                  "Accept tears, silence, anger, confusion, embarrassment, loyalty, love, or repeated questions.",
               },
               {
                 id: "routine",
@@ -325,7 +372,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="scripts"
-          number="2"
+          number="3"
           title="Age-aware scripts"
           subtitle="Use these as starting points. Adjust names, relationships, and legal posture without adding graphic detail."
         />
@@ -341,36 +388,51 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               For younger children, focus on safety, routine, and love. For
               older children and teens, use clearer words and leave room for
-              anger, embarrassment, and complicated feelings.
+              anger, embarrassment, loyalty, confusion, and complicated feelings.
             </p>
           </GuideProse>
 
+          <GuideCallout tone="info" icon="🌿" title="About the tone of these scripts">
+            <p>
+              The scripts below are intentionally presented in a softer style.
+              They are serious, but they should not look like emergency warnings.
+              The goal is to give adults calm language they can actually use.
+            </p>
+          </GuideCallout>
+
           <ScriptBox
             title="Preschool children, roughly ages 3–5"
-            tone="family"
+            tone="neutral"
             context="Use very short sentences. Young children need reassurance and routine more than explanation."
             script={`Daddy cannot live at home right now because of a serious grown-up problem.\n\nYou did not cause this. You are safe. You are loved.\n\nWe are going to have dinner, read a story, and I will answer more questions when you have them.`}
           />
 
           <ScriptBox
             title="Elementary children, roughly ages 6–10"
-            tone="family"
+            tone="neutral"
             context="Children this age may ask the same question many times. Repetition can be part of feeling safe."
             script={`Mom is in legal trouble because adults believe she broke an important rule.\n\nI do not have every answer yet, but I will tell you the truth in words you can understand.\n\nThis is not your fault. You are safe, and you are loved.`}
           />
 
           <ScriptBox
             title="Middle school children, roughly ages 11–13"
-            tone="family"
+            tone="neutral"
             context="Use clearer language while still protecting them from adult details."
-            script={`Uncle has a serious legal situation and has to follow rules from the court.\n\nYou may feel confused, embarrassed, angry, or worried. Those feelings are allowed.\n\nYou can ask me questions. If I do not know the answer, I will say that instead of guessing.`}
+            script={`Uncle has a serious legal situation and has to follow rules from the court.\n\nYou may feel confused, embarrassed, angry, loyal, worried, or unsure what to think. Those feelings are allowed.\n\nYou can ask me questions. If I do not know the answer, I will say that instead of guessing.`}
           />
 
           <ScriptBox
             title="Teenagers, roughly ages 14–18"
-            tone="family"
+            tone="neutral"
             context="Teens may already know partial information from school, social media, court pages, news, or peers."
-            script={`Your dad is dealing with a serious legal situation connected to choices he made and rules he now has to follow.\n\nThis may affect visits, school events, privacy, and how our family handles questions from other people.\n\nYou do not have to protect my feelings. I will listen, and we can keep talking as you have more questions.`}
+            script={`Your dad is dealing with a serious legal situation connected to sexual boundaries, safety, and choices adults are responsible for.\n\nThis may affect visits, school events, privacy, and how our family handles questions from other people.\n\nYou do not have to protect my feelings. I will listen, and we can keep talking as you have more questions.`}
+          />
+
+          <ScriptBox
+            title="When there has been a conviction"
+            tone="neutral"
+            context="Use only when it is accurate. This gives older children and teens clearer language without graphic detail."
+            script={`They were convicted of breaking a law about sexual behavior and safety.\n\nThat is serious, and it is okay to have strong feelings about it.\n\nYou are not responsible for what happened, for fixing it, or for deciding today how you will feel forever.`}
           />
 
           <ScriptBox
@@ -382,21 +444,21 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <ScriptBox
             title="When you do not know the answer yet"
-            tone="warning"
+            tone="neutral"
             context="Use this instead of guessing, promising an outcome, or making the child carry uncertainty."
             script={`That is a fair question. I do not know the answer yet.\n\nI am going to ask the right person and write down what they say.\n\nWhen I know more, I will tell you what I can in words that make sense for you.`}
           />
 
           <ScriptBox
             title="When someone at school or online has heard something"
-            tone="privacy"
-            context="Use this when the child is facing gossip, stigma, or partial information from others."
+            tone="neutral"
+            context="Use this when the child is facing gossip, stigma, registry searches, or partial information from others."
             script={`I am sorry you had to hear that from someone else.\n\nSome of what people say may be wrong, incomplete, or said in a hurtful way.\n\nYou can bring questions to me. You do not have to explain our family to everyone, and you are allowed to ask for help if someone is being cruel.`}
           />
 
           <ScriptBox
             title="When a no-contact or limited-contact rule exists"
-            tone="legal"
+            tone="neutral"
             context="Use only if it is accurate for the situation. Do not blame the child or promise the rule will change."
             script={`There is a rule right now that limits contact. That rule is for adults to follow.\n\nYou did not cause it, and it is not your job to fix it.\n\nWe will follow the rule carefully, and we will keep taking care of you while the adults work through what happens next.`}
           />
@@ -404,7 +466,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
 <GuideSectionHeader
           id="family-roles"
-          number="3"
+          number="4"
           title="What different adults should do"
           subtitle="Children need adults to stay in their proper roles: calm, honest, boundaried, and protective."
         />
@@ -424,7 +486,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                     </p>
                     <p>
                       Practice one simple script before you talk. Do not process
-                      adult grief, anger, fear, or legal strategy with the child.
+                      adult grief, anger, fear, legal strategy, or advocacy
+                      arguments with the child.
                     </p>
                   </div>
                 ),
@@ -436,11 +499,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   <div>
                     <p>
                       Share love without pressuring the child to reassure you.
-                      Keep messages short, steady, and accountable.
+                      Keep messages short, steady, accountable, and rule-compliant.
                     </p>
                     <p>
                       Do not ask the child to keep secrets, carry messages,
-                      defend you, or promise forgiveness.
+                      defend you, reject others, or promise forgiveness.
                     </p>
                   </div>
                 ),
@@ -451,8 +514,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 guidance: (
                   <div>
                     <p>
-                      Your grief and anger may be real. The child still needs
-                      permission to have their own feelings.
+                      Your grief, anger, loyalty, fear, or ambivalence may be
+                      real. The child still needs permission to have their own
+                      feelings.
                     </p>
                     <p>
                       Process adult decisions with safe adults, counsel, support
@@ -472,7 +536,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                     </p>
                     <p>
                       Do not interrogate the child, gossip nearby, demand
-                      details, or undermine the caregiver’s chosen script.
+                      details, shame the family, or undermine the caregiver’s
+                      chosen script.
                     </p>
                   </div>
                 ),
@@ -511,7 +576,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <ScriptBox
             title="Boundary phrase for relatives"
-            tone="privacy"
+            tone="neutral"
             context="Use this when people press for details or talk about the case around children."
             script={`We are not discussing details around the kids.\n\nRight now we are focused on keeping them safe, steady, and loved.\n\nIf you want to help, practical support is welcome. Gossip, pressure, and harsh comments around the children are not.`}
           />
@@ -519,7 +584,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="timeline"
-          number="4"
+          number="5"
           title="What changes by stage"
           subtitle="The right conversation may change during investigation, incarceration, reentry, supervision, and long-term registry life."
         />
@@ -533,8 +598,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 icon: "⚖️",
                 whatChanges: (
                   <p>
-                    Facts may be unclear, adults may be in shock, and court or
-                    custody rules may change quickly.
+                    Facts may be unclear, adults may be in shock, and court,
+                    custody, bond, or no-contact rules may change quickly.
                   </p>
                 ),
                 whatToDo: (
@@ -586,8 +651,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 whatChanges: (
                   <p>
                     Children may grow into more questions about stigma,
-                    internet searches, neighbors, school, friends, and why rules
-                    still exist.
+                    internet searches, neighbors, school, friends, dating,
+                    travel, and why rules still exist.
                   </p>
                 ),
                 whatToDo: (
@@ -622,6 +687,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "If school support is needed, share only what helps the child function safely at school.",
               },
               {
+                id: "online",
+                label:
+                  "Prepare older children for the possibility of online searches, registry pages, gossip, or partial information.",
+              },
+              {
                 id: "promises",
                 label:
                   "Do not promise release dates, reunification, case outcomes, registry relief, or rule changes.",
@@ -632,7 +702,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="avoid"
-          number="5"
+          number="6"
           title="Common mistakes to avoid"
           subtitle="These mistakes usually come from fear or love, but they can make children feel less safe."
         />
@@ -643,7 +713,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             mistakes={[
               {
                 mistake:
-                  "Waiting so long that the child learns from gossip, search results, or overheard adult conversations.",
+                  "Waiting so long that the child learns from gossip, search results, a registry page, or overheard adult conversations.",
                 whyItMatters:
                   "Children may feel betrayed or imagine something worse than the truth.",
                 betterMove:
@@ -658,6 +728,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Answer the question asked in the simplest truthful way that protects the child.",
               },
               {
+                mistake: "Minimizing the seriousness so the child will feel better.",
+                whyItMatters:
+                  "Older children may sense that adults are hiding or softening the truth, especially if they find public information later.",
+                betterMove:
+                  "Use non-graphic but honest language: serious legal situation, sexual boundaries, safety, adult choices, court rules, or conviction when accurate.",
+              },
+              {
                 mistake: "Making the child comfort the adult.",
                 whyItMatters:
                   "Children may hide their own fear, anger, or confusion to protect the caregiver.",
@@ -666,7 +743,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               },
               {
                 mistake:
-                  "Using the child as a messenger, mediator, or proof of loyalty.",
+                  "Using the child as a messenger, mediator, character witness, or proof of loyalty.",
                 whyItMatters:
                   "It places the child in the middle of adult conflict and can create legal or supervision risk.",
                 betterMove:
@@ -681,7 +758,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               },
               {
                 mistake:
-                  "Letting relatives interrogate, shame, or gossip around the child.",
+                  "Letting relatives interrogate, shame, recruit, or gossip around the child.",
                 whyItMatters:
                   "Children may internalize adult judgment as shame about themselves or their family.",
                 betterMove:
@@ -703,7 +780,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="trust"
-          number="6"
+          number="7"
           title="Rebuilding trust with children"
           subtitle="Children watch patterns more than promises. Small, kept commitments matter."
         />
@@ -722,6 +799,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
               does not mean the effort is failing. It often means they are
               testing whether adults can stay steady while they have real
               feelings.
+            </p>
+
+            <p>
+              In registry-affected families, trust rebuilding may also mean
+              explaining why some ordinary family moments are complicated:
+              school events, sleepovers, travel, internet use, neighborhood
+              questions, or who can be present during visits. Keep the burden on
+              adults: “These are adult rules for adults to manage.”
             </p>
           </GuideProse>
 
@@ -759,6 +844,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Allow the child to feel angry, sad, embarrassed, loyal, loving, confused, or distant.",
               },
               {
+                id: "rules",
+                label:
+                  "Name adult rules simply without making the child feel responsible for them.",
+              },
+              {
                 id: "adult-support",
                 label:
                   "Get adult support for adult pain so the child does not have to carry it.",
@@ -768,7 +858,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <ScriptBox
             title="Repair after a missed expectation"
-            tone="reminder"
+            tone="neutral"
             context="Use this when a call, visit, event, or promise falls through."
             script={`I said something would happen, and it did not happen.\n\nI can see how that hurt or disappointed you.\n\nI am sorry. Here is what I know now, and here is the next small thing I can do.`}
           />
@@ -776,7 +866,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideSectionHeader
           id="resources"
-          number="7"
+          number="8"
           title="Resources and next steps"
           subtitle="Use outside support when children need more than one family conversation can provide."
         />
