@@ -1,7 +1,21 @@
-        import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import { useState, useEffect } from "react";
-import { allBlogPosts, categories } from "../data/blogPosts";
+import { allBlogPosts } from "../data/blogPosts";
+
+const categories = [
+  "All Posts",
+  "Systemic Accountability",
+  "Prevention & Public Safety",
+  "Registry Policy & Reform",
+  "Reentry & Reintegration",
+  "Incarceration & Prison Reality",
+  "Legal Process & Defense",
+  "Families & Support Systems",
+  "Research & Evidence Literacy",
+  "Institutional Abuse",
+  "Legislative & Policy Tracking",
+];
 
 function Blog() {
   // Get initial state from sessionStorage or default to 4
