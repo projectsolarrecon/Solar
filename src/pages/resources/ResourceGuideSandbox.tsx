@@ -8,13 +8,9 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  PullQuoteBlock,
-  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
-  OfflineOptions,
-  DocumentPacket,
   VerifyBeforeActing,
   CommonMistakes,
   OverviewCards,
@@ -23,29 +19,54 @@ import {
   SourceList,
   RoleGuidanceGrid,
   TimelineGuidanceGrid,
-  DoDontJudgment,
-  DualDepthSection,
 } from "../../components/solar";
 
-const sourceLinks = {
-  acluPoliceRights: "https://www.aclu.org/know-your-rights/stopped-by-police",
-  fdOrg: "https://www.fd.org/",
-  bjsRecidivism:
-    "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
-  rainnChildrenTeens:
-    "https://rainn.org/facts-statistics-the-scope-of-the-problem/statistics-children-teens/",
-  smartCurrentLaw: "https://smart.ojp.gov/sorna/current-law",
-  ecfrRegistration: "https://www.ecfr.gov/current/title-28/chapter-I/part-72",
-  niccc: "https://niccc.nationalreentryresourcecenter.org/",
-  cfpbCreditFreeze:
-    "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/answers/key-terms/#credit-freeze",
-  optOutPrescreen: "https://www.optoutprescreen.com/",
-  lifeline988: "https://988lifeline.org/",
-  findTreatment: "https://findtreatment.gov/",
-  saferSociety: "https://safersociety.org/foundation/treatment-referrals/",
-  narsol: "https://narsol.org/",
-  acsol: "https://all4consolaws.org/",
-};
+const sourceLinks = [
+  {
+    label:
+      "American Academy of Pediatrics / HealthyChildren — Tips to Support Children When a Parent is in Prison",
+    href: "https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx",
+    description:
+      "Supports caregiver stability, honest communication, reassurance, and helping children cope when a parent is incarcerated.",
+  },
+  {
+    label: "National Child Traumatic Stress Network — Families and Caregivers",
+    href: "https://www.nctsn.org/audiences/families-and-caregivers",
+    description:
+      "Supports trauma-aware caregiver responses, age-related reactions, safety, routines, and developmentally appropriate support.",
+  },
+  {
+    label: "Sesame Workshop — Incarceration",
+    href: "https://sesameworkshop.org/topics/incarceration/",
+    description:
+      "Child-friendly resources, videos, printables, and caregiver tools for children affected by incarceration.",
+  },
+  {
+    label: "Sesame Workshop — Visiting a Parent in Prison",
+    href: "https://sesameworkshop.org/resources/visiting-parent-prison/",
+    description:
+      "Supports preparing children for facility visits, including uniforms, waiting, rules, limits on touch, and saying goodbye.",
+  },
+  {
+    label: "Stop It Now! — Talking to Children and Teens",
+    href: "https://www.stopitnow.org/ohc-content/talking-to-children-and-teens",
+    description:
+      "Supports accurate, age-appropriate conversations with children and emphasizes adult responsibility for safety.",
+  },
+  {
+    label:
+      "NCTSN — Caring for Kids: What Parents Need to Know about Sexual Abuse",
+    href: "https://www.nctsn.org/resources/caring-kids-what-parents-need-know-about-sexual-abuse",
+    description:
+      "Supports caregiver guidance around child safety, legal involvement, family impact, and responding to children with care.",
+  },
+  {
+    label: "988 Suicide & Crisis Lifeline",
+    href: "https://988lifeline.org/",
+    description:
+      "Crisis support for anyone who feels at risk of harming themselves or who needs immediate emotional support.",
+  },
+];
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -53,9 +74,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Family & Allies Guide | The SOLAR Project"
-        description="A calm, practical guide for families and loved ones supporting someone through a sex-offense case, incarceration, reentry, registry rules, and long-term stability."
-        keywords="family support, sex offense case, reentry, registry, loved one arrested, incarceration support, supervision, SOLAR Project"
+        title="Talking With Children About a Loved One’s Legal Situation | The SOLAR Project"
+        description="A calm, practical SOLAR guide for caregivers and supporters talking with children about arrest, incarceration, supervision, registry rules, and family change."
+        keywords="children disclosure, family support, incarceration, registry family guide, reentry family support, talking to children about prison"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -72,12 +93,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            The SOLAR Family & Allies Guide
+            Talking With Children About a Loved One’s Legal Situation
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Supporting a loved one through a sex-offense case, incarceration,
-            reentry, registry rules, and the long work of staying steady.
+            A disclosure and family-trust toolkit for caregivers, parents, and
+            supporters navigating investigation, incarceration, supervision,
+            registry rules, and family change.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -88,6 +110,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
             >
               🖨️ Print Guide
             </button>
+
+            <a
+              href="#scripts"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Scripts
+            </a>
 
             <a
               href="#sources"
@@ -106,1038 +135,748 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            If you are reading this, you probably already see your loved one as
-            more than a charge, conviction, prison sentence, or registry listing.
-            That does not mean ignoring harm, excusing behavior, or pretending
-            the road ahead is simple. It means you are trying to support a whole
-            person through a serious situation while protecting yourself, your
-            household, and the people around you.
+            You do not need a perfect speech. Children usually need three
+            things first: simple truth, reassurance that they are safe and
+            loved, and adults who keep showing up consistently.
           </p>
 
           <p>
-            You may feel shocked, loyal, angry, embarrassed, afraid, protective,
-            numb, or unsure. Those reactions can exist at the same time. This
-            guide is not therapy and it is not legal advice. It is a practical
-            starting place: what to do first, what to avoid, what to document,
-            what to verify, and how to communicate when the pressure is high.
+            This guide is for the adults around a child: the caregiver at home,
+            the impacted individual, a spouse or partner, grandparents, trusted
+            relatives, and supporters trying to help without making things
+            worse.
+          </p>
+
+          <p>
+            It is not a script for discussing evidence, allegations, interviews,
+            testimony, or legal strategy. When a child may be involved in a
+            case, custody matter, supervision condition, no-contact order, or
+            safety plan, verify the rules before acting.
           </p>
         </GuideIntro>
 
-        <PullQuoteBlock>
-          Loving someone through this may not be easy. But meaningful
-          relationships are rarely simple. Support can be compassionate, honest,
-          boundaried, and practical at the same time.
-        </PullQuoteBlock>
-
         <QuickStartPanel
-          title="If this just happened"
-          subtitle="Use these steps before trying to explain, fix, defend, or debate the situation."
+          title="Before you talk with a child"
+          subtitle="Use these first steps before a hard conversation, visit, call, letter, school conversation, or family meeting."
           icon="⚡"
           urgentActions={[
-            <span>
-              Do not discuss case facts with police, agents, relatives, social
-              media, jail phones, texts, or recorded messaging systems. The{" "}
-              <a
-                href={sourceLinks.acluPoliceRights}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                ACLU’s police-rights guidance
-              </a>{" "}
-              is a useful starting point for understanding why silence and legal
-              counsel matter.
+            <span key="write">
+              Write one simple, truthful sentence before you speak.
             </span>,
-            <span>
-              Use simple words: “I am not answering questions. I want a lawyer.”
-              Then stop talking. If officers search anyway, stay calm, do not
-              interfere, and write down names, agencies, badge numbers, and what
-              happened as soon as possible.
+            <span key="rules">
+              Check whether any court order, custody order, facility rule,
+              supervision condition, treatment rule, or no-contact order limits
+              contact or communication.
             </span>,
-            <span>
-              If your loved one is already in custody, keep calls focused on
-              safety, logistics, money, medications, children, housing, and
-              attorney contact. Save case facts for the lawyer.
+            <span key="adult">
+              Choose one calm adult to lead the conversation, not a crowd of
+              overwhelmed relatives.
             </span>,
           ]}
           nextActions={[
-            <span>
-              Start locating counsel. For federal cases, begin with{" "}
-              <a
-                href={sourceLinks.fdOrg}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                Federal Defender resources
-              </a>
-              . For state cases, ask about court-appointed counsel or look for a
-              defense attorney with real sex-offense case experience.
+            <span key="fault">
+              Plan to say clearly: “You are safe,” “You are loved,” and “This
+              is not your fault.”
             </span>,
-            <span>
-              Gather release and stability documents: ID, lease or mortgage,
-              pay stubs, medical needs, caregiving responsibilities, treatment
-              enrollment, and names of people who can provide practical support.
+            <span key="short">
+              Keep the first conversation short. Answer the question the child
+              asked, not every question you fear they might ask later.
             </span>,
-            <span>
-              Prepare for possible no-contact orders, device limits, internet
-              restrictions, location rules, GPS, curfews, surprise searches, or
-              evaluation requirements. Do not guess; verify.
+            <span key="grounding">
+              End with something grounding: a snack, a walk, bedtime routine,
+              drawing, music, prayer, or quiet time together.
             </span>,
           ]}
           reminder={
             <span>
-              You do not have to solve the whole future today. Protect the legal
-              case first. Protect the household next. Move one square at a time.
+              Disclosure is usually a series of short conversations, not one
+              perfect talk.
             </span>
           }
         />
-
-        <GuideCallout tone="family" icon="💛" title="You are allowed to care">
-          <p>
-            Caring about your loved one does not require you to minimize harm,
-            ignore victims, violate court orders, or abandon your own needs.
-            You are allowed to love someone and still need facts, boundaries,
-            support, privacy, and time.
-          </p>
-        </GuideCallout>
 
         <OverviewCards
           columns={3}
           cards={[
             {
-              eyebrow: "First priority",
-              title: "Protect the case",
-              icon: "⚖️",
-              tone: "legal",
+              eyebrow: "Step 1",
+              title: "Stabilize first",
+              icon: "🧯",
+              tone: "warning",
               description:
-                "Avoid recorded case talk, direct contact with protected people, public statements, and guesses about legal rules.",
+                "Children feel adult panic. Pause, write down the basic facts, and decide who is safe to involve.",
             },
             {
-              eyebrow: "Second priority",
-              title: "Protect the household",
-              icon: "🏠",
-              tone: "privacy",
-              description:
-                "Stabilize children, housing, money, devices, mail, privacy, transportation, and documentation.",
-            },
-            {
-              eyebrow: "Longer work",
-              title: "Build steady support",
-              icon: "🧱",
+              eyebrow: "Step 2",
+              title: "Tell enough truth",
+              icon: "💬",
               tone: "family",
               description:
-                "Support works best when it is honest, lawful, consistent, boundaried, and connected to treatment and accountability.",
+                "Use age-appropriate words. Do not give graphic details, legal theories, or adult conflict.",
+            },
+            {
+              eyebrow: "Step 3",
+              title: "Keep returning",
+              icon: "🔁",
+              tone: "success",
+              description:
+                "Children process in pieces. Expect repeated questions, changing feelings, and new conversations as they grow.",
             },
           ]}
         />
 
-        <GuideSectionHeader
-          id="grounding"
+<GuideSectionHeader
+          id="what-children-need"
           number="1"
-          title="Facts that may help you stay grounded"
-          subtitle="Facts do not erase accountability. They help families resist panic, stigma, and hopelessness."
+          title="What children need to hear"
+          subtitle="Simple truth, direct reassurance, and steady adults matter more than a perfect explanation."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Public conversation often treats people accused or convicted of
-              sexual misconduct as uniquely hopeless or uniquely certain to
-              repeat the same kind of harm. The data does not support that.
-              National{" "}
-              <a
-                href={sourceLinks.bjsRecidivism}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                Bureau of Justice Statistics prison-release data
-              </a>{" "}
-              shows same-category rearrest for sexual misconduct was far lower
-              than same-category rearrest for drug, property, or violent offense
-              categories.
+              Few moments feel as impossible as telling a child that someone
+              they love is in legal trouble, incarcerated, on supervision, or
+              living under registry rules. Silence can feel safer to adults, but
+              children often fill silence with fear, blame, or stories they hear
+              from someone else.
             </p>
 
             <p>
-              That does not mean risk is zero. It means families should make
-              decisions from facts, treatment needs, supervision rules, safety
-              planning, boundaries, housing stability, sobriety, internet and
-              device rules, child-contact rules, and the person’s actual
-              behavior — not from the myth that everyone with this kind of case
-              is doomed to reoffend.
+              Start with the child’s immediate world. Who will pick them up?
+              Where will they sleep? Can they still love the person? Are they in
+              trouble? Did they cause this? Will adults keep telling them the
+              truth?
+            </p>
+
+            <p>
+              Most children do not need every detail. They need enough truth to
+              understand the change around them, enough reassurance to feel
+              cared for, and enough consistency to believe adults are not hiding
+              everything from them.
             </p>
           </GuideProse>
 
-          <DualDepthSection
-            simpleTitle="Plain-language grounding"
-            deepTitle="Why this matters"
-            simple={
-              <p>
-                A charge, conviction, or registry listing is serious, but it is
-                not a complete description of a person, a family, a relationship,
-                or a future.
-              </p>
-            }
-            deep={
-              <p>
-                “Sex offense” is a broad legal category. Cases differ by facts,
-                ages, conduct, risk, treatment needs, plea posture, supervision
-                conditions, and state law. Precise language helps families make
-                safer decisions than public labels do.
-              </p>
-            }
-          />
-
-          <GuideCallout tone="research" icon="📌" title="Real safety is specific">
+          <GuideCallout tone="family" icon="✨" title="A sentence to return to">
             <p>
-              Real prevention is not built by imagining one type of monster.{" "}
-              <a
-                href={sourceLinks.rainnChildrenTeens}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                RAINN’s child and teen statistics
-              </a>{" "}
-              show why prevention has to pay attention to access, secrecy,
-              familiarity, power, and trust — not only strangers or registry
-              labels.
+              “This is a grown-up legal problem. You did not cause it. You are
+              safe. You are loved. We will keep answering your questions in
+              words you can understand.”
             </p>
           </GuideCallout>
-        </GuideSectionCard>
 
-<GuideSectionHeader
-          id="support-with-boundaries"
-          number="2"
-          title="Support without making things worse"
-          subtitle="Care is strongest when it is honest, lawful, and boundaried."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Support does not mean becoming the lawyer, investigator,
-              therapist, probation officer, public-relations manager, or rescuer.
-              It means helping with the next safe step while refusing to create
-              new risk.
-            </p>
-
-            <p>
-              In practice, that usually means: do not discuss case facts on
-              recorded lines; do not contact an alleged victim or protected
-              person; do not post about the case; do not hide devices, evidence,
-              travel, employment, housing, or rule violations; and do not rely on
-              “someone said it was probably fine.”
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              "Use lawyers, court orders, supervision conditions, and written instructions as your source of truth.",
-              "Keep notes with names, dates, agencies, phone numbers, and what was said.",
-              "Help with logistics: rides, childcare, paperwork, medications, housing searches, treatment appointments, and calendars.",
-              "Set boundaries early: what you can do, what you cannot do, and what you will not risk.",
-            ]}
-            donts={[
-              "Do not debate case facts with police, relatives, reporters, neighbors, employers, or online commenters.",
-              "Do not contact protected people, witnesses, alleged victims, or their families unless counsel says it is allowed.",
-              "Do not ignore small rules about devices, passwords, locations, travel, school events, curfews, or appointments.",
-              "Do not promise children, relatives, or your loved one an outcome you cannot control.",
-            ]}
-            judgment={[
-              "You can decide how much contact is healthy for you.",
-              "You can support accountability and still reject public cruelty.",
-              "You can love someone and still require treatment, honesty, compliance, and changed behavior.",
-              "You can step back if the relationship becomes unsafe, manipulative, or impossible to sustain.",
+          <GuideChecklist
+            id="child-disclosure-basics"
+            title="Disclosure basics"
+            columns={1}
+            items={[
+              {
+                id: "simple",
+                label:
+                  "Use one or two simple sentences before giving more detail.",
+              },
+              {
+                id: "truth",
+                label:
+                  "Tell the truth without giving graphic facts, legal strategy, or adult-level explanations.",
+              },
+              {
+                id: "fault",
+                label:
+                  "Say directly that the child did not cause the situation and is not responsible for fixing it.",
+              },
+              {
+                id: "feelings",
+                label:
+                  "Accept tears, silence, anger, confusion, embarrassment, or repeated questions.",
+              },
+              {
+                id: "routine",
+                label:
+                  "End the conversation with a predictable, calming activity.",
+              },
             ]}
           />
 
           <VerifyBeforeActing
-            title="Verify before acting"
+            title="Verify before arranging contact with a child"
             whoToAsk={
               <span>
-                The defense attorney, court clerk, supervising officer,
-                treatment provider, registry office, school administrator,
-                housing provider, or agency with actual authority over the
-                question.
+                The attorney, court clerk if appropriate, supervising officer,
+                custody attorney, facility staff, treatment provider, or agency
+                with actual authority over the restriction.
               </span>
             }
             whatToAsk={
               <span>
-                Ask the narrow question tied to the action you are about to
-                take: “Is this address allowed?” “Can this person attend this
-                school event?” “Are these devices permitted?” “What travel
-                approval is required?”
+                “Is this specific contact allowed: a visit, call, letter, text,
+                school event, third-party message, or family gathering involving
+                this child?”
               </span>
             }
             whatToSave={
               <span>
-                Save the rule, date, person’s name, department, written answer,
-                confirmation number, email, screenshot, form, or note from the
-                call. When possible, ask for the answer in writing.
+                Save the date, person’s name, department, exact answer, and any
+                written permission, order, policy, or denial.
               </span>
             }
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="roles"
+          id="scripts"
+          number="2"
+          title="Age-aware scripts"
+          subtitle="Use these as starting points. Adjust names, relationships, and legal posture without adding graphic detail."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Scripts help adults speak calmly when emotions are high. They are
+              not meant to hide the truth. They are meant to keep the truth
+              small enough for the child’s age, safety, and role.
+            </p>
+
+            <p>
+              For younger children, focus on safety, routine, and love. For
+              older children and teens, use clearer words and leave room for
+              anger, embarrassment, and complicated feelings.
+            </p>
+          </GuideProse>
+
+          <ScriptBox
+            title="Preschool children, roughly ages 3–5"
+            tone="family"
+            context="Use very short sentences. Young children need reassurance and routine more than explanation."
+            script={`Daddy cannot live at home right now because of a serious grown-up problem.\n\nYou did not cause this. You are safe. You are loved.\n\nWe are going to have dinner, read a story, and I will answer more questions when you have them.`}
+          />
+
+          <ScriptBox
+            title="Elementary children, roughly ages 6–10"
+            tone="family"
+            context="Children this age may ask the same question many times. Repetition can be part of feeling safe."
+            script={`Mom is in legal trouble because adults believe she broke an important rule.\n\nI do not have every answer yet, but I will tell you the truth in words you can understand.\n\nThis is not your fault. You are safe, and you are loved.`}
+          />
+
+          <ScriptBox
+            title="Middle school children, roughly ages 11–13"
+            tone="family"
+            context="Use clearer language while still protecting them from adult details."
+            script={`Uncle has a serious legal situation and has to follow rules from the court.\n\nYou may feel confused, embarrassed, angry, or worried. Those feelings are allowed.\n\nYou can ask me questions. If I do not know the answer, I will say that instead of guessing.`}
+          />
+
+          <ScriptBox
+            title="Teenagers, roughly ages 14–18"
+            tone="family"
+            context="Teens may already know partial information from school, social media, court pages, news, or peers."
+            script={`Your dad is dealing with a serious legal situation connected to choices he made and rules he now has to follow.\n\nThis may affect visits, school events, privacy, and how our family handles questions from other people.\n\nYou do not have to protect my feelings. I will listen, and we can keep talking as you have more questions.`}
+          />
+
+          <ScriptBox
+            title="Young adults"
+            tone="neutral"
+            context="Adult children may need more direct information and room to set their own boundaries."
+            script={`Here is what I know, and here is what I still do not know.\n\nYou may have strong feelings, and you do not have to decide everything today.\n\nI want to keep communication open, but I will respect your boundaries and your need for support outside the family.`}
+          />
+
+          <ScriptBox
+            title="When you do not know the answer yet"
+            tone="warning"
+            context="Use this instead of guessing, promising an outcome, or making the child carry uncertainty."
+            script={`That is a fair question. I do not know the answer yet.\n\nI am going to ask the right person and write down what they say.\n\nWhen I know more, I will tell you what I can in words that make sense for you.`}
+          />
+
+          <ScriptBox
+            title="When someone at school or online has heard something"
+            tone="privacy"
+            context="Use this when the child is facing gossip, stigma, or partial information from others."
+            script={`I am sorry you had to hear that from someone else.\n\nSome of what people say may be wrong, incomplete, or said in a hurtful way.\n\nYou can bring questions to me. You do not have to explain our family to everyone, and you are allowed to ask for help if someone is being cruel.`}
+          />
+
+          <ScriptBox
+            title="When a no-contact or limited-contact rule exists"
+            tone="legal"
+            context="Use only if it is accurate for the situation. Do not blame the child or promise the rule will change."
+            script={`There is a rule right now that limits contact. That rule is for adults to follow.\n\nYou did not cause it, and it is not your job to fix it.\n\nWe will follow the rule carefully, and we will keep taking care of you while the adults work through what happens next.`}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="family-roles"
           number="3"
-          title="What different supporters can do"
-          subtitle="Not every supporter has the same role, capacity, or boundary."
+          title="What different adults should do"
+          subtitle="Children need adults to stay in their proper roles: calm, honest, boundaried, and protective."
         />
 
         <GuideSectionCard>
           <RoleGuidanceGrid
-            title="Choose a role you can actually sustain"
+            title="Role-based guidance"
             roles={[
+              {
+                role: "Caregiver at home",
+                icon: "🏠",
+                guidance: (
+                  <div>
+                    <p>
+                      Lead with stability. Keep school, meals, bedtime, and
+                      transportation as predictable as possible.
+                    </p>
+                    <p>
+                      Practice one simple script before you talk. Do not process
+                      adult grief, anger, fear, or legal strategy with the child.
+                    </p>
+                  </div>
+                ),
+              },
+              {
+                role: "Impacted individual",
+                icon: "✉️",
+                guidance: (
+                  <div>
+                    <p>
+                      Share love without pressuring the child to reassure you.
+                      Keep messages short, steady, and accountable.
+                    </p>
+                    <p>
+                      Do not ask the child to keep secrets, carry messages,
+                      defend you, or promise forgiveness.
+                    </p>
+                  </div>
+                ),
+              },
               {
                 role: "Spouse or partner",
                 icon: "🤝",
-                guidance:
-                  "Focus on legal logistics, household stability, money, children, communication boundaries, and your own support system. You do not have to carry every task alone.",
+                guidance: (
+                  <div>
+                    <p>
+                      Your grief and anger may be real. The child still needs
+                      permission to have their own feelings.
+                    </p>
+                    <p>
+                      Process adult decisions with safe adults, counsel, support
+                      groups, or therapy — not with the child.
+                    </p>
+                  </div>
+                ),
               },
               {
-                role: "Parent or adult child",
-                icon: "🌱",
-                guidance:
-                  "Offer steady contact, paperwork help, court transportation, release planning, and emotional steadiness without taking over decisions that belong to counsel or supervision.",
+                role: "Grandparents and extended family",
+                icon: "👥",
+                guidance: (
+                  <div>
+                    <p>
+                      Support the household with meals, rides, childcare,
+                      privacy, and calm presence.
+                    </p>
+                    <p>
+                      Do not interrogate the child, gossip nearby, demand
+                      details, or undermine the caregiver’s chosen script.
+                    </p>
+                  </div>
+                ),
               },
               {
-                role: "Sibling or close friend",
-                icon: "🧭",
-                guidance:
-                  "You may be most useful as the practical helper: rides, calendars, meals, mail, storage, job leads, or being the person who answers one specific weekly need.",
-              },
-              {
-                role: "Caregiver for children",
-                icon: "🧸",
-                guidance:
-                  "Keep children’s routines as stable as possible. Use truthful, age-appropriate language. Follow all no-contact, custody, school, and safety rules exactly.",
-              },
-              {
-                role: "Extended family",
-                icon: "🏡",
-                guidance:
-                  "Help without demanding private details. Offer concrete support: childcare, groceries, transportation, letters if counsel requests them, or calm presence at court.",
-              },
-              {
-                role: "Advocate, faith, or community support",
-                icon: "🕯️",
-                guidance:
-                  "Provide nonjudgmental support, practical help, and accountability. Do not pressure the family to disclose more than they safely can.",
+                role: "School, childcare, or community supporter",
+                icon: "🎒",
+                guidance: (
+                  <div>
+                    <p>
+                      Ask the caregiver what the child needs at school or in
+                      activities: privacy, routine, flexibility, or a safe adult
+                      to check in with.
+                    </p>
+                    <p>
+                      Share only what is necessary to support the child. Do not
+                      turn family crisis into staff gossip.
+                    </p>
+                  </div>
+                ),
               },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="🧩" title="Support can be specific">
+          <GuideCallout
+            tone="privacy"
+            icon="🛡️"
+            title="Protect children from adult conversations"
+          >
             <p>
-              “Let me know if you need anything” is kind, but often too vague.
-              Better: “I can drive to court on Tuesdays,” “I can print forms,”
-              “I can watch the kids during attorney calls,” or “I can help build
-              the reentry binder.”
+              Children should not overhear strategy calls, accusations, custody
+              arguments, registry research, financial panic, or relatives
+              debating whether the person deserves support.
             </p>
           </GuideCallout>
+
+          <ScriptBox
+            title="Boundary phrase for relatives"
+            tone="privacy"
+            context="Use this when people press for details or talk about the case around children."
+            script={`We are not discussing details around the kids.\n\nRight now we are focused on keeping them safe, steady, and loved.\n\nIf you want to help, practical support is welcome. Gossip, pressure, and harsh comments around the children are not.`}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="timeline"
           number="4"
-          title="Stage-by-stage family plan"
-          subtitle="What helps changes depending on where the case or sentence is."
+          title="What changes by stage"
+          subtitle="The right conversation may change during investigation, incarceration, reentry, supervision, and long-term registry life."
         />
 
         <GuideSectionCard>
           <TimelineGuidanceGrid
-            title="The first 90 days of each phase"
+            title="Stage-based guidance"
             stages={[
               {
-                stage: "First 48 hours",
-                icon: "🚨",
-                whatChanges:
-                  "The risk of panic decisions is high. Police contact, searches, custody, bail, media attention, and family shock may happen quickly.",
-                whatToDo:
-                  "Stop case talk, request counsel, write down what happened, protect children’s routines, gather release documents, and avoid public statements.",
-              },
-              {
-                stage: "Pretrial",
+                stage: "Investigation, arrest, or pretrial",
                 icon: "⚖️",
-                whatChanges:
-                  "Court dates, conditions, evaluations, no-contact orders, device rules, and location restrictions may shape daily life.",
-                whatToDo:
-                  "Create a court calendar, arrange transportation and childcare, separate children’s devices if needed, prepare a court-day folder, and confirm all conditions in writing.",
+                whatChanges: (
+                  <p>
+                    Facts may be unclear, adults may be in shock, and court or
+                    custody rules may change quickly.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Keep explanations minimal and truthful. Avoid discussing
+                    allegations, interviews, witness issues, or legal strategy
+                    with or around children.
+                  </p>
+                ),
               },
               {
-                stage: "Incarceration",
-                icon: "✉️",
-                whatChanges:
-                  "Communication becomes rule-bound. Calls may be recorded. Mail, visits, money, books, photos, and programming may all have facility-specific rules.",
-                whatToDo:
-                  "Learn facility rules, send steady letters if safe, avoid case facts, support education or treatment, and begin reentry planning early.",
+                stage: "Incarceration or detention",
+                icon: "⛓️",
+                whatChanges: (
+                  <p>
+                    Calls, mail, visits, and video contact may be monitored,
+                    delayed, denied, or controlled by facility rules.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Prepare children for what they may see: uniforms, waiting,
+                    security, limited touch, short calls, and hard goodbyes.
+                    Keep visit routines predictable when contact is allowed.
+                  </p>
+                ),
               },
               {
-                stage: "Release planning",
-                icon: "🗂️",
-                whatChanges:
-                  "Housing, IDs, medications, income, transportation, treatment, supervision, and registration questions become urgent before release.",
-                whatToDo:
-                  "Build the reentry binder, confirm housing before release, identify treatment options, plan transportation, and ask supervision what must happen on day one.",
+                stage: "Reentry and supervision",
+                icon: "🚪",
+                whatChanges: (
+                  <p>
+                    The loved one may be home or nearby but still under strict
+                    rules about housing, curfew, internet, treatment, travel,
+                    school events, or child contact.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Explain rules simply without making the child responsible:
+                    “This is an adult rule we have to follow.” Celebrate small
+                    routines returning without promising everything is fixed.
+                  </p>
+                ),
               },
               {
-                stage: "Reentry and registry",
-                icon: "🏠",
-                whatChanges:
-                  "Rules may affect where someone lives, works, travels, studies, goes online, uses devices, and attends family or school events.",
-                whatToDo:
-                  "Use the SMART Office, federal registration regulations, and local authorities only as starting points. State and local rules still need direct verification.",
-              },
-              {
-                stage: "Long-term stability",
-                icon: "🌤️",
-                whatChanges:
-                  "The work shifts from crisis response to sustainable routines, treatment, employment, relationships, boundaries, privacy, and repair.",
-                whatToDo:
-                  "Review conditions regularly, keep proof of compliance, build lawful work and housing stability, support treatment, and revisit family boundaries as life changes.",
+                stage: "Registry and long-term family life",
+                icon: "🧭",
+                whatChanges: (
+                  <p>
+                    Children may grow into more questions about stigma,
+                    internet searches, neighbors, school, friends, and why rules
+                    still exist.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Revisit the conversation as they mature. Frame the registry
+                    as one legal reality the family manages, not the child’s
+                    identity or burden.
+                  </p>
+                ),
               },
             ]}
           />
-
-          <GuideProse>
-            <p>
-              For federal background, the{" "}
-              <a
-                href={sourceLinks.smartCurrentLaw}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                SMART Office
-              </a>{" "}
-              and{" "}
-              <a
-                href={sourceLinks.ecfrRegistration}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                federal registration regulations
-              </a>{" "}
-              can help you understand the larger framework. They are not a
-              substitute for checking the exact state, local, court, and
-              supervision rules that apply to your loved one.
-            </p>
-          </GuideProse>
-
-          <OfflineOptions
-            title="If internet access is limited"
-            icon="📞"
-            note="This guide assumes some readers are phone-only, supervised, incarcerated, without a printer, or relying on someone else for research."
-            items={[
-              "Call the court clerk, public defender office, supervision office, treatment provider, or registry office and ask for mailed forms or written instructions.",
-              "Use a paper notebook for names, dates, confirmation numbers, and exact instructions.",
-              "Ask a trusted person to print court notices, conditions, maps, forms, treatment referrals, and housing notes.",
-              "Use a public library, reentry office, legal aid clinic, or courthouse self-help center when safe and allowed.",
-            ]}
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="scripts"
-          number="5"
-          title="Scripts for hard moments"
-          subtitle="Use calm, narrow language. Do not overshare when privacy or legal risk is high."
-        />
-
-        <GuideSectionCard>
-          <ScriptBox
-            title="With your loved one on a recorded call"
-            tone="family"
-            context="Use this when you want to be loving without discussing case facts."
-            script={`I love you. I am not going to discuss case facts on this line. We need to save that for your lawyer.\n\nHere is what I can do today: call attorneys, gather paperwork, check on housing, check on the kids, and write down deadlines.\n\nWe will move one square at a time.`}
-          />
-
-          <ScriptBox
-            title="With police or agents"
-            tone="legal"
-            context={
-              <span>
-                This reflects the basic posture recommended in{" "}
-                <a
-                  href={sourceLinks.acluPoliceRights}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-700 underline underline-offset-2"
-                >
-                  know-your-rights guidance
-                </a>
-                : stay calm, do not debate, and request counsel.
-              </span>
-            }
-            script={`I am not answering questions. I want a lawyer.\n\nI do not consent to a search. If you search anyway, I will not interfere.`}
-          />
-
-          <ScriptBox
-            title="With children"
-            tone="family"
-            context="Keep it truthful, age-appropriate, and non-graphic. Follow all court and custody rules."
-            script={`[Parent/Loved one] is in serious trouble with the law. Adults are working on it.\n\nYou are safe and loved. This is not your fault. You can ask questions, and if I do not know the answer yet, I will tell you that honestly.`}
-          />
-
-          <ScriptBox
-            title="If there is a no-contact order"
-            tone="legal"
-            context="Do not criticize the order or promise when it will change."
-            script={`For now, the rules say you cannot see or talk to [Name]. That is not because of you.\n\nWe are going to follow the rules carefully, and I will keep you updated in a way that is safe and honest.`}
-          />
-
-          <ScriptBox
-            title="With extended family or friends"
-            tone="neutral"
-            context="Use this when people want details you cannot safely share."
-            script={`We are following the legal process and keeping details private.\n\nIf you want to help, concrete support would mean a lot: rides, childcare, meals, printing documents, or showing up without judgment.`}
-          />
-
-          <ScriptBox
-            title="With a supervising officer"
-            tone="reentry"
-            context="Use this to get clear instructions before acting."
-            script={`We want to get this right. Can you confirm in writing the rules for internet use, devices, contact, travel, housing, and family events?\n\nIf there is a form or approval process, please tell us exactly what to use and when it is due.`}
-          />
-
-          <ScriptBox
-            title="With skeptical relatives"
-            tone="reminder"
-            context="This protects boundaries without demanding agreement."
-            script={`You do not have to approve of everything to be constructive.\n\nWe are focused on accountability, compliance, safety, and keeping the household stable. If the conversation turns cruel or unsafe, we are going to take space.`}
-          />
-
-          <ScriptBox
-            title="If a reporter, neighbor, or online stranger confronts you"
-            tone="privacy"
-            context="Do not litigate the case in public."
-            script={`We are cooperating with the legal process and have no comment.\n\nPlease direct questions to the attorney. We are asking for privacy for the family.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="privacy"
-          number="6"
-          title="Protecting your household and privacy"
-          subtitle="Families can become targets too. Plan for privacy without escalating conflict."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Some families experience harassment, doxxing, job pressure,
-              school conflict, unwanted media attention, or threats. You cannot
-              control every reaction, but you can reduce exposure, document
-              harm, and avoid feeding public conflict.
-            </p>
-
-            <p>
-              Privacy steps may include a P.O. box, tighter social media
-              settings, careful device separation, removal from marketing and
-              people-search lists, and a credit freeze if identity theft or
-              financial targeting is a concern. The{" "}
-              <a
-                href={sourceLinks.cfpbCreditFreeze}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-700 underline underline-offset-2"
-              >
-                CFPB explains how credit freezes work
-              </a>
-              .
-            </p>
-          </GuideProse>
 
           <GuideChecklist
-            id="privacy-steps"
-            title="Household privacy checklist"
+            id="stage-checklist"
+            title="Stage check"
             columns={1}
             items={[
               {
-                id: "social-media",
+                id: "contact",
                 label:
-                  "Review social media privacy settings for every household member.",
+                  "Before any contact, verify whether the contact is allowed and under what conditions.",
               },
               {
-                id: "mail",
+                id: "monitoring",
                 label:
-                  "Consider a P.O. box or safer mailing address when appropriate.",
+                  "Assume facility calls, mail, visits, and video systems may be monitored unless told otherwise in writing.",
               },
               {
-                id: "optout",
-                label: (
-                  <span>
-                    Use{" "}
-                    <a
-                      href={sourceLinks.optOutPrescreen}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-700 underline underline-offset-2"
-                    >
-                      OptOutPrescreen
-                    </a>{" "}
-                    and privacy-rights resources as starting points for reducing
-                    marketing and public-data exposure.
-                  </span>
-                ),
-              },
-              {
-                id: "freeze",
+                id: "school",
                 label:
-                  "Freeze credit if there is risk of fraud, identity theft, or financial targeting.",
+                  "If school support is needed, share only what helps the child function safely at school.",
               },
               {
-                id: "screenshots",
+                id: "promises",
                 label:
-                  "Save screenshots of threats, harassment, doxxing, or workplace/school pressure.",
-              },
-              {
-                id: "attorney",
-                label:
-                  "Ask the attorney before sending cease-and-desist letters, threatening civil action, or responding publicly.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="privacy" icon="🛡️" title="Do not fight every comment">
-            <p>
-              Public arguments can spread private details, create screenshots,
-              and make the situation harder to control. Often the safer move is
-              to document, block, report when necessary, and talk with counsel
-              before responding.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="family-folder"
-          number="7"
-          title="Build a family support folder"
-          subtitle="A paper or digital folder turns chaos into a practical task."
-        />
-
-        <GuideSectionCard>
-          <DocumentPacket
-            title="What to keep together"
-            intro="Use a binder, folder, encrypted drive, or shared folder only with people who truly need access. If privacy is a concern, keep paper copies in a safe place."
-            categories={[
-              {
-                title: "Legal and court",
-                items: [
-                  "Attorney name, phone, email, and emergency instructions.",
-                  "Court notices, case number, next hearing date, bond or release papers.",
-                  "No-contact orders, search conditions, device rules, travel rules, and written court conditions.",
-                  "Notes from attorney calls that do not include privileged strategy unless counsel says how to store them.",
-                ],
-              },
-              {
-                title: "Household stability",
-                items: [
-                  "Lease, mortgage, utility bills, pay stubs, caregiving proof, school schedules, childcare plans.",
-                  "Medication list, insurance cards, medical needs, disability paperwork, and emergency contacts.",
-                  "Transportation plan for court, treatment, supervision, registry appointments, and work.",
-                ],
-              },
-              {
-                title: "Incarceration and release",
-                items: [
-                  "Facility mail, phone, visitation, book, commissary, photo, and property rules.",
-                  "ID replacement steps, resume, housing leads, treatment referrals, and reentry contacts.",
-                  "Release date estimates, supervision contact, registration instructions, and first-week calendar.",
-                ],
-              },
-              {
-                title: "Compliance proof",
-                items: [
-                  "Registry confirmations, supervision approvals, treatment attendance proof, travel permissions.",
-                  "Housing approval notes, employment disclosures if required, device approvals, and password instructions.",
-                  "Screenshots, emails, forms, receipts, confirmation numbers, and dated call notes.",
-                ],
-              },
-            ]}
-          />
-
-<GuideChecklist
-            id="stage-checklist"
-            title="Expanded starter checklist"
-            columns={2}
-            items={[
-              {
-                id: "silence-lawyer",
-                label: "Invoke silence and request a lawyer.",
-              },
-              {
-                id: "secure-counsel",
-                label: "Secure counsel or apply for appointed counsel.",
-              },
-              {
-                id: "bail-package",
-                label: "Prepare release or bail documents.",
-              },
-              {
-                id: "privacy-lockdown",
-                label: "Lock down privacy and document harassment.",
-              },
-              {
-                id: "court-calendar",
-                label: "Create a court and deadline calendar.",
-              },
-              {
-                id: "facility-rules",
-                label: "Learn facility mail, phone, visit, and property rules.",
-              },
-              {
-                id: "reentry-binder",
-                label: "Start the reentry binder before release.",
-              },
-              {
-                id: "housing-confirm",
-                label: "Confirm housing compliance before moving in.",
-              },
-              {
-                id: "conditions-writing",
-                label: "Get supervision and registry instructions in writing when possible.",
-              },
-              {
-                id: "treatment",
-                label: (
-                  <span>
-                    Use{" "}
-                    <a
-                      href={sourceLinks.findTreatment}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-700 underline underline-offset-2"
-                    >
-                      FindTreatment.gov
-                    </a>{" "}
-                    and specialized referrals to look for appropriate support.
-                  </span>
-                ),
-              },
-              {
-                id: "niccc",
-                label: (
-                  <span>
-                    Use the{" "}
-                    <a
-                      href={sourceLinks.niccc}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-700 underline underline-offset-2"
-                    >
-                      National Inventory of Collateral Consequences of Conviction
-                    </a>{" "}
-                    to begin identifying legal barriers to work, licensing,
-                    housing, voting, education, and other opportunities.
-                  </span>
-                ),
-              },
-              {
-                id: "routine",
-                label:
-                  "Build sustainable routines instead of emergency-only support.",
+                  "Do not promise release dates, reunification, case outcomes, registry relief, or rule changes.",
               },
             ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="mistakes"
-          number="8"
+          id="avoid"
+          number="5"
           title="Common mistakes to avoid"
-          subtitle="These are not moral failures. They are predictable stress reactions that can create real risk."
+          subtitle="These mistakes usually come from fear or love, but they can make children feel less safe."
         />
 
         <GuideSectionCard>
           <CommonMistakes
+            title="Disclosure and family-boundary mistakes"
             mistakes={[
               {
-                mistake: "Talking about case facts on jail calls, texts, visits, or social media.",
+                mistake:
+                  "Waiting so long that the child learns from gossip, search results, or overheard adult conversations.",
                 whyItMatters:
-                  "Those communications may be recorded, saved, misunderstood, subpoenaed, or shared.",
+                  "Children may feel betrayed or imagine something worse than the truth.",
                 betterMove:
-                  "Use calls for logistics and support. Save facts and strategy for the attorney.",
+                  "Give a short, age-aware explanation before the child is forced to piece it together alone.",
               },
               {
                 mistake:
-                  "Contacting an alleged victim, protected person, witness, school, employer, or family member to explain or smooth things over.",
+                  "Giving graphic details, legal theories, or adult-level explanations.",
                 whyItMatters:
-                  "Even well-meant contact can violate an order or look like pressure.",
+                  "Children are not lawyers, investigators, therapists, or emotional containers for adults.",
                 betterMove:
-                  "Ask counsel what contact is allowed, if any. When in doubt, do not contact.",
+                  "Answer the question asked in the simplest truthful way that protects the child.",
+              },
+              {
+                mistake: "Making the child comfort the adult.",
+                whyItMatters:
+                  "Children may hide their own fear, anger, or confusion to protect the caregiver.",
+                betterMove:
+                  "Say, “My feelings are for adults to help me with. You can have your own feelings.”",
               },
               {
                 mistake:
-                  "Treating “small” supervision or registry rules as flexible.",
+                  "Using the child as a messenger, mediator, or proof of loyalty.",
                 whyItMatters:
-                  "Missed appointments, unapproved addresses, device issues, travel mistakes, passwords, or school-event confusion can have serious consequences.",
+                  "It places the child in the middle of adult conflict and can create legal or supervision risk.",
                 betterMove:
-                  "Verify the exact rule, write it down, calendar it, and save proof.",
+                  "Keep adult communication between adults and follow all court, custody, facility, and supervision rules.",
               },
               {
-                mistake: "Waiting until release week to solve housing or treatment.",
+                mistake: "Promising outcomes you cannot control.",
                 whyItMatters:
-                  "Housing, treatment, transportation, IDs, and registration planning can take time, and some addresses may not be approved.",
+                  "Broken promises can damage trust more than honest uncertainty.",
                 betterMove:
-                  "Start early. Ask for written housing and reporting instructions before release when possible.",
+                  "Say, “I do not know yet, but I will tell you what I can when I know more.”",
               },
               {
                 mistake:
-                  "Letting shame make the family disappear from every healthy support system.",
+                  "Letting relatives interrogate, shame, or gossip around the child.",
                 whyItMatters:
-                  "Isolation can make practical problems harder and emotional stress heavier.",
+                  "Children may internalize adult judgment as shame about themselves or their family.",
                 betterMove:
-                  "Choose a small circle of safe, discreet, constructive people and give them specific tasks.",
+                  "Set a direct boundary and remove the child from the conversation if needed.",
               },
             ]}
           />
+
+<GuideCallout tone="legal" icon="⚠️" title="Do not coach a child">
+            <p>
+              Do not tell a child what to say to police, attorneys, caseworkers,
+              custody evaluators, school officials, therapists, or court staff.
+              If a child may be a witness, alleged victim, or involved in a
+              custody or protection matter, get legal guidance before discussing
+              facts of the case.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="help"
-          number="9"
-          title="Mental health, treatment, and outside support"
-          subtitle="This guide is not therapy, but support systems matter."
+          id="trust"
+          number="6"
+          title="Rebuilding trust with children"
+          subtitle="Children watch patterns more than promises. Small, kept commitments matter."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              You may need more than information. You may need someone to talk
-              to, a treatment referral, a family support group, a lawyer, a
-              reentry contact, or a crisis line. Getting help is not a sign that
-              you are failing. It is often how families stay steady.
+              Trust is not rebuilt through one apology, one perfect visit, or
+              one emotional conversation. It grows when adults tell the truth,
+              keep small promises, repair missed expectations, and return to
+              connection without demanding forgiveness.
+            </p>
+
+            <p>
+              Children may want closeness one day and distance the next. That
+              does not mean the effort is failing. It often means they are
+              testing whether adults can stay steady while they have real
+              feelings.
             </p>
           </GuideProse>
 
+          <GuideCallout tone="success" icon="🌱" title="Micro-commitments">
+            <p>
+              One small promise kept consistently — a call when allowed, a
+              letter, a bedtime routine, a school pickup, a meal, a check-in —
+              usually rebuilds more safety than a big promise about the future.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="trust-rebuilding"
+            title="Trust rebuilding checklist"
+            columns={1}
+            items={[
+              {
+                id: "small",
+                label:
+                  "Make one small promise you can actually keep this week.",
+              },
+              {
+                id: "calendar",
+                label:
+                  "Use a visible calendar for calls, visits, school events, or routines when appropriate.",
+              },
+              {
+                id: "repair",
+                label:
+                  "If a promise is missed, acknowledge it without excuses and explain what happens next.",
+              },
+              {
+                id: "feelings",
+                label:
+                  "Allow the child to feel angry, sad, embarrassed, loyal, loving, confused, or distant.",
+              },
+              {
+                id: "adult-support",
+                label:
+                  "Get adult support for adult pain so the child does not have to carry it.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Repair after a missed expectation"
+            tone="reminder"
+            context="Use this when a call, visit, event, or promise falls through."
+            script={`I said something would happen, and it did not happen.\n\nI can see how that hurt or disappointed you.\n\nI am sorry. Here is what I know now, and here is the next small thing I can do.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="7"
+          title="Resources and next steps"
+          subtitle="Use outside support when children need more than one family conversation can provide."
+        />
+
+        <GuideSectionCard>
           <ResourceLinkGrid
-            title="Places to start"
-            description="Use these links as starting points. Confirm local rules, provider fit, insurance, confidentiality, and eligibility before relying on any outside resource."
+            title="Helpful child and family resources"
+            description={
+              <span>
+                These resources can help caregivers find child-friendly
+                language, trauma-aware support, crisis help, and family
+                communication tools.
+              </span>
+            }
             resources={[
               {
+                label: "HealthyChildren / AAP — Parent in Prison",
+                href: sourceLinks[0].href,
+                badge: "Medical",
+                description:
+                  "Caregiver guidance for supporting children when a parent is incarcerated.",
+              },
+              {
+                label: "NCTSN — Families and Caregivers",
+                href: sourceLinks[1].href,
+                badge: "Trauma",
+                description:
+                  "Trauma-aware information for parents and caregivers supporting children.",
+              },
+              {
+                label: "Sesame Workshop — Incarceration",
+                href: sourceLinks[2].href,
+                badge: "Child-friendly",
+                description:
+                  "Videos, printables, and activities for children and caregivers.",
+              },
+              {
+                label: "Sesame Workshop — Visiting a Parent in Prison",
+                href: sourceLinks[3].href,
+                badge: "Visits",
+                description:
+                  "A child-friendly resource for preparing children for prison visits.",
+              },
+              {
+                label: "Stop It Now! — Talking to Children and Teens",
+                href: sourceLinks[4].href,
+                badge: "Safety",
+                description:
+                  "Guidance on accurate, age-appropriate safety conversations.",
+              },
+              {
                 label: "988 Suicide & Crisis Lifeline",
-                href: sourceLinks.lifeline988,
-                badge: "Crisis",
+                href: sourceLinks[6].href,
                 phone: "Call or text 988",
+                badge: "Crisis",
                 description:
-                  "Free, confidential crisis and emotional support for people in distress and people worried about someone else.",
-              },
-              {
-                label: "FindTreatment.gov",
-                href: sourceLinks.findTreatment,
-                badge: "Official",
-                description:
-                  "SAMHSA treatment locator for mental health, substance use, and related treatment services.",
-              },
-              {
-                label: "Safer Society Treatment Referrals",
-                href: sourceLinks.saferSociety,
-                badge: "Treatment",
-                description:
-                  "Directory-oriented starting point for specialized providers working with sexual behavior problems, people who have caused harm, and survivors.",
-              },
-              {
-                label: "Federal Defender resources",
-                href: sourceLinks.fdOrg,
-                badge: "Legal",
-                description:
-                  "Starting point for federal defender and CJA-related resources in federal criminal cases.",
-              },
-              {
-                label: "SMART Office",
-                href: sourceLinks.smartCurrentLaw,
-                badge: "Official",
-                description:
-                  "Federal SORNA and registry-framework information. Use as background, not a substitute for state-specific verification.",
-              },
-              {
-                label: "NICCC",
-                href: sourceLinks.niccc,
-                badge: "Reentry",
-                description:
-                  "Searchable inventory of collateral consequences affecting employment, licensing, housing, education, voting, and other opportunities.",
-              },
-              {
-                label: "NARSOL",
-                href: sourceLinks.narsol,
-                badge: "Advocacy",
-                description:
-                  "National advocacy organization focused on rational sex-offense laws, education, and reform.",
-              },
-              {
-                label: "ACSOL",
-                href: sourceLinks.acsol,
-                badge: "Advocacy",
-                description:
-                  "Advocacy and legal-education organization focused on constitutional sex-offense laws.",
+                  "Immediate emotional crisis support for children, caregivers, and adults.",
               },
             ]}
           />
 
-          <GuideCallout tone="warning" icon="⚠️" title="When support becomes unsafe">
-            <p>
-              If your loved one pressures you to lie, hide information, violate
-              conditions, contact protected people, ignore child-safety rules, or
-              keep secrets from counsel or supervision, pause and get advice.
-              Support does not require you to participate in unsafe or unlawful
-              behavior.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="why-support-matters"
-          number="10"
-          title="Why steady support matters"
-          subtitle="Support is not a cure-all. But isolation, instability, and panic rarely help."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Families often feel judged from every direction: judged if they
-              stay, judged if they leave, judged if they ask questions, judged if
-              they do not already know what to do. This guide starts from a
-              different place: you are allowed to move carefully.
-            </p>
-
-            <p>
-              Steady support can mean letters, rides, childcare, paperwork,
-              treatment encouragement, privacy protection, housing planning,
-              job-search help, or simply not turning a person’s whole identity
-              into the worst allegation, conviction, or public label attached to
-              them.
-            </p>
-
-            <p>
-              Support also has limits. Real accountability matters. Victims and
-              safety matter. Children’s boundaries matter. Court orders matter.
-              Your health and stability matter. The goal is not blind loyalty.
-              The goal is a careful, honest, humane path forward.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="success" icon="🌤️" title="The future is not decided by panic">
-            <p>
-              Some relationships will change. Some will end. Some will become
-              more boundaried. Some will survive and become steadier. The point
-              is not to predict that today. The point is to make the next
-              decision with care, facts, safety, and dignity.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="next-steps"
-          number="11"
-          title="Resources, related guides, and sources"
-          subtitle="Use these to keep going without relying on memory or guesswork."
-        />
-
-        <GuideSectionCard>
           <RelatedGuides
             guides={[
               {
-                title: "Federal Process Guide",
+                title: "The SOLAR Family & Allies Guide",
                 description:
-                  "Use this when the case is federal or may involve federal court, federal custody, or federal supervision.",
-                to: "/resources/federal-process-guide",
+                  "A broader roadmap for families supporting a loved one from arrest through reentry and beyond.",
+                to: "/resources/family-support-guide",
               },
               {
-                title: "Reentry Guide",
+                title: "Prison Communication, Mail, Visits & Monitoring",
                 description:
-                  "Use this for release planning, housing, documents, employment, treatment, and first-week stability.",
-                to: "/resources/reentry-guide",
+                  "Use this for facility rules, monitored communication, visitation limits, and communication planning.",
+                to: "/resources/prison-communication-mail-visits-monitoring",
               },
               {
-                title: "Housing Search Guide",
+                title: "Reentry Checklist",
                 description:
-                  "Use this when registry rules, supervision, or local restrictions affect housing options.",
-                to: "/resources/housing-search-guide",
+                  "Use this when the family is preparing for release, supervision, housing, documents, and routines.",
+                to: "/resources/reentry-checklist",
               },
               {
-                title: "Employment Guide",
+                title: "Mental Health & Support Directory",
                 description:
-                  "Use this for job-search planning, disclosure decisions, records, and practical employment paths.",
-                to: "/resources/employment-guide",
+                  "Use this to look for crisis support, therapy, peer support, and family resources.",
+                to: "/resources/mental-health-directory",
+              },
+              {
+                title: "Community Integration Tips",
+                description:
+                  "Use this for longer-term belonging, stigma, disclosure, and rebuilding community life.",
+                to: "/resources/community-integration-tips",
               },
             ]}
           />
 
-          <SoftDivider label="Source list" />
-
           <SourceList
             title="Sources & verification"
-            note="Links were live-checked during this sandbox rebuild where possible. State law, local practice, court orders, and supervision conditions still need case-specific verification."
-            sources={[
-              {
-                label: "ACLU — Stopped by Police",
-                href: sourceLinks.acluPoliceRights,
-                description:
-                  "Supports the guidance to stay calm, avoid answering questions, and request a lawyer during police contact.",
-              },
-              {
-                label:
-                  "Bureau of Justice Statistics — Recidivism of Sex Offenders Released from State Prison: A 9-Year Follow-Up",
-                href: sourceLinks.bjsRecidivism,
-                description:
-                  "Primary source for same-category rearrest comparisons and research grounding about public assumptions versus observed recidivism patterns.",
-              },
-              {
-                label: "RAINN — Statistics: Children & Teens",
-                href: sourceLinks.rainnChildrenTeens,
-                description:
-                  "Supports the prevention framing that child sexual abuse often involves people known to the child, not only strangers.",
-              },
-              {
-                label: "SMART Office — SORNA Current Law",
-                href: sourceLinks.smartCurrentLaw,
-                description:
-                  "Federal background on SORNA and registry framework. State and local requirements still need direct verification.",
-              },
-              {
-                label: "eCFR — 28 CFR Part 72",
-                href: sourceLinks.ecfrRegistration,
-                description:
-                  "Federal registration regulation background, including where registration may be required under federal rules.",
-              },
-              {
-                label: "National Inventory of Collateral Consequences of Conviction",
-                href: sourceLinks.niccc,
-                description:
-                  "Searchable inventory for legal and regulatory consequences affecting work, licensing, housing, education, voting, and other opportunities.",
-              },
-              {
-                label: "Consumer Financial Protection Bureau — Security Freeze",
-                href: sourceLinks.cfpbCreditFreeze,
-                description:
-                  "Supports the household privacy recommendation to consider a credit freeze when identity theft or financial targeting is a concern.",
-              },
-              {
-                label: "988 Suicide & Crisis Lifeline",
-                href: sourceLinks.lifeline988,
-                description:
-                  "Crisis and emotional support resource for people in distress or worried about someone else.",
-              },
-              {
-                label: "FindTreatment.gov",
-                href: sourceLinks.findTreatment,
-                description:
-                  "Official treatment locator for mental health, substance use, and related treatment services.",
-              },
-              {
-                label: "Safer Society — Treatment Referrals",
-                href: sourceLinks.saferSociety,
-                description:
-                  "Specialized treatment-referral starting point for people seeking help related to sexual behavior problems, abuse prevention, or support.",
-              },
-            ]}
+            note="These links should be rechecked before production publication. The sandbox uses current public pages where available and avoids relying on unsupported homepage-only citations."
+            sources={sourceLinks}
           />
         </GuideSectionCard>
       </main>
