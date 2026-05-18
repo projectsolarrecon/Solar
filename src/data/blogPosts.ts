@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-registry-is-not-a-prevention-plan",
+  title: "The Registry Is Not a Prevention Plan",
+  excerpt:
+    "The sex-offense registry is often sold as a child-safety strategy, but a public list after conviction cannot replace real prevention: safe reporting, institutional accountability, treatment, risk assessment, and stable reentry.",
+  author: "The SOLAR Project",
+  date: "May 18, 2026",
+  readTime: "8–10 min",
+  category: "Prevention & Public Safety",
+  tags: [
+    "registry reform",
+    "prevention",
+    "public safety theater",
+    "child sexual abuse prevention",
+    "known-access risk",
+    "stranger danger",
+    "institutional accountability",
+    "individualized risk assessment",
+    "recidivism",
+    "reentry stability",
+    "stability is safety",
+  ],
+  path: "/blog/the-registry-is-not-a-prevention-plan",
+},
+{
   id: "vancouver-case-public-lists-not-prevention-plan",
   title: "The Vancouver Case Shows Why Public Lists Are Not a Prevention Plan",
   excerpt:
