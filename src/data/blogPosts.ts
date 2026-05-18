@@ -13,6 +13,26 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "vancouver-case-public-lists-not-prevention-plan",
+  title: "The Vancouver Case Shows Why Public Lists Are Not a Prevention Plan",
+  excerpt:
+    "A Vancouver child molestation investigation shows why real child safety requires trusted-access prevention, disclosure systems, and institutional accountability — not just public registries.",
+  author: "The SOLAR Project",
+  date: "2026-05-18",
+  readTime: "8 min",
+  category: "Institutional Abuse",
+  tags: [
+    "trusted access",
+    "child safety",
+    "prevention failure",
+    "institutional accountability",
+    "registry policy",
+    "digital evidence",
+    "accountability watch",
+  ],
+  path: "/blog/vancouver-case-public-lists-not-prevention-plan",
+},
+{
   id: "child-safety-theater-isnt-child-safety",
   title: "Child Safety Theater Isn’t Child Safety",
   excerpt:
