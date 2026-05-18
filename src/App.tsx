@@ -107,6 +107,7 @@ import PrisonCultureMoralCertainty from "./pages/blog/PrisonCultureMoralCertaint
 import TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle from "./pages/blog/TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle";
 import ChildSafetyTheaterIsntChildSafety from "./pages/blog/ChildSafetyTheaterIsntChildSafety";
 import VancouverCasePublicListsNotPreventionPlan from "./pages/blog/VancouverCasePublicListsNotPreventionPlan";
+import TheRegistryIsNotAPreventionPlan from "./pages/blog/the-registry-is-not-a-prevention-plan";
 
 function App() {
   return (
@@ -253,6 +254,9 @@ element={<TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle />}
 />
 <Route
   path="/blog/vancouver-case-public-lists-not-prevention-plan" element={<VancouverCasePublicListsNotPreventionPlan />} />
+<Route
+  path="/blog/the-registry-is-not-a-prevention-plan"
+  element={<TheRegistryIsNotAPreventionPlan />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
