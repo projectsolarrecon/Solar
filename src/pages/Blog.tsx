@@ -27,10 +27,20 @@ const readerPathways = [
       { label: "Who Is SOLAR, and Why Should I Care?", path: "/blog/who-is-solar" },
       { label: "Rethinking the Sex Offender Registry", path: "/blog/rethinking-registry" },
       { label: "What Good Is the Registry?", path: "/blog/what-good-is-the-registry" },
+      {
+        label: "The Registry Is Not a Prevention Plan",
+        path: "/blog/the-registry-is-not-a-prevention-plan",
+      },
       { label: "The Call Is Coming from Inside the House", path: "/blog/inside-the-house" },
-      { label: "Child Safety Theater Isn’t Child Safety", path: "/blog/child-safety-theater-isnt-child-safety" },
+      {
+        label: "Child Safety Theater Isn’t Child Safety",
+        path: "/blog/child-safety-theater-isnt-child-safety",
+      },
       { label: "Life on the Registry", path: "/blog/life-on-registry" },
-      { label: "We Don’t Register Risk. We Register Contempt.", path: "/blog/we-dont-register-risk" },
+      {
+        label: "We Don’t Register Risk. We Register Contempt.",
+        path: "/blog/we-dont-register-risk",
+      },
     ],
   },
   {
@@ -39,13 +49,23 @@ const readerPathways = [
     description:
       "The core evidence and policy path for understanding why registry-centered safety fails communities, families, and victims.",
     links: [
+      {
+        label: "The Registry Is Not a Prevention Plan",
+        path: "/blog/the-registry-is-not-a-prevention-plan",
+      },
       { label: "Rethinking the Sex Offender Registry", path: "/blog/rethinking-registry" },
       { label: "What Good Is the Registry?", path: "/blog/what-good-is-the-registry" },
       { label: "Fifty Laws, Zero Logic", path: "/blog/fifty-laws-zero-logic" },
       { label: "Understanding Risk Levels", path: "/blog/understanding-risk-levels" },
-      { label: "When Everything Is Violent, Nothing Is Violent", path: "/blog/when-everything-is-violent" },
+      {
+        label: "When Everything Is Violent, Nothing Is Violent",
+        path: "/blog/when-everything-is-violent",
+      },
       { label: "The Safety Illusion", path: "/blog/the-safety-illusion" },
-      { label: "Why Sex Offender Registries Fail Victims", path: "/blog/why-sex-offender-registries-fail-victims" },
+      {
+        label: "Why Sex Offender Registries Fail Victims",
+        path: "/blog/why-sex-offender-registries-fail-victims",
+      },
     ],
   },
   {
@@ -54,11 +74,21 @@ const readerPathways = [
     description:
       "A constructive path for readers asking what should replace safety theater and downstream public labeling.",
     links: [
-      { label: "Child Safety Theater Isn’t Child Safety", path: "/blog/child-safety-theater-isnt-child-safety" },
+      {
+        label: "The Registry Is Not a Prevention Plan",
+        path: "/blog/the-registry-is-not-a-prevention-plan",
+      },
+      {
+        label: "Child Safety Theater Isn’t Child Safety",
+        path: "/blog/child-safety-theater-isnt-child-safety",
+      },
       { label: "The Call Is Coming from Inside the House", path: "/blog/inside-the-house" },
       { label: "The Safety Illusion", path: "/blog/the-safety-illusion" },
       { label: "The Cases We Don’t Investigate", path: "/blog/the-cases-we-dont-investigate" },
-      { label: "The Children We Don’t Protect", path: "/blog/children-we-dont-protect-part1" },
+      {
+        label: "The Children We Don’t Protect",
+        path: "/blog/children-we-dont-protect-part1",
+      },
       { label: "What Good Is the Registry?", path: "/blog/what-good-is-the-registry" },
     ],
   },
@@ -68,14 +98,23 @@ const readerPathways = [
     description:
       "A route through SOLAR’s work on authority, access, institutional silence, and the stranger-danger myth.",
     links: [
-      { label: "High-Profile Cases vs. Stranger Danger", path: "/blog/high-profile-cases-stranger-danger" },
+      {
+        label: "High-Profile Cases vs. Stranger Danger",
+        path: "/blog/high-profile-cases-stranger-danger",
+      },
       { label: "The Enforcers", path: "/blog/the-enforcers" },
       { label: "Sanctuary and Silence", path: "/blog/sanctuary-and-silence" },
-      { label: "Playing Fields & Schoolyards", path: "/blog/playing-fields-and-schoolyards" },
+      {
+        label: "Playing Fields & Schoolyards",
+        path: "/blog/playing-fields-and-schoolyards",
+      },
       { label: "Community Betrayal", path: "/blog/community-betrayal" },
       { label: "First, Do No Harm", path: "/blog/first-do-no-harm" },
       { label: "Community Ties", path: "/blog/community-ties" },
-      { label: "Prison Culture Loves Moral Certainty", path: "/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there" },
+      {
+        label: "Prison Culture Loves Moral Certainty",
+        path: "/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there",
+      },
     ],
   },
   {
@@ -86,9 +125,18 @@ const readerPathways = [
     links: [
       { label: "Understanding Risk Levels", path: "/blog/understanding-risk-levels" },
       { label: "What Good Is the Registry?", path: "/blog/what-good-is-the-registry" },
-      { label: "When Everything Is Violent, Nothing Is Violent", path: "/blog/when-everything-is-violent" },
-      { label: "The Dangerous Myth That Sex Offenders Cannot Be Cured", path: "/blog/dangerous-myth" },
-      { label: "Political Theater With Dead Kids in the Wings", path: "/blog/political-theater" },
+      {
+        label: "When Everything Is Violent, Nothing Is Violent",
+        path: "/blog/when-everything-is-violent",
+      },
+      {
+        label: "The Dangerous Myth That Sex Offenders Cannot Be Cured",
+        path: "/blog/dangerous-myth",
+      },
+      {
+        label: "Political Theater With Dead Kids in the Wings",
+        path: "/blog/political-theater",
+      },
     ],
   },
   {
@@ -97,12 +145,21 @@ const readerPathways = [
     description:
       "A calm, practical path for spouses, parents, friends, and chosen family supporting someone through accusation, custody, registration, or reentry.",
     links: [
-      { label: "When Someone You Love Is Accused", path: "/blog/when-someone-you-love-is-accused" },
+      {
+        label: "When Someone You Love Is Accused",
+        path: "/blog/when-someone-you-love-is-accused",
+      },
       { label: "Understanding Legal Rights", path: "/blog/legal-rights" },
       { label: "Federal Sex-Crime Process", path: "/blog/federal-sex-crime-process" },
-      { label: "The State Sex-Crime Case, Step by Step", path: "/blog/state-sex-crime-process" },
+      {
+        label: "The State Sex-Crime Case, Step by Step",
+        path: "/blog/state-sex-crime-process",
+      },
       { label: "Vigilantism & the Public Registry", path: "/blog/vigilantism-registry" },
-      { label: "When the Label Hurts the Whole Family", path: "/blog/hidden-costs-registries" },
+      {
+        label: "When the Label Hurts the Whole Family",
+        path: "/blog/hidden-costs-registries",
+      },
       { label: "What Prison Is Actually Like", path: "/blog/what-prison-is-actually-like" },
       { label: "Finding Your Place Again", path: "/blog/community-reintegration" },
     ],
@@ -118,7 +175,10 @@ const readerPathways = [
       { label: "Finding Your Place Again", path: "/blog/community-reintegration" },
       { label: "Fees, Fines, and Families", path: "/blog/follow-the-money-part2" },
       { label: "What Prison Is Actually Like", path: "/blog/what-prison-is-actually-like" },
-      { label: "When the Label Hurts the Whole Family", path: "/blog/hidden-costs-registries" },
+      {
+        label: "When the Label Hurts the Whole Family",
+        path: "/blog/hidden-costs-registries",
+      },
     ],
   },
   {
@@ -127,12 +187,24 @@ const readerPathways = [
     description:
       "SOLAR’s sharpest comparative path on selective punishment, public shaming, hypocrisy, and the logic of registry society.",
     links: [
-      { label: "If You’re Bullish on Registries, Let’s Register Everything", path: "/blog/register-all-felons" },
-      { label: "We Don’t Register Risk. We Register Contempt.", path: "/blog/we-dont-register-risk" },
+      {
+        label: "If You’re Bullish on Registries, Let’s Register Everything",
+        path: "/blog/register-all-felons",
+      },
+      {
+        label: "We Don’t Register Risk. We Register Contempt.",
+        path: "/blog/we-dont-register-risk",
+      },
       { label: "Two Men, One Release Date", path: "/blog/two-men-one-release-date" },
       { label: "Welcome to the Neighborhood", path: "/blog/welcome-to-the-neighborhood" },
-      { label: "Permanent Punishment for the Public, Temporary Shame for the Powerful", path: "/blog/permanent-punishment-public-temporary-shame-powerful" },
-      { label: "Classics and Cancel Culture. Registries and Red Carpets.", path: "/blog/classics-and-cancel-culture" },
+      {
+        label: "Permanent Punishment for the Public, Temporary Shame for the Powerful",
+        path: "/blog/permanent-punishment-public-temporary-shame-powerful",
+      },
+      {
+        label: "Classics and Cancel Culture. Registries and Red Carpets.",
+        path: "/blog/classics-and-cancel-culture",
+      },
       { label: "Politics & Hypocrisy", path: "/blog/politics-and-hypocrisy" },
     ],
   },
