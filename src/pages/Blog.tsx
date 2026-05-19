@@ -223,6 +223,7 @@ function Blog() {
 
   const [visiblePosts, setVisiblePosts] = useState(getInitialVisiblePosts);
   const [activeCategory, setActiveCategory] = useState(getInitialCategory);
+  const [expandedPathways, setExpandedPathways] = useState<string[]>([]);
 
   // Save state to sessionStorage whenever it changes
   useEffect(() => {
@@ -251,6 +252,14 @@ function Blog() {
     setVisiblePosts(4);
   };
 
+  const togglePathway = (title: string) => {
+    setExpandedPathways((current) =>
+      current.includes(title)
+        ? current.filter((item) => item !== title)
+        : [...current, title]
+    );
+  };
+
   return (
     <div className="bg-white">
       <SEO 
@@ -260,7 +269,7 @@ function Blog() {
       />
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 backdrop-blur-sm text-white py-16">
+      <section className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 backdrop-blur-sm text-white py-14 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-4">
             <span className="bg-slate-600 text-white text-sm font-medium px-3 py-1 rounded-full">
@@ -272,7 +281,7 @@ function Blog() {
             Blog & Analysis
           </h1>
           
-          <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
             Evidence-based analysis, practical guidance, and thoughtful commentary on sex offense laws, policy reform, and their impact on individuals and communities.
           </p>
         </div>
@@ -281,82 +290,106 @@ function Blog() {
       <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-500"></div>
 
       {/* Category Filter */}
-      <section className="bg-gray-50 py-8">
+      <section className="bg-gray-50 py-5 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  category === activeCategory
-                    ? "bg-blue-700 text-white"
-                    : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
+            <div className="flex w-max gap-3 md:w-auto md:flex-wrap md:justify-center md:gap-4">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryChange(category)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    category === activeCategory
+                      ? "bg-blue-700 text-white"
+                      : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Reader Pathways */}
-      <section className="bg-white py-16 border-b border-gray-200">
+      <section className="bg-white py-10 md:py-14 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="max-w-3xl mx-auto text-center mb-8 md:mb-10">
             <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 mb-4">
               Start reading by pathway
             </span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
               Not sure where to begin?
             </h2>
-            <p className="text-lg text-gray-600">
-              SOLAR’s blog can be read chronologically, by category, or through guided pathways built around the questions readers bring with them.
+            <p className="text-base md:text-lg text-gray-600">
+              Use guided reading paths, browse by category, or jump straight to the newest articles.
             </p>
+            <a
+              href="#latest-posts"
+              className="inline-flex mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline"
+            >
+              Jump to latest posts ↓
+            </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {readerPathways.map((pathway) => (
-              <article
-                key={pathway.title}
-                className="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="mb-4">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-blue-700">
-                    {pathway.eyebrow}
-                  </span>
-                  <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3">
-                    {pathway.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    {pathway.description}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
+            {readerPathways.map((pathway) => {
+              const isExpanded = expandedPathways.includes(pathway.title);
+              const visibleLinks = isExpanded ? pathway.links : pathway.links.slice(0, 3);
+              const hiddenCount = pathway.links.length - visibleLinks.length;
 
-                <ol className="space-y-2">
-                  {pathway.links.map((link, index) => (
-                    <li key={link.path} className="flex gap-3 text-sm">
-                      <span className="flex-shrink-0 h-6 w-6 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center text-xs font-semibold">
-                        {index + 1}
-                      </span>
-                      <Link
-                        to={link.path}
-                        className="text-blue-700 hover:text-blue-900 hover:underline leading-snug"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ol>
-              </article>
-            ))}
+              return (
+                <article
+                  key={pathway.title}
+                  className="bg-slate-50 border border-slate-200 rounded-2xl p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div className="mb-4">
+                    <span className="text-[11px] font-semibold uppercase tracking-wide text-blue-700">
+                      {pathway.eyebrow}
+                    </span>
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 mt-2 mb-2">
+                      {pathway.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {pathway.description}
+                    </p>
+                  </div>
+
+                  <ol className="space-y-2">
+                    {visibleLinks.map((link, index) => (
+                      <li key={link.path} className="flex gap-3 text-sm">
+                        <span className="flex-shrink-0 h-6 w-6 rounded-full bg-white border border-slate-200 text-slate-600 flex items-center justify-center text-xs font-semibold">
+                          {index + 1}
+                        </span>
+                        <Link
+                          to={link.path}
+                          className="text-blue-700 hover:text-blue-900 hover:underline leading-snug"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ol>
+
+                  {pathway.links.length > 3 && (
+                    <button
+                      type="button"
+                      onClick={() => togglePathway(pathway.title)}
+                      className="mt-4 text-sm font-semibold text-slate-700 hover:text-blue-800"
+                    >
+                      {isExpanded ? "Show fewer" : `View full pathway (${hiddenCount} more)`}
+                    </button>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Blog Posts */}
-      <section className="py-16">
+      <section id="latest-posts" className="py-16 scroll-mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {displayedPosts.map((post) => (
