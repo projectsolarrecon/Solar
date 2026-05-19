@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "public-registries-dont-excuse-institutional-failure",
+  title: "Public Registries Don’t Excuse Institutional Failure",
+  excerpt:
+    "The Kaiser lawsuits in the Vancouver pediatrician case show why real child safety requires complaint systems, institutional accountability, and action on warnings — not just public registries.",
+  author: "The SOLAR Project",
+  date: "2026-05-18",
+  readTime: "7 min",
+  category: "Institutional Abuse",
+  tags: [
+    "trusted access",
+    "institutional accountability",
+    "complaint systems",
+    "medical abuse",
+    "failure to warn",
+    "child safety",
+    "prevention failure",
+    "Vancouver case",
+    "Kaiser Permanente",
+    "public registries",
+  ],
+  path: "/blog/public-registries-dont-excuse-institutional-failure",
+},
+{
   id: "safety-zones-are-not-safety-systems",
   title: "Safety Zones Are Not Safety Systems",
   excerpt:
