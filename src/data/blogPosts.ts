@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "safety-zones-are-not-safety-systems",
+  title: "Safety Zones Are Not Safety Systems",
+  excerpt:
+    "Registry laws often treat geography as child safety, restricting where people can live, work, and exist. But real prevention depends on access, accountability, reporting systems, institutional safeguards, and stability.",
+  author: "The SOLAR Project",
+  date: "2026-05-19",
+  readTime: "9–11 minutes",
+  category: "Prevention & Public Safety",
+  tags: [
+    "sex offender registry",
+    "residency restrictions",
+    "presence restrictions",
+    "child safety zones",
+    "registry reform",
+    "trusted access",
+    "institutional accountability",
+    "known-access risk",
+    "public safety theater",
+    "reentry stability",
+    "stability is safety",
+  ],
+  path: "/blog/safety-zones-are-not-safety-systems",
+},
+{
   id: "the-registry-is-not-a-prevention-plan",
   title: "The Registry Is Not a Prevention Plan",
   excerpt:
