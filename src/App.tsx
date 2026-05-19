@@ -109,6 +109,7 @@ import ChildSafetyTheaterIsntChildSafety from "./pages/blog/ChildSafetyTheaterIs
 import VancouverCasePublicListsNotPreventionPlan from "./pages/blog/VancouverCasePublicListsNotPreventionPlan";
 import TheRegistryIsNotAPreventionPlan from "./pages/blog/the-registry-is-not-a-prevention-plan";
 import SafetyZonesAreNotSafetySystems from "./pages/blog/safety-zones-are-not-safety-systems";
+import PublicRegistriesDontExcuseInstitutionalFailure from "./pages/blog/PublicRegistriesDontExcuseInstitutionalFailure";
 
 function App() {
   return (
@@ -260,8 +261,10 @@ element={<TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle />}
   element={<TheRegistryIsNotAPreventionPlan />} />
 <Route
   path="/blog/safety-zones-are-not-safety-systems"
-  element={<SafetyZonesAreNotSafetySystems />}
-/>
+  element={<SafetyZonesAreNotSafetySystems />} />
+<Route
+  path="/blog/public-registries-dont-excuse-institutional-failure"
+element={<PublicRegistriesDontExcuseInstitutionalFailure />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
