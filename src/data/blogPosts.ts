@@ -13,6 +13,28 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-danger-was-never-queerness",
+  title: "The Danger Was Never Queerness",
+  excerpt:
+    "The Alan Chambers allegations expose a deeper public-safety failure: fear maps that point toward LGBTQ children or marked strangers can leave trusted adults and institutions dangerously underexamined.",
+  author: "The SOLAR Project",
+  date: "2026-05-20",
+  readTime: "8 min read",
+  category: "Institutional Abuse",
+  tags: [
+    "conversion therapy",
+    "LGBTQ youth",
+    "trusted access",
+    "religious authority",
+    "child safety",
+    "registry myths",
+    "residency restrictions",
+    "moral panic",
+    "institutional accountability",
+  ],
+  path: "/blog/the-danger-was-never-queerness",
+},
+{
   id: "public-registries-dont-excuse-institutional-failure",
   title: "Public Registries Don’t Excuse Institutional Failure",
   excerpt:
