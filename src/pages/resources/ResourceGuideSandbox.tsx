@@ -8,209 +8,215 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
+  PullQuoteBlock,
   SoftDivider,
-  QuickStartPanel,
-  GuideChecklist,
-  ScriptBox,
-  OfflineOptions,
-  VerifyBeforeActing,
   OverviewCards,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
+  RedFlagGreenFlag,
+  DualDepthSection,
+  GuideChecklist,
 } from "../../components/solar";
 
-const officialLookupLinks = [
-  {
-    label: "Common Cause — Find Your Representative",
-    description:
-      "A broad lookup tool for federal, state, and local elected officials.",
-    href: "https://www.commoncause.org/find-your-representative/",
-    badge: "Lookup",
-  },
-  {
-    label: "USA.gov — Elected Officials",
-    description:
-      "Official federal directory for finding federal, state, territorial, and local officials.",
-    href: "https://www.usa.gov/elected-officials",
-    badge: "Official",
-  },
-  {
-    label: "U.S. House — Find Your Representative",
-    description:
-      "Official House lookup by ZIP code for your member of Congress.",
-    href: "https://www.house.gov/representatives/find-your-representative",
-    badge: "Official",
-  },
-  {
-    label: "U.S. Senate — Contact Senators",
-    description:
-      "Official Senate directory for senator contact pages and office information.",
-    href: "https://www.senate.gov/senators/senators-contact.htm",
-    badge: "Official",
-  },
-  {
-    label: "Congress.gov — Members",
-    description:
-      "Official congressional member and bill information from the Library of Congress.",
-    href: "https://www.congress.gov/members",
-    badge: "Official",
-  },
-  {
-    label: "Open States / Plural — State Legislator Lookup",
-    description:
-      "A state-level lookup tool for finding state lawmakers and legislative districts.",
-    href: "https://open.pluralpolicy.com/find_your_legislator/",
-    badge: "State",
-  },
-];
+const sourceLinks = {
+  wetterlingReginfo:
+    "https://www.reginfo.gov/public/do/eAgendaViewRule?ruleID=218462",
+  wetterlingDoj1995:
+    "https://www.justice.gov/archive/opa/pr/Pre_96/April95/199.txt.html",
+  wetterlingFederalRegister:
+    "https://www.govinfo.gov/content/pkg/FR-1995-04-12/html/95-8966.htm",
+  megansLawCongress:
+    "https://www.congress.gov/bill/104th-congress/house-bill/2137",
+  megansLawDoj1997:
+    "https://www.justice.gov/archive/opa/pr/1997/April97/140vaw.htm",
+  smartCurrentLaw: "https://smart.ojp.gov/sorna/current-law",
+  smartLegislativeHistory:
+    "https://smart.ojp.gov/sorna/current-law/legislative-history",
+  smartAdamWalshAnniversary:
+    "https://smart.ojp.gov/blog/smart-office-recognizes-10th-anniversary-adam-walsh-act",
+  smithJustia: "https://supreme.justia.com/cases/federal/us/538/84/",
+  smithOyez: "https://www.oyez.org/cases/2002/01-729",
+  snyderJustia:
+    "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
+  snyderMitchellHamline:
+    "https://mitchellhamline.edu/sex-offense-litigation-policy/2017/08/10/doe-v-snyder-2015-2/",
+  packinghamSupremeCourt:
+    "https://www.supremecourt.gov/opinions/16pdf/15-1194_08l1.pdf",
+  packinghamOyez: "https://www.oyez.org/cases/2016/15-1194",
+  polanskiLaCourt:
+    "https://ww2.lacourt.org/hp/4dqnllofafmpfifvdjkko2sa/1374562163.pdf",
+  epsteinNpa:
+    "https://www.documentcloud.org/documents/6184602-Jeffrey-Epstein-non-prosecution-agreement/",
+  epsteinOprReport: "https://www.justice.gov/opr/page/file/1336471/dl",
+  epsteinOprStatement:
+    "https://www.justice.gov/archives/opa/pr/statement-doj-office-professional-responsibility-report-jeffrey-epstein-2006-2008",
+  cosbyPaSupremeCourt:
+    "https://www.pacourts.us/Storage/media/pdfs/20210630/163038-june302021opinionwecht.pdf",
+  weinsteinNyCourt:
+    "https://www.nycourts.gov/ctapps/Decisions/2024/Apr24/24opn24-Decision.pdf",
+  weinsteinLaDa:
+    "https://da.lacounty.gov/media/news/harvey-weinstein-found-guilty-rape-los-angeles-county",
+  rKellyEdny:
+    "https://www.justice.gov/usao-edny/pr/r-kelly-sentenced-30-years-prison",
+  rKellyNdil:
+    "https://www.justice.gov/usao-ndil/pr/robert-kelly-sentenced-20-years",
+  pennsylvaniaGrandJury: "https://www.attorneygeneral.gov/report/",
+  sbcGuidepost:
+    "https://www.documentcloud.org/documents/22031759-guidepost-solutions-independent-investigation-report-sbc-executive-committee",
+  nassarDoj:
+    "https://www.justice.gov/usao-wdmi/pr/2017_1207_Nassar",
+  nassarOig: "https://oig.justice.gov/reports/investigation-and-review-federal-bureau-investigations-handling-allegations-sexual",
+  boyScoutsAp:
+    "https://apnews.com/article/sexual-abuse-boy-scouts-of-america-c52a60cd7b0b3df5b6e9c6247837611c",
+  boyScoutsReuters2026:
+    "https://www.reuters.com/legal/government/us-supreme-court-rejects-challenge-246-billion-boy-scouts-sex-abuse-settlement-2026-01-12/",
+  hrwRaisedRegistry:
+    "https://www.hrw.org/report/2013/05/01/raised-registry/irreparable-harm-placing-children-sex-offender-registries-us",
+  hrwMoreHarm:
+    "https://www.hrw.org/news/2013/05/01/us-more-harm-good",
+  govUkSarahsLaw:
+    "https://www.gov.uk/guidance/find-out-if-a-person-has-a-record-for-child-sexual-offences",
+  govUkSarahsLawPdf:
+    "https://assets.publishing.service.gov.uk/media/642aa9f0fbe620000c17db03/Annex_E_-_Public_guidance_on_the_scheme.pdf",
+  justiceCanadaNsor:
+    "https://www.justice.gc.ca/eng/cj-jp/victims-victimes/factsheets-fiches/nsor-rnds.html",
+  canadaSoira:
+    "https://laws-lois.justice.gc.ca/eng/acts/S-8.7/",
+} as const;
 
-const solarAdvocacyLinks = [
-  {
-    label: "SOLAR Advocacy Hub",
-    description:
-      "Use SOLAR advocacy tools, position statements, and campaign materials.",
-    href: "/advocacy",
-    badge: "SOLAR",
-  },
-  {
-    label: "SOLAR Script Generator",
-    description:
-      "Draft a message to lawmakers and adapt it to your state, issue, and role.",
-    href: "/advocacy#contact-congress",
-    badge: "Tool",
-  },
-  {
-    label: "SOLAR Position Statements",
-    description:
-      "Review SOLAR’s issue framing before drafting your own message.",
-    href: "/advocacy#position-statement",
-    badge: "SOLAR",
-  },
-  {
-    label: "RECON — Register Every Convict Or None",
-    description:
-      "Read SOLAR’s equal-treatment argument about registry policy and public safety.",
-    href: "/advocacy#recon",
-    badge: "SOLAR",
-  },
-];
+const externalLinkClass =
+  "font-semibold text-slate-900 underline decoration-slate-400 underline-offset-4 hover:text-slate-700 hover:decoration-slate-700";
 
-const evidenceAndPracticeSources = [
+const sourceInventory = [
   {
-    label: "DOJ SMART — Sex Offender Management Assessment and Planning Initiative",
-    href: "https://smart.ojp.gov/somapi",
+    label: "Jacob Wetterling Act regulatory summary",
+    href: sourceLinks.wetterlingReginfo,
     description:
-      "Federal SMART Office materials on sex offense policy, management, and research background.",
+      "Federal summary describing the Wetterling Act as part of the 1994 Violent Crime Control and Law Enforcement Act.",
   },
   {
-    label: "DOJ SMART — Adult Sex Offender Recidivism",
-    href: "https://smart.ojp.gov/somapi/chapter-5-adult-sex-offender-recidivism",
+    label: "DOJ 1995 Wetterling guidance announcement",
+    href: sourceLinks.wetterlingDoj1995,
     description:
-      "Archived SMART Office chapter often used for background on recidivism research.",
+      "Department of Justice archive announcing proposed federal guidance for state registration systems.",
   },
   {
-    label: "BJS — Recidivism of Sex Offenders Released from State Prison: 9-Year Follow-Up",
-    href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
+    label: "Federal Register proposed Wetterling guidelines",
+    href: sourceLinks.wetterlingFederalRegister,
     description:
-      "Bureau of Justice Statistics report frequently cited in registry and recidivism policy discussions.",
+      "Federal Register notice describing proposed DOJ guidelines for implementing the Wetterling Act.",
   },
   {
-    label: "The Sentencing Project — Responding to Crimes of a Sexual Nature",
-    href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+    label: "Megan's Law congressional bill page",
+    href: sourceLinks.megansLawCongress,
     description:
-      "Policy-focused report discussing prevention, accountability, punishment, and alternatives.",
+      "Congress.gov bill record for H.R. 2137, the federal Megan's Law amendment.",
   },
   {
-    label: "Council of State Governments Justice Center — 50 States, 1 Goal",
-    href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
+    label: "DOJ 1997 Megan's Law guidelines",
+    href: sourceLinks.megansLawDoj1997,
     description:
-      "State recidivism trends resource that can help advocates ask for data-driven policy.",
+      "Department of Justice archive announcing guidelines for Megan's Law and the Wetterling Act.",
   },
   {
-    label: "Congressional Management Foundation — Communicating with Congress",
-    href: "https://www.congressfoundation.org/projects/communicating-with-congress",
+    label: "SMART Office current federal SORNA law",
+    href: sourceLinks.smartCurrentLaw,
     description:
-      "Best-practice resource on how congressional offices receive and process constituent messages.",
+      "Official SMART Office page for current federal sex-offender registration and notification law.",
   },
   {
-    label: "U.S. Senate — Contacting Your Senators",
-    href: "https://www.senate.gov/senators/senators-contact.htm",
+    label: "SMART Office legislative history",
+    href: sourceLinks.smartLegislativeHistory,
     description:
-      "Official Senate contact information and office access point.",
+      "Federal legislative history of sex-offender registration and notification law.",
   },
   {
-    label: "UC Berkeley Library — Contacting Elected Officials",
-    href: "https://guides.lib.berkeley.edu/ContactOfficials",
+    label: "Smith v. Doe, 538 U.S. 84",
+    href: sourceLinks.smithJustia,
     description:
-      "Plain-language tips for contacting elected officials and preparing messages.",
-  },
-];
-
-const policyIssueCards = [
-  {
-    eyebrow: "Registry expansion",
-    title: "More people, longer terms, fewer off-ramps",
-    icon: "📋",
-    tone: "legal",
-    description:
-      "Speak against automatic expansion that increases public exposure without individualized review, evidence, or a clear safety purpose.",
+      "U.S. Supreme Court decision treating Alaska's registry scheme as civil rather than punitive for ex post facto purposes.",
   },
   {
-    eyebrow: "Retroactive punishment",
-    title: "New rules applied after sentencing",
-    icon: "⚖️",
-    tone: "warning",
+    label: "Does #1-5 v. Snyder, 834 F.3d 696",
+    href: sourceLinks.snyderJustia,
     description:
-      "Explain why changing rules years later can destabilize housing, work, family life, and reentry planning.",
+      "Sixth Circuit decision analyzing punitive effects of Michigan registry restrictions.",
   },
   {
-    eyebrow: "Residency restrictions",
-    title: "Housing bans that can create instability",
-    icon: "🏠",
-    tone: "urgent",
+    label: "Packingham v. North Carolina",
+    href: sourceLinks.packinghamSupremeCourt,
     description:
-      "Ask lawmakers to reject blanket distance rules that push people away from housing, treatment, employment, transportation, and family support.",
+      "U.S. Supreme Court opinion addressing First Amendment limits on broad social-media bans.",
   },
   {
-    eyebrow: "Employment barriers",
-    title: "Rules that block lawful work",
-    icon: "🧰",
-    tone: "info",
+    label: "DOJ OPR Epstein report",
+    href: sourceLinks.epsteinOprReport,
     description:
-      "Advocate for fair hiring, licensing review, and work access that supports accountability and stability after punishment.",
+      "Office of Professional Responsibility report on the U.S. Attorney's Office resolution of the 2006-2008 Epstein investigation.",
   },
   {
-    eyebrow: "Family separation",
-    title: "Policies that punish households",
-    icon: "👨‍👩‍👧",
-    tone: "family",
+    label: "Commonwealth v. Cosby",
+    href: sourceLinks.cosbyPaSupremeCourt,
     description:
-      "Describe how broad restrictions can affect spouses, children, parents, caregivers, and people trying to maintain safe family relationships.",
+      "Pennsylvania Supreme Court opinion vacating Bill Cosby's conviction.",
   },
   {
-    eyebrow: "Public notification",
-    title: "Exposure without clear prevention",
-    icon: "📣",
-    tone: "warning",
+    label: "People v. Weinstein",
+    href: sourceLinks.weinsteinNyCourt,
     description:
-      "Ask whether online exposure, broad alerts, or public shaming actually prevent harm or simply increase harassment and instability.",
+      "New York Court of Appeals opinion reversing Harvey Weinstein's New York conviction.",
   },
   {
-    eyebrow: "Deregistration",
-    title: "Meaningful paths to review and relief",
-    icon: "🛤️",
-    tone: "success",
+    label: "R. Kelly EDNY sentencing",
+    href: sourceLinks.rKellyEdny,
     description:
-      "Support individualized relief pathways based on time offense-free, conduct, treatment progress, risk review, and due process.",
+      "Department of Justice announcement of the Eastern District of New York sentence.",
   },
   {
-    eyebrow: "Evidence and data",
-    title: "Require proof before expanding restrictions",
-    icon: "📊",
-    tone: "research",
+    label: "R. Kelly NDIL sentencing",
+    href: sourceLinks.rKellyNdil,
     description:
-      "Ask lawmakers to demand data, fiscal notes, constitutional review, and real prevention evidence before passing new restrictions.",
+      "Department of Justice announcement of the Northern District of Illinois sentence.",
+  },
+  {
+    label: "Pennsylvania Grand Jury Report",
+    href: sourceLinks.pennsylvaniaGrandJury,
+    description:
+      "Pennsylvania Attorney General report page for the clergy-abuse grand jury investigation.",
+  },
+  {
+    label: "Nassar DOJ sentencing announcement",
+    href: sourceLinks.nassarDoj,
+    description:
+      "Department of Justice announcement of Larry Nassar's federal sentence.",
+  },
+  {
+    label: "DOJ OIG report on Nassar/FBI handling",
+    href: sourceLinks.nassarOig,
+    description:
+      "Inspector General report on the FBI's handling of allegations against Larry Nassar.",
+  },
+  {
+    label: "Human Rights Watch: Raised on the Registry",
+    href: sourceLinks.hrwRaisedRegistry,
+    description:
+      "Research report on harms of youth registration and public registry policies.",
+  },
+  {
+    label: "UK Child Sex Offender Disclosure Scheme",
+    href: sourceLinks.govUkSarahsLaw,
+    description:
+      "Official GOV.UK page for the disclosure scheme often called Sarah's Law.",
+  },
+  {
+    label: "Canada Sex Offender Information Registration Act",
+    href: sourceLinks.canadaSoira,
+    description:
+      "Canadian statute establishing the national sex-offender information registration framework.",
   },
 ];
 
@@ -220,9 +226,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Legislative Advocacy Guide | The SOLAR Project"
-        description="A plain-language SOLAR guide for people affected by sex offense laws who want to contact lawmakers with clear, respectful, evidence-aware messages."
-        keywords="sex offense registry advocacy, legislative advocacy, registry reform, residency restrictions, reentry, sex offense policy, SOLAR Project"
+        title="High-Profile Case Analysis | The SOLAR Project"
+        description="A plain-language SOLAR resource guide explaining how high-profile cases, institutional failures, and public fear shaped registry law, and what they do and do not prove about prevention."
+        keywords="sex offense registry history, Megan's Law, Jacob Wetterling Act, SORNA, Smith v Doe, Does v Snyder, Packingham, institutional abuse prevention, registry policy"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -239,13 +245,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Legislative Advocacy Guide
+            High-Profile Case Analysis
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            You do not have to be an activist or policy expert to contact a
-            lawmaker. This guide helps people affected by sex offense laws use
-            their voice clearly, safely, and practically.
+            How landmark cases, institutional failures, and public fear shaped
+            sex-offense registry law — and what they do and do not prove about
+            prevention.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -272,823 +278,1023 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start here: you do not have to be an activist" icon="🧭">
+        <GuideIntro title="Start Here" icon="🧭">
           <p>
-            Many people arrive at sex offense policy after something has already
-            happened to them or someone they love: an accusation, conviction,
-            sentence, registry requirement, supervision condition, housing loss,
-            family disruption, or a proposed law that would make life even more
-            unstable.
+            High-profile cases matter because they often become the stories
+            lawmakers, courts, media, and communities use to explain sex-offense
+            policy. But a famous case is not the same thing as a complete
+            prevention strategy.
           </p>
 
           <p>
-            Advocacy does not mean excusing harm, denying victims, or asking for
-            no accountability. It means asking whether a law actually prevents
-            harm, supports accountability, protects families, and helps people
-            build stable lives after punishment.
-          </p>
-
-          <p>
-            Your message does not have to explain everything. A short, respectful,
-            local message with one clear ask can help lawmakers understand what
-            these laws do in real life.
+            This guide separates three things that often get mixed together:
+            the cases that shaped registry law, the institutional failures that
+            allowed harm to continue, and the prevention lessons that can make
+            children and communities safer without relying only on public lists.
           </p>
         </GuideIntro>
 
-        <QuickStartPanel
-          title="If you want to contact a lawmaker this week"
-          subtitle="Start small. One message to the right office is better than a perfect message you never send."
-          icon="⚡"
-          urgentActions={[
-            <span key="find">
-              Find your state legislator first if the issue involves registry
-              rules, residency restrictions, removal from the registry, state
-              supervision law, or local reentry barriers.
-            </span>,
-            <span key="one-ask">
-              Pick one issue and one clear ask. Do not try to explain every
-              unfair part of the system in the same message.
-            </span>,
-            <span key="local">
-              Add your city or ZIP code and one sentence about real-life impact:
-              housing, work, family, treatment, safety, or reentry stability.
-            </span>,
-          ]}
-          nextActions={[
-            <span key="source">
-              Add one credible source or ask the office to require evidence
-              before expanding restrictions.
-            </span>,
-            <span key="reply">
-              Ask for a written reply, staff call, or the lawmaker’s position on
-              the bill or issue.
-            </span>,
-            <span key="save">
-              Save what you sent, the date, the office contacted, and any reply.
-            </span>,
-          ]}
-          reminder={
-            <span>
-              You are allowed to be emotional. The message works better when the
-              words stay calm, specific, and focused on real public safety.
-            </span>
-          }
-        />
-
-        <GuideCallout tone="legal" icon="⚖️" title="Before you share personal details">
+        <GuideCallout tone="research" icon="🔎" title="How to read this page">
           <p>
-            If you have a pending case, active appeal, open investigation, strict
-            supervision condition, no-contact order, internet restriction, or
-            unresolved registration question, talk with a lawyer or supervising
-            authority before sharing details that could create risk. You can
-            still advocate by speaking generally, using family impact language,
-            or asking evidence-based questions.
+            This is a non-graphic, policy-focused guide. It names cases and
+            institutions because they changed law, public understanding, or
+            prevention practice. It does not retell abuse details for shock
+            value.
           </p>
         </GuideCallout>
 
-<GuideSectionHeader
-          id="what-lawmakers-can-change"
-          number="1"
-          title="What lawmakers can actually change"
-          subtitle="Different offices control different parts of the system. Matching your ask to the right level helps your message land."
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Pattern 1",
+              title: "Law-making cases",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Some cases became symbols that drove federal registry laws, public notification, and constitutional litigation.",
+            },
+            {
+              eyebrow: "Pattern 2",
+              title: "Power and delayed accountability",
+              icon: "🏛️",
+              tone: "warning",
+              description:
+                "Celebrity, money, institutional status, and public trust can affect whether harm is reported, believed, charged, or punished.",
+            },
+            {
+              eyebrow: "Pattern 3",
+              title: "Real prevention lessons",
+              icon: "🛡️",
+              tone: "success",
+              description:
+                "Safety improves when systems reduce secrecy, limit unchecked access, document concerns, and respond early.",
+            },
+          ]}
         />
 
-        <GuideSectionCard>
-          <OverviewCards
-            columns={2}
-            cards={[
-              {
-                eyebrow: "State lawmakers",
-                title: "Registry law, restrictions, relief, and reentry barriers",
-                icon: "🏛️",
-                tone: "legal",
-                description:
-                  "State legislatures usually control registration rules, duration, reporting duties, residency restrictions, deregistration paths, state supervision law, and many collateral consequences.",
-              },
-              {
-                eyebrow: "Local officials",
-                title: "Ordinances, zoning, public meetings, and local implementation",
-                icon: "📍",
-                tone: "info",
-                description:
-                  "City councils, county boards, and local agencies may shape housing restrictions, park/library rules, meeting agendas, zoning, shelter access, and how state law is enforced locally.",
-              },
-              {
-                eyebrow: "Congress",
-                title: "Federal standards, funding, and national policy pressure",
-                icon: "🇺🇸",
-                tone: "research",
-                description:
-                  "Congress may affect federal registry standards, funding incentives, interstate systems, federal supervision, federal sentencing policy, and national agency priorities.",
-              },
-              {
-                eyebrow: "Agencies",
-                title: "Forms, guidance, procedures, and practical rules",
-                icon: "🗂️",
-                tone: "neutral",
-                description:
-                  "Agencies often decide how rules are explained, what forms are used, how records are handled, and how people are told to comply. Some advocacy asks belong there, not with a legislator.",
-              },
-            ]}
-          />
+        <PullQuoteBlock>
+          High-profile cases can explain why laws changed, but they should not
+          be mistaken for a complete prevention strategy.
+        </PullQuoteBlock>
 
-          <GuideCallout tone="reminder" icon="🎯" title="Aim your ask at the right office">
-            <p>
-              If your issue is a state registry law, start with state lawmakers.
-              If your issue is a city ordinance, start with the city or county.
-              If your issue is a proposed federal bill, contact your U.S. House
-              member and senators. If your issue is a confusing form or agency
-              practice, the agency may be the first place to ask.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="what-makes-this-different"
-          number="2"
-          title="What makes sex offense advocacy different"
-          subtitle="This is not generic criminal justice advocacy. The politics, stigma, and safety claims are different, so the message needs care."
+<GuideSectionHeader
+          id="framework"
+          number="1"
+          title="The legal framework: how registry law grew"
+          subtitle="The modern U.S. registry system developed through federal incentives, public-notification laws, and court decisions about whether registration is civil regulation or punishment."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Sex offense policy is often written in a climate of fear. Lawmakers
-              may hear emotional news stories, campaign pressure, police or
-              prosecutor talking points, and broad claims about public safety.
-              They may hear much less from families, people on registries,
-              treatment providers, reentry workers, researchers, and people
-              living with the day-to-day consequences of these laws.
+              The{" "}
+              <a
+                href={sourceLinks.wetterlingReginfo}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jacob Wetterling Act
+              </a>{" "}
+              began the federal registry framework in 1994 by encouraging
+              states to establish registration systems for people convicted of
+              certain offenses against children and sexually violent offenses.
+              Early guidance was directed largely at state systems and law
+              enforcement implementation, as reflected in the{" "}
+              <a
+                href={sourceLinks.wetterlingDoj1995}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOJ's 1995 guidance announcement
+              </a>{" "}
+              and the{" "}
+              <a
+                href={sourceLinks.wetterlingFederalRegister}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Federal Register proposed guidelines
+              </a>
+              .
             </p>
 
             <p>
-              A useful message does not argue that harm is not serious. It argues
-              that serious harm deserves serious policy: evidence, prevention,
-              accountability, treatment, constitutional limits, individualized
-              review, stable reentry, and rules that do not punish families for
-              the rest of their lives.
+              The federal{" "}
+              <a
+                href={sourceLinks.megansLawCongress}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Megan's Law amendment
+              </a>{" "}
+              changed the public-facing direction of registry policy by pushing
+              community notification and public access. The{" "}
+              <a
+                href={sourceLinks.megansLawDoj1997}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOJ's 1997 Megan's Law guidelines
+              </a>{" "}
+              show how notification became part of the federal implementation
+              framework.
             </p>
 
             <p>
-              Your goal is not to win every argument in one email. Your goal is
-              to help an office see a concrete issue differently: how a proposed
-              law would affect housing, work, family, treatment, transportation,
-              compliance, prevention, or the ability to live safely after
-              punishment.
+              The{" "}
+              <a
+                href={sourceLinks.smartCurrentLaw}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sex Offender Registration and Notification Act
+              </a>{" "}
+              under the Adam Walsh Act later created more comprehensive federal
+              baselines. The SMART Office's{" "}
+              <a
+                href={sourceLinks.smartLegislativeHistory}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                legislative history
+              </a>{" "}
+              places the Wetterling Act, Megan's Law, and SORNA in sequence.
+              The SMART Office has described the Adam Walsh Act as establishing
+              baseline registration and notification standards and expanding
+              the range of offenses those systems address.
             </p>
           </GuideProse>
 
-          <SoftDivider />
+          <GuideCallout tone="legal" icon="⚖️" title="Court labels matter">
+            <p>
+              Courts have often treated registration as civil regulation rather
+              than punishment. But modern registry systems can include public
+              exposure, in-person reporting, geographic restrictions, internet
+              rules, and long-term collateral consequences. That is why newer
+              litigation often focuses on the practical effects of the law, not
+              just the label lawmakers give it.
+            </p>
+          </GuideCallout>
+
+          <TimelineGuidanceGrid
+            title="Key federal law and constitutional milestones"
+            stages={[
+              {
+                stage: "1994: Jacob Wetterling Act",
+                icon: "📍",
+                whatChanges:
+                  "Federal law encouraged states to create registration systems tied to certain offenses against children and sexually violent offenses.",
+                whatToDo:
+                  "Use this as the starting point for understanding federal registry incentives, not as the full story of public notification.",
+              },
+              {
+                stage: "1996: Megan's Law",
+                icon: "📣",
+                whatChanges:
+                  "Federal policy moved toward community notification and public access to registry information.",
+                whatToDo:
+                  "Separate registration from public notification; they are related, but not identical policy choices.",
+              },
+              {
+                stage: "2003: Smith v. Doe",
+                icon: "🏛️",
+                whatChanges:
+                  "The Supreme Court treated Alaska's registry as civil and nonpunitive for ex post facto purposes.",
+                whatToDo:
+                  "When citing this case, also explain that later registry systems may be more burdensome than the system the Court reviewed.",
+              },
+              {
+                stage: "2006: Adam Walsh Act / SORNA",
+                icon: "🧾",
+                whatChanges:
+                  "SORNA created federal baseline standards, including offense-based tiers and broader implementation rules.",
+                whatToDo:
+                  "Check whether a claim is about federal SORNA, a state registry law, local restrictions, or supervision conditions.",
+              },
+              {
+                stage: "2016: Does v. Snyder",
+                icon: "🚧",
+                whatChanges:
+                  "The Sixth Circuit found that Michigan's amended registry scheme imposed punitive effects when applied retroactively.",
+                whatToDo:
+                  "Use this case to show that courts can examine real-world burdens, not only statutory labels.",
+              },
+              {
+                stage: "2017: Packingham",
+                icon: "💬",
+                whatChanges:
+                  "The Supreme Court struck down a broad social-media restriction on First Amendment grounds.",
+                whatToDo:
+                  "Use this case carefully: it does not erase registration rules, but it does limit overbroad speech and internet bans.",
+              },
+            ]}
+          />
+
+          <SoftDivider label="Case anchors" />
+
+          <GuideProse>
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.smithJustia}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Smith v. Doe
+              </a>
+              , the Supreme Court held that Alaska's registry law was civil
+              rather than punitive for purposes of retroactive application. The{" "}
+              <a
+                href={sourceLinks.smithOyez}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Oyez case summary
+              </a>{" "}
+              is useful for a quick orientation, but the full opinion is the
+              better source for precise legal language.
+            </p>
+
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.snyderJustia}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Does #1-5 v. Snyder
+              </a>
+              , the Sixth Circuit analyzed Michigan's registry amendments and
+              concluded that the challenged scheme imposed punitive effects
+              when applied retroactively. A{" "}
+              <a
+                href={sourceLinks.snyderMitchellHamline}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Mitchell Hamline case page
+              </a>{" "}
+              provides a litigation-policy summary, but the court decision is
+              the primary legal anchor.
+            </p>
+
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.packinghamSupremeCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Packingham v. North Carolina
+              </a>
+              , the Supreme Court addressed a broad ban on access to social
+              networking websites. The{" "}
+              <a
+                href={sourceLinks.packinghamOyez}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Oyez page
+              </a>{" "}
+              is a helpful overview, but the Supreme Court PDF should be used
+              for exact wording.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="high-profile-cases"
+          number="2"
+          title="When high-profile cases shape public fear"
+          subtitle="Celebrity and media-heavy cases can reveal real failures, but they can also distort what the public thinks typical risk looks like."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              High-profile cases can become policy shorthand. They can show
+              real harm, real institutional failure, and real accountability
+              gaps. But they can also make rare fact patterns look like the
+              whole problem.
+            </p>
+
+            <p>
+              The safer policy question is not simply, “Was this case
+              horrifying?” The safer question is, “What system failed, who had
+              power, who had access, who ignored warnings, and what prevention
+              measure would have made earlier intervention more likely?”
+            </p>
+          </GuideProse>
+
+          <DualDepthSection
+            simpleTitle="Plain-language takeaway"
+            deepTitle="Deeper policy point"
+            simple={
+              <p>
+                Famous cases are useful when they reveal patterns. They are
+                dangerous when they become the only pattern lawmakers see.
+              </p>
+            }
+            deep={
+              <p>
+                Registry expansion often follows public outrage, but prevention
+                depends on more than public identification after conviction. It
+                also depends on reporting pathways, oversight, institutional
+                accountability, treatment access, stable reentry, and rules
+                that focus on actual risk instead of symbolic punishment.
+              </p>
+            }
+          />
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Use named cases to explain a specific policy lesson, such as
+                delayed reporting, institutional shielding, prosecutorial
+                discretion, or overbroad collateral consequences.
+              </span>,
+              <span>
+                Anchor claims to court opinions, official reports, agency
+                records, or reputable research whenever possible.
+              </span>,
+              <span>
+                Keep the focus on prevention, accountability, and public safety
+                rather than graphic details.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not treat celebrity cases as proof that every case, person,
+                risk level, or registry category is the same.
+              </span>,
+              <span>
+                Do not use sensational cases to justify laws without asking
+                whether the law would have prevented the harm.
+              </span>,
+              <span>
+                Do not erase victims, but do not turn harm into spectacle.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Some media sources are useful for dates and procedural history.
+                For legal claims, prefer court records, official reports, and
+                agency documents.
+              </span>,
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              The long-running{" "}
+              <a
+                href={sourceLinks.polanskiLaCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Roman Polanski case
+              </a>{" "}
+              is often cited as an example of unresolved accountability,
+              celebrity status, flight, and the limits of delayed prosecution.
+              It is useful as a justice-system case study, not as a model for
+              ordinary registry policy.
+            </p>
+
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.epsteinNpa}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jeffrey Epstein non-prosecution agreement
+              </a>{" "}
+              and the DOJ Office of Professional Responsibility's{" "}
+              <a
+                href={sourceLinks.epsteinOprReport}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                report on the 2006-2008 federal investigation
+              </a>{" "}
+              are especially important for understanding power, access to elite
+              counsel, victim-notification failures, and the damage caused when
+              institutions resolve serious allegations quietly.
+            </p>
+
+            <p>
+              The Pennsylvania Supreme Court's decision in{" "}
+              <a
+                href={sourceLinks.cosbyPaSupremeCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commonwealth v. Cosby
+              </a>{" "}
+              is not mainly a registry case. It is a due-process and
+              prosecution-history case. It shows why public outrage and legal
+              process are different things, and why advocates should be precise
+              about what a court actually held.
+            </p>
+
+            <p>
+              The New York Court of Appeals decision in{" "}
+              <a
+                href={sourceLinks.weinsteinNyCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                People v. Weinstein
+              </a>{" "}
+              and the Los Angeles District Attorney's announcement of the{" "}
+              <a
+                href={sourceLinks.weinsteinLaDa}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Los Angeles conviction
+              </a>{" "}
+              show why procedural rules, appellate review, and separate
+              jurisdictions matter. A reversed conviction does not mean the
+              public questions disappeared; it means the court found a legal
+              error in the proceeding it reviewed.
+            </p>
+
+            <p>
+              The federal sentences in the R. Kelly cases, including the{" "}
+              <a
+                href={sourceLinks.rKellyEdny}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Eastern District of New York sentence
+              </a>{" "}
+              and the{" "}
+              <a
+                href={sourceLinks.rKellyNdil}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Northern District of Illinois sentence
+              </a>
+              , are useful for understanding how celebrity, long-term access,
+              networks, and delayed accountability can interact.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="institutions"
+          number="3"
+          title="Where real risk often sits: authority, access, and shielding"
+          subtitle="Many major abuse cases were not driven by anonymous stranger danger. They involved trusted roles, repeated access, institutional silence, or failures to act on warnings."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              SOLAR's core prevention concern is not whether harm is serious.
+              It is. The question is whether the policy response focuses on the
+              places where harm often grows: authority, access, secrecy,
+              grooming opportunities, weak reporting systems, and institutional
+              self-protection.
+            </p>
+
+            <p>
+              The Pennsylvania Attorney General's{" "}
+              <a
+                href={sourceLinks.pennsylvaniaGrandJury}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                grand jury report page on Catholic clergy abuse
+              </a>{" "}
+              is a major example of institutional records revealing patterns
+              that were not solved by public registry logic alone. The issue was
+              not just individual offending. It was the failure of trusted
+              systems to stop, report, and prevent further harm.
+            </p>
+
+            <p>
+              The Southern Baptist Convention's independently commissioned{" "}
+              <a
+                href={sourceLinks.sbcGuidepost}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Guidepost Solutions investigation report
+              </a>{" "}
+              is another example of why prevention has to examine internal
+              reporting channels, leadership response, insurance and legal
+              incentives, and whether survivors are heard or discouraged.
+            </p>
+
+            <p>
+              The Larry Nassar case shows how youth sports, medical authority,
+              institutional reputation, and delayed action can combine. The DOJ
+              announced Nassar's{" "}
+              <a
+                href={sourceLinks.nassarDoj}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                federal sentence
+              </a>
+              , and the DOJ Inspector General later reviewed the{" "}
+              <a
+                href={sourceLinks.nassarOig}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FBI's handling of allegations
+              </a>
+              .
+            </p>
+
+            <p>
+              The Boy Scouts bankruptcy and abuse-claims process, including the{" "}
+              <a
+                href={sourceLinks.boyScoutsAp}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                $2.46 billion reorganization plan
+              </a>{" "}
+              and later appellate developments, shows how youth-serving
+              institutions can face enormous delayed accountability after
+              allegations accumulate across decades.
+            </p>
+          </GuideProse>
+
+          <RedFlagGreenFlag
+            red={
+              <div className="space-y-3">
+                <p>
+                  A system is at higher risk when adults have private,
+                  repeated, undocumented access to children or vulnerable people
+                  and complaints are handled informally, internally, or through
+                  reputation management.
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>One adult alone with a child without visibility.</li>
+                  <li>No clear reporting path outside the chain of command.</li>
+                  <li>Complaints treated as public-relations problems.</li>
+                  <li>Powerful people given quiet transfers or special access.</li>
+                  <li>Background checks treated as the whole prevention plan.</li>
+                </ul>
+              </div>
+            }
+            green={
+              <div className="space-y-3">
+                <p>
+                  A safer system reduces secrecy and makes early intervention
+                  more likely.
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>Two-adult rules and open-door visibility practices.</li>
+                  <li>Written reporting channels that bypass conflicted leaders.</li>
+                  <li>Mandatory reporting training with real follow-through.</li>
+                  <li>Independent review when complaints involve authority figures.</li>
+                  <li>Documentation of boundary concerns before they escalate.</li>
+                </ul>
+              </div>
+            }
+          />
+
+          <GuideCallout
+            tone="success"
+            icon="🛡️"
+            title="Prevention is more than background checks"
+          >
+            <p>
+              Background checks can matter, but many serious cases involve
+              people who were not already on a registry or whose access came
+              from trust, status, or institutional permission. Prevention has to
+              include supervision, transparency, reporting, documentation, and
+              willingness to act before a criminal conviction exists.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="policy-comparison"
+          number="4"
+          title="Policy comparison: public lists are not the only model"
+          subtitle="The United States relies heavily on public registry access. Other systems use more controlled disclosure or police-access models."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              U.S. registry policy is often presented as the obvious or only
+              model. It is not. The federal system grew through state
+              incentives, public-notification laws, and SORNA baselines. But
+              other countries have chosen different disclosure structures.
+            </p>
+
+            <p>
+              The United Kingdom's Child Sex Offender Disclosure Scheme,
+              commonly called{" "}
+              <a
+                href={sourceLinks.govUkSarahsLaw}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sarah's Law
+              </a>
+              , allows a person to ask police whether someone with contact with
+              a child has a relevant record or poses a risk. The government's{" "}
+              <a
+                href={sourceLinks.govUkSarahsLawPdf}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                public guidance for applicants
+              </a>{" "}
+              describes the scheme as a controlled disclosure process, not a
+              general public registry.
+            </p>
+
+            <p>
+              Canada uses a national registration framework under the{" "}
+              <a
+                href={sourceLinks.canadaSoira}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sex Offender Information Registration Act
+              </a>
+              . Canadian materials describe the National Sex Offender Registry
+              as a law-enforcement tool rather than a broad public website.
+              That does not mean Canada's system is perfect; it means public
+              disclosure is a policy choice, not an inevitability.
+            </p>
+
+            <p>
+              Human Rights Watch has documented harms from public registration,
+              especially for youth, in{" "}
+              <a
+                href={sourceLinks.hrwRaisedRegistry}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Raised on the Registry
+              </a>{" "}
+              and its accompanying summary,{" "}
+              <a
+                href={sourceLinks.hrwMoreHarm}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                More Harm Than Good
+              </a>
+              . Those sources should not be the only evidence used in policy
+              work, but they are important for understanding collateral harms,
+              family impacts, and youth-specific concerns.
+            </p>
+          </GuideProse>
 
           <OverviewCards
             columns={3}
             cards={[
               {
-                eyebrow: "Do not minimize harm",
-                title: "Stay morally clear",
-                icon: "🧭",
-                tone: "neutral",
-                description:
-                  "Acknowledge that sexual harm is serious. Then explain why fear-based policy can still be ineffective, overbroad, or destructive.",
-              },
-              {
-                eyebrow: "Do not overexplain",
-                title: "Make one ask",
-                icon: "✉️",
-                tone: "info",
-                description:
-                  "Staff can process a clear message faster than a long personal history. One issue, one ask, one local impact line is enough.",
-              },
-              {
-                eyebrow: "Do not argue from shame",
-                title: "Use dignity and facts",
-                icon: "📚",
-                tone: "research",
-                description:
-                  "The strongest message connects human impact to evidence, prevention, public safety, and constitutional fairness.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="choose-one-ask"
-          number="3"
-          title="Choose one clear ask"
-          subtitle="A lawmaker or staff member should be able to summarize your request in one sentence."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Start by choosing the policy issue you want the office to act on.
-              You can speak from personal experience, family experience,
-              professional experience, or community concern. The important part
-              is to keep the ask specific.
-            </p>
-          </GuideProse>
-
-          <OverviewCards columns={2} cards={policyIssueCards} />
-
-          <GuideCallout tone="info" icon="✍️" title="Examples of clear asks">
-            <GuideProse>
-              <ul>
-                <li>
-                  Please oppose blanket residency restrictions that make housing
-                  and reentry less stable.
-                </li>
-                <li>
-                  Please oppose retroactive registry expansions that change the
-                  consequences after sentencing.
-                </li>
-                <li>
-                  Please support individualized registry relief and meaningful
-                  review pathways.
-                </li>
-                <li>
-                  Please require data, fiscal notes, and constitutional review
-                  before expanding sex offense restrictions.
-                </li>
-                <li>
-                  Please protect families from unnecessary collateral punishment
-                  when they are supporting safe reentry.
-                </li>
-              </ul>
-            </GuideProse>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="build-message"
-          number="4"
-          title="Build a message staff can actually use"
-          subtitle="Short, local, respectful messages are easier for offices to record, forward, and respond to."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A good advocacy message is not a legal brief. It is a clear
-              constituent communication. It tells the office who you are, what
-              you are asking for, why it matters, and how to follow up.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="seven-part-message"
-            title="The seven-part structure"
-            columns={1}
-            items={[
-              {
-                id: "intro",
-                label:
-                  "Introduce yourself by role and location: constituent, family member, person affected by registry law, professional, faith leader, provider, or concerned resident.",
-              },
-              {
-                id: "ask",
-                label:
-                  "Make one clear ask: oppose, support, amend, study, delay, require data, or meet with impacted people.",
-              },
-              {
-                id: "impact",
-                label:
-                  "Add one lived-experience line about housing, work, family, compliance, treatment, safety, or reentry.",
-              },
-              {
-                id: "evidence",
-                label:
-                  "Use one or two credible sources at most. Do not bury the message in links.",
-              },
-              {
-                id: "safety",
-                label:
-                  "Explain the public-safety reason: stability, prevention, individualized review, due process, or better use of resources.",
-              },
-              {
-                id: "reply",
-                label:
-                  "Ask for a reply, staff call, meeting, or the lawmaker’s position.",
-              },
-              {
-                id: "contact",
-                label:
-                  "Include your name, city, ZIP code, and safe contact information.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="👪" title="For family members and loved ones">
-            <p>
-              You do not have to disclose every detail of your loved one’s case.
-              You can focus on what the law does to the household: housing loss,
-              child stability, caregiving, transportation, employment, treatment
-              access, or the ability to follow rules successfully.
-            </p>
-          </GuideCallout>
-
-          <VerifyBeforeActing
-            whoToAsk="A lawyer, supervising officer, case manager, or trusted advocate if you are unsure whether a message could affect a pending case, supervision condition, registration duty, or safety plan."
-            whatToAsk="Ask whether it is safe to identify yourself, mention your loved one, discuss case details, use email, attend a meeting, or publish testimony."
-            whatToSave="Save the guidance you receive, the date, the person’s name or office, and a copy of any message you send."
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="tell-story-safely"
-          number="5"
-          title="Tell your story without oversharing"
-          subtitle="Personal experience can matter, but you do not need to expose private details to be effective."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              People affected by sex offense laws often feel pressure to explain
-              everything because the system can feel arbitrary and unfair. But
-              legislative offices usually need a short, usable message. You can
-              be honest without giving details that are private, graphic, legally
-              risky, or unnecessary.
-            </p>
-
-            <p>
-              A safe personal sentence usually names the impact, not the full
-              history. For example: “This restriction would make it harder for my
-              family to keep stable housing,” or “A clear relief process would
-              give people who have remained offense-free a reason to keep
-              building a stable life.”
-            </p>
-          </GuideProse>
-
-          <OverviewCards
-            columns={2}
-            cards={[
-              {
-                eyebrow: "Safer to share",
-                title: "Impact, location, and policy concern",
-                icon: "✅",
-                tone: "success",
-                description:
-                  "Housing instability, work barriers, family impact, confusing compliance rules, lack of review, and why the proposed policy would help or hurt public safety.",
-              },
-              {
-                eyebrow: "Be careful with",
-                title: "Case details, names, and admissions",
-                icon: "⚠️",
+                eyebrow: "United States",
+                title: "Broad public registry model",
+                icon: "🇺🇸",
                 tone: "warning",
                 description:
-                  "Pending cases, victim identities, disputed facts, supervision details, treatment records, addresses, school names, workplace names, or anything a court order limits.",
+                  "Public-facing registry access is common, and federal baselines encourage substantial state implementation.",
+              },
+              {
+                eyebrow: "United Kingdom",
+                title: "Controlled disclosure model",
+                icon: "🇬🇧",
+                tone: "info",
+                description:
+                  "The disclosure scheme lets people ask police about a person with child contact, but it is not a general public registry.",
+              },
+              {
+                eyebrow: "Canada",
+                title: "Law-enforcement access model",
+                icon: "🇨🇦",
+                tone: "research",
+                description:
+                  "The national registry is structured as a police tool under federal registration law rather than a broad public lookup site.",
               },
             ]}
           />
 
-          <GuideChecklist
-            id="before-you-send"
-            title="Before you send"
-            columns={1}
-            items={[
-              {
-                id: "one-ask",
-                label: "Can a staff member identify your one clear ask?",
-              },
-              {
-                id: "not-too-long",
-                label:
-                  "Is the message short enough to read quickly: about 150–250 words for an email or one to two minutes for a call?",
-              },
-              {
-                id: "local",
-                label: "Did you include your city or ZIP code?",
-              },
-              {
-                id: "one-impact",
-                label:
-                  "Did you include one practical impact instead of your whole life story?",
-              },
-              {
-                id: "respectful",
-                label:
-                  "Would the message still sound respectful if read aloud at a public meeting?",
-              },
-              {
-                id: "safe",
-                label:
-                  "Did you remove details that could create legal, privacy, supervision, family, or safety risk?",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="scripts"
-          number="6"
-          title="Scripts you can copy"
-          subtitle="Use these as starting points. Replace bracketed text and keep the message focused."
-        />
-
-        <GuideSectionCard>
-          <ScriptBox
-            title="Phone call: oppose blanket residency restrictions"
-            tone="neutral"
-            context="Use this when a bill, ordinance, or public meeting is moving quickly."
-            script={`Hello, my name is [NAME], and I live in [CITY/ZIP]. I am calling about [BILL NUMBER / ORDINANCE / ISSUE].
-
-Please oppose blanket residency restrictions for people on sex offense registries. These rules can push people away from stable housing, family support, work, treatment, and transportation. That instability can make compliance harder and does not create the kind of prevention our community needs.
-
-I support accountability and real public safety. I am asking [REPRESENTATIVE/SENATOR/COUNCIL MEMBER NAME] to oppose blanket restrictions and support evidence-based, individualized policy instead.
-
-Can you please record my position and let me know where the office stands on this issue?`}
-          />
-
-          <ScriptBox
-            title="Email or contact form: support registry relief and review"
-            tone="neutral"
-            context="Use this when asking for individualized review, removal pathways, or limits on permanent public punishment."
-            script={`Subject: Please support individualized registry review
-
-Dear [TITLE AND NAME],
-
-My name is [NAME], and I live in [CITY/ZIP]. I am writing as [a person affected by registry law / a family member / a concerned constituent / a provider / a community member].
-
-Please support a meaningful, individualized process for registry relief. People who have completed their sentence, followed the law, remained offense-free, and built stable lives should have a fair way to ask for review.
-
-Permanent public registration can affect housing, work, family stability, transportation, and safety long after punishment is complete. A review process does not erase accountability. It asks whether continued public registration is still necessary, evidence-based, and proportionate.
-
-I urge you to support policies that include due process, individualized risk review, clear eligibility rules, and a path for people who demonstrate long-term stability.
-
-Please let me know your position on this issue.
-
-Thank you,
-[NAME]
-[CITY/ZIP]
-[SAFE CONTACT INFORMATION]`}
-          />
-
-          <ScriptBox
-            title="Email or letter: require evidence before expanding restrictions"
-            tone="neutral"
-            context="Use this when a legislature is considering a new restriction, expansion, public-notification rule, or retroactive change."
-            script={`Subject: Please require evidence before expanding sex offense restrictions
-
-Dear [TITLE AND NAME],
-
-My name is [NAME], and I live in [CITY/ZIP]. I am writing about [BILL NUMBER / ISSUE].
-
-Sexual harm is serious, and prevention matters. That is why I am asking you to require evidence before expanding registry restrictions, residency bans, public notification, or retroactive penalties.
-
-Before passing new restrictions, lawmakers should ask: What problem does this solve? What evidence shows it will prevent harm? What are the housing, employment, family, treatment, compliance, and fiscal impacts? Will this apply retroactively? Is there individualized review? Are there safer and more effective alternatives?
-
-Fear-based laws can sound protective while making reentry less stable and families less secure. Please support prevention-focused, evidence-based policy instead of automatic expansion.
-
-I would appreciate a reply with your position on this issue.
-
-Sincerely,
-[NAME]
-[CITY/ZIP]
-[SAFE CONTACT INFORMATION]`}
-          />
-
-          <ScriptBox
-            title="Family member script: explain household impact"
-            tone="neutral"
-            context="Use this when you want to speak as a spouse, parent, adult child, caregiver, or loved one without sharing private case details."
-            script={`Dear [TITLE AND NAME],
-
-My name is [NAME], and I live in [CITY/ZIP]. I am writing as a family member affected by sex offense registry laws.
-
-I support accountability and safety. I also want lawmakers to understand that broad restrictions often affect entire families, including spouses, children, parents, and caregivers who were not convicted of anything.
-
-When rules make housing, work, transportation, or family contact unstable, the burden does not fall on one person alone. It can affect children’s routines, caregiving, finances, mental health, and the ability of a household to stay safe and compliant.
-
-Please consider the family impact before expanding registry restrictions, residency bans, public notification, or retroactive requirements. I ask you to support individualized, evidence-based policy that protects the public without creating unnecessary collateral harm.
-
-Thank you for your time,
-[NAME]
-[CITY/ZIP]
-[SAFE CONTACT INFORMATION]`}
-          />
-
-          <ScriptBox
-            title="RECON framing: Register Every Convict Or None"
-            tone="neutral"
-            context="Use carefully. This is strongest when framed as an equal-treatment and evidence question, not as a slogan alone."
-            script={`Dear [TITLE AND NAME],
-
-My name is [NAME], and I live in [CITY/ZIP]. I am asking you to examine the fairness and evidence behind public registry policy.
-
-SOLAR’s RECON position means Register Every Convict Or None. The point is not that every conviction should lead to a public registry. The point is that sex offense registries single out one category of conviction for public exposure and long-term collateral punishment while many other serious offenses do not trigger the same public system.
-
-If public registries are truly necessary for safety, lawmakers should be able to explain why the rule applies here, why it does not apply elsewhere, what evidence supports it, and whether less harmful prevention strategies would work better.
-
-Please support policy that is evidence-based, individualized, constitutional, and focused on real prevention rather than permanent public punishment.
-
-Sincerely,
-[NAME]
-[CITY/ZIP]
-[SAFE CONTACT INFORMATION]`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="mistakes"
-          number="7"
-          title="Mistakes that can weaken your message"
-          subtitle="These are common, especially when someone is scared, angry, exhausted, or newly affected by the system."
-        />
-
-        <GuideSectionCard>
-          <GuideChecklist
-            id="common-mistakes"
-            title="Try to avoid"
-            columns={1}
-            items={[
-              {
-                id: "everything",
-                label:
-                  "Trying to explain every injustice at once. Pick one issue and one ask.",
-              },
-              {
-                id: "minimize",
-                label:
-                  "Minimizing harm or sounding dismissive of victims. Stay clear that prevention and accountability matter.",
-              },
-              {
-                id: "angry",
-                label:
-                  "Sending insults, threats, or all-caps anger. Anger is understandable, but hostile messages are easy to dismiss.",
-              },
-              {
-                id: "stats",
-                label:
-                  "Using too many statistics. One credible source and one local impact line are usually stronger.",
-              },
-              {
-                id: "overshare",
-                label:
-                  "Sharing case facts, names, addresses, treatment details, or supervision information that does not need to be shared.",
-              },
-              {
-                id: "wrong-office",
-                label:
-                  "Contacting the wrong level of government. State registry law usually belongs with state lawmakers, not Congress.",
-              },
-              {
-                id: "silence",
-                label:
-                  "Assuming silence means your message did not matter. Offices often log constituent contacts even when replies are slow or generic.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="reminder" icon="🕯️" title="You do not have to carry the whole issue alone">
+          <GuideCallout tone="reminder" icon="🧠" title="The comparison question">
             <p>
-              Advocacy in this area can be emotionally heavy. A short message,
-              one phone call, one public comment, or one follow-up is still real
-              participation. Consistency matters more than intensity.
+              A good policy comparison does not ask, “Which country is soft or
+              harsh?” It asks, “Which system improves prevention, reporting,
+              accountability, proportionality, and reintegration with the fewest
+              avoidable harms?”
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="follow-up"
-          number="8"
-          title="Follow up without burning out"
-          subtitle="A simple recordkeeping habit helps you stay organized and protects your energy."
+          id="how-to-use"
+          number="5"
+          title="How to use high-profile cases responsibly"
+          subtitle="For advocacy, research, journalism, family conversations, or policy testimony, the goal is to be accurate without becoming sensational."
         />
 
         <GuideSectionCard>
-          <GuideChecklist
-            id="follow-up-checklist"
-            title="After you contact an office"
-            columns={1}
-            items={[
+          <RoleGuidanceGrid
+            title="Different readers can use this guide in different ways"
+            roles={[
               {
-                id: "save-copy",
-                label: "Save a copy or screenshot of what you sent.",
+                role: "Advocates",
+                icon: "📣",
+                guidance:
+                  "Use cases to show patterns, not to inflame fear. Ask whether a proposed law would have prevented the harm, or whether it only expands punishment after conviction.",
               },
               {
-                id: "log-office",
-                label:
-                  "Write down the official’s name, office, staff member if known, date, and contact method.",
+                role: "Families and loved ones",
+                icon: "👪",
+                guidance:
+                  "Use this guide to understand why public cases shape fear, law, and stigma. It can help you separate headlines from practical safety planning.",
               },
               {
-                id: "calendar",
-                label:
-                  "Put one polite follow-up reminder on your calendar for one to two weeks later.",
+                role: "Researchers and policymakers",
+                icon: "📚",
+                guidance:
+                  "Treat official reports, court opinions, and research as your anchors. Avoid relying on viral summaries when making legal or policy claims.",
               },
               {
-                id: "track-position",
-                label:
-                  "If the office replies, save the response and note whether they supported, opposed, avoided, or misunderstood your ask.",
-              },
-              {
-                id: "share-carefully",
-                label:
-                  "Share updates with trusted people, but avoid posting private legal or family details publicly.",
+                role: "People on registries",
+                icon: "🧭",
+                guidance:
+                  "This guide can help explain why the law may feel broader than the public stories used to justify it. It is not legal advice and does not replace state-specific compliance guidance.",
               },
             ]}
           />
 
-          <GuideCallout tone="success" icon="🌱" title="A small message can still be useful">
+          <GuideChecklist
+            id="responsible-case-use"
+            title="Responsible use checklist"
+            columns={1}
+            items={[
+              {
+                id: "identify-pattern",
+                label:
+                  "Name the specific pattern the case illustrates: lawmaking, delayed reporting, authority, institutional shielding, procedural error, or prevention failure.",
+              },
+              {
+                id: "use-primary-source",
+                label:
+                  "Anchor legal claims to a court opinion, statute, official agency page, or investigative report whenever possible.",
+              },
+              {
+                id: "avoid-spectacle",
+                label:
+                  "Avoid graphic detail unless it is necessary to understand the policy issue.",
+              },
+              {
+                id: "ask-prevention",
+                label:
+                  "Ask whether the proposed response would have prevented earlier access, secrecy, retaliation, or non-reporting.",
+              },
+              {
+                id: "separate-systems",
+                label:
+                  "Separate criminal sentencing, civil registration, public notification, supervision conditions, school rules, and institutional safety protocols.",
+              },
+              {
+                id: "check-date",
+                label:
+                  "Check dates and procedural posture. A conviction, reversal, resentencing, settlement, or appeal can change how a case should be described.",
+              },
+            ]}
+          />
+
+          <GuideProse>
             <p>
-              Lawmakers may never fully understand this issue unless affected
-              people and families speak. Your message can add one more real-life
-              data point against fear-based policy.
+              In public education, the most useful sentence is often not “This
+              terrible case happened.” It is: “This case shows why prevention
+              has to focus on access, authority, reporting, oversight, and
+              accountability before harm is repeated.”
             </p>
-          </GuideCallout>
+          </GuideProse>
         </GuideSectionCard>
 
 <GuideSectionHeader
-          id="offline-limited-access"
-          number="9"
-          title="If internet access, privacy, or supervision is limited"
-          subtitle="You can still participate even if you are phone-only, without a printer, relying on a helper, incarcerated, or under restrictions."
-        />
-
-        <GuideSectionCard>
-          <OfflineOptions
-            title="Lower-internet and paper-based options"
-            items={[
-              "Call the district office and ask for the best mailing address, staff contact, or public-comment instructions.",
-              "Ask a public library, legal aid office, reentry organization, faith community, or trusted helper to print a bill, meeting agenda, or letter.",
-              "Use a paper notebook to track names, dates, offices, phone numbers, bill numbers, and what each office told you.",
-              "If you are incarcerated, ask whether family, counsel, clergy, or an approved outside contact can print materials or mail a letter for you.",
-              "If you are under supervision or internet restrictions, verify what contact methods are allowed before using online forms, public comment systems, or social media.",
-              "If you cannot safely identify yourself, consider a shorter message focused on policy impact, family impact, or evidence questions rather than personal case details.",
-            ]}
-          />
-
-          <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
-            <p>
-              Public comment, hearing testimony, emails to public offices, and
-              online forms may become records. Do not include private addresses,
-              victim names, children’s details, treatment information, disputed
-              case facts, or anything a court or supervision condition limits.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="find-officials"
-          number="10"
-          title="Find officials, track bills, and keep going"
-          subtitle="Use official lookup tools first, then use SOLAR resources to shape the message."
+          id="resources"
+          number="6"
+          title="Resources and next steps"
+          subtitle="Use these links to verify the framework, compare policy models, and keep researching without relying only on headlines."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Find the right official"
-            resources={officialLookupLinks}
-          />
-
-          <SoftDivider />
-
-          <ResourceLinkGrid
-            title="SOLAR advocacy tools"
-            resources={solarAdvocacyLinks}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="sources"
-          number="11"
-          title="Sources and related guides"
-          subtitle="Use sources to support the message, not to overwhelm it."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              For most lawmaker messages, one credible source is enough. Choose a
-              source that matches your ask: recidivism data for registry
-              expansion, local impact for housing rules, constitutional concerns
-              for retroactive punishment, or reentry research for employment and
-              stability.
-            </p>
-          </GuideProse>
-
-          <ResourceLinkGrid
-            title="Evidence and advocacy practice resources"
+            title="Best starting points"
+            description="These sources are useful first stops because they are official, primary, or research-heavy."
             resources={[
               {
-                label: "DOJ SMART — SOMAPI",
+                label: "SMART Office federal legislative history",
+                href: sourceLinks.smartLegislativeHistory,
+                badge: "Official",
                 description:
-                  "Federal sex offense management and research background materials.",
-                href: "https://smart.ojp.gov/somapi",
-                badge: "Federal",
+                  "Best starting point for the federal sequence from Wetterling to Megan's Law to SORNA.",
               },
               {
-                label: "BJS — 9-Year Recidivism Follow-Up",
+                label: "Smith v. Doe",
+                href: sourceLinks.smithJustia,
+                badge: "Court",
                 description:
-                  "Federal report often cited in registry and recidivism policy discussions.",
-                href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
-                badge: "Federal",
+                  "Supreme Court decision often cited for the civil-regulatory framing of registry law.",
               },
               {
-                label: "The Sentencing Project",
+                label: "Does v. Snyder",
+                href: sourceLinks.snyderJustia,
+                badge: "Court",
                 description:
-                  "Policy report on responding to crimes of a sexual nature.",
-                href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+                  "Sixth Circuit decision examining punitive effects of a modern registry scheme.",
+              },
+              {
+                label: "Packingham v. North Carolina",
+                href: sourceLinks.packinghamSupremeCourt,
+                badge: "Court",
+                description:
+                  "Supreme Court decision on First Amendment limits for broad internet restrictions.",
+              },
+              {
+                label: "Pennsylvania Grand Jury Report",
+                href: sourceLinks.pennsylvaniaGrandJury,
+                badge: "Official",
+                description:
+                  "Major official record on institutional abuse, delayed accountability, and systemic failures.",
+              },
+              {
+                label: "Human Rights Watch: Raised on the Registry",
+                href: sourceLinks.hrwRaisedRegistry,
                 badge: "Research",
+                description:
+                  "Detailed report on public-registration harms, especially for youth and families.",
               },
               {
-                label: "CSG Justice Center — 50 States, 1 Goal",
+                label: "UK Child Sex Offender Disclosure Scheme",
+                href: sourceLinks.govUkSarahsLaw,
+                badge: "Official",
                 description:
-                  "State recidivism trend resource for data-driven policy conversations.",
-                href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
-                badge: "Research",
+                  "Example of a controlled disclosure model rather than a broad public registry.",
               },
               {
-                label: "Congressional Management Foundation",
+                label: "Canada SOIRA statute",
+                href: sourceLinks.canadaSoira,
+                badge: "Statute",
                 description:
-                  "Best-practice guidance on how congressional offices process constituent communication.",
-                href: "https://www.congressfoundation.org/projects/communicating-with-congress",
-                badge: "Practice",
-              },
-              {
-                label: "UC Berkeley Library — Contacting Officials",
-                description:
-                  "Plain-language tips for preparing and sending messages to elected officials.",
-                href: "https://guides.lib.berkeley.edu/ContactOfficials",
-                badge: "Guide",
+                  "Federal Canadian statute supporting a police-access registration framework.",
               },
             ]}
           />
-
-          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "SOLAR Advocacy Hub",
+                title: "Legislative Advocacy Guide",
                 description:
-                  "Use SOLAR’s advocacy tools, position statements, and issue campaigns.",
-                to: "/advocacy",
+                  "Use this with policy testimony, bill analysis, and reform messaging.",
+                to: "/resources/legislative-advocacy",
               },
               {
-                title: "SOLAR Script Generator",
+                title: "Know Your Rights",
                 description:
-                  "Draft a lawmaker message and adapt it to your role, state, and issue.",
-                to: "/advocacy#contact-congress",
+                  "Helpful for readers who need practical legal orientation rather than policy history.",
+                to: "/resources/know-your-rights",
               },
               {
-                title: "SOLAR Position Statements",
+                title: "Reentry Planning Guide",
                 description:
-                  "Review SOLAR’s public policy framing before writing your own message.",
-                to: "/advocacy#position-statement",
+                  "Connects policy history to practical stability after incarceration or supervision.",
+                to: "/resources/reentry-planning",
               },
               {
-                title: "RECON",
+                title: "Family Support Guide",
                 description:
-                  "Explore SOLAR’s Register Every Convict Or None position and equal-treatment argument.",
-                to: "/advocacy#recon",
+                  "Helps loved ones communicate, plan, and stay grounded while navigating stigma and legal complexity.",
+                to: "/resources/family-support",
               },
             ]}
           />
-
-          <SoftDivider />
 
           <SourceList
-            note="External links should be reviewed periodically before publication. Some research sources are useful background but may be archived or updated over time."
-            sources={[
-              ...evidenceAndPracticeSources,
-              {
-                label: "Common Cause — Find Your Representative",
-                href: "https://www.commoncause.org/find-your-representative/",
-                description:
-                  "Representative lookup tool used in the official lookup section.",
-              },
-              {
-                label: "USA.gov — Elected Officials",
-                href: "https://www.usa.gov/elected-officials",
-                description:
-                  "Official directory for federal, state, territorial, and local elected officials.",
-              },
-              {
-                label: "U.S. House — Find Your Representative",
-                href: "https://www.house.gov/representatives/find-your-representative",
-                description:
-                  "Official House lookup tool for congressional representatives.",
-              },
-              {
-                label: "U.S. Senate — Contact Senators",
-                href: "https://www.senate.gov/senators/senators-contact.htm",
-                description:
-                  "Official Senate contact directory.",
-              },
-              {
-                label: "Congress.gov — Members",
-                href: "https://www.congress.gov/members",
-                description:
-                  "Official member and bill lookup from the Library of Congress.",
-              },
-              {
-                label: "Open States / Plural — Find Your Legislator",
-                href: "https://open.pluralpolicy.com/find_your_legislator/",
-                description:
-                  "State legislator lookup tool used for state advocacy.",
-              },
-            ]}
+            title="Sources and verification"
+            note="Several links were live-checked while preparing this sandbox preview, especially official, court, DOJ, GOV.UK, HRW, and current-news sources. Before production publication, re-check fragile PDFs, DocumentCloud mirrors, and media links."
+            sources={sourceInventory}
           />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="source-manifest"
+          number="7"
+          title="Source & Link Manifest"
+          subtitle="Compact audit trail for production review."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Use this manifest during review to decide whether each source is
+              strong enough, whether a better primary source exists, and whether
+              the link should remain in the final production guide.
+            </p>
+
+            <ul>
+              <li>
+                <strong>Jacob Wetterling Act sources:</strong> Reginfo, DOJ
+                archive, and Federal Register pages support the origin and early
+                implementation discussion. Source type: official. Validation:
+                live-checked during sandbox drafting.
+              </li>
+              <li>
+                <strong>Megan's Law sources:</strong> Congress.gov and DOJ
+                archive pages support the public-notification discussion. Source
+                type: official. Validation: live-checked during sandbox
+                drafting.
+              </li>
+              <li>
+                <strong>Adam Walsh Act / SORNA sources:</strong> SMART Office
+                current-law and legislative-history pages support federal
+                baseline and implementation claims. Source type: official
+                agency. Validation: live-checked during sandbox drafting.
+              </li>
+              <li>
+                <strong>Smith, Snyder, and Packingham:</strong> Justia, Oyez,
+                court, and Supreme Court sources support constitutional-history
+                discussion. Source type: court / legal summary. Validation:
+                live-checked for major pages; exact PDF availability should be
+                rechecked before production.
+              </li>
+              <li>
+                <strong>Celebrity and high-profile prosecution examples:</strong>{" "}
+                Polanski, Epstein, Cosby, Weinstein, and R. Kelly sources
+                support procedural and accountability examples. Source type:
+                court, DOJ, official agency, or document archive. Validation:
+                partially live-checked; fragile court PDFs and DocumentCloud
+                mirrors should be rechecked.
+              </li>
+              <li>
+                <strong>Institutional abuse examples:</strong> Pennsylvania AG,
+                SBC Guidepost, DOJ Nassar, DOJ OIG, and Boy Scouts/AP sources
+                support the authority-access-shielding section. Source type:
+                official, investigative report, media. Validation: partially
+                live-checked; consider replacing DocumentCloud mirrors with
+                original host pages if available.
+              </li>
+              <li>
+                <strong>Registry harms and comparison sources:</strong> Human
+                Rights Watch, GOV.UK, and Canadian statute links support public
+                registry harms and international model comparisons. Source type:
+                research, official guidance, statute. Validation: live-checked
+                during sandbox drafting where available.
+              </li>
+            </ul>
+          </GuideProse>
+
+          <GuideCallout tone="warning" icon="⚠️" title="Production note">
+            <p>
+              This sandbox is intentionally comprehensive. Before replacing the
+              production guide, decide whether to keep every named example or
+              trim some media-heavy examples to reduce maintenance burden. The
+              legal-framework, institutional-failure, prevention, and policy
+              comparison sections should remain the spine of the final guide.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
       </main>
     </div>
