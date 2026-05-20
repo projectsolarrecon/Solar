@@ -8,84 +8,38 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  PullQuoteBlock,
-  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
   OverviewCards,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  RoleGuidanceGrid,
   TimelineGuidanceGrid,
   DoDontJudgment,
-  RedFlagGreenFlag,
   DualDepthSection,
-  GuideChecklist,
 } from "../../components/solar";
 
 const sourceLinks = {
-  wetterlingReginfo:
-    "https://www.reginfo.gov/public/do/eAgendaViewRule?ruleID=218462",
-  wetterlingDoj1995:
-    "https://www.justice.gov/archive/opa/pr/Pre_96/April95/199.txt.html",
-  wetterlingFederalRegister:
-    "https://www.govinfo.gov/content/pkg/FR-1995-04-12/html/95-8966.htm",
-  megansLawCongress:
-    "https://www.congress.gov/bill/104th-congress/house-bill/2137",
-  megansLawDoj1997:
-    "https://www.justice.gov/archive/opa/pr/1997/April97/140vaw.htm",
+  stateRegistryHub: "/resources/state-registry",
+  icaosStartTransfer:
+    "https://interstatecompact.org/resources/transferring-your-supervision/starting-the-transfer-process",
+  icaosCourtOfficials:
+    "https://interstatecompact.org/quick-reference-guides/court-officials-guide",
+  icaosSexOffenderTransfer:
+    "https://interstatecompact.org/bench-book/ch3/3-3-transfer-of-supervision-of-sex-offenders",
   smartCurrentLaw: "https://smart.ojp.gov/sorna/current-law",
-  smartLegislativeHistory:
-    "https://smart.ojp.gov/sorna/current-law/legislative-history",
-  smartAdamWalshAnniversary:
-    "https://smart.ojp.gov/blog/smart-office-recognizes-10th-anniversary-adam-walsh-act",
-  smithJustia: "https://supreme.justia.com/cases/federal/us/538/84/",
-  smithOyez: "https://www.oyez.org/cases/2002/01-729",
-  snyderJustia:
-    "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
-  snyderMitchellHamline:
-    "https://mitchellhamline.edu/sex-offense-litigation-policy/2017/08/10/doe-v-snyder-2015-2/",
-  packinghamSupremeCourt:
-    "https://www.supremecourt.gov/opinions/16pdf/15-1194_08l1.pdf",
-  packinghamOyez: "https://www.oyez.org/cases/2016/15-1194",
-  polanskiLaCourt:
-    "https://ww2.lacourt.org/hp/4dqnllofafmpfifvdjkko2sa/1374562163.pdf",
-  epsteinNpa:
-    "https://www.documentcloud.org/documents/6184602-Jeffrey-Epstein-non-prosecution-agreement/",
-  epsteinOprReport: "https://www.justice.gov/opr/page/file/1336471/dl",
-  epsteinOprStatement:
-    "https://www.justice.gov/archives/opa/pr/statement-doj-office-professional-responsibility-report-jeffrey-epstein-2006-2008",
-  cosbyPaSupremeCourt:
-    "https://www.pacourts.us/Storage/media/pdfs/20210630/163038-june302021opinionwecht.pdf",
-  weinsteinNyCourt:
-    "https://www.nycourts.gov/ctapps/Decisions/2024/Apr24/24opn24-Decision.pdf",
-  weinsteinLaDa:
-    "https://da.lacounty.gov/media/news/harvey-weinstein-found-guilty-rape-los-angeles-county",
-  rKellyEdny:
-    "https://www.justice.gov/usao-edny/pr/r-kelly-sentenced-30-years-prison",
-  rKellyNdil:
-    "https://www.justice.gov/usao-ndil/pr/robert-kelly-sentenced-20-years",
-  pennsylvaniaGrandJury: "https://www.attorneygeneral.gov/report/",
-  sbcGuidepost:
-    "https://www.documentcloud.org/documents/22031759-guidepost-solutions-independent-investigation-report-sbc-executive-committee",
-  nassarDoj:
-    "https://www.justice.gov/usao-wdmi/pr/2017_1207_Nassar",
-  nassarOig: "https://oig.justice.gov/reports/investigation-and-review-federal-bureau-investigations-handling-allegations-sexual",
-  boyScoutsAp:
-    "https://apnews.com/article/sexual-abuse-boy-scouts-of-america-c52a60cd7b0b3df5b6e9c6247837611c",
-  boyScoutsReuters2026:
-    "https://www.reuters.com/legal/government/us-supreme-court-rejects-challenge-246-billion-boy-scouts-sex-abuse-settlement-2026-01-12/",
-  hrwRaisedRegistry:
-    "https://www.hrw.org/report/2013/05/01/raised-registry/irreparable-harm-placing-children-sex-offender-registries-us",
-  hrwMoreHarm:
-    "https://www.hrw.org/news/2013/05/01/us-more-harm-good",
-  govUkSarahsLaw:
-    "https://www.gov.uk/guidance/find-out-if-a-person-has-a-record-for-child-sexual-offences",
-  govUkSarahsLawPdf:
-    "https://assets.publishing.service.gov.uk/media/642aa9f0fbe620000c17db03/Annex_E_-_Public_guidance_on_the_scheme.pdf",
-  justiceCanadaNsor:
-    "https://www.justice.gc.ca/eng/cj-jp/victims-victimes/factsheets-fiches/nsor-rnds.html",
-  canadaSoira:
-    "https://laws-lois.justice.gc.ca/eng/acts/S-8.7/",
+  ecfrHudScreening:
+    "https://www.ecfr.gov/current/title-24/subtitle-A/part-5/subpart-J/section-5.905",
+  hudNotice: "https://www.hud.gov/sites/documents/12-28pihn-atch.pdf",
+  twoOneOneHousing: "https://www.211.org/get-help/housing-expenses",
+  narsol: "https://narsol.org/",
+  acsol: "https://all4consolaws.org/",
+  womenAgainstRegistry: "https://womenagainstregistry.org/",
 } as const;
 
 const externalLinkClass =
@@ -93,130 +47,70 @@ const externalLinkClass =
 
 const sourceInventory = [
   {
-    label: "Jacob Wetterling Act regulatory summary",
-    href: sourceLinks.wetterlingReginfo,
+    label: "SOLAR State Registry Hub",
+    href: sourceLinks.stateRegistryHub,
     description:
-      "Federal summary describing the Wetterling Act as part of the 1994 Violent Crime Control and Law Enforcement Act.",
+      "Internal SOLAR state-by-state registry hub for comparing registration rules and preparing better questions before contacting agencies.",
   },
   {
-    label: "DOJ 1995 Wetterling guidance announcement",
-    href: sourceLinks.wetterlingDoj1995,
+    label: "ICAOS: Starting the Transfer Process",
+    href: sourceLinks.icaosStartTransfer,
     description:
-      "Department of Justice archive announcing proposed federal guidance for state registration systems.",
+      "Official Interstate Compact guidance explaining transfer supervision basics for eligible people under state supervision.",
   },
   {
-    label: "Federal Register proposed Wetterling guidelines",
-    href: sourceLinks.wetterlingFederalRegister,
+    label: "ICAOS Court Officials’ Guide",
+    href: sourceLinks.icaosCourtOfficials,
     description:
-      "Federal Register notice describing proposed DOJ guidelines for implementing the Wetterling Act.",
+      "Official ICAOS quick-reference guide explaining why eligible supervised people should use the Compact process before relocating.",
   },
   {
-    label: "Megan's Law congressional bill page",
-    href: sourceLinks.megansLawCongress,
+    label: "ICAOS Bench Book: Transfer of Supervision of Sex Offenders",
+    href: sourceLinks.icaosSexOffenderTransfer,
     description:
-      "Congress.gov bill record for H.R. 2137, the federal Megan's Law amendment.",
+      "Official ICAOS bench book section addressing additional transfer considerations for people required to register.",
   },
   {
-    label: "DOJ 1997 Megan's Law guidelines",
-    href: sourceLinks.megansLawDoj1997,
-    description:
-      "Department of Justice archive announcing guidelines for Megan's Law and the Wetterling Act.",
-  },
-  {
-    label: "SMART Office current federal SORNA law",
+    label: "SMART Office: Current Federal SORNA Law",
     href: sourceLinks.smartCurrentLaw,
     description:
-      "Official SMART Office page for current federal sex-offender registration and notification law.",
+      "Official SMART Office page for federal sex-offender registration and notification law.",
   },
   {
-    label: "SMART Office legislative history",
-    href: sourceLinks.smartLegislativeHistory,
+    label: "24 CFR § 5.905",
+    href: sourceLinks.ecfrHudScreening,
     description:
-      "Federal legislative history of sex-offender registration and notification law.",
+      "Federal regulation requiring public housing agencies to perform lifetime sex-offender registration screening.",
   },
   {
-    label: "Smith v. Doe, 538 U.S. 84",
-    href: sourceLinks.smithJustia,
+    label: "HUD Notice PIH 2012-28",
+    href: sourceLinks.hudNotice,
     description:
-      "U.S. Supreme Court decision treating Alaska's registry scheme as civil rather than punitive for ex post facto purposes.",
+      "HUD guidance discussing federally assisted housing screening and related admission/termination issues.",
   },
   {
-    label: "Does #1-5 v. Snyder, 834 F.3d 696",
-    href: sourceLinks.snyderJustia,
+    label: "211 Housing and Expenses",
+    href: sourceLinks.twoOneOneHousing,
     description:
-      "Sixth Circuit decision analyzing punitive effects of Michigan registry restrictions.",
+      "National 211 resource page for local housing, utility, emergency, and community-support referrals.",
   },
   {
-    label: "Packingham v. North Carolina",
-    href: sourceLinks.packinghamSupremeCourt,
+    label: "NARSOL",
+    href: sourceLinks.narsol,
     description:
-      "U.S. Supreme Court opinion addressing First Amendment limits on broad social-media bans.",
+      "National advocacy and resource organization for people and families affected by registration laws.",
   },
   {
-    label: "DOJ OPR Epstein report",
-    href: sourceLinks.epsteinOprReport,
+    label: "ACSOL",
+    href: sourceLinks.acsol,
     description:
-      "Office of Professional Responsibility report on the U.S. Attorney's Office resolution of the 2006-2008 Epstein investigation.",
+      "Advocacy organization with legal updates, especially strong for California and national registry-law developments.",
   },
   {
-    label: "Commonwealth v. Cosby",
-    href: sourceLinks.cosbyPaSupremeCourt,
+    label: "Women Against Registry",
+    href: sourceLinks.womenAgainstRegistry,
     description:
-      "Pennsylvania Supreme Court opinion vacating Bill Cosby's conviction.",
-  },
-  {
-    label: "People v. Weinstein",
-    href: sourceLinks.weinsteinNyCourt,
-    description:
-      "New York Court of Appeals opinion reversing Harvey Weinstein's New York conviction.",
-  },
-  {
-    label: "R. Kelly EDNY sentencing",
-    href: sourceLinks.rKellyEdny,
-    description:
-      "Department of Justice announcement of the Eastern District of New York sentence.",
-  },
-  {
-    label: "R. Kelly NDIL sentencing",
-    href: sourceLinks.rKellyNdil,
-    description:
-      "Department of Justice announcement of the Northern District of Illinois sentence.",
-  },
-  {
-    label: "Pennsylvania Grand Jury Report",
-    href: sourceLinks.pennsylvaniaGrandJury,
-    description:
-      "Pennsylvania Attorney General report page for the clergy-abuse grand jury investigation.",
-  },
-  {
-    label: "Nassar DOJ sentencing announcement",
-    href: sourceLinks.nassarDoj,
-    description:
-      "Department of Justice announcement of Larry Nassar's federal sentence.",
-  },
-  {
-    label: "DOJ OIG report on Nassar/FBI handling",
-    href: sourceLinks.nassarOig,
-    description:
-      "Inspector General report on the FBI's handling of allegations against Larry Nassar.",
-  },
-  {
-    label: "Human Rights Watch: Raised on the Registry",
-    href: sourceLinks.hrwRaisedRegistry,
-    description:
-      "Research report on harms of youth registration and public registry policies.",
-  },
-  {
-    label: "UK Child Sex Offender Disclosure Scheme",
-    href: sourceLinks.govUkSarahsLaw,
-    description:
-      "Official GOV.UK page for the disclosure scheme often called Sarah's Law.",
-  },
-  {
-    label: "Canada Sex Offender Information Registration Act",
-    href: sourceLinks.canadaSoira,
-    description:
-      "Canadian statute establishing the national sex-offender information registration framework.",
+      "Family- and community-focused advocacy organization supporting people affected by registry laws.",
   },
 ];
 
@@ -226,9 +120,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="High-Profile Case Analysis | The SOLAR Project"
-        description="A plain-language SOLAR resource guide explaining how high-profile cases, institutional failures, and public fear shaped registry law, and what they do and do not prove about prevention."
-        keywords="sex offense registry history, Megan's Law, Jacob Wetterling Act, SORNA, Smith v Doe, Does v Snyder, Packingham, institutional abuse prevention, registry policy"
+        title="Moving While on the Registry | The SOLAR Project"
+        description="A plain-language interstate moving guide for people on registries, families, and supporters trying to plan safely across state lines."
+        keywords="interstate moving registry, sex offense registry move, ICAOS transfer, federal supervision transfer, registry deadlines, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -245,13 +139,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            High-Profile Case Analysis
+            Moving While on the Registry
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            How landmark cases, institutional failures, and public fear shaped
-            sex-offense registry law — and what they do and do not prove about
-            prevention.
+            A practical roadmap for planning an interstate move while protecting
+            supervision status, registration compliance, housing stability, and
+            proof of your good-faith efforts.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -280,905 +174,800 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            High-profile cases matter because they often become the stories
-            lawmakers, courts, media, and communities use to explain sex-offense
-            policy. But a famous case is not the same thing as a complete
-            prevention strategy.
+            Interstate moving is not just a normal address change. For people on
+            registries, a move can involve supervision permission, registration
+            notice, new-state registration deadlines, local housing rules, ID or
+            vehicle updates, employment or school reporting, and family planning.
           </p>
 
           <p>
-            This guide separates three things that often get mixed together:
-            the cases that shaped registry law, the institutional failures that
-            allowed harm to continue, and the prevention lessons that can make
-            children and communities safer without relying only on public lists.
+            You do not have to understand every law at once. The safer approach
+            is to separate the questions, ask the right office the right
+            question, and save proof of what you were told.
           </p>
         </GuideIntro>
 
-        <GuideCallout tone="research" icon="🔎" title="How to read this page">
-          <p>
-            This is a non-graphic, policy-focused guide. It names cases and
-            institutions because they changed law, public understanding, or
-            prevention practice. It does not retell abuse details for shock
-            value.
-          </p>
-        </GuideCallout>
+        <QuickStartPanel
+          title="Before you move, answer these three questions"
+          subtitle="This guide is built around the three variables that usually decide what you need to do."
+          icon="⚡"
+          urgentActions={[
+            <span>
+              Are you on <strong>federal supervision</strong>,{" "}
+              <strong>state supervision</strong>, or <strong>no supervision</strong>?
+            </span>,
+            <span>
+              What does the state you are leaving require before you go, and
+              what does the state you are entering require when you arrive?
+            </span>,
+            <span>
+              Is the exact address safe under supervision conditions, state law,
+              local rules, landlord rules, and any housing-program rules?
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Use SOLAR&apos;s{" "}
+              <Link to={sourceLinks.stateRegistryHub} className={externalLinkClass}>
+                state registry hub
+              </Link>{" "}
+              to compare the leaving state and destination state before calling
+              agencies.
+            </span>,
+            <span>
+              Call or write the offices with authority before signing a lease,
+              making a deposit, leaving the state, or relying on a deadline you
+              found online.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              Guessing is the danger. Asking narrow questions and saving proof
+              is the safety plan.
+            </span>
+          }
+        />
 
         <OverviewCards
           columns={3}
           cards={[
             {
-              eyebrow: "Pattern 1",
-              title: "Law-making cases",
-              icon: "⚖️",
+              eyebrow: "Variable 1",
+              title: "Federal supervision",
+              icon: "🏛️",
               tone: "legal",
               description:
-                "Some cases became symbols that drove federal registry laws, public notification, and constitutional litigation.",
+                "For people on federal probation, supervised release, or another federal supervision term. Start with U.S. Probation or your federal supervision officer.",
             },
             {
-              eyebrow: "Pattern 2",
-              title: "Power and delayed accountability",
-              icon: "🏛️",
+              eyebrow: "Variable 2",
+              title: "State supervision / ICAOS",
+              icon: "🧾",
               tone: "warning",
               description:
-                "Celebrity, money, institutional status, and public trust can affect whether harm is reported, believed, charged, or punished.",
+                "For people on state probation, parole, or qualifying state supervision. Ask whether Interstate Compact transfer rules apply before relocating.",
             },
             {
-              eyebrow: "Pattern 3",
-              title: "Real prevention lessons",
-              icon: "🛡️",
-              tone: "success",
+              eyebrow: "Variable 3",
+              title: "Registry rules by state",
+              icon: "📍",
+              tone: "info",
               description:
-                "Safety improves when systems reduce secrecy, limit unchecked access, document concerns, and respond early.",
+                "For anyone required to register. Compare both states, then confirm notice deadlines, arrival deadlines, documents, and local rules with the registering agencies.",
             },
           ]}
         />
 
-        <PullQuoteBlock>
-          High-profile cases can explain why laws changed, but they should not
-          be mistaken for a complete prevention strategy.
-        </PullQuoteBlock>
+        <GuideCallout tone="legal" icon="⚖️" title="This is a planning guide, not legal advice">
+          <p>
+            Registry and supervision rules can change quickly, and local
+            practice can matter. Use this guide to organize the questions you
+            need to verify, not as a substitute for legal advice or written
+            instructions from the office with authority.
+          </p>
+        </GuideCallout>
 
 <GuideSectionHeader
-          id="framework"
+          id="three-variables"
           number="1"
-          title="The legal framework: how registry law grew"
-          subtitle="The modern U.S. registry system developed through federal incentives, public-notification laws, and court decisions about whether registration is civil regulation or punishment."
+          title="The three variables people often mix up"
+          subtitle="Federal supervision, state supervision transfer, and registry duties are related to a move, but they are not the same thing."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The{" "}
-              <a
-                href={sourceLinks.wetterlingReginfo}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Jacob Wetterling Act
-              </a>{" "}
-              began the federal registry framework in 1994 by encouraging
-              states to establish registration systems for people convicted of
-              certain offenses against children and sexually violent offenses.
-              Early guidance was directed largely at state systems and law
-              enforcement implementation, as reflected in the{" "}
-              <a
-                href={sourceLinks.wetterlingDoj1995}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                DOJ's 1995 guidance announcement
-              </a>{" "}
-              and the{" "}
-              <a
-                href={sourceLinks.wetterlingFederalRegister}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Federal Register proposed guidelines
-              </a>
-              .
-            </p>
-
-            <p>
-              The federal{" "}
-              <a
-                href={sourceLinks.megansLawCongress}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Megan's Law amendment
-              </a>{" "}
-              changed the public-facing direction of registry policy by pushing
-              community notification and public access. The{" "}
-              <a
-                href={sourceLinks.megansLawDoj1997}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                DOJ's 1997 Megan's Law guidelines
-              </a>{" "}
-              show how notification became part of the federal implementation
-              framework.
-            </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.smartCurrentLaw}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sex Offender Registration and Notification Act
-              </a>{" "}
-              under the Adam Walsh Act later created more comprehensive federal
-              baselines. The SMART Office's{" "}
-              <a
-                href={sourceLinks.smartLegislativeHistory}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                legislative history
-              </a>{" "}
-              places the Wetterling Act, Megan's Law, and SORNA in sequence.
-              The SMART Office has described the Adam Walsh Act as establishing
-              baseline registration and notification standards and expanding
-              the range of offenses those systems address.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="legal" icon="⚖️" title="Court labels matter">
-            <p>
-              Courts have often treated registration as civil regulation rather
-              than punishment. But modern registry systems can include public
-              exposure, in-person reporting, geographic restrictions, internet
-              rules, and long-term collateral consequences. That is why newer
-              litigation often focuses on the practical effects of the law, not
-              just the label lawmakers give it.
-            </p>
-          </GuideCallout>
-
-          <TimelineGuidanceGrid
-            title="Key federal law and constitutional milestones"
-            stages={[
-              {
-                stage: "1994: Jacob Wetterling Act",
-                icon: "📍",
-                whatChanges:
-                  "Federal law encouraged states to create registration systems tied to certain offenses against children and sexually violent offenses.",
-                whatToDo:
-                  "Use this as the starting point for understanding federal registry incentives, not as the full story of public notification.",
-              },
-              {
-                stage: "1996: Megan's Law",
-                icon: "📣",
-                whatChanges:
-                  "Federal policy moved toward community notification and public access to registry information.",
-                whatToDo:
-                  "Separate registration from public notification; they are related, but not identical policy choices.",
-              },
-              {
-                stage: "2003: Smith v. Doe",
-                icon: "🏛️",
-                whatChanges:
-                  "The Supreme Court treated Alaska's registry as civil and nonpunitive for ex post facto purposes.",
-                whatToDo:
-                  "When citing this case, also explain that later registry systems may be more burdensome than the system the Court reviewed.",
-              },
-              {
-                stage: "2006: Adam Walsh Act / SORNA",
-                icon: "🧾",
-                whatChanges:
-                  "SORNA created federal baseline standards, including offense-based tiers and broader implementation rules.",
-                whatToDo:
-                  "Check whether a claim is about federal SORNA, a state registry law, local restrictions, or supervision conditions.",
-              },
-              {
-                stage: "2016: Does v. Snyder",
-                icon: "🚧",
-                whatChanges:
-                  "The Sixth Circuit found that Michigan's amended registry scheme imposed punitive effects when applied retroactively.",
-                whatToDo:
-                  "Use this case to show that courts can examine real-world burdens, not only statutory labels.",
-              },
-              {
-                stage: "2017: Packingham",
-                icon: "💬",
-                whatChanges:
-                  "The Supreme Court struck down a broad social-media restriction on First Amendment grounds.",
-                whatToDo:
-                  "Use this case carefully: it does not erase registration rules, but it does limit overbroad speech and internet bans.",
-              },
-            ]}
-          />
-
-          <SoftDivider label="Case anchors" />
-
-          <GuideProse>
-            <p>
-              In{" "}
-              <a
-                href={sourceLinks.smithJustia}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Smith v. Doe
-              </a>
-              , the Supreme Court held that Alaska's registry law was civil
-              rather than punitive for purposes of retroactive application. The{" "}
-              <a
-                href={sourceLinks.smithOyez}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Oyez case summary
-              </a>{" "}
-              is useful for a quick orientation, but the full opinion is the
-              better source for precise legal language.
-            </p>
-
-            <p>
-              In{" "}
-              <a
-                href={sourceLinks.snyderJustia}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Does #1-5 v. Snyder
-              </a>
-              , the Sixth Circuit analyzed Michigan's registry amendments and
-              concluded that the challenged scheme imposed punitive effects
-              when applied retroactively. A{" "}
-              <a
-                href={sourceLinks.snyderMitchellHamline}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Mitchell Hamline case page
-              </a>{" "}
-              provides a litigation-policy summary, but the court decision is
-              the primary legal anchor.
-            </p>
-
-            <p>
-              In{" "}
-              <a
-                href={sourceLinks.packinghamSupremeCourt}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Packingham v. North Carolina
-              </a>
-              , the Supreme Court addressed a broad ban on access to social
-              networking websites. The{" "}
-              <a
-                href={sourceLinks.packinghamOyez}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Oyez page
-              </a>{" "}
-              is a helpful overview, but the Supreme Court PDF should be used
-              for exact wording.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="high-profile-cases"
-          number="2"
-          title="When high-profile cases shape public fear"
-          subtitle="Celebrity and media-heavy cases can reveal real failures, but they can also distort what the public thinks typical risk looks like."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              High-profile cases can become policy shorthand. They can show
-              real harm, real institutional failure, and real accountability
-              gaps. But they can also make rare fact patterns look like the
-              whole problem.
-            </p>
-
-            <p>
-              The safer policy question is not simply, “Was this case
-              horrifying?” The safer question is, “What system failed, who had
-              power, who had access, who ignored warnings, and what prevention
-              measure would have made earlier intervention more likely?”
+              Do not start by asking, “Can a registrant move?” That question is
+              too broad. Start by asking which moving rule applies to you, then
+              separately verify the registry rules in both states.
             </p>
           </GuideProse>
 
           <DualDepthSection
-            simpleTitle="Plain-language takeaway"
-            deepTitle="Deeper policy point"
+            simpleTitle="Plain-language version"
+            deepTitle="The practical distinction"
             simple={
-              <p>
-                Famous cases are useful when they reveal patterns. They are
-                dangerous when they become the only pattern lawmakers see.
-              </p>
+              <GuideProse>
+                <p>
+                  If you are on <strong>federal supervision</strong>, you need
+                  to know the federal relocation or district-transfer rule{" "}
+                  <strong>plus</strong> the registry variables in both states.
+                </p>
+
+                <p>
+                  If you are on <strong>state probation or parole</strong>, you
+                  need to know whether the{" "}
+                  <a
+                    href={sourceLinks.icaosStartTransfer}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Interstate Compact / ICAOS transfer process
+                  </a>{" "}
+                  applies <strong>plus</strong> the registry variables in both
+                  states.
+                </p>
+
+                <p>
+                  If you are <strong>not on supervision</strong>, you usually
+                  skip the supervision-transfer question and focus on registry
+                  notice, registration deadlines, housing rules, travel/stay
+                  triggers, and proof of compliance.
+                </p>
+              </GuideProse>
             }
             deep={
-              <p>
-                Registry expansion often follows public outrage, but prevention
-                depends on more than public identification after conviction. It
-                also depends on reporting pathways, oversight, institutional
-                accountability, treatment access, stable reentry, and rules
-                that focus on actual risk instead of symbolic punishment.
-              </p>
+              <GuideProse>
+                <p>
+                  Federal supervision usually runs through the federal court and
+                  U.S. Probation system. State supervision transfer usually runs
+                  through ICAOS when the person is eligible and the Compact
+                  rules apply. Registration is a separate duty created by state
+                  law and federal baseline frameworks, including federal SORNA
+                  standards described by the{" "}
+                  <a
+                    href={sourceLinks.smartCurrentLaw}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    SMART Office current-law page
+                  </a>
+                  .
+                </p>
+
+                <p>
+                  The mistake is treating these as one blended approval. A
+                  person may be allowed to move for supervision purposes and
+                  still have strict registration deadlines. A person may be off
+                  supervision and still have registration, housing, employment,
+                  school, vehicle, or ID reporting duties in the new state.
+                </p>
+              </GuideProse>
             }
           />
 
-          <DoDontJudgment
-            dos={[
-              <span>
-                Use named cases to explain a specific policy lesson, such as
-                delayed reporting, institutional shielding, prosecutorial
-                discretion, or overbroad collateral consequences.
-              </span>,
-              <span>
-                Anchor claims to court opinions, official reports, agency
-                records, or reputable research whenever possible.
-              </span>,
-              <span>
-                Keep the focus on prevention, accountability, and public safety
-                rather than graphic details.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not treat celebrity cases as proof that every case, person,
-                risk level, or registry category is the same.
-              </span>,
-              <span>
-                Do not use sensational cases to justify laws without asking
-                whether the law would have prevented the harm.
-              </span>,
-              <span>
-                Do not erase victims, but do not turn harm into spectacle.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                Some media sources are useful for dates and procedural history.
-                For legal claims, prefer court records, official reports, and
-                agency documents.
-              </span>,
-            ]}
-          />
-
-          <GuideProse>
+          <GuideCallout tone="reminder" icon="🧩" title="The safest formula">
             <p>
-              The long-running{" "}
-              <a
-                href={sourceLinks.polanskiLaCourt}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Roman Polanski case
-              </a>{" "}
-              is often cited as an example of unresolved accountability,
-              celebrity status, flight, and the limits of delayed prosecution.
-              It is useful as a justice-system case study, not as a model for
-              ordinary registry policy.
+              <strong>Federal supervision + registry variables</strong>, or{" "}
+              <strong>ICAOS/state supervision + registry variables</strong>, or{" "}
+              <strong>registry variables only</strong>. Most people are not
+              dealing with both federal supervision transfer and ICAOS.
             </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.epsteinNpa}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Jeffrey Epstein non-prosecution agreement
-              </a>{" "}
-              and the DOJ Office of Professional Responsibility's{" "}
-              <a
-                href={sourceLinks.epsteinOprReport}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                report on the 2006-2008 federal investigation
-              </a>{" "}
-              are especially important for understanding power, access to elite
-              counsel, victim-notification failures, and the damage caused when
-              institutions resolve serious allegations quietly.
-            </p>
-
-            <p>
-              The Pennsylvania Supreme Court's decision in{" "}
-              <a
-                href={sourceLinks.cosbyPaSupremeCourt}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Commonwealth v. Cosby
-              </a>{" "}
-              is not mainly a registry case. It is a due-process and
-              prosecution-history case. It shows why public outrage and legal
-              process are different things, and why advocates should be precise
-              about what a court actually held.
-            </p>
-
-            <p>
-              The New York Court of Appeals decision in{" "}
-              <a
-                href={sourceLinks.weinsteinNyCourt}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                People v. Weinstein
-              </a>{" "}
-              and the Los Angeles District Attorney's announcement of the{" "}
-              <a
-                href={sourceLinks.weinsteinLaDa}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Los Angeles conviction
-              </a>{" "}
-              show why procedural rules, appellate review, and separate
-              jurisdictions matter. A reversed conviction does not mean the
-              public questions disappeared; it means the court found a legal
-              error in the proceeding it reviewed.
-            </p>
-
-            <p>
-              The federal sentences in the R. Kelly cases, including the{" "}
-              <a
-                href={sourceLinks.rKellyEdny}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Eastern District of New York sentence
-              </a>{" "}
-              and the{" "}
-              <a
-                href={sourceLinks.rKellyNdil}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Northern District of Illinois sentence
-              </a>
-              , are useful for understanding how celebrity, long-term access,
-              networks, and delayed accountability can interact.
-            </p>
-          </GuideProse>
+          </GuideCallout>
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="institutions"
-          number="3"
-          title="Where real risk often sits: authority, access, and shielding"
-          subtitle="Many major abuse cases were not driven by anonymous stranger danger. They involved trusted roles, repeated access, institutional silence, or failures to act on warnings."
+        <GuideSectionHeader
+          id="supervision"
+          number="2"
+          title="If you are on supervision, do not move first and explain later"
+          subtitle="Your first step depends on whether your supervision is federal or state."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SOLAR's core prevention concern is not whether harm is serious.
-              It is. The question is whether the policy response focuses on the
-              places where harm often grows: authority, access, secrecy,
-              grooming opportunities, weak reporting systems, and institutional
-              self-protection.
+              If you are under any active supervision term, ask your supervising
+              officer what moving process applies before you sign a lease, pay a
+              deposit, pack, leave the state, or start staying somewhere new.
             </p>
 
             <p>
-              The Pennsylvania Attorney General's{" "}
+              For state probation or parole, the{" "}
               <a
-                href={sourceLinks.pennsylvaniaGrandJury}
+                href={sourceLinks.icaosCourtOfficials}
                 className={externalLinkClass}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
               >
-                grand jury report page on Catholic clergy abuse
+                Interstate Compact for Adult Offender Supervision
               </a>{" "}
-              is a major example of institutional records revealing patterns
-              that were not solved by public registry logic alone. The issue was
-              not just individual offending. It was the failure of trusted
-              systems to stop, report, and prevent further harm.
-            </p>
-
-            <p>
-              The Southern Baptist Convention's independently commissioned{" "}
+              may control whether supervision can transfer to another state.
+              ICAOS materials also have a specific section on{" "}
               <a
-                href={sourceLinks.sbcGuidepost}
+                href={sourceLinks.icaosSexOffenderTransfer}
                 className={externalLinkClass}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
               >
-                Guidepost Solutions investigation report
-              </a>{" "}
-              is another example of why prevention has to examine internal
-              reporting channels, leadership response, insurance and legal
-              incentives, and whether survivors are heard or discouraged.
-            </p>
-
-            <p>
-              The Larry Nassar case shows how youth sports, medical authority,
-              institutional reputation, and delayed action can combine. The DOJ
-              announced Nassar's{" "}
-              <a
-                href={sourceLinks.nassarDoj}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                federal sentence
-              </a>
-              , and the DOJ Inspector General later reviewed the{" "}
-              <a
-                href={sourceLinks.nassarOig}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                FBI's handling of allegations
+                transfer of supervision for people required to register
               </a>
               .
             </p>
 
             <p>
-              The Boy Scouts bankruptcy and abuse-claims process, including the{" "}
-              <a
-                href={sourceLinks.boyScoutsAp}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                $2.46 billion reorganization plan
-              </a>{" "}
-              and later appellate developments, shows how youth-serving
-              institutions can face enormous delayed accountability after
-              allegations accumulate across decades.
+              For federal probation or supervised release, start with your
+              federal supervision officer or U.S. Probation Office. Ask what
+              permission, receiving-district review, travel authorization, court
+              approval, or reporting instruction is required before you relocate.
             </p>
           </GuideProse>
 
-          <RedFlagGreenFlag
-            red={
-              <div className="space-y-3">
-                <p>
-                  A system is at higher risk when adults have private,
-                  repeated, undocumented access to children or vulnerable people
-                  and complaints are handled informally, internally, or through
-                  reputation management.
-                </p>
-                <ul className="list-disc space-y-2 pl-6">
-                  <li>One adult alone with a child without visibility.</li>
-                  <li>No clear reporting path outside the chain of command.</li>
-                  <li>Complaints treated as public-relations problems.</li>
-                  <li>Powerful people given quiet transfers or special access.</li>
-                  <li>Background checks treated as the whole prevention plan.</li>
-                </ul>
-              </div>
-            }
-            green={
-              <div className="space-y-3">
-                <p>
-                  A safer system reduces secrecy and makes early intervention
-                  more likely.
-                </p>
-                <ul className="list-disc space-y-2 pl-6">
-                  <li>Two-adult rules and open-door visibility practices.</li>
-                  <li>Written reporting channels that bypass conflicted leaders.</li>
-                  <li>Mandatory reporting training with real follow-through.</li>
-                  <li>Independent review when complaints involve authority figures.</li>
-                  <li>Documentation of boundary concerns before they escalate.</li>
-                </ul>
-              </div>
-            }
+          <DoDontJudgment
+            dos={[
+              <span>
+                Ask, “Am I under federal supervision, state supervision, or no
+                supervision right now?”
+              </span>,
+              <span>
+                Ask the supervising officer which transfer or relocation process
+                applies before you make housing commitments.
+              </span>,
+              <span>
+                Ask for written instructions, forms, appointment dates, and the
+                name of the person or office handling the move.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not assume a job offer, family support, or available housing
+                means the move is approved.
+              </span>,
+              <span>
+                Do not leave first and rely on a phone call afterward to fix it.
+              </span>,
+              <span>
+                Do not treat registry registration in the new state as the same
+                thing as supervision transfer approval.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                If your situation involves more than one case, more than one
+                sentence, detainers, pending charges, or both federal and state
+                agencies, ask for legal help before acting.
+              </span>,
+            ]}
           />
 
-          <GuideCallout
-            tone="success"
-            icon="🛡️"
-            title="Prevention is more than background checks"
-          >
-            <p>
-              Background checks can matter, but many serious cases involve
-              people who were not already on a registry or whose access came
-              from trust, status, or institutional permission. Prevention has to
-              include supervision, transparency, reporting, documentation, and
-              willingness to act before a criminal conviction exists.
-            </p>
-          </GuideCallout>
+          <ScriptBox
+            title="Script: asking supervision what process applies"
+            tone="legal"
+            context="Use this before you make a housing commitment or leave the state."
+            script={`Hello, my name is [Name]. I am planning a possible move from [current state] to [destination state]. I need to confirm the correct supervision process before I act.
+
+Am I under federal supervision, state supervision, or another type of supervision for this move?
+
+What permission, transfer process, travel approval, address review, or written instruction do I need before I sign a lease, pay a deposit, or leave the state?
+
+Can you tell me who handles that, what forms or deadlines apply, and how I can save written confirmation of the instructions?`}
+          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="policy-comparison"
-          number="4"
-          title="Policy comparison: public lists are not the only model"
-          subtitle="The United States relies heavily on public registry access. Other systems use more controlled disclosure or police-access models."
+          id="registry-rules"
+          number="3"
+          title="Registry rules do not travel neatly from state to state"
+          subtitle="A move can change deadlines, documents, reporting frequency, public listing, housing limits, and what counts as a reportable presence."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              U.S. registry policy is often presented as the obvious or only
-              model. It is not. The federal system grew through state
-              incentives, public-notification laws, and SORNA baselines. But
-              other countries have chosen different disclosure structures.
+              Registry duties are state-specific. The state you are leaving may
+              require notice before departure. The state you are entering may
+              require registration within a short number of days after arrival,
+              or may treat work, school, temporary stays, frequent visits, or
+              part-time residence as reportable events.
             </p>
 
             <p>
-              The United Kingdom's Child Sex Offender Disclosure Scheme,
-              commonly called{" "}
+              Use SOLAR&apos;s{" "}
+              <Link to={sourceLinks.stateRegistryHub} className={externalLinkClass}>
+                state registry hub
+              </Link>{" "}
+              to compare both states before calling agencies. State pages help
+              you prepare better questions, but the safer move is still to
+              confirm directly with the registering agency before relying on an
+              answer.
+            </p>
+
+            <p>
+              Federal SORNA provides baseline registration and notification
+              standards, but states write and enforce many of the rules people
+              encounter in daily life. The{" "}
               <a
-                href={sourceLinks.govUkSarahsLaw}
+                href={sourceLinks.smartCurrentLaw}
                 className={externalLinkClass}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noreferrer"
               >
-                Sarah's Law
-              </a>
-              , allows a person to ask police whether someone with contact with
-              a child has a relevant record or poses a risk. The government's{" "}
-              <a
-                href={sourceLinks.govUkSarahsLawPdf}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                public guidance for applicants
+                SMART Office current-law page
               </a>{" "}
-              describes the scheme as a controlled disclosure process, not a
-              general public registry.
-            </p>
-
-            <p>
-              Canada uses a national registration framework under the{" "}
-              <a
-                href={sourceLinks.canadaSoira}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Sex Offender Information Registration Act
-              </a>
-              . Canadian materials describe the National Sex Offender Registry
-              as a law-enforcement tool rather than a broad public website.
-              That does not mean Canada's system is perfect; it means public
-              disclosure is a policy choice, not an inevitability.
-            </p>
-
-            <p>
-              Human Rights Watch has documented harms from public registration,
-              especially for youth, in{" "}
-              <a
-                href={sourceLinks.hrwRaisedRegistry}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Raised on the Registry
-              </a>{" "}
-              and its accompanying summary,{" "}
-              <a
-                href={sourceLinks.hrwMoreHarm}
-                className={externalLinkClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                More Harm Than Good
-              </a>
-              . Those sources should not be the only evidence used in policy
-              work, but they are important for understanding collateral harms,
-              family impacts, and youth-specific concerns.
+              is useful for federal background, but it does not replace the
+              current law and agency practice in the state where you are moving.
             </p>
           </GuideProse>
 
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "United States",
-                title: "Broad public registry model",
-                icon: "🇺🇸",
-                tone: "warning",
-                description:
-                  "Public-facing registry access is common, and federal baselines encourage substantial state implementation.",
-              },
-              {
-                eyebrow: "United Kingdom",
-                title: "Controlled disclosure model",
-                icon: "🇬🇧",
-                tone: "info",
-                description:
-                  "The disclosure scheme lets people ask police about a person with child contact, but it is not a general public registry.",
-              },
-              {
-                eyebrow: "Canada",
-                title: "Law-enforcement access model",
-                icon: "🇨🇦",
-                tone: "research",
-                description:
-                  "The national registry is structured as a police tool under federal registration law rather than a broad public lookup site.",
-              },
-            ]}
+          <VerifyBeforeActing
+            title="Verify the registry questions before you leave"
+            whoToAsk={
+              <span>
+                The registering agency in the state you are leaving and the
+                registering agency in the state you are entering. If you are on
+                supervision, also ask your supervising officer.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask what notice is required before departure, what triggers
+                registration after arrival, how soon you must register, whether
+                an appointment is required, what documents to bring, and whether
+                work, school, vehicles, internet identifiers, temporary stays, or
+                travel need separate reporting.
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save names, dates, phone numbers, emails, confirmation numbers,
+                appointment slips, receipts, screenshots, forms, and written
+                instructions. If someone gives an answer by phone, write down the
+                exact date, time, office, and person you spoke with.
+              </span>
+            }
           />
-
-          <GuideCallout tone="reminder" icon="🧠" title="The comparison question">
-            <p>
-              A good policy comparison does not ask, “Which country is soft or
-              harsh?” It asks, “Which system improves prevention, reporting,
-              accountability, proportionality, and reintegration with the fewest
-              avoidable harms?”
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="how-to-use"
-          number="5"
-          title="How to use high-profile cases responsibly"
-          subtitle="For advocacy, research, journalism, family conversations, or policy testimony, the goal is to be accurate without becoming sensational."
+<GuideSectionHeader
+          id="timeline"
+          number="4"
+          title="A safer timeline for planning the move"
+          subtitle="The goal is not perfection. The goal is to avoid acting before the right question has been answered."
         />
 
         <GuideSectionCard>
-          <RoleGuidanceGrid
-            title="Different readers can use this guide in different ways"
-            roles={[
+          <TimelineGuidanceGrid
+            title="Move planning stages"
+            stages={[
               {
-                role: "Advocates",
-                icon: "📣",
-                guidance:
-                  "Use cases to show patterns, not to inflame fear. Ask whether a proposed law would have prevented the harm, or whether it only expands punishment after conviction.",
+                stage: "Before choosing a destination",
+                icon: "🗺️",
+                whatChanges:
+                  "Different states can classify the same person differently, require different reporting, and impose different practical limits.",
+                whatToDo:
+                  "Compare both states through the state registry hub, identify supervision status, and list the agencies you need to call.",
               },
               {
-                role: "Families and loved ones",
-                icon: "👪",
-                guidance:
-                  "Use this guide to understand why public cases shape fear, law, and stigma. It can help you separate headlines from practical safety planning.",
+                stage: "Before signing a lease or paying a deposit",
+                icon: "🏠",
+                whatChanges:
+                  "An address can be legal under one rule and still create a problem under supervision, local restrictions, landlord policy, HOA rules, or housing-program rules.",
+                whatToDo:
+                  "Check the exact address before committing money. Ask whether the address is allowed and save the answer if possible.",
               },
               {
-                role: "Researchers and policymakers",
-                icon: "📚",
-                guidance:
-                  "Treat official reports, court opinions, and research as your anchors. Avoid relying on viral summaries when making legal or policy claims.",
+                stage: "Before leaving the current state",
+                icon: "🚗",
+                whatChanges:
+                  "The current state may require departure notice, travel permission, forms, or a final in-person update.",
+                whatToDo:
+                  "Confirm what must happen before departure. If supervised, do not leave until the supervising authority says you may.",
               },
               {
-                role: "People on registries",
-                icon: "🧭",
-                guidance:
-                  "This guide can help explain why the law may feel broader than the public stories used to justify it. It is not legal advice and does not replace state-specific compliance guidance.",
+                stage: "First days after arrival",
+                icon: "📍",
+                whatChanges:
+                  "Arrival deadlines may be short and may run from presence, residence, employment, school, or another trigger.",
+                whatToDo:
+                  "Register or check in as instructed. Bring documents and ask for proof of completion or proof that you appeared.",
+              },
+              {
+                stage: "First month after arrival",
+                icon: "🗂️",
+                whatChanges:
+                  "Additional updates may involve driver’s license or ID, vehicle information, employment, school, internet identifiers, local police visits, or supervision appointments.",
+                whatToDo:
+                  "Keep a contact log and compliance folder. Re-check anything you were told to update after getting housing, work, school, or ID changes.",
               },
             ]}
           />
 
           <GuideChecklist
-            id="responsible-case-use"
-            title="Responsible use checklist"
+            id="interstate-moving-checklist"
+            title="Interstate move checklist"
             columns={1}
             items={[
               {
-                id: "identify-pattern",
-                label:
-                  "Name the specific pattern the case illustrates: lawmaking, delayed reporting, authority, institutional shielding, procedural error, or prevention failure.",
+                id: "status",
+                label: "Write down whether you are on federal supervision, state supervision, or no supervision.",
               },
               {
-                id: "use-primary-source",
-                label:
-                  "Anchor legal claims to a court opinion, statute, official agency page, or investigative report whenever possible.",
+                id: "state-hub",
+                label: (
+                  <span>
+                    Review the leaving state and destination state in the{" "}
+                    <Link
+                      to={sourceLinks.stateRegistryHub}
+                      className={externalLinkClass}
+                    >
+                      SOLAR state registry hub
+                    </Link>
+                    .
+                  </span>
+                ),
               },
               {
-                id: "avoid-spectacle",
+                id: "current-state",
                 label:
-                  "Avoid graphic detail unless it is necessary to understand the policy issue.",
+                  "Ask the current registering agency what notice is required before leaving.",
               },
               {
-                id: "ask-prevention",
+                id: "destination-state",
                 label:
-                  "Ask whether the proposed response would have prevented earlier access, secrecy, retaliation, or non-reporting.",
+                  "Ask the destination registering agency what triggers registration and how soon you must appear.",
               },
               {
-                id: "separate-systems",
+                id: "supervision",
                 label:
-                  "Separate criminal sentencing, civil registration, public notification, supervision conditions, school rules, and institutional safety protocols.",
+                  "If supervised, ask the supervising officer what written permission, transfer, travel, or address-review process applies.",
               },
               {
-                id: "check-date",
+                id: "address",
                 label:
-                  "Check dates and procedural posture. A conviction, reversal, resentencing, settlement, or appeal can change how a case should be described.",
+                  "Check the exact address before signing a lease or paying a deposit.",
+              },
+              {
+                id: "documents",
+                label:
+                  "Prepare a moving packet with ID, registration paperwork, supervision documents, address proof, and contact notes.",
+              },
+              {
+                id: "arrival",
+                label:
+                  "After arrival, appear as instructed and ask for proof that you appeared or completed the registration step.",
+              },
+              {
+                id: "follow-up",
+                label:
+                  "Re-check follow-up duties for ID, vehicle, employment, school, internet identifiers, or supervision appointments.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="housing"
+          number="5"
+          title="Check the exact address before you commit"
+          subtitle="Housing is not only about whether a landlord says yes."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Housing rules can come from several places: supervision
+              conditions, state registry law, city or county restrictions,
+              landlord screening, HOA or condo rules, shelter or transitional
+              housing policy, and federally assisted housing rules.
+            </p>
+
+            <p>
+              For federally assisted housing, be careful with broad statements.
+              Federal rules require public housing agencies to perform lifetime
+              registration screening, as reflected in{" "}
+              <a
+                href={sourceLinks.ecfrHudScreening}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                24 CFR § 5.905
+              </a>
+              . HUD guidance has also discussed screening and admission issues
+              in{" "}
+              <a
+                href={sourceLinks.hudNotice}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                PIH Notice 2012-28
+              </a>
+              . If subsidized housing is involved, ask the housing authority or
+              a legal aid office before relying on a general internet summary.
+            </p>
+
+            <p>
+              If you need local housing, food, utility, or emergency support,
+              the{" "}
+              <a
+                href={sourceLinks.twoOneOneHousing}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                211 housing and expenses finder
+              </a>{" "}
+              can help locate community resources. A referral is not the same as
+              legal eligibility, so still verify any registry or supervision
+              restriction before moving in.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="warning" icon="🏠" title="A lease is not the final answer">
+            <p>
+              A landlord accepting an application does not automatically mean
+              the address is safe under supervision, registry law, local
+              residency rules, school-zone rules, public housing rules, or a
+              treatment-provider condition. Verify the address with the office
+              that actually has authority over the restriction.
+            </p>
+          </GuideCallout>
+
+          <ScriptBox
+            title="Script: checking an address before signing"
+            tone="warning"
+            context="Use this with a registering agency, supervision office, housing authority, or legal aid office."
+            script={`Hello, my name is [Name]. I am planning a possible move to [full address]. Before I sign anything or pay a deposit, I need to know whether this address creates any registration, supervision, local residency, or housing-program problem.
+
+Can you tell me whether your office can confirm that, or who I should ask?
+
+If there is a rule I need to check, can you tell me the exact rule, office, form, or deadline? I am taking notes and would like to save the answer if possible.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="moving-packet"
+          number="6"
+          title="Build a moving packet"
+          subtitle="When the system is arbitrary, documentation is protection."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A moving packet helps you avoid scrambling when someone asks for a
+              document, proof, date, or contact history. Keep paper copies if
+              possible. If you use a phone, save offline copies in case service,
+              battery, or internet access fails.
+            </p>
+          </GuideProse>
+
+          <DocumentPacket
+            title="Documents to gather before the move"
+            intro={
+              <span>
+                Do not carry sensitive documents around unnecessarily, but keep
+                a secure folder that you or a trusted helper can access quickly.
+              </span>
+            }
+            categories={[
+              {
+                title: "Identity and address",
+                items: [
+                  "Photo ID, driver’s license, or state ID.",
+                  "Social Security card or number, if required by the agency.",
+                  "Lease, letter from host, utility bill, shelter letter, or other address proof.",
+                  "Vehicle registration and license plate information, if reportable.",
+                ],
+              },
+              {
+                title: "Case and supervision",
+                items: [
+                  "Judgment, sentence, release paperwork, or court orders.",
+                  "Supervision conditions, travel permits, transfer instructions, or written approvals.",
+                  "Treatment or program conditions that affect residence, travel, work, or family contact.",
+                ],
+              },
+              {
+                title: "Registration records",
+                items: [
+                  "Current registration paperwork.",
+                  "Departure notice forms or proof of notice.",
+                  "Destination-state appointment confirmation or instructions.",
+                  "Receipts, proof of appearance, emails, letters, and confirmation numbers.",
+                ],
+              },
+              {
+                title: "Contact log",
+                items: [
+                  "Names, dates, phone numbers, departments, and instructions from every agency call.",
+                  "Screenshots or printed pages of official instructions you relied on.",
+                  "Notes about who told you what, especially if instructions changed.",
+                ],
               },
             ]}
           />
 
-          <GuideProse>
-            <p>
-              In public education, the most useful sentence is often not “This
-              terrible case happened.” It is: “This case shows why prevention
-              has to focus on access, authority, reporting, oversight, and
-              accountability before harm is repeated.”
-            </p>
-          </GuideProse>
+          <OfflineOptions
+            title="If internet access, printing, or private phone use is limited"
+            icon="📞"
+            items={[
+              "Ask agencies to mail forms or written instructions when possible.",
+              "Use a public library, legal aid office, reentry program, clerk’s office, or trusted helper for printing.",
+              "Keep a paper contact log with names, dates, phone numbers, and exact instructions.",
+              "Ask a trusted person to check the state registry hub and official agency pages, then read the information to you by phone.",
+              "If incarcerated or in a facility, ask case management, reentry staff, or family to help gather address and registration questions before release.",
+            ]}
+          />
         </GuideSectionCard>
 
 <GuideSectionHeader
+          id="mistakes"
+          number="7"
+          title="Common mistakes that create avoidable risk"
+          subtitle="Most problems come from assumptions, rushed housing decisions, missed deadlines, or lack of proof."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            mistakes={[
+              {
+                mistake: "Assuming the old state’s rules follow you.",
+                whyItMatters:
+                  "A new state may classify, schedule, publish, restrict, or document registration differently.",
+                betterMove:
+                  "Compare both states, then confirm the destination state’s actual requirements with the registering agency.",
+              },
+              {
+                mistake: "Confusing supervision permission with registration compliance.",
+                whyItMatters:
+                  "Being allowed to relocate for supervision purposes does not automatically complete registration duties.",
+                betterMove:
+                  "Ask separate questions: supervision permission, current-state departure notice, destination-state registration, and address safety.",
+              },
+              {
+                mistake: "Signing a lease before checking the exact address.",
+                whyItMatters:
+                  "The address may create a problem under supervision, local restrictions, public housing rules, or program policy.",
+                betterMove:
+                  "Check the address before paying money and save the answer if possible.",
+              },
+              {
+                mistake: "Relying on a general deadline found online.",
+                whyItMatters:
+                  "Deadlines may depend on residence, temporary stay, work, school, travel, or local practice.",
+                betterMove:
+                  "Ask the destination agency what triggers registration and when the clock starts.",
+              },
+              {
+                mistake: "Failing to save proof.",
+                whyItMatters:
+                  "If instructions change or someone says you missed a step, your notes and receipts may matter.",
+                betterMove:
+                  "Keep a contact log, save written instructions, and ask for proof of appearance or completion.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="✅" title="Good-faith planning matters">
+            <p>
+              Careful planning cannot remove every risk in a confusing system,
+              but it can help you avoid preventable mistakes. The goal is to be
+              able to show what you asked, who answered, what you were told, and
+              what you did next.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family"
+          number="8"
+          title="Family and community planning"
+          subtitle="A move affects more than paperwork. It can affect children, partners, roommates, neighbors, school routines, transportation, treatment, and support."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Families often help with housing, transportation, forms, calls,
+              printing, and emotional support. That help can be valuable, but it
+              should not put anyone at risk of guessing. Give supporters narrow
+              tasks: check a state page, print a form, write down a phone
+              number, or help build the document packet.
+            </p>
+
+            <p>
+              If children, schools, custody orders, treatment rules, or family
+              contact restrictions are involved, ask specific questions before
+              the move. A house may be affordable and supportive but still
+              create a supervision, registry, school-zone, or household-contact
+              problem.
+            </p>
+          </GuideProse>
+
+          <ScriptBox
+            title="Script: asking a family member for focused help"
+            tone="family"
+            context="Use this when someone wants to help but the process feels overwhelming."
+            script={`I am trying to plan this move carefully so I do not miss a rule. I do not need you to solve the whole thing.
+
+Could you help with one specific task: [check this state page / print this form / write down these phone numbers / help me keep a call log]?
+
+If someone gives you information, please write down the date, the office, the person’s name if available, and the exact instruction. I need proof more than opinions.`}
+          />
+
+          <GuideCallout tone="family" icon="🤝" title="Support should reduce chaos">
+            <p>
+              Supporters do not need to become lawyers. The most helpful role is
+              often practical: keep notes, help compare states, print forms,
+              make a calm call, organize transportation, or remind the person
+              not to act before verification.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
           id="resources"
-          number="6"
+          number="9"
           title="Resources and next steps"
-          subtitle="Use these links to verify the framework, compare policy models, and keep researching without relying only on headlines."
+          subtitle="Use these links to compare states, verify official rules, find local support, and keep moving through SOLAR’s guide ecosystem."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Best starting points"
-            description="These sources are useful first stops because they are official, primary, or research-heavy."
+            title="Planning and verification links"
+            description="Use official sources for legal and agency questions. Use advocacy and support sources for education, community, and practical navigation."
             resources={[
               {
-                label: "SMART Office federal legislative history",
-                href: sourceLinks.smartLegislativeHistory,
+                label: "SOLAR State Registry Hub",
+                to: sourceLinks.stateRegistryHub,
+                badge: "SOLAR",
+                description:
+                  "Compare the state you are leaving and the state you are entering before calling agencies.",
+              },
+              {
+                label: "ICAOS transfer process",
+                href: sourceLinks.icaosStartTransfer,
                 badge: "Official",
                 description:
-                  "Best starting point for the federal sequence from Wetterling to Megan's Law to SORNA.",
+                  "Official Interstate Compact guidance for people under qualifying state supervision.",
               },
               {
-                label: "Smith v. Doe",
-                href: sourceLinks.smithJustia,
-                badge: "Court",
-                description:
-                  "Supreme Court decision often cited for the civil-regulatory framing of registry law.",
-              },
-              {
-                label: "Does v. Snyder",
-                href: sourceLinks.snyderJustia,
-                badge: "Court",
-                description:
-                  "Sixth Circuit decision examining punitive effects of a modern registry scheme.",
-              },
-              {
-                label: "Packingham v. North Carolina",
-                href: sourceLinks.packinghamSupremeCourt,
-                badge: "Court",
-                description:
-                  "Supreme Court decision on First Amendment limits for broad internet restrictions.",
-              },
-              {
-                label: "Pennsylvania Grand Jury Report",
-                href: sourceLinks.pennsylvaniaGrandJury,
+                label: "SMART Office current federal SORNA law",
+                href: sourceLinks.smartCurrentLaw,
                 badge: "Official",
                 description:
-                  "Major official record on institutional abuse, delayed accountability, and systemic failures.",
+                  "Federal background on registration and notification law. Use state and local sources for move-specific requirements.",
               },
               {
-                label: "Human Rights Watch: Raised on the Registry",
-                href: sourceLinks.hrwRaisedRegistry,
-                badge: "Research",
+                label: "211 housing and expenses finder",
+                href: sourceLinks.twoOneOneHousing,
+                badge: "Support",
                 description:
-                  "Detailed report on public-registration harms, especially for youth and families.",
+                  "Local referrals for housing, utility, food, emergency, and community-support needs.",
               },
               {
-                label: "UK Child Sex Offender Disclosure Scheme",
-                href: sourceLinks.govUkSarahsLaw,
-                badge: "Official",
+                label: "NARSOL",
+                href: sourceLinks.narsol,
+                badge: "Advocacy",
                 description:
-                  "Example of a controlled disclosure model rather than a broad public registry.",
+                  "National advocacy and education resources for people affected by registry laws.",
               },
               {
-                label: "Canada SOIRA statute",
-                href: sourceLinks.canadaSoira,
-                badge: "Statute",
+                label: "ACSOL",
+                href: sourceLinks.acsol,
+                badge: "Advocacy",
                 description:
-                  "Federal Canadian statute supporting a police-access registration framework.",
+                  "Legal updates and advocacy resources, especially useful for California and national registry developments.",
+              },
+              {
+                label: "Women Against Registry",
+                href: sourceLinks.womenAgainstRegistry,
+                badge: "Family",
+                description:
+                  "Family- and community-focused advocacy and support for people impacted by registry laws.",
               },
             ]}
           />
@@ -1186,115 +975,68 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <RelatedGuides
             guides={[
               {
-                title: "Legislative Advocacy Guide",
+                title: "State Registry Hub",
                 description:
-                  "Use this with policy testimony, bill analysis, and reform messaging.",
-                to: "/resources/legislative-advocacy",
-              },
-              {
-                title: "Know Your Rights",
-                description:
-                  "Helpful for readers who need practical legal orientation rather than policy history.",
-                to: "/resources/know-your-rights",
+                  "Start here when comparing registration requirements between the state you are leaving and the state you are entering.",
+                to: "/resources/state-registry",
               },
               {
                 title: "Reentry Planning Guide",
                 description:
-                  "Connects policy history to practical stability after incarceration or supervision.",
+                  "Use alongside this guide if the move is connected to release, supervision, housing, work, or family stabilization.",
                 to: "/resources/reentry-planning",
+              },
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Helps with housing strategy, landlord screening, documentation, and fallback planning.",
+                to: "/resources/housing-search",
               },
               {
                 title: "Family Support Guide",
                 description:
-                  "Helps loved ones communicate, plan, and stay grounded while navigating stigma and legal complexity.",
+                  "Helps loved ones provide practical support without increasing confusion, conflict, or risk.",
                 to: "/resources/family-support",
               },
             ]}
           />
 
           <SourceList
-            title="Sources and verification"
-            note="Several links were live-checked while preparing this sandbox preview, especially official, court, DOJ, GOV.UK, HRW, and current-news sources. Before production publication, re-check fragile PDFs, DocumentCloud mirrors, and media links."
+            title="Sources & verification"
+            note="Links were selected for sandbox drafting. Re-check official pages and any state-specific law before production publication or legal reliance."
             sources={sourceInventory}
           />
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="source-manifest"
-          number="7"
-          title="Source & Link Manifest"
-          subtitle="Compact audit trail for production review."
-        />
-
-        <GuideSectionCard>
           <GuideProse>
+            <h3>Source & Link Manifest</h3>
+
             <p>
-              Use this manifest during review to decide whether each source is
-              strong enough, whether a better primary source exists, and whether
-              the link should remain in the final production guide.
+              <strong>Official / agency sources:</strong> ICAOS transfer pages
+              support state-supervision transfer guidance; SMART Office supports
+              federal SORNA background; eCFR and HUD sources support federally
+              assisted housing screening discussion.
             </p>
 
-            <ul>
-              <li>
-                <strong>Jacob Wetterling Act sources:</strong> Reginfo, DOJ
-                archive, and Federal Register pages support the origin and early
-                implementation discussion. Source type: official. Validation:
-                live-checked during sandbox drafting.
-              </li>
-              <li>
-                <strong>Megan's Law sources:</strong> Congress.gov and DOJ
-                archive pages support the public-notification discussion. Source
-                type: official. Validation: live-checked during sandbox
-                drafting.
-              </li>
-              <li>
-                <strong>Adam Walsh Act / SORNA sources:</strong> SMART Office
-                current-law and legislative-history pages support federal
-                baseline and implementation claims. Source type: official
-                agency. Validation: live-checked during sandbox drafting.
-              </li>
-              <li>
-                <strong>Smith, Snyder, and Packingham:</strong> Justia, Oyez,
-                court, and Supreme Court sources support constitutional-history
-                discussion. Source type: court / legal summary. Validation:
-                live-checked for major pages; exact PDF availability should be
-                rechecked before production.
-              </li>
-              <li>
-                <strong>Celebrity and high-profile prosecution examples:</strong>{" "}
-                Polanski, Epstein, Cosby, Weinstein, and R. Kelly sources
-                support procedural and accountability examples. Source type:
-                court, DOJ, official agency, or document archive. Validation:
-                partially live-checked; fragile court PDFs and DocumentCloud
-                mirrors should be rechecked.
-              </li>
-              <li>
-                <strong>Institutional abuse examples:</strong> Pennsylvania AG,
-                SBC Guidepost, DOJ Nassar, DOJ OIG, and Boy Scouts/AP sources
-                support the authority-access-shielding section. Source type:
-                official, investigative report, media. Validation: partially
-                live-checked; consider replacing DocumentCloud mirrors with
-                original host pages if available.
-              </li>
-              <li>
-                <strong>Registry harms and comparison sources:</strong> Human
-                Rights Watch, GOV.UK, and Canadian statute links support public
-                registry harms and international model comparisons. Source type:
-                research, official guidance, statute. Validation: live-checked
-                during sandbox drafting where available.
-              </li>
-            </ul>
+            <p>
+              <strong>Internal SOLAR source:</strong> the State Registry Hub is
+              used as the central internal planning link for comparing the
+              leaving state and destination state before contacting agencies.
+            </p>
+
+            <p>
+              <strong>Support / advocacy sources:</strong> 211, NARSOL, ACSOL,
+              and Women Against Registry are included for navigation, education,
+              community support, and family support. They should not be treated
+              as substitutes for official legal or agency confirmation.
+            </p>
+
+            <p>
+              <strong>Production concern:</strong> this guide should remain
+              cautious about exact deadlines. State deadlines can be short, but
+              the final page should avoid universal “3 days” or “10 days”
+              language unless tied to a specific state source.
+            </p>
           </GuideProse>
-
-          <GuideCallout tone="warning" icon="⚠️" title="Production note">
-            <p>
-              This sandbox is intentionally comprehensive. Before replacing the
-              production guide, decide whether to keep every named example or
-              trim some media-heavy examples to reduce maintenance burden. The
-              legal-framework, institutional-failure, prevention, and policy
-              comparison sections should remain the spine of the final guide.
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
       </main>
     </div>
