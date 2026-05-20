@@ -1,336 +1,1364 @@
-  import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
+  RedFlagGreenFlag,
+  DualDepthSection,
+  GuideChecklist,
+} from "../../components/solar";
+
+const sourceLinks = {
+  wetterlingReginfo:
+    "https://www.reginfo.gov/public/do/eAgendaViewRule?ruleID=218462",
+  wetterlingDoj1995:
+    "https://www.justice.gov/archive/opa/pr/Pre_96/April95/199.txt.html",
+  wetterlingFederalRegister:
+    "https://www.govinfo.gov/content/pkg/FR-1995-04-12/html/95-8966.htm",
+  megansLawCongress:
+    "https://www.congress.gov/bill/104th-congress/house-bill/2137",
+  megansLawDoj1997:
+    "https://www.justice.gov/archive/opa/pr/1997/April97/140vaw.htm",
+  smartCurrentLaw: "https://smart.ojp.gov/sorna/current-law",
+  smartLegislativeHistory:
+    "https://smart.ojp.gov/sorna/current-law/legislative-history",
+  smartAdamWalshAnniversary:
+    "https://smart.ojp.gov/blog/smart-office-recognizes-10th-anniversary-adam-walsh-act",
+  smithJustia: "https://supreme.justia.com/cases/federal/us/538/84/",
+  smithOyez: "https://www.oyez.org/cases/2002/01-729",
+  snyderJustia:
+    "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
+  snyderMitchellHamline:
+    "https://mitchellhamline.edu/sex-offense-litigation-policy/2017/08/10/doe-v-snyder-2015-2/",
+  packinghamSupremeCourt:
+    "https://www.supremecourt.gov/opinions/16pdf/15-1194_08l1.pdf",
+  packinghamOyez: "https://www.oyez.org/cases/2016/15-1194",
+  polanskiLaCourt:
+    "https://ww2.lacourt.org/hp/4dqnllofafmpfifvdjkko2sa/1374562163.pdf",
+  epsteinNpa:
+    "https://www.documentcloud.org/documents/6184602-Jeffrey-Epstein-non-prosecution-agreement/",
+  epsteinOprReport: "https://www.justice.gov/opr/page/file/1336471/dl",
+  epsteinOprStatement:
+    "https://www.justice.gov/archives/opa/pr/statement-doj-office-professional-responsibility-report-jeffrey-epstein-2006-2008",
+  cosbyPaSupremeCourt:
+    "https://www.pacourts.us/Storage/media/pdfs/20210630/163038-june302021opinionwecht.pdf",
+  weinsteinNyCourt:
+    "https://www.nycourts.gov/ctapps/Decisions/2024/Apr24/24opn24-Decision.pdf",
+  weinsteinLaDa:
+    "https://da.lacounty.gov/media/news/harvey-weinstein-found-guilty-rape-los-angeles-county",
+  brockTurnerHarvard:
+    "https://harvardlawreview.org/print/vol-132/california-judge-recalled-for-sentence-in-sexual-assault-case/",
+  rKellyEdny:
+    "https://www.justice.gov/usao-edny/pr/r-kelly-sentenced-30-years-prison",
+  rKellyNdil:
+    "https://www.justice.gov/usao-ndil/pr/robert-kelly-sentenced-20-years",
+  pennsylvaniaGrandJury: "https://www.attorneygeneral.gov/report/",
+  sbcGuidepost:
+    "https://www.documentcloud.org/documents/22031759-guidepost-solutions-independent-investigation-report-sbc-executive-committee",
+  warrenJeffsTdcj: "https://inmate.tdcj.texas.gov/InmateSearch/viewDetail.action?sid=07792563",
+  nassarDoj:
+    "https://www.justice.gov/usao-wdmi/pr/2017_1207_Nassar",
+  nassarOig:
+    "https://oig.justice.gov/reports/investigation-and-review-federal-bureau-investigations-handling-allegations-sexual",
+  sanduskyVerdict:
+    "https://www.espn.com/college-football/story/_/id/8087028/penn-state-nittany-lions-jerry-sandusky-convicted-45-counts-sex-abuse-trial",
+  sanduskySentence:
+    "https://www.espn.com/college-football/story/_/id/8481896/jerry-sandusky-sentenced-least-30-years-child-sex-abuse-charges",
+  letourneauAp:
+    "https://apnews.com/article/77da13d7827d4343918ae776d4c0a77c",
+  lafaveTampaBay2005:
+    "https://www.tampabay.com/archive/2005/11/23/lafave-avoids-jail-in-sex-with-student/",
+  lafaveTampaBay2006:
+    "https://www.tampabay.com/archive/2006/03/22/it-s-her-son-getting-back-to-normal/",
+  boyScoutsAp:
+    "https://apnews.com/article/sexual-abuse-boy-scouts-of-america-c52a60cd7b0b3df5b6e9c6247837611c",
+  boyScoutsReuters2026:
+    "https://www.reuters.com/legal/government/us-supreme-court-rejects-challenge-246-billion-boy-scouts-sex-abuse-settlement-2026-01-12/",
+  hrwRaisedRegistry:
+    "https://www.hrw.org/report/2013/05/01/raised-registry/irreparable-harm-placing-children-sex-offender-registries-us",
+  hrwMoreHarm:
+    "https://www.hrw.org/news/2013/05/01/us-more-harm-good",
+  govUkSarahsLaw:
+    "https://www.gov.uk/guidance/find-out-if-a-person-has-a-record-for-child-sexual-offences",
+  govUkSarahsLawPdf:
+    "https://assets.publishing.service.gov.uk/media/642aa9f0fbe620000c17db03/Annex_E_-_Public_guidance_on_the_scheme.pdf",
+  justiceCanadaNsor:
+    "https://www.justice.gc.ca/eng/cj-jp/victims-victimes/factsheets-fiches/nsor-rnds.html",
+  canadaSoira:
+    "https://laws-lois.justice.gc.ca/eng/acts/S-8.7/",
+} as const;
+
+const externalLinkClass =
+  "font-semibold text-slate-900 underline decoration-slate-400 underline-offset-4 hover:text-slate-700 hover:decoration-slate-700";
+
+const sourceInventory = [
+  {
+    label: "Jacob Wetterling Act regulatory summary",
+    href: sourceLinks.wetterlingReginfo,
+    description:
+      "Federal summary describing the Wetterling Act as part of the 1994 Violent Crime Control and Law Enforcement Act.",
+  },
+  {
+    label: "DOJ 1995 Wetterling guidance announcement",
+    href: sourceLinks.wetterlingDoj1995,
+    description:
+      "Department of Justice archive announcing proposed federal guidance for state registration systems.",
+  },
+  {
+    label: "Federal Register proposed Wetterling guidelines",
+    href: sourceLinks.wetterlingFederalRegister,
+    description:
+      "Federal Register notice describing proposed DOJ guidelines for implementing the Wetterling Act.",
+  },
+  {
+    label: "Megan's Law congressional bill page",
+    href: sourceLinks.megansLawCongress,
+    description:
+      "Congress.gov bill record for H.R. 2137, the federal Megan's Law amendment.",
+  },
+  {
+    label: "DOJ 1997 Megan's Law guidelines",
+    href: sourceLinks.megansLawDoj1997,
+    description:
+      "Department of Justice archive announcing guidelines for Megan's Law and the Wetterling Act.",
+  },
+  {
+    label: "SMART Office current federal SORNA law",
+    href: sourceLinks.smartCurrentLaw,
+    description:
+      "Official SMART Office page for current federal sex-offender registration and notification law.",
+  },
+  {
+    label: "SMART Office Adam Walsh Act anniversary",
+    href: sourceLinks.smartAdamWalshAnniversary,
+    description:
+      "Official SMART Office page discussing the Adam Walsh Act and the creation of the SMART Office.",
+  },
+  {
+    label: "SMART Office legislative history",
+    href: sourceLinks.smartLegislativeHistory,
+    description:
+      "Federal legislative history of sex-offender registration and notification law.",
+  },
+  {
+    label: "Smith v. Doe, 538 U.S. 84",
+    href: sourceLinks.smithJustia,
+    description:
+      "U.S. Supreme Court decision treating Alaska's registry scheme as civil rather than punitive for ex post facto purposes.",
+  },
+  {
+    label: "Does #1-5 v. Snyder, 834 F.3d 696",
+    href: sourceLinks.snyderJustia,
+    description:
+      "Sixth Circuit decision analyzing punitive effects of Michigan registry restrictions.",
+  },
+  {
+    label: "Packingham v. North Carolina",
+    href: sourceLinks.packinghamSupremeCourt,
+    description:
+      "U.S. Supreme Court opinion addressing First Amendment limits on broad social-media bans.",
+  },
+  {
+    label: "DOJ OPR Epstein report",
+    href: sourceLinks.epsteinOprReport,
+    description:
+      "Office of Professional Responsibility report on the U.S. Attorney's Office resolution of the 2006-2008 Epstein investigation.",
+  },
+  {
+    label: "Commonwealth v. Cosby",
+    href: sourceLinks.cosbyPaSupremeCourt,
+    description:
+      "Pennsylvania Supreme Court opinion vacating Bill Cosby's conviction.",
+  },
+  {
+    label: "People v. Weinstein",
+    href: sourceLinks.weinsteinNyCourt,
+    description:
+      "New York Court of Appeals opinion reversing Harvey Weinstein's New York conviction.",
+  },
+  {
+    label: "R. Kelly EDNY sentencing",
+    href: sourceLinks.rKellyEdny,
+    description:
+      "Department of Justice announcement of the Eastern District of New York sentence.",
+  },
+  {
+    label: "R. Kelly NDIL sentencing",
+    href: sourceLinks.rKellyNdil,
+    description:
+      "Department of Justice announcement of the Northern District of Illinois sentence.",
+  },
+  {
+    label: "Pennsylvania Grand Jury Report",
+    href: sourceLinks.pennsylvaniaGrandJury,
+    description:
+      "Pennsylvania Attorney General report page for the clergy-abuse grand jury investigation.",
+  },
+  {
+    label: "Nassar DOJ sentencing announcement",
+    href: sourceLinks.nassarDoj,
+    description:
+      "Department of Justice announcement of Larry Nassar's federal sentence.",
+  },
+  {
+    label: "DOJ OIG report on Nassar/FBI handling",
+    href: sourceLinks.nassarOig,
+    description:
+      "Inspector General report on the FBI's handling of allegations against Larry Nassar.",
+  },
+  {
+    label: "Human Rights Watch: Raised on the Registry",
+    href: sourceLinks.hrwRaisedRegistry,
+    description:
+      "Research report on harms of youth registration and public registry policies.",
+  },
+  {
+    label: "UK Child Sex Offender Disclosure Scheme",
+    href: sourceLinks.govUkSarahsLaw,
+    description:
+      "Official GOV.UK page for the disclosure scheme often called Sarah's Law.",
+  },
+  {
+    label: "Canada Sex Offender Information Registration Act",
+    href: sourceLinks.canadaSoira,
+    description:
+      "Canadian statute establishing the national sex-offender information registration framework.",
+  },
+];
 
 export default function HighProfileCaseAnalysis(): JSX.Element {
+  const handlePrint = () => window.print();
+
   return (
-    <div>
-      <SEO 
-        title="High-Profile Case Analysis: Sex Offense Law & Registry Impacts | SOLAR Resource Guide"
-        description="Concise, link-rich SOLAR guide to landmark U.S. cases and high-profile scandals shaping sex offense law and sex offender registries — with verified sources for further reading."
-        keywords="high-profile sex crime cases, sex offender registry laws, Megan's Law, Adam Walsh Act, celebrity sex crimes, institutional abuse"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="High-Profile Case Analysis | The SOLAR Project"
+        description="A plain-language SOLAR resource guide explaining how high-profile cases, institutional failures, and public fear shaped registry law, and what they do and do not prove about prevention."
+        keywords="sex offense registry history, Megan's Law, Jacob Wetterling Act, Adam Walsh Act, SORNA, Smith v Doe, Does v Snyder, Packingham, institutional abuse prevention, registry policy"
       />
 
-      <style jsx>{`
-        :root{
-          --slate-900:#0f172a; --slate-800:#1e293b; --slate-700:#334155; --slate-600:#475569; --slate-500:#64748b; --slate-300:#cbd5e1; --slate-200:#e2e8f0; --slate-100:#f1f5f9;
-          --blue-50:#eff6ff; --blue-600:#2563eb;
-          --amber-50:#fffbeb; --amber-600:#b45309;
-          --green-50:#ecfdf5; --green-600:#059669;
-          --indigo-600:#4f46e5;
-          --radius:18px;
-        }
-        html,body{margin:0;padding:0;background:#f8fafc;color:var(--slate-800);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-        .wrap{max-width:1100px;margin:0 auto;padding:0 16px 64px}
-        /* Hero */
-        header.hero{background:linear-gradient(135deg,var(--slate-800),var(--slate-700));color:#fff;padding:28px 0 32px;margin-bottom:18px}
-        .hero .inner{max-width:1100px;margin:0 auto;padding:0 16px}
-        .hero h1{margin:0 0 6px;font-weight:800;letter-spacing:-.01em;font-size:clamp(24px,3.5vw,36px)}
-        .hero p{margin:0;color:var(--slate-300)}
-        /* Cards */
-        .grid{display:grid;grid-template-columns:1fr;gap:18px}
-        @media (min-width: 768px) {
-          .grid{grid-template-columns:1fr;}
-        }
-        .card{background:#fff;border:1px solid var(--slate-200);border-radius:var(--radius);box-shadow:0 6px 18px rgba(15,23,42,.06);overflow:hidden;width:100%;max-width:none}
-        .card-header{display:flex;align-items:center;gap:10px;background:var(--slate-800);color:#fff;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
-        .card-header h2{margin:0;font-size:clamp(18px,2.1vw,22px);font-weight:700}
-        .badge{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:#fff;color:var(--slate-800);font-weight:800;font-size:14px}
-        .card-body{padding:16px 18px 14px}
-        .list{margin:0;padding:0;list-style:none}
-        .list li{padding:10px 0;border-top:1px dashed var(--slate-200)}
-        .list li:first-child{border-top:0}
-        .kv{display:inline-block;font-weight:700;color:var(--slate-700)}
-        .subtle{color:var(--slate-600);font-size:.94rem}
-        a{color:var(--indigo-600);text-decoration:underline}
-        a:hover{filter:brightness(.9)}
-        /* Callouts */
-        .callout{display:flex;gap:10px;align-items:flex-start;margin:12px 0;padding:12px;border-radius:14px;border:1px solid var(--slate-200)}
-        .callout .ico{flex:0 0 20px}
-        .callout.info{background:var(--blue-50);border-left:6px solid var(--blue-600)}
-        .callout.reminder{background:var(--amber-50);border-left:6px solid var(--amber-600)}
-        .callout.tip{background:var(--green-50);border-left:6px solid var(--green-600)}
-        /* Nav row */
-        .cta-row{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
-        .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--slate-200);text-decoration:none}
-        .btn--ghost{background:#fff;color:var(--slate-800)}
-        .btn--ghost:hover{background:var(--slate-100)}
-        .btn--solid{background:var(--slate-800);color:#fff;border-color:var(--slate-800)}
-        .btn--solid:hover{opacity:.92}
-        /* Print */
-        @media print{
-          .cta-row{display:none}
-          header.hero{background:#fff;color:#000;border-bottom:1px solid var(--slate-200)}
-          .hero p{color:#333}
-          .card{box-shadow:none}
-        }
-      `}</style>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
 
-      {/* Hero */}
-      <header className="hero">
-        <div className="inner">
-          <h1>High-Profile Case Analysis</h1>
-          <p>Understanding how landmark cases shaped sex offense law and registry requirements</p>
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            High-Profile Case Analysis
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            How landmark cases, institutional failures, and public fear shaped
+            sex-offense registry law — and what they do and do not prove about
+            prevention.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
+          </div>
         </div>
-      </header>
+      </section>
 
-      <main className="wrap">
-        {/* Quick nav */}
-        <div className="cta-row" aria-label="Section shortcuts">
-          <a className="btn btn--ghost" href="#origins">Origins & Framework</a>
-          <a className="btn btn--ghost" href="#celebrity">Celebrity Cases</a>
-          <a className="btn btn--ghost" href="#religious">Religious Institutions</a>
-          <a className="btn btn--ghost" href="#education">Education & Youth Orgs</a>
-          <a className="btn btn--solid" href="#policy">Policy & International</a>
-        </div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-        <section className="grid" aria-label="Guide sections">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-          {/* 1. Origins */}
-          <article className="card" id="origins">
-            <div className="card-header"><span className="badge">1</span><h2>Origins & Framework</h2></div>
-            <div className="card-body">
-              <ul className="list">
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            High-profile cases matter because they often become the stories
+            lawmakers, courts, media, and communities use to explain sex-offense
+            policy. But a famous case is not the same thing as a complete
+            prevention strategy.
+          </p>
+
+          <p>
+            This guide separates three things that often get mixed together:
+            the cases that shaped registry law, the institutional failures that
+            allowed harm to continue, and the prevention lessons that can make
+            children and communities safer without relying only on public lists.
+          </p>
+        </GuideIntro>
+
+        <GuideCallout tone="research" icon="🔎" title="How to read this page">
+          <p>
+            This is a non-graphic, policy-focused guide. It names cases and
+            institutions because they changed law, public understanding, or
+            prevention practice. It does not retell abuse details for shock
+            value.
+          </p>
+        </GuideCallout>
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Pattern 1",
+              title: "Law-making cases",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Some cases became symbols that drove federal registry laws, public notification, and constitutional litigation.",
+            },
+            {
+              eyebrow: "Pattern 2",
+              title: "Power and delayed accountability",
+              icon: "🏛️",
+              tone: "warning",
+              description:
+                "Celebrity, money, institutional status, and public trust can affect whether harm is reported, believed, charged, or punished.",
+            },
+            {
+              eyebrow: "Pattern 3",
+              title: "Real prevention lessons",
+              icon: "🛡️",
+              tone: "success",
+              description:
+                "Safety improves when systems reduce secrecy, limit unchecked access, document concerns, and respond early.",
+            },
+          ]}
+        />
+
+        <PullQuoteBlock>
+          High-profile cases can explain why laws changed, but they should not
+          be mistaken for a complete prevention strategy.
+        </PullQuoteBlock>
+
+<GuideSectionHeader
+          id="framework"
+          number="1"
+          title="The legal framework: how registry law grew"
+          subtitle="The modern U.S. registry system developed through federal incentives, public-notification laws, and court decisions about whether registration is civil regulation or punishment."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.wetterlingReginfo}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jacob Wetterling Act
+              </a>{" "}
+              began the federal registry framework in 1994 by encouraging
+              states to establish registration systems for people convicted of
+              certain offenses against children and sexually violent offenses.
+              Early guidance was directed largely at state systems and law
+              enforcement implementation, as reflected in the{" "}
+              <a
+                href={sourceLinks.wetterlingDoj1995}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOJ's 1995 guidance announcement
+              </a>{" "}
+              and the{" "}
+              <a
+                href={sourceLinks.wetterlingFederalRegister}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Federal Register proposed guidelines
+              </a>
+              .
+            </p>
+
+            <p>
+              The federal{" "}
+              <a
+                href={sourceLinks.megansLawCongress}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Megan's Law amendment
+              </a>{" "}
+              changed the public-facing direction of registry policy by pushing
+              community notification and public access. The{" "}
+              <a
+                href={sourceLinks.megansLawDoj1997}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                DOJ's 1997 Megan's Law guidelines
+              </a>{" "}
+              show how notification became part of the federal implementation
+              framework.
+            </p>
+
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.smartCurrentLaw}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sex Offender Registration and Notification Act
+              </a>{" "}
+              under the{" "}
+              <a
+                href={sourceLinks.smartAdamWalshAnniversary}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Adam Walsh Child Protection and Safety Act of 2006
+              </a>{" "}
+              later created more comprehensive federal baselines. The SMART
+              Office's{" "}
+              <a
+                href={sourceLinks.smartLegislativeHistory}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                legislative history
+              </a>{" "}
+              places the Wetterling Act, Megan's Law, and SORNA in sequence.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="legal" icon="⚖️" title="Court labels matter">
+            <p>
+              Courts have often treated registration as civil regulation rather
+              than punishment. But modern registry systems can include public
+              exposure, in-person reporting, geographic restrictions, internet
+              rules, and long-term collateral consequences. That is why newer
+              litigation often focuses on the practical effects of the law, not
+              just the label lawmakers give it.
+            </p>
+          </GuideCallout>
+
+          <TimelineGuidanceGrid
+            title="Key federal law and constitutional milestones"
+            stages={[
+              {
+                stage: "1994: Jacob Wetterling Act",
+                icon: "📍",
+                whatChanges:
+                  "Federal law encouraged states to create registration systems tied to certain offenses against children and sexually violent offenses.",
+                whatToDo:
+                  "Use this as the starting point for understanding federal registry incentives, not as the full story of public notification.",
+              },
+              {
+                stage: "1996: Megan's Law",
+                icon: "📣",
+                whatChanges:
+                  "Federal policy moved toward community notification and public access to registry information.",
+                whatToDo:
+                  "Separate registration from public notification; they are related, but not identical policy choices.",
+              },
+              {
+                stage: "2003: Smith v. Doe",
+                icon: "🏛️",
+                whatChanges:
+                  "The Supreme Court treated Alaska's registry as civil and nonpunitive for ex post facto purposes.",
+                whatToDo:
+                  "When citing this case, also explain that later registry systems may be more burdensome than the system the Court reviewed.",
+              },
+              {
+                stage: "2006: Adam Walsh Act / SORNA",
+                icon: "🧾",
+                whatChanges:
+                  "The Adam Walsh Act included SORNA, which created federal baseline standards including offense-based tiers and broader implementation rules.",
+                whatToDo:
+                  "Check whether a claim is about federal SORNA, a state registry law, local restrictions, or supervision conditions.",
+              },
+              {
+                stage: "2016: Does v. Snyder",
+                icon: "🚧",
+                whatChanges:
+                  "The Sixth Circuit found that Michigan's amended registry scheme imposed punitive effects when applied retroactively.",
+                whatToDo:
+                  "Use this case to show that courts can examine real-world burdens, not only statutory labels.",
+              },
+              {
+                stage: "2017: Packingham",
+                icon: "💬",
+                whatChanges:
+                  "The Supreme Court struck down a broad social-media restriction on First Amendment grounds.",
+                whatToDo:
+                  "Use this case carefully: it does not erase registration rules, but it does limit overbroad speech and internet bans.",
+              },
+            ]}
+          />
+
+          <SoftDivider label="Case anchors" />
+
+          <GuideProse>
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.smithJustia}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Smith v. Doe
+              </a>
+              , the Supreme Court held that Alaska's registry law was civil
+              rather than punitive for purposes of retroactive application. The{" "}
+              <a
+                href={sourceLinks.smithOyez}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Oyez case summary
+              </a>{" "}
+              is useful for a quick orientation, but the full opinion is the
+              better source for precise legal language.
+            </p>
+
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.snyderJustia}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Does #1-5 v. Snyder
+              </a>
+              , the Sixth Circuit analyzed Michigan's registry amendments and
+              concluded that the challenged scheme imposed punitive effects
+              when applied retroactively. A{" "}
+              <a
+                href={sourceLinks.snyderMitchellHamline}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Mitchell Hamline case page
+              </a>{" "}
+              provides a litigation-policy summary, but the court decision is
+              the primary legal anchor.
+            </p>
+
+            <p>
+              In{" "}
+              <a
+                href={sourceLinks.packinghamSupremeCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Packingham v. North Carolina
+              </a>
+              , the Supreme Court addressed a broad ban on access to social
+              networking websites. The{" "}
+              <a
+                href={sourceLinks.packinghamOyez}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Oyez page
+              </a>{" "}
+              is a helpful overview, but the Supreme Court PDF should be used
+              for exact wording.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="high-profile-cases"
+          number="2"
+          title="When high-profile cases shape public fear"
+          subtitle="Celebrity and media-heavy cases can reveal real failures, but they can also distort what the public thinks typical risk looks like."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              High-profile cases can become policy shorthand. They can show
+              real harm, real institutional failure, and real accountability
+              gaps. But they can also make rare fact patterns look like the
+              whole problem.
+            </p>
+
+            <p>
+              The safer policy question is not simply, “Was this case
+              horrifying?” The safer question is, “What system failed, who had
+              power, who had access, who ignored warnings, and what prevention
+              measure would have made earlier intervention more likely?”
+            </p>
+          </GuideProse>
+
+          <DualDepthSection
+            simpleTitle="Plain-language takeaway"
+            deepTitle="Deeper policy point"
+            simple={
+              <p>
+                Famous cases are useful when they reveal patterns. They are
+                dangerous when they become the only pattern lawmakers see.
+              </p>
+            }
+            deep={
+              <p>
+                Registry expansion often follows public outrage, but prevention
+                depends on more than public identification after conviction. It
+                also depends on reporting pathways, oversight, institutional
+                accountability, treatment access, stable reentry, and rules
+                that focus on actual risk instead of symbolic punishment.
+              </p>
+            }
+          />
+
+          <DoDontJudgment
+            dos={[
+              <span>
+                Use named cases to explain a specific policy lesson, such as
+                delayed reporting, institutional shielding, prosecutorial
+                discretion, or overbroad collateral consequences.
+              </span>,
+              <span>
+                Anchor claims to court opinions, official reports, agency
+                records, or reputable research whenever possible.
+              </span>,
+              <span>
+                Keep the focus on prevention, accountability, and public safety
+                rather than graphic details.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not treat celebrity cases as proof that every case, person,
+                risk level, or registry category is the same.
+              </span>,
+              <span>
+                Do not use sensational cases to justify laws without asking
+                whether the law would have prevented the harm.
+              </span>,
+              <span>
+                Do not erase victims, but do not turn harm into spectacle.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                Some media sources are useful for dates and procedural history.
+                For legal claims, prefer court records, official reports, and
+                agency documents.
+              </span>,
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              The long-running{" "}
+              <a
+                href={sourceLinks.polanskiLaCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Roman Polanski case
+              </a>{" "}
+              is often cited as an example of unresolved accountability,
+              celebrity status, flight, and the limits of delayed prosecution.
+              It is useful as a justice-system case study, not as a model for
+              ordinary registry policy.
+            </p>
+
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.epsteinNpa}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Jeffrey Epstein non-prosecution agreement
+              </a>{" "}
+              and the DOJ Office of Professional Responsibility's{" "}
+              <a
+                href={sourceLinks.epsteinOprReport}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                report on the 2006-2008 federal investigation
+              </a>{" "}
+              are especially important for understanding power, access to elite
+              counsel, victim-notification failures, and the damage caused when
+              institutions resolve serious allegations quietly.
+            </p>
+
+            <p>
+              The Pennsylvania Supreme Court's decision in{" "}
+              <a
+                href={sourceLinks.cosbyPaSupremeCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Commonwealth v. Cosby
+              </a>{" "}
+              is not mainly a registry case. It is a due-process and
+              prosecution-history case. It shows why public outrage and legal
+              process are different things, and why advocates should be precise
+              about what a court actually held.
+            </p>
+
+<p>
+              The New York Court of Appeals decision in{" "}
+              <a
+                href={sourceLinks.weinsteinNyCourt}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                People v. Weinstein
+              </a>{" "}
+              and the Los Angeles District Attorney's announcement of the{" "}
+              <a
+                href={sourceLinks.weinsteinLaDa}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Los Angeles conviction
+              </a>{" "}
+              show why procedural rules, appellate review, and separate
+              jurisdictions matter. A reversed conviction does not mean the
+              public questions disappeared; it means the court found a legal
+              error in the proceeding it reviewed.
+            </p>
+
+            <p>
+              The federal sentences in the R. Kelly cases, including the{" "}
+              <a
+                href={sourceLinks.rKellyEdny}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Eastern District of New York sentence
+              </a>{" "}
+              and the{" "}
+              <a
+                href={sourceLinks.rKellyNdil}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Northern District of Illinois sentence
+              </a>
+              , are useful for understanding how celebrity, long-term access,
+              networks, and delayed accountability can interact.
+            </p>
+          </GuideProse>
+
+          <GuideCallout
+            tone="neutral"
+            icon="🧾"
+            title="Other cases readers may see cited"
+          >
+            <GuideProse>
+              <p>
+                These cases are often cited in public debate. Use them to
+                identify the pattern they illustrate, not to turn the guide into
+                a scandal catalog.
+              </p>
+
+              <ul>
                 <li>
-                  <span className="kv">Jacob Wetterling Act (1994)</span>
-                  <div className="subtle">Precursor encouraging state registries; later supplanted by SORNA.</div>
-                  <div>
-                    <a href="https://www.reginfo.gov/public/do/eAgendaViewRule?ruleID=218462" target="_blank" rel="noopener">Reginfo summary</a> ·
-                    <a href="https://www.justice.gov/archive/opa/pr/Pre_96/April95/199.txt.html" target="_blank" rel="noopener">DOJ 1995 guidance</a>
-                  </div>
-                  <div className="callout info">
-                    <svg className="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M12 8h.01M12 10v6" fill="none" stroke="currentColor" strokeWidth="2" /></svg>
-                    <div><strong>Context:</strong> Initially law-enforcement–only; broad public notification arrived later via Megan's Law.</div>
-                  </div>
+                  The Brock Turner case and{" "}
+                  <a
+                    href={sourceLinks.brockTurnerHarvard}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    recall of Judge Aaron Persky
+                  </a>{" "}
+                  are useful for discussing sentencing disparity, public
+                  backlash, judicial accountability, and the risk that anger at
+                  one sentence can be redirected into broad mandatory-minimum
+                  policy.
                 </li>
                 <li>
-                  <span className="kv">Megan's Law (1996)</span>
-                  <div className="subtle">Required community notification / public access.</div>
-                  <div>
-                    <a href="https://www.congress.gov/bill/104th-congress/house-bill/2137/text/eh" target="_blank" rel="noopener">Statutory text</a> ·
-                    <a href="https://www.justice.gov/archive/opa/pr/1997/April97/140vaw.htm" target="_blank" rel="noopener">DOJ guidelines (1997)</a>
-                  </div>
+                  The{" "}
+                  <a
+                    href={sourceLinks.sanduskyVerdict}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Jerry Sandusky / Penn State case
+                  </a>{" "}
+                  is useful as a youth-organization and institutional-failure
+                  example, especially when discussing how trust, status,
+                  reporting failures, and organizational reputation can delay
+                  intervention. Later{" "}
+                  <a
+                    href={sourceLinks.sanduskySentence}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    sentencing coverage
+                  </a>{" "}
+                  can help orient readers to the procedural history.
                 </li>
                 <li>
-                  <span className="kv">Adam Walsh Act / SORNA (2006)</span>
-                  <div className="subtle">Established federal baselines; expanded scope & offense-based tiers.</div>
-                  <div>
-                    <a href="https://smart.ojp.gov/sorna/current-law" target="_blank" rel="noopener">SMART Office: Current law</a> ·
-                    <a href="https://smart.ojp.gov/sorna/current-law/legislative-history" target="_blank" rel="noopener">Legislative history</a>
-                  </div>
+                  The{" "}
+                  <a
+                    href={sourceLinks.warrenJeffsTdcj}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Warren Jeffs / FLDS case
+                  </a>{" "}
+                  is useful when religious-institution analysis needs to
+                  include coercive authority, closed communities, and leadership
+                  control outside mainstream church structures.
                 </li>
                 <li>
-                  <span className="kv">Smith v. Doe (2003)</span> — retroactivity & "civil" label
-                  <div>
-                    <a href="https://supreme.justia.com/cases/federal/us/538/84/" target="_blank" rel="noopener">Opinion (Justia)</a> ·
-                    <a href="https://www.oyez.org/cases/2002/01-729" target="_blank" rel="noopener">Oyez summary</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Does v. Snyder (6th Cir. 2016)</span> — punitive-effects analysis
-                  <div>
-                    <a href="https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html" target="_blank" rel="noopener">Opinion (Justia)</a> ·
-                    <a href="https://www.opn.ca6.uscourts.gov/opinions.pdf/16a0207p-06.pdf" target="_blank" rel="noopener">Sixth Circuit PDF (2016)</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Packingham v. North Carolina (2017)</span> — social media & the First Amendment
-                  <div>
-                    <a href="https://www.supremecourt.gov/opinions/16pdf/15-1194_08l1.pdf" target="_blank" rel="noopener">SCOTUS opinion (PDF)</a> ·
-                    <a href="https://www.oyez.org/cases/2016/15-1194" target="_blank" rel="noopener">Oyez summary</a>
-                  </div>
+                  The Mary Kay Letourneau and{" "}
+                  <a
+                    href={sourceLinks.lafaveTampaBay2005}
+                    className={externalLinkClass}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Debra Lafave
+                  </a>{" "}
+                  cases are lower-priority examples, but they can help explain
+                  teacher-student boundary failures, school authority, adult
+                  responsibility, and media framing when handled briefly and
+                  non-graphically.
                 </li>
               </ul>
-              <div className="callout reminder">
-                <svg className="ico" viewBox="0 0 24 24"><path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-                <div><strong>Reminder:</strong> Courts originally treated registries as regulatory. Newer decisions examine whether modern restrictions function as punishment.</div>
+            </GuideProse>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="institutions"
+          number="3"
+          title="Where real risk often sits: authority, access, and shielding"
+          subtitle="Many major abuse cases were not driven by anonymous stranger danger. They involved trusted roles, repeated access, institutional silence, or failures to act on warnings."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              SOLAR's core prevention concern is not whether harm is serious.
+              It is. The question is whether the policy response focuses on the
+              places where harm often grows: authority, access, secrecy,
+              grooming opportunities, weak reporting systems, and institutional
+              self-protection.
+            </p>
+
+            <p>
+              The Pennsylvania Attorney General's{" "}
+              <a
+                href={sourceLinks.pennsylvaniaGrandJury}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                grand jury report page on Catholic clergy abuse
+              </a>{" "}
+              is a major example of institutional records revealing patterns
+              that were not solved by public registry logic alone. The issue was
+              not just individual offending. It was the failure of trusted
+              systems to stop, report, and prevent further harm.
+            </p>
+
+            <p>
+              The Southern Baptist Convention's independently commissioned{" "}
+              <a
+                href={sourceLinks.sbcGuidepost}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Guidepost Solutions investigation report
+              </a>{" "}
+              is another example of why prevention has to examine internal
+              reporting channels, leadership response, insurance and legal
+              incentives, and whether survivors are heard or discouraged.
+            </p>
+
+            <p>
+              The Larry Nassar case shows how youth sports, medical authority,
+              institutional reputation, and delayed action can combine. The DOJ
+              announced Nassar's{" "}
+              <a
+                href={sourceLinks.nassarDoj}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                federal sentence
+              </a>
+              , and the DOJ Inspector General later reviewed the{" "}
+              <a
+                href={sourceLinks.nassarOig}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FBI's handling of allegations
+              </a>
+              .
+            </p>
+
+            <p>
+              The Boy Scouts bankruptcy and abuse-claims process, including the{" "}
+              <a
+                href={sourceLinks.boyScoutsAp}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                $2.46 billion reorganization plan
+              </a>{" "}
+              and later appellate developments, shows how youth-serving
+              institutions can face enormous delayed accountability after
+              allegations accumulate across decades.
+            </p>
+          </GuideProse>
+
+          <RedFlagGreenFlag
+            red={
+              <div className="space-y-3">
+                <p>
+                  A system is at higher risk when adults have private,
+                  repeated, undocumented access to children or vulnerable people
+                  and complaints are handled informally, internally, or through
+                  reputation management.
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>One adult alone with a child without visibility.</li>
+                  <li>No clear reporting path outside the chain of command.</li>
+                  <li>Complaints treated as public-relations problems.</li>
+                  <li>
+                    Powerful people given quiet transfers or special access.
+                  </li>
+                  <li>
+                    Background checks treated as the whole prevention plan.
+                  </li>
+                </ul>
               </div>
-            </div>
-          </article>
-
-          {/* 2. Celebrity */}
-          <article className="card" id="celebrity">
-            <div className="card-header"><span className="badge">2</span><h2>Celebrity Cases & Perceived Two-Tier Justice</h2></div>
-            <div className="card-body">
-              <ul className="list">
-                <li>
-                  <span className="kv">Roman Polanski (1977)</span>
-                  <div>
-                    <a href="https://ww2.lacourt.org/hp/sg0tt2fzb0h5rinbsj3p4xxt/1374562163.pdf" target="_blank" rel="noopener">LA Superior Court filing (PDF)</a> ·
-                    <a href="https://en.wikipedia.org/wiki/Roman_Polanski_sexual_abuse_case" target="_blank" rel="noopener">Case overview</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Jeffrey Epstein (2007–08 NPA; 2019 arrest)</span>
-                  <div>
-                    <a href="https://www.documentcloud.org/documents/6184602-Jeffrey-Epstein-non-prosecution-agreement/" target="_blank" rel="noopener">2008 Non-Prosecution Agreement</a> ·
-                    <a href="https://www.justice.gov/opr/page/file/1336471/dl" target="_blank" rel="noopener">DOJ OPR report (PDF)</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Bill Cosby (conviction vacated 2021)</span>
-                  <div>
-                    <a href="https://www.pacourts.us/Storage/media/pdfs/20210630/163038-june302021opinionwecht.pdf" target="_blank" rel="noopener">Pa. Supreme Court opinion (PDF)</a> ·
-                    <a href="https://abcnews.go.com/US/bill-cosby-released-prison-conviction-vacated/story?id=78582000" target="_blank" rel="noopener">News explainer</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Harvey Weinstein</span> — NY conviction overturned (2024); LA conviction (2022); LA sentence (2023)
-                  <div>
-                    <a href="https://www.nycourts.gov/ctapps/Decisions/2024/Apr24/24opn24-Decision.pdf" target="_blank" rel="noopener">NY Court of Appeals opinion (PDF)</a> ·
-                    <a href="https://lacounty.gov/2022/12/19/harvey-weinstein-convicted-of-sexual-assault/" target="_blank" rel="noopener">LA DA: conviction (2022)</a> ·
-                    <a href="https://www.latimes.com/california/story/2023-02-23/harvey-weinstein-sentenced-to-xx-in-los-angeles-rape-case" target="_blank" rel="noopener">LA Times: 16-year sentence</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Brock Turner (2016)</span>
-                  <div className="subtle">Lenient sentence → recall of Judge Persky.</div>
-                  <div>
-                    <a href="https://en.wikipedia.org/wiki/People_v._Turner" target="_blank" rel="noopener">Case overview</a> ·
-                    <a href="https://harvardlawreview.org/print/vol-132/california-judge-recalled-for-sentence-in-sexual-assault-case/" target="_blank" rel="noopener">Judge recall analysis</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">R. Kelly</span> — federal sentences (2022–2023)
-                  <div>
-                    <a href="https://www.justice.gov/usao-edny/pr/r-kelly-sentenced-30-years-prison" target="_blank" rel="noopener">EDNY: 30-year sentence</a> ·
-                    <a href="https://www.justice.gov/usao-ndil/pr/robert-kelly-sentenced-20-years" target="_blank" rel="noopener">NDIL: additional 20 years</a>
-                  </div>
-                </li>
-              </ul>
-              <div className="callout reminder">
-                <svg className="ico" viewBox="0 0 24 24"><path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-                <div><strong>Reminder:</strong> Resources, visibility, and timing often drive outcomes in celebrity matters, which may differ from typical cases.</div>
+            }
+            green={
+              <div className="space-y-3">
+                <p>
+                  A safer system reduces secrecy and makes early intervention
+                  more likely.
+                </p>
+                <ul className="list-disc space-y-2 pl-6">
+                  <li>Two-adult rules and open-door visibility practices.</li>
+                  <li>
+                    Written reporting channels that bypass conflicted leaders.
+                  </li>
+                  <li>Mandatory reporting training with real follow-through.</li>
+                  <li>
+                    Independent review when complaints involve authority
+                    figures.
+                  </li>
+                  <li>
+                    Documentation of boundary concerns before they escalate.
+                  </li>
+                </ul>
               </div>
-            </div>
-          </article>
+            }
+          />
 
-          {/* 3. Religious */}
-          <article className="card" id="religious">
-            <div className="card-header"><span className="badge">3</span><h2>Religious Institutions</h2></div>
-            <div className="card-body">
-              <ul className="list">
-                <li>
-                  <span className="kv">Catholic Church — Pennsylvania Grand Jury (2018)</span>
-                  <div>
-                    <a href="https://www.attorneygeneral.gov/report/" target="_blank" rel="noopener">AG landing page</a> ·
-                    <a href="https://www.attorneygeneral.gov/wp-content/uploads/2023/05/INVESTIGATING-GRAND-JURY-REPORT-NO.-1_FINAL_May-2023_Redacted.pdf" target="_blank" rel="noopener">Report PDF (redacted)</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Southern Baptist Convention — Guidepost Report (2022)</span>
-                  <div>
-                    <a href="https://www.documentcloud.org/documents/22031737-final-guidepost-solutions-independent-investigation-report/" target="_blank" rel="noopener">Independent investigation (PDF)</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Warren Jeffs / FLDS (2011 conviction)</span>
-                  <div>
-                    <a href="https://inmate.tdcj.texas.gov/InmateSearch/viewDetail.action?sid=08888382" target="_blank" rel="noopener">TDCJ inmate record</a> ·
-                    <a href="https://en.wikipedia.org/wiki/Warren_Jeffs" target="_blank" rel="noopener">Case overview</a>
-                  </div>
-                </li>
-              </ul>
-              <div className="callout info">
-                <svg className="ico" viewBox="0 0 24 24"><path d="M3 7h18M6 12h12M8 17h8" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-                <div><strong>Info:</strong> Many institutional cases surfaced years later, limiting prosecutions and registry entries despite extensive harm.</div>
-              </div>
-            </div>
-          </article>
+          <GuideCallout
+            tone="success"
+            icon="🛡️"
+            title="Prevention is more than background checks"
+          >
+            <p>
+              Background checks can matter, but many serious cases involve
+              people who were not already on a registry or whose access came
+              from trust, status, or institutional permission. Prevention has to
+              include supervision, transparency, reporting, documentation, and
+              willingness to act before a criminal conviction exists.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-          {/* 4. Education & Youth Orgs */}
-          <article className="card" id="education">
-            <div className="card-header"><span className="badge">4</span><h2>Education & Youth Organizations</h2></div>
-            <div className="card-body">
-              <ul className="list">
-                <li>
-                  <span className="kv">Mary Kay Letourneau (1997)</span>
-                  <div>
-                    <a href="https://apnews.com/article/us-news-ap-top-news-seattle-wa-state-wire-0542b4631cb2e6f47c57dcc3de9e7dd9" target="_blank" rel="noopener">AP overview</a> ·
-                    <a href="https://en.wikipedia.org/wiki/Mary_Kay_Letourneau" target="_blank" rel="noopener">Case overview</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Debra Lafave (2005–2006)</span>
-                  <div>
-                    <a href="https://www.tampabay.com/archive/2005/12/09/lafave-plea-deal-in-jeopardy/" target="_blank" rel="noopener">Tampa Bay Times (2005)</a> ·
-                    <a href="https://www.tampabay.com/archive/2006/03/26/lafave-avoids-prison/" target="_blank" rel="noopener">Tampa Bay Times (2006)</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Jerry Sandusky / Penn State</span> — 2012 conviction; 2019 resentencing
-                  <div>
-                    <a href="https://www.espn.com/college-football/story/_/id/8087028/penn-state-nittany-lions-jerry-sandusky-convicted-45-counts-sex-abuse-trial" target="_blank" rel="noopener">ESPN: verdict report</a> ·
-                    <a href="https://www.pbs.org/newshour/nation/jerry-sandusky-resentenced-to-30-to-60-years" target="_blank" rel="noopener">PBS: resentencing</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Larry Nassar / USA Gymnastics (2017–2018)</span>
-                  <div>
-                    <a href="https://www.justice.gov/usao-wdmi/pr/2017_1207_Nassar" target="_blank" rel="noopener">DOJ: 60-year federal sentence</a> ·
-                    <a href="https://oig.justice.gov/reports/investigation-and-review-federal-bureau-investigations-handling-allegations-sexual-abuse" target="_blank" rel="noopener">DOJ OIG: FBI handling report</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Boy Scouts of America — abuse claims & settlement</span>
-                  <div>
-                    <a href="https://apnews.com/article/sexual-abuse-boy-scouts-of-america-c52a60cd7b0b3df5b6e9c6247837611c" target="_blank" rel="noopener">AP: $2.46B plan approved (2022)</a> ·
-                    <a href="https://apnews.com/article/boy-scouts-new-name-scouting-america-d583f5712680f155b4f6b762128734d3" target="_blank" rel="noopener">AP: rebranding update (2024)</a>
-                  </div>
-                </li>
-              </ul>
-              <div className="callout tip">
-                <svg className="ico" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-                <div><strong>Pro tip:</strong> For youth-serving orgs, emphasize prevention protocols (two-adult rule, open-door policies, mandatory reporting training) alongside background checks.</div>
-              </div>
-            </div>
-          </article>
+        <GuideSectionHeader
+          id="policy-comparison"
+          number="4"
+          title="Policy comparison: public lists are not the only model"
+          subtitle="The United States relies heavily on public registry access. Other systems use more controlled disclosure or police-access models."
+        />
 
-          {/* 5. Policy & Intl */}
-          <article className="card" id="policy">
-            <div className="card-header"><span className="badge">5</span><h2>Policy Debates, "Stranger Danger," & International Context</h2></div>
-            <div className="card-body">
-              <ul className="list">
-                <li>
-                  <span className="kv">Effectiveness & harms</span>
-                  <div>
-                    <a href="https://www.hrw.org/report/2013/05/01/raised-registry/irreparable-harm-placing-children-sex-offender-registries-us" target="_blank" rel="noopener">HRW: Raised on the Registry</a> ·
-                    <a href="https://www.hrw.org/news/2013/05/01/us-more-harm-good" target="_blank" rel="noopener">HRW: More Harm Than Good</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">UK — "Sarah's Law" (disclosure scheme, not a public registry)</span>
-                  <div>
-                    <a href="https://www.gov.uk/government/publications/child-sex-offender-disclosure-scheme-guidance" target="_blank" rel="noopener">Home Office: guidance</a> ·
-                    <a href="https://www.gov.uk/guidance/find-out-if-a-person-has-a-record-for-child-sexual-offences" target="_blank" rel="noopener">How to apply</a>
-                  </div>
-                </li>
-                <li>
-                  <span className="kv">Canada — NSOR (police-only access)</span>
-                  <div>
-                    <a href="https://www.justice.gc.ca/eng/rp-pr/csj-sjc/jsp-sjp/arnsor-mlrnds/p2.html" target="_blank" rel="noopener">Justice Canada: NSOR overview</a> ·
-                    <a href="https://laws-lois.justice.gc.ca/eng/acts/S-8.7/FullText.html" target="_blank" rel="noopener">SOIRA statute</a>
-                  </div>
-                </li>
-              </ul>
-              <div className="callout reminder">
-                <svg className="ico" viewBox="0 0 24 24"><path d="M12 6v6l4 2" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/></svg>
-                <div><strong>Key takeaways:</strong> U.S. registries grew from rare but high-profile cases and expanded via federal baselines. Other countries favor controlled police disclosure over broad public lists.</div>
-              </div>
-            </div>
-          </article>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              U.S. registry policy is often presented as the obvious or only
+              model. It is not. The federal system grew through state
+              incentives, public-notification laws, and SORNA baselines. But
+              other countries have chosen different disclosure structures.
+            </p>
 
-        </section>
+            <p>
+              The United Kingdom's Child Sex Offender Disclosure Scheme,
+              commonly called{" "}
+              <a
+                href={sourceLinks.govUkSarahsLaw}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sarah's Law
+              </a>
+              , allows a person to ask police whether someone with contact with
+              a child has a relevant record or poses a risk. The government's{" "}
+              <a
+                href={sourceLinks.govUkSarahsLawPdf}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                public guidance for applicants
+              </a>{" "}
+              describes the scheme as a controlled disclosure process, not a
+              general public registry.
+            </p>
 
-        {/* bottom quick nav */}
-        <div className="cta-row" style={{marginTop:'22px'}}>
-          <a className="btn btn--ghost" href="#origins">Origins</a>
-          <a className="btn btn--ghost" href="#celebrity">Celebrity</a>
-          <a className="btn btn--ghost" href="#religious">Religious</a>
-          <a className="btn btn--ghost" href="#education">Education</a>
-          <a className="btn btn--solid" href="#policy">Policy</a>
-        </div>
+<p>
+              Canada uses a national registration framework under the{" "}
+              <a
+                href={sourceLinks.canadaSoira}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sex Offender Information Registration Act
+              </a>
+              . Canadian materials describe the{" "}
+              <a
+                href={sourceLinks.justiceCanadaNsor}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                National Sex Offender Registry
+              </a>{" "}
+              as a law-enforcement tool rather than a broad public website.
+              That does not mean Canada's system is perfect; it means public
+              disclosure is a policy choice, not an inevitability.
+            </p>
 
+            <p>
+              Human Rights Watch has documented harms from public registration,
+              especially for youth, in{" "}
+              <a
+                href={sourceLinks.hrwRaisedRegistry}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Raised on the Registry
+              </a>{" "}
+              and its accompanying summary,{" "}
+              <a
+                href={sourceLinks.hrwMoreHarm}
+                className={externalLinkClass}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                More Harm Than Good
+              </a>
+              . Those sources should not be the only evidence used in policy
+              work, but they are important for understanding collateral harms,
+              family impacts, and youth-specific concerns.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "United States",
+                title: "Broad public registry model",
+                icon: "🇺🇸",
+                tone: "warning",
+                description:
+                  "Public-facing registry access is common, and federal baselines encourage substantial state implementation.",
+              },
+              {
+                eyebrow: "United Kingdom",
+                title: "Controlled disclosure model",
+                icon: "🇬🇧",
+                tone: "info",
+                description:
+                  "The disclosure scheme lets people ask police about a person with child contact, but it is not a general public registry.",
+              },
+              {
+                eyebrow: "Canada",
+                title: "Law-enforcement access model",
+                icon: "🇨🇦",
+                tone: "research",
+                description:
+                  "The national registry is structured as a police tool under federal registration law rather than a broad public lookup site.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="reminder"
+            icon="🧠"
+            title="The comparison question"
+          >
+            <p>
+              A good policy comparison does not ask, “Which country is soft or
+              harsh?” It asks, “Which system improves prevention, reporting,
+              accountability, proportionality, and reintegration with the fewest
+              avoidable harms?”
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="how-to-use"
+          number="5"
+          title="How to use high-profile cases responsibly"
+          subtitle="For advocacy, research, journalism, family conversations, or policy testimony, the goal is to be accurate without becoming sensational."
+        />
+
+        <GuideSectionCard>
+          <RoleGuidanceGrid
+            title="Different readers can use this guide in different ways"
+            roles={[
+              {
+                role: "Advocates",
+                icon: "📣",
+                guidance:
+                  "Use cases to show patterns, not to inflame fear. Ask whether a proposed law would have prevented the harm, or whether it only expands punishment after conviction.",
+              },
+              {
+                role: "Families and loved ones",
+                icon: "👪",
+                guidance:
+                  "Use this guide to understand why public cases shape fear, law, and stigma. It can help you separate headlines from practical safety planning.",
+              },
+              {
+                role: "Researchers and policymakers",
+                icon: "📚",
+                guidance:
+                  "Treat official reports, court opinions, and research as your anchors. Avoid relying on viral summaries when making legal or policy claims.",
+              },
+              {
+                role: "People on registries",
+                icon: "🧭",
+                guidance:
+                  "This guide can help explain why the law may feel broader than the public stories used to justify it. It is not legal advice and does not replace state-specific compliance guidance.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="responsible-case-use"
+            title="Responsible use checklist"
+            columns={1}
+            items={[
+              {
+                id: "identify-pattern",
+                label:
+                  "Name the specific pattern the case illustrates: lawmaking, delayed reporting, authority, institutional shielding, procedural error, or prevention failure.",
+              },
+              {
+                id: "use-primary-source",
+                label:
+                  "Anchor legal claims to a court opinion, statute, official agency page, or investigative report whenever possible.",
+              },
+              {
+                id: "avoid-spectacle",
+                label:
+                  "Avoid graphic detail unless it is necessary to understand the policy issue.",
+              },
+              {
+                id: "ask-prevention",
+                label:
+                  "Ask whether the proposed response would have prevented earlier access, secrecy, retaliation, or non-reporting.",
+              },
+              {
+                id: "separate-systems",
+                label:
+                  "Separate criminal sentencing, civil registration, public notification, supervision conditions, school rules, and institutional safety protocols.",
+              },
+              {
+                id: "check-date",
+                label:
+                  "Check dates and procedural posture. A conviction, reversal, resentencing, settlement, or appeal can change how a case should be described.",
+              },
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              In public education, the most useful sentence is often not “This
+              terrible case happened.” It is: “This case shows why prevention
+              has to focus on access, authority, reporting, oversight, and
+              accountability before harm is repeated.”
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="6"
+          title="Resources and next steps"
+          subtitle="Use these links to verify the framework, compare policy models, and keep researching without relying only on headlines."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Best starting points"
+            description="These sources are useful first stops because they are official, primary, or research-heavy."
+            resources={[
+              {
+                label: "SMART Office federal legislative history",
+                href: sourceLinks.smartLegislativeHistory,
+                badge: "Official",
+                description:
+                  "Best starting point for the federal sequence from Wetterling to Megan's Law to SORNA.",
+              },
+              {
+                label: "Adam Walsh Act / SORNA current law",
+                href: sourceLinks.smartCurrentLaw,
+                badge: "Official",
+                description:
+                  "Official SMART Office current-law page for SORNA under the Adam Walsh Act.",
+              },
+              {
+                label: "Smith v. Doe",
+                href: sourceLinks.smithJustia,
+                badge: "Court",
+                description:
+                  "Supreme Court decision often cited for the civil-regulatory framing of registry law.",
+              },
+              {
+                label: "Does v. Snyder",
+                href: sourceLinks.snyderJustia,
+                badge: "Court",
+                description:
+                  "Sixth Circuit decision examining punitive effects of a modern registry scheme.",
+              },
+              {
+                label: "Packingham v. North Carolina",
+                href: sourceLinks.packinghamSupremeCourt,
+                badge: "Court",
+                description:
+                  "Supreme Court decision on First Amendment limits for broad internet restrictions.",
+              },
+              {
+                label: "Pennsylvania Grand Jury Report",
+                href: sourceLinks.pennsylvaniaGrandJury,
+                badge: "Official",
+                description:
+                  "Major official record on institutional abuse, delayed accountability, and systemic failures.",
+              },
+              {
+                label: "Human Rights Watch: Raised on the Registry",
+                href: sourceLinks.hrwRaisedRegistry,
+                badge: "Research",
+                description:
+                  "Detailed report on public-registration harms, especially for youth and families.",
+              },
+              {
+                label: "UK Child Sex Offender Disclosure Scheme",
+                href: sourceLinks.govUkSarahsLaw,
+                badge: "Official",
+                description:
+                  "Example of a controlled disclosure model rather than a broad public registry.",
+              },
+              {
+                label: "Canada SOIRA statute",
+                href: sourceLinks.canadaSoira,
+                badge: "Statute",
+                description:
+                  "Federal Canadian statute supporting a police-access registration framework.",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Legislative Advocacy Guide",
+                description:
+                  "Use this with policy testimony, bill analysis, and reform messaging.",
+                to: "/resources/legislative-advocacy",
+              },
+              {
+                title: "Know Your Rights",
+                description:
+                  "Helpful for readers who need practical legal orientation rather than policy history.",
+                to: "/resources/know-your-rights",
+              },
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Connects policy history to practical stability after incarceration or supervision.",
+                to: "/resources/reentry-planning",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "Helps loved ones communicate, plan, and stay grounded while navigating stigma and legal complexity.",
+                to: "/resources/family-support",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources and verification"
+            note="Official, court, DOJ, GOV.UK, HRW, and major media links were reviewed while preparing this rebuild. Fragile PDFs, DocumentCloud mirrors, and archived media links should still be rechecked during routine site maintenance."
+            sources={sourceInventory}
+          />
+        </GuideSectionCard>
       </main>
     </div>
   );
