@@ -1,858 +1,1128 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  VerifyBeforeActing,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+} from "../../components/solar";
+
+const officialLookupLinks = [
+  {
+    label: "Common Cause — Find Your Representative",
+    description:
+      "A broad lookup tool for federal, state, and local elected officials.",
+    href: "https://www.commoncause.org/find-your-representative/",
+    badge: "Lookup",
+  },
+  {
+    label: "USA.gov — Elected Officials",
+    description:
+      "Official federal directory for finding federal, state, territorial, and local officials.",
+    href: "https://www.usa.gov/elected-officials",
+    badge: "Official",
+  },
+  {
+    label: "U.S. House — Find Your Representative",
+    description:
+      "Official House lookup by ZIP code for your member of Congress.",
+    href: "https://www.house.gov/representatives/find-your-representative",
+    badge: "Official",
+  },
+  {
+    label: "U.S. Senate — Contact Senators",
+    description:
+      "Official Senate directory for senator contact pages and office information.",
+    href: "https://www.senate.gov/senators/senators-contact.htm",
+    badge: "Official",
+  },
+  {
+    label: "U.S. Senate — Suite and Telephone List",
+    description:
+      "Official Senate PDF with office rooms and phone numbers for phone-first contact.",
+    href: "https://www.senate.gov/general/resources/pdf/senators_phone_list.pdf",
+    badge: "Phone",
+  },
+  {
+    label: "Congress.gov — Members",
+    description:
+      "Official congressional member and bill information from the Library of Congress.",
+    href: "https://www.congress.gov/members",
+    badge: "Official",
+  },
+  {
+    label: "Open States / Plural — State Legislator Lookup",
+    description:
+      "A state-level lookup tool for finding state lawmakers and legislative districts.",
+    href: "https://open.pluralpolicy.com/find_your_legislator/",
+    badge: "State",
+  },
+  {
+    label: "Democracy.io",
+    description:
+      "A simple tool for finding and writing to federal representatives.",
+    href: "https://democracy.io/",
+    badge: "Tool",
+  },
+];
+
+const solarAdvocacyLinks = [
+  {
+    label: "SOLAR Advocacy Hub",
+    description:
+      "Use SOLAR advocacy tools, position statements, and campaign materials.",
+    href: "/advocacy",
+    badge: "SOLAR",
+  },
+  {
+    label: "SOLAR Script Generator",
+    description:
+      "Draft a message to lawmakers and adapt it to your state, issue, and role.",
+    href: "/advocacy#contact-congress",
+    badge: "Tool",
+  },
+  {
+    label: "SOLAR Position Statements",
+    description:
+      "Review SOLAR’s issue framing before drafting your own message.",
+    href: "/advocacy#position-statement",
+    badge: "SOLAR",
+  },
+  {
+    label: "RECON — Register Every Convict Or None",
+    description:
+      "Read SOLAR’s equal-treatment argument about registry policy and public safety.",
+    href: "/advocacy#recon",
+    badge: "SOLAR",
+  },
+];
+
+const evidenceAndPracticeSources = [
+  {
+    label: "DOJ SMART — Sex Offender Management Assessment and Planning Initiative",
+    href: "https://smart.ojp.gov/somapi",
+    description:
+      "Federal SMART Office materials on sex offense policy, management, and research background.",
+  },
+  {
+    label: "DOJ SMART — Adult Sex Offender Recidivism",
+    href: "https://smart.ojp.gov/somapi/chapter-5-adult-sex-offender-recidivism",
+    description:
+      "Archived SMART Office chapter often used for background on recidivism research.",
+  },
+  {
+    label: "DOJ SMART — Residency Restrictions Case Law Update",
+    href: "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/9-residency-restrictions.pdf",
+    description:
+      "SMART Office case-law update on residency restriction litigation; useful background when discussing blanket housing restrictions.",
+  },
+  {
+    label: "DOJ SMART — Current Case Law Summary",
+    href: "https://smart.ojp.gov/2025-Case-Law-Summary-508.pdf",
+    description:
+      "SMART Office case-law summary on sex offender registration and notification law.",
+  },
+  {
+    label: "BJS — Recidivism of Sex Offenders Released from State Prison: 9-Year Follow-Up",
+    href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
+    description:
+      "Bureau of Justice Statistics report frequently cited in registry and recidivism policy discussions.",
+  },
+  {
+    label: "The Sentencing Project — Responding to Crimes of a Sexual Nature",
+    href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+    description:
+      "Policy-focused report discussing prevention, accountability, punishment, and alternatives.",
+  },
+  {
+    label: "Council of State Governments Justice Center — 50 States, 1 Goal",
+    href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
+    description:
+      "State recidivism trends resource that can help advocates ask for data-driven policy.",
+  },
+  {
+    label: "Congressional Management Foundation — Communicating with Congress",
+    href: "https://www.congressfoundation.org/projects/communicating-with-congress",
+    description:
+      "Best-practice resource on how congressional offices receive and process constituent messages.",
+  },
+  {
+    label: "UC Berkeley Library — Contacting Elected Officials",
+    href: "https://guides.lib.berkeley.edu/ContactOfficials",
+    description:
+      "Plain-language tips for contacting elected officials and preparing messages.",
+  },
+];
+
+const policyIssueCards = [
+  {
+    eyebrow: "Registry expansion",
+    title: "More people, longer terms, fewer off-ramps",
+    icon: "📋",
+    tone: "legal",
+    description:
+      "Speak against automatic expansion that increases public exposure without individualized review, evidence, or a clear safety purpose.",
+  },
+  {
+    eyebrow: "Retroactive punishment",
+    title: "New rules applied after sentencing",
+    icon: "⚖️",
+    tone: "warning",
+    description:
+      "Explain why changing rules years later can destabilize housing, work, family life, and reentry planning.",
+  },
+  {
+    eyebrow: "Residency restrictions",
+    title: "Housing bans that can create instability",
+    icon: "🏚️",
+    tone: "urgent",
+    description:
+      "Ask lawmakers to reject blanket distance rules that push people away from housing, treatment, employment, transportation, and family support.",
+  },
+  {
+    eyebrow: "Employment barriers",
+    title: "Rules that block lawful work",
+    icon: "🧰",
+    tone: "info",
+    description:
+      "Advocate for fair hiring, licensing review, and work access that supports accountability and stability after punishment.",
+  },
+  {
+    eyebrow: "Family separation",
+    title: "Policies that punish households",
+    icon: "👪",
+    tone: "family",
+    description:
+      "Describe how broad restrictions can affect spouses, children, parents, caregivers, and people trying to maintain safe family relationships.",
+  },
+  {
+    eyebrow: "Public notification",
+    title: "Exposure without clear prevention",
+    icon: "📣",
+    tone: "warning",
+    description:
+      "Ask whether online exposure, broad alerts, or public shaming actually prevent harm or simply increase harassment and instability.",
+  },
+  {
+    eyebrow: "Deregistration",
+    title: "Meaningful paths to review and relief",
+    icon: "✅",
+    tone: "success",
+    description:
+      "Support individualized relief pathways based on time offense-free, conduct, treatment progress, risk review, and due process.",
+  },
+  {
+    eyebrow: "Evidence and data",
+    title: "Require proof before expanding restrictions",
+    icon: "📊",
+    tone: "research",
+    description:
+      "Ask lawmakers to demand data, fiscal notes, constitutional review, and real prevention evidence before passing new restrictions.",
+  },
+];
 
 export default function LegislativeAdvocacyGuide(): JSX.Element {
-  const [checkedItems, setCheckedItems] = useState<{[key: string]: boolean}>({});
-
-  const toggleCheck = (id: string) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
-
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white">
-      <SEO 
-        title="SOLAR Resource Guide: Contacting Legislators & Advancing Reform | The SOLAR Project"
-        description="Step-by-step SOLAR guide to contacting officials (local → federal), writing effective messages on sex-offense policy, and advocating for evidence-based reform. Includes role-based templates and trusted sources."
-        keywords="SOLAR, sex offense policy, contact legislators, advocacy playbook, evidence-based reform, residency restrictions, retroactive expansions, reentry supports, transparency and data, RECON, register every convict or none, democracy.io, common cause, usa.gov, BJS, DOJ SMART, sentencing project"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="Legislative Advocacy Guide | The SOLAR Project"
+        description="A plain-language SOLAR guide for people affected by sex offense laws who want to contact lawmakers with clear, respectful, evidence-aware messages."
+        keywords="sex offense registry advocacy, legislative advocacy, registry reform, residency restrictions, reentry, sex offense policy, SOLAR Project"
       />
 
-      {/* Header */}
-      <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 backdrop-blur-sm text-white py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <Link 
-              to="/resources" 
-              className="inline-flex items-center text-slate-200 hover:text-white transition-colors group"
-            >
-              <svg className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              Back to Resources
-            </Link>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
           </div>
-          
-          <div className="mb-4">
-            <span className="bg-slate-700 text-white text-sm font-medium px-3 py-1 rounded-full">
-              Advocacy Toolkit
-            </span>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             Legislative Advocacy Guide
           </h1>
-          
-          <p className="text-xl text-slate-200 mb-6 max-w-3xl">
-            Use this guide to quickly find your officials, choose your channel (phone or written), and make a clear, respectful, evidence-based ask. Internal links connect to SOLAR's Position Statements, the RECON stance, and our on-site script generator.
-          </p>
-          
-          <p className="text-lg text-slate-100 mb-8 max-w-3xl">
-            This resource consolidates trusted lookups, message structure, and ready-to-use scripts specific to sex-offense policy. Whether you're a registrant, family member, ally, or concerned citizen, you'll find templates, checklists, and credible citations to support safe, fair, and effective policy.
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            You do not have to be an activist or policy expert to contact a
+            lawmaker. This guide helps people affected by sex offense laws use
+            their voice clearly, safely, and practically.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-800 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition-colors shadow-lg flex items-center justify-center"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Print Guide
+              🖨️ Print Guide
             </button>
-            <button
-              onClick={handlePrint}
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-800 transition-colors shadow-lg flex items-center justify-center"
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-              </svg>
-              Save as PDF
-            </button>
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-700 to-slate-600"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      {/* Main Content */}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 print:py-6">
-        
-        {/* Section 1: Quick Start */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                1
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Quick Start: 60 Seconds</h2>
-                <p className="text-slate-200">Find your officials, pick your issue, choose your channel, personalize a template, send, and follow up.</p>
-              </div>
-            </div>
-          </div>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Start Here (links open in a new tab):</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>☑️ Find officials (context-rich): <a href="https://www.commoncause.org/find-your-representative/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">https://www.commoncause.org/find-your-representative/</a></span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                    <span>🏛️ Official .gov directory: <a href="https://www.usa.gov/elected-officials" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">https://www.usa.gov/elected-officials</a></span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <span>🖥️ Open SOLAR Script Generator: <Link to="/advocacy#contact-congress" className="text-blue-600 hover:text-blue-800 underline transition-colors">/advocacy#contact-congress</Link></span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <span>📖 Review SOLAR Position Statements: <Link to="/advocacy#position-statement" className="text-blue-600 hover:text-blue-800 underline transition-colors">/advocacy#position-statement</Link></span>
-                  </li>
-                  <li className="flex items-start">
-                    <svg className="w-5 h-5 text-purple-600 mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                    </svg>
-                    <span>⚖️ Read SOLAR's RECON stance: <Link to="/advocacy#recon" className="text-blue-600 hover:text-blue-800 underline transition-colors">/advocacy#recon</Link></span>
-                  </li>
-                </ul>
-              </div>
+        <GuideIntro title="Start here: you do not have to be an activist" icon="🧭">
+          <p>
+            Many people arrive at sex offense policy after something has already
+            happened to them or someone they love: an accusation, conviction,
+            sentence, registry requirement, supervision condition, housing loss,
+            family disruption, or a proposed law that would make life even more
+            unstable.
+          </p>
 
-              {/* Pro Tip Callout */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 mb-3">💡 Pro Tip</h3>
-                <p className="text-blue-700">
-                  <strong>Personalize to rise to the top</strong> Staff prioritize short, specific, local messages. Add your city/ZIP and one lived-experience line.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          <p>
+            Advocacy does not mean excusing harm, denying victims, or asking for
+            no accountability. It means asking whether a law actually prevents
+            harm, supports accountability, protects families, and helps people
+            build stable lives after punishment.
+          </p>
 
-        {/* Section 2: Find Who Represents You */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                2
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Find Who Represents You</h2>
-                <p className="text-slate-200">Use these trusted tools for federal, state, and many local offices.</p>
-              </div>
-            </div>
-          </div>
+          <p>
+            Your message does not have to explain everything. A short, respectful,
+            local message with one clear ask can help lawmakers understand what
+            these laws do in real life.
+          </p>
+        </GuideIntro>
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Direct Lookups (final links):</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">🏛️ Federal & General:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🏛️ Common Cause: <a href="https://www.commoncause.org/find-your-representative/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🏛️ USA.gov: <a href="https://www.usa.gov/elected-officials" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🏛️ U.S. House: <a href="https://www.house.gov/representatives/find-your-representative" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🏛️ U.S. Senate: <a href="https://www.senate.gov/senators/senators-contact.htm" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        📞 Senate phone list (PDF): <a href="https://www.senate.gov/general/resources/pdf/senators_phone_list.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🏛️ Congress.gov: <a href="https://www.congress.gov/members/find-your-member" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-4">🌐 State & Tools:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🌐 Open States/Plural: <a href="https://open.pluralpolicy.com/find_your_legislator/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        📧 Democracy.io: <a href="https://democracy.io/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                      </li>
-                      <li className="flex items-center">
-                        <svg className="w-4 h-4 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        🖥️ SOLAR Script Generator: <Link to="/advocacy#contact-congress" className="text-blue-600 hover:text-blue-800 underline transition-colors">Link</Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+        <QuickStartPanel
+          title="If you want to contact a lawmaker this week"
+          subtitle="Start small. One message to the right office is better than a perfect message you never send."
+          icon="⚡"
+          urgentActions={[
+            <span key="find">
+              Find your state legislator first if the issue involves registry
+              rules, residency restrictions, removal from the registry, state
+              supervision law, or local reentry barriers.
+            </span>,
+            <span key="one-ask">
+              Pick one issue and one clear ask. Do not try to explain every
+              unfair part of the system in the same message.
+            </span>,
+            <span key="local">
+              Add your city or ZIP code and one sentence about real-life impact:
+              housing, work, family, treatment, safety, or reentry stability.
+            </span>,
+          ]}
+          nextActions={[
+            <span key="source">
+              Add one credible source or ask the office to require evidence
+              before expanding restrictions.
+            </span>,
+            <span key="reply">
+              Ask for a written reply, staff call, or the lawmaker’s position on
+              the bill or issue.
+            </span>,
+            <span key="save">
+              Save what you sent, the date, the office contacted, and any reply.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              You are allowed to be emotional. The message works better when the
+              words stay calm, specific, and focused on real public safety.
+            </span>
+          }
+        />
 
-              {/* Pro Tip Callout */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 mb-3">💡 Pro Tip</h3>
-                <p className="text-blue-700">
-                  <strong>Match your ask to the level</strong> Local councils handle ordinances; states handle registry law and conditions; Congress handles federal funding and national standards.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+<GuideCallout tone="legal" icon="⚖️" title="Before you share personal details">
+          <p>
+            If you have a pending case, active appeal, open investigation, strict
+            supervision condition, no-contact order, internet restriction, or
+            unresolved registration question, talk with a lawyer or supervising
+            authority before sharing details that could create risk. You can
+            still advocate by speaking generally, using family impact language,
+            or asking evidence-based questions.
+          </p>
+        </GuideCallout>
 
-        {/* Section 3: Drafting Messages That Work */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                3
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Drafting Messages That Work</h2>
-                <p className="text-slate-200">Keep it short, clear, respectful, and local.</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionHeader
+          id="what-lawmakers-can-change"
+          number="1"
+          title="What lawmakers can actually change"
+          subtitle="Different offices control different parts of the system. Matching your ask to the right level helps your message land."
+        />
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">The 7-Part Structure (email/letter):</h3>
-                <div className="bg-gray-50 rounded-lg p-6">
-                  <ul className="space-y-3 text-gray-700">
-                    <li>👤 Introduce yourself (role + city/ZIP).</li>
-                    <li>📝 Make one clear ask.</li>
-                    <li>📖 Cite 1–2 facts from credible sources.</li>
-                    <li>👥 Add a lived-experience line.</li>
-                    <li>🏘️ Explain community benefit.</li>
-                    <li>📩 Request a reply or staff call.</li>
-                    <li>📬 Include contact details (mailing address for Senate letters).</li>
-                  </ul>
-                </div>
-              </div>
+        <GuideSectionCard>
+          <OverviewCards
+            columns={2}
+            cards={[
+              {
+                eyebrow: "State lawmakers",
+                title: "Registry law, restrictions, relief, and reentry barriers",
+                icon: "🏛️",
+                tone: "legal",
+                description:
+                  "State legislatures usually control registration rules, duration, reporting duties, residency restrictions, deregistration paths, state supervision law, and many collateral consequences.",
+              },
+              {
+                eyebrow: "Local officials",
+                title: "Ordinances, zoning, public meetings, and local implementation",
+                icon: "📍",
+                tone: "info",
+                description:
+                  "City councils, county boards, and local agencies may shape housing restrictions, park/library rules, meeting agendas, zoning, shelter access, and how state law is enforced locally.",
+              },
+              {
+                eyebrow: "Congress",
+                title: "Federal standards, funding, and national policy pressure",
+                icon: "🇺🇸",
+                tone: "research",
+                description:
+                  "Congress may affect federal registry standards, funding incentives, interstate systems, federal supervision, federal sentencing policy, and national agency priorities.",
+              },
+              {
+                eyebrow: "Agencies",
+                title: "Forms, guidance, procedures, and practical rules",
+                icon: "🗂️",
+                tone: "neutral",
+                description:
+                  "Agencies often decide how rules are explained, what forms are used, how records are handled, and how people are told to comply. Some advocacy asks belong there, not with a legislator.",
+              },
+            ]}
+          />
 
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Message Checklist:</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-1"
-                      checked={checkedItems['check-1'] || false}
-                      onChange={() => toggleCheck('check-1')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-1"
-                      className={`cursor-pointer ${checkedItems['check-1'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ One clear ask ("Please…")
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-2"
-                      checked={checkedItems['check-2'] || false}
-                      onChange={() => toggleCheck('check-2')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-2"
-                      className={`cursor-pointer ${checkedItems['check-2'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ 150–250 words (email) / 1–2 minutes (call)
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-3"
-                      checked={checkedItems['check-3'] || false}
-                      onChange={() => toggleCheck('check-3')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-3"
-                      className={`cursor-pointer ${checkedItems['check-3'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      📍 City/ZIP included
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-4"
-                      checked={checkedItems['check-4'] || false}
-                      onChange={() => toggleCheck('check-4')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-4"
-                      className={`cursor-pointer ${checkedItems['check-4'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      👥 One sentence lived experience
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-5"
-                      checked={checkedItems['check-5'] || false}
-                      onChange={() => toggleCheck('check-5')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-5"
-                      className={`cursor-pointer ${checkedItems['check-5'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      📖 One or two credible sources linked
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-6"
-                      checked={checkedItems['check-6'] || false}
-                      onChange={() => toggleCheck('check-6')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-6"
-                      className={`cursor-pointer ${checkedItems['check-6'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ✍️ Respectful close + contact details
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="check-7"
-                      checked={checkedItems['check-7'] || false}
-                      onChange={() => toggleCheck('check-7')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="check-7"
-                      className={`cursor-pointer ${checkedItems['check-7'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      📅 Calendar a follow-up in 1–2 weeks
-                    </label>
-                  </li>
-                </ul>
-              </div>
+          <GuideCallout tone="reminder" icon="💛" title="Aim your ask at the right office">
+            <p>
+              If your issue is a state registry law, start with state lawmakers.
+              If your issue is a city ordinance, start with the city or county.
+              If your issue is a proposed federal bill, contact your U.S. House
+              member and senators. If your issue is a confusing form or agency
+              practice, the agency may be the first place to ask.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
 
-              {/* Important Note Callout */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-900 mb-3">📌 Best-practice sources</h3>
-                <p className="text-yellow-700">
-                  📄 CMF recommendations: <a href="https://www.congressfoundation.org/storage/documents/CMF_Pubs/cwc_recommendationsreport.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a><br />
-                  🏛️ Senate contacting guidance: <a href="https://www.senate.gov/general/contacting.htm" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a><br />
-                  📖 Berkeley tips: <a href="https://guides.lib.berkeley.edu/ContactingOfficials/Tips" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <GuideSectionHeader
+          id="what-makes-this-different"
+          number="2"
+          title="What makes sex offense advocacy different"
+          subtitle="This is not generic criminal justice advocacy. The politics, stigma, and safety claims are different, so the message needs care."
+        />
 
-        {/* Section 4: Choose Your Channel */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                4
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Choose Your Channel</h2>
-                <p className="text-slate-200">Both Phone and Email/Letter work—pick what fits the moment.</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sex offense policy is often written in a climate of fear. Lawmakers
+              may hear emotional news stories, campaign pressure, police or
+              prosecutor talking points, and broad claims about public safety.
+              They may hear much less from families, people on registries,
+              treatment providers, reentry workers, researchers, and people
+              living with the day-to-day consequences of these laws.
+            </p>
 
-          <div className="p-6">
-            <div className="space-y-6">
-              <div className="bg-gray-50 rounded-lg p-6">
-                <p className="text-gray-700 mb-4">
-                  📞 Phone is fastest before votes; be concise and repeat your ask.<br />
-                  ✉️ Email/Letter leaves a durable record; include a return mailing address for Senate letters and link only 1–2 sources.
-                </p>
-              </div>
+            <p>
+              A useful message does not argue that harm is not serious. It argues
+              that serious harm deserves serious policy: evidence, prevention,
+              accountability, treatment, constitutional limits, individualized
+              review, stable reentry, and rules that do not punish families for
+              the rest of their lives.
+            </p>
 
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Phone vs. Email/Letter:</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-blue-900 mb-3">📞 Phone</h4>
-                    <div className="space-y-2 text-blue-800">
-                      <p><strong>Pros:</strong> Immediate, easy to log, great pre-vote</p>
-                      <p><strong>Cons:</strong> Brief, less detailed, no paper trail</p>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-green-900 mb-3">✉️ Email/Letter</h4>
-                    <div className="space-y-2 text-green-800">
-                      <p><strong>Pros:</strong> Detailed, citable, easy to forward</p>
-                      <p><strong>Cons:</strong> Queue delays, variable forms, longer to draft</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+            <p>
+              Your goal is not to win every argument in one email. Your goal is
+              to help an office see a concrete issue differently: how a proposed
+              law would affect housing, work, family, treatment, transportation,
+              compliance, prevention, or the ability to live safely after
+              punishment.
+            </p>
+          </GuideProse>
 
-        {/* Section 5: Issues & SOLAR Position Tie-Ins */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                5
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Issues & SOLAR Position Tie-Ins</h2>
-                <p className="text-slate-200">Target your ask to one topic. Here are five high-impact issues plus SOLAR's signature RECON stance.</p>
-              </div>
-            </div>
-          </div>
+          <SoftDivider />
 
-          <div className="p-6">
-            <div className="space-y-4">
-              <div className="bg-gray-50 rounded-lg p-6">
-                <ul className="space-y-3 text-gray-700">
-                  <li>⚠️ <strong>Residency Restrictions</strong> — push families into homelessness, do not reduce harm. [DOJ SMART 2018]</li>
-                  <li>📖 <strong>Evidence-Based Reform</strong> — treatment, prevention, risk-based. [SMART 2015; Sentencing Project 2024]</li>
-                  <li>⚖️ <strong>Retroactive Expansions</strong> — unconstitutional, destabilizing.</li>
-                  <li>🏘️ <strong>Reentry Supports</strong> — housing, jobs, family cut recidivism. [CSG Justice Center]</li>
-                  <li>📊 <strong>Transparency & Data</strong> — evidence, not myth, drives policy. [SMART SOMAPI]</li>
-                </ul>
-              </div>
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Do not minimize harm",
+                title: "Stay morally clear",
+                icon: "⚖️",
+                tone: "neutral",
+                description:
+                  "Acknowledge that sexual harm is serious. Then explain why fear-based policy can still be ineffective, overbroad, or destructive.",
+              },
+              {
+                eyebrow: "Do not overexplain",
+                title: "Make one ask",
+                icon: "✉️",
+                tone: "info",
+                description:
+                  "Staff can process a clear message faster than a long personal history. One issue, one ask, one local impact line is enough.",
+              },
+              {
+                eyebrow: "Do not argue from shame",
+                title: "Use dignity and facts",
+                icon: "📚",
+                tone: "research",
+                description:
+                  "The strongest message connects human impact to evidence, prevention, public safety, and constitutional fairness.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Targeted Ask Checklist:</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-3">
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>☑️ Pick one issue</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>📖 Cite 1–2 sources</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>📍 Localize with city/ZIP</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>👥 Add lived-experience line</span>
-                    </label>
-                  </div>
-                  <div className="space-y-3">
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>✍️ State a clear ask</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>📩 Request reply or call</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>🙏 Keep respectful tone</span>
-                    </label>
-                    <label className="flex items-center text-gray-700">
-                      <input type="checkbox" className="mr-3 h-4 w-4 text-green-600 rounded" />
-                      <span>📅 Follow up</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <GuideSectionHeader
+          id="choose-one-ask"
+          number="3"
+          title="Choose one clear ask"
+          subtitle="A lawmaker or staff member should be able to summarize your request in one sentence."
+        />
 
-        {/* Section 6: RECON */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                6
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">RECON: Register Every Convict Or None</h2>
-                <p className="text-slate-200">SOLAR's signature advocacy position: if public safety requires registries, then all convicted individuals should be registered—or none at all.</p>
-              </div>
-            </div>
-          </div>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Start by choosing the policy issue you want the office to act on.
+              You can speak from personal experience, family experience,
+              professional experience, or community concern. The important part
+              is to keep the ask specific.
+            </p>
+          </GuideProse>
 
-          <div className="p-6">
-            <div className="space-y-4">
-              <div className="bg-violet-50 border border-violet-200 rounded-lg p-6">
-                <ul className="space-y-3 text-violet-800">
-                  <li>⚖️ <strong>The Principle:</strong> Registries single out sex-offense convictions despite lower sexual re-arrest rates than other crimes.</li>
-                  <li>📊 <strong>The Evidence:</strong> BJS 9-year follow-up shows sexual re-arrest rates below those of property and drug crimes.</li>
-                  <li>🚨 <strong>The Hypocrisy:</strong> Other crimes with higher reoffense rates do not have registries.</li>
-                  <li>🌐 <strong>The Demand:</strong> Equal protection requires either Register Every Convict Or None.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+          <OverviewCards columns={2} cards={policyIssueCards} />
 
-        {/* Quick Reference Section */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                ✓
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Quick Reference & Shortcuts (Tear-off)</h2>
-                <p className="text-slate-200">Open these in a new tab while you draft.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-emerald-900">🔍 Links to Officials</h4>
-                  <div className="space-y-2 text-sm text-emerald-700">
-                    <div>🏛️ Common Cause: <a href="https://www.commoncause.org/find-your-representative/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                    <div>🏛️ USA.gov: <a href="https://www.usa.gov/elected-officials" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                    <div>🏛️ House: <a href="https://www.house.gov/representatives/find-your-representative" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                    <div>🏛️ Senate: <a href="https://www.senate.gov/senators/senators-contact.htm" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                    <div>🏛️ Congress.gov: <a href="https://www.congress.gov/members/find-your-member" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-emerald-900">🛠️ Templates & Tools</h4>
-                  <div className="space-y-2 text-sm text-emerald-700">
-                    <div>🖥️ SOLAR Generator: <Link to="/advocacy#contact-congress" className="text-blue-600 hover:text-blue-800 underline transition-colors">Link</Link></div>
-                    <div>📧 Democracy.io: <a href="https://democracy.io/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Link</a></div>
-                    <div>📖 SOLAR Position Statements: <Link to="/advocacy#position-statement" className="text-blue-600 hover:text-blue-800 underline transition-colors">Link</Link></div>
-                    <div>⚖️ SOLAR RECON: <Link to="/advocacy#recon" className="text-blue-600 hover:text-blue-800 underline transition-colors">Link</Link></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Templates Section */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                📝
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Sample Templates (Ready to Copy)</h2>
-                <p className="text-slate-200">Customize these as starting points.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <div className="space-y-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">📞 Phone — Residency Restrictions:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-blue-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "Hello, my name is [NAME] … oppose blanket residency bans … research shows no benefit, only instability … thank you."
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">✉️ Email — Evidence-Based Reform:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-green-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "Subject: Support evidence-based reform … Dear [TITLE] … treatment, prevention, individualized risk …"
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">📄 Letter — RECON:</h3>
-                <div className="bg-white p-4 rounded border-l-4 border-purple-400">
-                  <p className="text-gray-700 italic text-sm">
-                    "Re: Register Every Convict Or None … current system is discriminatory … BJS 9-year data …"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 9: Tips for Impact */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                9
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Tips for Impact</h2>
-                <p className="text-slate-200">Simple actions that amplify your voice.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Impact Checklist:</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-1"
-                      checked={checkedItems['impact-1'] || false}
-                      onChange={() => toggleCheck('impact-1')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-1"
-                      className={`cursor-pointer ${checkedItems['impact-1'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Personalize subject line and greeting
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-2"
-                      checked={checkedItems['impact-2'] || false}
-                      onChange={() => toggleCheck('impact-2')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-2"
-                      className={`cursor-pointer ${checkedItems['impact-2'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Add city/ZIP in first line
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-3"
-                      checked={checkedItems['impact-3'] || false}
-                      onChange={() => toggleCheck('impact-3')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-3"
-                      className={`cursor-pointer ${checkedItems['impact-3'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Mention one lived experience
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-4"
-                      checked={checkedItems['impact-4'] || false}
-                      onChange={() => toggleCheck('impact-4')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-4"
-                      className={`cursor-pointer ${checkedItems['impact-4'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Reference one credible source
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-5"
-                      checked={checkedItems['impact-5'] || false}
-                      onChange={() => toggleCheck('impact-5')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-5"
-                      className={`cursor-pointer ${checkedItems['impact-5'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Ask for reply or meeting
-                    </label>
-                  </li>
-                  <li className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="impact-6"
-                      checked={checkedItems['impact-6'] || false}
-                      onChange={() => toggleCheck('impact-6')}
-                      className="mt-1 mr-3 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
-                    />
-                    <label 
-                      htmlFor="impact-6"
-                      className={`cursor-pointer ${checkedItems['impact-6'] ? 'line-through text-gray-500' : ''}`}
-                    >
-                      ☑️ Follow up politely in 1–2 weeks
-                    </label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Final Thoughts */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="p-8 text-center">
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-blue-900 mb-4">Final Thoughts</h2>
-              <div className="space-y-4 text-blue-800">
-                <p className="text-lg">
-                  <strong>✅ Consistency</strong> Be respectful, specific, and local.
-                </p>
-                <p className="text-lg">
-                  <strong>📖 Evidence</strong> Limit to 1–2 authoritative sources.
-                </p>
-                <p className="text-lg">
-                  <strong>📅 Follow-up</strong> One polite follow-up matters.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Sources Section */}
-        <section className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                📚
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Sources & Offline Alternatives</h2>
-                <p className="text-slate-200">Verified resources and alternatives for those with internet restrictions</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h4 className="font-medium text-gray-800 mb-3">🔍 Lookups & Contact</h4>
-                <ul className="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                  <li><a href="https://www.commoncause.org/find-your-representative/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Common Cause – Find Your Representative</a></li>
-                  <li><a href="https://www.usa.gov/elected-officials" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">USA.gov – Elected Officials</a></li>
-                  <li><a href="https://www.house.gov/representatives/find-your-representative" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">U.S. House – Find Your Representative</a></li>
-                  <li><a href="https://www.senate.gov/senators/senators-contact.htm" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">U.S. Senate – Senators Contact Directory</a></li>
-                  <li><a href="https://www.senate.gov/general/resources/pdf/senators_phone_list.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Senate phone list (PDF)</a></li>
-                  <li><a href="https://www.congress.gov/members/find-your-member" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Congress.gov – Members</a></li>
-                  <li><a href="https://open.pluralpolicy.com/find_your_legislator/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Open States/Plural – State lookup</a></li>
-                  <li><a href="https://democracy.io/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Democracy.io – Email Congress</a></li>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="font-medium text-gray-800 mb-3">📖 Evidence & Best Practices</h4>
-                <ul className="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                  <li><a href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/9-case-law-update-2018-residency-restrictions.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">DOJ SMART — Residency Restrictions: Case Law Update (2018)</a></li>
-                  <li><a href="https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/recidivismofadultsexualoffenders.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">DOJ SMART — Recidivism of Adult Sexual Offenders (Przybylski, 2015)</a></li>
-                  <li><a href="https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">BJS — Recidivism of Sex Offenders Released from State Prison: 9-Year Follow-Up report page</a></li>
-                  <li><a href="https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">BJS — Recidivism of Sex Offenders Released from State Prison: 9-Year Follow-Up PDF</a></li>
-                  <li><a href="https://www.sentencingproject.org/policy-brief/responding-to-crimes-of-a-sexual-nature-what-we-really-want-is-no-more-victims/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">The Sentencing Project — Responding to Crimes of a Sexual Nature (2024)</a></li>
-                  <li><a href="https://csgjusticecenter.org/publications/50-states-1-goal/" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">CSG Justice Center — 50 States, 1 Goal</a></li>
-                  <li><a href="https://www.congressfoundation.org/storage/documents/CMF_Pubs/cwc_recommendationsreport.pdf" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">Congressional Management Foundation — Communicating with Congress (PDF)</a></li>
-                  <li><a href="https://www.senate.gov/general/contacting.htm" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">U.S. Senate — Contacting Your Senators</a></li>
-                  <li><a href="https://guides.lib.berkeley.edu/ContactingOfficials/Tips" className="text-blue-600 hover:text-blue-800 underline transition-colors" target="_blank" rel="noopener">UC Berkeley Library — Tips for Contacting Officials</a></li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
-              <h4 className="font-medium text-amber-800 mb-3">📚 Offline Alternatives</h4>
-              <ul className="list-disc pl-5 text-amber-700 space-y-1 text-sm">
-                <li>📚 Local public library: staff can help with lookups & printing letters</li>
-                <li>🏛️ District offices: call local office for addresses & best contact method</li>
-                <li>🗳️ Town/county clerk: provides council/board contacts and meeting schedules</li>
+          <GuideCallout tone="info" icon="✍️" title="Examples of clear asks">
+            <GuideProse>
+              <ul>
+                <li>
+                  Please oppose blanket residency restrictions that make housing
+                  and reentry less stable.
+                </li>
+                <li>
+                  Please oppose retroactive registry expansions that change the
+                  consequences after sentencing.
+                </li>
+                <li>
+                  Please support individualized registry relief and meaningful
+                  review pathways.
+                </li>
+                <li>
+                  Please require data, fiscal notes, and constitutional review
+                  before expanding sex offense restrictions.
+                </li>
+                <li>
+                  Please protect families from unnecessary collateral punishment
+                  when they are supporting safe reentry.
+                </li>
               </ul>
-            </div>
-          </div>
-        </section>
-      </article>
+            </GuideProse>
+          </GuideCallout>
+        </GuideSectionCard>
 
-      {/* Print Styles */}
-      <style jsx>{`
-        @media print {
-          .print\\:hidden { display: none !important; }
-          .print\\:py-6 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
-          .print\\:py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
-          .print\\:pb-4 { padding-bottom: 1rem !important; }
-          .print\\:mb-8 { margin-bottom: 2rem !important; }
-          .print\\:mb-6 { margin-bottom: 1.5rem !important; }
-          .print\\:mt-8 { margin-top: 2rem !important; }
-          .print\\:space-y-6 > * + * { margin-top: 1.5rem !important; }
-          .print\\:text-2xl { font-size: 1.5rem !important; line-height: 2rem !important; }
-          .print\\:text-sm { font-size: 0.875rem !important; line-height: 1.25rem !important; }
-          .print\\:text-xs { font-size: 0.75rem !important; line-height: 1rem !important; }
-          .print\\:w-8 { width: 2rem !important; }
-          .print\\:h-8 { height: 2rem !important; }
-          .print\\:text-base { font-size: 1rem !important; line-height: 1.5rem !important; }
-          .print\\:p-6 { padding: 1.5rem !important; }
-          .print\\:p-4 { padding: 1rem !important; }
-          .print\\:grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
-          .print\\:gap-4 { gap: 1rem !important; }
-          
-          body { -webkit-print-color-adjust: exact !important; color-adjust: exact !important; }
-          * { box-shadow: none !important; }
-        }
-      `}</style>
+        <GuideSectionHeader
+          id="build-message"
+          number="4"
+          title="Build a message staff can actually use"
+          subtitle="Short, local, respectful messages are easier for offices to record, forward, and respond to."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A good advocacy message is not a legal brief. It is a clear
+              constituent communication. It tells the office who you are, what
+              you are asking for, why it matters, and how to follow up.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="seven-part-message"
+            title="The seven-part structure"
+            columns={1}
+            items={[
+              {
+                id: "intro",
+                label:
+                  "Introduce yourself by role and location: constituent, family member, person affected by registry law, professional, faith leader, provider, or concerned resident.",
+              },
+              {
+                id: "ask",
+                label:
+                  "Make one clear ask: oppose, support, amend, study, delay, require data, or meet with impacted people.",
+              },
+              {
+                id: "impact",
+                label:
+                  "Add one lived-experience line about housing, work, family, compliance, treatment, safety, or reentry.",
+              },
+              {
+                id: "evidence",
+                label:
+                  "Use one or two credible sources at most. Do not bury the message in links.",
+              },
+              {
+                id: "safety",
+                label:
+                  "Explain the public-safety reason: stability, prevention, individualized review, due process, or better use of resources.",
+              },
+              {
+                id: "reply",
+                label:
+                  "Ask for a reply, staff call, meeting, or the lawmaker’s position.",
+              },
+              {
+                id: "contact",
+                label:
+                  "Include your name, city, ZIP code, and safe contact information.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="👪" title="For family members and loved ones">
+            <p>
+              You do not have to disclose every detail of your loved one’s case.
+              You can focus on what the law does to the household: housing loss,
+              child stability, caregiving, transportation, employment, treatment
+              access, or the ability to follow rules successfully.
+            </p>
+          </GuideCallout>
+
+          <VerifyBeforeActing
+            whoToAsk="A lawyer, supervising officer, case manager, or trusted advocate if you are unsure whether a message could affect a pending case, supervision condition, registration duty, or safety plan."
+            whatToAsk="Ask whether it is safe to identify yourself, mention your loved one, discuss case details, use email, attend a meeting, or publish testimony."
+            whatToSave="Save the guidance you receive, the date, the person’s name or office, and a copy of any message you send."
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="tell-story-safely"
+          number="5"
+          title="Tell your story without oversharing"
+          subtitle="Personal experience can matter, but you do not need to expose private details to be effective."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People affected by sex offense laws often feel pressure to explain
+              everything because the system can feel arbitrary and unfair. But
+              legislative offices usually need a short, usable message. You can
+              be honest without giving details that are private, graphic, legally
+              risky, or unnecessary.
+            </p>
+
+            <p>
+              A safe personal sentence usually names the impact, not the full
+              history. For example: “This restriction would make it harder for my
+              family to keep stable housing,” or “A clear relief process would
+              give people who have remained offense-free a reason to keep
+              building a stable life.”
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={2}
+            cards={[
+              {
+                eyebrow: "Safer to share",
+                title: "Impact, location, and policy concern",
+                icon: "✅",
+                tone: "success",
+                description:
+                  "Housing instability, work barriers, family impact, confusing compliance rules, lack of review, and why the proposed policy would help or hurt public safety.",
+              },
+              {
+                eyebrow: "Be careful with",
+                title: "Case details, names, and admissions",
+                icon: "⚠️",
+                tone: "warning",
+                description:
+                  "Pending cases, victim identities, disputed facts, supervision details, treatment records, addresses, school names, workplace names, or anything a court order limits.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="before-you-send"
+            title="Before you send"
+            columns={1}
+            items={[
+              {
+                id: "one-ask",
+                label: "Can a staff member identify your one clear ask?",
+              },
+              {
+                id: "not-too-long",
+                label:
+                  "Is the message short enough to read quickly: about 150–250 words for an email or one to two minutes for a call?",
+              },
+              {
+                id: "local",
+                label: "Did you include your city or ZIP code?",
+              },
+              {
+                id: "one-impact",
+                label:
+                  "Did you include one practical impact instead of your whole life story?",
+              },
+              {
+                id: "respectful",
+                label:
+                  "Would the message still sound respectful if read aloud at a public meeting?",
+              },
+              {
+                id: "safe",
+                label:
+                  "Did you remove details that could create legal, privacy, supervision, family, or safety risk?",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts"
+          number="6"
+          title="Scripts you can copy"
+          subtitle="Use these as starting points. Replace bracketed text and keep the message focused."
+        />
+
+        <GuideSectionCard>
+          <ScriptBox
+            title="Phone call: oppose blanket residency restrictions"
+            tone="neutral"
+            context="Use this when a bill, ordinance, or public meeting is moving quickly."
+            script={`Hello, my name is [NAME], and I live in [CITY/ZIP]. I am calling about [BILL NUMBER / ORDINANCE / ISSUE].
+
+Please oppose blanket residency restrictions for people on sex offense registries. These rules can push people away from stable housing, family support, work, treatment, and transportation. That instability can make compliance harder and does not create the kind of prevention our community needs.
+
+I support accountability and real public safety. I am asking [REPRESENTATIVE/SENATOR/COUNCIL MEMBER NAME] to oppose blanket restrictions and support evidence-based, individualized policy instead.
+
+Can you please record my position and let me know where the office stands on this issue?`}
+          />
+
+          <ScriptBox
+            title="Email or contact form: support registry relief and review"
+            tone="neutral"
+            context="Use this when asking for individualized review, removal pathways, or limits on permanent public punishment."
+            script={`Subject: Please support individualized registry review
+
+Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing as [a person affected by registry law / a family member / a concerned constituent / a provider / a community member].
+
+Please support a meaningful, individualized process for registry relief. People who have completed their sentence, followed the law, remained offense-free, and built stable lives should have a fair way to ask for review.
+
+Permanent public registration can affect housing, work, family stability, transportation, and safety long after punishment is complete. A review process does not erase accountability. It asks whether continued public registration is still necessary, evidence-based, and proportionate.
+
+I urge you to support policies that include due process, individualized risk review, clear eligibility rules, and a path for people who demonstrate long-term stability.
+
+Please let me know your position on this issue.
+
+Thank you,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="Email or letter: require evidence before expanding restrictions"
+            tone="neutral"
+            context="Use this when a legislature is considering a new restriction, expansion, public-notification rule, or retroactive change."
+            script={`Subject: Please require evidence before expanding sex offense restrictions
+
+Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing about [BILL NUMBER / ISSUE].
+
+Sexual harm is serious, and prevention matters. That is why I am asking you to require evidence before expanding registry restrictions, residency bans, public notification, or retroactive penalties.
+
+Before passing new restrictions, lawmakers should ask: What problem does this solve? What evidence shows it will prevent harm? What are the housing, employment, family, treatment, compliance, and fiscal impacts? Will this apply retroactively? Is there individualized review? Are there safer and more effective alternatives?
+
+Fear-based laws can sound protective while making reentry less stable and families less secure. Please support prevention-focused, evidence-based policy instead of automatic expansion.
+
+I would appreciate a reply with your position on this issue.
+
+Sincerely,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="Family member script: explain household impact"
+            tone="neutral"
+            context="Use this when you want to speak as a spouse, parent, adult child, caregiver, or loved one without sharing private case details."
+            script={`Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing as a family member affected by sex offense registry laws.
+
+I support accountability and safety. I also want lawmakers to understand that broad restrictions often affect entire families, including spouses, children, parents, and caregivers who were not convicted of anything.
+
+When rules make housing, work, transportation, or family contact unstable, the burden does not fall on one person alone. It can affect children’s routines, caregiving, finances, mental health, and the ability of a household to stay safe and compliant.
+
+Please consider the family impact before expanding registry restrictions, residency bans, public notification, or retroactive requirements. I ask you to support individualized, evidence-based policy that protects the public without creating unnecessary collateral harm.
+
+Thank you for your time,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="RECON framing: Register Every Convict Or None"
+            tone="neutral"
+            context="Use carefully. This is strongest when framed as an equal-treatment and evidence question, not as a slogan alone."
+            script={`Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am asking you to examine the fairness and evidence behind public registry policy.
+
+SOLAR’s RECON position means Register Every Convict Or None. The point is not that every conviction should lead to a public registry. The point is that sex offense registries single out one category of conviction for public exposure and long-term collateral punishment while many other serious offenses do not trigger the same public system.
+
+If public registries are truly necessary for safety, lawmakers should be able to explain why the rule applies here, why it does not apply elsewhere, what evidence supports it, and whether less harmful prevention strategies would work better.
+
+Please support policy that is evidence-based, individualized, constitutional, and focused on real prevention rather than permanent public punishment.
+
+Sincerely,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="7"
+          title="Mistakes that can weaken your message"
+          subtitle="These are common, especially when someone is scared, angry, exhausted, or newly affected by the system."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="common-mistakes"
+            title="Try to avoid"
+            columns={1}
+            items={[
+              {
+                id: "everything",
+                label:
+                  "Trying to explain every injustice at once. Pick one issue and one ask.",
+              },
+              {
+                id: "minimize",
+                label:
+                  "Minimizing harm or sounding dismissive of victims. Stay clear that prevention and accountability matter.",
+              },
+              {
+                id: "angry",
+                label:
+                  "Sending insults, threats, or all-caps anger. Anger is understandable, but hostile messages are easy to dismiss.",
+              },
+              {
+                id: "stats",
+                label:
+                  "Using too many statistics. One credible source and one local impact line are usually stronger.",
+              },
+              {
+                id: "overshare",
+                label:
+                  "Sharing case facts, names, addresses, treatment details, or supervision information that does not need to be shared.",
+              },
+              {
+                id: "wrong-office",
+                label:
+                  "Contacting the wrong level of government. State registry law usually belongs with state lawmakers, not Congress.",
+              },
+              {
+                id: "silence",
+                label:
+                  "Assuming silence means your message did not matter. Offices often log constituent contacts even when replies are slow or generic.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="💛" title="You do not have to carry the whole issue alone">
+            <p>
+              Advocacy in this area can be emotionally heavy. A short message,
+              one phone call, one public comment, or one follow-up is still real
+              participation. Consistency matters more than intensity.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="follow-up"
+          number="8"
+          title="Follow up without burning out"
+          subtitle="A simple recordkeeping habit helps you stay organized and protects your energy."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="follow-up-checklist"
+            title="After you contact an office"
+            columns={1}
+            items={[
+              {
+                id: "save-copy",
+                label: "Save a copy or screenshot of what you sent.",
+              },
+              {
+                id: "log-office",
+                label:
+                  "Write down the official’s name, office, staff member if known, date, and contact method.",
+              },
+              {
+                id: "calendar",
+                label:
+                  "Put one polite follow-up reminder on your calendar for one to two weeks later.",
+              },
+              {
+                id: "track-position",
+                label:
+                  "If the office replies, save the response and note whether they supported, opposed, avoided, or misunderstood your ask.",
+              },
+              {
+                id: "share-carefully",
+                label:
+                  "Share updates with trusted people, but avoid posting private legal or family details publicly.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="success" icon="🌱" title="A small message can still be useful">
+            <p>
+              Lawmakers may never fully understand this issue unless affected
+              people and families speak. Your message can add one more real-life
+              data point against fear-based policy.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offline-limited-access"
+          number="9"
+          title="If internet access, privacy, or supervision is limited"
+          subtitle="You can still participate even if you are phone-only, without a printer, relying on a helper, incarcerated, or under restrictions."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet and paper-based options"
+            items={[
+              "Call the district office and ask for the best mailing address, staff contact, or public-comment instructions.",
+              "Ask a public library, legal aid office, reentry organization, faith community, or trusted helper to print a bill, meeting agenda, or letter.",
+              "Use a paper notebook to track names, dates, offices, phone numbers, bill numbers, and what each office told you.",
+              "If you are incarcerated, ask whether family, counsel, clergy, or an approved outside contact can print materials or mail a letter for you.",
+              "If you are under supervision or internet restrictions, verify what contact methods are allowed before using online forms, public comment systems, or social media.",
+              "If you cannot safely identify yourself, consider a shorter message focused on policy impact, family impact, or evidence questions rather than personal case details.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
+            <p>
+              Public comment, hearing testimony, emails to public offices, and
+              online forms may become records. Do not include private addresses,
+              victim names, children’s details, treatment information, disputed
+              case facts, or anything a court or supervision condition limits.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="find-officials"
+          number="10"
+          title="Find officials, track bills, and keep going"
+          subtitle="Use official lookup tools first, then use SOLAR resources to shape the message."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Find the right official"
+            resources={officialLookupLinks}
+          />
+
+          <SoftDivider />
+
+          <ResourceLinkGrid
+            title="SOLAR advocacy tools"
+            resources={solarAdvocacyLinks}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sources"
+          number="11"
+          title="Sources and related guides"
+          subtitle="Use sources to support the message, not to overwhelm it."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              For most lawmaker messages, one credible source is enough. Choose a
+              source that matches your ask: recidivism data for registry
+              expansion, local impact for housing rules, constitutional concerns
+              for retroactive punishment, or reentry research for employment and
+              stability.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Evidence and advocacy practice resources"
+            resources={[
+              {
+                label: "DOJ SMART — SOMAPI",
+                description:
+                  "Federal sex offense management and research background materials.",
+                href: "https://smart.ojp.gov/somapi",
+                badge: "Federal",
+              },
+              {
+                label: "BJS — 9-Year Recidivism Follow-Up",
+                description:
+                  "Federal report often cited in registry and recidivism policy discussions.",
+                href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
+                badge: "Federal",
+              },
+              {
+                label: "The Sentencing Project",
+                description:
+                  "Policy report on responding to crimes of a sexual nature.",
+                href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+                badge: "Research",
+              },
+              {
+                label: "CSG Justice Center — 50 States, 1 Goal",
+                description:
+                  "State recidivism trend resource for data-driven policy conversations.",
+                href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
+                badge: "Research",
+              },
+              {
+                label: "Congressional Management Foundation",
+                description:
+                  "Best-practice guidance on how congressional offices process constituent communication.",
+                href: "https://www.congressfoundation.org/projects/communicating-with-congress",
+                badge: "Practice",
+              },
+              {
+                label: "UC Berkeley Library — Contacting Officials",
+                description:
+                  "Plain-language tips for preparing and sending messages to elected officials.",
+                href: "https://guides.lib.berkeley.edu/ContactOfficials",
+                badge: "Guide",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "SOLAR Advocacy Hub",
+                description:
+                  "Use SOLAR’s advocacy tools, position statements, and issue campaigns.",
+                to: "/advocacy",
+              },
+              {
+                title: "SOLAR Script Generator",
+                description:
+                  "Draft a lawmaker message and adapt it to your role, state, and issue.",
+                to: "/advocacy#contact-congress",
+              },
+              {
+                title: "SOLAR Position Statements",
+                description:
+                  "Review SOLAR’s public policy framing before writing your own message.",
+                to: "/advocacy#position-statement",
+              },
+              {
+                title: "RECON",
+                description:
+                  "Explore SOLAR’s Register Every Convict Or None position and equal-treatment argument.",
+                to: "/advocacy#recon",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <SourceList
+            note="External links should be reviewed periodically before publication. Some research sources are useful background but may be archived or updated over time."
+            sources={[
+              ...evidenceAndPracticeSources,
+              {
+                label: "Common Cause — Find Your Representative",
+                href: "https://www.commoncause.org/find-your-representative/",
+                description:
+                  "Representative lookup tool used in the official lookup section.",
+              },
+              {
+                label: "USA.gov — Elected Officials",
+                href: "https://www.usa.gov/elected-officials",
+                description:
+                  "Official directory for federal, state, territorial, and local elected officials.",
+              },
+              {
+                label: "U.S. House — Find Your Representative",
+                href: "https://www.house.gov/representatives/find-your-representative",
+                description:
+                  "Official House lookup tool for congressional representatives.",
+              },
+              {
+                label: "U.S. Senate — Contact Senators",
+                href: "https://www.senate.gov/senators/senators-contact.htm",
+                description:
+                  "Official Senate contact directory.",
+              },
+              {
+                label: "U.S. Senate — Senators Suite and Telephone List",
+                href: "https://www.senate.gov/general/resources/pdf/senators_phone_list.pdf",
+                description:
+                  "Official Senate PDF with office rooms and phone numbers.",
+              },
+              {
+                label: "Congress.gov — Members",
+                href: "https://www.congress.gov/members",
+                description:
+                  "Official member and bill lookup from the Library of Congress.",
+              },
+              {
+                label: "Open States / Plural — Find Your Legislator",
+                href: "https://open.pluralpolicy.com/find_your_legislator/",
+                description:
+                  "State legislator lookup tool used for state advocacy.",
+              },
+              {
+                label: "Democracy.io",
+                href: "https://democracy.io/",
+                description:
+                  "Federal representative lookup and message tool.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
