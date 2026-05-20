@@ -8,63 +8,209 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
+  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
+  OfflineOptions,
   VerifyBeforeActing,
-  CommonMistakes,
   OverviewCards,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  RoleGuidanceGrid,
-  TimelineGuidanceGrid,
 } from "../../components/solar";
 
-const sourceLinks = [
+const officialLookupLinks = [
   {
-    label:
-      "American Academy of Pediatrics / HealthyChildren — Tips to Support Children When a Parent is in Prison",
-    href: "https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx",
+    label: "Common Cause — Find Your Representative",
     description:
-      "Supports caregiver stability, honest communication, reassurance, and helping children cope when a parent is incarcerated.",
+      "A broad lookup tool for federal, state, and local elected officials.",
+    href: "https://www.commoncause.org/find-your-representative/",
+    badge: "Lookup",
   },
   {
-    label: "National Child Traumatic Stress Network — Families and Caregivers",
-    href: "https://www.nctsn.org/audiences/families-and-caregivers",
+    label: "USA.gov — Elected Officials",
     description:
-      "Supports trauma-aware caregiver responses, age-related reactions, safety, routines, and developmentally appropriate support.",
+      "Official federal directory for finding federal, state, territorial, and local officials.",
+    href: "https://www.usa.gov/elected-officials",
+    badge: "Official",
   },
   {
-    label: "Sesame Workshop — Incarceration",
-    href: "https://sesameworkshop.org/topics/incarceration/",
+    label: "U.S. House — Find Your Representative",
     description:
-      "Child-friendly resources, videos, printables, and caregiver tools for children affected by incarceration.",
+      "Official House lookup by ZIP code for your member of Congress.",
+    href: "https://www.house.gov/representatives/find-your-representative",
+    badge: "Official",
   },
   {
-    label: "Sesame Workshop — Visiting a Parent in Prison",
-    href: "https://sesameworkshop.org/resources/visiting-parent-prison/",
+    label: "U.S. Senate — Contact Senators",
     description:
-      "Supports preparing children for facility visits, including uniforms, waiting, rules, limits on touch, and saying goodbye.",
+      "Official Senate directory for senator contact pages and office information.",
+    href: "https://www.senate.gov/senators/senators-contact.htm",
+    badge: "Official",
   },
   {
-    label: "Stop It Now! — Talking to Children and Teens",
-    href: "https://www.stopitnow.org/ohc-content/talking-to-children-and-teens",
+    label: "Congress.gov — Members",
     description:
-      "Supports accurate, age-appropriate conversations with children and emphasizes adult responsibility for safety.",
+      "Official congressional member and bill information from the Library of Congress.",
+    href: "https://www.congress.gov/members",
+    badge: "Official",
   },
   {
-    label:
-      "NCTSN — Caring for Kids: What Parents Need to Know about Sexual Abuse",
-    href: "https://www.nctsn.org/resources/caring-kids-what-parents-need-know-about-sexual-abuse",
+    label: "Open States / Plural — State Legislator Lookup",
     description:
-      "Supports caregiver guidance around child safety, legal involvement, family impact, and responding to children with care.",
+      "A state-level lookup tool for finding state lawmakers and legislative districts.",
+    href: "https://open.pluralpolicy.com/find_your_legislator/",
+    badge: "State",
+  },
+];
+
+const solarAdvocacyLinks = [
+  {
+    label: "SOLAR Advocacy Hub",
+    description:
+      "Use SOLAR advocacy tools, position statements, and campaign materials.",
+    href: "/advocacy",
+    badge: "SOLAR",
   },
   {
-    label: "988 Suicide & Crisis Lifeline",
-    href: "https://988lifeline.org/",
+    label: "SOLAR Script Generator",
     description:
-      "Crisis support for anyone who feels at risk of harming themselves or who needs immediate emotional support.",
+      "Draft a message to lawmakers and adapt it to your state, issue, and role.",
+    href: "/advocacy#contact-congress",
+    badge: "Tool",
+  },
+  {
+    label: "SOLAR Position Statements",
+    description:
+      "Review SOLAR’s issue framing before drafting your own message.",
+    href: "/advocacy#position-statement",
+    badge: "SOLAR",
+  },
+  {
+    label: "RECON — Register Every Convict Or None",
+    description:
+      "Read SOLAR’s equal-treatment argument about registry policy and public safety.",
+    href: "/advocacy#recon",
+    badge: "SOLAR",
+  },
+];
+
+const evidenceAndPracticeSources = [
+  {
+    label: "DOJ SMART — Sex Offender Management Assessment and Planning Initiative",
+    href: "https://smart.ojp.gov/somapi",
+    description:
+      "Federal SMART Office materials on sex offense policy, management, and research background.",
+  },
+  {
+    label: "DOJ SMART — Adult Sex Offender Recidivism",
+    href: "https://smart.ojp.gov/somapi/chapter-5-adult-sex-offender-recidivism",
+    description:
+      "Archived SMART Office chapter often used for background on recidivism research.",
+  },
+  {
+    label: "BJS — Recidivism of Sex Offenders Released from State Prison: 9-Year Follow-Up",
+    href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
+    description:
+      "Bureau of Justice Statistics report frequently cited in registry and recidivism policy discussions.",
+  },
+  {
+    label: "The Sentencing Project — Responding to Crimes of a Sexual Nature",
+    href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+    description:
+      "Policy-focused report discussing prevention, accountability, punishment, and alternatives.",
+  },
+  {
+    label: "Council of State Governments Justice Center — 50 States, 1 Goal",
+    href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
+    description:
+      "State recidivism trends resource that can help advocates ask for data-driven policy.",
+  },
+  {
+    label: "Congressional Management Foundation — Communicating with Congress",
+    href: "https://www.congressfoundation.org/projects/communicating-with-congress",
+    description:
+      "Best-practice resource on how congressional offices receive and process constituent messages.",
+  },
+  {
+    label: "U.S. Senate — Contacting Your Senators",
+    href: "https://www.senate.gov/senators/senators-contact.htm",
+    description:
+      "Official Senate contact information and office access point.",
+  },
+  {
+    label: "UC Berkeley Library — Contacting Elected Officials",
+    href: "https://guides.lib.berkeley.edu/ContactOfficials",
+    description:
+      "Plain-language tips for contacting elected officials and preparing messages.",
+  },
+];
+
+const policyIssueCards = [
+  {
+    eyebrow: "Registry expansion",
+    title: "More people, longer terms, fewer off-ramps",
+    icon: "📋",
+    tone: "legal",
+    description:
+      "Speak against automatic expansion that increases public exposure without individualized review, evidence, or a clear safety purpose.",
+  },
+  {
+    eyebrow: "Retroactive punishment",
+    title: "New rules applied after sentencing",
+    icon: "⚖️",
+    tone: "warning",
+    description:
+      "Explain why changing rules years later can destabilize housing, work, family life, and reentry planning.",
+  },
+  {
+    eyebrow: "Residency restrictions",
+    title: "Housing bans that can create instability",
+    icon: "🏠",
+    tone: "urgent",
+    description:
+      "Ask lawmakers to reject blanket distance rules that push people away from housing, treatment, employment, transportation, and family support.",
+  },
+  {
+    eyebrow: "Employment barriers",
+    title: "Rules that block lawful work",
+    icon: "🧰",
+    tone: "info",
+    description:
+      "Advocate for fair hiring, licensing review, and work access that supports accountability and stability after punishment.",
+  },
+  {
+    eyebrow: "Family separation",
+    title: "Policies that punish households",
+    icon: "👨‍👩‍👧",
+    tone: "family",
+    description:
+      "Describe how broad restrictions can affect spouses, children, parents, caregivers, and people trying to maintain safe family relationships.",
+  },
+  {
+    eyebrow: "Public notification",
+    title: "Exposure without clear prevention",
+    icon: "📣",
+    tone: "warning",
+    description:
+      "Ask whether online exposure, broad alerts, or public shaming actually prevent harm or simply increase harassment and instability.",
+  },
+  {
+    eyebrow: "Deregistration",
+    title: "Meaningful paths to review and relief",
+    icon: "🛤️",
+    tone: "success",
+    description:
+      "Support individualized relief pathways based on time offense-free, conduct, treatment progress, risk review, and due process.",
+  },
+  {
+    eyebrow: "Evidence and data",
+    title: "Require proof before expanding restrictions",
+    icon: "📊",
+    tone: "research",
+    description:
+      "Ask lawmakers to demand data, fiscal notes, constitutional review, and real prevention evidence before passing new restrictions.",
   },
 ];
 
@@ -74,9 +220,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Talking With Children About a Loved One’s Legal Situation | The SOLAR Project"
-        description="A calm, practical SOLAR guide for caregivers and supporters talking with children about arrest, incarceration, supervision, registry rules, public stigma, and family change."
-        keywords="children disclosure, family support, incarceration, registry family guide, reentry family support, talking to children about prison"
+        title="Legislative Advocacy Guide | The SOLAR Project"
+        description="A plain-language SOLAR guide for people affected by sex offense laws who want to contact lawmakers with clear, respectful, evidence-aware messages."
+        keywords="sex offense registry advocacy, legislative advocacy, registry reform, residency restrictions, reentry, sex offense policy, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -93,13 +239,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Talking With Children About a Loved One’s Legal Situation
+            Legislative Advocacy Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A disclosure and family-trust toolkit for caregivers, parents, and
-            supporters navigating investigation, incarceration, supervision,
-            registry rules, public stigma, and family change.
+            You do not have to be an activist or policy expert to contact a
+            lawmaker. This guide helps people affected by sex offense laws use
+            their voice clearly, safely, and practically.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -110,13 +256,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
             >
               🖨️ Print Guide
             </button>
-
-            <a
-              href="#scripts"
-              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
-            >
-              Jump to Scripts
-            </a>
 
             <a
               href="#sources"
@@ -133,840 +272,822 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🧭">
+        <GuideIntro title="Start here: you do not have to be an activist" icon="🧭">
           <p>
-            You do not need a perfect speech. Children usually need three
-            things first: simple truth, reassurance that they are safe and
-            loved, and adults who keep showing up consistently.
+            Many people arrive at sex offense policy after something has already
+            happened to them or someone they love: an accusation, conviction,
+            sentence, registry requirement, supervision condition, housing loss,
+            family disruption, or a proposed law that would make life even more
+            unstable.
           </p>
 
           <p>
-            Much of this guidance applies to any serious family legal crisis.
-            What is different here is that sex-offense cases can involve
-            stricter child-contact rules, stronger public stigma, searchable
-            registry information, and long-term restrictions that affect
-            ordinary family life.
+            Advocacy does not mean excusing harm, denying victims, or asking for
+            no accountability. It means asking whether a law actually prevents
+            harm, supports accountability, protects families, and helps people
+            build stable lives after punishment.
           </p>
 
           <p>
-            Children still need the same basic things: truth, safety, love,
-            routines, and adults who do not make them carry adult burdens.
+            Your message does not have to explain everything. A short, respectful,
+            local message with one clear ask can help lawmakers understand what
+            these laws do in real life.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="Before you talk with a child"
-          subtitle="Use these first steps before a hard conversation, visit, call, letter, school conversation, or family meeting."
+          title="If you want to contact a lawmaker this week"
+          subtitle="Start small. One message to the right office is better than a perfect message you never send."
           icon="⚡"
           urgentActions={[
-            <span key="write">
-              Write one simple, truthful sentence before you speak.
+            <span key="find">
+              Find your state legislator first if the issue involves registry
+              rules, residency restrictions, removal from the registry, state
+              supervision law, or local reentry barriers.
             </span>,
-            <span key="rules">
-              Check whether any court order, custody order, facility rule,
-              supervision condition, treatment rule, or no-contact order limits
-              contact or communication.
+            <span key="one-ask">
+              Pick one issue and one clear ask. Do not try to explain every
+              unfair part of the system in the same message.
             </span>,
-            <span key="adult">
-              Choose one calm adult to lead the conversation, not a crowd of
-              overwhelmed relatives.
+            <span key="local">
+              Add your city or ZIP code and one sentence about real-life impact:
+              housing, work, family, treatment, safety, or reentry stability.
             </span>,
           ]}
           nextActions={[
-            <span key="fault">
-              Plan to say clearly: “You are safe,” “You are loved,” and “This
-              is not your fault.”
+            <span key="source">
+              Add one credible source or ask the office to require evidence
+              before expanding restrictions.
             </span>,
-            <span key="short">
-              Keep the first conversation short. Answer the question the child
-              asked, not every question you fear they might ask later.
+            <span key="reply">
+              Ask for a written reply, staff call, or the lawmaker’s position on
+              the bill or issue.
             </span>,
-            <span key="grounding">
-              End with something grounding: a snack, a walk, bedtime routine,
-              drawing, music, prayer, or quiet time together.
+            <span key="save">
+              Save what you sent, the date, the office contacted, and any reply.
             </span>,
           ]}
           reminder={
             <span>
-              Disclosure is usually a series of short conversations, not one
-              perfect talk.
+              You are allowed to be emotional. The message works better when the
+              words stay calm, specific, and focused on real public safety.
             </span>
           }
         />
 
-        <OverviewCards
-          columns={3}
-          cards={[
-            {
-              eyebrow: "Step 1",
-              title: "Stabilize first",
-              icon: "🧯",
-              tone: "info",
-              description:
-                "Children feel adult panic. Pause, write down the basic facts, and decide who is safe to involve.",
-            },
-            {
-              eyebrow: "Step 2",
-              title: "Tell enough truth",
-              icon: "💬",
-              tone: "family",
-              description:
-                "Use age-appropriate words. Do not give graphic details, legal theories, or adult conflict.",
-            },
-            {
-              eyebrow: "Step 3",
-              title: "Keep returning",
-              icon: "🔁",
-              tone: "success",
-              description:
-                "Children process in pieces. Expect repeated questions, changing feelings, and new conversations as they grow.",
-            },
-          ]}
-        />
-
-        <GuideSectionHeader
-          id="what-is-different"
-          number="1"
-          title="What is universal, and what is different here"
-          subtitle="The child-centered basics are familiar. The legal, stigma, and registry layers need extra care."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The basic child guidance does not change just because the legal
-              situation involves a sex offense or registry issue. Children still
-              need calm adults, honest but age-appropriate words, protection
-              from adult conflict, and permission to feel more than one thing at
-              once.
-            </p>
-
-            <p>
-              What changes is the practical environment around the child.
-              Contact may be restricted. Court, custody, supervision, treatment,
-              facility, school, or registry rules may affect ordinary family
-              routines. Information may be public, searchable, or repeated by
-              other people in cruel or incomplete ways.
-            </p>
-
-            <p>
-              That means this guide avoids two extremes. It does not minimize
-              harm or hide behind vague language. It also does not make a child
-              carry shame, adult fear, legal strategy, or advocacy arguments.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="reminder" icon="🪷" title="The SOLAR-specific layer">
-            <p>
-              In this context, adults should be especially careful about child
-              contact rules, public stigma, searchable information, school and
-              community gossip, and long-term restrictions that may affect
-              visits, housing, travel, technology, school events, and family
-              routines.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
+        <GuideCallout tone="legal" icon="⚖️" title="Before you share personal details">
+          <p>
+            If you have a pending case, active appeal, open investigation, strict
+            supervision condition, no-contact order, internet restriction, or
+            unresolved registration question, talk with a lawyer or supervising
+            authority before sharing details that could create risk. You can
+            still advocate by speaking generally, using family impact language,
+            or asking evidence-based questions.
+          </p>
+        </GuideCallout>
 
 <GuideSectionHeader
-          id="what-children-need"
-          number="2"
-          title="What children need to hear"
-          subtitle="Simple truth, direct reassurance, and steady adults matter more than a perfect explanation."
+          id="what-lawmakers-can-change"
+          number="1"
+          title="What lawmakers can actually change"
+          subtitle="Different offices control different parts of the system. Matching your ask to the right level helps your message land."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Few moments feel as impossible as telling a child that someone
-              they love is in legal trouble, incarcerated, on supervision, or
-              living under registry rules. Silence can feel safer to adults, but
-              children often fill silence with fear, blame, or stories they hear
-              from someone else.
-            </p>
-
-            <p>
-              Start with the child’s immediate world. Who will pick them up?
-              Where will they sleep? Can they still love the person? Are they in
-              trouble? Did they cause this? Will adults keep telling them the
-              truth?
-            </p>
-
-            <p>
-              Most children do not need every detail. They need enough truth to
-              understand the change around them, enough reassurance to feel
-              cared for, and enough consistency to believe adults are not hiding
-              everything from them.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="family" icon="✨" title="A sentence to return to">
-            <p>
-              “This is a grown-up legal problem. You did not cause it. You are
-              safe. You are loved. We will keep answering your questions in
-              words you can understand.”
-            </p>
-          </GuideCallout>
-
-          <GuideChecklist
-            id="child-disclosure-basics"
-            title="Disclosure basics"
-            columns={1}
-            items={[
+          <OverviewCards
+            columns={2}
+            cards={[
               {
-                id: "simple",
-                label:
-                  "Use one or two simple sentences before giving more detail.",
+                eyebrow: "State lawmakers",
+                title: "Registry law, restrictions, relief, and reentry barriers",
+                icon: "🏛️",
+                tone: "legal",
+                description:
+                  "State legislatures usually control registration rules, duration, reporting duties, residency restrictions, deregistration paths, state supervision law, and many collateral consequences.",
               },
               {
-                id: "truth",
-                label:
-                  "Tell the truth without giving graphic facts, legal strategy, or adult-level explanations.",
+                eyebrow: "Local officials",
+                title: "Ordinances, zoning, public meetings, and local implementation",
+                icon: "📍",
+                tone: "info",
+                description:
+                  "City councils, county boards, and local agencies may shape housing restrictions, park/library rules, meeting agendas, zoning, shelter access, and how state law is enforced locally.",
               },
               {
-                id: "fault",
-                label:
-                  "Say directly that the child did not cause the situation and is not responsible for fixing it.",
+                eyebrow: "Congress",
+                title: "Federal standards, funding, and national policy pressure",
+                icon: "🇺🇸",
+                tone: "research",
+                description:
+                  "Congress may affect federal registry standards, funding incentives, interstate systems, federal supervision, federal sentencing policy, and national agency priorities.",
               },
               {
-                id: "harm",
-                label:
-                  "Do not minimize serious harm, but do not make the child responsible for understanding adult details.",
-              },
-              {
-                id: "feelings",
-                label:
-                  "Accept tears, silence, anger, confusion, embarrassment, loyalty, love, or repeated questions.",
-              },
-              {
-                id: "routine",
-                label:
-                  "End the conversation with a predictable, calming activity.",
+                eyebrow: "Agencies",
+                title: "Forms, guidance, procedures, and practical rules",
+                icon: "🗂️",
+                tone: "neutral",
+                description:
+                  "Agencies often decide how rules are explained, what forms are used, how records are handled, and how people are told to comply. Some advocacy asks belong there, not with a legislator.",
               },
             ]}
           />
 
+          <GuideCallout tone="reminder" icon="🎯" title="Aim your ask at the right office">
+            <p>
+              If your issue is a state registry law, start with state lawmakers.
+              If your issue is a city ordinance, start with the city or county.
+              If your issue is a proposed federal bill, contact your U.S. House
+              member and senators. If your issue is a confusing form or agency
+              practice, the agency may be the first place to ask.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="what-makes-this-different"
+          number="2"
+          title="What makes sex offense advocacy different"
+          subtitle="This is not generic criminal justice advocacy. The politics, stigma, and safety claims are different, so the message needs care."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sex offense policy is often written in a climate of fear. Lawmakers
+              may hear emotional news stories, campaign pressure, police or
+              prosecutor talking points, and broad claims about public safety.
+              They may hear much less from families, people on registries,
+              treatment providers, reentry workers, researchers, and people
+              living with the day-to-day consequences of these laws.
+            </p>
+
+            <p>
+              A useful message does not argue that harm is not serious. It argues
+              that serious harm deserves serious policy: evidence, prevention,
+              accountability, treatment, constitutional limits, individualized
+              review, stable reentry, and rules that do not punish families for
+              the rest of their lives.
+            </p>
+
+            <p>
+              Your goal is not to win every argument in one email. Your goal is
+              to help an office see a concrete issue differently: how a proposed
+              law would affect housing, work, family, treatment, transportation,
+              compliance, prevention, or the ability to live safely after
+              punishment.
+            </p>
+          </GuideProse>
+
+          <SoftDivider />
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Do not minimize harm",
+                title: "Stay morally clear",
+                icon: "🧭",
+                tone: "neutral",
+                description:
+                  "Acknowledge that sexual harm is serious. Then explain why fear-based policy can still be ineffective, overbroad, or destructive.",
+              },
+              {
+                eyebrow: "Do not overexplain",
+                title: "Make one ask",
+                icon: "✉️",
+                tone: "info",
+                description:
+                  "Staff can process a clear message faster than a long personal history. One issue, one ask, one local impact line is enough.",
+              },
+              {
+                eyebrow: "Do not argue from shame",
+                title: "Use dignity and facts",
+                icon: "📚",
+                tone: "research",
+                description:
+                  "The strongest message connects human impact to evidence, prevention, public safety, and constitutional fairness.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="choose-one-ask"
+          number="3"
+          title="Choose one clear ask"
+          subtitle="A lawmaker or staff member should be able to summarize your request in one sentence."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Start by choosing the policy issue you want the office to act on.
+              You can speak from personal experience, family experience,
+              professional experience, or community concern. The important part
+              is to keep the ask specific.
+            </p>
+          </GuideProse>
+
+          <OverviewCards columns={2} cards={policyIssueCards} />
+
+          <GuideCallout tone="info" icon="✍️" title="Examples of clear asks">
+            <GuideProse>
+              <ul>
+                <li>
+                  Please oppose blanket residency restrictions that make housing
+                  and reentry less stable.
+                </li>
+                <li>
+                  Please oppose retroactive registry expansions that change the
+                  consequences after sentencing.
+                </li>
+                <li>
+                  Please support individualized registry relief and meaningful
+                  review pathways.
+                </li>
+                <li>
+                  Please require data, fiscal notes, and constitutional review
+                  before expanding sex offense restrictions.
+                </li>
+                <li>
+                  Please protect families from unnecessary collateral punishment
+                  when they are supporting safe reentry.
+                </li>
+              </ul>
+            </GuideProse>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="build-message"
+          number="4"
+          title="Build a message staff can actually use"
+          subtitle="Short, local, respectful messages are easier for offices to record, forward, and respond to."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A good advocacy message is not a legal brief. It is a clear
+              constituent communication. It tells the office who you are, what
+              you are asking for, why it matters, and how to follow up.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="seven-part-message"
+            title="The seven-part structure"
+            columns={1}
+            items={[
+              {
+                id: "intro",
+                label:
+                  "Introduce yourself by role and location: constituent, family member, person affected by registry law, professional, faith leader, provider, or concerned resident.",
+              },
+              {
+                id: "ask",
+                label:
+                  "Make one clear ask: oppose, support, amend, study, delay, require data, or meet with impacted people.",
+              },
+              {
+                id: "impact",
+                label:
+                  "Add one lived-experience line about housing, work, family, compliance, treatment, safety, or reentry.",
+              },
+              {
+                id: "evidence",
+                label:
+                  "Use one or two credible sources at most. Do not bury the message in links.",
+              },
+              {
+                id: "safety",
+                label:
+                  "Explain the public-safety reason: stability, prevention, individualized review, due process, or better use of resources.",
+              },
+              {
+                id: "reply",
+                label:
+                  "Ask for a reply, staff call, meeting, or the lawmaker’s position.",
+              },
+              {
+                id: "contact",
+                label:
+                  "Include your name, city, ZIP code, and safe contact information.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="👪" title="For family members and loved ones">
+            <p>
+              You do not have to disclose every detail of your loved one’s case.
+              You can focus on what the law does to the household: housing loss,
+              child stability, caregiving, transportation, employment, treatment
+              access, or the ability to follow rules successfully.
+            </p>
+          </GuideCallout>
+
           <VerifyBeforeActing
-            title="Verify before arranging contact with a child"
-            whoToAsk={
-              <span>
-                The attorney, court clerk if appropriate, supervising officer,
-                custody attorney, facility staff, treatment provider, or agency
-                with actual authority over the restriction.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “Is this specific contact allowed: a visit, call, letter, text,
-                school event, third-party message, or family gathering involving
-                this child?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save the date, person’s name, department, exact answer, and any
-                written permission, order, policy, or denial.
-              </span>
-            }
+            whoToAsk="A lawyer, supervising officer, case manager, or trusted advocate if you are unsure whether a message could affect a pending case, supervision condition, registration duty, or safety plan."
+            whatToAsk="Ask whether it is safe to identify yourself, mention your loved one, discuss case details, use email, attend a meeting, or publish testimony."
+            whatToSave="Save the guidance you receive, the date, the person’s name or office, and a copy of any message you send."
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="tell-story-safely"
+          number="5"
+          title="Tell your story without oversharing"
+          subtitle="Personal experience can matter, but you do not need to expose private details to be effective."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People affected by sex offense laws often feel pressure to explain
+              everything because the system can feel arbitrary and unfair. But
+              legislative offices usually need a short, usable message. You can
+              be honest without giving details that are private, graphic, legally
+              risky, or unnecessary.
+            </p>
+
+            <p>
+              A safe personal sentence usually names the impact, not the full
+              history. For example: “This restriction would make it harder for my
+              family to keep stable housing,” or “A clear relief process would
+              give people who have remained offense-free a reason to keep
+              building a stable life.”
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={2}
+            cards={[
+              {
+                eyebrow: "Safer to share",
+                title: "Impact, location, and policy concern",
+                icon: "✅",
+                tone: "success",
+                description:
+                  "Housing instability, work barriers, family impact, confusing compliance rules, lack of review, and why the proposed policy would help or hurt public safety.",
+              },
+              {
+                eyebrow: "Be careful with",
+                title: "Case details, names, and admissions",
+                icon: "⚠️",
+                tone: "warning",
+                description:
+                  "Pending cases, victim identities, disputed facts, supervision details, treatment records, addresses, school names, workplace names, or anything a court order limits.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="before-you-send"
+            title="Before you send"
+            columns={1}
+            items={[
+              {
+                id: "one-ask",
+                label: "Can a staff member identify your one clear ask?",
+              },
+              {
+                id: "not-too-long",
+                label:
+                  "Is the message short enough to read quickly: about 150–250 words for an email or one to two minutes for a call?",
+              },
+              {
+                id: "local",
+                label: "Did you include your city or ZIP code?",
+              },
+              {
+                id: "one-impact",
+                label:
+                  "Did you include one practical impact instead of your whole life story?",
+              },
+              {
+                id: "respectful",
+                label:
+                  "Would the message still sound respectful if read aloud at a public meeting?",
+              },
+              {
+                id: "safe",
+                label:
+                  "Did you remove details that could create legal, privacy, supervision, family, or safety risk?",
+              },
+            ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="scripts"
-          number="3"
-          title="Age-aware scripts"
-          subtitle="Use these as starting points. Adjust names, relationships, and legal posture without adding graphic detail."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Scripts help adults speak calmly when emotions are high. They are
-              not meant to hide the truth. They are meant to keep the truth
-              small enough for the child’s age, safety, and role.
-            </p>
-
-            <p>
-              For younger children, focus on safety, routine, and love. For
-              older children and teens, use clearer words and leave room for
-              anger, embarrassment, loyalty, confusion, and complicated feelings.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="info" icon="🌿" title="About the tone of these scripts">
-            <p>
-              The scripts below are intentionally presented in a softer style.
-              They are serious, but they should not look like emergency warnings.
-              The goal is to give adults calm language they can actually use.
-            </p>
-          </GuideCallout>
-
-          <ScriptBox
-            title="Preschool children, roughly ages 3–5"
-            tone="neutral"
-            context="Use very short sentences. Young children need reassurance and routine more than explanation."
-            script={`Daddy cannot live at home right now because of a serious grown-up problem.\n\nYou did not cause this. You are safe. You are loved.\n\nWe are going to have dinner, read a story, and I will answer more questions when you have them.`}
-          />
-
-          <ScriptBox
-            title="Elementary children, roughly ages 6–10"
-            tone="neutral"
-            context="Children this age may ask the same question many times. Repetition can be part of feeling safe."
-            script={`Mom is in legal trouble because adults believe she broke an important rule.\n\nI do not have every answer yet, but I will tell you the truth in words you can understand.\n\nThis is not your fault. You are safe, and you are loved.`}
-          />
-
-          <ScriptBox
-            title="Middle school children, roughly ages 11–13"
-            tone="neutral"
-            context="Use clearer language while still protecting them from adult details."
-            script={`Uncle has a serious legal situation and has to follow rules from the court.\n\nYou may feel confused, embarrassed, angry, loyal, worried, or unsure what to think. Those feelings are allowed.\n\nYou can ask me questions. If I do not know the answer, I will say that instead of guessing.`}
-          />
-
-          <ScriptBox
-            title="Teenagers, roughly ages 14–18"
-            tone="neutral"
-            context="Teens may already know partial information from school, social media, court pages, news, or peers."
-            script={`Your dad is dealing with a serious legal situation connected to sexual boundaries, safety, and choices adults are responsible for.\n\nThis may affect visits, school events, privacy, and how our family handles questions from other people.\n\nYou do not have to protect my feelings. I will listen, and we can keep talking as you have more questions.`}
-          />
-
-          <ScriptBox
-            title="When there has been a conviction"
-            tone="neutral"
-            context="Use only when it is accurate. This gives older children and teens clearer language without graphic detail."
-            script={`They were convicted of breaking a law about sexual behavior and safety.\n\nThat is serious, and it is okay to have strong feelings about it.\n\nYou are not responsible for what happened, for fixing it, or for deciding today how you will feel forever.`}
-          />
-
-          <ScriptBox
-            title="Young adults"
-            tone="neutral"
-            context="Adult children may need more direct information and room to set their own boundaries."
-            script={`Here is what I know, and here is what I still do not know.\n\nYou may have strong feelings, and you do not have to decide everything today.\n\nI want to keep communication open, but I will respect your boundaries and your need for support outside the family.`}
-          />
-
-          <ScriptBox
-            title="When you do not know the answer yet"
-            tone="neutral"
-            context="Use this instead of guessing, promising an outcome, or making the child carry uncertainty."
-            script={`That is a fair question. I do not know the answer yet.\n\nI am going to ask the right person and write down what they say.\n\nWhen I know more, I will tell you what I can in words that make sense for you.`}
-          />
-
-          <ScriptBox
-            title="When someone at school or online has heard something"
-            tone="neutral"
-            context="Use this when the child is facing gossip, stigma, registry searches, or partial information from others."
-            script={`I am sorry you had to hear that from someone else.\n\nSome of what people say may be wrong, incomplete, or said in a hurtful way.\n\nYou can bring questions to me. You do not have to explain our family to everyone, and you are allowed to ask for help if someone is being cruel.`}
-          />
-
-          <ScriptBox
-            title="When a no-contact or limited-contact rule exists"
-            tone="neutral"
-            context="Use only if it is accurate for the situation. Do not blame the child or promise the rule will change."
-            script={`There is a rule right now that limits contact. That rule is for adults to follow.\n\nYou did not cause it, and it is not your job to fix it.\n\nWe will follow the rule carefully, and we will keep taking care of you while the adults work through what happens next.`}
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="family-roles"
-          number="4"
-          title="What different adults should do"
-          subtitle="Children need adults to stay in their proper roles: calm, honest, boundaried, and protective."
-        />
-
-        <GuideSectionCard>
-          <RoleGuidanceGrid
-            title="Role-based guidance"
-            roles={[
-              {
-                role: "Caregiver at home",
-                icon: "🏠",
-                guidance: (
-                  <div>
-                    <p>
-                      Lead with stability. Keep school, meals, bedtime, and
-                      transportation as predictable as possible.
-                    </p>
-                    <p>
-                      Practice one simple script before you talk. Do not process
-                      adult grief, anger, fear, legal strategy, or advocacy
-                      arguments with the child.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                role: "Impacted individual",
-                icon: "✉️",
-                guidance: (
-                  <div>
-                    <p>
-                      Share love without pressuring the child to reassure you.
-                      Keep messages short, steady, accountable, and rule-compliant.
-                    </p>
-                    <p>
-                      Do not ask the child to keep secrets, carry messages,
-                      defend you, reject others, or promise forgiveness.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                role: "Spouse or partner",
-                icon: "🤝",
-                guidance: (
-                  <div>
-                    <p>
-                      Your grief, anger, loyalty, fear, or ambivalence may be
-                      real. The child still needs permission to have their own
-                      feelings.
-                    </p>
-                    <p>
-                      Process adult decisions with safe adults, counsel, support
-                      groups, or therapy — not with the child.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                role: "Grandparents and extended family",
-                icon: "👥",
-                guidance: (
-                  <div>
-                    <p>
-                      Support the household with meals, rides, childcare,
-                      privacy, and calm presence.
-                    </p>
-                    <p>
-                      Do not interrogate the child, gossip nearby, demand
-                      details, shame the family, or undermine the caregiver’s
-                      chosen script.
-                    </p>
-                  </div>
-                ),
-              },
-              {
-                role: "School, childcare, or community supporter",
-                icon: "🎒",
-                guidance: (
-                  <div>
-                    <p>
-                      Ask the caregiver what the child needs at school or in
-                      activities: privacy, routine, flexibility, or a safe adult
-                      to check in with.
-                    </p>
-                    <p>
-                      Share only what is necessary to support the child. Do not
-                      turn family crisis into staff gossip.
-                    </p>
-                  </div>
-                ),
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="privacy"
-            icon="🛡️"
-            title="Protect children from adult conversations"
-          >
-            <p>
-              Children should not overhear strategy calls, accusations, custody
-              arguments, registry research, financial panic, or relatives
-              debating whether the person deserves support.
-            </p>
-          </GuideCallout>
-
-          <ScriptBox
-            title="Boundary phrase for relatives"
-            tone="neutral"
-            context="Use this when people press for details or talk about the case around children."
-            script={`We are not discussing details around the kids.\n\nRight now we are focused on keeping them safe, steady, and loved.\n\nIf you want to help, practical support is welcome. Gossip, pressure, and harsh comments around the children are not.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="timeline"
-          number="5"
-          title="What changes by stage"
-          subtitle="The right conversation may change during investigation, incarceration, reentry, supervision, and long-term registry life."
-        />
-
-        <GuideSectionCard>
-          <TimelineGuidanceGrid
-            title="Stage-based guidance"
-            stages={[
-              {
-                stage: "Investigation, arrest, or pretrial",
-                icon: "⚖️",
-                whatChanges: (
-                  <p>
-                    Facts may be unclear, adults may be in shock, and court,
-                    custody, bond, or no-contact rules may change quickly.
-                  </p>
-                ),
-                whatToDo: (
-                  <p>
-                    Keep explanations minimal and truthful. Avoid discussing
-                    allegations, interviews, witness issues, or legal strategy
-                    with or around children.
-                  </p>
-                ),
-              },
-              {
-                stage: "Incarceration or detention",
-                icon: "⛓️",
-                whatChanges: (
-                  <p>
-                    Calls, mail, visits, and video contact may be monitored,
-                    delayed, denied, or controlled by facility rules.
-                  </p>
-                ),
-                whatToDo: (
-                  <p>
-                    Prepare children for what they may see: uniforms, waiting,
-                    security, limited touch, short calls, and hard goodbyes.
-                    Keep visit routines predictable when contact is allowed.
-                  </p>
-                ),
-              },
-              {
-                stage: "Reentry and supervision",
-                icon: "🚪",
-                whatChanges: (
-                  <p>
-                    The loved one may be home or nearby but still under strict
-                    rules about housing, curfew, internet, treatment, travel,
-                    school events, or child contact.
-                  </p>
-                ),
-                whatToDo: (
-                  <p>
-                    Explain rules simply without making the child responsible:
-                    “This is an adult rule we have to follow.” Celebrate small
-                    routines returning without promising everything is fixed.
-                  </p>
-                ),
-              },
-              {
-                stage: "Registry and long-term family life",
-                icon: "🧭",
-                whatChanges: (
-                  <p>
-                    Children may grow into more questions about stigma,
-                    internet searches, neighbors, school, friends, dating,
-                    travel, and why rules still exist.
-                  </p>
-                ),
-                whatToDo: (
-                  <p>
-                    Revisit the conversation as they mature. Frame the registry
-                    as one legal reality the family manages, not the child’s
-                    identity or burden.
-                  </p>
-                ),
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="stage-checklist"
-            title="Stage check"
-            columns={1}
-            items={[
-              {
-                id: "contact",
-                label:
-                  "Before any contact, verify whether the contact is allowed and under what conditions.",
-              },
-              {
-                id: "monitoring",
-                label:
-                  "Assume facility calls, mail, visits, and video systems may be monitored unless told otherwise in writing.",
-              },
-              {
-                id: "school",
-                label:
-                  "If school support is needed, share only what helps the child function safely at school.",
-              },
-              {
-                id: "online",
-                label:
-                  "Prepare older children for the possibility of online searches, registry pages, gossip, or partial information.",
-              },
-              {
-                id: "promises",
-                label:
-                  "Do not promise release dates, reunification, case outcomes, registry relief, or rule changes.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="avoid"
           number="6"
-          title="Common mistakes to avoid"
-          subtitle="These mistakes usually come from fear or love, but they can make children feel less safe."
+          title="Scripts you can copy"
+          subtitle="Use these as starting points. Replace bracketed text and keep the message focused."
         />
 
         <GuideSectionCard>
-          <CommonMistakes
-            title="Disclosure and family-boundary mistakes"
-            mistakes={[
+          <ScriptBox
+            title="Phone call: oppose blanket residency restrictions"
+            tone="neutral"
+            context="Use this when a bill, ordinance, or public meeting is moving quickly."
+            script={`Hello, my name is [NAME], and I live in [CITY/ZIP]. I am calling about [BILL NUMBER / ORDINANCE / ISSUE].
+
+Please oppose blanket residency restrictions for people on sex offense registries. These rules can push people away from stable housing, family support, work, treatment, and transportation. That instability can make compliance harder and does not create the kind of prevention our community needs.
+
+I support accountability and real public safety. I am asking [REPRESENTATIVE/SENATOR/COUNCIL MEMBER NAME] to oppose blanket restrictions and support evidence-based, individualized policy instead.
+
+Can you please record my position and let me know where the office stands on this issue?`}
+          />
+
+          <ScriptBox
+            title="Email or contact form: support registry relief and review"
+            tone="neutral"
+            context="Use this when asking for individualized review, removal pathways, or limits on permanent public punishment."
+            script={`Subject: Please support individualized registry review
+
+Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing as [a person affected by registry law / a family member / a concerned constituent / a provider / a community member].
+
+Please support a meaningful, individualized process for registry relief. People who have completed their sentence, followed the law, remained offense-free, and built stable lives should have a fair way to ask for review.
+
+Permanent public registration can affect housing, work, family stability, transportation, and safety long after punishment is complete. A review process does not erase accountability. It asks whether continued public registration is still necessary, evidence-based, and proportionate.
+
+I urge you to support policies that include due process, individualized risk review, clear eligibility rules, and a path for people who demonstrate long-term stability.
+
+Please let me know your position on this issue.
+
+Thank you,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="Email or letter: require evidence before expanding restrictions"
+            tone="neutral"
+            context="Use this when a legislature is considering a new restriction, expansion, public-notification rule, or retroactive change."
+            script={`Subject: Please require evidence before expanding sex offense restrictions
+
+Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing about [BILL NUMBER / ISSUE].
+
+Sexual harm is serious, and prevention matters. That is why I am asking you to require evidence before expanding registry restrictions, residency bans, public notification, or retroactive penalties.
+
+Before passing new restrictions, lawmakers should ask: What problem does this solve? What evidence shows it will prevent harm? What are the housing, employment, family, treatment, compliance, and fiscal impacts? Will this apply retroactively? Is there individualized review? Are there safer and more effective alternatives?
+
+Fear-based laws can sound protective while making reentry less stable and families less secure. Please support prevention-focused, evidence-based policy instead of automatic expansion.
+
+I would appreciate a reply with your position on this issue.
+
+Sincerely,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="Family member script: explain household impact"
+            tone="neutral"
+            context="Use this when you want to speak as a spouse, parent, adult child, caregiver, or loved one without sharing private case details."
+            script={`Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am writing as a family member affected by sex offense registry laws.
+
+I support accountability and safety. I also want lawmakers to understand that broad restrictions often affect entire families, including spouses, children, parents, and caregivers who were not convicted of anything.
+
+When rules make housing, work, transportation, or family contact unstable, the burden does not fall on one person alone. It can affect children’s routines, caregiving, finances, mental health, and the ability of a household to stay safe and compliant.
+
+Please consider the family impact before expanding registry restrictions, residency bans, public notification, or retroactive requirements. I ask you to support individualized, evidence-based policy that protects the public without creating unnecessary collateral harm.
+
+Thank you for your time,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+
+          <ScriptBox
+            title="RECON framing: Register Every Convict Or None"
+            tone="neutral"
+            context="Use carefully. This is strongest when framed as an equal-treatment and evidence question, not as a slogan alone."
+            script={`Dear [TITLE AND NAME],
+
+My name is [NAME], and I live in [CITY/ZIP]. I am asking you to examine the fairness and evidence behind public registry policy.
+
+SOLAR’s RECON position means Register Every Convict Or None. The point is not that every conviction should lead to a public registry. The point is that sex offense registries single out one category of conviction for public exposure and long-term collateral punishment while many other serious offenses do not trigger the same public system.
+
+If public registries are truly necessary for safety, lawmakers should be able to explain why the rule applies here, why it does not apply elsewhere, what evidence supports it, and whether less harmful prevention strategies would work better.
+
+Please support policy that is evidence-based, individualized, constitutional, and focused on real prevention rather than permanent public punishment.
+
+Sincerely,
+[NAME]
+[CITY/ZIP]
+[SAFE CONTACT INFORMATION]`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="7"
+          title="Mistakes that can weaken your message"
+          subtitle="These are common, especially when someone is scared, angry, exhausted, or newly affected by the system."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="common-mistakes"
+            title="Try to avoid"
+            columns={1}
+            items={[
               {
-                mistake:
-                  "Waiting so long that the child learns from gossip, search results, a registry page, or overheard adult conversations.",
-                whyItMatters:
-                  "Children may feel betrayed or imagine something worse than the truth.",
-                betterMove:
-                  "Give a short, age-aware explanation before the child is forced to piece it together alone.",
+                id: "everything",
+                label:
+                  "Trying to explain every injustice at once. Pick one issue and one ask.",
               },
               {
-                mistake:
-                  "Giving graphic details, legal theories, or adult-level explanations.",
-                whyItMatters:
-                  "Children are not lawyers, investigators, therapists, or emotional containers for adults.",
-                betterMove:
-                  "Answer the question asked in the simplest truthful way that protects the child.",
+                id: "minimize",
+                label:
+                  "Minimizing harm or sounding dismissive of victims. Stay clear that prevention and accountability matter.",
               },
               {
-                mistake: "Minimizing the seriousness so the child will feel better.",
-                whyItMatters:
-                  "Older children may sense that adults are hiding or softening the truth, especially if they find public information later.",
-                betterMove:
-                  "Use non-graphic but honest language: serious legal situation, sexual boundaries, safety, adult choices, court rules, or conviction when accurate.",
+                id: "angry",
+                label:
+                  "Sending insults, threats, or all-caps anger. Anger is understandable, but hostile messages are easy to dismiss.",
               },
               {
-                mistake: "Making the child comfort the adult.",
-                whyItMatters:
-                  "Children may hide their own fear, anger, or confusion to protect the caregiver.",
-                betterMove:
-                  "Say, “My feelings are for adults to help me with. You can have your own feelings.”",
+                id: "stats",
+                label:
+                  "Using too many statistics. One credible source and one local impact line are usually stronger.",
               },
               {
-                mistake:
-                  "Using the child as a messenger, mediator, character witness, or proof of loyalty.",
-                whyItMatters:
-                  "It places the child in the middle of adult conflict and can create legal or supervision risk.",
-                betterMove:
-                  "Keep adult communication between adults and follow all court, custody, facility, and supervision rules.",
+                id: "overshare",
+                label:
+                  "Sharing case facts, names, addresses, treatment details, or supervision information that does not need to be shared.",
               },
               {
-                mistake: "Promising outcomes you cannot control.",
-                whyItMatters:
-                  "Broken promises can damage trust more than honest uncertainty.",
-                betterMove:
-                  "Say, “I do not know yet, but I will tell you what I can when I know more.”",
+                id: "wrong-office",
+                label:
+                  "Contacting the wrong level of government. State registry law usually belongs with state lawmakers, not Congress.",
               },
               {
-                mistake:
-                  "Letting relatives interrogate, shame, recruit, or gossip around the child.",
-                whyItMatters:
-                  "Children may internalize adult judgment as shame about themselves or their family.",
-                betterMove:
-                  "Set a direct boundary and remove the child from the conversation if needed.",
+                id: "silence",
+                label:
+                  "Assuming silence means your message did not matter. Offices often log constituent contacts even when replies are slow or generic.",
               },
             ]}
           />
 
-<GuideCallout tone="legal" icon="⚠️" title="Do not coach a child">
+          <GuideCallout tone="reminder" icon="🕯️" title="You do not have to carry the whole issue alone">
             <p>
-              Do not tell a child what to say to police, attorneys, caseworkers,
-              custody evaluators, school officials, therapists, or court staff.
-              If a child may be a witness, alleged victim, or involved in a
-              custody or protection matter, get legal guidance before discussing
-              facts of the case.
+              Advocacy in this area can be emotionally heavy. A short message,
+              one phone call, one public comment, or one follow-up is still real
+              participation. Consistency matters more than intensity.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="trust"
-          number="7"
-          title="Rebuilding trust with children"
-          subtitle="Children watch patterns more than promises. Small, kept commitments matter."
+          id="follow-up"
+          number="8"
+          title="Follow up without burning out"
+          subtitle="A simple recordkeeping habit helps you stay organized and protects your energy."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Trust is not rebuilt through one apology, one perfect visit, or
-              one emotional conversation. It grows when adults tell the truth,
-              keep small promises, repair missed expectations, and return to
-              connection without demanding forgiveness.
-            </p>
-
-            <p>
-              Children may want closeness one day and distance the next. That
-              does not mean the effort is failing. It often means they are
-              testing whether adults can stay steady while they have real
-              feelings.
-            </p>
-
-            <p>
-              In registry-affected families, trust rebuilding may also mean
-              explaining why some ordinary family moments are complicated:
-              school events, sleepovers, travel, internet use, neighborhood
-              questions, or who can be present during visits. Keep the burden on
-              adults: “These are adult rules for adults to manage.”
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="success" icon="🌱" title="Micro-commitments">
-            <p>
-              One small promise kept consistently — a call when allowed, a
-              letter, a bedtime routine, a school pickup, a meal, a check-in —
-              usually rebuilds more safety than a big promise about the future.
-            </p>
-          </GuideCallout>
-
           <GuideChecklist
-            id="trust-rebuilding"
-            title="Trust rebuilding checklist"
+            id="follow-up-checklist"
+            title="After you contact an office"
             columns={1}
             items={[
               {
-                id: "small",
+                id: "save-copy",
+                label: "Save a copy or screenshot of what you sent.",
+              },
+              {
+                id: "log-office",
                 label:
-                  "Make one small promise you can actually keep this week.",
+                  "Write down the official’s name, office, staff member if known, date, and contact method.",
               },
               {
                 id: "calendar",
                 label:
-                  "Use a visible calendar for calls, visits, school events, or routines when appropriate.",
+                  "Put one polite follow-up reminder on your calendar for one to two weeks later.",
               },
               {
-                id: "repair",
+                id: "track-position",
                 label:
-                  "If a promise is missed, acknowledge it without excuses and explain what happens next.",
+                  "If the office replies, save the response and note whether they supported, opposed, avoided, or misunderstood your ask.",
               },
               {
-                id: "feelings",
+                id: "share-carefully",
                 label:
-                  "Allow the child to feel angry, sad, embarrassed, loyal, loving, confused, or distant.",
-              },
-              {
-                id: "rules",
-                label:
-                  "Name adult rules simply without making the child feel responsible for them.",
-              },
-              {
-                id: "adult-support",
-                label:
-                  "Get adult support for adult pain so the child does not have to carry it.",
+                  "Share updates with trusted people, but avoid posting private legal or family details publicly.",
               },
             ]}
           />
 
-          <ScriptBox
-            title="Repair after a missed expectation"
-            tone="neutral"
-            context="Use this when a call, visit, event, or promise falls through."
-            script={`I said something would happen, and it did not happen.\n\nI can see how that hurt or disappointed you.\n\nI am sorry. Here is what I know now, and here is the next small thing I can do.`}
+          <GuideCallout tone="success" icon="🌱" title="A small message can still be useful">
+            <p>
+              Lawmakers may never fully understand this issue unless affected
+              people and families speak. Your message can add one more real-life
+              data point against fear-based policy.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="offline-limited-access"
+          number="9"
+          title="If internet access, privacy, or supervision is limited"
+          subtitle="You can still participate even if you are phone-only, without a printer, relying on a helper, incarcerated, or under restrictions."
+        />
+
+        <GuideSectionCard>
+          <OfflineOptions
+            title="Lower-internet and paper-based options"
+            items={[
+              "Call the district office and ask for the best mailing address, staff contact, or public-comment instructions.",
+              "Ask a public library, legal aid office, reentry organization, faith community, or trusted helper to print a bill, meeting agenda, or letter.",
+              "Use a paper notebook to track names, dates, offices, phone numbers, bill numbers, and what each office told you.",
+              "If you are incarcerated, ask whether family, counsel, clergy, or an approved outside contact can print materials or mail a letter for you.",
+              "If you are under supervision or internet restrictions, verify what contact methods are allowed before using online forms, public comment systems, or social media.",
+              "If you cannot safely identify yourself, consider a shorter message focused on policy impact, family impact, or evidence questions rather than personal case details.",
+            ]}
           />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Privacy reminder">
+            <p>
+              Public comment, hearing testimony, emails to public offices, and
+              online forms may become records. Do not include private addresses,
+              victim names, children’s details, treatment information, disputed
+              case facts, or anything a court or supervision condition limits.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
-          number="8"
-          title="Resources and next steps"
-          subtitle="Use outside support when children need more than one family conversation can provide."
+          id="find-officials"
+          number="10"
+          title="Find officials, track bills, and keep going"
+          subtitle="Use official lookup tools first, then use SOLAR resources to shape the message."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Helpful child and family resources"
-            description={
-              <span>
-                These resources can help caregivers find child-friendly
-                language, trauma-aware support, crisis help, and family
-                communication tools.
-              </span>
-            }
+            title="Find the right official"
+            resources={officialLookupLinks}
+          />
+
+          <SoftDivider />
+
+          <ResourceLinkGrid
+            title="SOLAR advocacy tools"
+            resources={solarAdvocacyLinks}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sources"
+          number="11"
+          title="Sources and related guides"
+          subtitle="Use sources to support the message, not to overwhelm it."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              For most lawmaker messages, one credible source is enough. Choose a
+              source that matches your ask: recidivism data for registry
+              expansion, local impact for housing rules, constitutional concerns
+              for retroactive punishment, or reentry research for employment and
+              stability.
+            </p>
+          </GuideProse>
+
+          <ResourceLinkGrid
+            title="Evidence and advocacy practice resources"
             resources={[
               {
-                label: "HealthyChildren / AAP — Parent in Prison",
-                href: sourceLinks[0].href,
-                badge: "Medical",
+                label: "DOJ SMART — SOMAPI",
                 description:
-                  "Caregiver guidance for supporting children when a parent is incarcerated.",
+                  "Federal sex offense management and research background materials.",
+                href: "https://smart.ojp.gov/somapi",
+                badge: "Federal",
               },
               {
-                label: "NCTSN — Families and Caregivers",
-                href: sourceLinks[1].href,
-                badge: "Trauma",
+                label: "BJS — 9-Year Recidivism Follow-Up",
                 description:
-                  "Trauma-aware information for parents and caregivers supporting children.",
+                  "Federal report often cited in registry and recidivism policy discussions.",
+                href: "https://bjs.ojp.gov/content/pub/pdf/rsorsp9yfu0514.pdf",
+                badge: "Federal",
               },
               {
-                label: "Sesame Workshop — Incarceration",
-                href: sourceLinks[2].href,
-                badge: "Child-friendly",
+                label: "The Sentencing Project",
                 description:
-                  "Videos, printables, and activities for children and caregivers.",
+                  "Policy report on responding to crimes of a sexual nature.",
+                href: "https://www.sentencingproject.org/reports/responding-to-crimes-of-a-sexual-nature/",
+                badge: "Research",
               },
               {
-                label: "Sesame Workshop — Visiting a Parent in Prison",
-                href: sourceLinks[3].href,
-                badge: "Visits",
+                label: "CSG Justice Center — 50 States, 1 Goal",
                 description:
-                  "A child-friendly resource for preparing children for prison visits.",
+                  "State recidivism trend resource for data-driven policy conversations.",
+                href: "https://csgjusticecenter.org/publications/state-recidivism-rates-2006-2022/",
+                badge: "Research",
               },
               {
-                label: "Stop It Now! — Talking to Children and Teens",
-                href: sourceLinks[4].href,
-                badge: "Safety",
+                label: "Congressional Management Foundation",
                 description:
-                  "Guidance on accurate, age-appropriate safety conversations.",
+                  "Best-practice guidance on how congressional offices process constituent communication.",
+                href: "https://www.congressfoundation.org/projects/communicating-with-congress",
+                badge: "Practice",
               },
               {
-                label: "988 Suicide & Crisis Lifeline",
-                href: sourceLinks[6].href,
-                phone: "Call or text 988",
-                badge: "Crisis",
+                label: "UC Berkeley Library — Contacting Officials",
                 description:
-                  "Immediate emotional crisis support for children, caregivers, and adults.",
+                  "Plain-language tips for preparing and sending messages to elected officials.",
+                href: "https://guides.lib.berkeley.edu/ContactOfficials",
+                badge: "Guide",
               },
             ]}
           />
+
+          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "The SOLAR Family & Allies Guide",
+                title: "SOLAR Advocacy Hub",
                 description:
-                  "A broader roadmap for families supporting a loved one from arrest through reentry and beyond.",
-                to: "/resources/family-support-guide",
+                  "Use SOLAR’s advocacy tools, position statements, and issue campaigns.",
+                to: "/advocacy",
               },
               {
-                title: "Prison Communication, Mail, Visits & Monitoring",
+                title: "SOLAR Script Generator",
                 description:
-                  "Use this for facility rules, monitored communication, visitation limits, and communication planning.",
-                to: "/resources/prison-communication-mail-visits-monitoring",
+                  "Draft a lawmaker message and adapt it to your role, state, and issue.",
+                to: "/advocacy#contact-congress",
               },
               {
-                title: "Reentry Checklist",
+                title: "SOLAR Position Statements",
                 description:
-                  "Use this when the family is preparing for release, supervision, housing, documents, and routines.",
-                to: "/resources/reentry-checklist",
+                  "Review SOLAR’s public policy framing before writing your own message.",
+                to: "/advocacy#position-statement",
               },
               {
-                title: "Mental Health & Support Directory",
+                title: "RECON",
                 description:
-                  "Use this to look for crisis support, therapy, peer support, and family resources.",
-                to: "/resources/mental-health-directory",
-              },
-              {
-                title: "Community Integration Tips",
-                description:
-                  "Use this for longer-term belonging, stigma, disclosure, and rebuilding community life.",
-                to: "/resources/community-integration-tips",
+                  "Explore SOLAR’s Register Every Convict Or None position and equal-treatment argument.",
+                to: "/advocacy#recon",
               },
             ]}
           />
 
+          <SoftDivider />
+
           <SourceList
-            title="Sources & verification"
-            note="These links should be rechecked before production publication. The sandbox uses current public pages where available and avoids relying on unsupported homepage-only citations."
-            sources={sourceLinks}
+            note="External links should be reviewed periodically before publication. Some research sources are useful background but may be archived or updated over time."
+            sources={[
+              ...evidenceAndPracticeSources,
+              {
+                label: "Common Cause — Find Your Representative",
+                href: "https://www.commoncause.org/find-your-representative/",
+                description:
+                  "Representative lookup tool used in the official lookup section.",
+              },
+              {
+                label: "USA.gov — Elected Officials",
+                href: "https://www.usa.gov/elected-officials",
+                description:
+                  "Official directory for federal, state, territorial, and local elected officials.",
+              },
+              {
+                label: "U.S. House — Find Your Representative",
+                href: "https://www.house.gov/representatives/find-your-representative",
+                description:
+                  "Official House lookup tool for congressional representatives.",
+              },
+              {
+                label: "U.S. Senate — Contact Senators",
+                href: "https://www.senate.gov/senators/senators-contact.htm",
+                description:
+                  "Official Senate contact directory.",
+              },
+              {
+                label: "Congress.gov — Members",
+                href: "https://www.congress.gov/members",
+                description:
+                  "Official member and bill lookup from the Library of Congress.",
+              },
+              {
+                label: "Open States / Plural — Find Your Legislator",
+                href: "https://open.pluralpolicy.com/find_your_legislator/",
+                description:
+                  "State legislator lookup tool used for state advocacy.",
+              },
+            ]}
           />
         </GuideSectionCard>
       </main>
