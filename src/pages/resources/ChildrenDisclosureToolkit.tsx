@@ -1,1216 +1,975 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+} from "../../components/solar";
 
-function ChildrenDisclosureToolkit(): JSX.Element {
+const sourceLinks = [
+  {
+    label:
+      "American Academy of Pediatrics / HealthyChildren — Tips to Support Children When a Parent is in Prison",
+    href: "https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx",
+    description:
+      "Supports caregiver stability, honest communication, reassurance, and helping children cope when a parent is incarcerated.",
+  },
+  {
+    label: "National Child Traumatic Stress Network — Families and Caregivers",
+    href: "https://www.nctsn.org/audiences/families-and-caregivers",
+    description:
+      "Supports trauma-aware caregiver responses, age-related reactions, safety, routines, and developmentally appropriate support.",
+  },
+  {
+    label: "Sesame Workshop — Incarceration",
+    href: "https://sesameworkshop.org/topics/incarceration/",
+    description:
+      "Child-friendly resources, videos, printables, and caregiver tools for children affected by incarceration.",
+  },
+  {
+    label: "Sesame Workshop — Visiting a Parent in Prison",
+    href: "https://sesameworkshop.org/resources/visiting-parent-prison/",
+    description:
+      "Supports preparing children for facility visits, including uniforms, waiting, rules, limits on touch, and saying goodbye.",
+  },
+  {
+    label: "Stop It Now! — Talking to Children and Teens",
+    href: "https://www.stopitnow.org/ohc-content/talking-to-children-and-teens",
+    description:
+      "Supports accurate, age-appropriate conversations with children and emphasizes adult responsibility for safety.",
+  },
+  {
+    label:
+      "NCTSN — Caring for Kids: What Parents Need to Know about Sexual Abuse",
+    href: "https://www.nctsn.org/resources/caring-kids-what-parents-need-know-about-sexual-abuse",
+    description:
+      "Supports caregiver guidance around child safety, legal involvement, family impact, and responding to children with care.",
+  },
+  {
+    label: "988 Suicide & Crisis Lifeline",
+    href: "https://988lifeline.org/",
+    description:
+      "Crisis support for anyone who feels at risk of harming themselves or who needs immediate emotional support.",
+  },
+];
+
+export default function ChildrenDisclosureToolkit(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Children & Disclosure + Relationship Rebuilding Toolkit | The SOLAR Project"
-        description="Step-by-step strategies and resources for families navigating disclosure to children, rebuilding trust, and long-term resilience."
-        keywords="children disclosure toolkit, rebuilding trust, registry families, SOLAR Project, resilience, family support"
+        title="Talking With Children About a Loved One’s Legal Situation | The SOLAR Project"
+        description="A calm, practical SOLAR guide for caregivers and supporters talking with children about arrest, incarceration, supervision, registry rules, public stigma, and family change."
+        keywords="children disclosure, family support, incarceration, registry family guide, reentry family support, talking to children about prison"
       />
 
-      {/* Hero Header */}
-      <section className="bg-gradient-to-r from-slate-700 to-slate-600 text-white py-16 shadow">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-blue-200 uppercase tracking-wide mb-2 text-sm font-semibold">
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
             SOLAR Resource Guide
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            🌱 Children & Disclosure + Relationship Rebuilding Toolkit
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Talking With Children About a Loved One’s Legal Situation
           </h1>
-          <p className="text-lg md:text-xl text-slate-100">
-            For families of an impacted individual in any stage: investigation, pretrial, incarceration, supervision, registry
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A disclosure and family-trust toolkit for caregivers, parents, and
+            supporters navigating investigation, incarceration, supervision,
+            registry rules, public stigma, and family change.
           </p>
 
-          {/* Actions */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <button
+              type="button"
               onClick={handlePrint}
-              className="bg-white text-slate-700 px-4 py-2 rounded-lg shadow hover:bg-slate-100 transition"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              🖨️ Print
+              🖨️ Print Guide
             </button>
-            <Link
-              to="/resources"
-              className="bg-slate-500 text-white px-4 py-2 rounded-lg shadow hover:bg-slate-600 transition"
+
+            <a
+              href="#scripts"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              ← Back to Resources
-            </Link>
+              Jump to Scripts
+            </a>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Main Content Container */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-        {/* ===== INTRO - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">🌟 Introduction</h2>
-    <p className="text-slate-100 mt-1">
-      A hand to hold while you navigate disclosure, rebuilding trust, and long-term resilience.
-    </p>
-  </div>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-  <p className="mb-4">
-    When someone in your family is arrested, investigated, incarcerated, or placed on a registry, it can feel like your entire
-    world has been turned inside out. Overnight, the life you thought you knew changes — and suddenly you are faced with impossible
-    questions: <em>What do I tell my children? How do I face relatives or neighbors? How do we keep moving forward?</em>
-  </p>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-  <p className="mb-4">
-    If you are reading this, you may feel fear, shame, confusion, or even anger. Please know: <strong>you are not alone.</strong>
-    Thousands of families walk this path every year, and while no two stories are the same, there are safe, thoughtful ways to
-    navigate these conversations and rebuild trust.
-  </p>
-
-  <p className="mb-4">
-    This guide is designed to be a <strong>hand to hold</strong> in that journey. It blends two approaches:
-  </p>
-
-  <ul className="space-y-2 mb-4">
-    <li className="flex items-start gap-2">
-      <span aria-hidden className="mt-0.5">📖</span>
-      <span>
-        A <strong>step-by-step guide</strong> with clear, age-appropriate strategies for talking with children and family.
-      </span>
-    </li>
-    <li className="flex items-start gap-2">
-      <span aria-hidden className="mt-0.5">🛠️</span>
-      <span>
-        A <strong>practical toolkit</strong> filled with scripts, exercises, and resources to help you and your loved ones begin
-        healing and reconnecting.
-      </span>
-    </li>
-  </ul>
-
-  {/* Warm callout (amber) */}
-  <div className="mt-6 rounded-xl border border-amber-200 bg-amber-50 p-4">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>👉</div>
-      <div>
-        <p className="font-semibold text-amber-900">Note on language</p>
-        <p className="text-amber-900/90">
-          In this guide we use the term <em>“impacted individual”</em> to describe the person at the center of the legal process —
-          whether they are under investigation, incarcerated, on supervision, or on the registry. It avoids labels like
-          <em> “offender”</em> or <em>“accused”</em> that may not apply at every stage, and keeps the focus on the person’s humanity.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div className="mt-6 rounded-xl border border-sky-200 bg-sky-50 p-4">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>✨</div>
-      <div>
-        <p className="text-sky-900/90">
-          You do not have to get this perfect. What matters most is showing up with honesty, love, and consistency. With patience
-          and courage, families can move through even the most difficult circumstances together.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-        {/* ===== STEP 1 - paste your prose here ===== */}
-        {/* ===== STEP 1 - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">🧘 Step 1: Stabilize &amp; Ground Yourself</h2>
-    <p className="text-slate-100 mt-1">Find your footing first so the storm doesn’t sweep you away.</p>
-  </div>
-
-  <p className="mb-4">
-    When a crisis erupts, your body and mind may go into survival mode — racing thoughts, panic, exhaustion, or numbness.
-    Before you can support children, rebuild relationships, or make thoughtful decisions, steady yourself. Think of this as
-    putting on your own oxygen mask before helping others.
-  </p>
-
-  {/* Universal Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🌍</span> Universal Guidance
-  </h3>
-
-  <ul className="space-y-4 mb-6">
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2"><span aria-hidden>🌬️</span> Breathe and Slow Down</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Your nervous system is likely on high alert. Inhale through your nose, hold for three seconds, exhale slowly.</li>
-        <li>
-          Even 60 seconds of intentional breathing can lower panic enough to think clearly — a practice recommended in{" "}
-          <a className="text-blue-700 underline" href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach" target="_blank" rel="noopener noreferrer">
-            trauma-informed care (SAMHSA)
-          </a>.
-        </li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2"><span aria-hidden>📝</span> Name the Crisis, Not Just the Feelings</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Write down exactly what happened in simple terms: <em>“My partner was arrested today.”</em></li>
-        <li>Writing concrete facts can stop your mind from spinning in endless “what-ifs.”</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2"><span aria-hidden>🍎</span> Ground in Basics</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Eat something nourishing. Hydrate. Sleep if you can.</li>
-        <li>
-          These aren’t small — they’re the foundation for bigger decisions. The{" "}
-          <a className="text-blue-700 underline" href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma" target="_blank" rel="noopener noreferrer">
-            NCTSN
-          </a>{" "}
-          notes routines are powerful anchors during trauma.
-        </li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2"><span aria-hidden>🤝</span> Identify Safe People</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Who can you call right now who won’t judge or gossip? One trusted person is enough.</li>
-        <li>If no one in your circle feels safe, reach out to a helpline, peer group, chaplain, or counselor.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2"><span aria-hidden>🛑</span> Avoid Rash Decisions</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Delay big disclosures, financial moves, or confrontations while your body is still in shock.</li>
-        <li>Think in 24-hour blocks: <em>“What do I need to get through today safely?”</em></li>
-      </ul>
-    </li>
-  </ul>
-
-  {/* Warm callouts */}
-  <div className="grid gap-4 md:grid-cols-2 mb-8">
-    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-      <div className="flex items-start gap-3">
-        <div className="text-2xl" aria-hidden>💡</div>
-        <div>
-          <p className="font-semibold text-emerald-900">Pro Tip (First 72 Hours)</p>
-          <p className="text-emerald-900/90">
-            Feeling like you’re drowning is normal. Small acts — a shower, a walk, a phone call — are lifelines.
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            You do not need a perfect speech. Children usually need three
+            things first: simple truth, reassurance that they are safe and
+            loved, and adults who keep showing up consistently.
           </p>
-        </div>
-      </div>
-    </div>
 
-    <div className="rounded-xl border border-rose-200 bg-rose-50 p-4">
-      <div className="flex items-start gap-3">
-        <div className="text-2xl" aria-hidden>🫶</div>
-        <div>
-          <p className="font-semibold text-rose-900">Permission Slip</p>
-          <p className="text-rose-900/90">
-            You’re allowed to pause, grieve, and not have answers yet. Stabilizing yourself <em>is</em> taking care of your family.
+          <p>
+            Much of this guidance applies to any serious family legal crisis.
+            What is different here is that sex-offense cases can involve
+            stricter child-contact rules, stronger public stigma, searchable
+            registry information, and long-term restrictions that affect
+            ordinary family life.
           </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {/* Role-Based Self-Care */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🎭</span> Role-Based Self-Care
-  </h3>
-
-  <div className="grid gap-4 md:grid-cols-2 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Use the structure around you (facility rules, supervision) as anchors for routine.</li>
-        <li>Write brief notes of love or affirmation — it calms you and reassures family later.</li>
-        <li>Request mental health support early if possible (counselor, chaplain, peer groups).</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Let yourself cry or vent in private spaces.</li>
-        <li>Prioritize sleep; exhaustion fuels reactivity.</li>
-        <li>Set boundaries with relatives/neighbors; you don’t owe instant explanations.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Grief and love can coexist. Both are valid.</li>
-        <li>Process with a safe adult (therapist, friend, group) so kids don’t carry your load.</li>
-        <li>Delay irreversible decisions until you feel steadier.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Ground yourself before “helping.” Kids feel your state.</li>
-        <li>Do regulating activities first (walk, prayer, journaling).</li>
-        <li>Support without judgment; your calm presence is more valuable than advice.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Timeline Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🕒</span> Timeline Guidance
-  </h3>
-
-  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Focus on immediate needs: food, housing, childcare, legal help.</li>
-        <li>Limit news/social media; it fuels panic.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Build a routine (set call/letter times). Predictability stabilizes you.</li>
-        <li>Rotate helpers with a simple support calendar.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Expect stress spikes. Ask: “What’s in my control today?”</li>
-        <li>Rebuild rhythms gradually; “normal” won’t return overnight.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Balance advocacy, parenting, and self-care to avoid burnout.</li>
-        <li>Normalize the new reality for yourself first; peer/therapy support helps.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Self-Stabilization Checklist (non-interactive) */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>✅</span> Self-Stabilization Checklist
-  </h3>
-  <ul className="space-y-2 text-slate-800">
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Pause and take three deep breaths.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Write down the facts of what has happened.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Eat, hydrate, and rest before making major decisions.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Identify one safe person to talk to.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Avoid oversharing or overexplaining until calmer.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Set one small goal for today (call lawyer, pick up kids, take a walk).</span></li>
-  </ul>
-</section>
-
-        {/* ===== STEP 2 - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">👶 Step 2: Disclosure to Children</h2>
-    <p className="text-slate-100 mt-1">
-      Age-appropriate truth, reassurance of safety and love, and many short conversations over time.
-    </p>
-  </div>
-
-  <p className="mb-4">
-    Few moments feel as impossible as telling a child that a loved one is in legal trouble. Whether your child is three,
-    thirteen, or twenty-three, silence can be more frightening than honesty. Thoughtful disclosure gives children language
-    for what is happening, reassures them it isn’t their fault, and builds trust that adults will tell the truth — even when
-    it’s hard. The{" "}
-    <a className="text-blue-700 underline" href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx" target="_blank" rel="noopener noreferrer">
-      American Academy of Pediatrics
-    </a>{" "}
-    emphasizes clear, age-appropriate truth delivered simply.
-  </p>
-
-  <p className="mb-6">
-    Disclosure is a process — not a single talk. Your role is to offer age-appropriate truth, reassurance, and safety,
-    returning to the conversation as your child grows and as circumstances change.
-  </p>
-
-  {/* Universal Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🌍</span> Universal Guidance
-  </h3>
-  <ul className="space-y-4 mb-8">
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Prepare Yourself First</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Children mirror your emotional state. Practice with another adult before you speak to them.</li>
-        <li>Write it down; saying words aloud in private helps you spot heavy or confusing phrases.</li>
-      </ul>
-    </li>
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Choose the Right Moment</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Pick a quiet, private space. Turn off devices. Sit at their level if they’re young.</li>
-        <li>Avoid “drive-by disclosures” (e.g., in the car on the way to school).</li>
-      </ul>
-    </li>
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Keep It Simple, Honest, and Short</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Use one or two sentences at a time. Pause. Let them ask questions.</li>
-        <li>Answer what they ask, not what you fear they might ask.</li>
-      </ul>
-    </li>
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Reassure Safety and Love</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Say directly: <em>“You are safe.”</em> and <em>“You are loved.”</em></li>
-        <li>
-          Repeat often. The{" "}
-          <a className="text-blue-700 underline" href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma" target="_blank" rel="noopener noreferrer">
-            NCTSN
-          </a>{" "}
-          notes that repeated reassurance is vital during traumatic times.
-        </li>
-      </ul>
-    </li>
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Expect Reactions</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Tears, silence, anger, withdrawal, or laughter are all normal.</li>
-        <li>Don’t force a “right” reaction; give time and space.</li>
-      </ul>
-    </li>
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Return to the Conversation</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Preschool talks may last 30 seconds; teen talks may last an hour — both are valid.</li>
-        <li>Think of disclosure as planting seeds you’ll water over time.</li>
-      </ul>
-    </li>
-  </ul>
-
-  {/* Pro Tip callout */}
-  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-8">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>💡</div>
-      <div>
-        <p className="font-semibold text-amber-900">Pro Tip</p>
-        <p className="text-amber-900/90">
-          End each conversation with something grounding — a meal, a bedtime story, a walk. This signals that even after hard talks,
-          life goes on and safety remains.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  {/* Age-Appropriate Approaches & Scripts */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🗣️</span> Age-Appropriate Approaches &amp; Scripts
-  </h3>
-
-  <div className="grid gap-4 md:grid-cols-2">
-    {/* Preschool */}
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📚</span> Preschool (3–5 years)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Script: <em>“Daddy can’t live at home right now because he broke a rule. The helpers are making sure he learns how to do better. You are safe, and you are loved.”</em></li>
-        <li>Follow-up: <em>“This is a grown-up problem. You did nothing wrong.”</em></li>
-        <li>Keep it under 30 seconds; offer a hug, playtime, or drawing.</li>
-      </ul>
-    </div>
-
-    {/* Elementary */}
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🖍️</span> Elementary (6–10 years)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Script: <em>“Mom is in trouble because she broke an important rule. The people in charge want to make sure it doesn’t happen again. She still loves you, and we are keeping our family safe.”</em></li>
-        <li>Follow-up: <em>“I don’t have all the answers yet, but I’ll always tell you the truth in words you can understand.”</em></li>
-        <li>Be ready for repeated questions and say: <em>“That’s a good question. I’ll tell you when I know.”</em></li>
-      </ul>
-    </div>
-
-    {/* Middle School */}
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🎒</span> Middle School (11–13 years)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Script: <em>“Uncle made serious mistakes and has to follow special rules given by the court. You can ask me anything, and I’ll tell you the truth.”</em></li>
-        <li>Follow-up: <em>“Feeling embarrassed or angry is normal. You can always talk to me — even if your feelings change.”</em></li>
-        <li>Normalize: it’s okay to feel confused, upset, or angry.</li>
-      </ul>
-    </div>
-
-    {/* Teenagers */}
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📱</span> Teenagers (14–18 years)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Script: <em>“Your dad is on supervision because of choices he made that broke the law. That doesn’t change his love for you. We can talk about what this means for our family.”</em></li>
-        <li>Follow-up: <em>“You have a right to your feelings. I’ll listen without judgment.”</em></li>
-        <li>Allow space for anger or rejection; validate their feelings.</li>
-      </ul>
-    </div>
-
-    {/* Young Adults */}
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50 md:col-span-2">
-      <p className="font-medium mb-2"><span aria-hidden>🎓</span> Young Adults (18+)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Script: <em>“Here are the facts about the legal situation. You may have strong feelings, and that’s okay. Let’s keep talking openly about how this affects you and our family.”</em></li>
-        <li>Follow-up: <em>“If you’d like, I can connect you with resources or someone outside the family to talk to.”</em></li>
-        <li>Treat them as partners; offer articles, support groups, or therapy options.</li>
-      </ul>
-      <p className="mt-3 text-slate-700">
-        Child-friendly resources:{" "}
-        <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration/" target="_blank" rel="noopener noreferrer">
-          Sesame Workshop’s incarceration toolkit
-        </a>.
-      </p>
-    </div>
-  </div>
-
-  {/* Role-Based Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🎭</span> Role-Based Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2">
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>If you can’t be present, write a short message of love a caregiver can read aloud.</li>
-        <li>Keep it simple; share love, not guilt.</li>
-        <li>Don’t take anger or distance personally — it’s part of processing.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Agree on one script for consistency.</li>
-        <li>Expect to repeat the same words many times — repetition builds safety.</li>
-        <li>It’s okay to say, <em>“I don’t know yet, but I’ll find out.”</em></li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Don’t let your own anger spill into disclosure.</li>
-        <li>Reassure kids their feelings can be different from yours.</li>
-        <li>Practice active listening: reflect back what they say before correcting.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Support with calm presence, not probing questions.</li>
-        <li>Use the family’s chosen script if asked.</li>
-        <li>If unsure, redirect gently: <em>“That’s something your parents will talk to you about.”</em></li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Timeline Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
-    <span aria-hidden>🕒</span> Timeline Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Keep explanations minimal; focus on immediate safety and temporary changes.</li>
-        <li>Script: <em>“Dad isn’t home because adults are helping him with a problem. You are safe.”</em></li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Prepare kids for visits: uniforms, security, waiting rooms.</li>
-        <li>Use pre/post-visit rituals (draw before, ice cream after) to regulate emotions.</li>
-        <li>Be honest about limits: <em>“We may not be able to hug at visits, but we’ll still see each other.”</em></li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Explain new rules simply: <em>“Mom has to be home at 7 p.m. every night.”</em></li>
-        <li>Celebrate small routines returning (dinners, bedtime rituals).</li>
-        <li>Give space for fears that rules might be broken again; acknowledge without defensiveness.</li>
-      </ul>
-    </div>
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Introduce what a registry means as children mature.</li>
-        <li>Frame it as one part of life: <em>“This is a rule we live with, but it doesn’t define who we are.”</em></li>
-        <li>With teens, talk openly about stigma and handling peers’ questions.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Disclosure Checklist (non-interactive) */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>✅</span> Disclosure Checklist
-  </h3>
-  <ul className="space-y-2 text-slate-800">
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Write down what you plan to say.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Choose a quiet, private setting.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Use short, age-appropriate explanations.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Reassure love and safety directly.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Expect questions — answer simply; don’t overexplain.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>End with a comforting, normal activity.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Revisit the conversation as kids grow.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Normalize all reactions (silence, tears, anger).</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Remind: <em>“This is not your fault.”</em></span></li>
-  </ul>
-</section>
-
-        {/* ===== STEP 3 - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">👨‍👩‍👧 Step 3: Managing Family Reactions &amp; Extended Network</h2>
-    <p className="text-slate-100 mt-1">
-      Sort your circle, use anchor phrases, and protect kids from adult conversations.
-    </p>
-  </div>
-
-  <p className="mb-4">
-    Once the immediate shock settles, you may face a wider circle of reactions — from grandparents and siblings to coworkers
-    and neighbors. Some will help; others may judge. You are not required to share every detail. Your goal is to protect your
-    children and yourself while maintaining healthy connections where possible. The{" "}
-    <a className="text-blue-700 underline" href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/" target="_blank" rel="noopener noreferrer">
-      Children of Incarcerated Parents Bill of Rights
-    </a>{" "}
-    reminds us children have the right to be protected from shame and judgment — that starts with how adults handle their reactions.
-  </p>
-
-  {/* Universal Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🌍</span> Universal Guidance
-  </h3>
-  <ul className="space-y-4 mb-8">
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Sort Your Circle</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li><em>Trusted helpers</em>: will support without judgment.</li>
-        <li><em>Practical contacts</em>: need limited info for childcare, school, logistics.</li>
-        <li><em>Not safe to share</em>: likely to gossip, criticize, or harm.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Create Anchor Phrases</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li><em>“It’s a difficult situation. We’re focused on keeping the kids safe.”</em></li>
-        <li><em>“We’re taking it one day at a time. Thank you for understanding.”</em></li>
-      </ul>
-      <p className="mt-2 text-slate-700">
-        Using pre-prepared scripts reduces anxiety and keeps messaging consistent — a strategy echoed by{" "}
-        <a className="text-blue-700 underline" href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse" target="_blank" rel="noopener noreferrer">
-          Stop It Now!
-        </a>.
-      </p>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Expect a Spectrum of Reactions</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Support: meals, rides, childcare, listening ears.</li>
-        <li>Stress: fear, anger, harsh judgment — more about their fears than your worth.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Protect Children from Adult Conversations</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>If adults argue or gossip near kids, step in calmly: <em>“We’re not discussing this around the kids.”</em></li>
-        <li>Never use children as messengers or mediators between adults.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Find Your Allies</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Even one or two safe adults helps enormously.</li>
-        <li>Ask them to echo your anchor phrases so you’re not carrying the burden alone.</li>
-      </ul>
-    </li>
-  </ul>
-
-  {/* Tip callout */}
-  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-8">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>💡</div>
-      <div>
-        <p className="font-semibold text-amber-900">Boundary Reminder</p>
-        <p className="text-amber-900/90">
-          You don’t have to answer every question. Silence is a boundary. Try: <em>“That’s not something I can discuss.”</em>
-        </p>
-      </div>
-    </div>
-  </div>
-
-  {/* Role-Based Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🎭</span> Role-Based Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2">
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Some relatives will feel anger or betrayal; don’t demand instant forgiveness.</li>
-        <li>Lead with accountability, not excuses: <em>“I know I caused pain. I’m working to do better.”</em></li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Stand firm when pressed for details: <em>“I won’t discuss specifics, but I appreciate your support.”</em></li>
-        <li>Your duty is your child’s stability — not satisfying curiosity.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Expect conflicting advice from your own family.</li>
-        <li>Use an anchor: <em>“I need time to make my own decisions. Please respect that.”</em></li>
-        <li>Don’t get pulled into defending your choices repeatedly.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Focus on actions, not opinions: bring meals, offer rides, read with kids.</li>
-        <li>Avoid pressuring parents for details or venting around children.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Timeline Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
-    <span aria-hidden>🕒</span> Timeline Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Limit sharing to essentials; focus on who must know.</li>
-        <li>Short phrases help: <em>“This is a legal matter. We’re focusing on the children.”</em></li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Prep relatives for visits (security, waiting). Ask them not to quiz kids after.</li>
-        <li>
-          Share child-friendly materials from{" "}
-          <a className="text-blue-700 underline" href="https://sesameworkshop.org/resources/coping-with-incarceration/" target="_blank" rel="noopener noreferrer">
-            Sesame Workshop
-          </a>.
-        </li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Acknowledge trust concerns without defending every choice.</li>
-        <li>Limit exposure to relatives who can’t stay respectful around kids.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Address stigma directly and focus on what you can control.</li>
-        <li>Invite supportive relatives into advocacy or education to reduce isolation.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Managing Family Reactions Checklist */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>✅</span> Managing Family Reactions Checklist
-  </h3>
-  <ul className="space-y-2 text-slate-800">
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Identify who truly needs to know details.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Create one anchor phrase and use it consistently.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Protect children from overhearing adult discussions.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Prepare supportive relatives before visits.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Expect both support and criticism.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Lean on one or two trusted allies for consistent messaging.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Accept that some relationships may shift — and that’s okay.</span></li>
-  </ul>
-</section>
-
-        {/* ===== STEP 4 - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">🤝 Step 4: Trust Rebuilding Toolkit</h2>
-    <p className="text-slate-100 mt-1">
-      Small, steady, reliable acts rebuild safety and connection over time.
-    </p>
-  </div>
-
-  <p className="mb-4">
-    Trust is not rebuilt through apologies alone — it is earned back in daily, consistent, reliable actions. This applies both
-    between partners and between parents and children. Kids especially watch for <em>patterns</em>, not promises. As the{" "}
-    <a className="text-blue-700 underline" href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust" target="_blank" rel="noopener noreferrer">
-      American Psychological Association
-    </a>{" "}
-    notes, repair comes from showing reliability in small ways, over and over again.
-  </p>
-
-  {/* Universal Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🌍</span> Universal Guidance
-  </h3>
-  <ul className="space-y-4 mb-8">
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Keep Promises Small &amp; Concrete</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Say what you can do today, not in the future.</li>
-        <li><em>“I’ll call you at 7 pm.” → and then call at 7 pm.</em></li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Repair Missed Expectations Quickly</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>If you forget or fail, acknowledge it right away.</li>
-        <li><em>“I didn’t follow through. I see that hurt you. I’ll try again tomorrow.”</em></li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Consistency Beats Big Gestures</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>A daily routine (calls, letters, meals together) speaks louder than dramatic apologies.</li>
-        <li>Children especially trust what happens <em>repeatedly</em>.</li>
-      </ul>
-    </li>
-  </ul>
-
-  {/* Callout: Micro-Commitments */}
-  <div className="rounded-xl border border-sky-200 bg-sky-50 p-4 mb-8">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>🧱</div>
-      <div>
-        <p className="font-semibold text-sky-900">Micro-Commitments</p>
-        <p className="text-sky-900/90">
-          One small promise a week, kept consistently, restores trust more than one big apology.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  {/* Role-Based Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🎭</span> Role-Based Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2">
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Show up when you say you will — calls, letters, visits, routines.</li>
-        <li>Admit mistakes quickly; don’t hide or deflect.</li>
-        <li>Keep boundaries clear: no promises you can’t control (like legal outcomes).</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians at Home</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Children crave predictability: school routines, meals, bedtime rituals.</li>
-        <li>Mark calendars visibly so kids know when calls/visits will happen.</li>
-        <li>When something changes, explain it honestly: <em>“The visit was cancelled, but we’ll try again next week.”</em></li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Trust may take months or years to rebuild. Look for patterns, not words.</li>
-        <li>Encourage transparency without constant interrogation.</li>
-        <li>Celebrate small wins together: one week of consistency, one month of honest check-ins.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Model patience — trust is a marathon, not a sprint.</li>
-        <li>Support with consistent routines (rides, meals, childcare).</li>
-        <li>Back up parents’ anchor phrases with children: consistency across adults matters.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Timeline Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
-    <span aria-hidden>🕒</span> Timeline Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Start tiny: one reliable action a day (a check-in call, a meal together).</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Keep letters or drawings regular, even if short.</li>
-        <li>Ask kids to share one “rose &amp; thorn” of their day to stay emotionally connected.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Don’t overwhelm with promises; start with one shared meal or walk each week.</li>
-        <li>Expect setbacks; repair them quickly.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Anchor the family around traditions (Friday pizza, Sunday calls).</li>
-        <li>Advocacy and transparency with kids about stigma builds deeper trust.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Checklist */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>✅</span> Trust Rebuilding Checklist
-  </h3>
-  <ul className="space-y-2 text-slate-800">
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Make one small, specific promise you can keep this week.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Follow through, even if it feels trivial.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>If you slip, acknowledge it immediately and try again.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Track patterns of consistency over time — not just one-offs.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Celebrate small wins as a family to reinforce hope.</span></li>
-  </ul>
-</section>
-
-        {/* ===== STEP 5 - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">🌄 Step 5: Ongoing Support &amp; Resilience</h2>
-    <p className="text-slate-100 mt-1">
-      Building long-term routines, support systems, and perspective so families can sustain healing.
-    </p>
-  </div>
-
-  <p className="mb-4">
-    Healing after crisis is not a one-time event — it’s a long process of adaptation, patience, and care. Families facing
-    incarceration, supervision, or registry involvement often find themselves cycling through moments of stability, setbacks,
-    and renewal. Resilience means learning how to keep moving forward, even when progress is slow or uneven.
-  </p>
-
-  {/* Universal Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🌍</span> Universal Guidance
-  </h3>
-  <ul className="space-y-4 mb-8">
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Build Routines That Last</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Simple rituals (family meals, bedtime stories, weekly calls) create stability.</li>
-        <li>Consistency teaches children that life goes on, even with challenges.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Stay Connected to Support Systems</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Engage with trusted community: peer groups, faith communities, advocacy networks.</li>
-        <li>Isolation fuels shame — connection builds resilience.</li>
-      </ul>
-    </li>
-
-    <li className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-      <p className="font-medium mb-2">Reframe the Family Story</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Talk about the journey as growth: “We went through hardship, and we learned how to be strong together.”</li>
-        <li>Give children language of hope and persistence, not just shame.</li>
-      </ul>
-    </li>
-  </ul>
-
-  {/* Callout: Resilience Boost */}
-  <div className="rounded-xl border border-violet-200 bg-violet-50 p-4 mb-8">
-    <div className="flex items-start gap-3">
-      <div className="text-2xl" aria-hidden>🌱</div>
-      <div>
-        <p className="font-semibold text-violet-900">Resilience Boost</p>
-        <p className="text-violet-900/90">
-          Celebrate even small wins — finishing a school project, keeping a bedtime routine, attending a visit. Momentum matters
-          more than perfection.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  {/* Role-Based Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>🎭</span> Role-Based Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2">
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👤</span> For the Impacted Individual</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Use structure (check-ins, curfews, restrictions) as opportunities to demonstrate responsibility.</li>
-        <li>Model persistence: keep showing up even when trust is slow to return.</li>
-        <li>Set achievable goals: education, work, volunteering — progress builds credibility.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👪</span> For Parents/Guardians</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Protect household rhythms: school, chores, celebrations.</li>
-        <li>Give children stability through predictable rules and consistent care.</li>
-        <li>Advocate at school if children face stigma — normalize their experience with empathy.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>💞</span> For Spouses/Partners</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Rebuild intimacy and partnership gradually; don’t expect instant repair.</li>
-        <li>Engage in joint planning: finances, routines, family goals.</li>
-        <li>Balance your own healing with family responsibilities — therapy or peer support can help.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4">
-      <p className="font-medium mb-2"><span aria-hidden>👵</span> For Extended Family</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Stay steady and present — children benefit from your calmness and continuity.</li>
-        <li>Support parents without judgment or gossip.</li>
-        <li>Step in with concrete help (rides, meals, babysitting) rather than advice.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Timeline Guidance */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2 mt-8">
-    <span aria-hidden>🕒</span> Timeline Guidance
-  </h3>
-  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🚨</span> Early (Arrest / Pre-Trial)</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Focus on basic survival and reassurance: “We are safe, we are together.”</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>⛓️</span> Incarceration</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Use visits and letters as anchors for hope and connection.</li>
-        <li>Explain routines to children so they know what to expect during visits.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>🏠</span> Reentry / Supervision</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Expect stress in adjusting — create calm routines to ease transitions.</li>
-        <li>Mark milestones: first month home, first school year completed together.</li>
-      </ul>
-    </div>
-
-    <div className="rounded-xl border border-slate-200 p-4 bg-slate-50">
-      <p className="font-medium mb-2"><span aria-hidden>📜</span> Registry / Long-Term</p>
-      <ul className="list-disc pl-5 text-slate-700 space-y-1">
-        <li>Normalize new routines: neighbors, school staff, community organizations.</li>
-        <li>Advocacy and long-term planning help transform stigma into strength.</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Checklist */}
-  <h3 className="text-xl font-semibold text-slate-700 mb-3 flex items-center gap-2">
-    <span aria-hidden>✅</span> Ongoing Support Checklist
-  </h3>
-  <ul className="space-y-2 text-slate-800">
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Maintain at least one daily or weekly family routine.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Stay connected with a peer group or supportive community.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Reframe setbacks as learning, not failure.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Celebrate small wins to reinforce hope and progress.</span></li>
-    <li className="flex items-start gap-2"><span aria-hidden>☐</span><span>Advocate for children in school and community settings.</span></li>
-  </ul>
-</section>
-
-        {/* ===== CONCLUSION - paste your prose here ===== */}
-<section className="bg-white rounded-2xl shadow p-6 border border-slate-200">
-  <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white -m-6 mb-6 p-6 rounded-t-2xl">
-    <h2 className="text-2xl font-bold">🌟 Conclusion: A Path Forward</h2>
-    <p className="text-slate-100 mt-1">
-      Warmth, honesty, routines, and support carry families through the long journey.
-    </p>
-  </div>
-
-  <p className="mb-4">
-    If you are reading this, it means you are committed to holding your family together in one of the hardest journeys
-    imaginable. That commitment alone is an act of love and resilience.
-  </p>
-
-  <p className="mb-4">
-    There are no perfect words. Disclosure may feel messy. Trust may take longer than you hoped. Family reactions may
-    surprise you. And resilience may sometimes feel like survival — but you are not alone. Families across the country adapt
-    and grow with the help of{" "}
-    <a
-      className="text-blue-700 underline"
-      href="https://sesameworkshop.org/resources/coping-with-incarceration"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Sesame Workshop’s caregiver tools
-    </a>{" "}
-    and{" "}
-    <a
-      className="text-blue-700 underline"
-      href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Stop It Now!’s family safety guides
-    </a>
-    .
-  </p>
-
-  <p className="mb-2">
-    🌅 There is life beyond this moment. It may look different from what you imagined, but it can still hold safety, joy,
-    dignity, and connection. With courage, love, and supportive community, your family can emerge not only surviving, but
-    stronger and wiser.
-  </p>
-</section>
-
-        {/* ===== SOURCES & RESOURCES (blue background card) ===== */}
-        <section id="sources-resources" className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-slate-700 to-slate-600 text-white p-6">
-            <div className="flex items-center">
-              <div className="w-12 h-12 bg-white text-slate-700 rounded-full flex items-center justify-center mr-4 text-lg font-bold">
-                📚
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">Sources &amp; Resources</h2>
-                <p className="text-slate-200">Trusted, family-friendly materials you can reference and share</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6">
-            <ul className="list-disc pl-6 space-y-2 text-slate-800">
-              {/* Replace these with your real links (kept minimal to avoid paste errors) */}
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/Tips-to-Support-Children-When-a-Parent-is-in-Prison.aspx"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  American Academy of Pediatrics – Tips to Support Children When a Parent is in Prison
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.samhsa.gov/resource/dbhis/infographic-6-guiding-principles-trauma-informed-approach"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  SAMHSA – 6 Guiding Principles of Trauma-Informed Approach
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.nctsn.org/what-is-child-trauma/about-child-trauma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  National Child Traumatic Stress Network – About Child Trauma
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://sesameworkshop.org/resources/coping-with-incarceration/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Sesame Workshop – Coping With Incarceration
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.stopitnow.org/ohc-content/parents-talking-to-children-about-sexual-abuse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Stop It Now! – Parents Talking to Children About Sexual Abuse
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.atsa.com/atsa-practice-guidelines"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Association for the Treatment and Prevention of Sexual Abuse (ATSA) – Practice Guidelines
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.osborneny.org/resources/children-of-incarcerated-parents-bill-of-rights/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Children of Incarcerated Parents Bill of Rights – Osborne Association
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.mstservices.com/what-is-mst"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Multisystemic Therapy (MST)
-                </a>
-                <span> and </span>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.functionalfamilytherapy.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Functional Family Therapy (FFT)
-                </a>
-              </li>
-              <li>
-                <a
-                  className="text-blue-700 underline"
-                  href="https://www.apa.org/monitor/2019/11/cover-rebuilding-trust"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  American Psychological Association – Rebuilding Trust
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </div>{/* end: main content container */}
+
+          <p>
+            Children still need the same basic things: truth, safety, love,
+            routines, and adults who do not make them carry adult burdens.
+          </p>
+        </GuideIntro>
+
+        <QuickStartPanel
+          title="Before you talk with a child"
+          subtitle="Use these first steps before a hard conversation, visit, call, letter, school conversation, or family meeting."
+          icon="⚡"
+          urgentActions={[
+            <span key="write">
+              Write one simple, truthful sentence before you speak.
+            </span>,
+            <span key="rules">
+              Check whether any court order, custody order, facility rule,
+              supervision condition, treatment rule, or no-contact order limits
+              contact or communication.
+            </span>,
+            <span key="adult">
+              Choose one calm adult to lead the conversation, not a crowd of
+              overwhelmed relatives.
+            </span>,
+          ]}
+          nextActions={[
+            <span key="fault">
+              Plan to say clearly: “You are safe,” “You are loved,” and “This
+              is not your fault.”
+            </span>,
+            <span key="short">
+              Keep the first conversation short. Answer the question the child
+              asked, not every question you fear they might ask later.
+            </span>,
+            <span key="grounding">
+              End with something grounding: a snack, a walk, bedtime routine,
+              drawing, music, prayer, or quiet time together.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              Disclosure is usually a series of short conversations, not one
+              perfect talk.
+            </span>
+          }
+        />
+
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Step 1",
+              title: "Stabilize first",
+              icon: "🧯",
+              tone: "info",
+              description:
+                "Children feel adult panic. Pause, write down the basic facts, and decide who is safe to involve.",
+            },
+            {
+              eyebrow: "Step 2",
+              title: "Tell enough truth",
+              icon: "💬",
+              tone: "family",
+              description:
+                "Use age-appropriate words. Do not give graphic details, legal theories, or adult conflict.",
+            },
+            {
+              eyebrow: "Step 3",
+              title: "Keep returning",
+              icon: "🔁",
+              tone: "success",
+              description:
+                "Children process in pieces. Expect repeated questions, changing feelings, and new conversations as they grow.",
+            },
+          ]}
+        />
+
+        <GuideSectionHeader
+          id="what-is-different"
+          number="1"
+          title="What is universal, and what is different here"
+          subtitle="The child-centered basics are familiar. The legal, stigma, and registry layers need extra care."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The basic child guidance does not change just because the legal
+              situation involves a sex offense or registry issue. Children still
+              need calm adults, honest but age-appropriate words, protection
+              from adult conflict, and permission to feel more than one thing at
+              once.
+            </p>
+
+            <p>
+              What changes is the practical environment around the child.
+              Contact may be restricted. Court, custody, supervision, treatment,
+              facility, school, or registry rules may affect ordinary family
+              routines. Information may be public, searchable, or repeated by
+              other people in cruel or incomplete ways.
+            </p>
+
+            <p>
+              That means this guide avoids two extremes. It does not minimize
+              harm or hide behind vague language. It also does not make a child
+              carry shame, adult fear, legal strategy, or advocacy arguments.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="reminder" icon="🪷" title="The SOLAR-specific layer">
+            <p>
+              In this context, adults should be especially careful about child
+              contact rules, public stigma, searchable information, school and
+              community gossip, and long-term restrictions that may affect
+              visits, housing, travel, technology, school events, and family
+              routines.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="what-children-need"
+          number="2"
+          title="What children need to hear"
+          subtitle="Simple truth, direct reassurance, and steady adults matter more than a perfect explanation."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Few moments feel as impossible as telling a child that someone
+              they love is in legal trouble, incarcerated, on supervision, or
+              living under registry rules. Silence can feel safer to adults, but
+              children often fill silence with fear, blame, or stories they hear
+              from someone else.
+            </p>
+
+            <p>
+              Start with the child’s immediate world. Who will pick them up?
+              Where will they sleep? Can they still love the person? Are they in
+              trouble? Did they cause this? Will adults keep telling them the
+              truth?
+            </p>
+
+            <p>
+              Most children do not need every detail. They need enough truth to
+              understand the change around them, enough reassurance to feel
+              cared for, and enough consistency to believe adults are not hiding
+              everything from them.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="family" icon="✨" title="A sentence to return to">
+            <p>
+              “This is a grown-up legal problem. You did not cause it. You are
+              safe. You are loved. We will keep answering your questions in
+              words you can understand.”
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="child-disclosure-basics"
+            title="Disclosure basics"
+            columns={1}
+            items={[
+              {
+                id: "simple",
+                label:
+                  "Use one or two simple sentences before giving more detail.",
+              },
+              {
+                id: "truth",
+                label:
+                  "Tell the truth without giving graphic facts, legal strategy, or adult-level explanations.",
+              },
+              {
+                id: "fault",
+                label:
+                  "Say directly that the child did not cause the situation and is not responsible for fixing it.",
+              },
+              {
+                id: "harm",
+                label:
+                  "Do not minimize serious harm, but do not make the child responsible for understanding adult details.",
+              },
+              {
+                id: "feelings",
+                label:
+                  "Accept tears, silence, anger, confusion, embarrassment, loyalty, love, or repeated questions.",
+              },
+              {
+                id: "routine",
+                label:
+                  "End the conversation with a predictable, calming activity.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            title="Verify before arranging contact with a child"
+            whoToAsk={
+              <span>
+                The attorney, court clerk if appropriate, supervising officer,
+                custody attorney, facility staff, treatment provider, or agency
+                with actual authority over the restriction.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Is this specific contact allowed: a visit, call, letter, text,
+                school event, third-party message, or family gathering involving
+                this child?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the date, person’s name, department, exact answer, and any
+                written permission, order, policy, or denial.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts"
+          number="3"
+          title="Age-aware scripts"
+          subtitle="Use these as starting points. Adjust names, relationships, and legal posture without adding graphic detail."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Scripts help adults speak calmly when emotions are high. They are
+              not meant to hide the truth. They are meant to keep the truth
+              small enough for the child’s age, safety, and role.
+            </p>
+
+            <p>
+              For younger children, focus on safety, routine, and love. For
+              older children and teens, use clearer words and leave room for
+              anger, embarrassment, loyalty, confusion, and complicated feelings.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="info" icon="🌿" title="About the tone of these scripts">
+            <p>
+              The scripts below are intentionally presented in a softer style.
+              They are serious, but they should not look like emergency warnings.
+              The goal is to give adults calm language they can actually use.
+            </p>
+          </GuideCallout>
+
+          <ScriptBox
+            title="Preschool children, roughly ages 3–5"
+            tone="soft"
+            context="Use very short sentences. Young children need reassurance and routine more than explanation."
+            script={`Daddy cannot live at home right now because of a serious grown-up problem.\n\nYou did not cause this. You are safe. You are loved.\n\nWe are going to have dinner, read a story, and I will answer more questions when you have them.`}
+          />
+
+          <ScriptBox
+            title="Elementary children, roughly ages 6–10"
+            tone="soft"
+            context="Children this age may ask the same question many times. Repetition can be part of feeling safe."
+            script={`Mom is in legal trouble because adults believe she broke an important rule.\n\nI do not have every answer yet, but I will tell you the truth in words you can understand.\n\nThis is not your fault. You are safe, and you are loved.`}
+          />
+
+          <ScriptBox
+            title="Middle school children, roughly ages 11–13"
+            tone="soft"
+            context="Use clearer language while still protecting them from adult details."
+            script={`Uncle has a serious legal situation and has to follow rules from the court.\n\nYou may feel confused, embarrassed, angry, loyal, worried, or unsure what to think. Those feelings are allowed.\n\nYou can ask me questions. If I do not know the answer, I will say that instead of guessing.`}
+          />
+
+          <ScriptBox
+            title="Teenagers, roughly ages 14–18"
+            tone="soft"
+            context="Teens may already know partial information from school, social media, court pages, news, or peers."
+            script={`Your dad is dealing with a serious legal situation connected to sexual boundaries, safety, and choices adults are responsible for.\n\nThis may affect visits, school events, privacy, and how our family handles questions from other people.\n\nYou do not have to protect my feelings. I will listen, and we can keep talking as you have more questions.`}
+          />
+
+          <ScriptBox
+            title="When there has been a conviction"
+            tone="soft"
+            context="Use only when it is accurate. This gives older children and teens clearer language without graphic detail."
+            script={`They were convicted of breaking a law about sexual behavior and safety.\n\nThat is serious, and it is okay to have strong feelings about it.\n\nYou are not responsible for what happened, for fixing it, or for deciding today how you will feel forever.`}
+          />
+
+          <ScriptBox
+            title="Young adults"
+            tone="soft"
+            context="Adult children may need more direct information and room to set their own boundaries."
+            script={`Here is what I know, and here is what I still do not know.\n\nYou may have strong feelings, and you do not have to decide everything today.\n\nI want to keep communication open, but I will respect your boundaries and your need for support outside the family.`}
+          />
+
+          <ScriptBox
+            title="When you do not know the answer yet"
+            tone="soft"
+            context="Use this instead of guessing, promising an outcome, or making the child carry uncertainty."
+            script={`That is a fair question. I do not know the answer yet.\n\nI am going to ask the right person and write down what they say.\n\nWhen I know more, I will tell you what I can in words that make sense for you.`}
+          />
+
+          <ScriptBox
+            title="When someone at school or online has heard something"
+            tone="soft"
+            context="Use this when the child is facing gossip, stigma, registry searches, or partial information from others."
+            script={`I am sorry you had to hear that from someone else.\n\nSome of what people say may be wrong, incomplete, or said in a hurtful way.\n\nYou can bring questions to me. You do not have to explain our family to everyone, and you are allowed to ask for help if someone is being cruel.`}
+          />
+
+          <ScriptBox
+            title="When a no-contact or limited-contact rule exists"
+            tone="soft"
+            context="Use only if it is accurate for the situation. Do not blame the child or promise the rule will change."
+            script={`There is a rule right now that limits contact. That rule is for adults to follow.\n\nYou did not cause it, and it is not your job to fix it.\n\nWe will follow the rule carefully, and we will keep taking care of you while the adults work through what happens next.`}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="family-roles"
+          number="4"
+          title="What different adults should do"
+          subtitle="Children need adults to stay in their proper roles: calm, honest, boundaried, and protective."
+        />
+
+        <GuideSectionCard>
+          <RoleGuidanceGrid
+            title="Role-based guidance"
+            roles={[
+              {
+                role: "Caregiver at home",
+                icon: "🏠",
+                guidance: (
+                  <div>
+                    <p>
+                      Lead with stability. Keep school, meals, bedtime, and
+                      transportation as predictable as possible.
+                    </p>
+                    <p>
+                      Practice one simple script before you talk. Do not process
+                      adult grief, anger, fear, legal strategy, or advocacy
+                      arguments with the child.
+                    </p>
+                  </div>
+                ),
+              },
+              {
+                role: "Impacted individual",
+                icon: "✉️",
+                guidance: (
+                  <div>
+                    <p>
+                      Share love without pressuring the child to reassure you.
+                      Keep messages short, steady, accountable, and rule-compliant.
+                    </p>
+                    <p>
+                      Do not ask the child to keep secrets, carry messages,
+                      defend you, reject others, or promise forgiveness.
+                    </p>
+                  </div>
+                ),
+              },
+              {
+                role: "Spouse or partner",
+                icon: "🤝",
+                guidance: (
+                  <div>
+                    <p>
+                      Your grief, anger, loyalty, fear, or ambivalence may be
+                      real. The child still needs permission to have their own
+                      feelings.
+                    </p>
+                    <p>
+                      Process adult decisions with safe adults, counsel, support
+                      groups, or therapy — not with the child.
+                    </p>
+                  </div>
+                ),
+              },
+              {
+                role: "Grandparents and extended family",
+                icon: "👥",
+                guidance: (
+                  <div>
+                    <p>
+                      Support the household with meals, rides, childcare,
+                      privacy, and calm presence.
+                    </p>
+                    <p>
+                      Do not interrogate the child, gossip nearby, demand
+                      details, shame the family, or undermine the caregiver’s
+                      chosen script.
+                    </p>
+                  </div>
+                ),
+              },
+              {
+                role: "School, childcare, or community supporter",
+                icon: "🎒",
+                guidance: (
+                  <div>
+                    <p>
+                      Ask the caregiver what the child needs at school or in
+                      activities: privacy, routine, flexibility, or a safe adult
+                      to check in with.
+                    </p>
+                    <p>
+                      Share only what is necessary to support the child. Do not
+                      turn family crisis into staff gossip.
+                    </p>
+                  </div>
+                ),
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="privacy"
+            icon="🛡️"
+            title="Protect children from adult conversations"
+          >
+            <p>
+              Children should not overhear strategy calls, accusations, custody
+              arguments, registry research, financial panic, or relatives
+              debating whether the person deserves support.
+            </p>
+          </GuideCallout>
+
+          <ScriptBox
+            title="Boundary phrase for relatives"
+            tone="soft"
+            context="Use this when people press for details or talk about the case around children."
+            script={`We are not discussing details around the kids.\n\nRight now we are focused on keeping them safe, steady, and loved.\n\nIf you want to help, practical support is welcome. Gossip, pressure, and harsh comments around the children are not.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="timeline"
+          number="5"
+          title="What changes by stage"
+          subtitle="The right conversation may change during investigation, incarceration, reentry, supervision, and long-term registry life."
+        />
+
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="Stage-based guidance"
+            stages={[
+              {
+                stage: "Investigation, arrest, or pretrial",
+                icon: "⚖️",
+                whatChanges: (
+                  <p>
+                    Facts may be unclear, adults may be in shock, and court,
+                    custody, bond, or no-contact rules may change quickly.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Keep explanations minimal and truthful. Avoid discussing
+                    allegations, interviews, witness issues, or legal strategy
+                    with or around children.
+                  </p>
+                ),
+              },
+              {
+                stage: "Incarceration or detention",
+                icon: "⛓️",
+                whatChanges: (
+                  <p>
+                    Calls, mail, visits, and video contact may be monitored,
+                    delayed, denied, or controlled by facility rules.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Prepare children for what they may see: uniforms, waiting,
+                    security, limited touch, short calls, and hard goodbyes.
+                    Keep visit routines predictable when contact is allowed.
+                  </p>
+                ),
+              },
+              {
+                stage: "Reentry and supervision",
+                icon: "🚪",
+                whatChanges: (
+                  <p>
+                    The loved one may be home or nearby but still under strict
+                    rules about housing, curfew, internet, treatment, travel,
+                    school events, or child contact.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Explain rules simply without making the child responsible:
+                    “This is an adult rule we have to follow.” Celebrate small
+                    routines returning without promising everything is fixed.
+                  </p>
+                ),
+              },
+              {
+                stage: "Registry and long-term family life",
+                icon: "🧭",
+                whatChanges: (
+                  <p>
+                    Children may grow into more questions about stigma,
+                    internet searches, neighbors, school, friends, dating,
+                    travel, and why rules still exist.
+                  </p>
+                ),
+                whatToDo: (
+                  <p>
+                    Revisit the conversation as they mature. Frame the registry
+                    as one legal reality the family manages, not the child’s
+                    identity or burden.
+                  </p>
+                ),
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="stage-checklist"
+            title="Stage check"
+            columns={1}
+            items={[
+              {
+                id: "contact",
+                label:
+                  "Before any contact, verify whether the contact is allowed and under what conditions.",
+              },
+              {
+                id: "monitoring",
+                label:
+                  "Assume facility calls, mail, visits, and video systems may be monitored unless told otherwise in writing.",
+              },
+              {
+                id: "school",
+                label:
+                  "If school support is needed, share only what helps the child function safely at school.",
+              },
+              {
+                id: "online",
+                label:
+                  "Prepare older children for the possibility of online searches, registry pages, gossip, or partial information.",
+              },
+              {
+                id: "promises",
+                label:
+                  "Do not promise release dates, reunification, case outcomes, registry relief, or rule changes.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="avoid"
+          number="6"
+          title="Common mistakes to avoid"
+          subtitle="These mistakes usually come from fear or love, but they can make children feel less safe."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            title="Disclosure and family-boundary mistakes"
+            mistakes={[
+              {
+                mistake:
+                  "Waiting so long that the child learns from gossip, search results, a registry page, or overheard adult conversations.",
+                whyItMatters:
+                  "Children may feel betrayed or imagine something worse than the truth.",
+                betterMove:
+                  "Give a short, age-aware explanation before the child is forced to piece it together alone.",
+              },
+              {
+                mistake:
+                  "Giving graphic details, legal theories, or adult-level explanations.",
+                whyItMatters:
+                  "Children are not lawyers, investigators, therapists, or emotional containers for adults.",
+                betterMove:
+                  "Answer the question asked in the simplest truthful way that protects the child.",
+              },
+              {
+                mistake: "Minimizing the seriousness so the child will feel better.",
+                whyItMatters:
+                  "Older children may sense that adults are hiding or softening the truth, especially if they find public information later.",
+                betterMove:
+                  "Use non-graphic but honest language: serious legal situation, sexual boundaries, safety, adult choices, court rules, or conviction when accurate.",
+              },
+              {
+                mistake: "Making the child comfort the adult.",
+                whyItMatters:
+                  "Children may hide their own fear, anger, or confusion to protect the caregiver.",
+                betterMove:
+                  "Say, “My feelings are for adults to help me with. You can have your own feelings.”",
+              },
+              {
+                mistake:
+                  "Using the child as a messenger, mediator, character witness, or proof of loyalty.",
+                whyItMatters:
+                  "It places the child in the middle of adult conflict and can create legal or supervision risk.",
+                betterMove:
+                  "Keep adult communication between adults and follow all court, custody, facility, and supervision rules.",
+              },
+              {
+                mistake: "Promising outcomes you cannot control.",
+                whyItMatters:
+                  "Broken promises can damage trust more than honest uncertainty.",
+                betterMove:
+                  "Say, “I do not know yet, but I will tell you what I can when I know more.”",
+              },
+              {
+                mistake:
+                  "Letting relatives interrogate, shame, recruit, or gossip around the child.",
+                whyItMatters:
+                  "Children may internalize adult judgment as shame about themselves or their family.",
+                betterMove:
+                  "Set a direct boundary and remove the child from the conversation if needed.",
+              },
+            ]}
+          />
+
+<GuideCallout tone="legal" icon="⚠️" title="Do not coach a child">
+            <p>
+              Do not tell a child what to say to police, attorneys, caseworkers,
+              custody evaluators, school officials, therapists, or court staff.
+              If a child may be a witness, alleged victim, or involved in a
+              custody or protection matter, get legal guidance before discussing
+              facts of the case.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="trust"
+          number="7"
+          title="Rebuilding trust with children"
+          subtitle="Children watch patterns more than promises. Small, kept commitments matter."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Trust is not rebuilt through one apology, one perfect visit, or
+              one emotional conversation. It grows when adults tell the truth,
+              keep small promises, repair missed expectations, and return to
+              connection without demanding forgiveness.
+            </p>
+
+            <p>
+              Children may want closeness one day and distance the next. That
+              does not mean the effort is failing. It often means they are
+              testing whether adults can stay steady while they have real
+              feelings.
+            </p>
+
+            <p>
+              In registry-affected families, trust rebuilding may also mean
+              explaining why some ordinary family moments are complicated:
+              school events, sleepovers, travel, internet use, neighborhood
+              questions, or who can be present during visits. Keep the burden on
+              adults: “These are adult rules for adults to manage.”
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="success" icon="🌱" title="Micro-commitments">
+            <p>
+              One small promise kept consistently — a call when allowed, a
+              letter, a bedtime routine, a school pickup, a meal, a check-in —
+              usually rebuilds more safety than a big promise about the future.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="trust-rebuilding"
+            title="Trust rebuilding checklist"
+            columns={1}
+            items={[
+              {
+                id: "small",
+                label:
+                  "Make one small promise you can actually keep this week.",
+              },
+              {
+                id: "calendar",
+                label:
+                  "Use a visible calendar for calls, visits, school events, or routines when appropriate.",
+              },
+              {
+                id: "repair",
+                label:
+                  "If a promise is missed, acknowledge it without excuses and explain what happens next.",
+              },
+              {
+                id: "feelings",
+                label:
+                  "Allow the child to feel angry, sad, embarrassed, loyal, loving, confused, or distant.",
+              },
+              {
+                id: "rules",
+                label:
+                  "Name adult rules simply without making the child feel responsible for them.",
+              },
+              {
+                id: "adult-support",
+                label:
+                  "Get adult support for adult pain so the child does not have to carry it.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Repair after a missed expectation"
+            tone="soft"
+            context="Use this when a call, visit, event, or promise falls through."
+            script={`I said something would happen, and it did not happen.\n\nI can see how that hurt or disappointed you.\n\nI am sorry. Here is what I know now, and here is the next small thing I can do.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="8"
+          title="Resources and next steps"
+          subtitle="Use outside support when children need more than one family conversation can provide."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Helpful child and family resources"
+            description={
+              <span>
+                These resources can help caregivers find child-friendly
+                language, trauma-aware support, crisis help, and family
+                communication tools.
+              </span>
+            }
+            resources={[
+              {
+                label: "HealthyChildren / AAP — Parent in Prison",
+                href: sourceLinks[0].href,
+                badge: "Medical",
+                description:
+                  "Caregiver guidance for supporting children when a parent is incarcerated.",
+              },
+              {
+                label: "NCTSN — Families and Caregivers",
+                href: sourceLinks[1].href,
+                badge: "Trauma",
+                description:
+                  "Trauma-aware information for parents and caregivers supporting children.",
+              },
+              {
+                label: "Sesame Workshop — Incarceration",
+                href: sourceLinks[2].href,
+                badge: "Child-friendly",
+                description:
+                  "Videos, printables, and activities for children and caregivers.",
+              },
+              {
+                label: "Sesame Workshop — Visiting a Parent in Prison",
+                href: sourceLinks[3].href,
+                badge: "Visits",
+                description:
+                  "A child-friendly resource for preparing children for prison visits.",
+              },
+              {
+                label: "Stop It Now! — Talking to Children and Teens",
+                href: sourceLinks[4].href,
+                badge: "Safety",
+                description:
+                  "Guidance on accurate, age-appropriate safety conversations.",
+              },
+              {
+                label: "988 Suicide & Crisis Lifeline",
+                href: sourceLinks[6].href,
+                phone: "Call or text 988",
+                badge: "Crisis",
+                description:
+                  "Immediate emotional crisis support for children, caregivers, and adults.",
+              },
+            ]}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "The SOLAR Family & Allies Guide",
+                description:
+                  "A broader roadmap for families supporting a loved one from arrest through reentry and beyond.",
+                to: "/resources/family-support-guide",
+              },
+              {
+                title: "Prison Communication, Mail, Visits & Monitoring",
+                description:
+                  "Use this for facility rules, monitored communication, visitation limits, and communication planning.",
+                to: "/resources/prison-communication-mail-visits-monitoring",
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "Use this when the family is preparing for release, supervision, housing, documents, and routines.",
+                to: "/resources/reentry-checklist",
+              },
+              {
+                title: "Mental Health & Support Directory",
+                description:
+                  "Use this to look for crisis support, therapy, peer support, and family resources.",
+                to: "/resources/mental-health-directory",
+              },
+              {
+                title: "Community Integration Tips",
+                description:
+                  "Use this for longer-term belonging, stigma, disclosure, and rebuilding community life.",
+                to: "/resources/community-integration-tips",
+              },
+            ]}
+          />
+
+          <SourceList
+            title="Sources & verification"
+            note="These links should be rechecked before production publication. This guide uses current public pages where available and avoids relying on unsupported homepage-only citations."
+            sources={sourceLinks}
+          />
+        </GuideSectionCard>
+      </main>
     </div>
   );
 }
-
-export default ChildrenDisclosureToolkit;
