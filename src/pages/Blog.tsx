@@ -53,6 +53,10 @@ const readerPathways = [
         label: "The Registry Is Not a Prevention Plan",
         path: "/blog/the-registry-is-not-a-prevention-plan",
       },
+      {
+        label: "Why Stranger Danger Became Law and Institutional Abuse Became a Report",
+        path: "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
+      },
       { label: "Rethinking the Sex Offender Registry", path: "/blog/rethinking-registry" },
       { label: "What Good Is the Registry?", path: "/blog/what-good-is-the-registry" },
       { label: "Fifty Laws, Zero Logic", path: "/blog/fifty-laws-zero-logic" },
@@ -74,6 +78,10 @@ const readerPathways = [
     description:
       "A constructive path for readers asking what should replace safety theater and downstream public labeling.",
     links: [
+      {
+        label: "Why Stranger Danger Became Law and Institutional Abuse Became a Report",
+        path: "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
+      },
       {
         label: "The Registry Is Not a Prevention Plan",
         path: "/blog/the-registry-is-not-a-prevention-plan",
@@ -98,6 +106,10 @@ const readerPathways = [
     description:
       "A route through SOLAR’s work on authority, access, institutional silence, and the stranger-danger myth.",
     links: [
+      {
+        label: "Why Stranger Danger Became Law and Institutional Abuse Became a Report",
+        path: "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
+      },
       {
         label: "High-Profile Cases vs. Stranger Danger",
         path: "/blog/high-profile-cases-stranger-danger",
