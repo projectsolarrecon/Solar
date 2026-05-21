@@ -1016,38 +1016,6 @@ If someone gives you information, please write down the date, the office, the pe
             note="Official links were live-checked during production drafting. Re-check state-specific law and agency practice before legal reliance."
             sources={sourceInventory}
           />
-
-          <GuideProse>
-            <h3>Source & Link Manifest</h3>
-
-            <p>
-              <strong>Official / agency sources:</strong> ICAOS transfer pages
-              support state-supervision transfer guidance; SMART Office supports
-              federal SORNA background; eCFR and HUD sources support federally
-              assisted housing screening discussion.
-            </p>
-
-            <p>
-              <strong>Internal SOLAR source:</strong> the State Registry Hub is
-              used as the central internal planning link for comparing the
-              leaving state and destination state before contacting agencies.
-            </p>
-
-            <p>
-              <strong>Support / advocacy sources:</strong> 211, NARSOL, ACSOL,
-              and Women Against Registry are included for navigation, education,
-              community support, and family support. They should not be treated
-              as substitutes for official legal or agency confirmation.
-            </p>
-
-            <p>
-              <strong>Production caution:</strong> this guide intentionally
-              avoids universal “3 days” or “10 days” deadline language. State
-              deadlines can be short, but the safest instruction is to verify
-              the exact trigger and deadline with the current and destination
-              registering agencies.
-            </p>
-          </GuideProse>
         </GuideSectionCard>
       </main>
     </div>
