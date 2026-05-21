@@ -13,6 +13,32 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
+  title: "Why Stranger Danger Became Law and Institutional Abuse Became a Report",
+  excerpt:
+    "America built sweeping registry laws around rare stranger-danger cases while institutional abuse scandals often produced reports, settlements, and inquiries. Real prevention requires confronting trusted access, secrecy, and power.",
+  author: "The SOLAR Project",
+  date: "2026-05-21",
+  readTime: "9 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "stranger danger",
+    "institutional abuse",
+    "public safety",
+    "registry policy",
+    "child protection",
+    "trusted access",
+    "political power",
+    "institutional accountability",
+    "prevention",
+    "moral panic",
+    "SORNA",
+    "Megan’s Law",
+    "Adam Walsh Act",
+  ],
+  path: "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
+},
+{
   id: "the-danger-was-never-queerness",
   title: "The Danger Was Never Queerness",
   excerpt:
