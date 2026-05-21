@@ -12,6 +12,7 @@ import {
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
+  OverviewCards,
   ResourceLinkGrid,
   SourceList,
 } from "../../components/solar";
@@ -604,7 +605,7 @@ const sourceTopics = [
   },
 ] as const;
 
-export default function ResearchDataResources(): JSX.Element {
+export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
