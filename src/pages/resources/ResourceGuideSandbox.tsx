@@ -12,88 +12,607 @@ import {
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
-  OfflineOptions,
-  DocumentPacket,
-  VerifyBeforeActing,
-  CommonMistakes,
-  OverviewCards,
   ResourceLinkGrid,
-  RelatedGuides,
   SourceList,
-  TimelineGuidanceGrid,
 } from "../../components/solar";
 
 const sourceLinks = {
-  stateDeptIML:
-    "https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html",
-  smartTravelNotice:
-    "https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel",
-  angelWatch: "https://www.ice.gov/hsi/centers-labs/angel-watch",
-  stateDeptCountryInfo: "https://travel.state.gov/content/travel/en/international-travel.html",
-  step: "https://mytravel.state.gov/s/step",
-  stateDeptEurope:
-    "https://travel.state.gov/en/international-travel/planning/guidance/europe.html",
-  euEes:
-    "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
-  euEtias:
-    "https://travel-europe.europa.eu/en/etias",
-  rtagMatrix: "https://registranttag.org/resources/travel-matrix/",
-  justFactsMatrix:
-    "https://justfactsnotfear.com/international-travel-for-registrants/international-travel-matrix-for-sex-offenders/",
-  pfrCountryReports: "https://pfr.guide/countryreports/",
-  pfrCruiseReports: "https://pfr.guide/cruisereports/",
-  acsol2026: "https://all4consolaws.org/2026/01/international-travel-2026/",
-  acsolTravelAfterIML: "https://all4consolaws.org/travel-after-iml/",
-  canadaInadmissibility:
-    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility.html",
-  canadaRemedies:
-    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility/overcome-criminal-convictions.html",
-  ukStandardVisitor: "https://www.gov.uk/standard-visitor",
-  ukEtaRules:
-    "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-electronic-travel-authorisation",
-  ukEtaOverview: "https://www.gov.uk/eta/what-you-can-cannot-do",
-  australiaCharacter:
-    "https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/character",
-  australiaEntryCharacter:
-    "https://immi.homeaffairs.gov.au/entering-and-leaving-australia/entering-australia/can-i-go-to-australia",
-  nzCharacter:
-    "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/character-requirements-for-new-zealand-visas/",
-  nzeta:
-    "https://www.immigration.govt.nz/visas/new-zealand-electronic-travel-authority-nzeta/",
-  japanConsular:
-    "https://www.seattle.us.emb-japan.go.jp/itpr_en/TravelingJapanQuickFacts.html",
-  japanArticle5:
-    "https://www.la.us.emb-japan.go.jp/pdf/ImmigrationControl_and_RefugeeRecognitionAct_Article%205.pdf",
-  philippinesAnnual:
-    "https://immigration.gov.ph/bi-bars-137-foreign-sex-offenders-from-entering-ph-in-2024/",
-  philippinesMoralTurpitude:
-    "https://immigration.gov.ph/bi-says-two-convicted-alien-sex-offenders-barred-from-entering-ph/",
-  philippinesTurnBacks:
-    "https://immigration.gov.ph/bi-turns-back-3-alien-sex-offenders-at-naia/",
-  singaporeNoBoarding:
-    "https://www.ica.gov.sg/news-and-publications/newsroom/media-release/ica-to-issue-no-boarding-directives-from-30-january-2026",
-  malaysiaProhibited:
-    "https://www.imi.gov.my/index.php/en/enforcement/prohibited-immigrant/",
-  southKoreaKeta: "https://www.k-eta.go.kr/portal/guide/viewetaapplication.do?locale=EN",
-  mexicoLey: "https://www.inm.gob.mx/micrositio/1/docs/mj/LMig.pdf",
-  mexicoConsular:
-    "https://consulmex.sre.gob.mx/montreal/index.php/en/foreigners/visa/363-i-want-to-visit-mexico-for-a-short-period-less-than-6-months-as-a-tourist-for-business-for-technical-assistance-as-a-journalist-in-transit-or-for-short-studies-do-i-need-a-visa",
-};
+  SE01: "https://bjs.ojp.gov/content/pub/pdf/rsorp94.pdf",
+  SE02:
+    "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/recidivismofadultsexualoffenders.pdf",
+  SE03: "https://link.springer.com/article/10.1007/s11292-021-09480-z",
+  SE04: "https://www.nber.org/system/files/working_papers/w13803/w13803.pdf",
+  SE05: "https://www.ojp.gov/pdffiles1/nij/grants/231989.pdf",
+  SE06: "https://smart.ojp.gov/doc/SORNA-Summary-Assessment-Research.pdf",
+  SE07:
+    "https://safervirginia.org/documents/Collateral%20Damage%20-%20Family%20Members%20of%20Registered%20Sex%20Offenders%20Levenson.pdf",
+  SE08:
+    "https://www.fl-counties.com/wp-content/uploads/2022/09/WhereforartThouCJPR2013.pdf",
+  SE09:
+    "https://www.csor-home.org/wp-content/uploads/2014/01/Report-on-Safety-Issues.pdf",
+  SE10:
+    "https://www.hrw.org/report/2007/09/11/no-easy-answers/sex-offender-laws-us",
+  SE11: "https://bjs.ojp.gov/content/pub/pdf/saycrle.pdf",
+  SE12: "https://ojjdp.ojp.gov/statistical-briefing-book/victims/faqs/qa02111",
+  SE13:
+    "https://www.ed.gov/research/educator-sexual-misconduct-a-synthesis-of-existing-literature",
+  SE14: "https://oig.justice.gov/sites/default/files/reports/21-093.pdf",
+  SE15: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
+  SE16:
+    "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
+  SE17: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
+  SE18: "https://supreme.justia.com/cases/federal/us/538/84/",
+  SE19: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
+  SE20: "https://www.gao.gov/assets/gao-13-211.pdf",
+  SE21: "https://members.atsa.com/ap/CloudFile/Download/pB50ZeZr",
+  SE22: "https://pubmed.ncbi.nlm.nih.gov/24664250/",
+  SE23:
+    "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/theeffectivenessoftreatmentforadultsexualoffenders.pdf",
+  SE24: "https://pubmed.ncbi.nlm.nih.gov/32960141/",
+  SE25: "https://www.nsvrc.org/sarts/toolkit/7-4/",
+  SE26: "https://www.themarshallproject.org/2018/10/03/banished",
+  SE27: "https://smart.ojp.gov/2025-Case-Law-Summary-508.pdf",
+  SE28:
+    "https://openscholarship.wustl.edu/cgi/viewcontent.cgi?article=1144&context=law_lawreview",
+} as const;
 
-const externalLinkProps = {
-  target: "_blank",
-  rel: "noopener noreferrer",
-};
+const evidenceThemes = [
+  {
+    id: "registry-efficacy",
+    title: "Registry efficacy and recidivism",
+    icon: "📊",
+    anchorIds: ["SE01", "SE03", "SE04", "SE05"],
+    supports:
+      "Broad registration and notification systems have not demonstrated a clear overall reduction in sexual recidivism across the research base.",
+    doesNotProve:
+      "This does not prove that law-enforcement registration data are useless for every investigative or information-sharing purpose.",
+    avoid: "“Registries have no impact on public safety.”",
+    safer:
+      "A 25-year meta-analysis found no statistically significant overall recidivism benefit from broad sex offense registration and notification policies.",
+    uses: "Legislative testimony, policy memos, evidence literacy posts.",
+  },
+  {
+    id: "known-perpetrators",
+    title: "Known perpetrators and prevention reality",
+    icon: "🧭",
+    anchorIds: ["SE11", "SE12", "SE13", "SE25"],
+    supports:
+      "Official and prevention-oriented sources show that harm to children often involves family members, acquaintances, caregivers, or trusted authority figures.",
+    doesNotProve:
+      "This does not prove stranger-perpetrated abuse never happens or should be ignored.",
+    avoid: "“Public notification serves no prevention purpose for children.”",
+    safer:
+      "Because many harms against children involve known or trusted people, public registries are a limited tool for primary prevention.",
+    uses: "State registry pages, child-safety messaging, prevention posts.",
+  },
+  {
+    id: "collateral-consequences",
+    title: "Collateral consequences and family harm",
+    icon: "🏠",
+    anchorIds: ["SE06", "SE07", "SE08", "SE24", "SE26"],
+    supports:
+      "Registry requirements and related restrictions are linked to housing instability, employment barriers, stigma, family spillover harm, and reintegration problems.",
+    doesNotProve:
+      "This does not prove every housing, employment, or family hardship is caused only by the registry rather than conviction, supervision, poverty, or other systems.",
+    avoid: "“Registry laws directly cause homelessness and job loss.”",
+    safer:
+      "Research suggests registry requirements and restrictions can destabilize housing, employment, and family support systems that are necessary for safe reintegration.",
+    uses: "Resource guides, policy memos, reentry content.",
+  },
+  {
+    id: "punitive-effects",
+    title: "Punitive effects and constitutional concerns",
+    icon: "⚖️",
+    anchorIds: ["SE18", "SE19", "SE27", "SE28"],
+    supports:
+      "Modern layered restrictions can burden speech, movement, housing, association, and community participation in ways that raise serious punitive-effect and constitutional concerns.",
+    doesNotProve:
+      "This does not prove every current registry law is automatically unconstitutional. Smith v. Doe remains a central precedent.",
+    avoid: "“The sex offense registry is unconstitutional punishment.”",
+    safer:
+      "Although registries have often been labeled civil, modern restrictions can impose punishment-like burdens and raise serious constitutional concerns.",
+    uses: "Legislative trackers, legal update blogs, policy explainers.",
+  },
+  {
+    id: "desistance",
+    title: "Desistance, treatment, and individualized reform",
+    icon: "🌱",
+    anchorIds: ["SE02", "SE21", "SE22", "SE23"],
+    supports:
+      "Risk varies by person and context, and sexual recidivism risk generally declines the longer someone remains offense-free in the community.",
+    doesNotProve:
+      "This does not prove risk reaches zero, that everyone presents the same risk, or that any one tool perfectly predicts future behavior.",
+    avoid: "“High-risk offenders are no longer a threat after a few years.”",
+    safer:
+      "Risk changes over time, which means public safety is better served by individualized assessment, treatment, and review than by permanent status alone.",
+    uses: "Evidence literacy posts, policy memos, reform proposals.",
+  },
+  {
+    id: "comparative-safety",
+    title: "Comparative public-safety logic",
+    icon: "🧩",
+    anchorIds: ["SE12", "SE15", "SE16", "SE17"],
+    supports:
+      "Many major public-safety harms are addressed through prevention, regulation, enforcement, technology, treatment, or service systems rather than permanent public identity branding.",
+    doesNotProve:
+      "This does not prove firearm violence, impaired driving, domestic violence, child maltreatment, and sexual offending are identical harms or require identical responses.",
+    avoid: "“Drunk driving is more dangerous than sexual offending.”",
+    safer:
+      "Public safety policy is selective: many serious harms are managed through tools other than permanent public identity branding.",
+    uses: "RECON, policy discussions, contextual advocacy.",
+  },
+  {
+    id: "institutional-responsibility",
+    title: "Institutional responsibility and trusted access",
+    icon: "🏛️",
+    anchorIds: ["SE13", "SE14"],
+    supports:
+      "Abuse can continue when institutions fail to act on warnings, reports, grooming behavior, or trusted-access risks.",
+    doesNotProve:
+      "This does not prove institutions are the sole or primary cause of sexual abuse, or that one institutional scandal proves a universal prevalence rate.",
+    avoid: "“Institutions are the primary cause of sexual abuse.”",
+    safer:
+      "Effective prevention requires institutional accountability because public registries cannot substitute for action when warning signs arise inside trusted systems.",
+    uses: "School-safety blogs, trusted-access series, policy memos.",
+  },
+] as const;
 
-export default function ResourceGuideSandbox(): JSX.Element {
+const anchorSources = [
+  {
+    id: "SE03",
+    title:
+      "The Effectiveness of Sex Offender Registration and Notification: A Meta-Analysis of 25 Years of Findings",
+    type: "Peer-reviewed meta-analysis",
+    why: "Best single front-shelf source for broad SORN efficacy claims.",
+    supports:
+      "Broad registration and notification policies have not shown a statistically significant overall recidivism benefit.",
+    caveat:
+      "Use for overall policy effects, not as proof that every registration function is useless.",
+    href: sourceLinks.SE03,
+  },
+  {
+    id: "SE01",
+    title: "Recidivism of Sex Offenders Released from Prison in 1994",
+    type: "Official data / government report",
+    why: "Useful for explaining rearrest, reconviction, follow-up periods, and measurement limits.",
+    supports:
+      "Sexual recidivism is often lower than public belief, while still varying by subgroup and measure.",
+    caveat:
+      "The cohort is older and measures detected recidivism, not every undetected offense.",
+    href: sourceLinks.SE01,
+  },
+  {
+    id: "SE04",
+    title: "Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
+    type: "Peer-reviewed study / NBER working paper",
+    why: "Important complication source because it separates registration from notification.",
+    supports:
+      "Registration-only and public notification systems may have different effects and should not be collapsed into one claim.",
+    caveat:
+      "Do not use this as a simple anti-registry source; it is more nuanced.",
+    href: sourceLinks.SE04,
+  },
+  {
+    id: "SE11",
+    title: "Sexual Assault of Young Children as Reported to Law Enforcement",
+    type: "Official data / government report",
+    why: "Strong official source for known-person prevention framing.",
+    supports:
+      "Many reported sexual assaults against young children involve family members or acquaintances rather than strangers.",
+    caveat:
+      "Reported-to-law-enforcement data do not capture every unreported harm.",
+    href: sourceLinks.SE11,
+  },
+  {
+    id: "SE18",
+    title: "Smith v. Doe",
+    type: "U.S. Supreme Court decision",
+    why: "Central precedent for the civil-regulatory legal framework.",
+    supports:
+      "Registry reform arguments must acknowledge that the Supreme Court has upheld at least one registry scheme as civil.",
+    caveat:
+      "Do not cite legal concerns as though Smith has been overturned nationally.",
+    href: sourceLinks.SE18,
+  },
+  {
+    id: "SE19",
+    title: "Packingham v. North Carolina",
+    type: "U.S. Supreme Court decision",
+    why: "Key speech and association case involving registry-related restrictions.",
+    supports:
+      "Even people with convictions retain constitutional rights, and broad restrictions can go too far.",
+    caveat:
+      "The case does not invalidate all registry restrictions.",
+    href: sourceLinks.SE19,
+  },
+  {
+    id: "SE22",
+    title: "High-Risk Sex Offenders May Not Be High Risk Forever",
+    type: "Peer-reviewed study / PubMed index",
+    why: "Concise desistance source for reviewable, time-sensitive policy.",
+    supports:
+      "Risk can decline the longer someone remains offense-free in the community.",
+    caveat:
+      "Declining risk is not the same as zero risk.",
+    href: sourceLinks.SE22,
+  },
+  {
+    id: "SE06",
+    title:
+      "Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
+    type: "Government evidence review",
+    why: "Useful because it acknowledges harms while also noting methodological limits.",
+    supports:
+      "Registry status and related restrictions are linked to employment, housing, wellbeing, and family burdens.",
+    caveat:
+      "Be careful about causal wording; many studies are self-report or jurisdiction-specific.",
+    href: sourceLinks.SE06,
+  },
+  {
+    id: "SE21",
+    title:
+      "Registration and Community Notification of Adults Convicted of a Sexual Crime: Recommendations for Evidence-Based Reform",
+    type: "Expert policy recommendations",
+    why: "Translates research into reform principles.",
+    supports:
+      "Policy should move toward individualized assessment, treatment, review, and reintegration.",
+    caveat:
+      "Use as expert guidance, not as official government data.",
+    href: sourceLinks.SE21,
+  },
+  {
+    id: "SE14",
+    title:
+      "DOJ OIG Review of the FBI’s Handling of Allegations Against Larry Nassar",
+    type: "Inspector General report / case example",
+    why: "Powerful institutional-failure example for trusted-access prevention work.",
+    supports:
+      "Public registries cannot substitute for institutional reporting, oversight, and timely action.",
+    caveat:
+      "Use as a documented case example, not as prevalence evidence.",
+    href: sourceLinks.SE14,
+  },
+] as const;
+
+const safeClaims = [
+  {
+    claim:
+      "Broad public registration and notification systems have not shown a clear overall recidivism benefit.",
+    ids: "SE03, SE04, SE05",
+  },
+  {
+    claim:
+      "Sexual recidivism is often lower than public belief, but risk varies by person, subgroup, measurement, and follow-up period.",
+    ids: "SE01, SE02, SE22",
+  },
+  {
+    claim:
+      "Many harms against children involve people known to the child, including family members, acquaintances, caregivers, or trusted authority figures.",
+    ids: "SE11, SE12, SE13",
+  },
+  {
+    claim:
+      "Public registries are limited tools for primary prevention because they identify people already detected and convicted.",
+    ids: "SE05, SE11, SE25",
+  },
+  {
+    claim:
+      "Registry requirements and restrictions can destabilize housing, employment, family support, and reintegration.",
+    ids: "SE06, SE07, SE08, SE24",
+  },
+  {
+    claim:
+      "Modern registry systems can impose punishment-like burdens even when legally labeled civil.",
+    ids: "SE18, SE19, SE20, SE27, SE28",
+  },
+  {
+    claim:
+      "Risk changes over time, and policy should include individualized assessment, treatment, and review.",
+    ids: "SE02, SE21, SE22, SE23",
+  },
+  {
+    claim:
+      "Prevention requires institutional accountability, not just public lists.",
+    ids: "SE13, SE14, SE25",
+  },
+] as const;
+
+const cautiousClaims = [
+  {
+    avoid: "Registries do nothing.",
+    better:
+      "Broad registration and notification policies have not demonstrated a clear overall recidivism benefit.",
+  },
+  {
+    avoid: "All registries are unconstitutional.",
+    better:
+      "Modern registry restrictions raise serious constitutional concerns and may operate punitively in practice, even though Smith v. Doe remains a central precedent.",
+  },
+  {
+    avoid: "Registries directly cause homelessness and job loss.",
+    better:
+      "Registry requirements and restrictions are linked to housing instability, employment barriers, and reintegration harm.",
+  },
+  {
+    avoid: "95% of sexual crimes are committed by first-time offenders.",
+    better:
+      "Do not use the specific 95% figure unless the primary source is fully verified. Safer language: many sexual offenses are committed by people not already listed on a public registry.",
+  },
+  {
+    avoid: "Stranger danger does not exist.",
+    better:
+      "Stranger-perpetrated abuse exists, but official data show that many harms against children involve known, trusted, or family-connected people.",
+  },
+  {
+    avoid: "Public notification has no prevention purpose.",
+    better:
+      "Public notification is a limited prevention tool because it does not address many first-time, undetected, known-perpetrator, or institutional-access risks.",
+  },
+] as const;
+
+const sourceTopics = [
+  {
+    title: "Recidivism and SORN effectiveness",
+    sources: [
+      {
+        id: "SE01",
+        title: "BJS recidivism study",
+        type: "Official data",
+        relevance:
+          "Defines rearrest, reconviction, and detected sexual recidivism in an influential release cohort.",
+        href: sourceLinks.SE01,
+      },
+      {
+        id: "SE02",
+        title: "SMART adult recidivism brief",
+        type: "Government research brief",
+        relevance:
+          "Explains how recidivism estimates vary by subgroup, measure, and follow-up period.",
+        href: sourceLinks.SE02,
+      },
+      {
+        id: "SE03",
+        title: "25-year SORN meta-analysis",
+        type: "Peer-reviewed meta-analysis",
+        relevance:
+          "Central synthesis for broad registration and notification effectiveness claims.",
+        href: sourceLinks.SE03,
+      },
+      {
+        id: "SE04",
+        title: "Prescott & Rockoff",
+        type: "Peer-reviewed study / NBER",
+        relevance:
+          "Complicates simple claims by separating registration from notification.",
+        href: sourceLinks.SE04,
+      },
+      {
+        id: "SE05",
+        title: "NIJ evaluation",
+        type: "Government-funded evaluation",
+        relevance:
+          "Useful for policy evaluation and prevention framing about who is already known to the registry system.",
+        href: sourceLinks.SE05,
+      },
+    ],
+  },
+  {
+    title: "Child safety and known perpetrators",
+    sources: [
+      {
+        id: "SE11",
+        title: "BJS young-child sexual assault report",
+        type: "Official data",
+        relevance:
+          "Strong source for known-person and family/acquaintance prevention framing.",
+        href: sourceLinks.SE11,
+      },
+      {
+        id: "SE12",
+        title: "OJJDP child maltreatment perpetrators",
+        type: "Official data explainer",
+        relevance:
+          "Shows child maltreatment often occurs in caregiving and family contexts.",
+        href: sourceLinks.SE12,
+      },
+      {
+        id: "SE13",
+        title: "Educator sexual misconduct synthesis",
+        type: "Government report",
+        relevance:
+          "Supports trusted-access and institutional prevention framing.",
+        href: sourceLinks.SE13,
+      },
+      {
+        id: "SE25",
+        title: "NSVRC SART Toolkit, Section 7.4",
+        type: "Victim-prevention / nonprofit resource",
+        relevance:
+          "Helps connect registry evidence to broader community prevention practice.",
+        href: sourceLinks.SE25,
+      },
+    ],
+  },
+  {
+    title: "Family harm and collateral consequences",
+    sources: [
+      {
+        id: "SE06",
+        title: "SMART/FRD claimed impacts report",
+        type: "Government evidence review",
+        relevance:
+          "Balanced source on employment, housing, family, wellbeing, and methodological limits.",
+        href: sourceLinks.SE06,
+      },
+      {
+        id: "SE07",
+        title: "Family Members of Registered Sex Offenders",
+        type: "Peer-reviewed study",
+        relevance:
+          "Documents spillover burdens experienced by spouses, children, and relatives.",
+        href: sourceLinks.SE07,
+      },
+      {
+        id: "SE08",
+        title: "Transient Sex Offenders and Residence Restrictions",
+        type: "Peer-reviewed study",
+        relevance:
+          "Useful for explaining how local restrictions can contribute to instability.",
+        href: sourceLinks.SE08,
+      },
+      {
+        id: "SE24",
+        title: "Housing instability and homelessness among veterans",
+        type: "Peer-reviewed study / PubMed index",
+        relevance:
+          "Quantitative support for housing instability concerns among a specific population.",
+        href: sourceLinks.SE24,
+      },
+      {
+        id: "SE26",
+        title: "Banished",
+        type: "Investigative media / illustrative case",
+        relevance:
+          "Miami-Dade case example of layered local rules and homelessness.",
+        href: sourceLinks.SE26,
+      },
+    ],
+  },
+  {
+    title: "Constitutional law and punitive effects",
+    sources: [
+      {
+        id: "SE18",
+        title: "Smith v. Doe",
+        type: "U.S. Supreme Court decision",
+        relevance:
+          "Central counterweight: upheld Alaska’s registry as civil for ex post facto purposes.",
+        href: sourceLinks.SE18,
+      },
+      {
+        id: "SE19",
+        title: "Packingham v. North Carolina",
+        type: "U.S. Supreme Court decision",
+        relevance:
+          "Shows registry-related restrictions can violate constitutional rights when too broad.",
+        href: sourceLinks.SE19,
+      },
+      {
+        id: "SE20",
+        title: "GAO-13-211 SORNA implementation report",
+        type: "Government report",
+        relevance:
+          "Tracks implementation challenges, claimed benefits, and reported burdens.",
+        href: sourceLinks.SE20,
+      },
+      {
+        id: "SE27",
+        title: "SMART 2025 Case Law Summary",
+        type: "Government legal summary",
+        relevance:
+          "Issue-spotting tool for current registry litigation and doctrine.",
+        href: sourceLinks.SE27,
+      },
+      {
+        id: "SE28",
+        title: "Banishment by a Thousand Laws",
+        type: "Law review article",
+        relevance:
+          "Explains residence restrictions, exclusion zones, and banishment theory.",
+        href: sourceLinks.SE28,
+      },
+    ],
+  },
+  {
+    title: "Desistance, treatment, and risk",
+    sources: [
+      {
+        id: "SE21",
+        title: "ATSA evidence-based reform recommendations",
+        type: "Expert policy recommendations",
+        relevance:
+          "Supports individualized, evidence-based reform rather than blanket offense-only systems.",
+        href: sourceLinks.SE21,
+      },
+      {
+        id: "SE22",
+        title: "High-Risk Sex Offenders May Not Be High Risk Forever",
+        type: "Peer-reviewed study / PubMed index",
+        relevance:
+          "Important source for time-offense-free, reviewable policy, and desistance framing.",
+        href: sourceLinks.SE22,
+      },
+      {
+        id: "SE23",
+        title: "SMART treatment effectiveness brief",
+        type: "Government research brief",
+        relevance:
+          "Connects treatment and rehabilitation evidence to prevention and reentry.",
+        href: sourceLinks.SE23,
+      },
+    ],
+  },
+  {
+    title: "Comparative public safety",
+    sources: [
+      {
+        id: "SE15",
+        title: "CDC firearm injury and death facts",
+        type: "Official data explainer",
+        relevance:
+          "Context source for comparing how major public-safety harms are governed.",
+        href: sourceLinks.SE15,
+      },
+      {
+        id: "SE16",
+        title: "NHTSA impaired-driving prevention technology report",
+        type: "Government report",
+        relevance:
+          "Shows a prevention-and-technology response to another major public-safety harm.",
+        href: sourceLinks.SE16,
+      },
+      {
+        id: "SE17",
+        title: "BJS nonfatal domestic violence report",
+        type: "Official data",
+        relevance:
+          "Context source for relational harm and non-registry policy responses.",
+        href: sourceLinks.SE17,
+      },
+    ],
+  },
+  {
+    title: "Institutional responsibility",
+    sources: [
+      {
+        id: "SE13",
+        title: "Educator sexual misconduct synthesis",
+        type: "Government report",
+        relevance:
+          "Supports prevention work focused on authority, access, reporting, and safeguards.",
+        href: sourceLinks.SE13,
+      },
+      {
+        id: "SE14",
+        title: "DOJ OIG Nassar report",
+        type: "Inspector General report",
+        relevance:
+          "Documented case example of institutional failure after credible allegations.",
+        href: sourceLinks.SE14,
+      },
+    ],
+  },
+] as const;
+
+export default function ResearchDataResources(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="International Travel for U.S.-Based People on the Registry | The SOLAR Project"
-        description="A practical international travel planning guide for U.S.-based people on sex offense registries and their families."
-        keywords="international travel, sex offense registry, International Megan's Law, registrants, travel notice, passport identifier"
+        title="Research & Data Resources | The SOLAR Project"
+        description="A plain-language evidence map for SOLAR’s registry reform work, including research on registry effectiveness, recidivism, prevention, collateral consequences, constitutional concerns, and individualized reform."
+        keywords="sex offense registry research, registry reform evidence, recidivism data, sex offender registration and notification, collateral consequences, prevention, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -110,11 +629,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            International Travel for U.S.-Based People on the Registry
+            Research & Data Resources
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A practical planning guide for checking U.S. obligations, reading country-pattern signals, preparing documents, and reducing avoidable travel risk before you book.
+            The evidence base behind SOLAR’s registry reform work: what the
+            research supports, what it does not prove, and how to speak carefully
+            about public safety, accountability, and prevention.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -127,13 +648,6 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </button>
 
             <a
-              href="#country-patterns"
-              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
-            >
-              Jump to Country Patterns
-            </a>
-
-            <a
               href="#sources"
               className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
@@ -143,1187 +657,617 @@ export default function ResourceGuideSandbox(): JSX.Element {
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+<div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🧭">
+        <GuideIntro title="Start here: how to read this guide" icon="🧭">
           <p>
-            International travel may still be possible for some people on registries, but it is not something to treat casually or book at the last minute.
+            This is not a random bibliography. It is SOLAR’s public evidence
+            map: a way to connect research, official data, court decisions, and
+            prevention sources to careful public claims.
           </p>
           <p>
-            The safer approach is to verify your U.S. obligations, research the destination from more than one source, keep records of what you were told, and avoid nonrefundable plans until you understand the practical risk.
+            Strong advocacy does not require overstating the evidence. This
+            guide does not argue that sexual harm is rare, harmless, or
+            unimportant. It argues that public safety policy should be honest
+            about what registries can and cannot do.
           </p>
           <p>
-            This guide is not legal advice. It is a planning tool for people who need a clear sequence: what to check first, what to save, what country patterns mean, and how to avoid common travel mistakes.
+            SOLAR uses evidence to challenge ineffective policy, not to excuse
+            abuse or erase accountability.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="Before you book anything"
-          subtitle="Use this first if you are thinking about international travel."
-          icon="✈️"
+          title="Use this guide for three jobs"
+          subtitle="Start with the evidence question you are trying to answer."
+          icon="📌"
           urgentActions={[
-            <span>
-              Check whether you are covered by{" "}
-              <a
-                href={sourceLinks.stateDeptIML}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                International Megan’s Law passport rules
-              </a>{" "}
-              and whether your current passport has the required identifier.
+            <span key="claim">
+              <strong>Check the claim.</strong> Are you talking about
+              recidivism, rearrest, reconviction, reoffense, prevention, or
+              constitutional burden?
             </span>,
-            <span>
-              Confirm the{" "}
-              <a
-                href={sourceLinks.smartTravelNotice}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                international travel notice requirements
-              </a>{" "}
-              with your registering agency before relying on any itinerary.
-            </span>,
-            <span>
-              Review the destination through official sources and community-reported matrices before spending money.
+            <span key="source">
+              <strong>Match the source to the claim.</strong> Official data,
+              peer-reviewed research, court decisions, expert recommendations,
+              advocacy reports, and media examples do different jobs.
             </span>,
           ]}
           nextActions={[
-            <span>Use refundable airfare, lodging, tours, and insurance whenever the destination is uncertain.</span>,
-            <span>Save emails, screenshots, confirmation numbers, forms, and names of people you spoke with.</span>,
-            <span>Make a backup plan for travel companions in case you are delayed, questioned, denied boarding, or refused entry.</span>,
+            <span key="language">
+              <strong>Use careful wording.</strong> Say what the evidence
+              supports without turning one study into a universal rule.
+            </span>,
+            <span key="caveat">
+              <strong>Keep the caveat nearby.</strong> Every strong SOLAR claim
+              should be paired with what the evidence does not prove.
+            </span>,
           ]}
           reminder={
             <span>
-              A U.S. passport lets you ask to enter another country. It does not guarantee admission.
+              Evidence-based registry reform is not anti-victim. It is
+              pro-prevention, pro-accountability, and pro-honesty.
             </span>
           }
+        />
+
+        <GuideCallout tone="research" icon="🔎" title="Measurement matters">
+          <p>
+            “Recidivism,” “rearrest,” “reconviction,” and “reoffense” are not
+            interchangeable. Rearrest measures contact with law enforcement.
+            Reconviction measures a later conviction. Reoffense is broader, but
+            true reoffending is difficult to measure because many harms are not
+            reported or detected.
+          </p>
+          <p>
+            When SOLAR writes about research, use the measure the source
+            actually used.
+          </p>
+        </GuideCallout>
+
+        <GuideSectionHeader
+          id="evidence-at-a-glance"
+          number="1"
+          title="Evidence matrix at a glance"
+          subtitle="Seven recurring evidence themes, written for public use rather than academic shorthand."
         />
 
         <OverviewCards
           columns={3}
           cards={[
             {
-              eyebrow: "Decision point 1",
-              title: "Your U.S. obligations",
-              icon: "🇺🇸",
-              tone: "legal",
-              description:
-                "Passport identifier rules, 21-day notice, state registration rules, supervision conditions, and court orders may all matter before you leave.",
-            },
-            {
-              eyebrow: "Decision point 2",
-              title: "The destination’s rules",
-              icon: "🛂",
-              tone: "warning",
-              description:
-                "Some countries have criminal inadmissibility, character, visa, ETA, no-boarding, or public-safety rules that may affect entry.",
-            },
-            {
-              eyebrow: "Decision point 3",
-              title: "Real-world practice",
-              icon: "🧾",
+              eyebrow: "Theme 1",
+              title: "Registry efficacy",
+              icon: "📊",
               tone: "research",
               description:
-                "Community reports can reveal patterns official tourist pages do not explain, but they are planning signals rather than guarantees.",
+                "What broad SORN policies have and have not shown about recidivism.",
+            },
+            {
+              eyebrow: "Theme 2",
+              title: "Prevention reality",
+              icon: "🧭",
+              tone: "info",
+              description:
+                "Why known people, trusted access, and first-time detection matter.",
+            },
+            {
+              eyebrow: "Theme 3",
+              title: "Collateral harm",
+              icon: "🏠",
+              tone: "family",
+              description:
+                "How restrictions can affect housing, work, families, and stability.",
+            },
+            {
+              eyebrow: "Theme 4",
+              title: "Legal concerns",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "How modern restrictions can create punishment-like burdens.",
+            },
+            {
+              eyebrow: "Theme 5",
+              title: "Risk changes",
+              icon: "🌱",
+              tone: "success",
+              description:
+                "Why individualized review, treatment, and time offense-free matter.",
+            },
+            {
+              eyebrow: "Theme 6",
+              title: "Policy comparison",
+              icon: "🧩",
+              tone: "neutral",
+              description:
+                "How other serious harms are addressed without permanent public branding.",
             },
           ]}
         />
 
+        <div className="mt-6 grid gap-5">
+          {evidenceThemes.map((theme, index) => (
+            <GuideSectionCard key={theme.id}>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    Theme {index + 1}
+                  </p>
+                  <h3 className="mt-1 text-xl font-bold text-slate-900">
+                    <span aria-hidden="true" className="mr-2">
+                      {theme.icon}
+                    </span>
+                    {theme.title}
+                  </h3>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {theme.anchorIds.map((id) => (
+                    <a
+                      key={id}
+                      href={sourceLinks[id as keyof typeof sourceLinks]}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-200 transition-colors"
+                    >
+                      {id}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                <div className="rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
+                  <h4 className="font-semibold text-emerald-950">
+                    What the evidence supports
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-emerald-950">
+                    {theme.supports}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100">
+                  <h4 className="font-semibold text-amber-950">
+                    What it does not prove
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-amber-950">
+                    {theme.doesNotProve}
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 grid gap-4 md:grid-cols-3">
+                <div className="rounded-2xl bg-rose-50 p-4 ring-1 ring-rose-100">
+                  <h4 className="font-semibold text-rose-950">
+                    Risky wording to avoid
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-rose-950">
+                    {theme.avoid}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-sky-50 p-4 ring-1 ring-sky-100">
+                  <h4 className="font-semibold text-sky-950">
+                    Safer public language
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-sky-950">
+                    {theme.safer}
+                  </p>
+                </div>
+
+                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+                  <h4 className="font-semibold text-slate-950">
+                    Best SOLAR uses
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                    {theme.uses}
+                  </p>
+                </div>
+              </div>
+            </GuideSectionCard>
+          ))}
+        </div>
+
         <GuideSectionHeader
-          id="first"
-          number="1"
-          title="The first rule: verify before you spend"
-          subtitle="The biggest preventable mistake is treating international travel like ordinary vacation planning."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              International travel sits at the intersection of several systems: your registering agency, any supervision or court conditions, U.S. passport rules, international notice transmission, airline policies, cruise policies, transit-country rules, and the destination country’s border discretion.
-            </p>
-
-            <p>
-              That does not mean every trip will fail. It means the planning has to be more careful. The practical question is not, “Can people on the registry ever travel internationally?” The better question is, “What do I need to verify, document, and protect before I rely on this plan?”
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="warning" icon="⚠️" title="Do not book nonrefundable travel too early">
-            <p>
-              If you cannot afford to lose the ticket, do not buy it until you have checked the U.S. notice process, your passport status, any supervision limits, destination entry rules, and recent traveler reports. Even then, refundable travel is often the safer choice.
-            </p>
-          </GuideCallout>
-
-          <VerifyBeforeActing
-            title="Verify before acting"
-            whoToAsk={
-              <span>
-                Your registering agency, your supervising officer or attorney if you are under supervision or court order, the destination’s embassy or consulate, and official travel resources such as the{" "}
-                <a
-                  href={sourceLinks.stateDeptCountryInfo}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  U.S. Department of State country pages
-                </a>.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                Ask narrow questions: whether your itinerary satisfies notice rules, whether you need a visa or travel authorization, whether a criminal record can affect tourist entry, whether transit countries create separate risk, and whether itinerary changes must be reported.
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save emails, forms, screenshots, names, dates, departments, confirmation numbers, and copies of any official answer. If someone gives you a verbal answer, write it down immediately.
-              </span>
-            }
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="us-obligations"
+          id="anchor-sources"
           number="2"
-          title="U.S. obligations before leaving"
-          subtitle="Before you research the destination, make sure the U.S. side of the trip is understood."
+          title="Top anchor sources"
+          subtitle="The front shelf: start here when building a guide, blog post, tracker note, testimony, or policy explainer."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Some people with sex-offense convictions are covered by International Megan’s Law. The{" "}
-              <a
-                href={sourceLinks.stateDeptIML}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                State Department’s IML passport page
-              </a>{" "}
-              explains the passport identifier process for covered travelers, including limits on passport cards and possible revocation of unmarked passports.
-            </p>
-
-            <p>
-              Separately, federal SORNA implementation materials describe the information required for{" "}
-              <a
-                href={sourceLinks.smartTravelNotice}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                notice of intended international travel
-              </a>. Many people know this as the “21-day notice,” but the details still need to be checked with the registering agency that actually handles your notice.
-            </p>
-
-            <p>
-              U.S. authorities may transmit travel information to foreign partners through systems connected to the{" "}
-              <a
-                href={sourceLinks.angelWatch}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Angel Watch Center
-              </a>. That does not automatically mean a destination will deny entry, but it can affect what happens at boarding, arrival, or secondary inspection.
+              These sources are not all the evidence SOLAR uses. They are the
+              most useful anchors for repeated public claims because they are
+              official, peer-reviewed, legally central, or especially helpful
+              for careful framing.
             </p>
           </GuideProse>
 
-          <GuideChecklist
-            id="us-obligations-checklist"
-            title="U.S.-side checklist"
-            columns={1}
-            items={[
-              {
-                id: "passport",
-                label: "Check whether your passport has the required IML identifier if you are a covered traveler.",
-              },
-              {
-                id: "notice",
-                label: "Ask your registering agency exactly when, how, and where to file international travel notice.",
-              },
-              {
-                id: "state-rules",
-                label: "Check state registration rules for temporary travel, address changes, itinerary changes, and return reporting.",
-              },
-              {
-                id: "supervision",
-                label: "If you are on supervision, confirm travel permission in writing before booking.",
-              },
-              {
-                id: "court-order",
-                label: "Review court orders, probation/parole conditions, treatment rules, and no-contact restrictions.",
-              },
-              {
-                id: "changes",
-                label: "Ask what to do if flights, hotels, dates, cruise ports, or transit countries change.",
-              },
-            ]}
-          />
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {anchorSources.map((source) => (
+              <article
+                key={source.id}
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+                    {source.id}
+                  </span>
+                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                    {source.type}
+                  </span>
+                </div>
 
-          <GuideCallout tone="legal" icon="⚖️" title="Supervision can change the answer">
-            <p>
-              A country may be relatively workable for some travelers but still unavailable to someone under probation, parole, supervised release, treatment restrictions, or a court order. Do not rely on another person’s travel report if your supervision status is different.
-            </p>
-          </GuideCallout>
+                <h3 className="mt-3 text-lg font-bold text-slate-950">
+                  {source.title}
+                </h3>
+
+                <dl className="mt-4 space-y-3 text-sm leading-relaxed">
+                  <div>
+                    <dt className="font-semibold text-slate-900">
+                      Why it matters
+                    </dt>
+                    <dd className="mt-1 text-slate-700">{source.why}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-900">
+                      Claim it supports
+                    </dt>
+                    <dd className="mt-1 text-slate-700">{source.supports}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-slate-900">Caveat</dt>
+                    <dd className="mt-1 text-slate-700">{source.caveat}</dd>
+                  </div>
+                </dl>
+
+                <a
+                  href={source.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex text-sm font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+                >
+                  Open source
+                </a>
+              </article>
+            ))}
+          </div>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="community-reports"
+          id="safe-claims"
           number="3"
-          title="How to use community travel reports"
-          subtitle="Community matrices are valuable here, but they need to be read carefully."
+          title="Claims SOLAR can safely make"
+          subtitle="Use these as careful starting points, not slogans."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              On this topic, official tourist pages often do not explain how registry-related travel notices are handled in real life. That is why community-reported resources matter. The{" "}
-              <a
-                href={sourceLinks.rtagMatrix}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                RTAG Travel Matrix
-              </a>, the{" "}
-              <a
-                href={sourceLinks.justFactsMatrix}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Just Facts Not Fear international travel matrix
-              </a>,{" "}
-              <a
-                href={sourceLinks.pfrCountryReports}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                PFR Guide country trip reports
-              </a>,{" "}
-              <a
-                href={sourceLinks.pfrCruiseReports}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                PFR Guide cruise reports
-              </a>, and{" "}
-              <a
-                href={sourceLinks.acsol2026}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                ACSOL international travel discussion pages
-              </a>{" "}
-              can help identify patterns that official pages may not publish.
-            </p>
-
-            <p>
-              Use those sources as planning signals, not legal authority. A report is stronger when it is recent, first-hand, specific about the country, clear about air versus cruise versus transit, and consistent with other reports. A report is weaker when it is old, second-hand, missing key facts, cruise-only, or based on someone who was no longer required to register.
+              These claims are strong enough for public-facing SOLAR work when
+              they are connected to the listed sources and not pushed beyond
+              what those sources actually show.
             </p>
           </GuideProse>
 
-          <GuideCallout tone="research" icon="🔎" title="A useful matrix is still not a guarantee">
+          <div className="mt-5 grid gap-3">
+            {safeClaims.map((item) => (
+              <div
+                key={item.claim}
+                className="rounded-2xl bg-white p-4 ring-1 ring-slate-200"
+              >
+                <p className="text-slate-800">{item.claim}</p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Anchor IDs: {item.ids}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <GuideCallout
+            tone="reminder"
+            icon="🧠"
+            title="Keep the prevention frame clear"
+          >
             <p>
-              A country pattern becomes more useful when several sources point in the same direction. It still does not prove what will happen to you. Your sentence history, registration status, passport identifier, travel notice, visa type, route, travel mode, and border officer can all change the result.
+              SOLAR can argue that public registries are limited prevention
+              tools without implying that sexual harm is rare, harmless, or
+              unimportant. The stronger message is that prevention must focus on
+              real risk, trusted access, reporting systems, treatment, stability,
+              accountability, and evidence.
             </p>
           </GuideCallout>
+        </GuideSectionCard>
 
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Stronger signal",
-                title: "Recent and specific",
-                icon: "✅",
-                tone: "success",
-                description:
-                  "The report names the country, year, travel mode, outcome, and what happened at inspection.",
-              },
-              {
-                eyebrow: "Weaker signal",
-                title: "Old or unclear",
-                icon: "🟡",
-                tone: "warning",
-                description:
-                  "The report is undated, vague, second-hand, or does not say whether the person was currently required to register.",
-              },
-              {
-                eyebrow: "Do not overread",
-                title: "One trip is not a rule",
-                icon: "🧭",
-                tone: "neutral",
-                description:
-                  "One successful entry does not prove everyone will be admitted. One denial does not always prove a blanket bar.",
-              },
-            ]}
-          />
+<GuideSectionHeader
+          id="careful-claims"
+          number="4"
+          title="Claims SOLAR should avoid or phrase carefully"
+          subtitle="Credibility comes from saying less than the evidence, not more."
+        />
+
+        <GuideSectionCard>
+          <div className="grid gap-4">
+            {cautiousClaims.map((item) => (
+              <div
+                key={item.avoid}
+                className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:grid-cols-2"
+              >
+                <div className="rounded-xl bg-rose-50 p-4 ring-1 ring-rose-100">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-rose-800">
+                    Avoid
+                  </p>
+                  <p className="mt-2 font-semibold text-rose-950">
+                    {item.avoid}
+                  </p>
+                </div>
+
+                <div className="rounded-xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">
+                    Better
+                  </p>
+                  <p className="mt-2 font-semibold text-emerald-950">
+                    {item.better}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <SoftDivider />
 
           <ScriptBox
-            title="Script: asking a consulate a narrow travel question"
+            title="Copyable evidence-language template"
             tone="neutral"
-            context="Use this by email when you need a written answer. Do not overshare details that were not asked for."
-            script={`Hello, my name is [Name]. I am a U.S. citizen planning short-term tourist travel to [country] from [dates]. Before I book, I am trying to understand entry requirements for travelers with a past criminal conviction.
-
-Can you tell me whether tourist entry requires any advance visa, police certificate, waiver, or other documentation because of that record?
-
-If another office handles this question, could you please tell me the correct office or website? I would appreciate any written guidance you can provide.
-
-Thank you,
-[Name]`}
+            context="Use this when drafting testimony, a blog post, a tracker note, or an explainer."
+            script={`The evidence does not support treating broad public registration and notification as a complete prevention strategy. The stronger reading is more careful: broad SORN policies have not demonstrated a clear overall recidivism benefit, many harms involve people not already listed on a public registry, and effective prevention requires individualized risk assessment, treatment, stable reentry, and institutional accountability.\n\nThat does not mean harm is rare or that accountability is optional. It means public safety policy should be honest about what a registry can and cannot do.`}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="country-patterns"
-          number="4"
-          title="Country patterns: planning signals, not promises"
-          subtitle="These categories are meant to guide research and booking decisions, not guarantee admission."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              These country categories combine official immigration sources with community-reported travel experiences. Official rules matter most for what a country says it can do. Community reports matter because border practice is not always fully explained on tourist-facing websites.
-            </p>
-
-            <p>
-              “More workable” does not mean safe, approved, or guaranteed. “Generally not workable” does not mean absolutely impossible for every person in every situation. It means the reviewed evidence is strong enough that a currently registered traveler should not treat the destination as an ordinary tourist option without individualized legal or official immigration guidance.
-            </p>
-          </GuideProse>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">
-                Lower practical concern
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-emerald-950">
-                More workable destinations
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-emerald-900">
-                Reports and available official guidance suggest fewer recurring barriers for short tourist travel.
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-emerald-950">
-                <li>• Schengen Area generally</li>
-                <li>• France</li>
-                <li>• Germany</li>
-                <li>• Italy</li>
-                <li>• Portugal</li>
-              </ul>
-              <p className="mt-4 text-xs leading-5 text-emerald-900">
-                Important: Spain and Greece should not simply inherit the broader Schengen label.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-amber-800">
-                Mixed or mode-sensitive
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-amber-950">
-                Verify carefully before booking
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-amber-900">
-                Reports conflict, travel mode matters, or screening systems make outcomes hard to predict.
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-amber-950">
-                <li>• Spain</li>
-                <li>• Mexico</li>
-                <li>• Costa Rica</li>
-                <li>• Colombia</li>
-                <li>• Türkiye</li>
-                <li>• South Korea</li>
-              </ul>
-              <p className="mt-4 text-xs leading-5 text-amber-900">
-                Air, cruise, land, and transit reports may point in different directions.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-red-200 bg-red-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-red-800">
-                Strong warning zone
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-red-950">
-                Generally not workable
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-red-900">
-                Official rules, public enforcement patterns, or repeated reports suggest that most currently registered travelers should expect refusal, removal, denied boarding, visa denial, or serious entry problems.
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-red-950">
-                <li>• Canada</li>
-                <li>• United Kingdom</li>
-                <li>• Australia</li>
-                <li>• New Zealand</li>
-                <li>• Japan</li>
-                <li>• Philippines</li>
-                <li>• Singapore</li>
-                <li>• Malaysia</li>
-              </ul>
-              <p className="mt-4 text-xs leading-5 text-red-900">
-                Rare exceptions, waivers, changed facts, or individualized legal advice may exist, but do not plan casually around those possibilities.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-600">
-                Not enough data
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-slate-950">
-                Not enough reliable information
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                Evidence is too thin, old, conflicting, or mode-specific to make a useful public recommendation.
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-slate-800">
-                <li>• Netherlands as a standalone mainland rating</li>
-                <li>• Morocco</li>
-                <li>• Ireland</li>
-                <li>• Panama</li>
-                <li>• Belize</li>
-                <li>• Dominican Republic</li>
-                <li>• Jamaica</li>
-                <li>• Cambodia</li>
-              </ul>
-              <p className="mt-4 text-xs leading-5 text-slate-600">
-                These may deserve more research, but they should not be presented as strong public-facing country recommendations yet.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="reminder" icon="📌" title="Country categories are not permission slips">
-            <p>
-              Use the list to decide where to investigate, how much money to risk, whether direct routing matters, and whether to delay booking. Do not use it as proof that a border officer, airline, cruise operator, or visa office must admit you.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="country-details"
+          id="how-solar-uses-evidence"
           number="5"
-          title="How to read the main country groups"
-          subtitle="The same category can still hide important differences by route, travel mode, and personal facts."
+          title="How SOLAR uses evidence"
+          subtitle="Evidence is a tool for prevention, accountability, dignity, and reform."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The more workable group is narrow on purpose. France, Germany, Italy, Portugal, and Schengen travel generally show better community-reported patterns for short tourist travel than many other destinations. But Europe is changing operationally: the EU’s{" "}
-              <a
-                href={sourceLinks.euEes}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Entry/Exit System
-              </a>{" "}
-              and{" "}
-              <a
-                href={sourceLinks.euEtias}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                ETIAS
-              </a>{" "}
-              should be checked before booking, along with the State Department’s{" "}
-              <a
-                href={sourceLinks.stateDeptEurope}
-                {...externalLinkProps}
-                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-              >
-                Europe travel guidance
-              </a>.
+              SOLAR uses evidence to challenge ineffective policy, not to
+              minimize harm. The goal is safer prevention, more honest public
+              policy, meaningful accountability, and a path back into community
+              life after sentence completion.
             </p>
 
             <p>
-              Spain belongs in the verify-carefully group because reports include both successful admissions and serious entry problems. Mexico also belongs there because airport denials appear materially different from some cruise-port or limited-border-contact reports. Costa Rica and Colombia are mode-sensitive in the same way: cruise and air travel may not be treated alike.
-            </p>
-
-            <p>
-              The generally not workable group is different. Canada, the United Kingdom, Australia, New Zealand, Japan, the Philippines, Singapore, and Malaysia all have either strong official screening rules, public enforcement signals, repeated community warnings, or some combination of those factors.
-            </p>
-          </GuideProse>
-
-          <SoftDivider label="Examples of why the warning group is different" />
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-base font-bold text-slate-950">Canada</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                Canada’s{" "}
-                <a
-                  href={sourceLinks.canadaInadmissibility}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  criminal inadmissibility rules
-                </a>{" "}
-                can be assessed at the eTA stage or port of entry. Some travelers may need to explore a{" "}
-                <a
-                  href={sourceLinks.canadaRemedies}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  temporary resident permit or rehabilitation
-                </a>{" "}
-                process before travel.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-base font-bold text-slate-950">United Kingdom</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                The UK now uses ETA screening for many visitors. The{" "}
-                <a
-                  href={sourceLinks.ukEtaRules}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  ETA rules
-                </a>{" "}
-                include criminality and public-good grounds, and the{" "}
-                <a
-                  href={sourceLinks.ukEtaOverview}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  ETA overview
-                </a>{" "}
-                says approval does not guarantee entry.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-base font-bold text-slate-950">Australia and New Zealand</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                Australia publishes broad{" "}
-                <a
-                  href={sourceLinks.australiaCharacter}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  character requirements
-                </a>, and New Zealand uses{" "}
-                <a
-                  href={sourceLinks.nzCharacter}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  character screening
-                </a>{" "}
-                for visas and entry permission, including the{" "}
-                <a
-                  href={sourceLinks.nzeta}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  NZeTA
-                </a>.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-base font-bold text-slate-950">Japan and the Philippines</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                Japan’s consular guidance says people with certain convictions may be refused entry, and its{" "}
-                <a
-                  href={sourceLinks.japanArticle5}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  Immigration Control Act Article 5 translation
-                </a>{" "}
-                includes imprisonment-based denial grounds. The Philippines has public Bureau of Immigration notices on barring foreign sex offenders, including its{" "}
-                <a
-                  href={sourceLinks.philippinesAnnual}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  annual exclusion announcement
-                </a>.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:col-span-2">
-              <h3 className="text-base font-bold text-slate-950">Singapore and Malaysia</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-700">
-                Singapore’s immigration authority has announced{" "}
-                <a
-                  href={sourceLinks.singaporeNoBoarding}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  no-boarding directives
-                </a>{" "}
-                for people it identifies as prohibited, undesirable, or otherwise ineligible. Malaysia’s immigration page describes broad{" "}
-                <a
-                  href={sourceLinks.malaysiaProhibited}
-                  {...externalLinkProps}
-                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
-                >
-                  prohibited immigrant
-                </a>{" "}
-                grounds. These rules are not always sex-offense-specific on their face, but they create serious practical screening risk.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="legal" icon="⚖️" title="Sentence details can matter">
-            <p>
-              Some countries focus on sentence length, imprisonment, seriousness, moral turpitude, public safety, public order, or character. Your exact conviction, sentence, current registration status, and supervision status may matter more than the broad label of the offense.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="timeline"
-          number="6"
-          title="Planning timeline"
-          subtitle="Give yourself time to verify, document, and change plans before money is at risk."
-        />
-
-        <GuideSectionCard>
-          <TimelineGuidanceGrid
-            title="A practical travel-planning timeline"
-            stages={[
-              {
-                stage: "90+ days before travel",
-                icon: "🗓️",
-                whatChanges:
-                  "This is when you can still choose a different destination, route, airline, cruise line, or travel date without scrambling.",
-                whatToDo:
-                  "Check passport status, supervision limits, country patterns, official entry rules, visa or ETA requirements, and whether the destination belongs in the more workable, verify-carefully, or generally not workable group.",
-              },
-              {
-                stage: "60–45 days before travel",
-                icon: "🧾",
-                whatChanges:
-                  "You should be moving from general research to written confirmation and document collection.",
-                whatToDo:
-                  "Contact the registering agency, ask destination-specific questions, email the consulate if needed, and start a paper or digital travel packet.",
-              },
-              {
-                stage: "30–21 days before travel",
-                icon: "📤",
-                whatChanges:
-                  "International travel notice timing becomes central. Incomplete or changing itineraries can create practical problems.",
-                whatToDo:
-                  "File required notice according to the agency’s instructions, save proof of submission, and ask how itinerary changes must be handled.",
-              },
-              {
-                stage: "Two weeks before travel",
-                icon: "🧳",
-                whatChanges:
-                  "The trip should be documented, refundable where possible, and ready for questioning or delay.",
-                whatToDo:
-                  "Print or download passport, itinerary, lodging, return ticket, consulate messages, insurance, emergency contacts, and any permission letters.",
-              },
-              {
-                stage: "Day of travel",
-                icon: "🛫",
-                whatChanges:
-                  "Airline staff, cruise staff, transit countries, or border officers may become the decision point.",
-                whatToDo:
-                  "Arrive early, answer questions calmly and briefly, keep documents accessible, and avoid arguing about rights with front-line staff abroad.",
-              },
-              {
-                stage: "If denied, delayed, or removed",
-                icon: "🛬",
-                whatChanges:
-                  "The priority becomes safety, documentation, companion logistics, and avoiding new violations.",
-                whatToDo:
-                  "Ask for written refusal paperwork if possible, save names and flight details, contact companions, keep receipts, and check whether your registering agency or supervision office needs an update.",
-              },
-            ]}
-          />
-
-          <OfflineOptions
-            title="If internet access is limited"
-            icon="📞"
-            items={[
-              "Ask a trusted person to print official country pages, matrix entries, consulate emails, and booking terms.",
-              "Call the registering agency and write down the name, date, department, and instructions.",
-              "Ask the destination embassy or consulate for mailed or emailed guidance if you cannot reliably use online forms.",
-              "Keep a paper folder with your itinerary, lodging, emergency contacts, and proof of travel notice submission.",
-            ]}
-            note="Phone-only, supervised, incarcerated, or low-internet readers may need paper backups and a trusted helper."
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="documents"
-          number="7"
-          title="Build a travel packet"
-          subtitle="When travel gets stressful, organized records matter."
-        />
-
-        <GuideSectionCard>
-          <DocumentPacket
-            title="Documents to carry and save"
-            intro="Keep digital copies if safe, but do not rely only on your phone. Carry a paper packet in your personal item."
-            categories={[
-              {
-                title: "Identity and U.S. compliance",
-                items: [
-                  "Passport and any required passport identifier.",
-                  "Copy of international travel notice or proof of submission.",
-                  "Written permission from supervision or court, if applicable.",
-                  "Registering-agency instructions about itinerary changes and return reporting.",
-                ],
-              },
-              {
-                title: "Trip proof",
-                items: [
-                  "Round-trip or onward ticket.",
-                  "Lodging confirmation with address and dates.",
-                  "Cruise itinerary, port list, and cruise-line policy confirmation if relevant.",
-                  "Proof of funds and travel insurance if required or useful.",
-                ],
-              },
-              {
-                title: "Verification records",
-                items: [
-                  "Consulate or embassy emails.",
-                  "Screenshots or PDFs of official entry pages.",
-                  "Community matrix or trip-report notes used as planning signals.",
-                  "Names, dates, departments, confirmation numbers, and call notes.",
-                ],
-              },
-              {
-                title: "Emergency and backup planning",
-                items: [
-                  "Companion contact plan if you are separated.",
-                  "Backup lodging and return-flight options.",
-                  "Medication list and prescriptions if needed.",
-                  "Emergency contacts in the United States and destination country.",
-                ],
-              },
-            ]}
-          />
-
-          <GuideCallout tone="privacy" icon="🔐" title="Protect sensitive records">
-            <p>
-              Carry what you may need, but think carefully before giving copies of sensitive legal documents to hotels, tour operators, or private companies unless they are required. Keep the most sensitive records in your own control.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="booking-border"
-          number="8"
-          title="Booking, border, and companion planning"
-          subtitle="The goal is not to predict every outcome. The goal is to reduce avoidable harm if the trip changes."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Prefer direct routes when possible. A layover is not always neutral. Transit through Canada, the United Kingdom, Singapore, South Korea, New Zealand, or another screened system may create its own immigration or boarding event.
-            </p>
-
-            <p>
-              Cruise travel needs separate checking. A traveler may face the cruise operator’s policy, the port country’s policy, and the rules of any country where the ship begins or ends. Cruise success at one port does not prove airport admission to that country.
-            </p>
-
-            <p>
-              If you are traveling with a spouse, partner, child, parent, friend, or group, plan for separation. Family presence does not neutralize entry risk. Companions should have access to money, documents, lodging, and return-travel options if you are delayed or sent back.
+              Evidence-based registry reform is not anti-victim. It is
+              pro-prevention. It asks whether a policy actually reduces harm,
+              whether it creates new instability, whether it respects
+              constitutional limits, and whether it helps communities respond to
+              real risk instead of fear alone.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="booking-border-checklist"
-            title="Before final payment"
+            id="evidence-use-checklist"
+            title="Before publishing a SOLAR evidence claim"
             columns={1}
             items={[
               {
-                id: "refundable",
-                label: "Use refundable or changeable bookings whenever the destination is not clearly workable.",
+                id: "define-measure",
+                label:
+                  "Define the measure: rearrest, reconviction, reoffense, recidivism, prevalence, burden, or legal doctrine.",
               },
               {
-                id: "routing",
-                label: "Avoid transit through generally not workable or heavily screened countries if a direct route is available.",
+                id: "source-type",
+                label:
+                  "Name the source type: official data, peer-reviewed research, government report, court decision, expert policy guidance, advocacy report, or media example.",
               },
               {
-                id: "cruise",
-                label: "If cruising, check both the cruise line’s policy and the entry rules for embarkation, disembarkation, and port countries.",
+                id: "avoid-overclaim",
+                label:
+                  "Add what the evidence does not prove so the claim does not become broader than the source.",
               },
               {
-                id: "companion-money",
-                label: "Make sure companions can pay for lodging, food, phone service, and return travel without you.",
+                id: "use-primary",
+                label:
+                  "Use a primary source when possible, especially for statistics, court holdings, and specific legal claims.",
               },
               {
-                id: "secondary",
-                label: "Prepare for secondary inspection by carrying documents and answering questions calmly and consistently.",
+                id: "no-95",
+                label:
+                  "Do not use the specific “95% first-time offender” claim unless the primary source has been verified and the wording matches the study.",
               },
               {
-                id: "denial-paperwork",
-                label: "If refused, ask for written refusal, removal, cancellation, or denied-boarding paperwork if possible.",
+                id: "victim-centered",
+                label:
+                  "Make clear that reform arguments do not deny harm, erase victims, or excuse abuse.",
               },
             ]}
           />
-
-          <ScriptBox
-            title="Script: asking about itinerary changes"
-            tone="legal"
-            context="Use this with the registering agency or supervision office before travel."
-            script={`Hello, my name is [Name]. I am trying to make sure I handle international travel notice correctly.
-
-If my flight, hotel, cruise port, transit country, or return date changes after I submit notice, what exactly should I do?
-
-Who should I contact, how quickly should I contact them, and what proof should I save?`}
-          />
-
-          <GuideCallout tone="family" icon="👥" title="For companions">
-            <p>
-              Companions should know the plan without being asked to manage everything. Give them the itinerary, lodging details, emergency contacts, and a backup return plan. If the traveler is denied entry, the companion may need to decide whether to continue, wait, or return separately.
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="mistakes"
-          number="9"
-          title="Common mistakes"
-          subtitle="These are the errors that make an already difficult travel situation harder."
+          id="source-library"
+          number="6"
+          title="Source library by topic"
+          subtitle="Use this section to find the right anchor for the claim you are making."
         />
 
-        <GuideSectionCard>
-          <CommonMistakes
-            title="Avoid these planning traps"
-            mistakes={[
-              {
-                mistake: "Treating a community report as a guarantee.",
-                whyItMatters:
-                  "Community reports are valuable, but one person’s trip may involve a different route, year, offense history, registration status, passport, or border officer.",
-                betterMove:
-                  "Use matrices as leads, then verify with official sources and keep bookings refundable.",
-              },
-              {
-                mistake: "Assuming a passport means admission.",
-                whyItMatters:
-                  "A passport lets you travel and request entry. The destination still decides whether to admit you.",
-                betterMove:
-                  "Check the destination’s entry rules, visa or ETA process, criminal-history questions, and border-discretion language.",
-              },
-              {
-                mistake: "Booking through a risky transit country.",
-                whyItMatters:
-                  "A layover can become an immigration screening event, especially if you must clear border control or obtain an electronic authorization.",
-                betterMove:
-                  "Route directly when possible, and check transit rules separately from destination rules.",
-              },
-              {
-                mistake: "Assuming cruise reports equal airport admission.",
-                whyItMatters:
-                  "Cruise ports, ship policies, embarkation countries, and airport immigration can produce different outcomes.",
-                betterMove:
-                  "Research cruise and air travel separately, and check the cruise line before final payment.",
-              },
-              {
-                mistake: "Changing the itinerary without updating anyone.",
-                whyItMatters:
-                  "Registration notice, supervision permission, lodging, dates, or route changes may create compliance risk.",
-                betterMove:
-                  "Ask in advance exactly how changes must be reported and save proof that you followed the instruction.",
-              },
-              {
-                mistake: "Letting companions depend entirely on you.",
-                whyItMatters:
-                  "Denied boarding, detention, refusal, or removal can separate travelers quickly.",
-                betterMove:
-                  "Give companions independent access to funds, documents, lodging, phone service, and return-travel options.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
+        <div className="grid gap-5">
+          {sourceTopics.map((topic) => (
+            <GuideSectionCard key={topic.title}>
+              <h3 className="text-xl font-bold text-slate-950">
+                {topic.title}
+              </h3>
+
+              <div className="mt-5 grid gap-4 md:grid-cols-2">
+                {topic.sources.map((source) => (
+                  <article
+                    key={source.id}
+                    className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200"
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
+                        {source.id}
+                      </span>
+                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
+                        {source.type}
+                      </span>
+                    </div>
+
+                    <h4 className="mt-3 font-bold text-slate-950">
+                      {source.title}
+                    </h4>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                      {source.relevance}
+                    </p>
+
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex text-sm font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
+                    >
+                      Open source
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </GuideSectionCard>
+          ))}
+        </div>
 
         <GuideSectionHeader
           id="resources"
-          number="10"
-          title="Resources and next steps"
-          subtitle="Use official sources for rules and community sources for planning signals."
+          number="7"
+          title="Research tools and next steps"
+          subtitle="Start with official and primary sources, then use secondary sources for context."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Official U.S. travel and notice resources"
-            description="Start here for U.S.-side obligations, country pages, and travel preparation."
+            title="Useful research starting points"
             resources={[
               {
-                label: "State Department: International Megan’s Law passport information",
-                href: sourceLinks.stateDeptIML,
-                badge: "Official",
+                label: "Bureau of Justice Statistics",
                 description:
-                  "Passport identifier information for covered travelers, including passport-card limits and possible revocation of unmarked passports.",
+                  "Official federal statistics and reports on crime, victimization, corrections, and recidivism.",
+                href: "https://bjs.ojp.gov/",
+                badge: "Official",
               },
               {
-                label: "SMART Office: notice of international travel",
-                href: sourceLinks.smartTravelNotice,
-                badge: "Official",
+                label: "SMART Office",
                 description:
-                  "Federal implementation document describing information required for international travel notice.",
+                  "Federal resources on sex offender management, SORNA, case law summaries, and research briefs.",
+                href: "https://smart.ojp.gov/",
+                badge: "Official",
               },
               {
-                label: "ICE / HSI Angel Watch Center",
-                href: sourceLinks.angelWatch,
-                badge: "Official",
+                label: "National Institute of Justice",
                 description:
-                  "Official page describing Angel Watch’s mission and international notification role.",
+                  "Research and evaluation materials on criminal justice policy and public safety.",
+                href: "https://nij.ojp.gov/",
+                badge: "Official",
               },
               {
-                label: "State Department country information pages",
-                href: sourceLinks.stateDeptCountryInfo,
-                badge: "Official",
+                label: "PubMed",
                 description:
-                  "Country-specific travel information, entry requirements, safety notices, and embassy contacts.",
+                  "Search tool for peer-reviewed biomedical and behavioral research abstracts.",
+                href: "https://pubmed.ncbi.nlm.nih.gov/",
+                badge: "Research",
               },
               {
-                label: "STEP enrollment",
-                href: sourceLinks.step,
-                badge: "Official",
+                label: "Google Scholar",
                 description:
-                  "Optional State Department travel enrollment for safety updates and emergency contact support.",
+                  "Broad search tool for academic literature, citations, and related research.",
+                href: "https://scholar.google.com/",
+                badge: "Research",
+              },
+              {
+                label: "U.S. Supreme Court opinions on Justia",
+                description:
+                  "Readable access point for Supreme Court opinions including Smith and Packingham.",
+                href: "https://supreme.justia.com/",
+                badge: "Court",
               },
             ]}
           />
 
-          <SoftDivider />
-
-          <ResourceLinkGrid
-            title="Community-reported planning sources"
-            description="Use these as pattern evidence and planning leads, not as legal authority or guarantees."
-            resources={[
-              {
-                label: "RTAG Travel Matrix",
-                href: sourceLinks.rtagMatrix,
-                badge: "Community matrix",
-                description:
-                  "Country-pattern matrix compiled from multiple sources and traveler reports.",
-              },
-              {
-                label: "Just Facts Not Fear International Travel Matrix",
-                href: sourceLinks.justFactsMatrix,
-                badge: "Community matrix",
-                description:
-                  "Crowd-sourced country signals for registrants/PFRs planning international travel.",
-              },
-              {
-                label: "PFR Guide country trip reports",
-                href: sourceLinks.pfrCountryReports,
-                badge: "Trip reports",
-                description:
-                  "First-hand country reports that can help identify current travel patterns and missing questions.",
-              },
-              {
-                label: "PFR Guide cruise reports",
-                href: sourceLinks.pfrCruiseReports,
-                badge: "Cruise reports",
-                description:
-                  "Cruise-specific reports that help separate ship policy from country-entry practice.",
-              },
-              {
-                label: "ACSOL International Travel 2026 discussion",
-                href: sourceLinks.acsol2026,
-                badge: "Discussion",
-                description:
-                  "Recent community discussion and traveler reports. Read with caution because detail varies.",
-              },
-              {
-                label: "ACSOL Travel After IML survey",
-                href: sourceLinks.acsolTravelAfterIML,
-                badge: "Survey intake",
-                description:
-                  "Shows how travel experiences are collected and shared for future pattern tracking.",
-              },
-            ]}
-          />
-
-          <SoftDivider />
-
-          <RelatedGuides
-            guides={[
-              {
-                title: "Interstate Moving Guide",
-                description:
-                  "Use this when domestic travel, relocation, registration timing, or state-to-state planning is part of the problem.",
-                to: "/resources/interstate-moving-guide",
-              },
-              {
-                title: "Know Your Rights at Every Stage",
-                description:
-                  "Helpful for readers who need a broader framework for documentation, questioning, supervision, and legal-risk decisions.",
-                to: "/resources/know-your-rights",
-              },
-              {
-                title: "Family Support Guide",
-                description:
-                  "For spouses, partners, parents, and loved ones trying to help without taking over or increasing risk.",
-                to: "/resources/family-support",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="sources"
-          number="11"
-          title="Sources and verification"
-          subtitle="Rules and country practices can change. Recheck before relying on this guide."
-        />
-
-        <GuideSectionCard>
           <SourceList
-            note="This sandbox uses official sources for rules and community sources for practical travel-pattern signals. Community reports are not legal authority."
+            note="Source links should be periodically rechecked. Government PDFs and agency pages can move when websites are redesigned."
             sources={[
               {
-                label: "State Department: Passports and International Megan’s Law",
-                href: sourceLinks.stateDeptIML,
-                description: "Passport identifier, passport-card limits, and covered-traveler passport issues.",
+                label: "SE01 — Recidivism of Sex Offenders Released from Prison in 1994",
+                href: sourceLinks.SE01,
+                description:
+                  "Official BJS data source for recidivism measurement and detected sexual rearrest/reconviction.",
               },
               {
-                label: "SMART Office: information required for notice of international travel",
-                href: sourceLinks.smartTravelNotice,
-                description: "International travel notice information and U.S. outbound process.",
+                label: "SE02 — Recidivism of Adult Sexual Offenders",
+                href: sourceLinks.SE02,
+                description:
+                  "SMART Office research brief on adult recidivism patterns and measurement limits.",
               },
               {
-                label: "ICE / HSI Angel Watch Center",
-                href: sourceLinks.angelWatch,
-                description: "Angel Watch mission and international notification context.",
+                label:
+                  "SE03 — The Effectiveness of Sex Offender Registration and Notification",
+                href: sourceLinks.SE03,
+                description:
+                  "Peer-reviewed meta-analysis of 25 years of registration and notification findings.",
               },
               {
-                label: "State Department country information",
-                href: sourceLinks.stateDeptCountryInfo,
-                description: "Official country pages and embassy contact starting point.",
+                label:
+                  "SE04 — Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
+                href: sourceLinks.SE04,
+                description:
+                  "Nuanced study separating registration effects from public notification effects.",
               },
               {
-                label: "State Department Europe travel guidance",
-                href: sourceLinks.stateDeptEurope,
-                description: "European short-stay planning and ordinary travel requirements.",
+                label:
+                  "SE06 — Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
+                href: sourceLinks.SE06,
+                description:
+                  "Government evidence review on collateral consequences and methodological caution.",
               },
               {
-                label: "EU Entry/Exit System",
-                href: sourceLinks.euEes,
-                description: "EES operational information for Schengen-area border processing.",
+                label:
+                  "SE11 — Sexual Assault of Young Children as Reported to Law Enforcement",
+                href: sourceLinks.SE11,
+                description:
+                  "Official source for known-person and family/acquaintance prevention framing.",
               },
               {
-                label: "EU ETIAS",
-                href: sourceLinks.euEtias,
-                description: "ETIAS timing and pre-travel authorization information.",
+                label: "SE18 — Smith v. Doe",
+                href: sourceLinks.SE18,
+                description:
+                  "Central Supreme Court precedent upholding a registry scheme as civil for ex post facto purposes.",
               },
               {
-                label: "RTAG Travel Matrix",
-                href: sourceLinks.rtagMatrix,
-                description: "Community matrix used as planning-signal evidence.",
+                label: "SE19 — Packingham v. North Carolina",
+                href: sourceLinks.SE19,
+                description:
+                  "Supreme Court decision addressing broad internet restrictions and constitutional rights.",
               },
               {
-                label: "Just Facts Not Fear International Travel Matrix",
-                href: sourceLinks.justFactsMatrix,
-                description: "Community-reported travel matrix used as planning-signal evidence.",
+                label:
+                  "SE22 — High-Risk Sex Offenders May Not Be High Risk Forever",
+                href: sourceLinks.SE22,
+                description:
+                  "Peer-reviewed desistance source supporting time-sensitive, reviewable policy.",
               },
               {
-                label: "PFR Guide country trip reports",
-                href: sourceLinks.pfrCountryReports,
-                description: "First-hand country reports used for practical travel-pattern signals.",
-              },
-              {
-                label: "PFR Guide cruise reports",
-                href: sourceLinks.pfrCruiseReports,
-                description: "Cruise-specific reports used to separate cruise policy from country-entry practice.",
-              },
-              {
-                label: "ACSOL International Travel 2026",
-                href: sourceLinks.acsol2026,
-                description: "Recent community discussion and traveler reports.",
-              },
-              {
-                label: "Canada criminal inadmissibility",
-                href: sourceLinks.canadaInadmissibility,
-                description: "Official inadmissibility framework and officer decision points.",
-              },
-              {
-                label: "Canada criminal inadmissibility remedies",
-                href: sourceLinks.canadaRemedies,
-                description: "Temporary resident permit and rehabilitation pathways.",
-              },
-              {
-                label: "UK Standard Visitor guidance",
-                href: sourceLinks.ukStandardVisitor,
-                description: "Visitor guidance, including cautions for people with criminal records.",
-              },
-              {
-                label: "UK ETA rules",
-                href: sourceLinks.ukEtaRules,
-                description: "ETA refusal and cancellation grounds.",
-              },
-              {
-                label: "UK ETA overview",
-                href: sourceLinks.ukEtaOverview,
-                description: "ETA use and warning that ETA does not guarantee entry.",
-              },
-              {
-                label: "Australia character requirements",
-                href: sourceLinks.australiaCharacter,
-                description: "Character documentation and police-certificate framework.",
-              },
-              {
-                label: "Australia entry and character screening",
-                href: sourceLinks.australiaEntryCharacter,
-                description: "Risk-based entry and character-screening language.",
-              },
-              {
-                label: "New Zealand character requirements",
-                href: sourceLinks.nzCharacter,
-                description: "Character screening, refusal thresholds, and waiver concepts.",
-              },
-              {
-                label: "New Zealand NZeTA",
-                href: sourceLinks.nzeta,
-                description: "Electronic travel authority and character-question framework.",
-              },
-              {
-                label: "Japan consular travel quick facts",
-                href: sourceLinks.japanConsular,
-                description: "Consular warning that certain convictions may lead to refusal.",
-              },
-              {
-                label: "Japan Immigration Control Act Article 5 translation",
-                href: sourceLinks.japanArticle5,
-                description: "Denial-of-landing grounds including imprisonment-based provisions.",
-              },
-              {
-                label: "Philippines Bureau of Immigration annual exclusion announcement",
-                href: sourceLinks.philippinesAnnual,
-                description: "Public enforcement statement on barring foreign sex offenders.",
-              },
-              {
-                label: "Philippines Bureau of Immigration moral-turpitude denial post",
-                href: sourceLinks.philippinesMoralTurpitude,
-                description: "Official case example involving denial and blacklist practice.",
-              },
-              {
-                label: "Philippines Bureau of Immigration turn-backs post",
-                href: sourceLinks.philippinesTurnBacks,
-                description: "Official case examples involving airport turn-backs.",
-              },
-              {
-                label: "Singapore no-boarding directives",
-                href: sourceLinks.singaporeNoBoarding,
-                description: "Operational no-boarding regime for prohibited or undesirable travelers.",
-              },
-              {
-                label: "Malaysia prohibited immigrant page",
-                href: sourceLinks.malaysiaProhibited,
-                description: "Broad prohibited-immigrant grounds involving convictions and adverse information.",
-              },
-              {
-                label: "South Korea K-ETA guide",
-                href: sourceLinks.southKoreaKeta,
-                description: "Pre-boarding authorization, no-guarantee language, and criminal-record updates.",
-              },
-              {
-                label: "Mexico Ley de Migración",
-                href: sourceLinks.mexicoLey,
-                description: "Official statutory basis for public-safety and national-security refusal discretion.",
-              },
-              {
-                label: "Mexican consular short-stay guidance",
-                href: sourceLinks.mexicoConsular,
-                description: "Consular guidance indicating criminal records can affect short-stay entry decisions.",
+                label: "SE14 — DOJ OIG Nassar Report",
+                href: sourceLinks.SE14,
+                description:
+                  "Inspector General report used as a documented institutional-failure case example.",
               },
             ]}
           />
