@@ -1,613 +1,1468 @@
-            import React from 'react';
-import { Link } from 'react-router-dom';
-import SEO from '../../components/SEO';
+import React from "react";
+import { Link } from "react-router-dom";
+import SEO from "../../components/SEO";
+import ShareBar from "../../components/solar/ShareBar";
+import {
+  GuideSectionHeader,
+  GuideSectionCard,
+  GuideProse,
+  GuideCallout,
+  GuideIntro,
+  SoftDivider,
+  QuickStartPanel,
+  GuideChecklist,
+  ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
+  OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
+  SourceList,
+  TimelineGuidanceGrid,
+} from "../../components/solar";
+
+const sourceLinks = {
+  stateDeptIML:
+    "https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html",
+  smartTravelNotice:
+    "https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel",
+  angelWatch: "https://www.ice.gov/hsi/centers-labs/angel-watch",
+  stateDeptCountryInfo: "https://travel.state.gov/content/travel/en/international-travel.html",
+  step: "https://mytravel.state.gov/s/step",
+  stateDeptEurope:
+    "https://travel.state.gov/en/international-travel/planning/guidance/europe.html",
+  euEes:
+    "https://home-affairs.ec.europa.eu/policies/schengen/smart-borders/entry-exit-system_en",
+  euEtias: "https://travel-europe.europa.eu/en/etias",
+  schengenCalculator:
+    "https://ec.europa.eu/assets/home/visa-calculator/calculator.htm?lang=en",
+  statute212b: "https://www.law.cornell.edu/uscode/text/22/212b",
+  federalRegisterSORNA:
+    "https://www.federalregister.gov/documents/2016/12/21/2016-29905/international-megans-law-to-prevent-child-exploitation-and-other-sexual-crimes-through-advanced-notification",
+  rtagMatrix: "https://registranttag.org/resources/travel-matrix/",
+  justFactsMatrix:
+    "https://justfactsnotfear.com/international-travel-for-registrants/international-travel-matrix-for-sex-offenders/",
+  pfrCountryReports: "https://pfr.guide/countryreports/",
+  pfrCruiseReports: "https://pfr.guide/cruisereports/",
+  acsol2026: "https://all4consolaws.org/2026/01/international-travel-2026/",
+  acsolTravelAfterIML: "https://all4consolaws.org/travel-after-iml/",
+  canadaInadmissibility:
+    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility.html",
+  canadaRemedies:
+    "https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility/overcome-criminal-convictions.html",
+  ukStandardVisitor: "https://www.gov.uk/standard-visitor",
+  ukEtaRules:
+    "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-electronic-travel-authorisation",
+  ukEtaOverview: "https://www.gov.uk/eta/what-you-can-cannot-do",
+  australiaCharacter:
+    "https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/character",
+  australiaEntryCharacter:
+    "https://immi.homeaffairs.gov.au/entering-and-leaving-australia/entering-australia/can-i-go-to-australia",
+  nzCharacter:
+    "https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/character-requirements-for-new-zealand-visas/",
+  nzeta:
+    "https://www.immigration.govt.nz/visas/new-zealand-electronic-travel-authority-nzeta/",
+  japanConsular:
+    "https://www.seattle.us.emb-japan.go.jp/itpr_en/TravelingJapanQuickFacts.html",
+  japanArticle5:
+    "https://www.la.us.emb-japan.go.jp/pdf/ImmigrationControl_and_RefugeeRecognitionAct_Article%205.pdf",
+  philippinesAnnual:
+    "https://immigration.gov.ph/bi-bars-137-foreign-sex-offenders-from-entering-ph-in-2024/",
+  philippinesMoralTurpitude:
+    "https://immigration.gov.ph/bi-says-two-convicted-alien-sex-offenders-barred-from-entering-ph/",
+  philippinesTurnBacks:
+    "https://immigration.gov.ph/bi-turns-back-3-alien-sex-offenders-at-naia/",
+  singaporeNoBoarding:
+    "https://www.ica.gov.sg/news-and-publications/newsroom/media-release/ica-to-issue-no-boarding-directives-from-30-january-2026",
+  malaysiaProhibited: "https://www.imi.gov.my/index.php/en/enforcement/prohibited-immigrant/",
+  southKoreaKeta: "https://www.k-eta.go.kr/portal/guide/viewetaapplication.do?locale=EN",
+  mexicoLey: "https://www.inm.gob.mx/micrositio/1/docs/mj/LMig.pdf",
+  mexicoConsular:
+    "https://consulmex.sre.gob.mx/montreal/index.php/en/foreigners/visa/363-i-want-to-visit-mexico-for-a-short-period-less-than-6-months-as-a-tourist-for-business-for-technical-assistance-as-a-journalist-in-transit-or-for-short-studies-do-i-need-a-visa",
+};
+
+const externalLinkProps = {
+  target: "_blank",
+  rel: "noopener noreferrer",
+};
 
 export default function InternationalTravelGuide(): JSX.Element {
+  const handlePrint = () => window.print();
+
   return (
-    <div className="min-h-screen bg-slate-50">
-      <SEO 
-        title="International Travel Guide for Registry Individuals | The SOLAR Project"
-        description="Plain-language guidance for U.S.-based registrants planning international travel, including passport requirements, 21-day notice rules, and country-specific entry information."
-        keywords="international travel sex offender registry, passport identifier, 21 day notice, SORNA travel requirements, Schengen area, travel restrictions"
+    <div className="min-h-screen bg-slate-50 text-slate-800">
+      <SEO
+        title="International Travel for U.S.-Based People on the Registry | The SOLAR Project"
+        description="A practical international travel planning guide for U.S.-based people on sex offense registries and their families."
+        keywords="international travel, sex offense registry, International Megan's Law, registrants, travel notice, passport identifier"
       />
 
-      {/* Header */}
-      <header className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-700 text-white shadow-lg">
-        <div className="mx-auto max-w-6xl px-6 py-10">
-          <div className="flex flex-wrap items-start justify-between gap-6">
-            <div>
-              <div className="mb-4">
-                <Link to="/resources" className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/80 text-white hover:bg-slate-700/80 transition-colors">
-                  ← Back to Resources
-                </Link>
-              </div>
-              <p className="text-xs uppercase tracking-widest text-slate-200/90">SOLAR Resource Guide</p>
-              <h1 className="mt-1 text-3xl font-extrabold tracking-tight">International Travel for U.S.-Based People on the Registry</h1>
-              <p className="mt-3 max-w-3xl text-slate-200">Plain-language guidance, with official sources linked throughout, to help U.S.-based registrants and their travel companions plan lawful, lower-stress trips abroad.</p>
-              <p className="mt-2 text-sm text-slate-300">Last updated: <time dateTime="2025-08-23">August 23, 2025</time></p>
-            </div>
-            <div className="flex items-start gap-2">
-              <button onClick={() => window.print()} className="rounded-xl bg-white/10 px-4 py-2 font-medium text-white ring-1 ring-white/30 hover:bg-white/20 transition-colors">
-                Print Guide
-              </button>
-            </div>
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
+            ← Back to Resources
+          </Link>
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
+            SOLAR Resource Guide
+          </div>
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            International Travel for U.S.-Based People on the Registry
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A practical planning guide for checking U.S. obligations, reading country-pattern signals,
+            preparing documents, and reducing avoidable travel risk before you book.
+          </p>
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
+              🖨️ Print Guide
+            </button>
+
+            <a
+              href="#country-patterns"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Country Patterns
+            </a>
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
+              Jump to Sources
+            </a>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main className="mx-auto max-w-6xl space-y-8 px-6 py-10">
-        
-        {/* Important Notice */}
-        <section className="rounded-2xl bg-blue-50 ring-1 ring-blue-200 p-5 shadow-sm">
-          <div className="flex items-start">
-            <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div>
-              <h2 className="text-lg font-semibold text-slate-900">Important notice (read first)</h2>
-              <p className="mt-2 text-slate-700">This guide is informational and not legal advice. Entry decisions are made by foreign border officers case-by-case and can change without notice. Always verify requirements directly with the destination's embassy/consulate and the U.S. Department of State's country pages before you book or travel.</p>
-              <ul className="mt-2 list-disc pl-6 text-sm text-slate-700">
-                <li>U.S. obligations (passport rules and 21‑day international travel notice) still apply even if a destination would otherwise admit you.</li>
-                <li>Links below point to official pages (law, government, or intergovernmental bodies) wherever available.</li>
-              </ul>
-              <div className="mt-3 p-3 bg-blue-100 rounded-lg">
-                <p className="text-blue-800 text-sm">
-                  <strong>Know your rights:</strong> For comprehensive information about your legal protections during travel, see our <Link to="/resources/know-your-rights" className="text-blue-600 hover:text-blue-800 underline font-semibold">Your Rights at Every Stage guide</Link>.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-        {/* Section 1: U.S. Requirements */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="us-requirements">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">1</span>
-            <h2 className="text-2xl font-bold text-slate-900">What U.S. law requires before you leave</h2>
-          </div>
-          
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">A. Passport rules (International Megan's Law)</h3>
-              <p className="text-slate-700 mb-3">
-                If you are a <strong>"covered sex offender"</strong> (generally those with offenses involving a minor), your U.S. passport will carry a <strong>unique visual identifier</strong>. The State Department will not issue a passport without that identifier to a covered person, and may revoke a previous passport without it. See <a href="https://www.law.cornell.edu/uscode/text/22/212b" className="text-blue-700 underline" target="_blank" rel="noopener">22 U.S.C. § 212b</a> and the State Department's guidance on "<a href="https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html" className="text-blue-700 underline" target="_blank" rel="noopener">Passports and International Megan's Law</a>."
-              </p>
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <p className="text-green-800">
-                  <strong>What to do if you're covered:</strong> Follow the State Department instructions to apply for or replace your passport with the identifier. The page explains what to send and how to submit.
-                </p>
-              </div>
-            </div>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+        <ShareBar />
 
-            <div>
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">B. 21‑day advance notice of international travel (SORNA)</h3>
-              <p className="text-slate-700 mb-3">
-                Most registrants must provide <strong>at least 21 days' advance notice</strong> of international travel to their registering agency. The notice is forwarded to the <strong>U.S. Marshals Service</strong>, and DHS's <strong>Angel Watch Center</strong> may notify destination countries. See: <a href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" className="text-blue-700 underline" target="_blank" rel="noopener">DOJ SORNA rule (2021)</a>; SMART Office <a href="https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel" className="text-blue-700 underline" target="_blank" rel="noopener">notice guidance</a>; <a href="https://www.ice.gov/about-ice/hsi/centers-labs/angel-watch" className="text-blue-700 underline" target="_blank" rel="noopener">ICE Angel Watch Center</a>.
-              </p>
-              <ul className="list-disc pl-6 text-slate-700 mb-3">
-                <li>Provide <em>all</em> trip details (countries, dates, flights, lodging contact, purpose) to avoid processing hiccups.</li>
-                <li>If your plans change after you file, update your registering agency promptly.</li>
-              </ul>
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <div className="flex items-start">
-                  <svg className="w-5 h-5 text-amber-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                  </svg>
-                  <div>
-                    <p className="text-amber-800">
-                      <strong>State-specific requirements:</strong> Some states have additional travel notification rules beyond federal SORNA requirements. Check our <Link to="/resources/state-process-guide" className="text-amber-600 hover:text-amber-800 underline font-semibold">State Process Guide</Link> for your jurisdiction's specific rules.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 2: How Foreign Entry Works */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="how-entry-works">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">2</span>
-            <h2 className="text-2xl font-bold text-slate-900">How foreign entry works (and why experiences differ)</h2>
-          </div>
-          <ul className="list-disc pl-6 text-slate-700 space-y-2">
-            <li>Every country has its <strong>own</strong> entry rules. Many apply general "<strong>good character</strong>" or <strong>criminality</strong> tests (not registry‑specific) that allow border agents to refuse entry.</li>
-            <li>Examples of official refusal powers: <a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-part-9-grounds-for-refusal" className="text-blue-700 underline" target="_blank" rel="noopener">United Kingdom (Part 9)</a>; <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility.html" className="text-blue-700 underline" target="_blank" rel="noopener">Canada (criminal inadmissibility)</a>; <a href="https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/character" className="text-blue-700 underline" target="_blank" rel="noopener">Australia (Migration Act s 501)</a>; <a href="https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/character-requirements-for-new-zealand-visas/" className="text-blue-700 underline" target="_blank" rel="noopener">New Zealand (good character)</a>; <a href="https://www.japaneselawtranslation.go.jp/en/laws/view/3546/en" className="text-blue-700 underline" target="_blank" rel="noopener">Japan (Immigration Control Act)</a>.</li>
-            <li>Some countries publicize <strong>exclusions for foreign sex offenders</strong>, e.g., <a href="https://immigration.gov.ph/transparency/news-and-announcements/blank-news/rls-november-11-2024-registered-sex-offenders-rso" className="text-blue-700 underline" target="_blank" rel="noopener">Philippines Bureau of Immigration notices</a>.</li>
-          </ul>
-          <div className="mt-4 rounded-xl bg-amber-50 p-4 ring-1 ring-amber-200">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-amber-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-              </svg>
-              <div>
-                <p className="text-amber-800">
-                  <strong>Key point:</strong> A valid U.S. passport (even with identifier) does <em>not</em> guarantee entry. Decisions are discretionary at the border. Confirm with the destination consulate before you buy non‑refundable tickets.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3: Planning Timeline */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="timeline">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">3</span>
-            <h2 className="text-2xl font-bold text-slate-900">Planning timeline (time‑savers & stress‑reducers)</h2>
-          </div>
-          
-          <div className="bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-purple-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-purple-800 mb-2">⏰ Start Planning Early</h3>
-                <p className="text-purple-800">
-                  <strong>International travel requires more advance planning when you're on the registry.</strong> The 21-day notice requirement, passport processing, and embassy consultations mean you can't book last-minute trips. <span className="bg-purple-100 px-2 py-1 rounded font-semibold">Plan 60-90 days ahead for stress-free travel.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-blue-50 to-cyan-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">60–90 days before travel</h3>
-              <ul className="list-disc pl-5 text-blue-700 space-y-1">
-                <li>Confirm if you are a <em>covered sex offender</em> and, if so, ensure you have the identifier passport (<a href="https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html" className="text-blue-600 underline" target="_blank" rel="noopener">State Dept</a>).</li>
-                <li>Choose destinations realistically (see lists below), and verify entry details on the State Dept's <a href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages.html" className="text-blue-600 underline" target="_blank" rel="noopener">country pages</a>.</li>
-                <li>Email the destination embassy/consulate to confirm whether your criminal record affects tourist entry; keep replies.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-green-50 to-emerald-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-green-800 mb-3">30–45 days before travel</h3>
-              <ul className="list-disc pl-5 text-green-700 space-y-1">
-                <li>Submit the <strong>21‑day SORNA notice</strong> with complete itinerary (<a href="https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel" className="text-blue-600 underline" target="_blank" rel="noopener">SMART Office</a>).</li>
-                <li>Enroll in <a href="https://mytravel.state.gov/s/step" className="text-blue-600 underline" target="_blank" rel="noopener">STEP</a>. Save confirmations and copies of all documents.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-amber-50 to-orange-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-amber-800 mb-3">Two weeks before travel</h3>
-              <ul className="list-disc pl-5 text-amber-700 space-y-1">
-                <li>Print lodging confirmations, return/onward tickets, and funds proof.</li>
-                <li>Have embassy/consulate phone numbers and addresses handy.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-red-50 to-pink-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-red-800 mb-3">Day of travel</h3>
-              <ul className="list-disc pl-5 text-red-700 space-y-1">
-                <li>Arrive early; secondary inspection can add time.</li>
-                <li>Travel with companions prepared to answer simple questions about purpose and length of stay.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-xl border border-teal-200 bg-teal-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-teal-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <p className="text-teal-800">
-                  <strong>Moving between states?</strong> If you're planning to relocate before or after your trip, our <Link to="/resources/interstate-moving-guide" className="text-teal-600 hover:text-teal-800 underline font-semibold">Interstate Moving Guide</Link> covers the coordination needed between state registries.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4: Country Buckets */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="buckets">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">4</span>
-            <h2 className="text-2xl font-bold text-slate-900">"Friendly," "Case‑by‑Case," and "Often Denies"</h2>
-          </div>
-          <p className="text-slate-700 mb-6">Below are conservative groupings to help you plan. <strong>Entry is never guaranteed.</strong> Always verify with the embassy/consulate before you book.</p>
-
-          <div className="space-y-6">
-            {/* Country Categories */}
-            <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Country Categories for RSOs</h2>
-              
-              {/* Generally Workable */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-100">
-                    <svg className="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-900">Generally Workable (short tourist stays)</h3>
-                </div>
-                <div className="space-y-3 pl-11">
-                  <div className="rounded-lg bg-green-50 p-4">
-                    <h4 className="font-semibold text-green-900 mb-2">Schengen Area (Europe)</h4>
-                    <p className="text-green-800 text-sm">Visa-free ≤90/180; ETIAS required starting late 2026.</p>
-                  </div>
-                  <div className="rounded-lg bg-green-50 p-4">
-                    <h4 className="font-semibold text-green-900 mb-2">Türkiye (Turkey)</h4>
-                    <p className="text-green-800 text-sm">Visa-exempt for 90/180.</p>
-                  </div>
-                  <div className="rounded-lg bg-green-50 p-4">
-                    <h4 className="font-semibold text-green-900 mb-2">Morocco</h4>
-                    <p className="text-green-800 text-sm">Visa-free ≤90 days.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Case-by-Case */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100">
-                    <svg className="h-5 w-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-900">Case-by-Case / Discretion-Heavy</h3>
-                </div>
-                <div className="space-y-3 pl-11">
-                  <div className="rounded-lg bg-yellow-50 p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">Mexico</h4>
-                    <p className="text-yellow-800 text-sm">Frequent denials reported; consulates warn of refusals for criminal records.</p>
-                  </div>
-                  <div className="rounded-lg bg-yellow-50 p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">South Korea</h4>
-                    <p className="text-yellow-800 text-sm">Immigration Control Act allows refusals.</p>
-                  </div>
-                  <div className="rounded-lg bg-yellow-50 p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">Thailand, Singapore, Malaysia</h4>
-                    <p className="text-yellow-800 text-sm">Broad discretionary refusal powers.</p>
-                  </div>
-                  <div className="rounded-lg bg-yellow-50 p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">Colombia</h4>
-                    <p className="text-yellow-800 text-sm">No published exclusion; anecdotal variance.</p>
-                  </div>
-                  <div className="rounded-lg bg-yellow-50 p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">Panamá</h4>
-                    <p className="text-yellow-800 text-sm">Visa-free ≤180 days; confirm locally.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Often Denies */}
-              <div className="mb-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100">
-                    <svg className="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-900">Often Denies</h3>
-                </div>
-                <div className="space-y-3 pl-11">
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">United Kingdom</h4>
-                    <p className="text-red-800 text-sm">Immigration Rules Part 9 - grounds for refusal include criminal convictions.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Canada</h4>
-                    <p className="text-red-800 text-sm">Criminal inadmissibility laws; TRP or rehabilitation may be required.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Australia</h4>
-                    <p className="text-red-800 text-sm">Migration Act s 501 - character requirements strictly enforced.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">New Zealand</h4>
-                    <p className="text-red-800 text-sm">Character requirements for visas - criminal history scrutinized.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Japan</h4>
-                    <p className="text-red-800 text-sm">Immigration Control Act - broad discretionary refusal powers.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Philippines</h4>
-                    <p className="text-red-800 text-sm">Bureau of Immigration excludes registered sex offenders.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Costa Rica</h4>
-                    <p className="text-red-800 text-sm">Enhanced screening for sex offense convictions.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Belize</h4>
-                    <p className="text-red-800 text-sm">Immigration policies restrict entry for certain criminal histories.</p>
-                  </div>
-                  <div className="rounded-lg bg-red-50 p-4">
-                    <h4 className="font-semibold text-red-900 mb-2">Greece</h4>
-                    <p className="text-red-800 text-sm">RTAG reports multiple denials of entry for RSOs.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Footnote */}
-              <div className="rounded-lg bg-yellow-50 border border-yellow-200 p-4">
-                <div className="flex items-start gap-3">
-                  <svg className="h-5 w-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <p className="text-yellow-800 text-sm">
-                    <strong>Note:</strong> These categorizations reflect a cross-reference of RTAG Travel Matrix, NARSOL resources, and official consular sources as of August 2025. Always reconfirm with the relevant embassy/consulate before booking.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </section>
-
-        {/* Section 5: Schengen Area */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="schengen">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">5</span>
-            <h2 className="text-2xl font-bold text-slate-900">The Schengen Area (what it is, and why it matters)</h2>
-          </div>
-          
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-blue-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 002 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-blue-800 mb-2">🇪🇺 Europe's Travel Zone</h3>
-                <p className="text-blue-800">
-                  <strong>The Schengen Area covers 29 European countries</strong> with no internal border checks. Once you enter one Schengen country, you can travel freely between all others. <span className="bg-blue-100 px-2 py-1 rounded font-semibold">This makes Europe particularly attractive for multi-country trips.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <p className="text-slate-700 mb-4">
-            The <strong>Schengen Area</strong> is a group of European countries that abolished routine internal border checks and apply a common set of entry rules at external borders. It is <em>not</em> an Asian region—many first hear the term when researching Europe. U.S. citizens can visit visa‑free for up to <strong>90 days within any 180‑day period</strong>. Use the EU's <a href="https://home-affairs.ec.europa.eu/policies/schengen/border-crossing/short-stay-calculator_en" className="text-blue-700 underline" target="_blank" rel="noopener">short‑stay calculator</a> to track days.
+        <GuideIntro title="Start Here" icon="🧭">
+          <p>
+            International travel may still be possible for some people on registries, but it is not
+            something to treat casually or book at the last minute.
           </p>
-          <p className="text-slate-700 mb-4">
-            The EU will launch the <strong>Entry/Exit System (EES)</strong> on <strong>October 12, 2025</strong> (phased). The separate <strong>ETIAS</strong> travel authorization is scheduled for the <strong>last quarter of 2026</strong>. See the EU's official pages for <a href="https://travel-europe.europa.eu/en/ees" className="text-blue-700 underline" target="_blank" rel="noopener">EES</a> and <a href="https://travel-europe.europa.eu/etias_en" className="text-blue-700 underline" target="_blank" rel="noopener">ETIAS</a>.
+          <p>
+            The safer approach is to verify your U.S. obligations, research the destination from more
+            than one source, keep records of what you were told, and avoid nonrefundable plans until
+            you understand the practical risk.
           </p>
-          
-          <h3 className="text-lg font-semibold text-slate-800 mb-3">All 29 Schengen countries (2025)</h3>
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 text-slate-700">
-            <span>Austria</span><span>Belgium</span><span>Bulgaria</span><span>Croatia</span><span>Czechia</span><span>Denmark</span>
-            <span>Estonia</span><span>Finland</span><span>France</span><span>Germany</span><span>Greece</span><span>Hungary</span>
-            <span>Iceland</span><span>Italy</span><span>Latvia</span><span>Liechtenstein</span><span>Lithuania</span><span>Luxembourg</span>
-            <span>Malta</span><span>Netherlands</span><span>Norway</span><span>Poland</span><span>Portugal</span><span>Romania</span>
-            <span>Slovakia</span><span>Slovenia</span><span>Spain</span><span>Sweden</span><span>Switzerland</span>
-          </div>
-        </section>
-
-        {/* Section 6: Booking & Border Strategies */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="strategies">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">6</span>
-            <h2 className="text-2xl font-bold text-slate-900">Booking & border strategies (what actually helps)</h2>
-          </div>
-          
-          <div className="bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-emerald-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-emerald-800 mb-2">💡 Smart Booking Strategy</h3>
-                <p className="text-emerald-800">
-                  <strong>Preparation and documentation are your best tools.</strong> Border officers want to see that you're a genuine tourist with clear plans and means to support yourself. <span className="bg-emerald-100 px-2 py-1 rounded font-semibold">Having the right documents ready can make the difference between smooth entry and lengthy questioning.</span>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-cyan-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">Before you book</h3>
-              <ul className="list-disc pl-5 text-blue-700 space-y-2">
-                <li>Prefer <strong>nonstops</strong> to avoid extra border checks during connections.</li>
-                <li>Book <strong>refundable</strong> or "pay later" rates until a consulate confirms admissibility in writing.</li>
-                <li>Email the consulate: "I am a U.S. citizen with a past conviction; do you require any documents or police certificates for tourist admission?"</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-violet-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-purple-800 mb-3">At check‑in / boarding</h3>
-              <ul className="list-disc pl-5 text-purple-700 space-y-2">
-                <li>Airlines may ask for <strong>proof of return/onward travel</strong> and your first‑night lodging. Have both printed.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-green-200 bg-gradient-to-br from-green-50 to-emerald-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-green-800 mb-3">On arrival</h3>
-              <ul className="list-disc pl-5 text-green-700 space-y-2">
-                <li>Carry: passport, return ticket, lodging proof, day‑by‑day tourist plan, and funds. Answer only what's asked; be brief, polite, and consistent.</li>
-                <li>If referred to <strong>secondary inspection</strong>, stay calm; it's common and may add time.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-red-800 mb-3">If denied</h3>
-              <ul className="list-disc pl-5 text-red-700 space-y-2">
-                <li>You'll likely be returned on the same carrier. Ask the airline about re‑routing/refunds and contact travel insurance.</li>
-                <li>Request the written basis of refusal and keep documents for counsel at home.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 7: Travel Companions */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="companions">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">7</span>
-            <h2 className="text-2xl font-bold text-slate-900">Notes for travel companions</h2>
-          </div>
-          <p className="text-slate-700 mb-4">
-            Companions are not subject to the passport identifier or 21‑day notice. However, if the registrant is denied entry, companions on the same ticket may be forced to return. To minimize risk, book fares that allow changes/refunds and carry independent funds and lodging confirmations.
+          <p>
+            This guide is not legal advice. It is a planning tool for people who need a clear sequence:
+            what to check first, what to save, what country patterns mean, and how to avoid common
+            travel mistakes.
           </p>
-          
-          <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4">
-            <div className="flex items-start">
-              <svg className="w-5 h-5 text-indigo-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <div>
-                <p className="text-indigo-800">
-                  <strong>Family support:</strong> If you're traveling with family members who need guidance on supporting you through this process, our <Link to="/resources/family-support-guide" className="text-indigo-600 hover:text-indigo-800 underline font-semibold">Family Support Guide</Link> includes travel-specific advice and communication strategies.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        </GuideIntro>
 
-        {/* Section 8: Quick Reference Checklist (renumbered from 9) */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="quick-check">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">8</span>
-            <h2 className="text-2xl font-bold text-slate-900">Quick reference: what to double‑check before you go</h2>
-          </div>
-          <ol className="list-decimal pl-6 text-slate-700 space-y-3">
-            <li>
-              <strong>U.S. side:</strong> Do you need the <strong>identifier passport</strong>? If yes, is it issued? (<a href="https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept IML</a>). Have you filed the <strong>21‑day notice</strong> with complete details? (<a href="https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel" className="text-blue-700 underline" target="_blank" rel="noopener">SMART Office</a>).
-            </li>
-            <li>
-              <strong>Destination side:</strong> Visa/authorization needed? (e.g., <strong>ETIAS</strong> in late 2026 for Schengen). Any <strong>criminal‑record</strong> or "character" bars likely to apply? (UK Part 9, Canada inadmissibility, Australia s 501, NZ character, Japan Act). For <strong>"often denies"</strong> countries (incl. Costa Rica, Belize, Philippines), treat entry as unlikely unless a consulate confirms otherwise <em>in writing</em>.
-            </li>
-          </ol>
-        </section>
+        <QuickStartPanel
+          title="Before you book anything"
+          subtitle="Use this first if you are thinking about international travel."
+          icon="✈️"
+          urgentActions={[
+            <span>
+              Check whether you are covered by{" "}
+              <a
+                href={sourceLinks.stateDeptIML}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                International Megan’s Law passport rules
+              </a>{" "}
+              and whether your current passport has the required identifier.
+            </span>,
+            <span>
+              Confirm the{" "}
+              <a
+                href={sourceLinks.smartTravelNotice}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                international travel notice requirements
+              </a>{" "}
+              with your registering agency before relying on any itinerary.
+            </span>,
+            <span>
+              Review the destination through official sources and community-reported matrices before
+              spending money.
+            </span>,
+          ]}
+          nextActions={[
+            <span>
+              Use refundable airfare, lodging, tours, and insurance whenever the destination is
+              uncertain.
+            </span>,
+            <span>
+              Save emails, screenshots, confirmation numbers, forms, and names of people you spoke
+              with.
+            </span>,
+            <span>
+              Make a backup plan for travel companions in case you are delayed, questioned, denied
+              boarding, or refused entry.
+            </span>,
+          ]}
+          reminder={
+            <span>
+              A U.S. passport lets you ask to enter another country. It does not guarantee admission.
+            </span>
+          }
+        />
 
-        {/* Section 9: Trip Ideas */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="ideas">
-          <div className="mb-3 flex items-center gap-3">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white font-semibold">9</span>
-            <h2 className="text-2xl font-bold text-slate-900">Encouraging, realistic trip ideas</h2>
-          </div>
-          
-          <div className="bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-200 rounded-xl p-6 mb-6">
-            <div className="flex items-start">
-              <svg className="w-6 h-6 text-teal-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 002 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <div>
-                <h3 className="text-lg font-semibold text-teal-800 mb-2">✈️ Travel is Still Possible</h3>
-                <p className="text-teal-800">
-                  <strong>Don't let registry status stop you from seeing the world.</strong> With proper planning and realistic destination choices, meaningful international travel remains achievable. <span className="bg-teal-100 px-2 py-1 rounded font-semibold">Focus on countries with clear, workable entry policies.</span>
-                </p>
-              </div>
-            </div>
-          </div>
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Decision point 1",
+              title: "Your U.S. obligations",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Passport identifier rules, travel notice, state registration rules, supervision conditions, and court orders may all matter before you leave.",
+            },
+            {
+              eyebrow: "Decision point 2",
+              title: "The destination’s rules",
+              icon: "🛂",
+              tone: "warning",
+              description:
+                "Some countries have criminal inadmissibility, character, visa, ETA, no-boarding, or public-safety rules that may affect entry.",
+            },
+            {
+              eyebrow: "Decision point 3",
+              title: "Real-world practice",
+              icon: "🔎",
+              tone: "research",
+              description:
+                "Community reports can reveal patterns official tourist pages do not explain, but they are planning signals rather than guarantees.",
+            },
+          ]}
+        />
 
-          <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-blue-800 mb-3">Europe (Schengen)</h3>
-              <ul className="list-disc pl-5 text-blue-700 space-y-2">
-                <li>City breaks or multi‑country rail trips (e.g., <em>Paris → Amsterdam → Berlin</em>) within the 90/180 cap. Track days and note EES launch in Oct 2025.</li>
-              </ul>
-            </div>
-            
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-green-50 to-emerald-50 p-5 shadow-sm">
-              <h3 className="text-lg font-semibold text-green-800 mb-3">Beyond Europe</h3>
-              <ul className="list-disc pl-5 text-green-700 space-y-2">
-                <li><strong>Türkiye</strong> (Istanbul + Cappadocia): classic 7–10 days; confirm 90/180 rule and passport validity.</li>
-                <li><strong>Morocco</strong> (Marrakesh + coast or desert): 7–12 days; do not overstay 90 days.</li>
-                <li><strong>Colombia</strong> (Cartagena or Medellín): 4–8 days; print lodging and return ticket.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+<GuideSectionHeader
+          id="first"
+          number="1"
+          title="The first rule: verify before you spend"
+          subtitle="The biggest preventable mistake is treating international travel like ordinary vacation planning."
+        />
 
-        {/* Appendix: Sources */}
-        <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200" id="sources">
-          <h2 className="text-2xl font-bold text-slate-900 mb-4">Appendix: Source links (by topic)</h2>
-          <div className="space-y-4">
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">U.S. obligations:</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://smart.ojp.gov/sorna/current-law/implementation-documents/information-required-notice-international-travel" className="text-blue-700 underline" target="_blank" rel="noopener">21‑day notice (SMART Office)</a></li>
-                <li><a href="https://www.federalregister.gov/documents/2021/12/08/2021-26420/registration-requirements-under-the-sex-offender-registration-and-notification-act" className="text-blue-700 underline" target="_blank" rel="noopener">SORNA rule (2021) (Federal Register)</a></li>
-                <li><a href="https://www.law.cornell.edu/uscode/text/22/212b" className="text-blue-700 underline" target="_blank" rel="noopener">Passport identifiers (22 U.S.C. § 212b)</a></li>
-                <li><a href="https://travel.state.gov/content/travel/en/passports/legal-matters/passports-and-international-megans-law.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept International Megan's Law</a></li>
-                <li><a href="https://www.ice.gov/about-ice/hsi/centers-labs/angel-watch" className="text-blue-700 underline" target="_blank" rel="noopener">ICE Angel Watch Center</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">Schengen/ETIAS:</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://home-affairs.ec.europa.eu/policies/schengen/schengen-area_en" className="text-blue-700 underline" target="_blank" rel="noopener">European Commission Schengen page</a></li>
-                <li><a href="https://travel-europe.europa.eu/etias_en" className="text-blue-700 underline" target="_blank" rel="noopener">ETIAS timeline (last quarter 2026)</a></li>
-                <li><a href="https://travel-europe.europa.eu/en/ees" className="text-blue-700 underline" target="_blank" rel="noopener">EES start (Oct 12, 2025)</a></li>
-                <li><a href="https://home-affairs.ec.europa.eu/policies/schengen/border-crossing/short-stay-calculator_en" className="text-blue-700 underline" target="_blank" rel="noopener">Short-stay calculator</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">Workable destinations:</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://www.mfa.gov.tr/visa-information-for-foreigners.en.mfa" className="text-blue-700 underline" target="_blank" rel="noopener">Türkiye MFA</a></li>
-                <li><a href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Turkey.html/" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept - Turkey</a></li>
-                <li><a href="https://travel.state.gov/en/international-travel/travel-advisories/colombia.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept - Colombia</a></li>
-                <li><a href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Morocco.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept - Morocco</a></li>
-                <li><a href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages/Panama.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept - Panama</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">Often denies (official powers or practice):</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://www.gov.uk/guidance/immigration-rules/immigration-rules-part-9-grounds-for-refusal" className="text-blue-700 underline" target="_blank" rel="noopener">UK Immigration Rules Part 9</a></li>
-                <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility.html" className="text-blue-700 underline" target="_blank" rel="noopener">Canada criminal inadmissibility</a></li>
-                <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/immigrate-canada/inadmissibility/temporary-resident-permits.html" className="text-blue-700 underline" target="_blank" rel="noopener">Canada TRP</a></li>
-                <li><a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/application/application-forms-guides/guide-5312-rehabilitation-persons-inadmissible-canada-past-criminal-activity.html" className="text-blue-700 underline" target="_blank" rel="noopener">Canada rehabilitation</a></li>
-                <li><a href="https://immi.homeaffairs.gov.au/help-support/meeting-our-requirements/character" className="text-blue-700 underline" target="_blank" rel="noopener">Australia Migration Act s 501/Home Affairs</a></li>
-                <li><a href="https://www.immigration.govt.nz/process-to-apply/applying-for-a-visa/providing-evidence-and-documents-to-support-your-visa-application/good-character-requirements-and-police-certificates/character-requirements-for-new-zealand-visas/" className="text-blue-700 underline" target="_blank" rel="noopener">New Zealand character requirements</a></li>
-                <li><a href="https://www.japaneselawtranslation.go.jp/en/laws/view/3546/en" className="text-blue-700 underline" target="_blank" rel="noopener">Japan Immigration Control Act</a></li>
-                <li><a href="https://immigration.gov.ph/transparency/news-and-announcements/blank-news/rls-november-11-2024-registered-sex-offenders-rso" className="text-blue-700 underline" target="_blank" rel="noopener">Philippines BI exclusions</a></li>
-                <li><a href="https://www.state.gov/reports/2024-trafficking-in-persons-report/costa-rica/" className="text-blue-700 underline" target="_blank" rel="noopener">Costa Rica TIP 2024</a></li>
-                <li><a href="https://www.state.gov/reports/2024-trafficking-in-persons-report/belize" className="text-blue-700 underline" target="_blank" rel="noopener">Belize TIP 2024</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">Case‑by‑case examples:</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://consulmex.sre.gob.mx/montreal/index.php/es/viaje-a-mexico/405-viaje-a-mexico-con-antecedentes-penales" className="text-blue-700 underline" target="_blank" rel="noopener">Mexico consular guidance (Montreal)</a></li>
-                <li><a href="https://consulmex.sre.gob.mx/miami/images/2023/visas/faq_preguntas_frecuentes_espanol2.pdf" className="text-blue-700 underline" target="_blank" rel="noopener">Mexico consular guidance (Miami PDF)</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-semibold text-slate-800 mb-2">General travel resources:</h3>
-              <ul className="list-disc pl-6 text-slate-700 space-y-1">
-                <li><a href="https://travel.state.gov/content/travel/en/international-travel/International-Travel-Country-Information-Pages.html" className="text-blue-700 underline" target="_blank" rel="noopener">State Dept country pages</a></li>
-                <li><a href="https://mytravel.state.gov/s/step" className="text-blue-700 underline" target="_blank" rel="noopener">STEP enrollment</a></li>
-                <li><a href="https://tr.usembassy.gov/visas/" className="text-blue-700 underline" target="_blank" rel="noopener">U.S. Embassy Türkiye</a></li>
-                <li><a href="https://www.embassyofpanama.org/visas-1" className="text-blue-700 underline" target="_blank" rel="noopener">Panama Embassy</a></li>
-              </ul>
-            </div>
-          </div>
-        </section>
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              International travel sits at the intersection of several systems: your registering agency,
+              any supervision or court conditions, U.S. passport rules, international notice transmission,
+              airline policies, cruise policies, transit-country rules, and the destination country’s border
+              discretion.
+            </p>
 
-        {/* Final Reminders */}
-        <section className="rounded-2xl bg-rose-50 p-5 ring-1 ring-rose-200 shadow-sm">
-          <div className="flex items-start">
-            <svg className="w-6 h-6 text-rose-600 mt-1 mr-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <div>
-              <p className="font-semibold text-rose-800 mb-2">Final reminders:</p>
-              <ol className="list-decimal pl-6 text-rose-700 space-y-1">
-                <li>Always get the current rule from the destination's embassy/consulate and the State Dept country page.</li>
-                <li>Keep copies of your 21‑day notice, itinerary, and consulate confirmations.</li>
-                <li>Have a backup plan if a border officer refuses entry.</li>
-              </ol>
-              <p className="text-rose-700 mt-3">
-                For additional travel resources and support, explore our <Link to="/resources" className="text-rose-600 hover:text-rose-800 underline font-semibold">complete resource library</Link>.
-              </p>
-            </div>
-          </div>
-        </section>
+            <p>
+              That does not mean every trip will fail. It means the planning has to be more careful.
+              The practical question is not, “Can people on the registry ever travel internationally?”
+              The better question is, “What do I need to verify, document, and protect before I rely on
+              this plan?”
+            </p>
+          </GuideProse>
 
+          <GuideCallout tone="warning" icon="⚠️" title="Do not book nonrefundable travel too early">
+            <p>
+              If you cannot afford to lose the ticket, do not buy it until you have checked the U.S.
+              notice process, your passport status, any supervision limits, destination entry rules, and
+              recent traveler reports. Even then, refundable travel is often the safer choice.
+            </p>
+          </GuideCallout>
+
+          <VerifyBeforeActing
+            title="Verify before acting"
+            whoToAsk={
+              <span>
+                Your registering agency, your supervising officer or attorney if you are under
+                supervision or court order, the destination’s embassy or consulate, and official travel
+                resources such as the{" "}
+                <a
+                  href={sourceLinks.stateDeptCountryInfo}
+                  {...externalLinkProps}
+                  className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+                >
+                  U.S. Department of State country pages
+                </a>.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                Ask narrow questions: whether your itinerary satisfies notice rules, whether you need
+                a visa or travel authorization, whether a criminal record can affect tourist entry,
+                whether transit countries create separate risk, and whether itinerary changes must be
+                reported.
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save emails, forms, screenshots, names, dates, departments, confirmation numbers,
+                and copies of any official answer. If someone gives you a verbal answer, write it down
+                immediately.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="us-obligations"
+          number="2"
+          title="U.S. obligations before leaving"
+          subtitle="Before you research the destination, make sure the U.S. side of the trip is understood."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some people with sex-offense convictions are covered by International Megan’s Law. The{" "}
+              <a
+                href={sourceLinks.stateDeptIML}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                State Department’s IML passport page
+              </a>{" "}
+              explains the passport identifier process for covered travelers, including limits on
+              passport cards and possible revocation of unmarked passports. The underlying federal
+              statute is{" "}
+              <a
+                href={sourceLinks.statute212b}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                22 U.S.C. § 212b
+              </a>.
+            </p>
+
+            <p>
+              Separately, federal SORNA implementation materials describe the information required
+              for{" "}
+              <a
+                href={sourceLinks.smartTravelNotice}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                notice of intended international travel
+              </a>. Many people know this as the “21-day notice,” but the details still need to be
+              checked with the registering agency that actually handles your notice. The Federal
+              Register also published a SORNA-related{" "}
+              <a
+                href={sourceLinks.federalRegisterSORNA}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                international travel notice rule
+              </a>{" "}
+              connected to International Megan’s Law implementation.
+            </p>
+
+            <p>
+              U.S. authorities may transmit travel information to foreign partners through systems
+              connected to the{" "}
+              <a
+                href={sourceLinks.angelWatch}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Angel Watch Center
+              </a>. That does not automatically mean a destination will deny entry, but it can affect
+              what happens at boarding, arrival, or secondary inspection.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="us-obligations-checklist"
+            title="U.S.-side checklist"
+            columns={1}
+            items={[
+              {
+                id: "passport",
+                label: "Check whether your passport has the required IML identifier if you are a covered traveler.",
+              },
+              {
+                id: "notice",
+                label: "Ask your registering agency exactly when, how, and where to file international travel notice.",
+              },
+              {
+                id: "state-rules",
+                label: "Check state registration rules for temporary travel, address changes, itinerary changes, and return reporting.",
+              },
+              {
+                id: "supervision",
+                label: "If you are on supervision, confirm travel permission in writing before booking.",
+              },
+              {
+                id: "court-order",
+                label: "Review court orders, probation/parole conditions, treatment rules, and no-contact restrictions.",
+              },
+              {
+                id: "changes",
+                label: "Ask what to do if flights, hotels, dates, cruise ports, or transit countries change.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Supervision can change the answer">
+            <p>
+              A country may be relatively workable for some travelers but still unavailable to someone
+              under probation, parole, supervised release, treatment restrictions, or a court order.
+              Do not rely on another person’s travel report if your supervision status is different.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="community-reports"
+          number="3"
+          title="How to use community travel reports"
+          subtitle="Community matrices are valuable here, but they need to be read carefully."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              On this topic, official tourist pages often do not explain how registry-related travel
+              notices are handled in real life. That is why community-reported resources matter. The{" "}
+              <a
+                href={sourceLinks.rtagMatrix}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                RTAG Travel Matrix
+              </a>, the{" "}
+              <a
+                href={sourceLinks.justFactsMatrix}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Just Facts Not Fear international travel matrix
+              </a>,{" "}
+              <a
+                href={sourceLinks.pfrCountryReports}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                PFR Guide country trip reports
+              </a>,{" "}
+              <a
+                href={sourceLinks.pfrCruiseReports}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                PFR Guide cruise reports
+              </a>, and{" "}
+              <a
+                href={sourceLinks.acsol2026}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                ACSOL international travel discussion pages
+              </a>{" "}
+              can help identify patterns that official pages may not publish.
+            </p>
+
+            <p>
+              Use those sources as planning signals, not legal authority. A report is stronger when it
+              is recent, first-hand, specific about the country, clear about air versus cruise versus
+              transit, and consistent with other reports. A report is weaker when it is old, second-hand,
+              missing key facts, cruise-only, or based on someone who was no longer required to register.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="research" icon="🔎" title="A useful matrix is still not a guarantee">
+            <p>
+              A country pattern becomes more useful when several sources point in the same direction.
+              It still does not prove what will happen to you. Your sentence history, registration status,
+              passport identifier, travel notice, visa type, route, travel mode, and border officer can
+              all change the result.
+            </p>
+          </GuideCallout>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Stronger signal",
+                title: "Recent and specific",
+                icon: "✅",
+                tone: "success",
+                description:
+                  "The report names the country, year, travel mode, outcome, and what happened at inspection.",
+              },
+              {
+                eyebrow: "Weaker signal",
+                title: "Old or unclear",
+                icon: "⚠️",
+                tone: "warning",
+                description:
+                  "The report is undated, vague, second-hand, or does not say whether the person was currently required to register.",
+              },
+              {
+                eyebrow: "Do not overread",
+                title: "One trip is not a rule",
+                icon: "🧩",
+                tone: "neutral",
+                description:
+                  "One successful entry does not prove everyone will be admitted. One denial does not always prove a blanket bar.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking a consulate a narrow travel question"
+            tone="neutral"
+            context="Use this by email when you need a written answer. Do not overshare details that were not asked for."
+            script={`Hello, my name is [Name]. I am a U.S. citizen planning short-term tourist travel to [country] from [dates]. Before I book, I am trying to understand entry requirements for travelers with a past criminal conviction.
+
+Can you tell me whether tourist entry requires any advance visa, police certificate, waiver, or other documentation because of that record?
+
+If another office handles this question, could you please tell me the correct office or website? I would appreciate any written guidance you can provide.
+
+Thank you,
+[Name]`}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="country-patterns"
+          number="4"
+          title="Country patterns: planning signals, not promises"
+          subtitle="These categories are meant to guide research and booking decisions, not guarantee admission."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              These country categories combine official immigration sources with community-reported
+              travel experiences. Official rules matter most for what a country says it can do. Community
+              reports matter because border practice is not always fully explained on tourist-facing
+              websites.
+            </p>
+
+            <p>
+              “More workable” does not mean safe, approved, or guaranteed. “Generally not workable”
+              does not mean absolutely impossible for every person in every situation. It means the
+              reviewed evidence is strong enough that a currently registered traveler should not treat
+              the destination as an ordinary tourist option without individualized legal or official
+              immigration guidance.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={2}
+            cards={[
+              {
+                eyebrow: "Fewer recurring barriers — not guaranteed",
+                title: "More workable destinations",
+                icon: "🟢",
+                tone: "success",
+                description:
+                  "Schengen Area generally, France, Germany, Italy, and Portugal. Reports and available official guidance suggest fewer recurring barriers for short tourist travel. Spain and Greece should not simply inherit the broader Schengen label.",
+              },
+              {
+                eyebrow: "Mixed or mode-sensitive",
+                title: "Verify carefully before booking",
+                icon: "🟡",
+                tone: "warning",
+                description:
+                  "Spain, Mexico, Costa Rica, Colombia, Türkiye, and South Korea. Reports conflict, travel mode matters, or screening systems make outcomes hard to predict.",
+              },
+              {
+                eyebrow: "Strong warning zone",
+                title: "Generally not workable",
+                icon: "🔴",
+                tone: "urgent",
+                description:
+                  "Canada, United Kingdom, Australia, New Zealand, Japan, Philippines, Singapore, and Malaysia. Most currently registered travelers should expect refusal, removal, denied boarding, visa denial, or serious entry problems.",
+              },
+              {
+                eyebrow: "Do not treat silence as safety",
+                title: "Not enough reliable information",
+                icon: "⚪",
+                tone: "neutral",
+                description:
+                  "Netherlands as a standalone mainland rating, Morocco, Ireland, Panama, Belize, Dominican Republic, Jamaica, and Cambodia. Not enough data does not mean safe or unsafe; it means the evidence is too thin, old, conflicting, or mode-specific.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="📌" title="Country categories are not permission slips">
+            <p>
+              Use the list to decide where to investigate, how much money to risk, whether direct
+              routing matters, and whether to delay booking. Do not use it as proof that a border officer,
+              airline, cruise operator, or visa office must admit you.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="schengen"
+          number="5"
+          title="What is Schengen?"
+          subtitle="This term comes up often because much of the more workable pattern is in Europe."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The Schengen Area is a group of European countries that share a common short-stay border
+              system. For many U.S. tourists, a short trip to France, Germany, Italy, Portugal, Spain,
+              Greece, or several other European countries is handled under Schengen short-stay rules
+              rather than a separate tourist visa for each country.
+            </p>
+
+            <p>
+              In ordinary tourist language, Schengen often means you may enter one Schengen country
+              and then move between many Schengen countries without routine passport checks at every
+              internal border. That does not mean every Schengen country handles registry-related travel
+              the same way. The reviewed travel reports suggest that France, Germany, Italy, and Portugal
+              are more workable than many other international destinations, while Spain and Greece need
+              more caution.
+            </p>
+
+            <p>
+              Schengen also has ordinary timing rules. Many short-stay visitors are limited to 90 days in
+              any 180-day period across the Schengen Area as a whole, not 90 days in each country. The
+              official{" "}
+              <a
+                href={sourceLinks.schengenCalculator}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Schengen short-stay calculator
+              </a>{" "}
+              can help with date counting, and the State Department’s{" "}
+              <a
+                href={sourceLinks.stateDeptEurope}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Europe travel guidance
+              </a>{" "}
+              is a useful starting point for ordinary passport, funds, and return-ticket expectations.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="info" icon="🇪🇺" title="Schengen is helpful, but it is not magic">
+            <p>
+              If you choose a Schengen destination because it appears more workable, still check the
+              first country where you will enter, any transit countries, the current{" "}
+              <a
+                href={sourceLinks.euEes}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Entry/Exit System
+              </a>{" "}
+              status, and the{" "}
+              <a
+                href={sourceLinks.euEtias}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                ETIAS
+              </a>{" "}
+              timeline before booking.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="country-details"
+          number="6"
+          title="How to read the main country groups"
+          subtitle="The same category can still hide important differences by route, travel mode, and personal facts."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The more workable group is narrow on purpose. France, Germany, Italy, Portugal, and
+              Schengen travel generally show better community-reported patterns for short tourist travel
+              than many other destinations. But Europe is changing operationally: the EU’s{" "}
+              <a
+                href={sourceLinks.euEes}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Entry/Exit System
+              </a>{" "}
+              and{" "}
+              <a
+                href={sourceLinks.euEtias}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                ETIAS
+              </a>{" "}
+              should be checked before booking.
+            </p>
+
+            <p>
+              Spain belongs in the verify-carefully group because reports include both successful
+              admissions and serious entry problems. Mexico also belongs there because airport denials
+              appear materially different from some cruise-port or limited-border-contact reports. Costa
+              Rica and Colombia are mode-sensitive in the same way: cruise and air travel may not be
+              treated alike.
+            </p>
+
+            <p>
+              The generally not workable group is different. Canada, the United Kingdom, Australia,
+              New Zealand, Japan, the Philippines, Singapore, and Malaysia all have either strong official
+              screening rules, public enforcement signals, repeated community warnings, or some
+              combination of those factors.
+            </p>
+          </GuideProse>
+
+          <SoftDivider label="Why the warning group is different" />
+
+          <OverviewCards
+            columns={2}
+            cards={[
+              {
+                eyebrow: "Criminal inadmissibility",
+                title: "Canada",
+                icon: "🇨🇦",
+                tone: "urgent",
+                description:
+                  "Canada can assess criminal inadmissibility at the eTA stage or port of entry. Some travelers may need to explore a temporary resident permit or rehabilitation process before travel.",
+              },
+              {
+                eyebrow: "ETA and public-good screening",
+                title: "United Kingdom",
+                icon: "🇬🇧",
+                tone: "urgent",
+                description:
+                  "The UK uses ETA screening for many visitors. ETA rules include criminality and public-good grounds, and ETA approval does not guarantee entry.",
+              },
+              {
+                eyebrow: "Character screening",
+                title: "Australia and New Zealand",
+                icon: "🇦🇺",
+                tone: "urgent",
+                description:
+                  "Both countries use broad character screening. New Zealand also uses character questions in the NZeTA process.",
+              },
+              {
+                eyebrow: "Official refusal patterns",
+                title: "Japan and the Philippines",
+                icon: "🛂",
+                tone: "urgent",
+                description:
+                  "Japan has imprisonment-based landing-denial grounds. The Philippines has public Bureau of Immigration notices describing barred foreign sex offenders and blacklist practice.",
+              },
+              {
+                eyebrow: "No-boarding and prohibited-immigrant rules",
+                title: "Singapore and Malaysia",
+                icon: "🚫",
+                tone: "urgent",
+                description:
+                  "Singapore has no-boarding directives for prohibited or undesirable travelers. Malaysia has broad prohibited-immigrant grounds involving convictions and adverse information.",
+              },
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              For deeper verification, review Canada’s{" "}
+              <a
+                href={sourceLinks.canadaInadmissibility}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                criminal inadmissibility guidance
+              </a>, the UK{" "}
+              <a
+                href={sourceLinks.ukEtaRules}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                ETA rules
+              </a>, Australia’s{" "}
+              <a
+                href={sourceLinks.australiaCharacter}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                character requirements
+              </a>, New Zealand’s{" "}
+              <a
+                href={sourceLinks.nzCharacter}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                character requirements
+              </a>, Japan’s{" "}
+              <a
+                href={sourceLinks.japanArticle5}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                Article 5 landing-denial grounds
+              </a>, Singapore’s{" "}
+              <a
+                href={sourceLinks.singaporeNoBoarding}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                no-boarding directive announcement
+              </a>, and Malaysia’s{" "}
+              <a
+                href={sourceLinks.malaysiaProhibited}
+                {...externalLinkProps}
+                className="font-semibold underline decoration-slate-400 underline-offset-2 hover:text-slate-950"
+              >
+                prohibited immigrant page
+              </a>.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="legal" icon="⚖️" title="Sentence details can matter">
+            <p>
+              Some countries focus on sentence length, imprisonment, seriousness, moral turpitude,
+              public safety, public order, or character. Your exact conviction, sentence, current
+              registration status, and supervision status may matter more than the broad label of the
+              offense.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="timeline"
+          number="7"
+          title="Planning timeline"
+          subtitle="Give yourself time to verify, document, and change plans before money is at risk."
+        />
+
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="A practical travel-planning timeline"
+            stages={[
+              {
+                stage: "90+ days before travel",
+                icon: "🗓️",
+                whatChanges:
+                  "This is when you can still choose a different destination, route, airline, cruise line, or travel date without scrambling.",
+                whatToDo:
+                  "Check passport status, supervision limits, country patterns, official entry rules, visa or ETA requirements, and whether the destination belongs in the more workable, verify-carefully, or generally not workable group.",
+              },
+              {
+                stage: "60–45 days before travel",
+                icon: "✉️",
+                whatChanges:
+                  "You should be moving from general research to written confirmation and document collection.",
+                whatToDo:
+                  "Contact the registering agency, ask destination-specific questions, email the consulate if needed, and start a paper or digital travel packet.",
+              },
+              {
+                stage: "30–21 days before travel",
+                icon: "📋",
+                whatChanges:
+                  "International travel notice timing becomes central. Incomplete or changing itineraries can create practical problems.",
+                whatToDo:
+                  "File required notice according to the agency’s instructions, save proof of submission, and ask how itinerary changes must be handled.",
+              },
+              {
+                stage: "Two weeks before travel",
+                icon: "🖨️",
+                whatChanges:
+                  "The trip should be documented, refundable where possible, and ready for questioning or delay.",
+                whatToDo:
+                  "Print or download passport, itinerary, lodging, return ticket, consulate messages, insurance, emergency contacts, and any permission letters.",
+              },
+              {
+                stage: "Day of travel",
+                icon: "🛫",
+                whatChanges:
+                  "Airline staff, cruise staff, transit countries, or border officers may become the decision point.",
+                whatToDo:
+                  "Arrive early, answer questions calmly and briefly, keep documents accessible, and avoid arguing about rights with front-line staff abroad.",
+              },
+              {
+                stage: "If denied, delayed, or removed",
+                icon: "🧾",
+                whatChanges:
+                  "The priority becomes safety, documentation, companion logistics, and avoiding new violations.",
+                whatToDo:
+                  "Ask for written refusal paperwork if possible, save names and flight details, contact companions, keep receipts, and check whether your registering agency or supervision office needs an update.",
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet access is limited"
+            icon="📞"
+            items={[
+              "Ask a trusted person to print official country pages, matrix entries, consulate emails, and booking terms.",
+              "Call the registering agency and write down the name, date, department, and instructions.",
+              "Ask the destination embassy or consulate for mailed or emailed guidance if you cannot reliably use online forms.",
+              "Keep a paper folder with your itinerary, lodging, emergency contacts, and proof of travel notice submission.",
+            ]}
+            note="Phone-only, supervised, incarcerated, or low-internet readers may need paper backups and a trusted helper."
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="documents"
+          number="8"
+          title="Build a travel packet"
+          subtitle="When travel gets stressful, organized records matter."
+        />
+
+        <GuideSectionCard>
+          <DocumentPacket
+            title="Documents to carry and save"
+            intro="Keep digital copies if safe, but do not rely only on your phone. Carry a paper packet in your personal item."
+            categories={[
+              {
+                title: "Identity and U.S. compliance",
+                items: [
+                  "Passport and any required passport identifier.",
+                  "Copy of international travel notice or proof of submission.",
+                  "Written permission from supervision or court, if applicable.",
+                  "Registering-agency instructions about itinerary changes and return reporting.",
+                ],
+              },
+              {
+                title: "Trip proof",
+                items: [
+                  "Round-trip or onward ticket.",
+                  "Lodging confirmation with address and dates.",
+                  "Cruise itinerary, port list, and cruise-line policy confirmation if relevant.",
+                  "Proof of funds and travel insurance if required or useful.",
+                ],
+              },
+              {
+                title: "Verification records",
+                items: [
+                  "Consulate or embassy emails.",
+                  "Screenshots or PDFs of official entry pages.",
+                  "Community matrix or trip-report notes used as planning signals.",
+                  "Names, dates, departments, confirmation numbers, and call notes.",
+                ],
+              },
+              {
+                title: "Emergency and backup planning",
+                items: [
+                  "Companion contact plan if you are separated.",
+                  "Backup lodging and return-flight options.",
+                  "Medication list and prescriptions if needed.",
+                  "Emergency contacts in the United States and destination country.",
+                ],
+              },
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Protect sensitive records">
+            <p>
+              Carry what you may need, but think carefully before giving copies of sensitive legal
+              documents to hotels, tour operators, or private companies unless they are required. Keep
+              the most sensitive records in your own control.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="booking-border"
+          number="9"
+          title="Booking, border, and companion planning"
+          subtitle="The goal is not to predict every outcome. The goal is to reduce avoidable harm if the trip changes."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Prefer direct routes when possible. A layover is not always neutral. Transit through
+              Canada, the United Kingdom, Singapore, South Korea, New Zealand, or another screened
+              system may create its own immigration or boarding event.
+            </p>
+
+            <p>
+              Cruise travel needs separate checking. A traveler may face the cruise operator’s policy,
+              the port country’s policy, and the rules of any country where the ship begins or ends.
+              Cruise success at one port does not prove airport admission to that country.
+            </p>
+
+            <p>
+              If you are traveling with a spouse, partner, child, parent, friend, or group, plan for
+              separation. Family presence does not neutralize entry risk. Companions should have access
+              to money, documents, lodging, and return-travel options if you are delayed or sent back.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="booking-border-checklist"
+            title="Before final payment"
+            columns={1}
+            items={[
+              {
+                id: "refundable",
+                label: "Use refundable or changeable bookings whenever the destination is not clearly workable.",
+              },
+              {
+                id: "routing",
+                label: "Avoid transit through generally not workable or heavily screened countries if a direct route is available.",
+              },
+              {
+                id: "cruise",
+                label: "If cruising, check both the cruise line’s policy and the entry rules for embarkation, disembarkation, and port countries.",
+              },
+              {
+                id: "companion-money",
+                label: "Make sure companions can pay for lodging, food, phone service, and return travel without you.",
+              },
+              {
+                id: "secondary",
+                label: "Prepare for secondary inspection by carrying documents and answering questions calmly and consistently.",
+              },
+              {
+                id: "denial-paperwork",
+                label: "If refused, ask for written refusal, removal, cancellation, or denied-boarding paperwork if possible.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking about itinerary changes"
+            tone="legal"
+            context="Use this with the registering agency or supervision office before travel."
+            script={`Hello, my name is [Name]. I am trying to make sure I handle international travel notice correctly.
+
+If my flight, hotel, cruise port, transit country, or return date changes after I submit notice, what exactly should I do?
+
+Who should I contact, how quickly should I contact them, and what proof should I save?`}
+          />
+
+          <GuideCallout tone="family" icon="👥" title="For companions">
+            <p>
+              Companions should know the plan without being asked to manage everything. Give them the
+              itinerary, lodging details, emergency contacts, and a backup return plan. If the traveler
+              is denied entry, the companion may need to decide whether to continue, wait, or return
+              separately.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes"
+          number="10"
+          title="Common mistakes"
+          subtitle="These are the errors that make an already difficult travel situation harder."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            title="Avoid these planning traps"
+            mistakes={[
+              {
+                mistake: "Treating a community report as a guarantee.",
+                whyItMatters:
+                  "Community reports are valuable, but one person’s trip may involve a different route, year, offense history, registration status, passport, or border officer.",
+                betterMove:
+                  "Use matrices as leads, then verify with official sources and keep bookings refundable.",
+              },
+              {
+                mistake: "Assuming a passport means admission.",
+                whyItMatters:
+                  "A passport lets you travel and request entry. The destination still decides whether to admit you.",
+                betterMove:
+                  "Check the destination’s entry rules, visa or ETA process, criminal-history questions, and border-discretion language.",
+              },
+              {
+                mistake: "Booking through a risky transit country.",
+                whyItMatters:
+                  "A layover can become an immigration screening event, especially if you must clear border control or obtain an electronic authorization.",
+                betterMove:
+                  "Route directly when possible, and check transit rules separately from destination rules.",
+              },
+              {
+                mistake: "Assuming cruise reports equal airport admission.",
+                whyItMatters:
+                  "Cruise ports, ship policies, embarkation countries, and airport immigration can produce different outcomes.",
+                betterMove:
+                  "Research cruise and air travel separately, and check the cruise line before final payment.",
+              },
+              {
+                mistake: "Changing the itinerary without updating anyone.",
+                whyItMatters:
+                  "Registration notice, supervision permission, lodging, dates, or route changes may create compliance risk.",
+                betterMove:
+                  "Ask in advance exactly how changes must be reported and save proof that you followed the instruction.",
+              },
+              {
+                mistake: "Letting companions depend entirely on you.",
+                whyItMatters:
+                  "Denied boarding, detention, refusal, or removal can separate travelers quickly.",
+                betterMove:
+                  "Give companions independent access to funds, documents, lodging, phone service, and return-travel options.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="resources"
+          number="11"
+          title="Resources and next steps"
+          subtitle="Use official sources for rules and community sources for planning signals."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Official U.S. travel and notice resources"
+            description="Start here for U.S.-side obligations, country pages, and travel preparation."
+            resources={[
+              {
+                label: "State Department: International Megan’s Law passport information",
+                href: sourceLinks.stateDeptIML,
+                badge: "Official",
+                description:
+                  "Passport identifier information for covered travelers, including passport-card limits and possible revocation of unmarked passports.",
+              },
+              {
+                label: "SMART Office: notice of international travel",
+                href: sourceLinks.smartTravelNotice,
+                badge: "Official",
+                description:
+                  "Federal implementation document describing information required for international travel notice.",
+              },
+              {
+                label: "ICE / HSI Angel Watch Center",
+                href: sourceLinks.angelWatch,
+                badge: "Official",
+                description:
+                  "Official page describing Angel Watch’s mission and international notification role.",
+              },
+              {
+                label: "State Department country information pages",
+                href: sourceLinks.stateDeptCountryInfo,
+                badge: "Official",
+                description:
+                  "Country-specific travel information, entry requirements, safety notices, and embassy contacts.",
+              },
+              {
+                label: "STEP enrollment",
+                href: sourceLinks.step,
+                badge: "Official",
+                description:
+                  "Optional State Department travel enrollment for safety updates and emergency contact support.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <ResourceLinkGrid
+            title="Europe and Schengen planning tools"
+            description="Use these for ordinary short-stay planning, date counting, and changing European border systems."
+            resources={[
+              {
+                label: "State Department Europe travel guidance",
+                href: sourceLinks.stateDeptEurope,
+                badge: "Official",
+                description:
+                  "A plain-language starting point for Europe travel requirements, passport validity, and ordinary short-stay expectations.",
+              },
+              {
+                label: "Schengen short-stay calculator",
+                href: sourceLinks.schengenCalculator,
+                badge: "Official",
+                description:
+                  "A date-counting tool for the 90-days-in-any-180-day Schengen short-stay rule.",
+              },
+              {
+                label: "EU Entry/Exit System",
+                href: sourceLinks.euEes,
+                badge: "Official",
+                description:
+                  "Information on the EU border system that records entries and exits for short-stay travelers.",
+              },
+              {
+                label: "EU ETIAS",
+                href: sourceLinks.euEtias,
+                badge: "Official",
+                description:
+                  "Information on the European travel authorization system and current rollout timeline.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <ResourceLinkGrid
+            title="Community-reported planning sources"
+            description="Use these as pattern evidence and planning leads, not as legal authority or guarantees."
+            resources={[
+              {
+                label: "RTAG Travel Matrix",
+                href: sourceLinks.rtagMatrix,
+                badge: "Community matrix",
+                description:
+                  "Country-pattern matrix compiled from multiple sources and traveler reports.",
+              },
+              {
+                label: "Just Facts Not Fear International Travel Matrix",
+                href: sourceLinks.justFactsMatrix,
+                badge: "Community matrix",
+                description:
+                  "Crowd-sourced country signals for registrants/PFRs planning international travel.",
+              },
+              {
+                label: "PFR Guide country trip reports",
+                href: sourceLinks.pfrCountryReports,
+                badge: "Trip reports",
+                description:
+                  "First-hand country reports that can help identify current travel patterns and missing questions.",
+              },
+              {
+                label: "PFR Guide cruise reports",
+                href: sourceLinks.pfrCruiseReports,
+                badge: "Cruise reports",
+                description:
+                  "Cruise-specific reports that help separate ship policy from country-entry practice.",
+              },
+              {
+                label: "ACSOL International Travel 2026 discussion",
+                href: sourceLinks.acsol2026,
+                badge: "Discussion",
+                description:
+                  "Recent community discussion and traveler reports. Read with caution because detail varies.",
+              },
+              {
+                label: "ACSOL Travel After IML survey",
+                href: sourceLinks.acsolTravelAfterIML,
+                badge: "Survey intake",
+                description:
+                  "Shows how travel experiences are collected and shared for future pattern tracking.",
+              },
+            ]}
+          />
+
+          <SoftDivider />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Interstate Moving Guide",
+                description:
+                  "Use this when domestic travel, relocation, registration timing, or state-to-state planning is part of the problem.",
+                to: "/resources/interstate-moving-guide",
+              },
+              {
+                title: "Know Your Rights at Every Stage",
+                description:
+                  "Helpful for readers who need a broader framework for documentation, questioning, supervision, and legal-risk decisions.",
+                to: "/resources/know-your-rights",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "For spouses, partners, parents, and loved ones trying to help without taking over or increasing risk.",
+                to: "/resources/family-support",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sources"
+          number="12"
+          title="Sources and verification"
+          subtitle="Rules and country practices can change. Recheck before relying on this guide."
+        />
+
+        <GuideSectionCard>
+          <SourceList
+            note="This guide uses official sources for rules and community sources for practical travel-pattern signals. Community reports are not legal authority."
+            sources={[
+              {
+                label: "State Department: Passports and International Megan’s Law",
+                href: sourceLinks.stateDeptIML,
+                description: "Passport identifier, passport-card limits, and covered-traveler passport issues.",
+              },
+              {
+                label: "22 U.S.C. § 212b",
+                href: sourceLinks.statute212b,
+                description: "Federal statutory source for International Megan’s Law passport identifier provisions.",
+              },
+              {
+                label: "Federal Register: SORNA international travel notice rule",
+                href: sourceLinks.federalRegisterSORNA,
+                description: "Federal rulemaking source connected to IML and international travel notice implementation.",
+              },
+              {
+                label: "SMART Office: information required for notice of international travel",
+                href: sourceLinks.smartTravelNotice,
+                description: "International travel notice information and U.S. outbound process.",
+              },
+              {
+                label: "ICE / HSI Angel Watch Center",
+                href: sourceLinks.angelWatch,
+                description: "Angel Watch mission and international notification context.",
+              },
+              {
+                label: "State Department country information",
+                href: sourceLinks.stateDeptCountryInfo,
+                description: "Official country pages and embassy contact starting point.",
+              },
+              {
+                label: "State Department Europe travel guidance",
+                href: sourceLinks.stateDeptEurope,
+                description: "European short-stay planning and ordinary travel requirements.",
+              },
+              {
+                label: "Schengen short-stay calculator",
+                href: sourceLinks.schengenCalculator,
+                description: "Official calculator for Schengen 90/180-day short-stay planning.",
+              },
+              {
+                label: "EU Entry/Exit System",
+                href: sourceLinks.euEes,
+                description: "EES operational information for Schengen-area border processing.",
+              },
+              {
+                label: "EU ETIAS",
+                href: sourceLinks.euEtias,
+                description: "ETIAS timing and pre-travel authorization information.",
+              },
+              {
+                label: "RTAG Travel Matrix",
+                href: sourceLinks.rtagMatrix,
+                description: "Community matrix used as planning-signal evidence.",
+              },
+              {
+                label: "Just Facts Not Fear International Travel Matrix",
+                href: sourceLinks.justFactsMatrix,
+                description: "Community-reported travel matrix used as planning-signal evidence.",
+              },
+              {
+                label: "PFR Guide country trip reports",
+                href: sourceLinks.pfrCountryReports,
+                description: "First-hand country reports used for practical travel-pattern signals.",
+              },
+              {
+                label: "PFR Guide cruise reports",
+                href: sourceLinks.pfrCruiseReports,
+                description: "Cruise-specific reports used to separate cruise policy from country-entry practice.",
+              },
+              {
+                label: "ACSOL International Travel 2026",
+                href: sourceLinks.acsol2026,
+                description: "Recent community discussion and traveler reports.",
+              },
+              {
+                label: "Canada criminal inadmissibility",
+                href: sourceLinks.canadaInadmissibility,
+                description: "Official inadmissibility framework and officer decision points.",
+              },
+              {
+                label: "Canada criminal inadmissibility remedies",
+                href: sourceLinks.canadaRemedies,
+                description: "Temporary resident permit and rehabilitation pathways.",
+              },
+              {
+                label: "UK Standard Visitor guidance",
+                href: sourceLinks.ukStandardVisitor,
+                description: "Visitor guidance, including cautions for people with criminal records.",
+              },
+              {
+                label: "UK ETA rules",
+                href: sourceLinks.ukEtaRules,
+                description: "ETA refusal and cancellation grounds.",
+              },
+              {
+                label: "UK ETA overview",
+                href: sourceLinks.ukEtaOverview,
+                description: "ETA use and warning that ETA does not guarantee entry.",
+              },
+              {
+                label: "Australia character requirements",
+                href: sourceLinks.australiaCharacter,
+                description: "Character documentation and police-certificate framework.",
+              },
+              {
+                label: "Australia entry and character screening",
+                href: sourceLinks.australiaEntryCharacter,
+                description: "Risk-based entry and character-screening language.",
+              },
+              {
+                label: "New Zealand character requirements",
+                href: sourceLinks.nzCharacter,
+                description: "Character screening, refusal thresholds, and waiver concepts.",
+              },
+              {
+                label: "New Zealand NZeTA",
+                href: sourceLinks.nzeta,
+                description: "Electronic travel authority and character-question framework.",
+              },
+              {
+                label: "Japan consular travel quick facts",
+                href: sourceLinks.japanConsular,
+                description: "Consular warning that certain convictions may lead to refusal.",
+              },
+              {
+                label: "Japan Immigration Control Act Article 5 translation",
+                href: sourceLinks.japanArticle5,
+                description: "Denial-of-landing grounds including imprisonment-based provisions.",
+              },
+              {
+                label: "Philippines Bureau of Immigration annual exclusion announcement",
+                href: sourceLinks.philippinesAnnual,
+                description: "Public enforcement statement on barring foreign sex offenders.",
+              },
+              {
+                label: "Philippines Bureau of Immigration moral-turpitude denial post",
+                href: sourceLinks.philippinesMoralTurpitude,
+                description: "Official case example involving denial and blacklist practice.",
+              },
+              {
+                label: "Philippines Bureau of Immigration turn-backs post",
+                href: sourceLinks.philippinesTurnBacks,
+                description: "Official case examples involving airport turn-backs.",
+              },
+              {
+                label: "Singapore no-boarding directives",
+                href: sourceLinks.singaporeNoBoarding,
+                description: "Operational no-boarding regime for prohibited or undesirable travelers.",
+              },
+              {
+                label: "Malaysia prohibited immigrant page",
+                href: sourceLinks.malaysiaProhibited,
+                description: "Broad prohibited-immigrant grounds involving convictions and adverse information.",
+              },
+              {
+                label: "South Korea K-ETA guide",
+                href: sourceLinks.southKoreaKeta,
+                description: "Pre-boarding authorization, no-guarantee language, and criminal-record updates.",
+              },
+              {
+                label: "Mexico Ley de Migración",
+                href: sourceLinks.mexicoLey,
+                description: "Official statutory basis for public-safety and national-security refusal discretion.",
+              },
+              {
+                label: "Mexican consular short-stay guidance",
+                href: sourceLinks.mexicoConsular,
+                description: "Consular guidance indicating criminal records can affect short-stay entry decisions.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
       </main>
-
-      <footer className="mx-auto max-w-6xl px-6 pb-12 text-sm text-slate-500">
-        © SOLAR · This guide provides general information only and does not constitute legal advice.
-      </footer>
     </div>
   );
 }
