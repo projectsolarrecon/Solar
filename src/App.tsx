@@ -112,6 +112,7 @@ import SafetyZonesAreNotSafetySystems from "./pages/blog/safety-zones-are-not-sa
 import PublicRegistriesDontExcuseInstitutionalFailure from "./pages/blog/PublicRegistriesDontExcuseInstitutionalFailure";
 import TheDangerWasNeverQueerness from "./pages/blog/TheDangerWasNeverQueerness";
 import WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport from "./pages/blog/WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport";
+import TheChildrenWarnedThem from "./pages/blog/TheChildrenWarnedThem";
 
 function App() {
   return (
@@ -271,6 +272,7 @@ element={<PublicRegistriesDontExcuseInstitutionalFailure />} />
 <Route
   path="/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report"
 element={<WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport />} />
+<Route path="/blog/the-children-warned-them" element={<TheChildrenWarnedThem />} />
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
