@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-children-warned-them",
+  title: "The Children Warned Them",
+  excerpt:
+    "Children allegedly warned adults about Tony Waller years before his conviction. The lawsuit shows why real child safety depends on institutional accountability, not maps, lists, and stranger-danger politics.",
+  author: "The SOLAR Project",
+  date: "May 23, 2026",
+  readTime: "7–9 minutes",
+  category: "Institutional Abuse",
+  tags: [
+    "trusted access",
+    "clergy abuse",
+    "child protection",
+    "mandatory reporting",
+    "institutional shielding",
+    "prevention",
+    "Accountability Watch",
+    "Assemblies of God",
+    "Arkansas",
+    "stranger danger myth",
+    "registry mythology",
+  ],
+  path: "/blog/the-children-warned-them",
+},
+{
   id: "why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
   title: "Why Stranger Danger Became Law and Institutional Abuse Became a Report",
   excerpt:
