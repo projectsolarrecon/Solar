@@ -796,6 +796,14 @@ export default function ResearchDataResources(): JSX.Element {
               description:
                 "How other serious harms are addressed without permanent public branding.",
             },
+            {
+              eyebrow: "Theme 7",
+              title: "Trusted access",
+              icon: "🏛️",
+              tone: "warning",
+              description:
+                "Why prevention also requires institutional accountability where trust, authority, and access can be misused.",
+            },
           ]}
         />
 
