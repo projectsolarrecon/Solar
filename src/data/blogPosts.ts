@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "greenville-county-allegations-registry-maps-miss",
+  title: "The Greenville County Allegations Show What Registry Maps Miss",
+  excerpt:
+    "The Greenville County allegations are not just a crime story. They expose what registry-centered public safety misses: trusted access, authority, family proximity, and institutional legitimacy.",
+  author: "The SOLAR Project",
+  date: "May 25, 2026",
+  readTime: "8–10 minutes",
+  category: "Institutional Abuse",
+  tags: [
+    "trusted access",
+    "law enforcement accountability",
+    "child safety",
+    "sex offender registry",
+    "South Carolina",
+    "Greenville County",
+    "public safety mythology",
+    "institutional trust",
+    "prevention",
+    "authority",
+  ],
+  path: "/blog/greenville-county-allegations-registry-maps-miss",
+},
+{
   id: "the-children-warned-them",
   title: "The Children Warned Them",
   excerpt:
