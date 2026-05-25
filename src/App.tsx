@@ -113,6 +113,7 @@ import PublicRegistriesDontExcuseInstitutionalFailure from "./pages/blog/PublicR
 import TheDangerWasNeverQueerness from "./pages/blog/TheDangerWasNeverQueerness";
 import WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport from "./pages/blog/WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport";
 import TheChildrenWarnedThem from "./pages/blog/TheChildrenWarnedThem";
+import GreenvilleCountyAllegationsRegistryMapsMiss from "./pages/blog/GreenvilleCountyAllegationsRegistryMapsMiss";
 
 function App() {
   return (
@@ -273,6 +274,10 @@ element={<PublicRegistriesDontExcuseInstitutionalFailure />} />
   path="/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report"
 element={<WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport />} />
 <Route path="/blog/the-children-warned-them" element={<TheChildrenWarnedThem />} />
+<Route
+  path="/blog/greenville-county-allegations-registry-maps-miss"
+  element={<GreenvilleCountyAllegationsRegistryMapsMiss />}
+/>
                       
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
