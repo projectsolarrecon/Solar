@@ -26,16 +26,16 @@ function Resources() {
           link: "/resources/know-your-rights"
         },
         {
-         name: "Registry Rules by State",
-         type: "Guide Hub",
-         description: "State-by-state registration requirements, restrictions, compliance steps, and relief paths.",
-         link: "/resources/state-registry"
+          name: "Registry Rules by State",
+          type: "Guide Hub",
+          description: "State-by-state registration requirements, restrictions, compliance steps, and relief paths.",
+          link: "/resources/state-registry"
         },
         {
-         name: "SOLAR Appeals Guide",
-         type: "Guide",
-         description: "Step-by-step hand-holder for challenging convictions, sentences, supervision/registry decisions, and preserving future remedies.",
-         link: "/resources/appeals-guide"
+          name: "SOLAR Appeals Guide",
+          type: "Guide",
+          description: "Step-by-step hand-holder for challenging convictions, sentences, supervision/registry decisions, and preserving future remedies.",
+          link: "/resources/appeals-guide"
         },
         {
           name: "Court Forms & Templates",
@@ -56,9 +56,9 @@ function Resources() {
           link: "/resources/housing-search-guide"
         },
         {
-          name: "Residency Restriction Maps",
-          type: "Tool",
-          description: "Interactive maps showing residency restrictions and compliant housing areas by location.",
+          name: "Residency Restrictions Reality Check",
+          type: "Guide",
+          description: "How to evaluate a possible address safely, what to ask registering agencies, how to document answers, and why maps are only a starting point.",
           link: "#"
         },
         {
@@ -68,9 +68,9 @@ function Resources() {
           link: "/resources/tenant-rights"
         },
         {
-          name: "Emergency Housing Resources",
-          type: "Directory",
-          description: "List of emergency shelters and transitional housing programs that accept registry individuals.",
+          name: "Emergency Housing Survival Guide",
+          type: "Guide",
+          description: "A practical process, script, documentation checklist, and fallback ladder for families facing urgent housing instability.",
           link: "#"
         }
       ]
@@ -141,34 +141,63 @@ function Resources() {
         }
       ]
     },
-{
-  title: "Incarceration",
-  icon: "⛓️",
-  resources: [
     {
-  name: "Prison Dos & Don’ts Guide",
-  type: "Guide",
-  description: "A comprehensive, plain-language survival guide for people with sex-offense convictions and their families, covering safety, daily life, and reentry preparation.",
-  link: "/resources/prison-dos-and-donts"
-},
-    {
-      name: "SOTP, Designation, and Safety in the BOP",
-      type: "Guide",
-      description: "How sex-offense history affects BOP designation, security scoring, treatment programs, safety planning, and institutional movement — with strategies for self-advocacy and harm reduction.",
-      link: "#"
+      title: "Supervision, Compliance & Digital Life",
+      icon: "📱",
+      resources: [
+        {
+          name: "Supervision Conditions Survival Guide",
+          type: "Guide",
+          description: "Plain-language guide to probation, parole, supervised release, treatment rules, searches, violations, documentation, and communication with officers.",
+          link: "#"
+        },
+        {
+          name: "Technology Access & Monitoring Guide",
+          type: "Guide",
+          description: "How phones, internet, smart devices, apps, online accounts, monitoring software, and employment-related technology may be handled under supervision.",
+          link: "#"
+        },
+        {
+          name: "Registry Compliance Checklist",
+          type: "Checklist",
+          description: "Practical checklist for registration appointments, address changes, employment, school, vehicles, travel, online identifiers, and recordkeeping.",
+          link: "#"
+        },
+        {
+          name: "Travel Notification & Temporary Presence Checklist",
+          type: "Checklist",
+          description: "A practical checklist for short trips, overnight stays, interstate visits, business travel, and what to verify before leaving.",
+          link: "#"
+        }
+      ]
     },
-{
-  name: "Prison Communication, Mail, Visits & Monitoring",
-  type: "Guide",
-  description:
-    "How communication actually works from pretrial detention through final incarceration—what changes at each stage, how federal and state systems differ, and what families need to know about monitoring, restrictions, and sex-offense-specific scrutiny.",
-  link: "/resources/prison-communication-mail-visits-monitoring"
-},
     {
-      name: "Prison Discipline, Infractions & Common Pitfalls",
-      type: "Guide",
-      description: "Understanding disciplinary codes, sanctions, and common traps — plus how to avoid violations and navigate the process if charged with an infraction.",
-      link: "#"
+      title: "Incarceration",
+      icon: "⛓️",
+      resources: [
+        {
+          name: "Prison Dos & Don’ts Guide",
+          type: "Guide",
+          description: "A comprehensive, plain-language survival guide for people with sex-offense convictions and their families, covering safety, daily life, and reentry preparation.",
+          link: "/resources/prison-dos-and-donts"
+        },
+        {
+          name: "SOTP, Designation, and Safety in the BOP",
+          type: "Guide",
+          description: "How sex-offense history affects BOP designation, security scoring, treatment programs, safety planning, and institutional movement — with strategies for self-advocacy and harm reduction.",
+          link: "#"
+        },
+        {
+          name: "Prison Communication, Mail, Visits & Monitoring",
+          type: "Guide",
+          description: "How communication actually works from pretrial detention through final incarceration—what changes at each stage, how federal and state systems differ, and what families need to know about monitoring, restrictions, and sex-offense-specific scrutiny.",
+          link: "/resources/prison-communication-mail-visits-monitoring"
+        },
+        {
+          name: "Prison Discipline, Infractions & Common Pitfalls",
+          type: "Guide",
+          description: "Understanding disciplinary codes, sanctions, and common traps — plus how to avoid violations and navigate the process if charged with an infraction.",
+          link: "#"
         }
       ]
     },
@@ -195,10 +224,16 @@ function Resources() {
           link: "/resources/financial-planning-guide"
         },
         {
-        name: "Community Integration Tips",
-        type: "Guide",
-        description: "Practical advice for rebuilding relationships and becoming an active community member.",
-        link: "/resources/community-integration-tips"
+          name: "Community Integration Tips",
+          type: "Guide",
+          description: "Practical advice for rebuilding relationships and becoming an active community member.",
+          link: "/resources/community-integration-tips"
+        },
+        {
+          name: "IDs, Documents & Benefits Guide",
+          type: "Checklist",
+          description: "Step-by-step guide to replacing IDs, gathering documents, applying for benefits, arranging healthcare, and rebuilding basic life administration after release.",
+          link: "#"
         }
       ]
     },
@@ -207,22 +242,28 @@ function Resources() {
       icon: "👨‍👩‍👧‍👦",
       resources: [
         {
-         name: "The SOLAR Family & Allies Guide",
-         type: "Guide",
-         description: "Supporting a loved one through a sex-offense case—from arrest to reentry (and beyond). A grounded, action-oriented roadmap for families and allies, with scripts, checklists, and links.",
-         link: "/resources/family-support-guide"
+          name: "The SOLAR Family & Allies Guide",
+          type: "Guide",
+          description: "Supporting a loved one through a sex-offense case—from arrest to reentry (and beyond). A grounded, action-oriented roadmap for families and allies, with scripts, checklists, and links.",
+          link: "/resources/family-support-guide"
         },
         {
-         name: "Children & Disclosure + Relationship Rebuilding Toolkit",
-         type: "Guide",
-         description: "Warm, step-by-step scripts and tools for talking with children, managing family reactions, rebuilding trust, and sustaining resilience.",
-         link: "/resources/children-disclosure-toolkit"
+          name: "Children & Disclosure + Relationship Rebuilding Toolkit",
+          type: "Guide",
+          description: "Warm, step-by-step scripts and tools for talking with children, managing family reactions, rebuilding trust, and sustaining resilience.",
+          link: "/resources/children-disclosure-toolkit"
         },
         {
           name: "Financial Support Strategies",
           type: "Guide",
           description: "Practical advice for families managing the financial impact of legal fees, lost income, and ongoing expenses.",
           link: "/resources/financial-support-strategies"
+        },
+        {
+          name: "Custody, Visitation & Family Court Guide",
+          type: "Guide",
+          description: "Issue-spotting guide for custody, visitation, parenting plans, court orders, supervision restrictions, and family-law questions after a sex offense case.",
+          link: "#"
         }
       ]
     },
@@ -257,22 +298,51 @@ function Resources() {
       ]
     },
     {
-  title: "Current Events & Legislative Updates",
-  icon: "📰",
-  resources: [
-         {
+      title: "Evidence & Source Literacy",
+      icon: "📊",
+      resources: [
+        {
+          name: "How to Read a Registry Study Without Getting Misled",
+          type: "Guide",
+          description: "Reader-friendly guide to study design, definitions, base rates, limitations, and common ways registry research gets overstated.",
+          link: "#"
+        },
+        {
+          name: "Rearrest, Reconviction, Recidivism: Why the Words Matter",
+          type: "Explainer",
+          description: "Plain-language explanation of the different statistics used in sex offense policy debates and why confusing them leads to bad policy.",
+          link: "#"
+        },
+        {
+          name: "What ‘Low Recidivism’ Does and Does Not Mean",
+          type: "Explainer",
+          description: "Balanced explanation of how to discuss lower sexual recidivism without overclaiming, minimizing harm, or misusing statistics.",
+          link: "#"
+        },
+        {
+          name: "Source Library for Registry Reform",
+          type: "Database",
+          description: "Curated official reports, peer-reviewed studies, legal resources, and explainers organized by claim, topic, and reliability.",
+          link: "/resources/research-data-resources"
+        }
+      ]
+    },
+    {
+      title: "Current Events & Legislative Updates",
+      icon: "📰",
+      resources: [
+        {
           name: "Legislative Tracker",
           type: "Database",
           description: "Real-time tracking of pending sex offense legislation, registry reform bills, and policy changes across all states.",
           link: "/resources/legislative-tracker"
-         },
-           {
-  name: "Accountability Watch",
-  type: "Monthly Series",
-  description:
-    "Monthly roundups that look beyond the stranger-danger myth, showing how serious harm often emerges through trusted roles, institutional access, public influence, household authority, and failed prevention.",
-  link: "/resources/accountability-watch"
-},
+        },
+        {
+          name: "Accountability Watch",
+          type: "Monthly Series",
+          description: "Monthly roundups that look beyond the stranger-danger myth, showing how serious harm often emerges through trusted roles, institutional access, public influence, household authority, and failed prevention.",
+          link: "/resources/accountability-watch"
+        },
         {
           name: "Advocacy Wins & Updates",
           type: "News",
