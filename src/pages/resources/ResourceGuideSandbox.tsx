@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import ShareBar from "../../components/solar/ShareBar";
@@ -8,602 +7,164 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
+  OfflineOptions,
+  DocumentPacket,
+  VerifyBeforeActing,
+  CommonMistakes,
   OverviewCards,
   ResourceLinkGrid,
+  RelatedGuides,
   SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
+  DoDontJudgment,
 } from "../../components/solar";
 
-const sourceLinks = {
-  SE01: "https://bjs.ojp.gov/content/pub/pdf/rsorp94.pdf",
-  SE02:
-    "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/recidivismofadultsexualoffenders.pdf",
-  SE03: "https://link.springer.com/article/10.1007/s11292-021-09480-z",
-  SE04: "https://www.nber.org/system/files/working_papers/w13803/w13803.pdf",
-  SE05: "https://www.ojp.gov/pdffiles1/nij/grants/231989.pdf",
-  SE06: "https://smart.ojp.gov/doc/SORNA-Summary-Assessment-Research.pdf",
-  SE07:
-    "https://safervirginia.org/documents/Collateral%20Damage%20-%20Family%20Members%20of%20Registered%20Sex%20Offenders%20Levenson.pdf",
-  SE08:
-    "https://www.fl-counties.com/wp-content/uploads/2022/09/WhereforartThouCJPR2013.pdf",
-  SE09:
-    "https://www.csor-home.org/wp-content/uploads/2014/01/Report-on-Safety-Issues.pdf",
-  SE10:
-    "https://www.hrw.org/report/2007/09/11/no-easy-answers/sex-offender-laws-us",
-  SE11: "https://bjs.ojp.gov/content/pub/pdf/saycrle.pdf",
-  SE12: "https://ojjdp.ojp.gov/statistical-briefing-book/victims/faqs/qa02111",
-  SE13:
-    "https://www.ed.gov/research/educator-sexual-misconduct-a-synthesis-of-existing-literature",
-  SE14: "https://oig.justice.gov/sites/default/files/reports/21-093.pdf",
-  SE15: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
-  SE16:
-    "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
-  SE17: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
-  SE18: "https://supreme.justia.com/cases/federal/us/538/84/",
-  SE19: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
-  SE20: "https://www.gao.gov/assets/gao-13-211.pdf",
-  SE21: "https://members.atsa.com/ap/CloudFile/Download/pB50ZeZr",
-  SE22: "https://pubmed.ncbi.nlm.nih.gov/24664250/",
-  SE23:
-    "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/theeffectivenessoftreatmentforadultsexualoffenders.pdf",
-  SE24: "https://pubmed.ncbi.nlm.nih.gov/32960141/",
-  SE25: "https://www.nsvrc.org/sarts/toolkit/7-4/",
-  SE26: "https://www.themarshallproject.org/2018/10/03/banished",
-  SE27: "https://smart.ojp.gov/2025-Case-Law-Summary-508.pdf",
-  SE28:
-    "https://openscholarship.wustl.edu/cgi/viewcontent.cgi?article=1144&context=law_lawreview",
-} as const;
+const lastChecked = "May 25, 2026";
 
-const evidenceThemes = [
+const immediateCrisisResources = [
   {
-    id: "registry-efficacy",
-    title: "Registry efficacy and recidivism",
-    icon: "📊",
-    anchorIds: ["SE01", "SE03", "SE04", "SE05"],
-    supports:
-      "Broad registration and notification systems have not demonstrated a clear overall reduction in sexual recidivism across the research base.",
-    doesNotProve:
-      "This does not prove that law-enforcement registration data are useless for every investigative or information-sharing purpose.",
-    avoid: "“Registries have no impact on public safety.”",
-    safer:
-      "A 25-year meta-analysis found no statistically significant overall recidivism benefit from broad sex offense registration and notification policies.",
-    uses: "Legislative testimony, policy memos, evidence literacy posts.",
+    label: "988 Suicide & Crisis Lifeline",
+    href: "https://988lifeline.org/",
+    phone: "Call or text 988",
+    badge: "24/7 crisis support",
+    description:
+      "Free crisis support in the United States for suicidal thoughts, emotional distress, substance-use crisis, or concern about someone else.",
   },
   {
-    id: "known-perpetrators",
-    title: "Known perpetrators and prevention reality",
-    icon: "🧭",
-    anchorIds: ["SE11", "SE12", "SE13", "SE25"],
-    supports:
-      "Official and prevention-oriented sources show that harm to children often involves family members, acquaintances, caregivers, or trusted authority figures.",
-    doesNotProve:
-      "This does not prove stranger-perpetrated abuse never happens or should be ignored.",
-    avoid: "“Public notification serves no prevention purpose for children.”",
-    safer:
-      "Because many harms against children involve known or trusted people, public registries are a limited tool for primary prevention.",
-    uses: "State registry pages, child-safety messaging, prevention posts.",
+    label: "988 Lifeline chat",
+    href: "https://chat.988lifeline.org/",
+    badge: "Chat",
+    description:
+      "Online chat option for people who cannot safely or privately call. Use a safe device if you have supervision, court, or monitoring restrictions.",
   },
   {
-    id: "collateral-consequences",
-    title: "Collateral consequences and family harm",
-    icon: "🏠",
-    anchorIds: ["SE06", "SE07", "SE08", "SE24", "SE26"],
-    supports:
-      "Registry requirements and related restrictions are linked to housing instability, employment barriers, stigma, family spillover harm, and reintegration problems.",
-    doesNotProve:
-      "This does not prove every housing, employment, or family hardship is caused only by the registry rather than conviction, supervision, poverty, or other systems.",
-    avoid: "“Registry laws directly cause homelessness and job loss.”",
-    safer:
-      "Research suggests registry requirements and restrictions can destabilize housing, employment, and family support systems that are necessary for safe reintegration.",
-    uses: "Resource guides, policy memos, reentry content.",
+    label: "Crisis Text Line",
+    href: "https://www.crisistextline.org/",
+    phone: "Text HOME to 741741",
+    badge: "Text support",
+    description:
+      "Free, 24/7 text-based crisis support in the United States with a trained crisis counselor.",
   },
   {
-    id: "punitive-effects",
-    title: "Punitive effects and constitutional concerns",
-    icon: "⚖️",
-    anchorIds: ["SE18", "SE19", "SE27", "SE28"],
-    supports:
-      "Modern layered restrictions can burden speech, movement, housing, association, and community participation in ways that raise serious punitive-effect and constitutional concerns.",
-    doesNotProve:
-      "This does not prove every current registry law is automatically unconstitutional. Smith v. Doe remains a central precedent.",
-    avoid: "“The sex offense registry is unconstitutional punishment.”",
-    safer:
-      "Although registries have often been labeled civil, modern restrictions can impose punishment-like burdens and raise serious constitutional concerns.",
-    uses: "Legislative trackers, legal update blogs, policy explainers.",
+    label: "Emergency care",
+    href: "https://www.nimh.nih.gov/site-info/contact-nimh",
+    phone: "Call 911 or go to the nearest ER",
+    badge: "Immediate danger",
+    description:
+      "Use emergency care when someone cannot stay physically safe, has already harmed themselves, is medically unsafe, is violent, or cannot be left alone.",
   },
-  {
-    id: "desistance",
-    title: "Desistance, treatment, and individualized reform",
-    icon: "🌱",
-    anchorIds: ["SE02", "SE21", "SE22", "SE23"],
-    supports:
-      "Risk varies by person and context, and sexual recidivism risk generally declines the longer someone remains offense-free in the community.",
-    doesNotProve:
-      "This does not prove risk reaches zero, that everyone presents the same risk, or that any one tool perfectly predicts future behavior.",
-    avoid: "“High-risk offenders are no longer a threat after a few years.”",
-    safer:
-      "Risk changes over time, which means public safety is better served by individualized assessment, treatment, and review than by permanent status alone.",
-    uses: "Evidence literacy posts, policy memos, reform proposals.",
-  },
-  {
-    id: "comparative-safety",
-    title: "Comparative public-safety logic",
-    icon: "🧩",
-    anchorIds: ["SE12", "SE15", "SE16", "SE17"],
-    supports:
-      "Many major public-safety harms are addressed through prevention, regulation, enforcement, technology, treatment, or service systems rather than permanent public identity branding.",
-    doesNotProve:
-      "This does not prove firearm violence, impaired driving, domestic violence, child maltreatment, and sexual offending are identical harms or require identical responses.",
-    avoid: "“Drunk driving is more dangerous than sexual offending.”",
-    safer:
-      "Public safety policy is selective: many serious harms are managed through tools other than permanent public identity branding.",
-    uses: "RECON, policy discussions, contextual advocacy.",
-  },
-  {
-    id: "institutional-responsibility",
-    title: "Institutional responsibility and trusted access",
-    icon: "🏛️",
-    anchorIds: ["SE13", "SE14"],
-    supports:
-      "Abuse can continue when institutions fail to act on warnings, reports, grooming behavior, or trusted-access risks.",
-    doesNotProve:
-      "This does not prove institutions are the sole or primary cause of sexual abuse, or that one institutional scandal proves a universal prevalence rate.",
-    avoid: "“Institutions are the primary cause of sexual abuse.”",
-    safer:
-      "Effective prevention requires institutional accountability because public registries cannot substitute for action when warning signs arise inside trusted systems.",
-    uses: "School-safety blogs, trusted-access series, policy memos.",
-  },
-] as const;
+];
 
-const anchorSources = [
+const followUpResources = [
   {
-    id: "SE03",
-    title:
-      "The Effectiveness of Sex Offender Registration and Notification: A Meta-Analysis of 25 Years of Findings",
-    type: "Peer-reviewed meta-analysis",
-    why: "Best single front-shelf source for broad SORN efficacy claims.",
-    supports:
-      "Broad registration and notification policies have not shown a statistically significant overall recidivism benefit.",
-    caveat:
-      "Use for overall policy effects, not as proof that every registration function is useless.",
-    href: sourceLinks.SE03,
+    label: "SAMHSA Safety Plan",
+    href: "https://www.samhsa.gov/resource/988/safety-plan",
+    badge: "Printable tool",
+    description:
+      "A printable safety-plan tool modified from Stanley-Brown, useful after the immediate danger is lower.",
   },
   {
-    id: "SE01",
-    title: "Recidivism of Sex Offenders Released from Prison in 1994",
-    type: "Official data / government report",
-    why: "Useful for explaining rearrest, reconviction, follow-up periods, and measurement limits.",
-    supports:
-      "Sexual recidivism is often lower than public belief, while still varying by subgroup and measure.",
-    caveat:
-      "The cohort is older and measures detected recidivism, not every undetected offense.",
-    href: sourceLinks.SE01,
+    label: "Stanley-Brown Safety Planning Intervention",
+    href: "https://suicidesafetyplan.com/",
+    badge: "Safety planning",
+    description:
+      "A widely used safety-planning model for identifying warning signs, coping steps, support contacts, professional resources, and ways to make the environment safer.",
   },
   {
-    id: "SE04",
-    title: "Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
-    type: "Peer-reviewed study / NBER working paper",
-    why: "Important complication source because it separates registration from notification.",
-    supports:
-      "Registration-only and public notification systems may have different effects and should not be collapsed into one claim.",
-    caveat:
-      "Do not use this as a simple anti-registry source; it is more nuanced.",
-    href: sourceLinks.SE04,
+    label: "VA/DOD Safety Plan Worksheet",
+    href: "https://www.healthquality.va.gov/guidelines/MH/srb/Patient_Safety_Planfillable-508.pdf",
+    badge: "Worksheet",
+    description:
+      "A fillable worksheet organized around warning signs, coping strategies, social support, professional contacts, and safer environments.",
   },
   {
-    id: "SE11",
-    title: "Sexual Assault of Young Children as Reported to Law Enforcement",
-    type: "Official data / government report",
-    why: "Strong official source for known-person prevention framing.",
-    supports:
-      "Many reported sexual assaults against young children involve family members or acquaintances rather than strangers.",
-    caveat:
-      "Reported-to-law-enforcement data do not capture every unreported harm.",
-    href: sourceLinks.SE11,
+    label: "SAMHSA FindTreatment.gov",
+    href: "https://findtreatment.gov/",
+    badge: "Treatment locator",
+    description:
+      "A confidential treatment locator for mental health and substance-use services in the United States and territories.",
   },
   {
-    id: "SE18",
-    title: "Smith v. Doe",
-    type: "U.S. Supreme Court decision",
-    why: "Central precedent for the civil-regulatory legal framework.",
-    supports:
-      "Registry reform arguments must acknowledge that the Supreme Court has upheld at least one registry scheme as civil.",
-    caveat:
-      "Do not cite legal concerns as though Smith has been overturned nationally.",
-    href: sourceLinks.SE18,
+    label: "USA.gov legal aid finder",
+    href: "https://www.usa.gov/legal-aid",
+    badge: "Legal help",
+    description:
+      "A starting point for finding free or low-cost legal help. Use after the immediate safety crisis is stabilized.",
   },
-  {
-    id: "SE19",
-    title: "Packingham v. North Carolina",
-    type: "U.S. Supreme Court decision",
-    why: "Key speech and association case involving registry-related restrictions.",
-    supports:
-      "Even people with convictions retain constitutional rights, and broad restrictions can go too far.",
-    caveat:
-      "The case does not invalidate all registry restrictions.",
-    href: sourceLinks.SE19,
-  },
-  {
-    id: "SE22",
-    title: "High-Risk Sex Offenders May Not Be High Risk Forever",
-    type: "Peer-reviewed study / PubMed index",
-    why: "Concise desistance source for reviewable, time-sensitive policy.",
-    supports:
-      "Risk can decline the longer someone remains offense-free in the community.",
-    caveat:
-      "Declining risk is not the same as zero risk.",
-    href: sourceLinks.SE22,
-  },
-  {
-    id: "SE06",
-    title:
-      "Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
-    type: "Government evidence review",
-    why: "Useful because it acknowledges harms while also noting methodological limits.",
-    supports:
-      "Registry status and related restrictions are linked to employment, housing, wellbeing, and family burdens.",
-    caveat:
-      "Be careful about causal wording; many studies are self-report or jurisdiction-specific.",
-    href: sourceLinks.SE06,
-  },
-  {
-    id: "SE21",
-    title:
-      "Registration and Community Notification of Adults Convicted of a Sexual Crime: Recommendations for Evidence-Based Reform",
-    type: "Expert policy recommendations",
-    why: "Translates research into reform principles.",
-    supports:
-      "Policy should move toward individualized assessment, treatment, review, and reintegration.",
-    caveat:
-      "Use as expert guidance, not as official government data.",
-    href: sourceLinks.SE21,
-  },
-  {
-    id: "SE14",
-    title:
-      "DOJ OIG Review of the FBI’s Handling of Allegations Against Larry Nassar",
-    type: "Inspector General report / case example",
-    why: "Powerful institutional-failure example for trusted-access prevention work.",
-    supports:
-      "Public registries cannot substitute for institutional reporting, oversight, and timely action.",
-    caveat:
-      "Use as a documented case example, not as prevalence evidence.",
-    href: sourceLinks.SE14,
-  },
-] as const;
+];
 
-const safeClaims = [
+const sourceLinks = [
   {
-    claim:
-      "Broad public registration and notification systems have not shown a clear overall recidivism benefit.",
-    ids: "SE03, SE04, SE05",
+    label: "SAMHSA — 988 Frequently Asked Questions",
+    href: "https://www.samhsa.gov/mental-health/988/faqs",
+    description:
+      "Supports 988 as a national crisis support option for mental health, substance-use, and emotional distress crises.",
   },
   {
-    claim:
-      "Sexual recidivism is often lower than public belief, but risk varies by person, subgroup, measurement, and follow-up period.",
-    ids: "SE01, SE02, SE22",
+    label: "988 Lifeline — What to Expect",
+    href: "https://988lifeline.org/get-help/what-to-expect/",
+    description:
+      "Supports plain-language guidance that 988 offers free, judgment-free support by call, text, chat, and Deaf/HoH access.",
   },
   {
-    claim:
-      "Many harms against children involve people known to the child, including family members, acquaintances, caregivers, or trusted authority figures.",
-    ids: "SE11, SE12, SE13",
+    label: "Crisis Text Line",
+    href: "https://www.crisistextline.org/",
+    description:
+      "Supports the text-based off-ramp: text HOME to 741741 in the United States for free, confidential crisis support.",
   },
   {
-    claim:
-      "Public registries are limited tools for primary prevention because they identify people already detected and convicted.",
-    ids: "SE05, SE11, SE25",
+    label: "Stanley-Brown Safety Planning Intervention",
+    href: "https://suicidesafetyplan.com/",
+    description:
+      "Supports the guide’s safety-planning structure: warning signs, coping steps, support contacts, professional resources, and making the environment safer.",
   },
   {
-    claim:
-      "Registry requirements and restrictions can destabilize housing, employment, family support, and reintegration.",
-    ids: "SE06, SE07, SE08, SE24",
+    label: "SAMHSA — Safety Plan",
+    href: "https://www.samhsa.gov/resource/988/safety-plan",
+    description:
+      "Supports printable safety-plan guidance and the use of safety plans by counselors, clinicians, and helpers.",
   },
   {
-    claim:
-      "Modern registry systems can impose punishment-like burdens even when legally labeled civil.",
-    ids: "SE18, SE19, SE20, SE27, SE28",
+    label: "VA/DOD Safety Plan Worksheet",
+    href: "https://www.healthquality.va.gov/guidelines/MH/srb/Patient_Safety_Planfillable-508.pdf",
+    description:
+      "Supports the worksheet format used for warning signs, coping strategies, people to contact, professionals, and safer-environment planning.",
   },
   {
-    claim:
-      "Risk changes over time, and policy should include individualized assessment, treatment, and review.",
-    ids: "SE02, SE21, SE22, SE23",
+    label: "Suicide Prevention Resource Center — Reduce Access to Means of Suicide",
+    href: "https://sprc.org/effective-prevention/a-comprehensive-approach-to-suicide-prevention/reduce-access-to-means-of-suicide/",
+    description:
+      "Supports reducing access to lethal means during a crisis window, including removing lethal means from the household until the situation improves.",
   },
   {
-    claim:
-      "Prevention requires institutional accountability, not just public lists.",
-    ids: "SE13, SE14, SE25",
-  },
-] as const;
-
-const cautiousClaims = [
-  {
-    avoid: "Registries do nothing.",
-    better:
-      "Broad registration and notification policies have not demonstrated a clear overall recidivism benefit.",
+    label: "National Institute of Mental Health — Crisis Contact Guidance",
+    href: "https://www.nimh.nih.gov/site-info/contact-nimh",
+    description:
+      "Supports emergency escalation language: call 911 or go to the nearest emergency room in life-threatening situations.",
   },
   {
-    avoid: "All registries are unconstitutional.",
-    better:
-      "Modern registry restrictions raise serious constitutional concerns and may operate punitively in practice, even though Smith v. Doe remains a central precedent.",
+    label: "CDC — Preventing Suicide",
+    href: "https://www.cdc.gov/suicide/prevention/",
+    description:
+      "Supports the public-health framing that suicide prevention includes individual, family, and community protective strategies.",
   },
   {
-    avoid: "Registries directly cause homelessness and job loss.",
-    better:
-      "Registry requirements and restrictions are linked to housing instability, employment barriers, and reintegration harm.",
+    label: "SAMHSA — Treatment Locators",
+    href: "https://www.samhsa.gov/find-help/locators",
+    description:
+      "Supports after-crisis treatment lookup and follow-up care planning.",
   },
   {
-    avoid: "95% of sexual crimes are committed by first-time offenders.",
-    better:
-      "Do not use the specific 95% figure unless the primary source is fully verified. Safer language: many sexual offenses are committed by people not already listed on a public registry.",
+    label: "USA.gov — Find a Lawyer for Affordable Legal Aid",
+    href: "https://www.usa.gov/legal-aid",
+    description:
+      "Supports legal-aid lookup after immediate safety needs are addressed.",
   },
-  {
-    avoid: "Stranger danger does not exist.",
-    better:
-      "Stranger-perpetrated abuse exists, but official data show that many harms against children involve known, trusted, or family-connected people.",
-  },
-  {
-    avoid: "Public notification has no prevention purpose.",
-    better:
-      "Public notification is a limited prevention tool because it does not address many first-time, undetected, known-perpetrator, or institutional-access risks.",
-  },
-] as const;
-
-const sourceTopics = [
-  {
-    title: "Recidivism and SORN effectiveness",
-    sources: [
-      {
-        id: "SE01",
-        title: "BJS recidivism study",
-        type: "Official data",
-        relevance:
-          "Defines rearrest, reconviction, and detected sexual recidivism in an influential release cohort.",
-        href: sourceLinks.SE01,
-      },
-      {
-        id: "SE02",
-        title: "SMART adult recidivism brief",
-        type: "Government research brief",
-        relevance:
-          "Explains how recidivism estimates vary by subgroup, measure, and follow-up period.",
-        href: sourceLinks.SE02,
-      },
-      {
-        id: "SE03",
-        title: "25-year SORN meta-analysis",
-        type: "Peer-reviewed meta-analysis",
-        relevance:
-          "Central synthesis for broad registration and notification effectiveness claims.",
-        href: sourceLinks.SE03,
-      },
-      {
-        id: "SE04",
-        title: "Prescott & Rockoff",
-        type: "Peer-reviewed study / NBER",
-        relevance:
-          "Complicates simple claims by separating registration from notification.",
-        href: sourceLinks.SE04,
-      },
-      {
-        id: "SE05",
-        title: "NIJ evaluation",
-        type: "Government-funded evaluation",
-        relevance:
-          "Useful for policy evaluation and prevention framing about who is already known to the registry system.",
-        href: sourceLinks.SE05,
-      },
-    ],
-  },
-  {
-    title: "Child safety and known perpetrators",
-    sources: [
-      {
-        id: "SE11",
-        title: "BJS young-child sexual assault report",
-        type: "Official data",
-        relevance:
-          "Strong source for known-person and family/acquaintance prevention framing.",
-        href: sourceLinks.SE11,
-      },
-      {
-        id: "SE12",
-        title: "OJJDP child maltreatment perpetrators",
-        type: "Official data explainer",
-        relevance:
-          "Shows child maltreatment often occurs in caregiving and family contexts.",
-        href: sourceLinks.SE12,
-      },
-      {
-        id: "SE13",
-        title: "Educator sexual misconduct synthesis",
-        type: "Government report",
-        relevance:
-          "Supports trusted-access and institutional prevention framing.",
-        href: sourceLinks.SE13,
-      },
-      {
-        id: "SE25",
-        title: "NSVRC SART Toolkit, Section 7.4",
-        type: "Victim-prevention / nonprofit resource",
-        relevance:
-          "Helps connect registry evidence to broader community prevention practice.",
-        href: sourceLinks.SE25,
-      },
-    ],
-  },
-  {
-    title: "Family harm and collateral consequences",
-    sources: [
-      {
-        id: "SE06",
-        title: "SMART/FRD claimed impacts report",
-        type: "Government evidence review",
-        relevance:
-          "Balanced source on employment, housing, family, wellbeing, and methodological limits.",
-        href: sourceLinks.SE06,
-      },
-      {
-        id: "SE07",
-        title: "Family Members of Registered Sex Offenders",
-        type: "Peer-reviewed study",
-        relevance:
-          "Documents spillover burdens experienced by spouses, children, and relatives.",
-        href: sourceLinks.SE07,
-      },
-      {
-        id: "SE08",
-        title: "Transient Sex Offenders and Residence Restrictions",
-        type: "Peer-reviewed study",
-        relevance:
-          "Useful for explaining how local restrictions can contribute to instability.",
-        href: sourceLinks.SE08,
-      },
-      {
-        id: "SE24",
-        title: "Housing instability and homelessness among veterans",
-        type: "Peer-reviewed study / PubMed index",
-        relevance:
-          "Quantitative support for housing instability concerns among a specific population.",
-        href: sourceLinks.SE24,
-      },
-      {
-        id: "SE26",
-        title: "Banished",
-        type: "Investigative media / illustrative case",
-        relevance:
-          "Miami-Dade case example of layered local rules and homelessness.",
-        href: sourceLinks.SE26,
-      },
-    ],
-  },
-  {
-    title: "Constitutional law and punitive effects",
-    sources: [
-      {
-        id: "SE18",
-        title: "Smith v. Doe",
-        type: "U.S. Supreme Court decision",
-        relevance:
-          "Central counterweight: upheld Alaska’s registry as civil for ex post facto purposes.",
-        href: sourceLinks.SE18,
-      },
-      {
-        id: "SE19",
-        title: "Packingham v. North Carolina",
-        type: "U.S. Supreme Court decision",
-        relevance:
-          "Shows registry-related restrictions can violate constitutional rights when too broad.",
-        href: sourceLinks.SE19,
-      },
-      {
-        id: "SE20",
-        title: "GAO-13-211 SORNA implementation report",
-        type: "Government report",
-        relevance:
-          "Tracks implementation challenges, claimed benefits, and reported burdens.",
-        href: sourceLinks.SE20,
-      },
-      {
-        id: "SE27",
-        title: "SMART 2025 Case Law Summary",
-        type: "Government legal summary",
-        relevance:
-          "Issue-spotting tool for current registry litigation and doctrine.",
-        href: sourceLinks.SE27,
-      },
-      {
-        id: "SE28",
-        title: "Banishment by a Thousand Laws",
-        type: "Law review article",
-        relevance:
-          "Explains residence restrictions, exclusion zones, and banishment theory.",
-        href: sourceLinks.SE28,
-      },
-    ],
-  },
-  {
-    title: "Desistance, treatment, and risk",
-    sources: [
-      {
-        id: "SE21",
-        title: "ATSA evidence-based reform recommendations",
-        type: "Expert policy recommendations",
-        relevance:
-          "Supports individualized, evidence-based reform rather than blanket offense-only systems.",
-        href: sourceLinks.SE21,
-      },
-      {
-        id: "SE22",
-        title: "High-Risk Sex Offenders May Not Be High Risk Forever",
-        type: "Peer-reviewed study / PubMed index",
-        relevance:
-          "Important source for time-offense-free, reviewable policy, and desistance framing.",
-        href: sourceLinks.SE22,
-      },
-      {
-        id: "SE23",
-        title: "SMART treatment effectiveness brief",
-        type: "Government research brief",
-        relevance:
-          "Connects treatment and rehabilitation evidence to prevention and reentry.",
-        href: sourceLinks.SE23,
-      },
-    ],
-  },
-  {
-    title: "Comparative public safety",
-    sources: [
-      {
-        id: "SE15",
-        title: "CDC firearm injury and death facts",
-        type: "Official data explainer",
-        relevance:
-          "Context source for comparing how major public-safety harms are governed.",
-        href: sourceLinks.SE15,
-      },
-      {
-        id: "SE16",
-        title: "NHTSA impaired-driving prevention technology report",
-        type: "Government report",
-        relevance:
-          "Shows a prevention-and-technology response to another major public-safety harm.",
-        href: sourceLinks.SE16,
-      },
-      {
-        id: "SE17",
-        title: "BJS nonfatal domestic violence report",
-        type: "Official data",
-        relevance:
-          "Context source for relational harm and non-registry policy responses.",
-        href: sourceLinks.SE17,
-      },
-    ],
-  },
-  {
-    title: "Institutional responsibility",
-    sources: [
-      {
-        id: "SE13",
-        title: "Educator sexual misconduct synthesis",
-        type: "Government report",
-        relevance:
-          "Supports prevention work focused on authority, access, reporting, and safeguards.",
-        href: sourceLinks.SE13,
-      },
-      {
-        id: "SE14",
-        title: "DOJ OIG Nassar report",
-        type: "Inspector General report",
-        relevance:
-          "Documented case example of institutional failure after credible allegations.",
-        href: sourceLinks.SE14,
-      },
-    ],
-  },
-] as const;
+];
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -611,9 +172,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Research & Data Resources | The SOLAR Project"
-        description="A plain-language evidence map for SOLAR’s registry reform work, including research on registry effectiveness, recidivism, prevention, collateral consequences, constitutional concerns, and individualized reform."
-        keywords="sex offense registry research, registry reform evidence, recidivism data, sex offender registration and notification, collateral consequences, prevention, SOLAR Project"
+        title="Crisis Planning Guide for Registrants and Families | The SOLAR Project"
+        description="A practical crisis survival protocol for people and families facing registry stress, shame, public exposure, supervision fear, suicidal thoughts, or dangerous panic."
+        keywords="crisis planning, 988, safety plan, registry stress, reentry crisis, family crisis support, suicide prevention"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -630,13 +191,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Research & Data Resources
+            Crisis Planning Guide for Registrants and Families
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            The evidence base behind SOLAR’s registry reform work: what the
-            research supports, what it does not prove, and how to speak carefully
-            about public safety, accountability, and prevention.
+            What to do when shame, fear, registry stress, family panic, or
+            suicidal thoughts become dangerous.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -658,619 +218,735 @@ export default function ResourceGuideSandbox(): JSX.Element {
         </div>
       </section>
 
-<div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
+      <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start here: how to read this guide" icon="🧭">
+        <GuideIntro title="Start Here" icon="🧭">
           <p>
-            This is not a random bibliography. It is SOLAR’s public evidence
-            map: a way to connect research, official data, court decisions, and
-            prevention sources to careful public claims.
+            This guide is for the dangerous moment: when someone may not be safe
+            tonight, when panic is turning into despair, or when shame feels too
+            heavy to carry alone.
           </p>
           <p>
-            Strong advocacy does not require overstating the evidence. This
-            guide does not argue that sexual harm is rare, harmless, or
-            unimportant. It argues that public safety policy should be honest
-            about what registries can and cannot do.
+            It is written for people accused or convicted of a sex offense,
+            people on registries, people under supervision, people preparing for
+            incarceration or reentry, and families trying to respond without
+            making the situation worse.
           </p>
           <p>
-            SOLAR uses evidence to challenge ineffective policy, not to excuse
-            abuse or erase accountability.
+            You do not have to solve the case, the registry, the family rupture,
+            the job loss, the housing problem, or the future tonight. The job
+            right now is simpler and more urgent: stay alive, reduce access to
+            danger, get near another person, and postpone decisions that can
+            wait.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="Use this guide for three jobs"
-          subtitle="Start with the evidence question you are trying to answer."
-          icon="📌"
+          title="If there is danger right now"
+          subtitle="Use this before reading the rest of the guide."
+          icon="🚨"
           urgentActions={[
-            <span key="claim">
-              <strong>Check the claim.</strong> Are you talking about
-              recidivism, rearrest, reconviction, reoffense, prevention, or
-              constitutional burden?
+            <span>
+              <strong>Call or text 988 now</strong> if you may hurt yourself,
+              cannot calm down, feel trapped, or are scared to be alone.
             </span>,
-            <span key="source">
-              <strong>Match the source to the claim.</strong> Official data,
-              peer-reviewed research, court decisions, expert recommendations,
-              advocacy reports, and media examples do different jobs.
+            <span>
+              <strong>Call 911 or go to an emergency room</strong> if someone
+              has already been harmed, has a weapon or lethal means in hand, is
+              medically unsafe, is violent, or cannot be kept physically safe.
+            </span>,
+            <span>
+              <strong>Move away from lethal means</strong>: weapons, pills,
+              cords, cars, heights, garages, sheds, bathrooms, isolated rooms,
+              or any place where privacy becomes danger.
             </span>,
           ]}
           nextActions={[
-            <span key="language">
-              <strong>Use careful wording.</strong> Say what the evidence
-              supports without turning one study into a universal rule.
+            <span>
+              <strong>Get near another person.</strong> Sit in the same room,
+              on the porch, in a lobby, at a nurses’ station, near staff, or on
+              the phone with someone who will stay present.
             </span>,
-            <span key="caveat">
-              <strong>Keep the caveat nearby.</strong> Every strong SOLAR claim
-              should be paired with what the evidence does not prove.
+            <span>
+              <strong>Say one clear sentence:</strong> “I am not safe alone
+              right now.” You do not have to explain every detail to deserve
+              help.
+            </span>,
+            <span>
+              <strong>Postpone irreversible decisions.</strong> Do not make
+              legal, family, financial, travel, social media, confession, or
+              goodbye decisions while your body is in crisis.
             </span>,
           ]}
           reminder={
             <span>
-              Evidence-based registry reform is not anti-victim. It is
-              pro-prevention, pro-accountability, and pro-honesty.
+              Accountability may still matter. Survival comes first tonight. You
+              cannot repair harm, comply with rules, face consequences, support
+              your family, or rebuild anything if you do not stay alive.
             </span>
           }
         />
 
-        <GuideCallout tone="research" icon="🔎" title="Measurement matters">
-          <p>
-            “Recidivism,” “rearrest,” “reconviction,” and “reoffense” are not
-            interchangeable. Rearrest measures contact with law enforcement.
-            Reconviction measures a later conviction. Reoffense is broader, but
-            true reoffending is difficult to measure because many harms are not
-            reported or detected.
-          </p>
-          <p>
-            When SOLAR writes about research, use the measure the source
-            actually used.
-          </p>
-        </GuideCallout>
-
-        <GuideSectionHeader
-          id="evidence-at-a-glance"
-          number="1"
-          title="Evidence matrix at a glance"
-          subtitle="Seven recurring evidence themes, written for public use rather than academic shorthand."
-        />
-
-        <OverviewCards
-          columns={3}
+<OverviewCards
+          columns={4}
           cards={[
             {
-              eyebrow: "Theme 1",
-              title: "Registry efficacy",
-              icon: "📊",
-              tone: "research",
+              eyebrow: "First 10 minutes",
+              title: "Create distance from danger",
+              icon: "🧯",
+              tone: "urgent",
               description:
-                "What broad SORN policies have and have not shown about recidivism.",
+                "Move your body away from weapons, pills, cords, cars, heights, bathrooms, garages, sheds, and isolated spaces.",
             },
             {
-              eyebrow: "Theme 2",
-              title: "Prevention reality",
-              icon: "🧭",
-              tone: "info",
-              description:
-                "Why known people, trusted access, and first-time detection matter.",
-            },
-            {
-              eyebrow: "Theme 3",
-              title: "Collateral harm",
-              icon: "🏠",
+              eyebrow: "Tonight",
+              title: "Do not be alone",
+              icon: "🧍",
               tone: "family",
               description:
-                "How restrictions can affect housing, work, families, and stability.",
+                "Get near a person, staff member, family member, friend, crisis counselor, ER worker, or other responsible adult.",
             },
             {
-              eyebrow: "Theme 4",
-              title: "Legal concerns",
-              icon: "⚖️",
-              tone: "legal",
+              eyebrow: "Next 24 hours",
+              title: "Postpone high-risk decisions",
+              icon: "⏸️",
+              tone: "warning",
               description:
-                "How modern restrictions can create punishment-like burdens.",
+                "Do not post, confess online, contact prohibited people, run, skip supervision, disappear, or decide your family is better off without you.",
             },
             {
-              eyebrow: "Theme 5",
-              title: "Risk changes",
-              icon: "🌱",
+              eyebrow: "Next 72 hours",
+              title: "Make a written safety plan",
+              icon: "📝",
               tone: "success",
               description:
-                "Why individualized review, treatment, and time offense-free matter.",
-            },
-            {
-              eyebrow: "Theme 6",
-              title: "Policy comparison",
-              icon: "🧩",
-              tone: "neutral",
-              description:
-                "How other serious harms are addressed without permanent public branding.",
+                "Write down warning signs, support contacts, safer places, appointments, medication needs, and what must be removed or locked away.",
             },
           ]}
         />
 
-        <div className="mt-6 grid gap-5">
-          {evidenceThemes.map((theme, index) => (
-            <GuideSectionCard key={theme.id}>
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Theme {index + 1}
-                  </p>
-                  <h3 className="mt-1 text-xl font-bold text-slate-900">
-                    <span aria-hidden="true" className="mr-2">
-                      {theme.icon}
-                    </span>
-                    {theme.title}
-                  </h3>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {theme.anchorIds.map((id) => (
-                    <a
-                      key={id}
-                      href={sourceLinks[id as keyof typeof sourceLinks]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200 hover:bg-slate-200 transition-colors"
-                    >
-                      {id}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-2">
-                <div className="rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
-                  <h4 className="font-semibold text-emerald-950">
-                    What the evidence supports
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-emerald-950">
-                    {theme.supports}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100">
-                  <h4 className="font-semibold text-amber-950">
-                    What it does not prove
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-amber-950">
-                    {theme.doesNotProve}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl bg-rose-50 p-4 ring-1 ring-rose-100">
-                  <h4 className="font-semibold text-rose-950">
-                    Risky wording to avoid
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-rose-950">
-                    {theme.avoid}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-sky-50 p-4 ring-1 ring-sky-100">
-                  <h4 className="font-semibold text-sky-950">
-                    Safer public language
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-sky-950">
-                    {theme.safer}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <h4 className="font-semibold text-slate-950">
-                    Best SOLAR uses
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                    {theme.uses}
-                  </p>
-                </div>
-              </div>
-            </GuideSectionCard>
-          ))}
-        </div>
-
         <GuideSectionHeader
-          id="anchor-sources"
-          number="2"
-          title="Top anchor sources"
-          subtitle="The front shelf: start here when building a guide, blog post, tracker note, testimony, or policy explainer."
+          id="triage"
+          number="1"
+          title="Immediate Danger Triage"
+          subtitle="Decide what level of help is needed before trying to solve anything else."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              These sources are not all the evidence SOLAR uses. They are the
-              most useful anchors for repeated public claims because they are
-              official, peer-reviewed, legally central, or especially helpful
-              for careful framing.
+              In a crisis, people often try to argue with the facts, explain the
+              whole situation, defend themselves, punish themselves, or solve
+              the future. That is not the first task. The first task is safety.
+            </p>
+
+            <p>
+              Registry-related crises can become dangerous very quickly because
+              shame, fear, public exposure, supervision pressure, family loss,
+              and legal uncertainty can all hit at the same time. A person may
+              feel like there is no future before they have had time to talk to
+              anyone qualified to help.
             </p>
           </GuideProse>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {anchorSources.map((source) => (
-              <article
-                key={source.id}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
-                    {source.id}
-                  </span>
-                  <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                    {source.type}
-                  </span>
-                </div>
-
-                <h3 className="mt-3 text-lg font-bold text-slate-950">
-                  {source.title}
-                </h3>
-
-                <dl className="mt-4 space-y-3 text-sm leading-relaxed">
-                  <div>
-                    <dt className="font-semibold text-slate-900">
-                      Why it matters
-                    </dt>
-                    <dd className="mt-1 text-slate-700">{source.why}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-slate-900">
-                      Claim it supports
-                    </dt>
-                    <dd className="mt-1 text-slate-700">{source.supports}</dd>
-                  </div>
-                  <div>
-                    <dt className="font-semibold text-slate-900">Caveat</dt>
-                    <dd className="mt-1 text-slate-700">{source.caveat}</dd>
-                  </div>
-                </dl>
-
-                <a
-                  href={source.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex text-sm font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
-                >
-                  Open source
-                </a>
-              </article>
-            ))}
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="safe-claims"
-          number="3"
-          title="Claims SOLAR can safely make"
-          subtitle="Use these as careful starting points, not slogans."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
+          <GuideCallout tone="urgent" icon="☎️" title="Use emergency help when safety cannot be maintained">
             <p>
-              These claims are strong enough for public-facing SOLAR work when
-              they are connected to the listed sources and not pushed beyond
-              what those sources actually show.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-3">
-            {safeClaims.map((item) => (
-              <div
-                key={item.claim}
-                className="rounded-2xl bg-white p-4 ring-1 ring-slate-200"
-              >
-                <p className="text-slate-800">{item.claim}</p>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  Anchor IDs: {item.ids}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <GuideCallout
-            tone="reminder"
-            icon="🧠"
-            title="Keep the prevention frame clear"
-          >
-            <p>
-              SOLAR can argue that public registries are limited prevention
-              tools without implying that sexual harm is rare, harmless, or
-              unimportant. The stronger message is that prevention must focus on
-              real risk, trusted access, reporting systems, treatment, stability,
-              accountability, and evidence.
+              Call 911 or go to an emergency room if there is an attempt in
+              progress, a weapon or lethal means is present, someone is
+              medically unsafe, someone is intoxicated and unstable, someone is
+              violent, or no responsible person can stay with the person in
+              crisis.
             </p>
           </GuideCallout>
-        </GuideSectionCard>
 
-<GuideSectionHeader
-          id="careful-claims"
-          number="4"
-          title="Claims SOLAR should avoid or phrase carefully"
-          subtitle="Credibility comes from saying less than the evidence, not more."
-        />
+          <DoDontJudgment
+            dos={[
+              "Call or text 988 when someone is suicidal, overwhelmed, afraid of being alone, or not sure they can stay safe.",
+              "Use 911 or an emergency room when there is immediate physical danger or medical risk.",
+              "Remove or separate the person from lethal means until the crisis window passes.",
+              "Keep the person near another responsible person whenever possible.",
+            ]}
+            donts={[
+              "Do not leave a suicidal or dangerously panicked person alone because they promised they are fine.",
+              "Do not argue about guilt, blame, punishment, family loyalty, politics, or the registry while the person is unsafe.",
+              "Do not rely on alcohol, drugs, driving around, or isolation to get through the night.",
+              "Do not treat public exposure, arrest, release, supervision fear, or family panic as something someone should simply tough out.",
+            ]}
+            judgment={[
+              "Use 988 for crisis support and de-escalation when immediate physical danger can be managed.",
+              "Use emergency medical care when the person cannot stay physically safe, cannot communicate clearly, or may need medical monitoring.",
+              "If calling 911 creates fear because of legal status, still choose safety when someone’s life is at risk. You can use simple words: “This is a medical and mental health emergency.”",
+            ]}
+          />
 
-        <GuideSectionCard>
-          <div className="grid gap-4">
-            {cautiousClaims.map((item) => (
-              <div
-                key={item.avoid}
-                className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:grid-cols-2"
-              >
-                <div className="rounded-xl bg-rose-50 p-4 ring-1 ring-rose-100">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-rose-800">
-                    Avoid
-                  </p>
-                  <p className="mt-2 font-semibold text-rose-950">
-                    {item.avoid}
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">
-                    Better
-                  </p>
-                  <p className="mt-2 font-semibold text-emerald-950">
-                    {item.better}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <SoftDivider />
-
-          <ScriptBox
-            title="Copyable evidence-language template"
-            tone="neutral"
-            context="Use this when drafting testimony, a blog post, a tracker note, or an explainer."
-            script={`The evidence does not support treating broad public registration and notification as a complete prevention strategy. The stronger reading is more careful: broad SORN policies have not demonstrated a clear overall recidivism benefit, many harms involve people not already listed on a public registry, and effective prevention requires individualized risk assessment, treatment, stable reentry, and institutional accountability.\n\nThat does not mean harm is rare or that accountability is optional. It means public safety policy should be honest about what a registry can and cannot do.`}
+          <VerifyBeforeActing
+            title="Before making a legal or supervision decision tonight"
+            whoToAsk="A lawyer, supervising officer, emergency clinician, crisis counselor, or another person with actual authority — not social media, rumors, or panic."
+            whatToAsk="Ask the narrow safety question first: “What is the safest lawful step I can take tonight so no one is harmed and I do not make my legal situation worse?”"
+            whatToSave="Write down who you contacted, when, what they told you, and any appointment, instruction, or emergency-care record."
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="how-solar-uses-evidence"
-          number="5"
-          title="How SOLAR uses evidence"
-          subtitle="Evidence is a tool for prevention, accountability, dignity, and reform."
+          id="ten-minutes"
+          number="2"
+          title="The First 10 Minutes"
+          subtitle="When the body is flooded, make the next few minutes safer before trying to think clearly."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SOLAR uses evidence to challenge ineffective policy, not to
-              minimize harm. The goal is safer prevention, more honest public
-              policy, meaningful accountability, and a path back into community
-              life after sentence completion.
+              The first 10 minutes are about interrupting the dangerous loop. Do
+              not wait until you can explain it well. Do not wait until you feel
+              worthy of help. Do not wait until you know what to say.
             </p>
 
             <p>
-              Evidence-based registry reform is not anti-victim. It is
-              pro-prevention. It asks whether a policy actually reduces harm,
-              whether it creates new instability, whether it respects
-              constitutional limits, and whether it helps communities respond to
-              real risk instead of fear alone.
+              A person in this situation may be thinking, “Everyone will know,”
+              “I ruined my family,” “I cannot survive prison,” “I will never
+              work again,” “My children are better off without me,” or “There is
+              no way back.” Those thoughts can feel final in the moment. They
+              are still crisis thoughts. Treat them as a signal to get help, not
+              as instructions.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="evidence-use-checklist"
-            title="Before publishing a SOLAR evidence claim"
+            id="first-ten-minutes"
+            title="First 10 minutes checklist"
             columns={1}
             items={[
               {
-                id: "define-measure",
+                id: "move",
                 label:
-                  "Define the measure: rearrest, reconviction, reoffense, recidivism, prevalence, burden, or legal doctrine.",
+                  "Move away from weapons, pills, cords, cars, heights, bathrooms, garages, sheds, isolated rooms, or any place where privacy increases danger.",
               },
               {
-                id: "source-type",
+                id: "person",
                 label:
-                  "Name the source type: official data, peer-reviewed research, government report, court decision, expert policy guidance, advocacy report, or media example.",
+                  "Get near another person: family member, friend, neighbor, staff member, nurse, officer, chaplain, coworker, lobby attendant, or crisis worker.",
               },
               {
-                id: "avoid-overclaim",
+                id: "message",
                 label:
-                  "Add what the evidence does not prove so the claim does not become broader than the source.",
+                  "Send one message or make one call: “I am not safe alone right now. Please stay with me or help me contact crisis support.”",
               },
               {
-                id: "use-primary",
+                id: "988",
                 label:
-                  "Use a primary source when possible, especially for statistics, court holdings, and specific legal claims.",
+                  "Call or text 988, use 988 chat, or text HOME to 741741 if talking feels impossible.",
               },
               {
-                id: "no-95",
+                id: "delay",
                 label:
-                  "Do not use the specific “95% first-time offender” claim unless the primary source has been verified and the wording matches the study.",
+                  "Delay legal, family, money, housing, travel, confession, apology, social media, and goodbye decisions.",
               },
               {
-                id: "victim-centered",
+                id: "basic",
                 label:
-                  "Make clear that reform arguments do not deny harm, erase victims, or excuse abuse.",
+                  "Put both feet on the floor, drink water if safe, breathe slowly, and keep your phone charged and nearby.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Do not create new legal risk while spiraling">
+            <p>
+              Do not contact alleged victims, protected people, witnesses,
+              children, or anyone you are ordered not to contact. Do not post
+              explanations, threats, apologies, confessions, or arguments
+              online. Do not run, disappear, skip supervision, or make a
+              desperate travel decision. Tonight is for safety.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="timeline"
+          number="3"
+          title="Tonight, 24 Hours, and 72 Hours"
+          subtitle="A crisis plan should change as the immediate danger lowers."
+        />
+
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="Use the smallest next time window"
+            stages={[
+              {
+                stage: "Right now",
+                icon: "🚨",
+                whatChanges:
+                  "The person may not be able to think clearly, judge risk, or safely be alone.",
+                whatToDo:
+                  "Create distance from lethal means, get near another person, contact 988 or emergency care, and stop all high-stakes decisions.",
+              },
+              {
+                stage: "Tonight",
+                icon: "🌙",
+                whatChanges:
+                  "The person may feel calmer for a few minutes and then spiral again, especially when alone or online.",
+                whatToDo:
+                  "Decide where the person will sleep, who will stay or check in, what items will be removed, and what online or legal decisions are postponed.",
+              },
+              {
+                stage: "Next 24 hours",
+                icon: "📅",
+                whatChanges:
+                  "The crisis may shift from immediate danger to shame, exhaustion, withdrawal, anger, or numbness.",
+                whatToDo:
+                  "Schedule follow-up care, tell one safe person the truth needed for support, document crisis contacts, and avoid social media explanations.",
+              },
+              {
+                stage: "Next 72 hours",
+                icon: "🗂️",
+                whatChanges:
+                  "The person may start facing practical fallout: housing, work, supervision, family, registration, court, custody, or media exposure.",
+                whatToDo:
+                  "Build a written safety plan, identify legal and clinical supports, make a compliance-safe task list, and keep decisions narrow.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="seventy-two-hour-plan"
+            title="72-hour safety plan worksheet"
+            columns={2}
+            items={[
+              {
+                id: "sleep",
+                label: "Where will I sleep tonight, and is that place safe?",
+              },
+              {
+                id: "not-alone",
+                label: "Who will stay with me or check on me at set times?",
+              },
+              {
+                id: "remove",
+                label: "What weapons, pills, cords, keys, vehicles, or other danger items need to be removed, locked, or held by someone else?",
+              },
+              {
+                id: "warning-signs",
+                label: "What are my warning signs that the crisis is coming back?",
+              },
+              {
+                id: "coping",
+                label: "What can I do for 10 minutes that does not involve another person and does not create risk?",
+              },
+              {
+                id: "safe-people",
+                label: "Which three people or places can provide distraction or support?",
+              },
+              {
+                id: "professional",
+                label: "What professional, hotline, clinic, ER, supervision contact, attorney, or support organization needs to be contacted?",
+              },
+              {
+                id: "postpone",
+                label: "What decisions am I postponing until I am safer and have advice?",
+              },
+              {
+                id: "devices",
+                label: "What device, internet, or social media access should be limited tonight?",
+              },
+              {
+                id: "next-step",
+                label: "What is the next safe step that does not require solving everything?",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="registry-specific-triggers"
+          number="4"
+          title="Registry-Specific Crisis Triggers"
+          subtitle="This guide is not generic. These pressures can create a crisis that other people may not understand."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some crises in this space are triggered by events that carry
+              intense shame, fear, and uncertainty. The person may be facing
+              real consequences, but the crisis voice often turns consequences
+              into total hopelessness.
+            </p>
+
+            <p>
+              Naming the trigger can help the helper respond to the right
+              problem. The answer is not to minimize harm or pretend everything
+              will be easy. The answer is to keep the person alive long enough
+              to face the next step with support.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Legal shock",
+                title: "Arrest, search, charge, plea, sentencing, or warrant",
+                icon: "⚖️",
+                tone: "legal",
+                description:
+                  "The person may believe their life is over before they have legal advice, treatment support, or a realistic plan.",
+              },
+              {
+                eyebrow: "Exposure",
+                title: "Media, registry listing, workplace discovery, or family finding out",
+                icon: "📰",
+                tone: "warning",
+                description:
+                  "Public shame can create a dangerous urge to hide, flee, self-punish, post online, or say goodbye.",
+              },
+              {
+                eyebrow: "Stability loss",
+                title: "Housing denial, job loss, relationship rupture, or child-contact loss",
+                icon: "🏚️",
+                tone: "family",
+                description:
+                  "Losing ordinary supports can make survival feel impossible even when there are still next steps.",
+              },
+              {
+                eyebrow: "Supervision panic",
+                title: "Violation fear, registration appointment panic, or rule confusion",
+                icon: "📋",
+                tone: "reentry",
+                description:
+                  "Fear of punishment can push people into silence, avoidance, missed appointments, or unsafe decisions.",
+              },
+              {
+                eyebrow: "Custody / reentry",
+                title: "Jail, prison, release, halfway house, or reentry fear",
+                icon: "🚪",
+                tone: "neutral",
+                description:
+                  "People may need direct medical or psychological help in custody, plus a plan for safe contact and documentation.",
+              },
+              {
+                eyebrow: "Moral injury",
+                title: "Guilt, remorse, disgust, or fear of permanent identity loss",
+                icon: "🧭",
+                tone: "research",
+                description:
+                  "Accountability is not the same as dying. A person can face harm, treatment, repair, consequences, and change only if they survive.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🕯️" title="A sentence this guide is built around">
+            <p>
+              Shame can be a warning sign, not a verdict. When shame turns into
+              danger, the next right step is not punishment. The next right step
+              is safety.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="scripts"
+          number="5"
+          title="Words to Use When Speaking Feels Impossible"
+          subtitle="Scripts reduce the pressure to explain everything perfectly."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              You do not have to disclose every fact to get emergency help. You
+              can name the level of danger first. Then give only the information
+              needed for safety, medical care, supervision compliance, or legal
+              protection.
+            </p>
+          </GuideProse>
+
+          <ScriptBox
+            title="Person in crisis: immediate safety script"
+            tone="urgent"
+            context="Use this with 988, a family member, friend, ER, jail staff, probation officer, chaplain, or another responsible person."
+            script={`I am not safe alone right now.
+
+I am in a legal or registry-related crisis, and I am afraid I may hurt myself. I do not need to explain everything perfectly right now. I need help staying safe tonight.
+
+Please stay with me, help me move away from anything I could use to hurt myself, and help me contact crisis support or medical care.`}
+          />
+
+          <ScriptBox
+            title="Person in crisis: when you are afraid to say the issue out loud"
+            tone="privacy"
+            context="Use this when shame is blocking you from asking for help."
+            script={`I am scared to say the details out loud. The situation involves a sex-offense accusation, conviction, registry, supervision, or family crisis.
+
+I am not asking you to solve the legal issue tonight. I am asking for help staying alive and not making the situation worse.`}
+          />
+
+          <ScriptBox
+            title="Family or supporter: tonight is about survival"
+            tone="family"
+            context="Use this if you are angry, shocked, or scared but someone may not be safe."
+            script={`Tonight is about staying alive. We are not going to solve the whole truth, the case, the registry, the family situation, or the future tonight.
+
+I need you to move away from anything dangerous. I am going to stay nearby or get someone safe to stay with you. We can call or text 988 together. We will deal with the rest after you are safe.`}
+          />
+
+          <ScriptBox
+            title="Custody, jail, prison, or facility script"
+            tone="legal"
+            context="Use the clearest possible medical language. If the person is incarcerated or detained, ask staff to document the request."
+            script={`I need mental health or medical help now.
+
+I am having suicidal thoughts or I am afraid I may harm myself. I need to be seen by psychology, medical, crisis staff, or a supervisor immediately.
+
+Please document that I asked for emergency mental health help.`}
+          />
+
+          <ScriptBox
+            title="Clinical disclosure script"
+            tone="neutral"
+            context="Use with a therapist, crisis clinician, doctor, or intake worker when the situation involves registry stress or sex-offense-related shame."
+            script={`I need help with a crisis connected to a sex-offense accusation, conviction, registry status, supervision, reentry, or public exposure.
+
+I am worried that shame and fear are becoming dangerous. I need help making a safety plan, reducing access to lethal means, and deciding what follow-up care is needed.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family-response"
+          number="6"
+          title="Family and Supporter Response"
+          subtitle="You can help without minimizing harm, interrogating the person, or trying to solve everything tonight."
+        />
+
+        <GuideSectionCard>
+          <RoleGuidanceGrid
+            title="What each person can do"
+            roles={[
+              {
+                role: "Person in crisis",
+                icon: "🧍",
+                guidance:
+                  "Say the danger plainly, move near another person, use 988 or emergency care, and postpone decisions that can wait. You do not have to earn help by explaining everything perfectly.",
+              },
+              {
+                role: "Family member or loved one",
+                icon: "🏠",
+                guidance:
+                  "Stay calm enough to reduce danger. Remove or secure lethal means, stay physically present if safe, avoid interrogation, and get another responsible person or crisis service involved.",
+              },
+              {
+                role: "Friend, advocate, or reentry helper",
+                icon: "🤝",
+                guidance:
+                  "Focus on immediate safety, not debate. Help the person make calls, write down instructions, avoid social media, and connect with longer-term help after the dangerous window passes.",
+              },
+              {
+                role: "Person under supervision or in custody",
+                icon: "📋",
+                guidance:
+                  "Use direct safety language. Ask for medical, mental health, crisis, or supervisory help. Document who was told, when, and what response was given.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="🫶" title="For families: two things can be true">
+            <p>
+              You may be devastated, angry, afraid, betrayed, or unsure what you
+              believe. And if someone may not be safe, tonight’s job is to keep
+              them alive, reduce access to danger, and involve appropriate help.
+              Survival is not the same as excusing harm.
+            </p>
+          </GuideCallout>
+
+          <CommonMistakes
+            title="Responses that can make the crisis worse"
+            mistakes={[
+              {
+                mistake: "Demanding a full confession, timeline, apology, or explanation while the person is unsafe.",
+                whyItMatters:
+                  "A crisis brain may hear interrogation as proof that there is no way back.",
+                betterMove:
+                  "Say: “We will deal with the facts later. Right now I need you alive and away from danger.”",
+              },
+              {
+                mistake: "Leaving the person alone because they became quiet.",
+                whyItMatters:
+                  "Quiet can mean calmer, but it can also mean the person has stopped reaching out.",
+                betterMove:
+                  "Stay nearby, arrange a check-in, call 988 together, or use emergency care if safety cannot be maintained.",
+              },
+              {
+                mistake: "Taking phones, keys, or medication in a way that escalates conflict or creates a fight.",
+                whyItMatters:
+                  "Reducing access to danger matters, but it should be done as calmly and safely as possible.",
+                betterMove:
+                  "Ask for voluntary handoff, move dangerous items out of reach, involve another adult, or use emergency help if needed.",
+              },
+              {
+                mistake: "Trying to solve legal strategy, custody, employment, housing, and family decisions tonight.",
+                whyItMatters:
+                  "Big decisions made during panic can create legal, relational, and safety harm.",
+                betterMove:
+                  "Write the decision down and mark it: “Not tonight. Revisit after sleep, safety, and advice.”",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+<GuideSectionHeader
+          id="after-crisis"
+          number="7"
+          title="After the Immediate Crisis"
+          subtitle="When the danger is lower, shift from survival to a written plan and careful follow-up."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A crisis passing does not mean the underlying problem is gone. It
+              means there is enough room to plan. This is when a written safety
+              plan, follow-up care, support contacts, legal advice, supervision
+              communication, and practical documentation become important.
+            </p>
+
+            <p>
+              Keep the next steps narrow. The goal is not to fix an entire life
+              in 72 hours. The goal is to make the next few days safer, reduce
+              isolation, avoid preventable violations or legal mistakes, and
+              connect to help that can continue.
+            </p>
+          </GuideProse>
+
+          <DocumentPacket
+            title="Crisis follow-up packet"
+            intro="Save enough information that you do not have to reconstruct the crisis from memory later."
+            categories={[
+              {
+                title: "Safety and medical notes",
+                items: [
+                  "Date and approximate time the crisis began.",
+                  "Warning signs that showed the crisis was escalating.",
+                  "Whether 988, Crisis Text Line, ER, 911, jail medical, or another crisis service was contacted.",
+                  "Any discharge instructions, safety plan, medication changes, or follow-up appointments.",
+                ],
+              },
+              {
+                title: "Support contacts",
+                items: [
+                  "Names and numbers for people who agreed to check in.",
+                  "The safest place to sleep for the next night or two.",
+                  "Any person holding or securing lethal means, keys, medications, or other danger items.",
+                ],
+              },
+              {
+                title: "Legal, supervision, or reentry notes",
+                items: [
+                  "Any missed or upcoming court, supervision, treatment, registration, or housing deadlines.",
+                  "Any instruction received from a lawyer, supervising officer, facility staff, or registering agency.",
+                  "Questions to ask before contacting protected people, moving, traveling, posting online, or changing residence.",
+                ],
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet, phones, privacy, or supervision rules make this harder"
+            icon="📵"
+            note="Use the safest available communication method. If someone is in immediate danger, emergency safety comes first."
+            items={[
+              "Ask a trusted person to print this guide, the SAMHSA safety plan, or the VA/DOD safety-plan worksheet.",
+              "Use a landline, facility phone, clinic phone, library phone, or supervised call if personal device use is restricted.",
+              "Write the safety plan on paper: warning signs, safe people, safe places, crisis numbers, and what needs to be removed.",
+              "If incarcerated or in a facility, use direct medical language: “I am suicidal” or “I am afraid I may harm myself.” Ask staff to document the request.",
+              "If online access is restricted by supervision, ask a lawyer, officer, clinician, or trusted helper how to access crisis support without violating a device or internet rule.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Share enough to stay safe, not everything with everyone">
+            <p>
+              A crisis does not require public disclosure. Share the information
+              needed for safety, treatment, supervision compliance, and legal
+              advice. Avoid social media explanations, public apologies,
+              arguments, or messages to people you may be prohibited from
+              contacting.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="8"
+          title="Immediate Off-Ramps and Follow-Up Tools"
+          subtitle="This is not a directory. These are the core links that support the survival protocol."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Use now if someone may not be safe"
+            description="Choose the fastest safe channel. In immediate physical danger, use emergency care."
+            resources={immediateCrisisResources}
+          />
+
+          <ResourceLinkGrid
+            title="Use after the danger is lower"
+            description="These tools help with written safety planning, treatment lookup, and legal-aid lookup after the immediate crisis has been stabilized."
+            resources={followUpResources}
+          />
+
+          <RelatedGuides
+            guides={[
+              {
+                title: "Mental Health & Support Directory",
+                description:
+                  "Use this after the immediate crisis passes to look for crisis links, treatment locators, peer and family support organizations, clinical directories, and legal referral tools.",
+                to: "/resources/mental-health-directory",
+              },
+              {
+                title: "Housing Search Guide",
+                description:
+                  "Use this when housing instability is part of the crisis and the immediate safety danger has passed.",
+                to: "/resources/housing-search-guide",
+              },
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Use this when release, supervision, documentation, and early reentry steps are part of the crisis picture.",
+                to: "/resources/reentry-planning-guide",
               },
             ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="source-library"
-          number="6"
-          title="Source library by topic"
-          subtitle="Use this section to find the right anchor for the claim you are making."
-        />
-
-        <div className="grid gap-5">
-          {sourceTopics.map((topic) => (
-            <GuideSectionCard key={topic.title}>
-              <h3 className="text-xl font-bold text-slate-950">
-                {topic.title}
-              </h3>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-2">
-                {topic.sources.map((source) => (
-                  <article
-                    key={source.id}
-                    className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200"
-                  >
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white">
-                        {source.id}
-                      </span>
-                      <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">
-                        {source.type}
-                      </span>
-                    </div>
-
-                    <h4 className="mt-3 font-bold text-slate-950">
-                      {source.title}
-                    </h4>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                      {source.relevance}
-                    </p>
-
-                    <a
-                      href={source.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex text-sm font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900"
-                    >
-                      Open source
-                    </a>
-                  </article>
-                ))}
-              </div>
-            </GuideSectionCard>
-          ))}
-        </div>
-
-        <GuideSectionHeader
-          id="resources"
-          number="7"
-          title="Research tools and next steps"
-          subtitle="Start with official and primary sources, then use secondary sources for context."
+          id="sources"
+          number="9"
+          title="Sources and Verification"
+          subtitle="The guide translates accepted crisis-planning practices into registry-specific survival steps."
         />
 
         <GuideSectionCard>
-          <ResourceLinkGrid
-            title="Useful research starting points"
-            resources={[
-              {
-                label: "Bureau of Justice Statistics",
-                description:
-                  "Official federal statistics and reports on crime, victimization, corrections, and recidivism.",
-                href: "https://bjs.ojp.gov/",
-                badge: "Official",
-              },
-              {
-                label: "SMART Office",
-                description:
-                  "Federal resources on sex offender management, SORNA, case law summaries, and research briefs.",
-                href: "https://smart.ojp.gov/",
-                badge: "Official",
-              },
-              {
-                label: "National Institute of Justice",
-                description:
-                  "Research and evaluation materials on criminal justice policy and public safety.",
-                href: "https://nij.ojp.gov/",
-                badge: "Official",
-              },
-              {
-                label: "PubMed",
-                description:
-                  "Search tool for peer-reviewed biomedical and behavioral research abstracts.",
-                href: "https://pubmed.ncbi.nlm.nih.gov/",
-                badge: "Research",
-              },
-              {
-                label: "Google Scholar",
-                description:
-                  "Broad search tool for academic literature, citations, and related research.",
-                href: "https://scholar.google.com/",
-                badge: "Research",
-              },
-              {
-                label: "U.S. Supreme Court opinions on Justia",
-                description:
-                  "Readable access point for Supreme Court opinions including Smith and Packingham.",
-                href: "https://supreme.justia.com/",
-                badge: "Court",
-              },
-            ]}
-          />
+          <GuideProse>
+            <p>
+              This guide is not clinical care, legal advice, or a substitute for
+              emergency services. It is a practical survival protocol based on
+              widely used crisis practices: connect to crisis support, reduce
+              access to lethal means, avoid isolation, make a written safety
+              plan, and use emergency care when physical safety cannot be
+              maintained.
+            </p>
+
+            <p>
+              Source links were live-checked on {lastChecked}. Crisis-service
+              availability, webpages, and local emergency procedures can change,
+              so verify links and phone numbers before publication.
+            </p>
+          </GuideProse>
 
           <SourceList
-            note="Source links should be periodically rechecked. Government PDFs and agency pages can move when websites are redesigned."
-            sources={[
-              {
-                label: "SE01 — Recidivism of Sex Offenders Released from Prison in 1994",
-                href: sourceLinks.SE01,
-                description:
-                  "Official BJS data source for recidivism measurement and detected sexual rearrest/reconviction.",
-              },
-              {
-                label: "SE02 — Recidivism of Adult Sexual Offenders",
-                href: sourceLinks.SE02,
-                description:
-                  "SMART Office research brief on adult recidivism patterns and measurement limits.",
-              },
-              {
-                label:
-                  "SE03 — The Effectiveness of Sex Offender Registration and Notification",
-                href: sourceLinks.SE03,
-                description:
-                  "Peer-reviewed meta-analysis of 25 years of registration and notification findings.",
-              },
-              {
-                label:
-                  "SE04 — Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
-                href: sourceLinks.SE04,
-                description:
-                  "Nuanced study separating registration effects from public notification effects.",
-              },
-              {
-                label:
-                  "SE06 — Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
-                href: sourceLinks.SE06,
-                description:
-                  "Government evidence review on collateral consequences and methodological caution.",
-              },
-              {
-                label:
-                  "SE11 — Sexual Assault of Young Children as Reported to Law Enforcement",
-                href: sourceLinks.SE11,
-                description:
-                  "Official source for known-person and family/acquaintance prevention framing.",
-              },
-              {
-                label: "SE18 — Smith v. Doe",
-                href: sourceLinks.SE18,
-                description:
-                  "Central Supreme Court precedent upholding a registry scheme as civil for ex post facto purposes.",
-              },
-              {
-                label: "SE19 — Packingham v. North Carolina",
-                href: sourceLinks.SE19,
-                description:
-                  "Supreme Court decision addressing broad internet restrictions and constitutional rights.",
-              },
-              {
-                label:
-                  "SE22 — High-Risk Sex Offenders May Not Be High Risk Forever",
-                href: sourceLinks.SE22,
-                description:
-                  "Peer-reviewed desistance source supporting time-sensitive, reviewable policy.",
-              },
-              {
-                label: "SE14 — DOJ OIG Nassar Report",
-                href: sourceLinks.SE14,
-                description:
-                  "Inspector General report used as a documented institutional-failure case example.",
-              },
-            ]}
+            note="Core sources used for crisis access, safety planning, lethal-means safety, emergency escalation, and after-crisis treatment/legal lookup."
+            sources={sourceLinks}
           />
         </GuideSectionCard>
       </main>
