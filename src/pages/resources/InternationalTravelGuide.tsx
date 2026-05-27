@@ -252,7 +252,7 @@ export default function InternationalTravelGuide(): JSX.Element {
           ]}
         />
 
-<GuideSectionHeader
+        <GuideSectionHeader
           id="first"
           number="1"
           title="The first rule: verify before you spend"
@@ -318,7 +318,7 @@ export default function InternationalTravelGuide(): JSX.Element {
           />
         </GuideSectionCard>
 
-        <GuideSectionHeader
+<GuideSectionHeader
           id="us-obligations"
           number="2"
           title="U.S. obligations before leaving"
@@ -537,7 +537,7 @@ Thank you,
           />
         </GuideSectionCard>
 
-<GuideSectionHeader
+        <GuideSectionHeader
           id="country-patterns"
           number="4"
           title="Country patterns: planning signals, not promises"
@@ -681,7 +681,7 @@ Thank you,
           </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader
+<GuideSectionHeader
           id="country-details"
           number="6"
           title="How to read the main country groups"
@@ -841,9 +841,102 @@ Thank you,
           </GuideCallout>
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="timeline"
+        <GuideSectionHeader
+          id="cruises"
           number="7"
+          title="Cruises need separate checking"
+          subtitle="A cruise can fail because of the cruise line, the port country, or the country where the trip begins or ends."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Cruises need separate checking. A cruise is not just “international travel by boat.”
+              You may have to satisfy the cruise line’s own passenger policy, the rules of the country
+              where the cruise begins, the rules of the country where it ends, and the rules of each
+              port where passengers go ashore.
+            </p>
+
+            <p>
+              In recent community reports, some Europe river and Mediterranean cruise travel was
+              completed, but other travelers reported cruise-line cancellations, denied boarding, or
+              policy-based refusals. That means a destination may look more workable on the country
+              list while the cruise itself is still not workable.
+            </p>
+
+            <p>
+              The safer assumption is that many mainstream cruises are high-risk for people currently
+              required to register unless the cruise operator gives clear written confirmation before final
+              payment. Do not rely on a travel agent’s casual answer, an old forum post, or the fact that
+              the cruise website accepted a deposit.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="warning" icon="🚢" title="A paid deposit is not permission to board">
+            <p>
+              Cruise lines can screen passengers after booking. A cabin can be canceled close to
+              departure, and a traveler may lose money if the fare, flights, hotels, or tours are not
+              refundable.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="cruise-checklist"
+            title="Before booking a cruise"
+            columns={1}
+            items={[
+              {
+                id: "cruise-line-policy",
+                label:
+                  "Ask the cruise line, not only the travel agent, whether people required to register are permitted to sail.",
+              },
+              {
+                id: "written-answer",
+                label:
+                  "Get the answer in writing before final payment and save the name, department, date, and confirmation number.",
+              },
+              {
+                id: "embarkation",
+                label:
+                  "Check the country where the cruise begins and the country where it ends; those may matter more than a short port stop.",
+              },
+              {
+                id: "ports",
+                label:
+                  "Check whether any port country is generally not workable or has repeated cruise-specific denial reports.",
+              },
+              {
+                id: "refunds",
+                label:
+                  "Use refundable or cancel-for-any-reason options when available, and read the exclusions carefully.",
+              },
+              {
+                id: "companions",
+                label:
+                  "Make sure companions can continue, return, or change plans if the traveler is denied boarding or removed from the itinerary.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: asking the cruise line before final payment"
+            tone="neutral"
+            context="Use this with the cruise line directly. A travel agent may not know the cruise operator’s actual screening policy."
+            script={`Hello, my name is [Name]. Before I make final payment, I need to confirm passenger eligibility in writing.
+
+Does [Cruise Line] allow a U.S. passenger who is currently required to register for a past sex offense to sail on this itinerary?
+
+The itinerary is [ship name], [departure date], leaving from [embarkation country] and visiting [ports].
+
+If this question must be reviewed by a security, legal, or guest eligibility department, please forward it to the correct office. I am not asking for legal advice; I am asking whether the cruise line will allow boarding on this itinerary.
+
+Please reply in writing so I can save the answer with my travel records.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="timeline"
+          number="8"
           title="Planning timeline"
           subtitle="Give yourself time to verify, document, and change plans before money is at risk."
         />
@@ -858,7 +951,7 @@ Thank you,
                 whatChanges:
                   "This is when you can still choose a different destination, route, airline, cruise line, or travel date without scrambling.",
                 whatToDo:
-                  "Check passport status, supervision limits, country patterns, official entry rules, visa or ETA requirements, and whether the destination belongs in the more workable, verify-carefully, or generally not workable group.",
+                  "Check passport status, supervision limits, country patterns, official entry rules, visa or ETA requirements, cruise-line policies, and whether the destination belongs in the more workable, verify-carefully, or generally not workable group.",
               },
               {
                 stage: "60–45 days before travel",
@@ -866,7 +959,7 @@ Thank you,
                 whatChanges:
                   "You should be moving from general research to written confirmation and document collection.",
                 whatToDo:
-                  "Contact the registering agency, ask destination-specific questions, email the consulate if needed, and start a paper or digital travel packet.",
+                  "Contact the registering agency, ask destination-specific questions, email the consulate if needed, contact the cruise line directly if cruising, and start a paper or digital travel packet.",
               },
               {
                 stage: "30–21 days before travel",
@@ -882,7 +975,7 @@ Thank you,
                 whatChanges:
                   "The trip should be documented, refundable where possible, and ready for questioning or delay.",
                 whatToDo:
-                  "Print or download passport, itinerary, lodging, return ticket, consulate messages, insurance, emergency contacts, and any permission letters.",
+                  "Print or download passport, itinerary, lodging, return ticket, consulate messages, cruise-line confirmation if relevant, insurance, emergency contacts, and any permission letters.",
               },
               {
                 stage: "Day of travel",
@@ -907,10 +1000,10 @@ Thank you,
             title="If internet access is limited"
             icon="📞"
             items={[
-              "Ask a trusted person to print official country pages, matrix entries, consulate emails, and booking terms.",
+              "Ask a trusted person to print official country pages, matrix entries, cruise reports, consulate emails, and booking terms.",
               "Call the registering agency and write down the name, date, department, and instructions.",
-              "Ask the destination embassy or consulate for mailed or emailed guidance if you cannot reliably use online forms.",
-              "Keep a paper folder with your itinerary, lodging, emergency contacts, and proof of travel notice submission.",
+              "Ask the destination embassy, consulate, airline, or cruise line for mailed or emailed guidance if you cannot reliably use online forms.",
+              "Keep a paper folder with your itinerary, lodging, cruise confirmation if relevant, emergency contacts, and proof of travel notice submission.",
             ]}
             note="Phone-only, supervised, incarcerated, or low-internet readers may need paper backups and a trusted helper."
           />
@@ -918,7 +1011,7 @@ Thank you,
 
         <GuideSectionHeader
           id="documents"
-          number="8"
+          number="9"
           title="Build a travel packet"
           subtitle="When travel gets stressful, organized records matter."
         />
@@ -950,8 +1043,9 @@ Thank you,
                 title: "Verification records",
                 items: [
                   "Consulate or embassy emails.",
+                  "Airline or cruise-line written eligibility confirmation.",
                   "Screenshots or PDFs of official entry pages.",
-                  "Community matrix or trip-report notes used as planning signals.",
+                  "Community matrix, country report, or cruise-report notes used as planning signals.",
                   "Names, dates, departments, confirmation numbers, and call notes.",
                 ],
               },
@@ -970,15 +1064,15 @@ Thank you,
           <GuideCallout tone="privacy" icon="🔒" title="Protect sensitive records">
             <p>
               Carry what you may need, but think carefully before giving copies of sensitive legal
-              documents to hotels, tour operators, or private companies unless they are required. Keep
-              the most sensitive records in your own control.
+              documents to hotels, tour operators, cruise staff, or private companies unless they are
+              required. Keep the most sensitive records in your own control.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader
+<GuideSectionHeader
           id="booking-border"
-          number="9"
+          number="10"
           title="Booking, border, and companion planning"
           subtitle="The goal is not to predict every outcome. The goal is to reduce avoidable harm if the trip changes."
         />
@@ -992,9 +1086,11 @@ Thank you,
             </p>
 
             <p>
-              Cruise travel needs separate checking. A traveler may face the cruise operator’s policy,
-              the port country’s policy, and the rules of any country where the ship begins or ends.
-              Cruise success at one port does not prove airport admission to that country.
+              Cruise travel needs separate checking even when the destination looks more workable.
+              A traveler may face the cruise operator’s policy, the port country’s policy, and the rules
+              of any country where the ship begins or ends. Cruise success at one port does not prove
+              airport admission to that country, and a country that allows air entry may still appear on
+              a cruise itinerary the operator will not let you board.
             </p>
 
             <p>
@@ -1011,7 +1107,7 @@ Thank you,
             items={[
               {
                 id: "refundable",
-                label: "Use refundable or changeable bookings whenever the destination is not clearly workable.",
+                label: "Use refundable or changeable bookings whenever the destination or travel mode is not clearly workable.",
               },
               {
                 id: "routing",
@@ -1051,15 +1147,15 @@ Who should I contact, how quickly should I contact them, and what proof should I
             <p>
               Companions should know the plan without being asked to manage everything. Give them the
               itinerary, lodging details, emergency contacts, and a backup return plan. If the traveler
-              is denied entry, the companion may need to decide whether to continue, wait, or return
-              separately.
+              is denied entry or denied boarding, the companion may need to decide whether to continue,
+              wait, or return separately.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="mistakes"
-          number="10"
+          number="11"
           title="Common mistakes"
           subtitle="These are the errors that make an already difficult travel situation harder."
         />
@@ -1083,6 +1179,13 @@ Who should I contact, how quickly should I contact them, and what proof should I
                   "Check the destination’s entry rules, visa or ETA process, criminal-history questions, and border-discretion language.",
               },
               {
+                mistake: "Assuming cruises are easier than flying.",
+                whyItMatters:
+                  "Cruises add another gate: the cruise line’s own passenger policy. Some travelers report country-level success, while others report cruise-line cancellations, denied boarding, or policy-based refusals.",
+                betterMove:
+                  "Treat cruises as high-risk unless the cruise line confirms eligibility in writing before final payment, and check embarkation, disembarkation, and port countries separately.",
+              },
+              {
                 mistake: "Booking through a risky transit country.",
                 whyItMatters:
                   "A layover can become an immigration screening event, especially if you must clear border control or obtain an electronic authorization.",
@@ -1090,16 +1193,9 @@ Who should I contact, how quickly should I contact them, and what proof should I
                   "Route directly when possible, and check transit rules separately from destination rules.",
               },
               {
-                mistake: "Assuming cruise reports equal airport admission.",
-                whyItMatters:
-                  "Cruise ports, ship policies, embarkation countries, and airport immigration can produce different outcomes.",
-                betterMove:
-                  "Research cruise and air travel separately, and check the cruise line before final payment.",
-              },
-              {
                 mistake: "Changing the itinerary without updating anyone.",
                 whyItMatters:
-                  "Registration notice, supervision permission, lodging, dates, or route changes may create compliance risk.",
+                  "Registration notice, supervision permission, lodging, dates, cruise ports, or route changes may create compliance risk.",
                 betterMove:
                   "Ask in advance exactly how changes must be reported and save proof that you followed the instruction.",
               },
@@ -1114,9 +1210,9 @@ Who should I contact, how quickly should I contact them, and what proof should I
           />
         </GuideSectionCard>
 
-<GuideSectionHeader
+        <GuideSectionHeader
           id="resources"
-          number="11"
+          number="12"
           title="Resources and next steps"
           subtitle="Use official sources for rules and community sources for planning signals."
         />
@@ -1233,7 +1329,7 @@ Who should I contact, how quickly should I contact them, and what proof should I
                 href: sourceLinks.pfrCruiseReports,
                 badge: "Cruise reports",
                 description:
-                  "Cruise-specific reports that help separate ship policy from country-entry practice.",
+                  "Cruise-specific reports showing both completed trips and cruise-line cancellations or policy-based denials. Use as planning signals, not guarantees.",
               },
               {
                 label: "ACSOL International Travel 2026 discussion",
@@ -1280,7 +1376,7 @@ Who should I contact, how quickly should I contact them, and what proof should I
 
         <GuideSectionHeader
           id="sources"
-          number="12"
+          number="13"
           title="Sources and verification"
           subtitle="Rules and country practices can change. Recheck before relying on this guide."
         />
