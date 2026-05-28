@@ -13,6 +13,27 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "calling-everything-pedophilia-does-not-protect-children",
+  title: "Calling Everything Pedophilia Does Not Protect Children",
+  excerpt:
+    "A viral pop-culture controversy shows why vague “pedophilia” panic does not protect children — and why real prevention requires precision, evidence, and accountability.",
+  author: "The SOLAR Project",
+  date: "May 28, 2026",
+  readTime: "8 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "moral panic",
+    "pop culture",
+    "child safety",
+    "prevention literacy",
+    "sexualization",
+    "media",
+    "trusted access",
+    "public discourse",
+  ],
+  path: "/blog/calling-everything-pedophilia-does-not-protect-children",
+},
+{
   id: "greenville-county-allegations-registry-maps-miss",
   title: "The Greenville County Allegations Show What Registry Maps Miss",
   excerpt:
