@@ -115,6 +115,7 @@ import WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport from "./page
 import TheChildrenWarnedThem from "./pages/blog/TheChildrenWarnedThem";
 import GreenvilleCountyAllegationsRegistryMapsMiss from "./pages/blog/GreenvilleCountyAllegationsRegistryMapsMiss";
 import CallingEverythingPedophiliaDoesNotProtectChildren from "./pages/blog/CallingEverythingPedophiliaDoesNotProtectChildren";
+import AbuseAccessVulnerabilityNotJustAge from "./pages/blog/AbuseAccessVulnerabilityNotJustAge";
 
 function App() {
   return (
@@ -279,6 +280,9 @@ element={<WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport />} />
 element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
 <Route
   path="/blog/calling-everything-pedophilia-does-not-protect-children" element={<CallingEverythingPedophiliaDoesNotProtectChildren />} />
+<Route
+  path="/blog/abuse-access-vulnerability-not-just-age"
+  element={<AbuseAccessVulnerabilityNotJustAge />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
