@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "abuse-access-vulnerability-not-just-age",
+  title: "Abuse Is Often About Access and Vulnerability, Not Just Age",
+  excerpt:
+    "The Odiong clergy-abuse trial shows why real prevention must look beyond age, maps, and residency restrictions toward access, vulnerability, authority, secrecy, and institutional accountability.",
+  author: "The SOLAR Project",
+  date: "May 29, 2026",
+  readTime: "8–10 min read",
+  category: "Institutional Abuse",
+  tags: [
+    "clergy abuse",
+    "vulnerable adults",
+    "trusted access",
+    "authority",
+    "registry restrictions",
+    "institutional accountability",
+    "prevention",
+    "adult survivors",
+    "spiritual dependency",
+    "public safety theater",
+  ],
+  path: "/blog/abuse-access-vulnerability-not-just-age",
+},
+{
   id: "calling-everything-pedophilia-does-not-protect-children",
   title: "Calling Everything Pedophilia Does Not Protect Children",
   excerpt:
