@@ -12,9 +12,11 @@ export const accountabilityWatch: AccountabilityItem[] = [
   title: "Accountability Watch — May 2026 Roundup",
   slug: "2026-06-01",
   path: "/resources/accountability-watch/2026-06-01",
-  summary: "May 2026 accountability cases centered on law-enforcement and public-safety personnel, clergy and religious authority, educators, school employees, youth-sports coaches, public officials, business-access settings, and wealth or cross-border leverage across California, Pennsylvania, Washington, Hawaii, Texas, South Carolina, New Jersey, Florida, Wisconsin, Utah, Louisiana, Minnesota, Arkansas, Kentucky, Missouri, Connecticut, Nebraska, Colombia, and other jurisdictions.
+  summary: `May 2026 accountability cases centered on law-enforcement and public-safety personnel, clergy and religious authority, educators, school employees, youth-sports coaches, public officials, business-access settings, and wealth or cross-border leverage across California, Pennsylvania, Washington, Hawaii, Texas, South Carolina, New Jersey, Florida, Wisconsin, Utah, Louisiana, Minnesota, Arkansas, Kentucky, Missouri, Connecticut, Nebraska, Colombia, and other jurisdictions.
+
 New arrests and charges included police officers, a detective, a detention officer, former public-safety personnel, a former city councilman, pastors, teachers, a national-sport coach, and a volunteer coach; pleas, convictions, and sentencings involved a former state senator, clergy, teachers, school employees, youth-sports coaches, a hotel employee, and a cross-border trafficking case.
-Across the month, risk emerged through badge authority, civic legitimacy, religious trust, school and coaching access, commercial settings, money, travel, and status-based leverage rather than through registry-centered warning assumptions.",
+
+Across the month, risk emerged through badge authority, civic legitimacy, religious trust, school and coaching access, commercial settings, money, travel, and status-based leverage rather than through registry-centered warning assumptions.`,
 },
 {
   date: "2026-05-01",
