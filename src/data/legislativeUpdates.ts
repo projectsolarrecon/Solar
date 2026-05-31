@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "June 1, 2026",
+  title: "Legislative Tracker — May 2026 Update",
+  slug: "2026-06-01",
+  summary:
+    "May brought a mixed but registry-heavy month: Missouri enacted broad registry restructuring, California and Michigan advanced live Senate bills that could increase relief and employment barriers, courts issued important supervision and SORA rulings, and federal SORNA implementation funding remained active.",
+  tags: ["state", "courts", "agencies", "implementation", "relief"],
+},
+{
   date: "May 1, 2026",
   title: "Legislative Tracker — April 2026 Update",
   slug: "2026-05-01",
