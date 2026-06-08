@@ -13,6 +13,32 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "primetime-predators-sting-culture",
+  title: "Primetime, Predators, and the Cruel Comfort of Sting Culture",
+  excerpt:
+    "With A24’s Primetime and David Osit’s Predators reviving attention to To Catch a Predator, SOLAR examines sting culture, public humiliation, decoys, law enforcement, and the myth that spectacle equals prevention.",
+  author: "The SOLAR Project",
+  date: "Jun 7, 2026",
+  readTime: "12–14 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "To Catch a Predator",
+    "Chris Hansen",
+    "Predators documentary",
+    "Primetime movie",
+    "Robert Pattinson",
+    "David Osit",
+    "Lance Oppenheim",
+    "sting operations",
+    "public humiliation",
+    "vigilante justice",
+    "true crime",
+    "media ethics",
+    "prevention",
+  ],
+  path: "/blog/primetime-predators-sting-culture",
+},
+{
   id: "abuse-access-vulnerability-not-just-age",
   title: "Abuse Is Often About Access and Vulnerability, Not Just Age",
   excerpt:
