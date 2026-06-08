@@ -1,13 +1,14 @@
-// src/pages/blog/PrimetimePredatorsStingCulture.tsx
-
 import React from "react";
 import { Link } from "react-router-dom";
 import BlogLayout from "../../components/layouts/BlogLayout";
-import { BandHeader, Callout, PullQuote, Divider0nts/solar";
+import { BandHeader, Callout, PullQuote, Divider } from "../../components/solar";
 
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
-export default function PrimetimePredatorsStingCulture(): JSX.Element1Predators, and the Cruel Comfort of Sting Culture"
+export default function PrimetimePredatorsStingCulture(): JSX.Element {
+  return (
+    <BlogLayout
+      title="Primetime, Predators, and the Cruel Comfort of Sting Culture"
       description="With A24’s Primetime and David Osit’s Predators reviving attention to To Catch a Predator, SOLAR examines sting culture, public humiliation, decoys, law enforcement, and the myth that spectacle equals prevention."
       keywords="To Catch a Predator documentary, Predators documentary, Primetime movie, Robert Pattinson Chris Hansen, A24 Primetime, To Catch a Predator, Chris Hansen, David Osit, Lance Oppenheim, sting culture, predator hunter videos, public humiliation, child safety theater"
       date="Jun 7, 2026"
@@ -68,11 +69,8 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         </p>
 
         <p>Were we watching prevention?</p>
-
         <p>Were we watching journalism?</p>
-
         <p>Were we watching law enforcement?</p>
-
         <p>Or were we watching public humiliation packaged as child protection?</p>
 
         <p>
@@ -84,7 +82,6 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         </p>
 
         <p>And when discomfort starts to creep in, sting culture offers the viewer a convenient way out.</p>
-
         <p>The escape hatch is always waiting:</p>
 
         <p>
@@ -226,7 +223,6 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         </p>
 
         <p>That refusal is the point.</p>
-
         <p>The escape hatch is not just a reaction to the show. It is part of the show’s design.</p>
 
         <BandHeader title="The Decoys Were Not Props" icon="🎭" />
@@ -314,9 +310,7 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         </p>
 
         <p>That does not make the person innocent.</p>
-
         <p>It makes the scene human.</p>
-
         <p>And that is precisely what sting culture cannot tolerate for long.</p>
 
         <p>
@@ -418,7 +412,6 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         </p>
 
         <p><em>To Catch a Predator</em> offered something much easier.</p>
-
         <p>It offered a chair.</p>
 
         <BandHeader title="The Conradt Death Was Not a Footnote" icon="🕯️" />
@@ -447,8 +440,7 @@ export default function PrimetimePredatorsStingCulture(): JSX.Element1Pred
         <p>
           <a
             className={linkCls}
-            
-href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophile-tv-shows"
+            href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophile-tv-shows"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -502,7 +494,6 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>If anything, the opposite is true.</p>
-
         <p>When public safety becomes content, the content starts making demands.</p>
 
         <BandHeader title="The Audience Was Part of the Machine" icon="👁️" />
@@ -570,7 +561,6 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>Sting culture points the camera elsewhere.</p>
-
         <p>It gives the public a stranger to despise and calls that safety.</p>
 
         <BandHeader title="“They Deserved It” Is Not a Prevention Plan" icon="⚖️" />
@@ -581,13 +571,9 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>That may be emotionally satisfying. It is not enough.</p>
-
         <p>“They deserved it” is not a prevention plan.</p>
-
         <p>It does not tell us whether children are safer.</p>
-
         <p>It does not tell us whether the operation was lawful, ethical, or effective.</p>
-
         <p>It does not tell us whether police should coordinate with television producers.</p>
 
         <p>
@@ -632,7 +618,6 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>But it does not answer the hardest question:</p>
-
         <p>What would actually reduce sexual harm?</p>
 
         <BandHeader title="From To Catch a Predator to YouTube Predator Hunters" icon="📱" />
@@ -680,9 +665,7 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>The public may tell itself that this is all about children.</p>
-
         <p>But the algorithm does not care about children. It cares about retention.</p>
-
         <p>Humiliation retains.</p>
 
         <BandHeader
@@ -711,9 +694,7 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>Why are we still drawn to this story?</p>
-
         <p>Why does Hansen’s silhouette still mean something?</p>
-
         <p>Why does the phrase “have a seat” still carry so much cultural charge?</p>
 
         <p>
@@ -751,9 +732,7 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>The film does not ask viewers to excuse harm.</p>
-
         <p>It asks whether our response to harm has become its own kind of harm.</p>
-
         <p>That is a harder question than the culture wants to answer.</p>
 
         <p>
@@ -765,11 +744,8 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>We have to think about the decoys who carried the work.</p>
-
         <p>We have to think about the police who served the show.</p>
-
         <p>We have to think about the person who died.</p>
-
         <p>We have to think about the viewers who kept watching.</p>
 
         <p>
@@ -793,9 +769,7 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>It can protect children and still care about due process.</p>
-
         <p>It can recognize danger and still refuse dehumanization.</p>
-
         <p>It can demand prevention instead of mistaking spectacle for it.</p>
 
         <p>
@@ -815,7 +789,6 @@ href="https://www.theguardian.com/film/2025/sep/20/predators-documentary-pedophi
         </p>
 
         <p>That sentence may explain why the show worked.</p>
-
         <p>It should not be allowed to explain away everything the show became.</p>
 
         <Divider label="Sources and next reading" />
