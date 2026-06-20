@@ -13,6 +13,31 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "child-safety-theater-goes-live",
+  title: "Child Safety Theater Goes Live",
+  excerpt:
+    "The New York Times’ reporting on livestream predator hunters ambushing Akash Singhania shows the danger of vigilante sting culture: humiliation comes first, verification comes later.",
+  author: "The SOLAR Project",
+  date: "Jun 20, 2026",
+  readTime: "10–12 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "vigilante justice",
+    "predator hunters",
+    "livestreaming",
+    "Kick",
+    "Vitaly",
+    "Akash Singhania",
+    "To Catch a Predator",
+    "public humiliation",
+    "false accusation",
+    "digital vigilantism",
+    "child safety theater",
+    "media incentives",
+  ],
+  path: "/blog/child-safety-theater-goes-live",
+},
+{
   id: "primetime-predators-sting-culture",
   title: "Primetime, Predators, and the Cruel Comfort of Sting Culture",
   excerpt:
