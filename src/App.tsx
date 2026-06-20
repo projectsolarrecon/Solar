@@ -117,6 +117,7 @@ import GreenvilleCountyAllegationsRegistryMapsMiss from "./pages/blog/Greenville
 import CallingEverythingPedophiliaDoesNotProtectChildren from "./pages/blog/CallingEverythingPedophiliaDoesNotProtectChildren";
 import AbuseAccessVulnerabilityNotJustAge from "./pages/blog/AbuseAccessVulnerabilityNotJustAge";
 import PrimetimePredatorsStingCulture from "./pages/blog/PrimetimePredatorsStingCulture";
+import ChildSafetyTheaterGoesLive from "./pages/blog/ChildSafetyTheaterGoesLive";
 
 function App() {
   return (
@@ -287,6 +288,9 @@ element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
 <Route
   path="/blog/primetime-predators-sting-culture"
   element={<PrimetimePredatorsStingCulture />} />
+<Route
+  path="/blog/child-safety-theater-goes-live"
+  element={<ChildSafetyTheaterGoesLive />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
