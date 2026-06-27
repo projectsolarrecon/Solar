@@ -118,6 +118,7 @@ import CallingEverythingPedophiliaDoesNotProtectChildren from "./pages/blog/Call
 import AbuseAccessVulnerabilityNotJustAge from "./pages/blog/AbuseAccessVulnerabilityNotJustAge";
 import PrimetimePredatorsStingCulture from "./pages/blog/PrimetimePredatorsStingCulture";
 import ChildSafetyTheaterGoesLive from "./pages/blog/ChildSafetyTheaterGoesLive";
+import AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy from "./pages/blog/AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy";
 
 function App() {
   return (
@@ -291,6 +292,8 @@ element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
 <Route
   path="/blog/child-safety-theater-goes-live"
   element={<ChildSafetyTheaterGoesLive />} />
+<Route
+  path="/blog/above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy"  element={<AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
