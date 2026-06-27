@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy",
+  title: "Above the Law, or Becoming It: The Manosphere’s Child-Safety Hypocrisy",
+  excerpt:
+    "Predator-hunter culture and manosphere fandom expose the same public-safety failure: outrage against “predators” becomes selective when power, fame, and masculinity enter the frame.",
+  author: "The SOLAR Project",
+  date: "Jun 25, 2026",
+  readTime: "9 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "amateur stings",
+    "manosphere",
+    "Andrew Tate",
+    "predator hunters",
+    "performative safety",
+    "child safety theater",
+    "online masculinity",
+    "selective outrage",
+    "YouTube",
+    "vigilante justice",
+  ],
+  path: "/blog/above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy",
+},
+{
   id: "child-safety-theater-goes-live",
   title: "Child Safety Theater Goes Live",
   excerpt:
