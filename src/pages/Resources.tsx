@@ -149,7 +149,7 @@ function Resources() {
           name: "Supervision Conditions Survival Guide",
           type: "Guide",
           description: "Plain-language guide to probation, parole, supervised release, treatment rules, searches, violations, documentation, and communication with officers.",
-          link: "#"
+          link: "/resources/supervision-conditions-guide"
         },
         {
           name: "Technology Access & Monitoring Guide",
