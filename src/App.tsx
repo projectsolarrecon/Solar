@@ -119,6 +119,7 @@ import AbuseAccessVulnerabilityNotJustAge from "./pages/blog/AbuseAccessVulnerab
 import PrimetimePredatorsStingCulture from "./pages/blog/PrimetimePredatorsStingCulture";
 import ChildSafetyTheaterGoesLive from "./pages/blog/ChildSafetyTheaterGoesLive";
 import AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy from "./pages/blog/AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy";
+import SupervisionConditionsGuide from "./pages/resources/SupervisionConditionsGuide";
 
 function App() {
   return (
@@ -182,6 +183,7 @@ function App() {
   element={<StateRegistryStatePage />}
 />
 <Route path="/resources/prison-dos-and-donts" element={<Prison_Dos_and_Donts_Guide />} />
+<Route path="/resources/supervision-conditions-guide" element={<SupervisionConditionsGuide />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
