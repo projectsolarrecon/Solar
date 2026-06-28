@@ -8,7 +8,6 @@ import {
   GuideCallout,
   GuideIntro,
   QuickStartPanel,
-  GuideChecklist,
   ScriptBox,
   OfflineOptions,
   DocumentPacket,
@@ -21,148 +20,139 @@ import {
   RoleGuidanceGrid,
   TimelineGuidanceGrid,
   DoDontJudgment,
+  SoftDivider,
 } from "../../components/solar";
 
-const lastChecked = "May 25, 2026";
+const lastChecked = "June 28, 2026";
 
-const immediateCrisisResources = [
+const sourceLinks = [
   {
-    label: "988 Suicide & Crisis Lifeline",
-    href: "https://988lifeline.org/",
-    phone: "Call or text 988",
-    badge: "24/7 crisis support",
+    label: "U.S. Courts — Overview of Probation and Supervised Release Conditions",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
     description:
-      "Free crisis support in the United States for suicidal thoughts, emotional distress, substance-use crisis, or concern about someone else.",
+      "Supports the guide’s framing that supervision conditions set the parameters of federal probation and supervised release and are used by probation officers to monitor compliance.",
   },
   {
-    label: "988 Lifeline chat",
-    href: "https://chat.988lifeline.org/",
-    badge: "Chat",
+    label: "U.S. Courts — Authority for Probation and Supervised Release Conditions",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-1-authority-probation-and-supervised-release-conditions",
     description:
-      "Online chat option for people who cannot safely or privately call. Use a safe device if you have supervision, court, or monitoring restrictions.",
+      "Supports the distinction between court authority, sentencing conditions, and officer implementation in federal probation and supervised release.",
   },
   {
-    label: "Crisis Text Line",
-    href: "https://www.crisistextline.org/",
-    phone: "Text HOME to 741741",
-    badge: "Text support",
+    label: "U.S. Courts — Standard Condition Language",
+    href: "https://www.uscourts.gov/appendix-standard-condition-language-probation-and-supervised-release-conditions",
     description:
-      "Free, 24/7 text-based crisis support in the United States with a trained crisis counselor.",
+      "Supports examples of standard federal supervision topics, including reporting, travel, employment, officer visits, truthful answers, and related conditions.",
   },
   {
-    label: "Emergency care",
-    href: "https://www.nimh.nih.gov/site-info/contact-nimh",
-    phone: "Call 911 or go to the nearest ER",
-    badge: "Immediate danger",
+    label: "U.S. Courts — Leaving the Judicial District",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-2-leaving-judicial-district-probation-and-supervised",
     description:
-      "Use emergency care when someone cannot stay physically safe, has already harmed themselves, is medically unsafe, is violent, or cannot be left alone.",
+      "Supports the travel-permission warning that leaving an approved district may require advance permission from the court or probation officer.",
+  },
+  {
+    label: "U.S. Courts — Search and Seizure Condition",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-search-and-seizure-probation-and-supervised-release",
+    description:
+      "Supports careful language about federal search conditions, reasonable suspicion, reasonable time, and reasonable manner when that condition applies.",
+  },
+  {
+    label: "U.S. Courts — Association and Contact Restrictions",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-association-and-contact-restrictions-probation-and",
+    description:
+      "Supports the guide’s warning that contact restrictions may apply to victims, minors, co-defendants, or other people connected to case-specific risk factors.",
+  },
+  {
+    label: "U.S. Courts — Revocations for Failure to Comply with Supervision Conditions",
+    href: "https://www.uscourts.gov/data-news/judiciary-news/2022/06/14/just-facts-revocations-failure-comply-supervision-conditions-and-sentencing-outcomes",
+    description:
+      "Supports the explanation that technical violations can include conduct such as failure to report, failed drug testing, treatment refusal, or possession of contraband.",
+  },
+  {
+    label: "U.S. Courts — Probation and Pretrial Services",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
+    description:
+      "Supports the guide’s general description of federal probation and pretrial services officers as court personnel who investigate and supervise people charged with or convicted of federal crimes.",
+  },
+  {
+    label: "U.S. Courts — Pretrial Services",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
+    description:
+      "Supports the plain-language distinction between pretrial supervision and post-conviction supervision.",
+  },
+  {
+    label: "U.S. District Court, District of South Dakota — Probation, Parole, and Supervised Release",
+    href: "https://www.sdd.uscourts.gov/content/what-difference-between-probation-parole-and-supervised-release",
+    description:
+      "Supports the short distinction between probation, parole, and supervised release.",
+  },
+  {
+    label: "DOJ SMART Office — SORNA",
+    href: "https://smart.ojp.gov/sorna",
+    description:
+      "Supports the guide’s explanation that SORNA sets minimum national standards for sex offender registration and notification.",
+  },
+  {
+    label: "DOJ SMART Office — Registration FAQs",
+    href: "https://smart.ojp.gov/faqs",
+    description:
+      "Supports the statement that SORNA requires registration and keeping registration current in each jurisdiction where a person lives, works, or goes to school.",
+  },
+  {
+    label: "Dru Sjodin National Sex Offender Public Website",
+    href: "https://www.nsopw.gov/",
+    description:
+      "Supports the guide’s description of NSOPW as a DOJ-linked national search portal that draws from state, territorial, and tribal registry systems.",
+  },
+  {
+    label: "Bureau of Prisons — Sex Offender Registration and Treatment Notification Form",
+    href: "https://www.bop.gov/policy/forms/BP_A0648.pdf",
+    description:
+      "Supports the guide’s warning that people leaving federal custody may receive registration-related notice before release, but local registration agencies still control local reporting steps.",
+  },
+  {
+    label: "USA.gov — Find Legal Aid",
+    href: "https://www.usa.gov/legal-aid",
+    description:
+      "Supports the legal-help resource link for people who need free or low-cost legal assistance.",
   },
 ];
 
-const followUpResources = [
+const resourceLinks = [
   {
-    label: "SAMHSA Safety Plan",
-    href: "https://www.samhsa.gov/resource/988/safety-plan",
-    badge: "Printable tool",
+    label: "U.S. Courts supervision condition overview",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
+    badge: "Official",
     description:
-      "A printable safety-plan tool modified from Stanley-Brown, useful after the immediate danger is lower.",
+      "Federal overview of probation and supervised release conditions, including standard and special conditions.",
   },
   {
-    label: "Stanley-Brown Safety Planning Intervention",
-    href: "https://suicidesafetyplan.com/",
-    badge: "Safety planning",
+    label: "Federal monthly supervision reporting system",
+    href: "https://supervision.uscourts.gov/",
+    badge: "Federal",
     description:
-      "A widely used safety-planning model for identifying warning signs, coping steps, support contacts, professional resources, and ways to make the environment safer.",
+      "Electronic reporting portal used in some federal districts. Use only if your officer gives you access and tells you to report this way.",
   },
   {
-    label: "VA/DOD Safety Plan Worksheet",
-    href: "https://www.healthquality.va.gov/guidelines/MH/srb/Patient_Safety_Planfillable-508.pdf",
-    badge: "Worksheet",
+    label: "DOJ SMART Office registration FAQs",
+    href: "https://smart.ojp.gov/faqs",
+    badge: "Official",
     description:
-      "A fillable worksheet organized around warning signs, coping strategies, social support, professional contacts, and safer environments.",
+      "Federal FAQ explaining general SORNA registration concepts. Your state, local, tribal, or territorial registry office may still have additional rules.",
   },
   {
-    label: "SAMHSA FindTreatment.gov",
-    href: "https://findtreatment.gov/",
-    badge: "Treatment locator",
+    label: "NSOPW national registry portal",
+    href: "https://www.nsopw.gov/",
+    badge: "DOJ",
     description:
-      "A confidential treatment locator for mental health and substance-use services in the United States and territories.",
+      "National public search portal that pulls from state, territorial, and tribal registry systems. It is not a substitute for asking your registry office about your own duties.",
   },
   {
     label: "USA.gov legal aid finder",
     href: "https://www.usa.gov/legal-aid",
     badge: "Legal help",
     description:
-      "A starting point for finding free or low-cost legal help. Use after the immediate safety crisis is stabilized.",
-  },
-];
-
-const sourceLinks = [
-  {
-    label: "SAMHSA — 988 Frequently Asked Questions",
-    href: "https://www.samhsa.gov/mental-health/988/faqs",
-    description:
-      "Supports 988 as a national crisis support option for mental health, substance-use, and emotional distress crises.",
-  },
-  {
-    label: "988 Lifeline — What to Expect",
-    href: "https://988lifeline.org/get-help/what-to-expect/",
-    description:
-      "Supports plain-language guidance that 988 offers free, judgment-free support by call, text, chat, and Deaf/HoH access.",
-  },
-  {
-    label: "Crisis Text Line",
-    href: "https://www.crisistextline.org/",
-    description:
-      "Supports the text-based off-ramp: text HOME to 741741 in the United States for free, confidential crisis support.",
-  },
-  {
-    label: "Stanley-Brown Safety Planning Intervention",
-    href: "https://suicidesafetyplan.com/",
-    description:
-      "Supports the guide’s safety-planning structure: warning signs, coping steps, support contacts, professional resources, and making the environment safer.",
-  },
-  {
-    label: "SAMHSA — Safety Plan",
-    href: "https://www.samhsa.gov/resource/988/safety-plan",
-    description:
-      "Supports printable safety-plan guidance and the use of safety plans by counselors, clinicians, and helpers.",
-  },
-  {
-    label: "VA/DOD Safety Plan Worksheet",
-    href: "https://www.healthquality.va.gov/guidelines/MH/srb/Patient_Safety_Planfillable-508.pdf",
-    description:
-      "Supports the worksheet format used for warning signs, coping strategies, people to contact, professionals, and safer-environment planning.",
-  },
-  {
-    label: "Suicide Prevention Resource Center — Reduce Access to Means of Suicide",
-    href: "https://sprc.org/effective-prevention/a-comprehensive-approach-to-suicide-prevention/reduce-access-to-means-of-suicide/",
-    description:
-      "Supports reducing access to lethal means during a crisis window, including removing lethal means from the household until the situation improves.",
-  },
-  {
-    label: "National Institute of Mental Health — Crisis Contact Guidance",
-    href: "https://www.nimh.nih.gov/site-info/contact-nimh",
-    description:
-      "Supports emergency escalation language: call 911 or go to the nearest emergency room in life-threatening situations.",
-  },
-  {
-    label: "CDC — Preventing Suicide",
-    href: "https://www.cdc.gov/suicide/prevention/",
-    description:
-      "Supports the public-health framing that suicide prevention includes individual, family, and community protective strategies.",
-  },
-  {
-    label: "SAMHSA — Treatment Locators",
-    href: "https://www.samhsa.gov/find-help/locators",
-    description:
-      "Supports after-crisis treatment lookup and follow-up care planning.",
-  },
-  {
-    label: "USA.gov — Find a Lawyer for Affordable Legal Aid",
-    href: "https://www.usa.gov/legal-aid",
-    description:
-      "Supports legal-aid lookup after immediate safety needs are addressed.",
+      "Starting point for finding free or low-cost legal help if you need advice about a violation, modification, travel, housing, or registration problem.",
   },
 ];
 
@@ -172,9 +162,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Crisis Planning Guide for Registrants and Families | The SOLAR Project"
-        description="A practical crisis survival protocol for people and families facing registry stress, shame, public exposure, supervision fear, suicidal thoughts, or dangerous panic."
-        keywords="crisis planning, 988, safety plan, registry stress, reentry crisis, family crisis support, suicide prevention"
+        title="Supervision Conditions Survival Guide | The SOLAR Project"
+        description="Plain-language guide to probation, parole, supervised release, treatment rules, registry overlap, searches, violations, documentation, and communication with officers."
+        keywords="probation, parole, supervised release, supervision conditions, registry compliance, treatment rules, violation, reentry, documentation, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -191,12 +181,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Crisis Planning Guide for Registrants and Families
+            Supervision Conditions Survival Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            What to do when shame, fear, registry stress, family panic, or
-            suicidal thoughts become dangerous.
+            Plain-language guide to probation, parole, supervised release,
+            treatment rules, searches, violations, documentation, and
+            communication with officers.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -225,727 +216,920 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            This guide is for the dangerous moment: when someone may not be safe
-            tonight, when panic is turning into despair, or when shame feels too
-            heavy to carry alone.
+            Supervision can feel like trying to follow several rulebooks at the
+            same time. That is often exactly what is happening.
           </p>
+
           <p>
-            It is written for people accused or convicted of a sex offense,
-            people on registries, people under supervision, people preparing for
-            incarceration or reentry, and families trying to respond without
-            making the situation worse.
+            You may have conditions from a court, instructions from a probation
+            or parole officer, rules from treatment, and separate registry duties
+            from a sheriff, police department, state registry unit, or tribal
+            authority. Those systems may overlap, but they are not the same.
           </p>
+
           <p>
-            You do not have to solve the case, the registry, the family rupture,
-            the job loss, the housing problem, or the future tonight. The job
-            right now is simpler and more urgent: stay alive, reduce access to
-            danger, get near another person, and postpone decisions that can
-            wait.
+            This guide is not legal advice. It is a survival tool: read the
+            paperwork, identify who has authority, verify before acting, save
+            proof, communicate calmly, and get help early when the risk is
+            serious.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If there is danger right now"
-          subtitle="Use this before reading the rest of the guide."
-          icon="🚨"
+          title="If you are newly released, newly assigned conditions, or worried about a violation"
+          subtitle="Start with the steps that reduce confusion and prevent avoidable damage."
+          icon="⚡"
           urgentActions={[
             <span>
-              <strong>Call or text 988 now</strong> if you may hurt yourself,
-              cannot calm down, feel trapped, or are scared to be alone.
+              Gather your judgment, release papers, written conditions, registry
+              instructions, treatment contract, safety plan, and officer contact
+              information.
             </span>,
             <span>
-              <strong>Call 911 or go to an emergency room</strong> if someone
-              has already been harmed, has a weapon or lethal means in hand, is
-              medically unsafe, is violent, or cannot be kept physically safe.
+              Do not guess about travel, housing, internet use, devices,
+              employment, contact with minors, contact with protected people, or
+              registry deadlines.
             </span>,
             <span>
-              <strong>Move away from lethal means</strong>: weapons, pills,
-              cords, cars, heights, garages, sheds, bathrooms, isolated rooms,
-              or any place where privacy becomes danger.
+              If you think you missed something, report the problem calmly and
+              quickly. Hiding, deleting, disappearing, or waiting usually makes
+              the risk worse.
             </span>,
           ]}
           nextActions={[
             <span>
-              <strong>Get near another person.</strong> Sit in the same room,
-              on the porch, in a lobby, at a nurses’ station, near staff, or on
-              the phone with someone who will stay present.
+              Make one paper or digital supervision folder and start a dated log
+              of every instruction, appointment, approval, denial, payment, and
+              attempted contact.
             </span>,
             <span>
-              <strong>Say one clear sentence:</strong> “I am not safe alone
-              right now.” You do not have to explain every detail to deserve
-              help.
+              Ask narrow questions: “Which rule controls this?” “Who can approve
+              it?” “Can I get that in writing?”
             </span>,
             <span>
-              <strong>Postpone irreversible decisions.</strong> Do not make
-              legal, family, financial, travel, social media, confession, or
-              goodbye decisions while your body is in crisis.
+              Contact counsel or legal aid before making statements about an
+              alleged violation, new law-enforcement contact, search dispute, or
+              treatment discharge.
             </span>,
           ]}
           reminder={
             <span>
-              Accountability may still matter. Survival comes first tonight. You
-              cannot repair harm, comply with rules, face consequences, support
-              your family, or rebuild anything if you do not stay alive.
+              The goal is not to win an argument in the moment. The goal is to
+              stay safe, stay reachable, document what happened, and avoid making
+              the situation harder to fix.
             </span>
           }
         />
 
-<OverviewCards
-          columns={4}
-          cards={[
-            {
-              eyebrow: "First 10 minutes",
-              title: "Create distance from danger",
-              icon: "🧯",
-              tone: "urgent",
-              description:
-                "Move your body away from weapons, pills, cords, cars, heights, bathrooms, garages, sheds, and isolated spaces.",
-            },
-            {
-              eyebrow: "Tonight",
-              title: "Do not be alone",
-              icon: "🧍",
-              tone: "family",
-              description:
-                "Get near a person, staff member, family member, friend, crisis counselor, ER worker, or other responsible adult.",
-            },
-            {
-              eyebrow: "Next 24 hours",
-              title: "Postpone high-risk decisions",
-              icon: "⏸️",
-              tone: "warning",
-              description:
-                "Do not post, confess online, contact prohibited people, run, skip supervision, disappear, or decide your family is better off without you.",
-            },
-            {
-              eyebrow: "Next 72 hours",
-              title: "Make a written safety plan",
-              icon: "📝",
-              tone: "success",
-              description:
-                "Write down warning signs, support contacts, safer places, appointments, medication needs, and what must be removed or locked away.",
-            },
-          ]}
-        />
-
         <GuideSectionHeader
-          id="triage"
+          id="rulebooks"
           number="1"
-          title="Immediate Danger Triage"
-          subtitle="Decide what level of help is needed before trying to solve anything else."
+          title="You may have more than one rulebook"
+          subtitle="Probation, parole, supervised release, treatment, and registry duties can overlap without being the same authority."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              In a crisis, people often try to argue with the facts, explain the
-              whole situation, defend themselves, punish themselves, or solve
-              the future. That is not the first task. The first task is safety.
+              People often use “probation,” “parole,” and “supervision” as if
+              they mean the same thing. In real life, the distinction matters.
+              The authority, paperwork, decision-maker, violation process, and
+              person who can approve exceptions may be different.
             </p>
 
             <p>
-              Registry-related crises can become dangerous very quickly because
-              shame, fear, public exposure, supervision pressure, family loss,
-              and legal uncertainty can all hit at the same time. A person may
-              feel like there is no future before they have had time to talk to
-              anyone qualified to help.
+              Probation usually means a court allowed someone to serve all or
+              part of a sentence in the community instead of jail or prison.
+              Parole usually means someone was released from prison before the
+              full sentence ended and is supervised by a parole agency or parole
+              board. Federal supervised release usually starts after a federal
+              prison sentence; it is not the same as federal parole. Pretrial
+              release happens before conviction or final case outcome.
+            </p>
+
+            <p>
+              Treatment rules and registry duties may run alongside supervision,
+              but they are not automatically the same thing. A treatment provider
+              may have group rules, device rules, safety-plan rules, payment
+              rules, or discharge rules. A registry office may have separate
+              deadlines for address, employment, school, vehicle, identifier, or
+              travel reporting.
             </p>
           </GuideProse>
 
-          <GuideCallout tone="urgent" icon="☎️" title="Use emergency help when safety cannot be maintained">
+          <GuideCallout
+            tone="legal"
+            icon="⚖️"
+            title="The practical rule"
+          >
             <p>
-              Call 911 or go to an emergency room if there is an attempt in
-              progress, a weapon or lethal means is present, someone is
-              medically unsafe, someone is intoxicated and unstable, someone is
-              violent, or no responsible person can stay with the person in
-              crisis.
+              Permission from one system may not satisfy another system. Your
+              officer might approve travel, but the registry office may still
+              require notice. The registry office might accept an address update,
+              but your officer may still need to approve where you live. A
+              treatment provider might allow something, but your court conditions
+              may still forbid it.
             </p>
           </GuideCallout>
-
-          <DoDontJudgment
-            dos={[
-              "Call or text 988 when someone is suicidal, overwhelmed, afraid of being alone, or not sure they can stay safe.",
-              "Use 911 or an emergency room when there is immediate physical danger or medical risk.",
-              "Remove or separate the person from lethal means until the crisis window passes.",
-              "Keep the person near another responsible person whenever possible.",
-            ]}
-            donts={[
-              "Do not leave a suicidal or dangerously panicked person alone because they promised they are fine.",
-              "Do not argue about guilt, blame, punishment, family loyalty, politics, or the registry while the person is unsafe.",
-              "Do not rely on alcohol, drugs, driving around, or isolation to get through the night.",
-              "Do not treat public exposure, arrest, release, supervision fear, or family panic as something someone should simply tough out.",
-            ]}
-            judgment={[
-              "Use 988 for crisis support and de-escalation when immediate physical danger can be managed.",
-              "Use emergency medical care when the person cannot stay physically safe, cannot communicate clearly, or may need medical monitoring.",
-              "If calling 911 creates fear because of legal status, still choose safety when someone’s life is at risk. You can use simple words: “This is a medical and mental health emergency.”",
-            ]}
-          />
-
-          <VerifyBeforeActing
-            title="Before making a legal or supervision decision tonight"
-            whoToAsk="A lawyer, supervising officer, emergency clinician, crisis counselor, or another person with actual authority — not social media, rumors, or panic."
-            whatToAsk="Ask the narrow safety question first: “What is the safest lawful step I can take tonight so no one is harmed and I do not make my legal situation worse?”"
-            whatToSave="Write down who you contacted, when, what they told you, and any appointment, instruction, or emergency-care record."
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="ten-minutes"
-          number="2"
-          title="The First 10 Minutes"
-          subtitle="When the body is flooded, make the next few minutes safer before trying to think clearly."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The first 10 minutes are about interrupting the dangerous loop. Do
-              not wait until you can explain it well. Do not wait until you feel
-              worthy of help. Do not wait until you know what to say.
-            </p>
-
-            <p>
-              A person in this situation may be thinking, “Everyone will know,”
-              “I ruined my family,” “I cannot survive prison,” “I will never
-              work again,” “My children are better off without me,” or “There is
-              no way back.” Those thoughts can feel final in the moment. They
-              are still crisis thoughts. Treat them as a signal to get help, not
-              as instructions.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="first-ten-minutes"
-            title="First 10 minutes checklist"
-            columns={1}
-            items={[
-              {
-                id: "move",
-                label:
-                  "Move away from weapons, pills, cords, cars, heights, bathrooms, garages, sheds, isolated rooms, or any place where privacy increases danger.",
-              },
-              {
-                id: "person",
-                label:
-                  "Get near another person: family member, friend, neighbor, staff member, nurse, officer, chaplain, coworker, lobby attendant, or crisis worker.",
-              },
-              {
-                id: "message",
-                label:
-                  "Send one message or make one call: “I am not safe alone right now. Please stay with me or help me contact crisis support.”",
-              },
-              {
-                id: "988",
-                label:
-                  "Call or text 988, use 988 chat, or text HOME to 741741 if talking feels impossible.",
-              },
-              {
-                id: "delay",
-                label:
-                  "Delay legal, family, money, housing, travel, confession, apology, social media, and goodbye decisions.",
-              },
-              {
-                id: "basic",
-                label:
-                  "Put both feet on the floor, drink water if safe, breathe slowly, and keep your phone charged and nearby.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="legal" icon="⚖️" title="Do not create new legal risk while spiraling">
-            <p>
-              Do not contact alleged victims, protected people, witnesses,
-              children, or anyone you are ordered not to contact. Do not post
-              explanations, threats, apologies, confessions, or arguments
-              online. Do not run, disappear, skip supervision, or make a
-              desperate travel decision. Tonight is for safety.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="timeline"
-          number="3"
-          title="Tonight, 24 Hours, and 72 Hours"
-          subtitle="A crisis plan should change as the immediate danger lowers."
-        />
-
-        <GuideSectionCard>
-          <TimelineGuidanceGrid
-            title="Use the smallest next time window"
-            stages={[
-              {
-                stage: "Right now",
-                icon: "🚨",
-                whatChanges:
-                  "The person may not be able to think clearly, judge risk, or safely be alone.",
-                whatToDo:
-                  "Create distance from lethal means, get near another person, contact 988 or emergency care, and stop all high-stakes decisions.",
-              },
-              {
-                stage: "Tonight",
-                icon: "🌙",
-                whatChanges:
-                  "The person may feel calmer for a few minutes and then spiral again, especially when alone or online.",
-                whatToDo:
-                  "Decide where the person will sleep, who will stay or check in, what items will be removed, and what online or legal decisions are postponed.",
-              },
-              {
-                stage: "Next 24 hours",
-                icon: "📅",
-                whatChanges:
-                  "The crisis may shift from immediate danger to shame, exhaustion, withdrawal, anger, or numbness.",
-                whatToDo:
-                  "Schedule follow-up care, tell one safe person the truth needed for support, document crisis contacts, and avoid social media explanations.",
-              },
-              {
-                stage: "Next 72 hours",
-                icon: "🗂️",
-                whatChanges:
-                  "The person may start facing practical fallout: housing, work, supervision, family, registration, court, custody, or media exposure.",
-                whatToDo:
-                  "Build a written safety plan, identify legal and clinical supports, make a compliance-safe task list, and keep decisions narrow.",
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="seventy-two-hour-plan"
-            title="72-hour safety plan worksheet"
-            columns={2}
-            items={[
-              {
-                id: "sleep",
-                label: "Where will I sleep tonight, and is that place safe?",
-              },
-              {
-                id: "not-alone",
-                label: "Who will stay with me or check on me at set times?",
-              },
-              {
-                id: "remove",
-                label: "What weapons, pills, cords, keys, vehicles, or other danger items need to be removed, locked, or held by someone else?",
-              },
-              {
-                id: "warning-signs",
-                label: "What are my warning signs that the crisis is coming back?",
-              },
-              {
-                id: "coping",
-                label: "What can I do for 10 minutes that does not involve another person and does not create risk?",
-              },
-              {
-                id: "safe-people",
-                label: "Which three people or places can provide distraction or support?",
-              },
-              {
-                id: "professional",
-                label: "What professional, hotline, clinic, ER, supervision contact, attorney, or support organization needs to be contacted?",
-              },
-              {
-                id: "postpone",
-                label: "What decisions am I postponing until I am safer and have advice?",
-              },
-              {
-                id: "devices",
-                label: "What device, internet, or social media access should be limited tonight?",
-              },
-              {
-                id: "next-step",
-                label: "What is the next safe step that does not require solving everything?",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-<GuideSectionHeader
-          id="registry-specific-triggers"
-          number="4"
-          title="Registry-Specific Crisis Triggers"
-          subtitle="This guide is not generic. These pressures can create a crisis that other people may not understand."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Some crises in this space are triggered by events that carry
-              intense shame, fear, and uncertainty. The person may be facing
-              real consequences, but the crisis voice often turns consequences
-              into total hopelessness.
-            </p>
-
-            <p>
-              Naming the trigger can help the helper respond to the right
-              problem. The answer is not to minimize harm or pretend everything
-              will be easy. The answer is to keep the person alive long enough
-              to face the next step with support.
-            </p>
-          </GuideProse>
 
           <OverviewCards
             columns={3}
             cards={[
               {
-                eyebrow: "Legal shock",
-                title: "Arrest, search, charge, plea, sentencing, or warrant",
-                icon: "⚖️",
+                eyebrow: "Court sentence",
+                title: "Probation",
+                icon: "🏛️",
                 tone: "legal",
                 description:
-                  "The person may believe their life is over before they have legal advice, treatment support, or a realistic plan.",
+                  "Community supervision ordered by a court, often instead of some or all incarceration. The sentencing court usually remains important.",
               },
               {
-                eyebrow: "Exposure",
-                title: "Media, registry listing, workplace discovery, or family finding out",
-                icon: "📰",
-                tone: "warning",
-                description:
-                  "Public shame can create a dangerous urge to hide, flee, self-punish, post online, or say goodbye.",
-              },
-              {
-                eyebrow: "Stability loss",
-                title: "Housing denial, job loss, relationship rupture, or child-contact loss",
-                icon: "🏚️",
-                tone: "family",
-                description:
-                  "Losing ordinary supports can make survival feel impossible even when there are still next steps.",
-              },
-              {
-                eyebrow: "Supervision panic",
-                title: "Violation fear, registration appointment panic, or rule confusion",
-                icon: "📋",
+                eyebrow: "Release from prison",
+                title: "Parole",
+                icon: "🗝️",
                 tone: "reentry",
                 description:
-                  "Fear of punishment can push people into silence, avoidance, missed appointments, or unsafe decisions.",
+                  "Community supervision after release from prison under a parole agency, parole board, or state correctional authority.",
               },
               {
-                eyebrow: "Custody / reentry",
-                title: "Jail, prison, release, halfway house, or reentry fear",
-                icon: "🚪",
-                tone: "neutral",
+                eyebrow: "Federal post-prison term",
+                title: "Supervised release",
+                icon: "📋",
+                tone: "info",
                 description:
-                  "People may need direct medical or psychological help in custody, plus a plan for safe contact and documentation.",
+                  "A federal supervision term imposed by the court and served after prison. U.S. probation officers supervise it.",
               },
               {
-                eyebrow: "Moral injury",
-                title: "Guilt, remorse, disgust, or fear of permanent identity loss",
-                icon: "🧭",
+                eyebrow: "Before conviction",
+                title: "Pretrial release",
+                icon: "⏳",
+                tone: "warning",
+                description:
+                  "Release rules while a case is still pending. Conditions may include reporting, travel limits, no-contact orders, or monitoring.",
+              },
+              {
+                eyebrow: "Program rules",
+                title: "Treatment",
+                icon: "🧠",
                 tone: "research",
                 description:
-                  "Accountability is not the same as dying. A person can face harm, treatment, repair, consequences, and change only if they survive.",
+                  "Provider rules, treatment contracts, group expectations, safety plans, assignments, payment rules, and discharge standards.",
+              },
+              {
+                eyebrow: "Separate reporting system",
+                title: "Registry duties",
+                icon: "📍",
+                tone: "urgent",
+                description:
+                  "Registration rules are separate from supervision even when they overlap. The registry agency may be a sheriff, police department, state unit, or tribal office.",
               },
             ]}
           />
 
-          <GuideCallout tone="reminder" icon="🕯️" title="A sentence this guide is built around">
+          <VerifyBeforeActing
+            title="When systems overlap, verify the authority"
+            whoToAsk={
+              <span>
+                Ask the authority that controls the specific rule: officer,
+                court clerk, attorney, treatment provider, registry office,
+                parole board, or pretrial services officer.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Which rulebook applies to this exact action? Who can approve
+                it? Is there a form, deadline, or written approval I need before
+                I act?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the written condition, agency name, person you spoke with,
+                date, time, phone number, email, form, approval, denial, and any
+                confirmation number.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="timeline"
+          number="2"
+          title="What changes over time"
+          subtitle="Supervision risk is not the same on day one, month one, routine supervision, or after a warning."
+        />
+
+        <GuideSectionCard>
+          <TimelineGuidanceGrid
+            title="A safer supervision timeline"
+            stages={[
+              {
+                stage: "First 72 hours",
+                icon: "🕒",
+                whatChanges:
+                  "Reporting deadlines, release instructions, housing approval, medication, transportation, registry instructions, and initial officer contact may all happen quickly.",
+                whatToDo:
+                  "Report as instructed, save every paper, write down names and times, confirm where you are allowed to stay, and ask before leaving the approved area.",
+              },
+              {
+                              stage: "First month",
+                icon: "🗂️",
+                whatChanges:
+                  "You may receive reporting instructions, treatment intake, employment expectations, device rules, drug testing, polygraph scheduling, registration appointments, and home visits.",
+                whatToDo:
+                  "Build your supervision folder, make a calendar, ask how to contact your officer after hours, and clarify which changes require advance approval.",
+              },
+              {
+                stage: "Routine supervision",
+                icon: "📆",
+                whatChanges:
+                  "Risk often comes from ordinary life changes: work schedule, address, phone, internet, family contact, transportation, money, treatment fees, or missed messages.",
+                whatToDo:
+                  "Keep reporting, update changes early, save proof, attend treatment, respond calmly, and do not let small confusion become silence.",
+              },
+              {
+                stage: "Before a major change",
+                icon: "🚦",
+                whatChanges:
+                  "Travel, moving, new work, new household members, device changes, online accounts, dating, school events, and contact with minors can trigger several rulebooks.",
+                whatToDo:
+                  "Ask before acting. Confirm supervision approval, registry reporting, treatment rules, court orders, and any local restrictions.",
+              },
+              {
+                stage: "After a warning or alleged violation",
+                icon: "⚠️",
+                whatChanges:
+                  "Statements, texts, deleted content, missed appointments, treatment discharge, new police contact, or angry arguments may be used later.",
+                whatToDo:
+                  "Stay reachable, preserve records, write a factual timeline, avoid arguing, and contact counsel before making detailed admissions or signing anything you do not understand.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="📝" title="Small records matter">
             <p>
-              Shame can be a warning sign, not a verdict. When shame turns into
-              danger, the next right step is not punishment. The next right step
-              is safety.
+              A dated note made the same day is often more useful than a vague
+              memory weeks later. Write down what happened while it is fresh:
+              who said what, what you asked, what answer you received, and what
+              you did next.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="scripts"
-          number="5"
-          title="Words to Use When Speaking Feels Impossible"
-          subtitle="Scripts reduce the pressure to explain everything perfectly."
+          id="high-risk"
+          number="3"
+          title="High-risk areas to verify before acting"
+          subtitle="These are the places where guessing can create supervision, treatment, registry, or court problems."
+        />
+
+        <GuideSectionCard>
+          <DoDontJudgment
+            dos={[
+              <span>
+                Read the exact written condition before relying on memory or
+                someone else’s experience.
+              </span>,
+              <span>
+                Ask for permission before travel, moving, changing jobs, changing
+                devices, adding online accounts, or changing household members.
+              </span>,
+              <span>
+                Report problems early: transportation failures, illness, job
+                changes, payment issues, missed calls, police contact, or
+                treatment conflicts.
+              </span>,
+            ]}
+            donts={[
+              <span>
+                Do not assume registry reporting is handled just because your
+                officer knows about the change.
+              </span>,
+              <span>
+                Do not delete messages, apps, accounts, browser history, or files
+                after a question, search, warning, or investigation begins.
+              </span>,
+              <span>
+                Do not contact protected people, alleged victims, witnesses,
+                children, or restricted family members unless the written rules
+                and required approvals clearly allow it.
+              </span>,
+            ]}
+            judgment={[
+              <span>
+                If a rule feels unreasonable, confusing, impossible, or in
+                conflict with another rule, document the conflict and ask counsel
+                about modification instead of silently ignoring it.
+              </span>,
+              <span>
+                If an officer gives verbal permission, follow the instruction,
+                but make a dated note and ask whether you can confirm it by text,
+                email, portal message, or written travel pass.
+              </span>,
+            ]}
+          />
+
+          <SoftDivider label="Common verification topics" />
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                title: "Travel",
+                icon: "🧳",
+                tone: "warning",
+                description:
+                  "Leaving a district, county, state, or approved area may require officer, court, parole, treatment, and registry steps.",
+              },
+              {
+                title: "Housing",
+                icon: "🏠",
+                tone: "legal",
+                description:
+                  "An address may need approval from supervision and separate registration with the registry office. Local restrictions can also matter.",
+              },
+              {
+                title: "Work",
+                icon: "🛠️",
+                tone: "info",
+                description:
+                  "Job duties, location, schedule, minors, internet use, travel, licensing, and disclosure rules may all affect approval.",
+              },
+              {
+                title: "Devices and internet",
+                icon: "💻",
+                tone: "privacy",
+                description:
+                  "Phones, tablets, smart TVs, gaming systems, social media, cloud accounts, work devices, and monitoring software can create risk.",
+              },
+              {
+                title: "Contact rules",
+                icon: "🚧",
+                tone: "urgent",
+                description:
+                  "No-contact orders, minor-contact rules, family court orders, treatment safety plans, and supervision conditions can overlap.",
+              },
+              {
+                title: "Treatment",
+                icon: "🧠",
+                tone: "research",
+                description:
+                  "Treatment attendance, assignments, payment, group behavior, polygraphs, safety plans, and discharge rules can affect supervision.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            whoToAsk={
+              <span>
+                Start with your supervising officer for supervision questions,
+                the registry office for registration questions, treatment staff
+                for program rules, and counsel for legal-risk questions.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “I am trying to avoid a violation. Before I do this, do I need
+                approval, notice, a form, a travel pass, a registry update, or
+                treatment permission?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save written approvals, screenshots, mailed forms, certified
+                mail receipts, portal confirmations, travel passes, appointment
+                cards, treatment receipts, and notes from phone calls.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="communication"
+          number="4"
+          title="Communicating with officers and treatment providers"
+          subtitle="Calm, narrow communication is usually safer than arguing, oversharing, disappearing, or guessing."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              You do not have to disclose every fact to get emergency help. You
-              can name the level of danger first. Then give only the information
-              needed for safety, medical care, supervision compliance, or legal
-              protection.
+              You do not need perfect words. You need clear words. The safest
+              communication is usually short, factual, respectful, and focused
+              on the next required step.
+            </p>
+
+            <p>
+              Do not turn every message into a legal argument. Do not confess to
+              things you do not understand. Do not threaten, insult, or debate in
+              writing. Ask the practical question, document the answer, and get
+              legal advice when the issue could become a violation.
             </p>
           </GuideProse>
 
           <ScriptBox
-            title="Person in crisis: immediate safety script"
-            tone="urgent"
-            context="Use this with 988, a family member, friend, ER, jail staff, probation officer, chaplain, or another responsible person."
-            script={`I am not safe alone right now.
-
-I am in a legal or registry-related crisis, and I am afraid I may hurt myself. I do not need to explain everything perfectly right now. I need help staying safe tonight.
-
-Please stay with me, help me move away from anything I could use to hurt myself, and help me contact crisis support or medical care.`}
-          />
-
-          <ScriptBox
-            title="Person in crisis: when you are afraid to say the issue out loud"
-            tone="privacy"
-            context="Use this when shame is blocking you from asking for help."
-            script={`I am scared to say the details out loud. The situation involves a sex-offense accusation, conviction, registry, supervision, or family crisis.
-
-I am not asking you to solve the legal issue tonight. I am asking for help staying alive and not making the situation worse.`}
-          />
-
-          <ScriptBox
-            title="Family or supporter: tonight is about survival"
-            tone="family"
-            context="Use this if you are angry, shocked, or scared but someone may not be safe."
-            script={`Tonight is about staying alive. We are not going to solve the whole truth, the case, the registry, the family situation, or the future tonight.
-
-I need you to move away from anything dangerous. I am going to stay nearby or get someone safe to stay with you. We can call or text 988 together. We will deal with the rest after you are safe.`}
-          />
-
-          <ScriptBox
-            title="Custody, jail, prison, or facility script"
-            tone="legal"
-            context="Use the clearest possible medical language. If the person is incarcerated or detained, ask staff to document the request."
-            script={`I need mental health or medical help now.
-
-I am having suicidal thoughts or I am afraid I may harm myself. I need to be seen by psychology, medical, crisis staff, or a supervisor immediately.
-
-Please document that I asked for emergency mental health help.`}
-          />
-
-          <ScriptBox
-            title="Clinical disclosure script"
+            title="Ask your officer for clarification"
             tone="neutral"
-            context="Use with a therapist, crisis clinician, doctor, or intake worker when the situation involves registry stress or sex-offense-related shame."
-            script={`I need help with a crisis connected to a sex-offense accusation, conviction, registry status, supervision, reentry, or public exposure.
-
-I am worried that shame and fear are becoming dangerous. I need help making a safety plan, reducing access to lethal means, and deciding what follow-up care is needed.`}
+            context="Use this when you are unsure what a condition requires."
+            script={`Hello [Officer Name], I am trying to make sure I follow my conditions correctly.\n\nMy question is: [short question].\n\nWhich condition or instruction controls this, and do I need written approval before I act?\n\nThank you. I am saving this with my supervision records.`}
           />
+
+          <ScriptBox
+            title="Ask for written confirmation after verbal permission"
+            tone="legal"
+            context="Use this after a phone call or office conversation where you received an instruction or approval."
+            script={`Hello [Officer Name], thank you for speaking with me today.\n\nMy notes say you told me: [short summary of instruction or approval].\n\nI plan to follow that instruction unless I hear otherwise. Could you please confirm whether my notes are accurate?\n\nThank you.`}
+          />
+
+          <ScriptBox
+            title="Report a problem before it becomes silence"
+            tone="warning"
+            context="Use this when transportation, illness, work, money, or an emergency affects an appointment or requirement."
+            script={`Hello [Officer/Treatment Provider], I need to report a problem right away.\n\n[Briefly describe the problem: transportation failed, illness, work schedule, family emergency, payment issue, etc.]\n\nI am not trying to miss or avoid the requirement. What is the next step you want me to take, and how should I document it?`}
+          />
+
+          <ScriptBox
+            title="Ask a registry office a narrow question"
+            tone="urgent"
+            context="Use this when a move, job, school, vehicle, online identifier, travel, or temporary stay may trigger registry reporting."
+            script={`Hello, my name is [Name]. I am trying to understand my registration duties before I act.\n\nThe situation is: [short description].\n\nDo I need to report this in person, by phone, online, or with a form? What is the deadline, and can I get a receipt or written confirmation after I report it?`}
+          />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Assume messages may be saved">
+            <p>
+              Texts, emails, portal messages, voicemails, screenshots, and
+              treatment notes may later matter. Write like a judge, officer,
+              attorney, or hearing officer could read the message out loud.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="family-response"
+          id="documents"
+          number="5"
+          title="Build a supervision folder"
+          subtitle="Documentation turns confusion into a record. It also helps attorneys, family, officers, and treatment providers understand what happened."
+        />
+
+        <GuideSectionCard>
+          <DocumentPacket
+            title="Documents and proof to save"
+            intro={
+              <span>
+                Keep a paper folder if possible. Use a digital backup only if
+                your device and internet rules allow it.
+              </span>
+            }
+            categories={[
+              {
+                title: "Core supervision papers",
+                items: [
+                  <span>Judgment, sentencing order, release papers, bond order, or parole certificate.</span>,
+                  <span>Standard and special conditions of supervision.</span>,
+                  <span>Officer name, phone number, email, office address, after-hours instructions, and reporting method.</span>,
+                  <span>Modification orders, violation paperwork, summonses, warrants, hearing notices, and attorney information.</span>,
+                ],
+              },
+              {
+                title: "Registry and treatment papers",
+                items: [
+                  <span>Registry instructions, appointment receipts, address updates, travel notices, and confirmation numbers.</span>,
+                  <span>Treatment contract, group rules, safety plan, payment records, assignments, attendance notes, and discharge warnings.</span>,
+                  <span>Polygraph appointment notices, instructions, and any written explanation of consequences for missed or incomplete testing.</span>,
+                ],
+              },
+              {
+                title: "Everyday proof",
+                items: [
+                  <span>Appointment cards, bus receipts, gas receipts, paystubs, work schedules, medical notes, prescription records, and proof of job search.</span>,
+                  <span>Copies of emails, texts, portal messages, letters, certified mail receipts, screenshots, and written approvals.</span>,
+                  <span>A dated call log with who you called, when you called, what number you used, who answered, and what they said.</span>,
+                ],
+              },
+              {
+                title: "Searches, warnings, and disputes",
+                items: [
+                  <span>Search date, time, officers present, areas searched, items taken, receipts, device names, passwords requested, and witnesses.</span>,
+                  <span>Warnings, alleged violations, missed appointments, treatment conflicts, failed tests, police contact, or emergency events.</span>,
+                  <span>Your own factual timeline written as soon as possible, without guesses, insults, or legal conclusions.</span>,
+                ],
+              },
+            ]}
+          />
+
+          <GuideCallout tone="info" icon="✍️" title="Use facts, not arguments">
+            <p>
+              A good note says: “June 4, 2:15 p.m., called registry office,
+              spoke with Ms. R., asked about temporary work in County B, was told
+              to appear in person within [deadline].” A weaker note says:
+              “They said I was fine.” Details matter.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="searches"
           number="6"
-          title="Family and Supporter Response"
-          subtitle="You can help without minimizing harm, interrogating the person, or trying to solve everything tonight."
+          title="Searches, devices, and home visits"
+          subtitle="Search rules are highly condition-specific. Do not rely on generic advice."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some people under supervision have search conditions. Some do not.
+              Some search conditions apply to a person, home, vehicle, papers,
+              computers, phones, online accounts, or other property. Some
+              require reasonable suspicion. Some are broader. The words in your
+              actual condition matter.
+            </p>
+
+            <p>
+              If officers arrive for a visit or search, the safest immediate
+              posture is usually to stay calm, avoid physical resistance, avoid
+              arguing in the doorway, and document what happened afterward. That
+              does not mean every search is lawful or that you give up legal
+              arguments. It means you preserve safety first and legal arguments
+              through counsel.
+            </p>
+          </GuideProse>
+
+          <DoDontJudgment
+            dos={[
+              <span>Read your exact search condition before there is a dispute.</span>,
+              <span>Keep required devices, apps, accounts, and monitoring software available as instructed.</span>,
+              <span>Ask calmly what authority or condition the search is based on if it is safe to ask.</span>,
+              <span>Write down what happened immediately afterward and contact counsel if there is a dispute.</span>,
+            ]}
+            donts={[
+              <span>Do not physically block, threaten, grab, delete, destroy, hide, or run.</span>,
+              <span>Do not invite unnecessary conflict by arguing about constitutional law in the moment.</span>,
+              <span>Do not assume a roommate, spouse, child, or guest understands what your conditions allow.</span>,
+            ]}
+            judgment={[
+              <span>
+                If a device belongs to an employer, family member, child, or
+                roommate, ask counsel and your officer in advance how to handle
+                access, monitoring, and privacy boundaries.
+              </span>,
+              <span>
+                If you are required to disclose passwords or accounts, ask for
+                the instruction in writing and keep a list only in a way that
+                complies with your monitoring and privacy rules.
+              </span>,
+            ]}
+          />
+
+          <GuideCallout tone="family" icon="👪" title="For households">
+            <p>
+              Families should not hide devices, create secret accounts, route
+              internet access around monitoring, or become the person’s private
+              workaround. If a household device, child’s device, work laptop, or
+              shared account could create risk, ask for rules in writing before
+              using it.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="treatment"
+          number="7"
+          title="Treatment rules and discharge risk"
+          subtitle="Treatment may be supportive, stressful, expensive, confusing, or all of those at once. It can also affect supervision."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sex-offense-specific treatment often has rules beyond ordinary
+              counseling: attendance, assignments, group behavior, payment,
+              safety plans, contact rules, disclosure exercises, polygraphs,
+              device restrictions, and provider communication with supervision.
+            </p>
+
+            <p>
+              Treatment rules are not automatically criminal laws, but they can
+              become supervision problems if your conditions require treatment,
+              require truthful participation, require payment efforts, or require
+              compliance with provider rules. Discharge, suspension, refusal to
+              participate, or missed treatment can carry serious consequences.
+            </p>
+          </GuideProse>
+
+          <VerifyBeforeActing
+            title="Before changing anything about treatment"
+            whoToAsk={
+              <span>
+                Ask the treatment provider about program rules and your
+                supervising officer or attorney about supervision consequences.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “If I miss, pause, change providers, cannot pay, disagree with a
+                rule, or am at risk of discharge, what happens next and who is
+                notified?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save attendance records, payment receipts, appointment notices,
+                assignments submitted, warning letters, discharge notices, and
+                written instructions about how to return to compliance.
+              </span>
+            }
+          />
+
+          <ScriptBox
+                        title="Ask treatment about a rule"
+            tone="research"
+            context="Use this when a treatment rule is unclear or appears to conflict with supervision, family needs, work, or registry duties."
+            script={`Hello [Provider Name], I want to make sure I understand the treatment rule correctly.\n\nThe rule I am asking about is: [rule].\n\nWhat exactly am I required to do, what is the deadline, and what happens if there is a conflict with work, family, registry reporting, or supervision instructions?`}
+          />
+
+          <GuideCallout tone="warning" icon="⚠️" title="Do not wait until discharge">
+            <p>
+              If money, transportation, work, illness, language access, disability,
+              or family responsibilities are interfering with treatment, report
+              the problem early and document your effort to solve it. Silence can
+              look like refusal even when the real problem is logistics.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="violations"
+          number="8"
+          title="Warnings, alleged violations, and what to do next"
+          subtitle="A warning is a moment to slow down, preserve records, and get advice — not a moment to panic or disappear."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Violations can involve new arrests, missed reporting, failed tests,
+              unapproved travel, contact violations, treatment problems,
+              possession of prohibited items, registry failures, dishonest
+              answers, or other conduct that conflicts with conditions.
+            </p>
+
+            <p>
+              Some violations are called “technical” because they involve
+              breaking supervision rules rather than committing a new crime.
+              Technical does not always mean minor. Missed treatment, failure to
+              report, or contraband can still lead to serious consequences.
+            </p>
+
+            <p>
+              If you are accused of a violation, do not rely only on your memory
+              or your feelings about fairness. Build a factual timeline, preserve
+              records, stay reachable, and talk to counsel before making detailed
+              admissions, signing statements, waiving hearings, or agreeing to
+              consequences you do not understand.
+            </p>
+          </GuideProse>
+
+          <CommonMistakes
+            title="Common violation traps"
+            mistakes={[
+              {
+                mistake: "Waiting because you are embarrassed or afraid.",
+                whyItMatters:
+                  "Late reporting can turn a fixable problem into a larger compliance issue.",
+                betterMove:
+                  "Report the problem early, keep the message short, and ask what step will bring you back into compliance.",
+              },
+              {
+                mistake: "Assuming verbal permission is enough forever.",
+                whyItMatters:
+                  "People remember conversations differently, and officers can change.",
+                betterMove:
+                  "Make a dated note and ask for written confirmation when the issue matters.",
+              },
+              {
+                mistake: "Deleting messages, apps, files, accounts, or browser history.",
+                whyItMatters:
+                  "Deletion can be treated as suspicious or as a separate problem, especially with device or monitoring conditions.",
+                betterMove:
+                  "Stop, preserve what exists, and ask counsel before changing anything.",
+              },
+              {
+                mistake: "Using another person’s supervision rules as your guide.",
+                whyItMatters:
+                  "Conditions can differ by case, court, officer, risk assessment, treatment provider, state, and registry agency.",
+                betterMove:
+                  "Read your own conditions and verify your own rule with the authority that controls it.",
+              },
+              {
+                mistake: "Arguing in the moment instead of documenting.",
+                whyItMatters:
+                  "Anger can create new allegations and distract from the real issue.",
+                betterMove:
+                  "Stay calm, comply with immediate safety instructions, write down what happened, and raise disputes through counsel or the proper process.",
+              },
+              {
+                mistake: "Treating registry reporting as part of probation only.",
+                whyItMatters:
+                  "Registry duties are usually separate and may be administered by a different law-enforcement agency.",
+                betterMove:
+                  "Ask the registry office directly about deadlines, forms, in-person reporting, and receipts.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="urgent" icon="🚨" title="Get legal help quickly when risk is serious">
+            <p>
+              Contact counsel or legal aid as soon as possible if there is a new
+              arrest, alleged violation, warrant, summons, search dispute,
+              treatment discharge, failed polygraph, police contact, registry
+              failure, or pressure to sign something you do not understand.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="supporters"
+          number="9"
+          title="Family and supporter guidance"
+          subtitle="Supporters can help a lot, but they should not become the rule interpreter, secret workaround, or messenger for everything."
         />
 
         <GuideSectionCard>
           <RoleGuidanceGrid
-            title="What each person can do"
+            title="How different people can help"
             roles={[
               {
-                role: "Person in crisis",
+                role: "Person under supervision",
                 icon: "🧍",
                 guidance:
-                  "Say the danger plainly, move near another person, use 988 or emergency care, and postpone decisions that can wait. You do not have to earn help by explaining everything perfectly.",
+                  "Keep the folder, ask narrow questions, stay reachable, report changes early, and do not let shame turn into silence.",
               },
               {
-                role: "Family member or loved one",
-                icon: "🏠",
+                role: "Spouse, partner, or close family",
+                icon: "🏡",
                 guidance:
-                  "Stay calm enough to reduce danger. Remove or secure lethal means, stay physically present if safe, avoid interrogation, and get another responsible person or crisis service involved.",
+                  "Help with calendars, transportation, copies, receipts, and calm reminders. Do not hide devices, route around monitoring, or speak for the person without permission.",
               },
               {
-                role: "Friend, advocate, or reentry helper",
+                role: "Parent or adult child",
+                icon: "👪",
+                guidance:
+                  "Support stability without guessing about contact rules. If minors, school events, family gatherings, or caregiving are involved, verify first.",
+              },
+              {
+                role: "Reentry helper or advocate",
                 icon: "🤝",
                 guidance:
-                  "Focus on immediate safety, not debate. Help the person make calls, write down instructions, avoid social media, and connect with longer-term help after the dangerous window passes.",
+                  "Help the person prepare questions, organize documents, find legal aid, and identify conflicts between housing, work, treatment, registry, and supervision rules.",
               },
               {
-                role: "Person under supervision or in custody",
-                icon: "📋",
+                role: "Attorney or legal worker",
+                icon: "⚖️",
                 guidance:
-                  "Use direct safety language. Ask for medical, mental health, crisis, or supervisory help. Document who was told, when, and what response was given.",
+                  "Clarify which authority controls, whether modification is possible, what the violation process looks like, and what the person should avoid saying or signing.",
               },
             ]}
           />
 
-          <GuideCallout tone="family" icon="🫶" title="For families: two things can be true">
+          <GuideCallout tone="family" icon="💬" title="A safer supporter sentence">
             <p>
-              You may be devastated, angry, afraid, betrayed, or unsure what you
-              believe. And if someone may not be safe, tonight’s job is to keep
-              them alive, reduce access to danger, and involve appropriate help.
-              Survival is not the same as excusing harm.
+              “I can help you organize the papers and remember deadlines, but I
+              cannot guess what your officer, treatment provider, court, or
+              registry office requires. Let’s ask the right office and save the
+              answer.”
             </p>
           </GuideCallout>
-
-          <CommonMistakes
-            title="Responses that can make the crisis worse"
-            mistakes={[
-              {
-                mistake: "Demanding a full confession, timeline, apology, or explanation while the person is unsafe.",
-                whyItMatters:
-                  "A crisis brain may hear interrogation as proof that there is no way back.",
-                betterMove:
-                  "Say: “We will deal with the facts later. Right now I need you alive and away from danger.”",
-              },
-              {
-                mistake: "Leaving the person alone because they became quiet.",
-                whyItMatters:
-                  "Quiet can mean calmer, but it can also mean the person has stopped reaching out.",
-                betterMove:
-                  "Stay nearby, arrange a check-in, call 988 together, or use emergency care if safety cannot be maintained.",
-              },
-              {
-                mistake: "Taking phones, keys, or medication in a way that escalates conflict or creates a fight.",
-                whyItMatters:
-                  "Reducing access to danger matters, but it should be done as calmly and safely as possible.",
-                betterMove:
-                  "Ask for voluntary handoff, move dangerous items out of reach, involve another adult, or use emergency help if needed.",
-              },
-              {
-                mistake: "Trying to solve legal strategy, custody, employment, housing, and family decisions tonight.",
-                whyItMatters:
-                  "Big decisions made during panic can create legal, relational, and safety harm.",
-                betterMove:
-                  "Write the decision down and mark it: “Not tonight. Revisit after sleep, safety, and advice.”",
-              },
-            ]}
-          />
         </GuideSectionCard>
 
-<GuideSectionHeader
-          id="after-crisis"
-          number="7"
-          title="After the Immediate Crisis"
-          subtitle="When the danger is lower, shift from survival to a written plan and careful follow-up."
+        <GuideSectionHeader
+          id="offline"
+          number="10"
+          title="Offline and limited-access options"
+          subtitle="Many people under supervision have limited internet, no printer, monitored devices, transportation barriers, or unstable housing."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A crisis passing does not mean the underlying problem is gone. It
-              means there is enough room to plan. This is when a written safety
-              plan, follow-up care, support contacts, legal advice, supervision
-              communication, and practical documentation become important.
-            </p>
-
-            <p>
-              Keep the next steps narrow. The goal is not to fix an entire life
-              in 72 hours. The goal is to make the next few days safer, reduce
-              isolation, avoid preventable violations or legal mistakes, and
-              connect to help that can continue.
-            </p>
-          </GuideProse>
-
-          <DocumentPacket
-            title="Crisis follow-up packet"
-            intro="Save enough information that you do not have to reconstruct the crisis from memory later."
-            categories={[
-              {
-                title: "Safety and medical notes",
-                items: [
-                  "Date and approximate time the crisis began.",
-                  "Warning signs that showed the crisis was escalating.",
-                  "Whether 988, Crisis Text Line, ER, 911, jail medical, or another crisis service was contacted.",
-                  "Any discharge instructions, safety plan, medication changes, or follow-up appointments.",
-                ],
-              },
-              {
-                title: "Support contacts",
-                items: [
-                  "Names and numbers for people who agreed to check in.",
-                  "The safest place to sleep for the next night or two.",
-                  "Any person holding or securing lethal means, keys, medications, or other danger items.",
-                ],
-              },
-              {
-                title: "Legal, supervision, or reentry notes",
-                items: [
-                  "Any missed or upcoming court, supervision, treatment, registration, or housing deadlines.",
-                  "Any instruction received from a lawyer, supervising officer, facility staff, or registering agency.",
-                  "Questions to ask before contacting protected people, moving, traveling, posting online, or changing residence.",
-                ],
-              },
-            ]}
-          />
-
           <OfflineOptions
-            title="If internet, phones, privacy, or supervision rules make this harder"
-            icon="📵"
-            note="Use the safest available communication method. If someone is in immediate danger, emergency safety comes first."
+            title="If internet access, printing, or transportation is limited"
+            icon="📞"
             items={[
-              "Ask a trusted person to print this guide, the SAMHSA safety plan, or the VA/DOD safety-plan worksheet.",
-              "Use a landline, facility phone, clinic phone, library phone, or supervised call if personal device use is restricted.",
-              "Write the safety plan on paper: warning signs, safe people, safe places, crisis numbers, and what needs to be removed.",
-              "If incarcerated or in a facility, use direct medical language: “I am suicidal” or “I am afraid I may harm myself.” Ask staff to document the request.",
-              "If online access is restricted by supervision, ask a lawyer, officer, clinician, or trusted helper how to access crisis support without violating a device or internet rule.",
+              <span>
+                Ask officers, treatment providers, and registry offices for paper
+                forms, mailed instructions, appointment cards, and written
+                receipts.
+              </span>,
+              <span>
+                Keep a small notebook with dates, times, names, phone numbers,
+                instructions, attempted calls, voicemails, and confirmation
+                numbers.
+              </span>,
+              <span>
+                Use a trusted helper to print public forms only if your
+                conditions allow it and the helper is not helping you hide,
+                bypass, or access prohibited content.
+              </span>,
+              <span>
+                If you cannot submit an online report, ask whether mail, office
+                drop-off, phone reporting, or another approved method is allowed.
+              </span>,
+              <span>
+                If transportation fails, document the failure: bus cancellation,
+                ride no-show, repair receipt, medical issue, work conflict, or
+                weather emergency.
+              </span>,
+              <span>
+                Store copies in more than one safe place if possible: paper
+                folder, trusted person, attorney, or approved digital storage.
+              </span>,
             ]}
+            note={
+              <span>
+                Do not use a public computer, library computer, or helper’s
+                device for anything your conditions forbid. Access limits still
+                apply when the device belongs to someone else.
+              </span>
+            }
           />
 
-          <GuideCallout tone="privacy" icon="🔒" title="Share enough to stay safe, not everything with everyone">
+          <GuideCallout tone="reentry" icon="🧭" title="Phone-only is still workable">
             <p>
-              A crisis does not require public disclosure. Share the information
-              needed for safety, treatment, supervision compliance, and legal
-              advice. Avoid social media explanations, public apologies,
-              arguments, or messages to people you may be prohibited from
-              contacting.
+              A phone-only system can still produce records. Use voicemail logs,
+              call screenshots if allowed, mailed letters, certified mail,
+              appointment cards, paper receipts, and handwritten notes. The goal
+              is not perfect technology. The goal is proof of effort and clear
+              communication.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="resources"
-          number="8"
-          title="Immediate Off-Ramps and Follow-Up Tools"
-          subtitle="This is not a directory. These are the core links that support the survival protocol."
+          number="11"
+          title="Resources and next steps"
+          subtitle="Use official sources as starting points, then verify the rule that applies to your case and location."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Use now if someone may not be safe"
-            description="Choose the fastest safe channel. In immediate physical danger, use emergency care."
-            resources={immediateCrisisResources}
+            title="Official resources and help"
+            description={
+              <span>
+                These links are starting points. They do not replace your court
+                order, parole certificate, officer instructions, treatment
+                contract, registry office, or legal advice.
+              </span>
+            }
+            resources={resourceLinks}
           />
 
-          <ResourceLinkGrid
-            title="Use after the danger is lower"
-            description="These tools help with written safety planning, treatment lookup, and legal-aid lookup after the immediate crisis has been stabilized."
-            resources={followUpResources}
-          />
+          <SoftDivider />
 
           <RelatedGuides
             guides={[
               {
-                title: "Mental Health & Support Directory",
+                title: "Reentry Checklist",
                 description:
-                  "Use this after the immediate crisis passes to look for crisis links, treatment locators, peer and family support organizations, clinical directories, and legal referral tools.",
-                to: "/resources/mental-health-directory",
+                  "Helps organize housing, identification, benefits, health care, employment, supervision, and family logistics after release.",
+                to: "/resources/reentry-checklist",
+              },
+              {
+                title: "Interstate Moving Guide",
+                description:
+                  "Useful before moving or staying across state lines, especially when supervision approval and registry reporting may both apply.",
+                to: "/resources/interstate-moving-guide",
+              },
+              {
+                title: "International Travel Guide",
+                description:
+                  "Use before any international travel discussion, especially where registry notification and supervision approval may overlap.",
+                to: "/resources/international-travel-guide",
               },
               {
                 title: "Housing Search Guide",
                 description:
-                  "Use this when housing instability is part of the crisis and the immediate safety danger has passed.",
+                  "Helps evaluate addresses, document answers, and communicate with landlords while managing registry and supervision risk.",
                 to: "/resources/housing-search-guide",
               },
               {
-                title: "Reentry Planning Guide",
+                title: "Your Rights at Every Stage",
                 description:
-                  "Use this when release, supervision, documentation, and early reentry steps are part of the crisis picture.",
-                to: "/resources/reentry-planning-guide",
+                  "Use when a supervision issue becomes a legal dispute, search issue, new investigation, or violation allegation.",
+                to: "/resources/know-your-rights",
               },
             ]}
           />
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="sources"
-          number="9"
-          title="Sources and Verification"
-          subtitle="The guide translates accepted crisis-planning practices into registry-specific survival steps."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              This guide is not clinical care, legal advice, or a substitute for
-              emergency services. It is a practical survival protocol based on
-              widely used crisis practices: connect to crisis support, reduce
-              access to lethal means, avoid isolation, make a written safety
-              plan, and use emergency care when physical safety cannot be
-              maintained.
-            </p>
-
-            <p>
-              Source links were live-checked on {lastChecked}. Crisis-service
-              availability, webpages, and local emergency procedures can change,
-              so verify links and phone numbers before publication.
-            </p>
-          </GuideProse>
+          <SoftDivider />
 
           <SourceList
-            note="Core sources used for crisis access, safety planning, lethal-means safety, emergency escalation, and after-crisis treatment/legal lookup."
+            title="Sources & verification"
+            note={
+              <span>
+                Source links were live-checked on {lastChecked}. Supervision,
+                registry, treatment, and court rules can change by jurisdiction
+                and by case, so verify before relying on any general guide.
+              </span>
+            }
             sources={sourceLinks}
           />
         </GuideSectionCard>
