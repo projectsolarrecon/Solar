@@ -25,94 +25,124 @@ import {
 
 const lastChecked = "June 28, 2026";
 
-const sourceLinks = [
+const sourceLinks = {
+  conditionsOverview:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
+  authority:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-1-authority-probation-and-supervised-release-conditions",
+  standardConditions:
+    "https://www.uscourts.gov/appendix-standard-condition-language-probation-and-supervised-release-conditions",
+  travel:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-2-leaving-judicial-district-probation-and-supervised",
+  search:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-search-and-seizure-probation-and-supervised-release",
+  association:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-association-and-contact-restrictions-probation-and",
+  revocations:
+    "https://www.uscourts.gov/data-news/judiciary-news/2022/06/14/just-facts-revocations-failure-comply-supervision-conditions-and-sentencing-outcomes",
+  probationPretrial:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
+  pretrial:
+    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
+  distinctions:
+    "https://www.sdd.uscourts.gov/content/what-difference-between-probation-parole-and-supervised-release",
+  sorna:
+    "https://smart.ojp.gov/sorna",
+  smartFaq:
+    "https://smart.ojp.gov/faqs",
+  nsopw: "https://www.nsopw.gov/",
+  bopNotice: "https://www.bop.gov/policy/forms/BP_A0648.pdf",
+  legalAid: "https://www.usa.gov/legal-aid",
+};
+
+const sourceList = [
   {
     label: "U.S. Courts — Overview of Probation and Supervised Release Conditions",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
+    href: sourceLinks.conditionsOverview,
     description:
       "Supports the guide’s framing that supervision conditions set the parameters of federal probation and supervised release and are used by probation officers to monitor compliance.",
   },
   {
     label: "U.S. Courts — Authority for Probation and Supervised Release Conditions",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-1-authority-probation-and-supervised-release-conditions",
+    href: sourceLinks.authority,
     description:
       "Supports the distinction between court authority, sentencing conditions, and officer implementation in federal probation and supervised release.",
   },
   {
     label: "U.S. Courts — Standard Condition Language",
-    href: "https://www.uscourts.gov/appendix-standard-condition-language-probation-and-supervised-release-conditions",
+    href: sourceLinks.standardConditions,
     description:
       "Supports examples of standard federal supervision topics, including reporting, travel, employment, officer visits, truthful answers, and related conditions.",
   },
   {
     label: "U.S. Courts — Leaving the Judicial District",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-2-leaving-judicial-district-probation-and-supervised",
+    href: sourceLinks.travel,
     description:
       "Supports the travel-permission warning that leaving an approved district may require advance permission from the court or probation officer.",
   },
   {
     label: "U.S. Courts — Search and Seizure Condition",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-search-and-seizure-probation-and-supervised-release",
+    href: sourceLinks.search,
     description:
       "Supports careful language about federal search conditions, reasonable suspicion, reasonable time, and reasonable manner when that condition applies.",
   },
   {
     label: "U.S. Courts — Association and Contact Restrictions",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-association-and-contact-restrictions-probation-and",
+    href: sourceLinks.association,
     description:
       "Supports the guide’s warning that contact restrictions may apply to victims, minors, co-defendants, or other people connected to case-specific risk factors.",
   },
   {
     label: "U.S. Courts — Revocations for Failure to Comply with Supervision Conditions",
-    href: "https://www.uscourts.gov/data-news/judiciary-news/2022/06/14/just-facts-revocations-failure-comply-supervision-conditions-and-sentencing-outcomes",
+    href: sourceLinks.revocations,
     description:
       "Supports the explanation that technical violations can include conduct such as failure to report, failed drug testing, treatment refusal, or possession of contraband.",
   },
   {
     label: "U.S. Courts — Probation and Pretrial Services",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
+    href: sourceLinks.probationPretrial,
     description:
       "Supports the guide’s general description of federal probation and pretrial services officers as court personnel who investigate and supervise people charged with or convicted of federal crimes.",
   },
   {
     label: "U.S. Courts — Pretrial Services",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
+    href: sourceLinks.pretrial,
     description:
       "Supports the plain-language distinction between pretrial supervision and post-conviction supervision.",
   },
   {
     label: "U.S. District Court, District of South Dakota — Probation, Parole, and Supervised Release",
-    href: "https://www.sdd.uscourts.gov/content/what-difference-between-probation-parole-and-supervised-release",
+    href: sourceLinks.distinctions,
     description:
       "Supports the short distinction between probation, parole, and supervised release.",
   },
   {
     label: "DOJ SMART Office — SORNA",
-    href: "https://smart.ojp.gov/sorna",
+    href: sourceLinks.sorna,
     description:
       "Supports the guide’s explanation that SORNA sets minimum national standards for sex offender registration and notification.",
   },
   {
     label: "DOJ SMART Office — Registration FAQs",
-    href: "https://smart.ojp.gov/faqs",
+    href: sourceLinks.smartFaq,
     description:
       "Supports the statement that SORNA requires registration and keeping registration current in each jurisdiction where a person lives, works, or goes to school.",
   },
   {
     label: "Dru Sjodin National Sex Offender Public Website",
-    href: "https://www.nsopw.gov/",
+    href: sourceLinks.nsopw,
     description:
       "Supports the guide’s description of NSOPW as a DOJ-linked national search portal that draws from state, territorial, and tribal registry systems.",
   },
   {
     label: "Bureau of Prisons — Sex Offender Registration and Treatment Notification Form",
-    href: "https://www.bop.gov/policy/forms/BP_A0648.pdf",
+    href: sourceLinks.bopNotice,
     description:
       "Supports the guide’s warning that people leaving federal custody may receive registration-related notice before release, but local registration agencies still control local reporting steps.",
   },
   {
     label: "USA.gov — Find Legal Aid",
-    href: "https://www.usa.gov/legal-aid",
+    href: sourceLinks.legalAid,
     description:
       "Supports the legal-help resource link for people who need free or low-cost legal assistance.",
   },
@@ -121,7 +151,7 @@ const sourceLinks = [
 const resourceLinks = [
   {
     label: "U.S. Courts supervision condition overview",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
+    href: sourceLinks.conditionsOverview,
     badge: "Official",
     description:
       "Federal overview of probation and supervised release conditions, including standard and special conditions.",
@@ -135,26 +165,29 @@ const resourceLinks = [
   },
   {
     label: "DOJ SMART Office registration FAQs",
-    href: "https://smart.ojp.gov/faqs",
+    href: sourceLinks.smartFaq,
     badge: "Official",
     description:
       "Federal FAQ explaining general SORNA registration concepts. Your state, local, tribal, or territorial registry office may still have additional rules.",
   },
   {
     label: "NSOPW national registry portal",
-    href: "https://www.nsopw.gov/",
+    href: sourceLinks.nsopw,
     badge: "DOJ",
     description:
       "National public search portal that pulls from state, territorial, and tribal registry systems. It is not a substitute for asking your registry office about your own duties.",
   },
   {
     label: "USA.gov legal aid finder",
-    href: "https://www.usa.gov/legal-aid",
+    href: sourceLinks.legalAid,
     badge: "Legal help",
     description:
       "Starting point for finding free or low-cost legal help if you need advice about a violation, modification, travel, housing, or registration problem.",
   },
 ];
+
+const linkClass =
+  "font-semibold text-slate-900 underline decoration-slate-400 underline-offset-4 hover:text-slate-700";
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -289,39 +322,74 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
+          <GuideCallout
+            tone="legal"
+            icon="⚖️"
+            title="Core idea: separate rulebooks can all apply at once"
+          >
+            <p>
+              <strong>Registry is separate.</strong> Supervision, registry,
+              treatment, court orders, and parole-board instructions may all
+              create obligations. One office knowing about a change does not
+              always mean every other office has received the notice it requires.
+            </p>
+          </GuideCallout>
+
           <GuideProse>
             <p>
               People often use “probation,” “parole,” and “supervision” as if
               they mean the same thing. In real life, the distinction matters.
               The authority, paperwork, decision-maker, violation process, and
-              person who can approve exceptions may be different.
+              person who can approve exceptions may be different. A federal court
+              has a useful plain-language summary of{" "}
+              <a
+                href={sourceLinks.distinctions}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                the difference between probation, parole, and supervised release
+              </a>
+              .
             </p>
 
             <p>
-              Probation usually means a court allowed someone to serve all or
-              part of a sentence in the community instead of jail or prison.
-              Parole usually means someone was released from prison before the
-              full sentence ended and is supervised by a parole agency or parole
-              board. Federal supervised release usually starts after a federal
-              prison sentence; it is not the same as federal parole. Pretrial
-              release happens before conviction or final case outcome.
+              <strong>Probation</strong> usually means a court allowed someone to
+              serve all or part of a sentence in the community instead of jail or
+              prison. <strong>Parole</strong> usually means someone was released
+              from prison before the full sentence ended and is supervised by a
+              parole agency or parole board. <strong>Federal supervised release</strong>{" "}
+              usually starts after a federal prison sentence; it is not the same
+              as federal parole. <strong>Pretrial release</strong> happens before
+              conviction or final case outcome.
             </p>
 
             <p>
               Treatment rules and registry duties may run alongside supervision,
-              but they are not automatically the same thing. A treatment provider
-              may have group rules, device rules, safety-plan rules, payment
-              rules, or discharge rules. A registry office may have separate
-              deadlines for address, employment, school, vehicle, identifier, or
-              travel reporting.
+              but they are not automatically the same thing. The{" "}
+              <a
+                href={sourceLinks.conditionsOverview}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                U.S. Courts’ federal supervision condition overview
+              </a>{" "}
+              explains how conditions shape federal supervision. The{" "}
+              <a
+                href={sourceLinks.smartFaq}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                DOJ SMART Office registration FAQs
+              </a>{" "}
+              explain registration duties at a national-framework level. Those
+              are related systems, not one single rulebook.
             </p>
           </GuideProse>
 
-          <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="The practical rule"
-          >
+          <GuideCallout tone="warning" icon="🚦" title="The practical rule">
             <p>
               Permission from one system may not satisfy another system. Your
               officer might approve travel, but the registry office may still
@@ -386,7 +454,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             ]}
           />
 
-          <VerifyBeforeActing
+                    <VerifyBeforeActing
             title="When systems overlap, verify the authority"
             whoToAsk={
               <span>
@@ -420,6 +488,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Supervision is not just a list of rules. It is a sequence of
+              deadlines, appointments, approvals, reporting habits, treatment
+              expectations, and documentation. The first few days are usually
+              about getting oriented. Later, risk often comes from ordinary life
+              changes that nobody planned for.
+            </p>
+          </GuideProse>
+
           <TimelineGuidanceGrid
             title="A safer supervision timeline"
             stages={[
@@ -432,7 +510,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   "Report as instructed, save every paper, write down names and times, confirm where you are allowed to stay, and ask before leaving the approved area.",
               },
               {
-                              stage: "First month",
+                stage: "First month",
                 icon: "🗂️",
                 whatChanges:
                   "You may receive reporting instructions, treatment intake, employment expectations, device rules, drug testing, polygraph scheduling, registration appointments, and home visits.",
@@ -484,6 +562,25 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
+          <GuideProse>
+            <p>
+              <strong>When the consequence could be a violation, do not rely on
+              vibes, memory, or someone else’s case.</strong> Check the written
+              condition, ask the authority that controls the decision, and save
+              proof of the answer. U.S. Courts publishes{" "}
+              <a
+                href={sourceLinks.standardConditions}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                standard federal condition language
+              </a>{" "}
+              showing how ordinary topics like reporting, work, travel, officer
+              visits, and truthful answers can become supervision requirements.
+            </p>
+          </GuideProse>
+
           <DoDontJudgment
             dos={[
               <span>
@@ -538,8 +635,23 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 title: "Travel",
                 icon: "🧳",
                 tone: "warning",
-                description:
-                  "Leaving a district, county, state, or approved area may require officer, court, parole, treatment, and registry steps.",
+                description: (
+                  <span>
+                    Leaving a district, county, state, or approved area may
+                    require officer, court, parole, treatment, and registry
+                    steps. For federal supervision, U.S. Courts explains the
+                    condition about{" "}
+                    <a
+                      href={sourceLinks.travel}
+                      className={linkClass}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      leaving the judicial district
+                    </a>
+                    .
+                  </span>
+                ),
               },
               {
                 title: "Housing",
@@ -566,8 +678,22 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 title: "Contact rules",
                 icon: "🚧",
                 tone: "urgent",
-                description:
-                  "No-contact orders, minor-contact rules, family court orders, treatment safety plans, and supervision conditions can overlap.",
+                description: (
+                  <span>
+                    No-contact orders, minor-contact rules, family court orders,
+                    treatment safety plans, and supervision conditions can
+                    overlap. U.S. Courts separately discusses federal{" "}
+                    <a
+                      href={sourceLinks.association}
+                      className={linkClass}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      association and contact restrictions
+                    </a>
+                    .
+                  </span>
+                ),
               },
               {
                 title: "Treatment",
@@ -614,9 +740,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              You do not need perfect words. You need clear words. The safest
-              communication is usually short, factual, respectful, and focused
-              on the next required step.
+              <strong>You do not need perfect words. You need clear words.</strong>{" "}
+              The safest communication is usually short, factual, respectful,
+              and focused on the next required step.
             </p>
 
             <p>
@@ -672,6 +798,15 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
+          <GuideProse>
+            <p>
+              <strong>Your folder is not just paperwork.</strong> It is your
+              memory, your proof of effort, and your best way to help an attorney
+              or advocate understand what happened. Keep it simple enough that
+              you can actually maintain it.
+            </p>
+          </GuideProse>
+
           <DocumentPacket
             title="Documents and proof to save"
             intro={
@@ -684,34 +819,73 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Core supervision papers",
                 items: [
-                  <span>Judgment, sentencing order, release papers, bond order, or parole certificate.</span>,
+                  <span>
+                    Judgment, sentencing order, release papers, bond order, or
+                    parole certificate.
+                  </span>,
                   <span>Standard and special conditions of supervision.</span>,
-                  <span>Officer name, phone number, email, office address, after-hours instructions, and reporting method.</span>,
-                  <span>Modification orders, violation paperwork, summonses, warrants, hearing notices, and attorney information.</span>,
+                  <span>
+                    Officer name, phone number, email, office address,
+                    after-hours instructions, and reporting method.
+                  </span>,
+                  <span>
+                    Modification orders, violation paperwork, summonses,
+                    warrants, hearing notices, and attorney information.
+                  </span>,
                 ],
               },
               {
                 title: "Registry and treatment papers",
                 items: [
-                  <span>Registry instructions, appointment receipts, address updates, travel notices, and confirmation numbers.</span>,
-                  <span>Treatment contract, group rules, safety plan, payment records, assignments, attendance notes, and discharge warnings.</span>,
-                  <span>Polygraph appointment notices, instructions, and any written explanation of consequences for missed or incomplete testing.</span>,
+                  <span>
+                    Registry instructions, appointment receipts, address updates,
+                    travel notices, and confirmation numbers.
+                  </span>,
+                  <span>
+                    Treatment contract, group rules, safety plan, payment
+                    records, assignments, attendance notes, and discharge
+                    warnings.
+                  </span>,
+                  <span>
+                    Polygraph appointment notices, instructions, and any written
+                    explanation of consequences for missed or incomplete testing.
+                  </span>,
                 ],
               },
               {
                 title: "Everyday proof",
                 items: [
-                  <span>Appointment cards, bus receipts, gas receipts, paystubs, work schedules, medical notes, prescription records, and proof of job search.</span>,
-                  <span>Copies of emails, texts, portal messages, letters, certified mail receipts, screenshots, and written approvals.</span>,
-                  <span>A dated call log with who you called, when you called, what number you used, who answered, and what they said.</span>,
+                  <span>
+                    Appointment cards, bus receipts, gas receipts, paystubs, work
+                    schedules, medical notes, prescription records, and proof of
+                    job search.
+                  </span>,
+                  <span>
+                    Copies of emails, texts, portal messages, letters, certified
+                    mail receipts, screenshots, and written approvals.
+                  </span>,
+                  <span>
+                    A dated call log with who you called, when you called, what
+                    number you used, who answered, and what they said.
+                  </span>,
                 ],
               },
               {
                 title: "Searches, warnings, and disputes",
                 items: [
-                  <span>Search date, time, officers present, areas searched, items taken, receipts, device names, passwords requested, and witnesses.</span>,
-                  <span>Warnings, alleged violations, missed appointments, treatment conflicts, failed tests, police contact, or emergency events.</span>,
-                  <span>Your own factual timeline written as soon as possible, without guesses, insults, or legal conclusions.</span>,
+                  <span>
+                    Search date, time, officers present, areas searched, items
+                    taken, receipts, device names, passwords requested, and
+                    witnesses.
+                  </span>,
+                  <span>
+                    Warnings, alleged violations, missed appointments, treatment
+                    conflicts, failed tests, police contact, or emergency events.
+                  </span>,
+                  <span>
+                    Your own factual timeline written as soon as possible,
+                    without guesses, insults, or legal conclusions.
+                  </span>,
                 ],
               },
             ]}
@@ -735,13 +909,36 @@ export default function ResourceGuideSandbox(): JSX.Element {
         />
 
         <GuideSectionCard>
+          <GuideCallout
+            tone="legal"
+            icon="⚖️"
+            title="This section is about safety and documentation, not deciding whether a search is lawful"
+          >
+            <p>
+              Search law can turn on your exact condition, jurisdiction, facts,
+              and court history. This guide does not tell you whether a search is
+              lawful. It helps you avoid making the moment worse, preserve
+              details, and raise legal issues through counsel.
+            </p>
+          </GuideCallout>
+
           <GuideProse>
             <p>
               Some people under supervision have search conditions. Some do not.
               Some search conditions apply to a person, home, vehicle, papers,
               computers, phones, online accounts, or other property. Some
               require reasonable suspicion. Some are broader. The words in your
-              actual condition matter.
+              actual condition matter. U.S. Courts provides a federal reference
+              page on the{" "}
+              <a
+                href={sourceLinks.search}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                search and seizure condition
+              </a>{" "}
+              when that condition applies.
             </p>
 
             <p>
@@ -757,14 +954,32 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <DoDontJudgment
             dos={[
               <span>Read your exact search condition before there is a dispute.</span>,
-              <span>Keep required devices, apps, accounts, and monitoring software available as instructed.</span>,
-              <span>Ask calmly what authority or condition the search is based on if it is safe to ask.</span>,
-              <span>Write down what happened immediately afterward and contact counsel if there is a dispute.</span>,
+              <span>
+                Keep required devices, apps, accounts, and monitoring software
+                available as instructed.
+              </span>,
+              <span>
+                Ask calmly what authority or condition the search is based on if
+                it is safe to ask.
+              </span>,
+              <span>
+                Write down what happened immediately afterward and contact
+                counsel if there is a dispute.
+              </span>,
             ]}
             donts={[
-              <span>Do not physically block, threaten, grab, delete, destroy, hide, or run.</span>,
-              <span>Do not invite unnecessary conflict by arguing about constitutional law in the moment.</span>,
-              <span>Do not assume a roommate, spouse, child, or guest understands what your conditions allow.</span>,
+              <span>
+                Do not physically block, threaten, grab, delete, destroy, hide,
+                or run.
+              </span>,
+              <span>
+                Do not invite unnecessary conflict by arguing about
+                constitutional law in the moment.
+              </span>,
+              <span>
+                Do not assume a roommate, spouse, child, or guest understands
+                what your conditions allow.
+              </span>,
             ]}
             judgment={[
               <span>
@@ -808,11 +1023,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
 
             <p>
-              Treatment rules are not automatically criminal laws, but they can
-              become supervision problems if your conditions require treatment,
-              require truthful participation, require payment efforts, or require
-              compliance with provider rules. Discharge, suspension, refusal to
-              participate, or missed treatment can carry serious consequences.
+              <strong>Treatment rules are not automatically criminal laws, but
+              they can become supervision problems.</strong> That is especially
+              true if your conditions require treatment, require truthful
+              participation, require payment efforts, or require compliance with
+              provider rules. Discharge, suspension, refusal to participate, or
+              missed treatment can carry serious consequences.
             </p>
           </GuideProse>
 
@@ -841,7 +1057,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           />
 
           <ScriptBox
-                        title="Ask treatment about a rule"
+            title="Ask treatment about a rule"
             tone="research"
             context="Use this when a treatment rule is unclear or appears to conflict with supervision, family needs, work, or registry duties."
             script={`Hello [Provider Name], I want to make sure I understand the treatment rule correctly.\n\nThe rule I am asking about is: [rule].\n\nWhat exactly am I required to do, what is the deadline, and what happens if there is a conflict with work, family, registry reporting, or supervision instructions?`}
@@ -849,10 +1065,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideCallout tone="warning" icon="⚠️" title="Do not wait until discharge">
             <p>
-              If money, transportation, work, illness, language access, disability,
-              or family responsibilities are interfering with treatment, report
-              the problem early and document your effort to solve it. Silence can
-              look like refusal even when the real problem is logistics.
+              If money, transportation, work, illness, language access,
+              disability, or family responsibilities are interfering with
+              treatment, report the problem early and document your effort to
+              solve it. Silence can look like refusal even when the real problem
+              is logistics.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -876,8 +1093,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               Some violations are called “technical” because they involve
               breaking supervision rules rather than committing a new crime.
-              Technical does not always mean minor. Missed treatment, failure to
-              report, or contraband can still lead to serious consequences.
+              Technical does not always mean minor. U.S. Courts describes
+              technical violations as including conduct such as failure to
+              report, failed drug testing, refusal to participate in treatment,
+              or possession of contraband in its overview of{" "}
+              <a
+                href={sourceLinks.revocations}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                revocations for failure to comply with supervision conditions
+              </a>
+              .
             </p>
 
             <p>
@@ -942,7 +1170,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
               Contact counsel or legal aid as soon as possible if there is a new
               arrest, alleged violation, warrant, summons, search dispute,
               treatment discharge, failed polygraph, police contact, registry
-              failure, or pressure to sign something you do not understand.
+              failure, or pressure to sign something you do not understand. The{" "}
+              <a
+                href={sourceLinks.legalAid}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                USA.gov legal aid finder
+              </a>{" "}
+              can be a starting point if you do not already have a lawyer.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -1084,6 +1321,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <SoftDivider />
 
+          <GuideCallout tone="info" icon="🔎" title="How to use the source links">
+            <p>
+              Use official pages to understand the framework, then verify the
+              exact step with the office that controls your case. Federal pages
+              can explain federal supervised release. They do not automatically
+              answer state parole, state probation, local registry, treatment, or
+              case-specific court-order questions.
+            </p>
+          </GuideCallout>
+
           <RelatedGuides
             guides={[
               {
@@ -1130,7 +1377,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 and by case, so verify before relying on any general guide.
               </span>
             }
-            sources={sourceLinks}
+            sources={sourceList}
           />
         </GuideSectionCard>
       </main>
