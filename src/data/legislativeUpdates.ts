@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "July 1, 2026",
+  title: "Legislative Tracker — June 2026 Update",
+  slug: "2026-07-01",
+  summary:
+    "June brought a mixed but burden-heavy registry-policy month: Louisiana and Connecticut changed compliance mechanics, Illinois advanced a licensing exclusion, South Carolina added registrant-specific punishment enhancements, and Indiana clarified SVP-status review.",
+  tags: ["state", "courts", "implementation", "employment", "compliance"],
+},
+{
   date: "June 1, 2026",
   title: "Legislative Tracker — May 2026 Update",
   slug: "2026-06-01",
