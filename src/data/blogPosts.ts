@@ -13,6 +13,31 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "liberty-for-some-registries-lifelong-punishment-american-exceptionalism",
+  title: "Liberty for Some: Registries and Lifelong Punishment as American Exceptionalism",
+  excerpt:
+    "America celebrates liberty and second chances, yet maintains one of the most publicly punitive registry systems in the democratic world. SOLAR examines registries, lifelong punishment, and what real prevention could look like.",
+  author: "The SOLAR Project",
+  date: "Jul 4, 2026",
+  readTime: "8–10 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "American exceptionalism",
+    "Fourth of July",
+    "public registries",
+    "lifelong punishment",
+    "civil liberties",
+    "reintegration",
+    "rehabilitation",
+    "restorative justice",
+    "public safety mythology",
+    "comparative justice",
+    "CoSA",
+    "risk assessment",
+  ],
+  path: "/blog/liberty-for-some-registries-lifelong-punishment-american-exceptionalism",
+},
+{
   id: "above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy",
   title: "Above the Law, or Becoming It: The Manosphere’s Child-Safety Hypocrisy",
   excerpt:
