@@ -121,6 +121,7 @@ import ChildSafetyTheaterGoesLive from "./pages/blog/ChildSafetyTheaterGoesLive"
 import AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy from "./pages/blog/AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy";
 import SupervisionConditionsGuide from "./pages/resources/SupervisionConditionsGuide";
 import LibertyForSomeRegistries from "./pages/blog/LibertyForSomeRegistries";
+import SixteenChildrenNoRegistry from "./pages/blog/SixteenChildrenNoRegistry";
 
 function App() {
   return (
@@ -300,6 +301,7 @@ element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
 <Route
   path="/blog/liberty-for-some-registries-lifelong-punishment-american-exceptionalism"
   element={<LibertyForSomeRegistries />} />
+<Route path="/blog/sixteen-children-no-registry" element={<SixteenChildrenNoRegistry />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
