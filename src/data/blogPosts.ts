@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "sixteen-children-no-registry",
+  title: "Sixteen Children, No Registry: The Contradiction America Refuses to Face",
+  excerpt:
+    "The Hamden, Ohio child-endangerment case exposes a contradiction in registry politics: if public registries supposedly protect children, why are they applied so selectively?",
+  author: "The SOLAR Project",
+  date: "Jul 5, 2026",
+  readTime: "8 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "child welfare",
+    "child endangerment",
+    "registry logic",
+    "RECON",
+    "child marriage",
+    "family violence",
+    "Ohio",
+    "public safety mythology",
+    "real prevention",
+    "selective punishment",
+  ],
+  path: "/blog/sixteen-children-no-registry",
+},
+{
   id: "liberty-for-some-registries-lifelong-punishment-american-exceptionalism",
   title: "Liberty for Some: Registries and Lifelong Punishment as American Exceptionalism",
   excerpt:
