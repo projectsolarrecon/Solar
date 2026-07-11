@@ -355,9 +355,6 @@ export default function AdvocacyActionHub(): JSX.Element {
               <p className="mt-2 text-sm leading-relaxed text-blue-950">
                 {selectedPosition.evidencePoint}
               </p>
-              <p className="mt-2 text-xs leading-relaxed text-blue-800">
-                <strong>Important context:</strong> {selectedPosition.evidenceCaveat}
-              </p>
               <p className="mt-2 text-xs font-semibold text-blue-700">
                 Source references: {selectedPosition.sourceIds.join(", ")}
               </p>
@@ -421,7 +418,7 @@ export default function AdvocacyActionHub(): JSX.Element {
           <div className="mt-6 border-t border-slate-200 pt-6">
             <h3 className="font-bold text-slate-900">Evidence depth</h3>
             <p className="mt-1 text-sm text-slate-600">
-              Choose whether the generated message should stay concise or include one carefully qualified research point.
+              Choose whether the generated message should stay concise or include one carefully sourced research point.
             </p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {[
@@ -433,7 +430,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                 {
                   id: "supported" as const,
                   label: "Include one evidence point",
-                  description: "Add a concise claim and its important limitation or caveat.",
+                  description: "Add one concise, carefully sourced research point.",
                 },
               ].map((option) => {
                 const active = evidenceDepth === option.id;
