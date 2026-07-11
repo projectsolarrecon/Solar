@@ -1,4 +1,4 @@
-      import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 
@@ -14,6 +14,7 @@ function Header() {
     { path: "/resources", label: "Resources" },
     // { path: "/legal-directory", label: "Legal Directory" }, // Temporarily suppressed
     { path: "/advocacy", label: "Get Involved" },
+    { path: "/advocacy/action-hub", label: "Take Action" },
     { path: "/contact", label: "Contact" },
   ];
 
@@ -30,9 +31,9 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           <Link to="/" className="flex items-center">
-            <img 
-              src="/solar-project-logo.png" 
-              alt="The SOLAR Project - Sex Offender Legal Advocacy & Reform" 
+            <img
+              src="/solar-project-logo.png"
+              alt="The SOLAR Project - Sex Offender Legal Advocacy & Reform"
               className="h-12 w-auto"
             />
           </Link>
@@ -42,7 +43,7 @@ function Header() {
             <SearchBar />
           </div>
 
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -60,7 +61,7 @@ function Header() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="text-gray-700 hover:text-slate-700 p-2"
               aria-label="Toggle mobile menu"
