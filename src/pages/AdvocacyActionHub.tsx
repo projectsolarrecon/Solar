@@ -11,10 +11,13 @@ import {
 import {
   composeAdvocacyMessage,
   formats,
+  getPosition,
   getRecipient,
   perspectives,
   positions,
   recipients,
+  researchResourceHref,
+  type AdvocacyEvidenceDepth,
   type AdvocacyFormatId,
   type AdvocacyPerspectiveId,
   type AdvocacyPositionId,
@@ -32,11 +35,14 @@ export default function AdvocacyActionHub(): JSX.Element {
   const [formatId, setFormatId] = useState<AdvocacyFormatId>("email");
   const [perspectiveId, setPerspectiveId] =
     useState<AdvocacyPerspectiveId>("constituent");
+  const [evidenceDepth, setEvidenceDepth] =
+    useState<AdvocacyEvidenceDepth>("supported");
   const [location, setLocation] = useState("");
   const [specificAsk, setSpecificAsk] = useState("");
   const [personalContext, setPersonalContext] = useState("");
 
   const recipient = getRecipient(recipientId);
+  const selectedPosition = getPosition(positionId);
   const result = useMemo(
     () =>
       composeAdvocacyMessage({
@@ -44,6 +50,7 @@ export default function AdvocacyActionHub(): JSX.Element {
         positionId,
         formatId,
         perspectiveId,
+        evidenceDepth,
         location,
         specificAsk,
         personalContext,
@@ -53,6 +60,7 @@ export default function AdvocacyActionHub(): JSX.Element {
       positionId,
       formatId,
       perspectiveId,
+      evidenceDepth,
       location,
       specificAsk,
       personalContext,
@@ -64,6 +72,7 @@ export default function AdvocacyActionHub(): JSX.Element {
     setPositionId("one-size-fits-all");
     setFormatId("email");
     setPerspectiveId("constituent");
+    setEvidenceDepth("supported");
     setLocation("");
     setSpecificAsk("");
     setPersonalContext("");
@@ -122,8 +131,8 @@ export default function AdvocacyActionHub(): JSX.Element {
                 Grounded in SOLAR’s seven positions
               </p>
               <p className="mt-1 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
-                Every draft begins with SOLAR’s published policy foundation—not
-                improvised talking points or generic advocacy language.
+                The framework and evidence come from SOLAR. The final message is written
+                in your voice and presented as your own opinion, concern, or request.
               </p>
             </div>
             <Link
@@ -157,13 +166,13 @@ export default function AdvocacyActionHub(): JSX.Element {
               {
                 number: "2",
                 title: "Choose what",
-                text: "Select the SOLAR position you want the message to carry.",
+                text: "Select the policy position you want the message to carry.",
                 href: "#what",
               },
               {
                 number: "3",
                 title: "Choose how",
-                text: "Select the communication format, then personalize and copy the draft.",
+                text: "Select the format and evidence depth, then personalize and copy the draft.",
                 href: "#how",
               },
             ].map((step, index) => (
@@ -195,12 +204,12 @@ export default function AdvocacyActionHub(): JSX.Element {
           <GuideCallout
             tone="info"
             icon="🧭"
-            title="One message. One recipient. One clear ask."
+            title="Your voice, supported by careful evidence"
           >
             <p>
-              This first version uses approved SOLAR position language and a
-              deterministic template composer. It does not invent facts, legal claims,
-              statistics, or legislation.
+              The composer uses curated language and research-backed claims, but it does
+              not present you as speaking for SOLAR. It also avoids invented facts,
+              unsupported statistics, and overbroad legal claims.
             </p>
           </GuideCallout>
         </div>
@@ -289,7 +298,7 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="what"
           number="2"
           title="What do you want them to understand?"
-          subtitle="Choose one of SOLAR’s seven published positions. Recommended choices are marked for your selected recipient."
+          subtitle="Choose one of seven policy positions. Recommended choices are marked for your selected recipient."
         />
 
         <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
@@ -337,11 +346,36 @@ export default function AdvocacyActionHub(): JSX.Element {
           })}
         </div>
 
+        <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-wide text-blue-800">
+                Evidence supporting this selection
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-blue-950">
+                {selectedPosition.evidencePoint}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-blue-800">
+                <strong>Important context:</strong> {selectedPosition.evidenceCaveat}
+              </p>
+              <p className="mt-2 text-xs font-semibold text-blue-700">
+                Source references: {selectedPosition.sourceIds.join(", ")}
+              </p>
+            </div>
+            <Link
+              to={researchResourceHref}
+              className="inline-flex shrink-0 items-center justify-center rounded-xl border border-blue-300 bg-white px-4 py-2.5 text-sm font-semibold text-blue-900 hover:bg-blue-100"
+            >
+              Review research and sources
+            </Link>
+          </div>
+        </div>
+
         <GuideSectionHeader
           id="how"
           number="3"
           title="How do you want to communicate?"
-          subtitle="Choose one format below. The draft will be rewritten to match that format."
+          subtitle="Choose one format and decide whether the draft should include a concise evidence point."
         />
 
         <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
@@ -382,6 +416,54 @@ export default function AdvocacyActionHub(): JSX.Element {
                 </button>
               );
             })}
+          </div>
+
+          <div className="mt-6 border-t border-slate-200 pt-6">
+            <h3 className="font-bold text-slate-900">Evidence depth</h3>
+            <p className="mt-1 text-sm text-slate-600">
+              Choose whether the generated message should stay concise or include one carefully qualified research point.
+            </p>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {[
+                {
+                  id: "plain" as const,
+                  label: "Plain message",
+                  description: "Use the policy argument without adding a research paragraph.",
+                },
+                {
+                  id: "supported" as const,
+                  label: "Include one evidence point",
+                  description: "Add a concise claim and its important limitation or caveat.",
+                },
+              ].map((option) => {
+                const active = evidenceDepth === option.id;
+                return (
+                  <button
+                    key={option.id}
+                    type="button"
+                    onClick={() => setEvidenceDepth(option.id)}
+                    className={`rounded-xl border p-4 text-left transition-colors ${
+                      active
+                        ? "border-blue-500 bg-blue-50 ring-2 ring-blue-100"
+                        : "border-slate-200 bg-white hover:border-blue-300"
+                    }`}
+                    aria-pressed={active}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="font-bold text-slate-900">{option.label}</span>
+                      {active && (
+                        <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+                          Selected
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                      {option.description}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </GuideSectionCard>
 
@@ -453,6 +535,10 @@ export default function AdvocacyActionHub(): JSX.Element {
           subtitle="Your selections have been assembled below. Replace the bracketed placeholders, read it once, then copy or print it."
         />
 
+        <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 text-sm leading-relaxed text-slate-700">
+          This draft is written as <strong>your statement</strong>. SOLAR is not named as the speaker or holder of the opinion inside the generated message.
+        </div>
+
         <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
           <ScriptBox
             title={result.title}
@@ -469,7 +555,7 @@ export default function AdvocacyActionHub(): JSX.Element {
           />
         </div>
 
-        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <button
             type="button"
             onClick={() => window.print()}
@@ -489,6 +575,12 @@ export default function AdvocacyActionHub(): JSX.Element {
             className="rounded-xl border border-amber-300 bg-amber-50 px-5 py-3 text-center text-sm font-semibold text-amber-900 hover:bg-amber-100"
           >
             Read the Legislative Advocacy Guide
+          </Link>
+          <Link
+            to={researchResourceHref}
+            className="rounded-xl border border-blue-300 bg-blue-50 px-5 py-3 text-center text-sm font-semibold text-blue-900 hover:bg-blue-100"
+          >
+            Review Research & Data Sources
           </Link>
         </div>
 
