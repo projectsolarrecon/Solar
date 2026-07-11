@@ -139,6 +139,58 @@ export default function AdvocacyActionHub(): JSX.Element {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
+        <section className="mb-8 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-md">
+          <div className="bg-gradient-to-r from-amber-500 to-yellow-400 px-5 py-4 text-slate-950 sm:px-6">
+            <h2 className="text-xl font-bold">How to use this page</h2>
+            <p className="mt-1 text-sm font-medium text-slate-800">
+              This is an interactive tool. Make one choice in each step; your draft updates automatically below.
+            </p>
+          </div>
+          <div className="grid gap-0 md:grid-cols-3">
+            {[
+              {
+                number: "1",
+                title: "Choose who",
+                text: "Select the person or institution you want to reach.",
+                href: "#who",
+              },
+              {
+                number: "2",
+                title: "Choose what",
+                text: "Select the SOLAR position you want the message to carry.",
+                href: "#what",
+              },
+              {
+                number: "3",
+                title: "Choose how",
+                text: "Select the communication format, then personalize and copy the draft.",
+                href: "#how",
+              },
+            ].map((step, index) => (
+              <a
+                key={step.number}
+                href={step.href}
+                className={`group flex gap-4 p-5 transition-colors hover:bg-amber-50 sm:p-6 ${
+                  index > 0 ? "border-t border-slate-200 md:border-l md:border-t-0" : ""
+                }`}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white group-hover:bg-amber-500 group-hover:text-slate-950">
+                  {step.number}
+                </span>
+                <span>
+                  <span className="block font-bold text-slate-900">{step.title}</span>
+                  <span className="mt-1 block text-sm leading-relaxed text-slate-600">
+                    {step.text}
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
+          <div className="border-t border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-950 sm:px-6">
+            <strong>Look for the highlighted card.</strong> That is your current selection. You can change any choice at any time.
+          </div>
+        </section>
+
         <div className="rounded-2xl border border-amber-200 bg-white p-1 shadow-sm">
           <GuideCallout
             tone="info"
@@ -157,8 +209,12 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="who"
           number="1"
           title="Who do you want to reach?"
-          subtitle="Start with the person or institution most able to act on the issue."
+          subtitle="Choose one card below. Start with the person or institution most able to act on the issue."
         />
+
+        <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
+          Tap or click one recipient card to make your selection.
+        </p>
 
         <div className="grid gap-4 md:grid-cols-2">
           {recipients.map((item) => {
@@ -184,7 +240,14 @@ export default function AdvocacyActionHub(): JSX.Element {
                     {item.icon}
                   </span>
                   <div>
-                    <h2 className="text-lg font-bold">{item.label}</h2>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h2 className="text-lg font-bold">{item.label}</h2>
+                      {active && (
+                        <span className="rounded-full bg-amber-400 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-slate-950">
+                          Selected
+                        </span>
+                      )}
+                    </div>
                     <p
                       className={`mt-2 text-sm leading-relaxed ${
                         active ? "text-slate-200" : "text-slate-600"
@@ -226,8 +289,12 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="what"
           number="2"
           title="What do you want them to understand?"
-          subtitle="These are SOLAR’s seven published positions, translated into advocacy-ready choices."
+          subtitle="Choose one of SOLAR’s seven published positions. Recommended choices are marked for your selected recipient."
         />
+
+        <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
+          Tap or click one position card. Your draft will immediately update.
+        </p>
 
         <div className="grid gap-4 lg:grid-cols-2">
           {positions.map((position) => {
@@ -249,11 +316,18 @@ export default function AdvocacyActionHub(): JSX.Element {
                   <h3 className="font-bold leading-snug text-slate-900">
                     {position.title}
                   </h3>
-                  {recommended && (
-                    <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-amber-800">
-                      Recommended
-                    </span>
-                  )}
+                  <div className="flex shrink-0 flex-col items-end gap-1.5">
+                    {active && (
+                      <span className="rounded-full bg-amber-500 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-950">
+                        Selected
+                      </span>
+                    )}
+                    {recommended && !active && (
+                      <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-amber-800">
+                        Recommended
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   {position.summary}
@@ -267,8 +341,12 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="how"
           number="3"
           title="How do you want to communicate?"
-          subtitle="Choose the format that best fits the recipient and the moment."
+          subtitle="Choose one format below. The draft will be rewritten to match that format."
         />
+
+        <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
+          Tap or click one format. The dark highlighted option is selected.
+        </p>
 
         <GuideSectionCard>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -284,8 +362,16 @@ export default function AdvocacyActionHub(): JSX.Element {
                       ? "border-amber-400 bg-slate-900 text-white ring-2 ring-amber-200"
                       : "border-slate-200 bg-slate-50 hover:border-amber-300 hover:bg-amber-50"
                   }`}
+                  aria-pressed={active}
                 >
-                  <span className="block font-bold">{format.label}</span>
+                  <span className="flex items-center justify-between gap-2 font-bold">
+                    {format.label}
+                    {active && (
+                      <span className="rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-950">
+                        Selected
+                      </span>
+                    )}
+                  </span>
                   <span
                     className={`mt-1 block text-xs leading-relaxed ${
                       active ? "text-slate-200" : "text-slate-600"
@@ -303,10 +389,13 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="personalize"
           number="4"
           title="Add only the context that helps"
-          subtitle="Personal details are optional. You never need to disclose registry status or a private history to use this tool."
+          subtitle="Use the fields below to personalize the draft. Only your perspective is required; the other fields are optional."
         />
 
         <GuideSectionCard>
+          <div className="mb-5 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm leading-relaxed text-blue-900">
+            The draft updates as you type. You never need to disclose registry status or private case details to use this tool.
+          </div>
           <div className="grid gap-5 md:grid-cols-2">
             <label className="block text-sm font-semibold text-slate-700">
               Your perspective
@@ -326,7 +415,7 @@ export default function AdvocacyActionHub(): JSX.Element {
             </label>
 
             <label className="block text-sm font-semibold text-slate-700">
-              Location
+              Location <span className="font-normal text-slate-500">(optional)</span>
               <input
                 className={fieldClass}
                 value={location}
@@ -336,7 +425,7 @@ export default function AdvocacyActionHub(): JSX.Element {
             </label>
 
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
-              Specific request
+              Specific request <span className="font-normal text-slate-500">(optional)</span>
               <input
                 className={fieldClass}
                 value={specificAsk}
@@ -346,7 +435,7 @@ export default function AdvocacyActionHub(): JSX.Element {
             </label>
 
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
-              Optional local or personal context
+              Local or personal context <span className="font-normal text-slate-500">(optional)</span>
               <textarea
                 className={`${fieldClass} min-h-28`}
                 value={personalContext}
@@ -361,7 +450,7 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="draft"
           number="5"
           title="Use your draft"
-          subtitle="Read it once, replace the bracketed placeholders, and keep the final message focused on one clear request."
+          subtitle="Your selections have been assembled below. Replace the bracketed placeholders, read it once, then copy or print it."
         />
 
         <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
