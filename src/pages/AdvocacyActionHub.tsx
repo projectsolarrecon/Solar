@@ -12,6 +12,7 @@ import {
   composeAdvocacyMessage,
   formats,
   getPosition,
+  getPromptExamples,
   getRecipient,
   perspectives,
   positions,
@@ -37,12 +38,18 @@ export default function AdvocacyActionHub(): JSX.Element {
     useState<AdvocacyPerspectiveId>("constituent");
   const [evidenceDepth, setEvidenceDepth] =
     useState<AdvocacyEvidenceDepth>("supported");
+  const [senderName, setSenderName] = useState("");
+  const [recipientName, setRecipientName] = useState("");
+  const [organizationName, setOrganizationName] = useState("");
+  const [contactInformation, setContactInformation] = useState("");
   const [location, setLocation] = useState("");
   const [specificAsk, setSpecificAsk] = useState("");
   const [personalContext, setPersonalContext] = useState("");
 
   const recipient = getRecipient(recipientId);
   const selectedPosition = getPosition(positionId);
+  const promptExamples = getPromptExamples(recipientId, positionId);
+
   const result = useMemo(
     () =>
       composeAdvocacyMessage({
@@ -51,6 +58,10 @@ export default function AdvocacyActionHub(): JSX.Element {
         formatId,
         perspectiveId,
         evidenceDepth,
+        senderName,
+        recipientName,
+        organizationName,
+        contactInformation,
         location,
         specificAsk,
         personalContext,
@@ -61,6 +72,10 @@ export default function AdvocacyActionHub(): JSX.Element {
       formatId,
       perspectiveId,
       evidenceDepth,
+      senderName,
+      recipientName,
+      organizationName,
+      contactInformation,
       location,
       specificAsk,
       personalContext,
@@ -73,6 +88,10 @@ export default function AdvocacyActionHub(): JSX.Element {
     setFormatId("email");
     setPerspectiveId("constituent");
     setEvidenceDepth("supported");
+    setSenderName("");
+    setRecipientName("");
+    setOrganizationName("");
+    setContactInformation("");
     setLocation("");
     setSpecificAsk("");
     setPersonalContext("");
@@ -82,13 +101,13 @@ export default function AdvocacyActionHub(): JSX.Element {
     <div className="min-h-screen bg-gradient-to-b from-amber-50/50 via-white to-slate-50 text-slate-800">
       <SEO
         title="SOLAR Advocacy Action Hub | The SOLAR Project"
-        description="Choose who you want to reach, what SOLAR position you want to carry forward, and how you want to communicate it."
+        description="Choose who you want to reach, what policy position you want to carry forward, and how you want to communicate it."
         keywords="SOLAR advocacy, registry reform, contact lawmakers, advocacy scripts, public testimony, letter to editor"
       />
 
-      <section className="relative overflow-hidden bg-gradient-to-r from-slate-700 via-slate-600 to-slate-500 text-white py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-r from-slate-700 via-slate-600 to-slate-500 py-16 text-white sm:py-20">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.24),transparent_38%)]" />
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <Link
             to="/advocacy"
             className="inline-flex items-center text-sm font-medium text-slate-100 hover:text-white"
@@ -124,7 +143,7 @@ export default function AdvocacyActionHub(): JSX.Element {
       <div className="h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300" />
 
       <section className="border-b border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-white">
-        <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-amber-800">
@@ -145,14 +164,14 @@ export default function AdvocacyActionHub(): JSX.Element {
         </div>
       </section>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <ShareBar />
 
         <section className="mb-8 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-md">
           <div className="bg-gradient-to-r from-amber-500 to-yellow-400 px-5 py-4 text-slate-950 sm:px-6">
             <h2 className="text-xl font-bold">How to use this page</h2>
             <p className="mt-1 text-sm font-medium text-slate-800">
-              This is an interactive tool. Make one choice in each step; your draft updates automatically below.
+              Make one choice in each step. Your draft updates automatically as you go.
             </p>
           </div>
           <div className="grid gap-0 md:grid-cols-3">
@@ -172,7 +191,7 @@ export default function AdvocacyActionHub(): JSX.Element {
               {
                 number: "3",
                 title: "Choose how",
-                text: "Select the format and evidence depth, then personalize and copy the draft.",
+                text: "Select the format and evidence depth, then personalize the draft.",
                 href: "#how",
               },
             ].map((step, index) => (
@@ -196,7 +215,7 @@ export default function AdvocacyActionHub(): JSX.Element {
             ))}
           </div>
           <div className="border-t border-amber-200 bg-amber-50 px-5 py-3 text-sm text-amber-950 sm:px-6">
-            <strong>Look for the highlighted card.</strong> That is your current selection. You can change any choice at any time.
+            <strong>Look for the highlighted card.</strong> That is your current selection.
           </div>
         </section>
 
@@ -207,9 +226,8 @@ export default function AdvocacyActionHub(): JSX.Element {
             title="Your voice, supported by careful evidence"
           >
             <p>
-              The composer uses curated language and research-backed claims, but it does
-              not present you as speaking for SOLAR. It also avoids invented facts,
-              unsupported statistics, and overbroad legal claims.
+              The composer uses curated language and research-backed claims without
+              presenting you as speaking for SOLAR.
             </p>
           </GuideCallout>
         </div>
@@ -257,11 +275,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                         </span>
                       )}
                     </div>
-                    <p
-                      className={`mt-2 text-sm leading-relaxed ${
-                        active ? "text-slate-200" : "text-slate-600"
-                      }`}
-                    >
+                    <p className={`mt-2 text-sm leading-relaxed ${active ? "text-slate-200" : "text-slate-600"}`}>
                       {item.description}
                     </p>
                   </div>
@@ -272,9 +286,7 @@ export default function AdvocacyActionHub(): JSX.Element {
         </div>
 
         <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
-          <span className="text-sm font-semibold text-slate-700">
-            Need the right contact?
-          </span>
+          <span className="text-sm font-semibold text-slate-700">Need the right contact?</span>
           {recipient.lookupHref.startsWith("/") ? (
             <Link
               to={recipient.lookupHref}
@@ -302,7 +314,7 @@ export default function AdvocacyActionHub(): JSX.Element {
         />
 
         <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
-          Tap or click one position card. Your draft will immediately update.
+          Tap or click one position card. Your draft and examples will immediately update.
         </p>
 
         <div className="grid gap-4 lg:grid-cols-2">
@@ -322,9 +334,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                 aria-pressed={active}
               >
                 <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-bold leading-snug text-slate-900">
-                    {position.title}
-                  </h3>
+                  <h3 className="font-bold leading-snug text-slate-900">{position.title}</h3>
                   <div className="flex shrink-0 flex-col items-end gap-1.5">
                     {active && (
                       <span className="rounded-full bg-amber-500 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-950">
@@ -338,9 +348,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                     )}
                   </div>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  {position.summary}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{position.summary}</p>
               </button>
             );
           })}
@@ -375,10 +383,6 @@ export default function AdvocacyActionHub(): JSX.Element {
           subtitle="Choose one format and decide whether the draft should include a concise evidence point."
         />
 
-        <p className="-mt-3 mb-4 text-sm font-semibold text-amber-800">
-          Tap or click one format. The dark highlighted option is selected.
-        </p>
-
         <GuideSectionCard>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {formats.map((format) => {
@@ -403,11 +407,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                       </span>
                     )}
                   </span>
-                  <span
-                    className={`mt-1 block text-xs leading-relaxed ${
-                      active ? "text-slate-200" : "text-slate-600"
-                    }`}
-                  >
+                  <span className={`mt-1 block text-xs leading-relaxed ${active ? "text-slate-200" : "text-slate-600"}`}>
                     {format.description}
                   </span>
                 </button>
@@ -454,9 +454,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                         </span>
                       )}
                     </div>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                      {option.description}
-                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-slate-600">{option.description}</p>
                   </button>
                 );
               })}
@@ -467,15 +465,36 @@ export default function AdvocacyActionHub(): JSX.Element {
         <GuideSectionHeader
           id="personalize"
           number="4"
-          title="Add only the context that helps"
-          subtitle="Use the fields below to personalize the draft. Only your perspective is required; the other fields are optional."
+          title="Add the details that help"
+          subtitle="Fill in the merge fields you want completed. The examples below change with your earlier selections."
         />
 
         <GuideSectionCard>
           <div className="mb-5 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm leading-relaxed text-blue-900">
-            The draft updates as you type. You never need to disclose registry status or private case details to use this tool.
+            The draft updates as you type. Changing the recipient or topic changes only the example prompts—it will not overwrite anything you already entered.
           </div>
+
           <div className="grid gap-5 md:grid-cols-2">
+            <label className="block text-sm font-semibold text-slate-700">
+              Your name <span className="font-normal text-slate-500">(optional)</span>
+              <input
+                className={fieldClass}
+                value={senderName}
+                onChange={(event) => setSenderName(event.target.value)}
+                placeholder="Jordan Smith"
+              />
+            </label>
+
+            <label className="block text-sm font-semibold text-slate-700">
+              Recipient name or title <span className="font-normal text-slate-500">(optional)</span>
+              <input
+                className={fieldClass}
+                value={recipientName}
+                onChange={(event) => setRecipientName(event.target.value)}
+                placeholder={recipientId === "journalist" ? "Reporter or editor name" : "Representative Lee or Councilmember Garcia"}
+              />
+            </label>
+
             <label className="block text-sm font-semibold text-slate-700">
               Your perspective
               <select
@@ -503,14 +522,39 @@ export default function AdvocacyActionHub(): JSX.Element {
               />
             </label>
 
+            {perspectiveId === "organization" && (
+              <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
+                Organization name <span className="font-normal text-slate-500">(optional)</span>
+                <input
+                  className={fieldClass}
+                  value={organizationName}
+                  onChange={(event) => setOrganizationName(event.target.value)}
+                  placeholder="Organization or coalition name"
+                />
+              </label>
+            )}
+
+            <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
+              Contact information <span className="font-normal text-slate-500">(optional)</span>
+              <input
+                className={fieldClass}
+                value={contactInformation}
+                onChange={(event) => setContactInformation(event.target.value)}
+                placeholder="Email address, phone number, or preferred contact line"
+              />
+            </label>
+
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
               Specific request <span className="font-normal text-slate-500">(optional)</span>
               <input
                 className={fieldClass}
                 value={specificAsk}
                 onChange={(event) => setSpecificAsk(event.target.value)}
-                placeholder={recipient.defaultAsk}
+                placeholder={promptExamples.specificAsk}
               />
+              <span className="mt-2 block text-xs font-normal leading-relaxed text-slate-500">
+                Example for this recipient and topic: {promptExamples.specificAsk}
+              </span>
             </label>
 
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
@@ -519,8 +563,11 @@ export default function AdvocacyActionHub(): JSX.Element {
                 className={`${fieldClass} min-h-28`}
                 value={personalContext}
                 onChange={(event) => setPersonalContext(event.target.value)}
-                placeholder="Add one brief example about housing, work, family impact, public safety, reporting, or a current local debate."
+                placeholder={promptExamples.personalContext}
               />
+              <span className="mt-2 block text-xs font-normal leading-relaxed text-slate-500">
+                Example for this topic: {promptExamples.personalContext}
+              </span>
             </label>
           </div>
         </GuideSectionCard>
@@ -529,11 +576,11 @@ export default function AdvocacyActionHub(): JSX.Element {
           id="draft"
           number="5"
           title="Use your draft"
-          subtitle="Your selections have been assembled below. Replace the bracketed placeholders, read it once, then copy or print it."
+          subtitle="Your selections and supplied details have been assembled below. Review, copy, or print it."
         />
 
         <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 text-sm leading-relaxed text-slate-700">
-          This draft is written as <strong>your statement</strong>. SOLAR is not named as the speaker or holder of the opinion inside the generated message.
+          Any field you leave blank remains a bracketed placeholder for you to complete later.
         </div>
 
         <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
