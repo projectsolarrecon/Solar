@@ -22,7 +22,7 @@ import {
 } from "../data/advocacy/actionHubData";
 
 const fieldClass =
-  "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-slate-200";
+  "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-100";
 
 export default function AdvocacyActionHub(): JSX.Element {
   const [recipientId, setRecipientId] =
@@ -70,33 +70,68 @@ export default function AdvocacyActionHub(): JSX.Element {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50/50 via-white to-slate-50 text-slate-800">
       <SEO
         title="SOLAR Advocacy Action Hub | The SOLAR Project"
         description="Choose who you want to reach, what SOLAR position you want to carry forward, and how you want to communicate it."
         keywords="SOLAR advocacy, registry reform, contact lawmakers, advocacy scripts, public testimony, letter to editor"
       />
 
-      <section className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-700 text-white py-14 sm:py-18">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-gradient-to-r from-slate-700 via-slate-600 to-slate-500 text-white py-16 sm:py-20">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.24),transparent_38%)]" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link
             to="/advocacy"
-            className="inline-flex items-center text-sm text-slate-200 hover:text-white"
+            className="inline-flex items-center text-sm font-medium text-slate-100 hover:text-white"
           >
             ← Back to Advocacy
           </Link>
 
-          <div className="mt-6 max-w-4xl">
-            <span className="inline-flex rounded-full bg-amber-400/15 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-amber-200 ring-1 ring-amber-300/30">
-              Who · What · How
-            </span>
-            <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl">
+          <div className="mt-8 max-w-4xl">
+            <div className="flex items-center gap-4">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-2xl text-slate-900 shadow-lg ring-4 ring-white/10">
+                ☀️
+              </div>
+              <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-amber-200 ring-1 ring-amber-300/30">
+                Who · What · How
+              </span>
+            </div>
+
+            <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
               SOLAR Advocacy Action Hub
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-100 sm:text-xl">
-              Choose the audience, select the SOLAR position, and create a calm,
-              clear message you can use today.
+              Turn SOLAR’s published positions into a clear, respectful message for
+              the person or institution most able to act.
             </p>
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-200 sm:text-lg">
+              Choose the audience, choose the principle, choose the format—and leave
+              with a draft you can use today.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300" />
+
+      <section className="border-b border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-white">
+        <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-amber-800">
+                Grounded in SOLAR’s seven positions
+              </p>
+              <p className="mt-1 max-w-3xl text-sm leading-relaxed text-slate-700 sm:text-base">
+                Every draft begins with SOLAR’s published policy foundation—not
+                improvised talking points or generic advocacy language.
+              </p>
+            </div>
+            <Link
+              to="/advocacy#position-statement"
+              className="inline-flex shrink-0 items-center justify-center rounded-xl border border-amber-300 bg-white px-4 py-2.5 text-sm font-semibold text-amber-900 shadow-sm hover:bg-amber-100"
+            >
+              Review the full position statement
+            </Link>
           </div>
         </div>
       </section>
@@ -104,17 +139,19 @@ export default function AdvocacyActionHub(): JSX.Element {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideCallout
-          tone="info"
-          icon="🧭"
-          title="One message. One recipient. One clear ask."
-        >
-          <p>
-            This first version uses approved SOLAR position language and a
-            deterministic template composer. It does not invent facts, legal claims,
-            statistics, or legislation.
-          </p>
-        </GuideCallout>
+        <div className="rounded-2xl border border-amber-200 bg-white p-1 shadow-sm">
+          <GuideCallout
+            tone="info"
+            icon="🧭"
+            title="One message. One recipient. One clear ask."
+          >
+            <p>
+              This first version uses approved SOLAR position language and a
+              deterministic template composer. It does not invent facts, legal claims,
+              statistics, or legislation.
+            </p>
+          </GuideCallout>
+        </div>
 
         <GuideSectionHeader
           id="who"
@@ -137,8 +174,8 @@ export default function AdvocacyActionHub(): JSX.Element {
                 }}
                 className={`rounded-2xl border p-5 text-left transition-all ${
                   active
-                    ? "border-slate-900 bg-slate-900 text-white shadow-lg"
-                    : "border-slate-200 bg-white hover:border-slate-400 hover:shadow-md"
+                    ? "border-amber-400 bg-slate-900 text-white shadow-lg ring-2 ring-amber-300/40"
+                    : "border-slate-200 bg-white hover:border-amber-300 hover:shadow-md"
                 }`}
                 aria-pressed={active}
               >
@@ -162,14 +199,14 @@ export default function AdvocacyActionHub(): JSX.Element {
           })}
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4">
+        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4">
           <span className="text-sm font-semibold text-slate-700">
             Need the right contact?
           </span>
           {recipient.lookupHref.startsWith("/") ? (
             <Link
               to={recipient.lookupHref}
-              className="text-sm font-semibold text-amber-700 underline decoration-amber-300 underline-offset-4"
+              className="text-sm font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
             >
               {recipient.lookupLabel}
             </Link>
@@ -178,7 +215,7 @@ export default function AdvocacyActionHub(): JSX.Element {
               href={recipient.lookupHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-amber-700 underline decoration-amber-300 underline-offset-4"
+              className="text-sm font-semibold text-amber-800 underline decoration-amber-300 underline-offset-4"
             >
               {recipient.lookupLabel}
             </a>
@@ -201,10 +238,10 @@ export default function AdvocacyActionHub(): JSX.Element {
                 key={position.id}
                 type="button"
                 onClick={() => setPositionId(position.id)}
-                className={`rounded-2xl border p-5 text-left transition-all ${
+                className={`rounded-2xl border-l-4 p-5 text-left transition-all ${
                   active
-                    ? "border-amber-500 bg-amber-50 shadow-md"
-                    : "border-slate-200 bg-white hover:border-amber-300"
+                    ? "border-amber-500 bg-amber-50 shadow-md ring-1 ring-amber-200"
+                    : "border-l-yellow-400 border-y-slate-200 border-r-slate-200 bg-white hover:bg-yellow-50/60 hover:shadow-sm"
                 }`}
                 aria-pressed={active}
               >
@@ -213,7 +250,7 @@ export default function AdvocacyActionHub(): JSX.Element {
                     {position.title}
                   </h3>
                   {recommended && (
-                    <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-slate-600">
+                    <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-amber-800">
                       Recommended
                     </span>
                   )}
@@ -244,8 +281,8 @@ export default function AdvocacyActionHub(): JSX.Element {
                   onClick={() => setFormatId(format.id)}
                   className={`rounded-xl border p-4 text-left transition-colors ${
                     active
-                      ? "border-slate-900 bg-slate-900 text-white"
-                      : "border-slate-200 bg-slate-50 hover:bg-white"
+                      ? "border-amber-400 bg-slate-900 text-white ring-2 ring-amber-200"
+                      : "border-slate-200 bg-slate-50 hover:border-amber-300 hover:bg-amber-50"
                   }`}
                 >
                   <span className="block font-bold">{format.label}</span>
@@ -327,19 +364,21 @@ export default function AdvocacyActionHub(): JSX.Element {
           subtitle="Read it once, replace the bracketed placeholders, and keep the final message focused on one clear request."
         />
 
-        <ScriptBox
-          title={result.title}
-          context={
-            result.subject ? (
-              <span>
-                Suggested subject: <strong>{result.subject}</strong>
-              </span>
-            ) : undefined
-          }
-          script={result.script}
-          tone="research"
-          buttonLabel="Copy draft"
-        />
+        <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
+          <ScriptBox
+            title={result.title}
+            context={
+              result.subject ? (
+                <span>
+                  Suggested subject: <strong>{result.subject}</strong>
+                </span>
+              ) : undefined
+            }
+            script={result.script}
+            tone="research"
+            buttonLabel="Copy draft"
+          />
+        </div>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <button
