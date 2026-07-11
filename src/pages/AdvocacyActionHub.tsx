@@ -32,9 +32,7 @@ const fieldClass =
 export default function AdvocacyActionHub(): JSX.Element {
   const [recipientId, setRecipientId] =
     useState<AdvocacyRecipientId>("state-lawmaker");
-  const [positionIds, setPositionIds] = useState<AdvocacyPositionId[]>([
-    "one-size-fits-all",
-  ]);
+  const [positionIds, setPositionIds] = useState<AdvocacyPositionId[]>([]);
   const [formatId, setFormatId] = useState<AdvocacyFormatId>("email");
   const [perspectiveId, setPerspectiveId] =
     useState<AdvocacyPerspectiveId>("constituent");
@@ -49,29 +47,20 @@ export default function AdvocacyActionHub(): JSX.Element {
   const [personalContext, setPersonalContext] = useState("");
 
   const recipient = getRecipient(recipientId);
-  const primaryPosition = getPosition(positionIds[0]);
+  const primaryPosition = positionIds[0]
+    ? getPosition(positionIds[0])
+    : undefined;
   const secondaryPosition = positionIds[1]
     ? getPosition(positionIds[1])
     : undefined;
-  const promptExamples = getPromptExamples(recipientId, positionIds[0]);
+  const promptExamples = primaryPosition
+    ? getPromptExamples(recipientId, primaryPosition.id)
+    : undefined;
 
-  const result = useMemo(
-    () =>
-      composeAdvocacyMessage({
-        recipientId,
-        positionIds,
-        formatId,
-        perspectiveId,
-        evidenceDepth,
-        senderName,
-        recipientName,
-        organizationName,
-        contactInformation,
-        location,
-        specificAsk,
-        personalContext,
-      }),
-    [
+  const result = useMemo(() => {
+    if (!positionIds.length) return null;
+
+    return composeAdvocacyMessage({
       recipientId,
       positionIds,
       formatId,
@@ -84,65 +73,71 @@ export default function AdvocacyActionHub(): JSX.Element {
       location,
       specificAsk,
       personalContext,
-    ],
-  );
-
-  const chooseRecipient = (nextRecipientId: AdvocacyRecipientId) => {
-    setRecipientId(nextRecipientId);
-    const nextRecipient = getRecipient(nextRecipientId);
-    const primary = positionIds[0];
-    if (!nextRecipient.recommendedPositions.includes(primary)) {
-      const firstRecommended = nextRecipient.recommendedPositions[0];
-      if (firstRecommended) setPositionIds([firstRecommended]);
-    }
-  };
+    });
+  }, [
+    recipientId,
+    positionIds,
+    formatId,
+    perspectiveId,
+    evidenceDepth,
+    senderName,
+    recipientName,
+    organizationName,
+    contactInformation,
+    location,
+    specificAsk,
+    personalContext,
+  ]);
 
   const choosePosition = (id: AdvocacyPositionId) => {
+    const selectedIndex = positionIds.indexOf(id);
+
+    if (selectedIndex >= 0) {
+      const remaining = positionIds.filter((item) => item !== id);
+      setPositionIds(remaining);
+      return;
+    }
+
     if (id === "recon") {
-      setPositionIds(["recon"]);
+      const compatibleExisting = positionIds.find((item) =>
+        isReconCompatible(item),
+      );
+      setPositionIds(
+        compatibleExisting ? ["recon", compatibleExisting] : ["recon"],
+      );
       return;
     }
 
     if (positionIds[0] === "recon") {
-      if (positionIds.includes(id)) {
-        setPositionIds(["recon"]);
-        return;
+      if (isReconCompatible(id) && positionIds.length < 2) {
+        setPositionIds(["recon", id]);
       }
-      if (isReconCompatible(id)) setPositionIds(["recon", id]);
       return;
     }
 
-    if (positionIds.includes(id)) {
-      if (positionIds[0] === id && positionIds.length === 2) {
-        setPositionIds([positionIds[1]]);
-      } else if (positionIds[1] === id) {
-        setPositionIds([positionIds[0]]);
-      }
+    if (positionIds.length === 0) {
+      setPositionIds([id]);
       return;
     }
 
     if (positionIds.length === 1) {
       setPositionIds([positionIds[0], id]);
-      return;
     }
-
-    setPositionIds([id, positionIds[0]]);
   };
 
   const makePrimary = (id: AdvocacyPositionId) => {
-    if (id === "recon") {
-      setPositionIds(["recon", ...positionIds.filter((item) => item !== "recon")].slice(0, 2));
-      return;
-    }
-    if (positionIds[0] === "recon") return;
-    if (positionIds.includes(id)) {
-      setPositionIds([id, ...positionIds.filter((item) => item !== id)].slice(0, 2));
-    }
+    if (positionIds[0] === "recon" || id === "recon") return;
+    if (!positionIds.includes(id)) return;
+
+    setPositionIds([
+      id,
+      ...positionIds.filter((item) => item !== id),
+    ].slice(0, 2));
   };
 
   const reset = () => {
     setRecipientId("state-lawmaker");
-    setPositionIds(["one-size-fits-all"]);
+    setPositionIds([]);
     setFormatId("email");
     setPerspectiveId("constituent");
     setEvidenceDepth("supported");
@@ -246,7 +241,7 @@ export default function AdvocacyActionHub(): JSX.Element {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => chooseRecipient(item.id)}
+                onClick={() => setRecipientId(item.id)}
                 className={`rounded-2xl border p-5 text-left transition-all ${
                   active
                     ? "border-amber-400 bg-slate-900 text-white shadow-lg ring-2 ring-amber-300/40"
@@ -296,8 +291,10 @@ export default function AdvocacyActionHub(): JSX.Element {
         />
 
         <div className="mb-5 rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-700">
-          <strong>{positionIds.length} of 2 selected.</strong> The primary issue controls the subject line,
-          main argument, evidence point, and default ask. Use “Make primary” to reorder your selections.
+          <strong>{positionIds.length} of 2 selected.</strong>{" "}
+          {positionIds.length === 0
+            ? "Recommended cards are suggestions only. Your first selection becomes the primary issue."
+            : "Select an active card again to deselect it. The primary issue controls the subject line, main argument, evidence point, and default ask."}
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
@@ -306,11 +303,14 @@ export default function AdvocacyActionHub(): JSX.Element {
             const active = selectedIndex >= 0;
             const primary = selectedIndex === 0;
             const recommended = recipient.recommendedPositions.includes(position.id);
-            const disabled =
+            const disabledByRecon =
               positionIds[0] === "recon" &&
               position.id !== "recon" &&
               !active &&
               !isReconCompatible(position.id);
+            const disabledByLimit =
+              positionIds.length >= 2 && !active;
+            const disabled = disabledByRecon || disabledByLimit;
 
             return (
               <article
@@ -350,9 +350,14 @@ export default function AdvocacyActionHub(): JSX.Element {
                       {position.helperText}
                     </p>
                   )}
-                  {disabled && (
+                  {disabledByRecon && (
                     <p className="mt-3 text-xs font-semibold text-slate-600">
                       This issue is not available as a RECON pairing.
+                    </p>
+                  )}
+                  {disabledByLimit && !disabledByRecon && (
+                    <p className="mt-3 text-xs font-semibold text-slate-600">
+                      Deselect an issue before choosing another.
                     </p>
                   )}
                 </button>
@@ -384,28 +389,34 @@ export default function AdvocacyActionHub(): JSX.Element {
           </GuideCallout>
         )}
 
-        <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 p-5">
-          <p className="text-sm font-bold uppercase tracking-wide text-blue-800">
-            Evidence supporting the primary selection
-          </p>
-          <p className="mt-2 text-sm leading-relaxed text-blue-950">
-            {primaryPosition.evidencePoint}
-          </p>
-          <p className="mt-2 text-xs font-semibold text-blue-700">
-            Source references: {primaryPosition.sourceIds.join(", ")}
-          </p>
-          {secondaryPosition && (
-            <p className="mt-3 text-sm text-blue-900">
-              Supporting issue: <strong>{secondaryPosition.title}</strong>
+        {primaryPosition ? (
+          <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+            <p className="text-sm font-bold uppercase tracking-wide text-blue-800">
+              Evidence supporting the primary selection
             </p>
-          )}
-          <Link
-            to={researchResourceHref}
-            className="mt-4 inline-flex rounded-xl border border-blue-300 bg-white px-4 py-2.5 text-sm font-semibold text-blue-900 hover:bg-blue-100"
-          >
-            Review research and sources
-          </Link>
-        </div>
+            <p className="mt-2 text-sm leading-relaxed text-blue-950">
+              {primaryPosition.evidencePoint}
+            </p>
+            <p className="mt-2 text-xs font-semibold text-blue-700">
+              Source references: {primaryPosition.sourceIds.join(", ")}
+            </p>
+            {secondaryPosition && (
+              <p className="mt-3 text-sm text-blue-900">
+                Supporting issue: <strong>{secondaryPosition.title}</strong>
+              </p>
+            )}
+            <Link
+              to={researchResourceHref}
+              className="mt-4 inline-flex rounded-xl border border-blue-300 bg-white px-4 py-2.5 text-sm font-semibold text-blue-900 hover:bg-blue-100"
+            >
+              Review research and sources
+            </Link>
+          </div>
+        ) : (
+          <div className="mt-5 rounded-2xl border border-blue-200 bg-blue-50 p-5 text-sm text-blue-950">
+            Choose a primary issue to see its supporting evidence and build your draft.
+          </div>
+        )}
 
         <GuideSectionHeader
           id="how"
@@ -501,13 +512,31 @@ export default function AdvocacyActionHub(): JSX.Element {
             </label>
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
               Specific request <span className="font-normal text-slate-500">(optional)</span>
-              <input className={fieldClass} value={specificAsk} onChange={(event) => setSpecificAsk(event.target.value)} placeholder={promptExamples.specificAsk} />
-              <span className="mt-2 block text-xs font-normal text-slate-500">Example: {promptExamples.specificAsk}</span>
+              <input
+                className={fieldClass}
+                value={specificAsk}
+                onChange={(event) => setSpecificAsk(event.target.value)}
+                placeholder={promptExamples?.specificAsk ?? "Choose a primary issue to see a suggested request."}
+              />
+              <span className="mt-2 block text-xs font-normal text-slate-500">
+                {promptExamples
+                  ? `Example: ${promptExamples.specificAsk}`
+                  : "A tailored example will appear after you choose a primary issue."}
+              </span>
             </label>
             <label className="block text-sm font-semibold text-slate-700 md:col-span-2">
               Local or personal context <span className="font-normal text-slate-500">(optional)</span>
-              <textarea className={`${fieldClass} min-h-28`} value={personalContext} onChange={(event) => setPersonalContext(event.target.value)} placeholder={promptExamples.personalContext} />
-              <span className="mt-2 block text-xs font-normal text-slate-500">Example: {promptExamples.personalContext}</span>
+              <textarea
+                className={`${fieldClass} min-h-28`}
+                value={personalContext}
+                onChange={(event) => setPersonalContext(event.target.value)}
+                placeholder={promptExamples?.personalContext ?? "Choose a primary issue to see a suggested example."}
+              />
+              <span className="mt-2 block text-xs font-normal text-slate-500">
+                {promptExamples
+                  ? `Example: ${promptExamples.personalContext}`
+                  : "A tailored example will appear after you choose a primary issue."}
+              </span>
             </label>
           </div>
         </GuideSectionCard>
@@ -519,22 +548,67 @@ export default function AdvocacyActionHub(): JSX.Element {
           subtitle="Review, copy, or print the message below."
         />
 
-        <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
-          <ScriptBox
-            title={result.title}
-            context={result.subject ? <span>Suggested subject: <strong>{result.subject}</strong></span> : undefined}
-            script={result.script}
-          />
+        <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4 text-sm leading-relaxed text-slate-700">
+          Any field you leave blank remains a bracketed placeholder for you to complete later.
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3">
-          <button type="button" onClick={reset} className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">
-            Reset composer
+        {result ? (
+          <div className="rounded-2xl border border-amber-200 bg-gradient-to-b from-amber-50 to-white p-1 shadow-sm">
+            <ScriptBox
+              title={result.title}
+              context={result.subject ? <span>Suggested subject: <strong>{result.subject}</strong></span> : undefined}
+              script={result.script}
+              tone="research"
+              buttonLabel="Copy draft"
+            />
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 text-center text-sm leading-relaxed text-amber-950">
+            Select a primary issue above to generate your draft.
+          </div>
+        )}
+
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+          >
+            Print this page
           </button>
-          <Link to="/resources/legislative-advocacy-guide" className="rounded-xl bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700">
+          <button
+            type="button"
+            onClick={reset}
+            className="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-100"
+          >
+            Start over
+          </button>
+          <Link
+            to="/resources/legislative-advocacy-guide"
+            className="rounded-xl border border-amber-300 bg-amber-50 px-5 py-3 text-center text-sm font-semibold text-amber-900 hover:bg-amber-100"
+          >
             Read the Legislative Advocacy Guide
           </Link>
+          <Link
+            to={researchResourceHref}
+            className="rounded-xl border border-blue-300 bg-blue-50 px-5 py-3 text-center text-sm font-semibold text-blue-900 hover:bg-blue-100"
+          >
+            Review Research & Data Sources
+          </Link>
         </div>
+
+        <GuideCallout
+          tone="legal"
+          icon="⚖️"
+          title="Before sharing case details"
+        >
+          <p>
+            If you have a pending case, active appeal, open investigation,
+            supervision restriction, or unresolved registration question, avoid
+            including details that could create legal or supervision risk. General
+            policy advocacy is still possible.
+          </p>
+        </GuideCallout>
       </main>
     </div>
   );
