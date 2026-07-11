@@ -27,6 +27,8 @@ export type AdvocacyPerspectiveId =
   | "constituent"
   | "organization";
 
+export type AdvocacyEvidenceDepth = "plain" | "supported";
+
 export type AdvocacyRecipient = {
   id: AdvocacyRecipientId;
   label: string;
@@ -44,6 +46,9 @@ export type AdvocacyPosition = {
   title: string;
   summary: string;
   talkingPoint: string;
+  evidencePoint: string;
+  evidenceCaveat: string;
+  sourceIds: string[];
   lawmakerAsk: string;
 };
 
@@ -58,6 +63,8 @@ export type AdvocacyPerspective = {
   label: string;
   introduction: string;
 };
+
+export const researchResourceHref = "/resources/research-data-resources";
 
 export const recipients: AdvocacyRecipient[] = [
   {
@@ -142,7 +149,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Public policy should be measured by whether it prevents harm, not by whether it creates the appearance of action.",
     talkingPoint:
-      "Public registries have not delivered the broad prevention benefits commonly claimed for them, while many offenses are committed by people who were not previously listed.",
+      "I am concerned that public registries have not delivered the broad prevention benefits commonly claimed for them, while many offenses are committed by people who were not previously listed.",
+    evidencePoint:
+      "A 25-year meta-analysis found no statistically significant overall recidivism benefit from broad sex offense registration and notification policies.",
+    evidenceCaveat:
+      "That finding does not mean every law-enforcement registration function is useless; it means broad public-policy claims should be tested against outcomes.",
+    sourceIds: ["SE03", "SE04"],
     lawmakerAsk:
       "Require credible evidence and outcome review before expanding registration or public-notification rules.",
   },
@@ -153,7 +165,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Fear, isolation, harassment, family disruption, and housing instability are not neutral side effects.",
     talkingPoint:
-      "Registry policy reaches spouses, children, parents, employers, and neighborhoods, often creating instability that undermines reintegration.",
+      "I believe registry policy should account for its effects on spouses, children, parents, employers, and neighborhoods, especially when those effects undermine stable reintegration.",
+    evidencePoint:
+      "Research reviews link registry requirements and related restrictions to housing instability, employment barriers, stigma, family spillover harm, and reintegration problems.",
+    evidenceCaveat:
+      "Those hardships can also be shaped by conviction, supervision, poverty, and local conditions, so causal claims should remain careful.",
+    sourceIds: ["SE06", "SE07", "SE24"],
     lawmakerAsk:
       "Include family and community impacts in every registry-policy review and fiscal analysis.",
   },
@@ -163,7 +180,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Prevention must focus on access, authority, grooming, disclosure, and institutional accountability—not only strangers on a map.",
     talkingPoint:
-      "Child-safety policy should address harm by known and trusted people and strengthen prevention and reporting systems where abuse commonly occurs.",
+      "I believe child-safety policy should address harm by known and trusted people and strengthen prevention and reporting systems where abuse commonly occurs.",
+    evidencePoint:
+      "Official and prevention-oriented sources show that most sexual harms against children involve someone the child knows, including family members, acquaintances, caregivers, or trusted authority figures.",
+    evidenceCaveat:
+      "Stranger-perpetrated abuse still occurs and can be serious; the point is that public registries are a limited primary-prevention tool.",
+    sourceIds: ["SE11", "SE12", "SE13", "SE25"],
     lawmakerAsk:
       "Invest in prevention, disclosure, institutional safeguards, and evidence-based child-protection practices.",
   },
@@ -174,7 +196,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Registry policy applies lifelong public exposure selectively, even though many other serious harms are handled through sentence-bound accountability and ordinary reentry.",
     talkingPoint:
-      "Government should explain why permanent public branding is treated as essential for one category of offense but not for other serious harms to children and communities.",
+      "I believe government should explain why permanent public branding is treated as essential for one category of offense but not for other serious harms to children and communities.",
+    evidencePoint:
+      "Many major public-safety harms are managed through prevention, regulation, enforcement, treatment, technology, or service systems rather than permanent public identity branding.",
+    evidenceCaveat:
+      "Different harms are not identical and do not require identical responses; the comparison is about consistency in public-safety logic.",
+    sourceIds: ["SE12", "SE15", "SE16", "SE17"],
     lawmakerAsk:
       "Apply consistent public-safety principles and evaluate whether registry policy is proportionate and evidence-based.",
   },
@@ -184,7 +211,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Public exposure, recurring reporting, restrictions, and collateral consequences operate as continuing punishment after sentence completion.",
     talkingPoint:
-      "A policy should not be called merely administrative when it imposes lifelong public consequences, recurring burdens, and barriers to ordinary civic life.",
+      "I do not think a policy should be treated as merely administrative when it imposes lifelong public consequences, recurring burdens, and barriers to ordinary civic life.",
+    evidencePoint:
+      "Although registries have often been labeled civil, modern layered restrictions can burden speech, movement, housing, association, and community participation in punishment-like ways.",
+    evidenceCaveat:
+      "This does not mean every registry law has been held unconstitutional; Smith v. Doe remains a central national precedent.",
+    sourceIds: ["SE18", "SE19", "SE27", "SE28"],
     lawmakerAsk:
       "Provide due process, proportionality, review, and meaningful relief from continuing registry burdens.",
   },
@@ -194,7 +226,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Blanket rules ignore the differences among cases, people, time elapsed, conduct, and actual risk.",
     talkingPoint:
-      "Public safety is better served by individualized assessment and targeted intervention than by broad offense-label rules.",
+      "I believe public safety is better served by individualized assessment and targeted intervention than by broad offense-label rules.",
+    evidencePoint:
+      "Research shows that risk varies by person and context and generally declines the longer someone remains offense-free in the community.",
+    evidenceCaveat:
+      "Declining risk is not zero risk, and no assessment tool predicts future behavior perfectly.",
+    sourceIds: ["SE02", "SE21", "SE22", "SE23"],
     lawmakerAsk:
       "Replace blanket restrictions with individualized, reviewable, evidence-based policy.",
   },
@@ -204,7 +241,12 @@ export const positions: AdvocacyPosition[] = [
     summary:
       "Housing, employment, education, financial services, and community participation are often blocked long after punishment ends.",
     talkingPoint:
-      "Policies that deny the tools needed for stability and lawful reintegration can make communities less safe, not more safe.",
+      "I believe policies that deny the tools needed for stability and lawful reintegration can make communities less safe, not more safe.",
+    evidencePoint:
+      "Research suggests registry requirements and restrictions can destabilize housing, employment, and family support systems that are necessary for safe reintegration.",
+    evidenceCaveat:
+      "Not every hardship is caused by the registry alone, but the cumulative barriers are relevant to public safety and successful reentry.",
+    sourceIds: ["SE06", "SE08", "SE24", "SE26"],
     lawmakerAsk:
       "Remove unnecessary collateral barriers and create realistic pathways to reintegration and relief.",
   },
@@ -247,7 +289,7 @@ export const perspectives: AdvocacyPerspective[] = [
     id: "organization",
     label: "Organization",
     introduction:
-      "I am writing on behalf of an organization committed to safety, accountability, liberty, and successful reintegration.",
+      "I am writing on behalf of [ORGANIZATION NAME], which is concerned with safety, accountability, fairness, and successful reintegration.",
   },
 ];
 
@@ -268,6 +310,7 @@ export function composeAdvocacyMessage({
   positionId,
   formatId,
   perspectiveId,
+  evidenceDepth,
   location,
   specificAsk,
   personalContext,
@@ -276,6 +319,7 @@ export function composeAdvocacyMessage({
   positionId: AdvocacyPositionId;
   formatId: AdvocacyFormatId;
   perspectiveId: AdvocacyPerspectiveId;
+  evidenceDepth: AdvocacyEvidenceDepth;
   location?: string;
   specificAsk?: string;
   personalContext?: string;
@@ -288,18 +332,21 @@ export function composeAdvocacyMessage({
   const context = personalContext?.trim()
     ? `\n\n${personalContext.trim()}`
     : "\n\n[Optional: add one brief local or personal example.]";
+  const evidence = evidenceDepth === "supported"
+    ? `\n\nResearch supports this concern. ${position.evidencePoint} ${position.evidenceCaveat}`
+    : "";
 
   if (formatId === "phone") {
     return {
       title: `Phone script for ${recipient.shortLabel}`,
-      script: `Hello, my name is [YOUR NAME], and I am calling from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${context}\n\nMy request is simple: ${ask}\n\nThank you for your time. I would appreciate knowing the office's position on this issue.`,
+      script: `Hello, my name is [YOUR NAME], and I am calling from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nMy request is simple: ${ask}\n\nThank you for your time. I would appreciate knowing the office's position on this issue.`,
     };
   }
 
   if (formatId === "testimony") {
     return {
       title: `Public testimony for ${recipient.shortLabel}`,
-      script: `Good [morning / afternoon]. My name is [YOUR NAME], and I am from ${place}. ${perspective.introduction}\n\nSOLAR's position is that ${position.title.charAt(0).toLowerCase()}${position.title.slice(1)} ${position.talkingPoint}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nThank you for the opportunity to speak.`,
+      script: `Good [morning / afternoon]. My name is [YOUR NAME], and I am from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nThank you for the opportunity to speak.`,
     };
   }
 
@@ -307,7 +354,7 @@ export function composeAdvocacyMessage({
     return {
       title: "Letter to the editor",
       subject: "Evidence—not fear—should guide registry policy",
-      script: `Public discussion of registry policy too often begins with fear and ends before anyone asks whether the policy works. ${position.talkingPoint}\n\n${perspective.introduction} In ${place}, this debate should focus on measurable safety, accountability, and the conditions that support lawful reintegration.${context}\n\nPublic officials and news organizations should ask for evidence before endorsing broader public exposure or blanket restrictions. ${ask}\n\n[YOUR NAME]\n${place}`,
+      script: `Public discussion of registry policy too often begins with fear and ends before anyone asks whether the policy works. ${position.talkingPoint}${evidence}\n\n${perspective.introduction} In ${place}, this debate should focus on measurable safety, accountability, and the conditions that support lawful reintegration.${context}\n\nPublic officials and news organizations should ask for evidence before endorsing broader public exposure or blanket restrictions. ${ask}\n\n[YOUR NAME]\n${place}`,
     };
   }
 
@@ -315,9 +362,9 @@ export function composeAdvocacyMessage({
   const subject =
     recipientId === "journalist"
       ? `Story context: ${position.title}`
-      : `Please act on evidence-based registry reform`;
+      : "Please act on evidence-based registry reform";
 
-  const body = `${greeting}\n\nI am writing from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nPublic safety policy should be measured by whether it prevents harm, supports accountability, and promotes stable reintegration—not simply by whether it imposes more public punishment.\n\nThank you for your consideration,\n[YOUR NAME]\n[CONTACT INFORMATION]`;
+  const body = `${greeting}\n\nI am writing from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nPublic safety policy should be measured by whether it prevents harm, supports accountability, and promotes stable reintegration—not simply by whether it imposes more public punishment.\n\nThank you for your consideration,\n[YOUR NAME]\n[CONTACT INFORMATION]`;
 
   if (formatId === "letter") {
     return {
