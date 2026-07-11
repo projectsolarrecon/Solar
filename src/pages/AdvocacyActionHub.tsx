@@ -116,16 +116,7 @@ export default function AdvocacyActionHub(): JSX.Element {
           </Link>
 
           <div className="mt-8 max-w-4xl">
-            <div className="flex items-center gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-400 text-2xl text-slate-900 shadow-lg ring-4 ring-white/10">
-                ☀️
-              </div>
-              <span className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-amber-200 ring-1 ring-amber-300/30">
-                Who · What · How
-              </span>
-            </div>
-
-            <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
               SOLAR Advocacy Action Hub
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-100 sm:text-xl">
