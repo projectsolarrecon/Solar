@@ -64,6 +64,11 @@ export type AdvocacyPerspective = {
   introduction: string;
 };
 
+export type AdvocacyPromptExamples = {
+  specificAsk: string;
+  personalContext: string;
+};
+
 export const researchResourceHref = "/resources/research-data-resources";
 
 export const recipients: AdvocacyRecipient[] = [
@@ -293,6 +298,90 @@ export const perspectives: AdvocacyPerspective[] = [
   },
 ];
 
+const topicContextExamples: Record<AdvocacyPositionId, string> = {
+  ineffective:
+    "A recent discussion in my community assumed that broader public notification automatically improves safety, but no outcome evidence was presented.",
+  "lasting-harm":
+    "I have seen registry restrictions disrupt stable housing, employment, and family support long after the original sentence was completed.",
+  "closer-to-home":
+    "Recent local discussion focused on registry maps but did not address prevention inside families, schools, churches, sports programs, or other trusted settings.",
+  "inconsistent-danger":
+    "Our community uses prevention, treatment, regulation, and ordinary reentry for many serious harms without imposing permanent public identity branding.",
+  punitive:
+    "The cumulative reporting duties, public exposure, and restrictions continue to shape ordinary housing, work, travel, and family life after sentence completion.",
+  "one-size-fits-all":
+    "Blanket rules in my community apply the same consequences despite major differences in conduct, time elapsed, treatment, and present risk.",
+  "permanent-underclass":
+    "Local barriers can push affected residents away from stable housing, work, treatment, and family support—the very conditions associated with successful reentry.",
+};
+
+const recipientAskExamples: Record<AdvocacyRecipientId, Record<AdvocacyPositionId, string>> = {
+  "state-lawmaker": {
+    ineffective:
+      "Please require outcome evidence and periodic review before expanding registration or public-notification requirements.",
+    "lasting-harm":
+      "Please require family, housing, employment, and reintegration impacts to be considered in registry legislation.",
+    "closer-to-home":
+      "Please invest in prevention, reporting, and safeguards addressing abuse by known and trusted people.",
+    "inconsistent-danger":
+      "Please evaluate whether permanent public branding is proportionate and consistent with the way other serious harms are addressed.",
+    punitive:
+      "Please support due process, proportionality, periodic review, and meaningful relief from continuing registry burdens.",
+    "one-size-fits-all":
+      "Please support legislation replacing blanket offense-based rules with individualized assessment and periodic review.",
+    "permanent-underclass":
+      "Please remove unnecessary housing and employment barriers and create realistic pathways to relief and reintegration.",
+  },
+  "federal-lawmaker": {
+    ineffective:
+      "Please require federal registry policy and funding incentives to be tied to measurable public-safety outcomes.",
+    "lasting-harm":
+      "Please require federal agencies to evaluate family, housing, employment, and reentry impacts before expanding mandates.",
+    "closer-to-home":
+      "Please prioritize federal prevention funding for trusted-access safeguards, reporting systems, and early intervention.",
+    "inconsistent-danger":
+      "Please review whether federal registry mandates reflect consistent, proportionate public-safety principles.",
+    punitive:
+      "Please protect due process and constitutional rights when federal policy creates continuing restrictions after sentence completion.",
+    "one-size-fits-all":
+      "Please support individualized, reviewable federal standards rather than permanent status based on offense labels alone.",
+    "permanent-underclass":
+      "Please remove federal barriers that unnecessarily obstruct housing, employment, technology access, and successful reentry.",
+  },
+  "local-official": {
+    ineffective:
+      "Please require evidence of a local safety benefit before adopting broader notification or presence restrictions.",
+    "lasting-harm":
+      "Please consider how the proposed local rule would affect housing stability, families, employment, and community reintegration.",
+    "closer-to-home":
+      "Please strengthen local prevention and institutional safeguards rather than relying primarily on registry maps.",
+    "inconsistent-danger":
+      "Please use consistent prevention and reentry principles when deciding how the city addresses serious public-safety harms.",
+    punitive:
+      "Please reject local restrictions that extend punishment without individualized review or demonstrated safety benefit.",
+    "one-size-fits-all":
+      "Please replace blanket local restrictions with targeted, individualized, and reviewable approaches.",
+    "permanent-underclass":
+      "Please oppose local restrictions that exclude people from housing or shelter without evidence of a public-safety benefit.",
+  },
+  journalist: {
+    ineffective:
+      "Please ask what outcome evidence supports claims that broader public notification improves safety.",
+    "lasting-harm":
+      "Please include the effects of registry policy on families, housing, employment, and reintegration in your coverage.",
+    "closer-to-home":
+      "Please include the role of trusted access and known perpetrators when covering child-safety policy.",
+    "inconsistent-danger":
+      "Please examine why permanent public branding is used selectively rather than treating it as an unquestioned public-safety necessity.",
+    punitive:
+      "Please describe the continuing restrictions and lived burdens involved rather than referring to registration as merely administrative.",
+    "one-size-fits-all":
+      "Please include differences in individual risk, time offense-free, treatment, and circumstances when discussing registry policy.",
+    "permanent-underclass":
+      "Please report on how housing, employment, and community barriers affect reintegration and public safety.",
+  },
+};
+
 export function getRecipient(id: AdvocacyRecipientId): AdvocacyRecipient {
   return recipients.find((item) => item.id === id) ?? recipients[0];
 }
@@ -305,12 +394,30 @@ export function getPerspective(id: AdvocacyPerspectiveId): AdvocacyPerspective {
   return perspectives.find((item) => item.id === id) ?? perspectives[3];
 }
 
+export function getPromptExamples(
+  recipientId: AdvocacyRecipientId,
+  positionId: AdvocacyPositionId,
+): AdvocacyPromptExamples {
+  return {
+    specificAsk: recipientAskExamples[recipientId][positionId],
+    personalContext: topicContextExamples[positionId],
+  };
+}
+
+function fill(value: string | undefined, fallback: string): string {
+  return value?.trim() || fallback;
+}
+
 export function composeAdvocacyMessage({
   recipientId,
   positionId,
   formatId,
   perspectiveId,
   evidenceDepth,
+  senderName,
+  recipientName,
+  organizationName,
+  contactInformation,
   location,
   specificAsk,
   personalContext,
@@ -320,6 +427,10 @@ export function composeAdvocacyMessage({
   formatId: AdvocacyFormatId;
   perspectiveId: AdvocacyPerspectiveId;
   evidenceDepth: AdvocacyEvidenceDepth;
+  senderName?: string;
+  recipientName?: string;
+  organizationName?: string;
+  contactInformation?: string;
   location?: string;
   specificAsk?: string;
   personalContext?: string;
@@ -327,8 +438,16 @@ export function composeAdvocacyMessage({
   const recipient = getRecipient(recipientId);
   const position = getPosition(positionId);
   const perspective = getPerspective(perspectiveId);
-  const place = location?.trim() || "[CITY / STATE / ZIP]";
+  const sender = fill(senderName, "[YOUR NAME]");
+  const recipientDisplay = fill(
+    recipientName,
+    recipientId === "journalist" ? "[REPORTER / EDITOR NAME]" : "[TITLE AND LAST NAME]",
+  );
+  const organization = fill(organizationName, "[ORGANIZATION NAME]");
+  const contact = fill(contactInformation, "[CONTACT INFORMATION]");
+  const place = fill(location, "[CITY / STATE / ZIP]");
   const ask = specificAsk?.trim() || position.lawmakerAsk || recipient.defaultAsk;
+  const introduction = perspective.introduction.replace("[ORGANIZATION NAME]", organization);
   const context = personalContext?.trim()
     ? `\n\n${personalContext.trim()}`
     : "\n\n[Optional: add one brief local or personal example.]";
@@ -339,14 +458,14 @@ export function composeAdvocacyMessage({
   if (formatId === "phone") {
     return {
       title: `Phone script for ${recipient.shortLabel}`,
-      script: `Hello, my name is [YOUR NAME], and I am calling from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nMy request is simple: ${ask}\n\nThank you for your time. I would appreciate knowing the office's position on this issue.`,
+      script: `Hello, my name is ${sender}, and I am calling from ${place}. ${introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nMy request is simple: ${ask}\n\nThank you for your time. I would appreciate knowing ${recipientDisplay}'s position on this issue.`,
     };
   }
 
   if (formatId === "testimony") {
     return {
       title: `Public testimony for ${recipient.shortLabel}`,
-      script: `Good [morning / afternoon]. My name is [YOUR NAME], and I am from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nThank you for the opportunity to speak.`,
+      script: `Good [morning / afternoon]. My name is ${sender}, and I am from ${place}. ${introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nThank you for the opportunity to speak.`,
     };
   }
 
@@ -354,23 +473,23 @@ export function composeAdvocacyMessage({
     return {
       title: "Letter to the editor",
       subject: "Evidence—not fear—should guide registry policy",
-      script: `Public discussion of registry policy too often begins with fear and ends before anyone asks whether the policy works. ${position.talkingPoint}${evidence}\n\n${perspective.introduction} In ${place}, this debate should focus on measurable safety, accountability, and the conditions that support lawful reintegration.${context}\n\nPublic officials and news organizations should ask for evidence before endorsing broader public exposure or blanket restrictions. ${ask}\n\n[YOUR NAME]\n${place}`,
+      script: `Public discussion of registry policy too often begins with fear and ends before anyone asks whether the policy works. ${position.talkingPoint}${evidence}\n\n${introduction} In ${place}, this debate should focus on measurable safety, accountability, and the conditions that support lawful reintegration.${context}\n\nPublic officials and news organizations should ask for evidence before endorsing broader public exposure or blanket restrictions. ${ask}\n\n${sender}\n${place}${contactInformation?.trim() ? `\n${contact}` : ""}`,
     };
   }
 
-  const greeting = recipientId === "journalist" ? "Dear [REPORTER / EDITOR NAME]," : "Dear [TITLE AND LAST NAME],";
+  const greeting = `Dear ${recipientDisplay},`;
   const subject =
     recipientId === "journalist"
       ? `Story context: ${position.title}`
       : "Please act on evidence-based registry reform";
 
-  const body = `${greeting}\n\nI am writing from ${place}. ${perspective.introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nPublic safety policy should be measured by whether it prevents harm, supports accountability, and promotes stable reintegration—not simply by whether it imposes more public punishment.\n\nThank you for your consideration,\n[YOUR NAME]\n[CONTACT INFORMATION]`;
+  const body = `${greeting}\n\nI am writing from ${place}. ${introduction}\n\n${position.talkingPoint}${evidence}${context}\n\nI respectfully ask you to ${ask.charAt(0).toLowerCase()}${ask.slice(1)}\n\nPublic safety policy should be measured by whether it prevents harm, supports accountability, and promotes stable reintegration—not simply by whether it imposes more public punishment.\n\nThank you for your consideration,\n${sender}\n${contact}`;
 
   if (formatId === "letter") {
     return {
       title: `Printed letter for ${recipient.shortLabel}`,
       subject,
-      script: `[DATE]\n[RECIPIENT NAME]\n[OFFICE / ORGANIZATION]\n[ADDRESS]\n\nRe: ${subject}\n\n${body}`,
+      script: `[DATE]\n${recipientDisplay}\n[OFFICE / ORGANIZATION]\n[ADDRESS]\n\nRe: ${subject}\n\n${body}`,
     };
   }
 
