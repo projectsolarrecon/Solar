@@ -211,7 +211,7 @@ export default function Home(): JSX.Element {
           Read Our Blog
         </Link>
         <Link
-          to="/advocacy"
+          to="/advocacy/action-hub"
           className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors shadow-lg"
         >
           Get Involved
