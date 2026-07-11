@@ -13,8 +13,8 @@ function Header() {
     { path: "/blog", label: "Blog" },
     { path: "/resources", label: "Resources" },
     // { path: "/legal-directory", label: "Legal Directory" }, // Temporarily suppressed
-    { path: "/advocacy", label: "Get Involved" },
-    { path: "/advocacy/action-hub", label: "Take Action" },
+    { path: "/advocacy", label: "Advocacy Positions" },
+    { path: "/advocacy/action-hub", label: "Get Involved" },
     { path: "/contact", label: "Contact" },
   ];
 
