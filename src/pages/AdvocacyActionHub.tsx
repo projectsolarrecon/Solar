@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
 import ShareBar from "../components/solar/ShareBar";
 import {
@@ -25,15 +25,34 @@ import {
   type AdvocacyPositionId,
   type AdvocacyRecipientId,
 } from "../data/advocacy/actionHubData";
+import { parseContextualActionParams } from "../data/advocacy/contextualAction";
 
 const fieldClass =
   "mt-1 w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-100";
 
+const sourceTypeLabels = {
+  blog: "Blog article",
+  "resource-guide": "Resource guide",
+  "legislative-tracker": "Legislative Tracker",
+  "accountability-watch": "Accountability Watch",
+} as const;
+
 export default function AdvocacyActionHub(): JSX.Element {
-  const [recipientId, setRecipientId] =
-    useState<AdvocacyRecipientId>("state-lawmaker");
-  const [positionIds, setPositionIds] = useState<AdvocacyPositionId[]>([]);
-  const [formatId, setFormatId] = useState<AdvocacyFormatId>("email");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const contextualAction = useMemo(
+    () => parseContextualActionParams(searchParams),
+    [searchParams],
+  );
+
+  const [recipientId, setRecipientId] = useState<AdvocacyRecipientId>(
+    contextualAction?.recipientId ?? "state-lawmaker",
+  );
+  const [positionIds, setPositionIds] = useState<AdvocacyPositionId[]>(
+    contextualAction?.positionIds ?? [],
+  );
+  const [formatId, setFormatId] = useState<AdvocacyFormatId>(
+    contextualAction?.formatId ?? "email",
+  );
   const [perspectiveId, setPerspectiveId] =
     useState<AdvocacyPerspectiveId>("constituent");
   const [evidenceDepth, setEvidenceDepth] =
@@ -43,8 +62,12 @@ export default function AdvocacyActionHub(): JSX.Element {
   const [organizationName, setOrganizationName] = useState("");
   const [contactInformation, setContactInformation] = useState("");
   const [location, setLocation] = useState("");
-  const [specificAsk, setSpecificAsk] = useState("");
-  const [personalContext, setPersonalContext] = useState("");
+  const [specificAsk, setSpecificAsk] = useState(
+    contextualAction?.suggestedAsk ?? "",
+  );
+  const [personalContext, setPersonalContext] = useState(
+    contextualAction?.personalContext ?? "",
+  );
 
   const recipient = getRecipient(recipientId);
   const primaryPosition = positionIds[0]
@@ -93,8 +116,7 @@ export default function AdvocacyActionHub(): JSX.Element {
     const selectedIndex = positionIds.indexOf(id);
 
     if (selectedIndex >= 0) {
-      const remaining = positionIds.filter((item) => item !== id);
-      setPositionIds(remaining);
+      setPositionIds(positionIds.filter((item) => item !== id));
       return;
     }
 
@@ -136,6 +158,7 @@ export default function AdvocacyActionHub(): JSX.Element {
   };
 
   const reset = () => {
+    setSearchParams({}, { replace: true });
     setRecipientId("state-lawmaker");
     setPositionIds([]);
     setFormatId("email");
@@ -183,6 +206,52 @@ export default function AdvocacyActionHub(): JSX.Element {
 
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
         <ShareBar />
+
+        {contextualAction?.source && (
+          <section className="mb-8 overflow-hidden rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50 via-white to-amber-50 shadow-sm">
+            <div className="border-b border-blue-200 bg-blue-100/70 px-5 py-3 sm:px-6">
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-900">
+                Suggested from SOLAR content
+              </p>
+            </div>
+            <div className="p-5 sm:p-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    {sourceTypeLabels[contextualAction.source.type]}
+                  </p>
+                  <h2 className="mt-1 text-xl font-black leading-snug text-slate-950">
+                    {contextualAction.source.title}
+                  </h2>
+                  <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-700">
+                    The audience, issues, format, request, and context below were suggested from this page. They are a starting point—not locked instructions—and every field remains editable.
+                  </p>
+                </div>
+                <Link
+                  to={contextualAction.source.path}
+                  className="inline-flex shrink-0 items-center justify-center rounded-xl border border-blue-300 bg-white px-4 py-2.5 text-sm font-semibold text-blue-900 hover:bg-blue-100"
+                >
+                  Return to source
+                </Link>
+              </div>
+
+              {(contextualAction.jurisdiction || contextualAction.billNumber) && (
+                <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold">
+                  {contextualAction.jurisdiction && (
+                    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-700">
+                      {contextualAction.jurisdiction}
+                    </span>
+                  )}
+                  {contextualAction.billNumber && (
+                    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-700">
+                      {contextualAction.billNumber}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         <section className="mb-8 overflow-hidden rounded-2xl border border-amber-200 bg-white shadow-md">
           <div className="bg-gradient-to-r from-amber-500 to-yellow-400 px-5 py-4 text-slate-950 sm:px-6">
@@ -308,8 +377,7 @@ export default function AdvocacyActionHub(): JSX.Element {
               position.id !== "recon" &&
               !active &&
               !isReconCompatible(position.id);
-            const disabledByLimit =
-              positionIds.length >= 2 && !active;
+            const disabledByLimit = positionIds.length >= 2 && !active;
             const disabled = disabledByRecon || disabledByLimit;
 
             return (
