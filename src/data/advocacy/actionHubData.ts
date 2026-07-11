@@ -333,7 +333,7 @@ export function composeAdvocacyMessage({
     ? `\n\n${personalContext.trim()}`
     : "\n\n[Optional: add one brief local or personal example.]";
   const evidence = evidenceDepth === "supported"
-    ? `\n\nResearch supports this concern. ${position.evidencePoint} ${position.evidenceCaveat}`
+    ? `\n\nResearch supports this concern. ${position.evidencePoint}`
     : "";
 
   if (formatId === "phone") {
