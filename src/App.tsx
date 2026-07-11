@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 
 import Layout from "./components/Layout";
@@ -7,7 +7,6 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import About from "./pages/About";
-import LegalDirectory from "./pages/LegalDirectory";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Advocacy from "./pages/Advocacy";
@@ -63,7 +62,6 @@ import CommunityBetrayal from './pages/blog/CommunityBetrayal';
 import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
 import WhoIsSOLAR from './pages/blog/WhoIsSOLAR';
 import TenantRightsGuide from './pages/resources/TenantRightsGuide';
-import LegislativeUpdate_2025_09_06 from './pages/resources/legislative-tracker/2025-09-06';
 import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
 import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
 import CommunityTies from "./pages/blog/CommunityTies";
