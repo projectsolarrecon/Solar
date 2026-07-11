@@ -11,6 +11,7 @@ import LegalDirectory from "./pages/LegalDirectory";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Advocacy from "./pages/Advocacy";
+import AdvocacyActionHub from "./pages/AdvocacyActionHub";
 import NotFound from "./pages/NotFound";
 
 // Auto-discover weekly pages under /resources/legislative-tracker
@@ -59,11 +60,9 @@ import CustodyWithoutCages from './pages/blog/CustodyWithoutCages';
 import SanctuaryAndSilence from './pages/blog/SanctuaryAndSilence';
 import PlayingFieldsAndSchoolyards from './pages/blog/PlayingFieldsAndSchoolyards';
 import CommunityBetrayal from './pages/blog/CommunityBetrayal';
-import LegislativeAdvocacyGuide from "./pages/resources/LegislativeAdvocacyGuide";
 import TwoMenOneReleaseDate from "./pages/blog/TwoMenOneReleaseDate";
 import WhoIsSOLAR from './pages/blog/WhoIsSOLAR';
 import TenantRightsGuide from './pages/resources/TenantRightsGuide';
-import LegislativeTracker from './pages/resources/LegislativeTracker';
 import LegislativeUpdate_2025_09_06 from './pages/resources/legislative-tracker/2025-09-06';
 import WhenEverythingIsViolent from "./pages/blog/WhenEverythingIsViolent";
 import BlogPost_DoNoHarm from './pages/blog/FirstDoNoHarm';
@@ -136,11 +135,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/advocacy" element={<Advocacy />} />
+              <Route path="/advocacy/action-hub" element={<AdvocacyActionHub />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog/political-theater" element={<PoliticalTheater />} />
-              
 
               {/* Resource Routes */}
               <Route path="/resources/know-your-rights" element={<KnowYourRights />} />
@@ -162,7 +161,6 @@ function App() {
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
               <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
               <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
-              <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
               <Route path="/resources/legislative-tracker/:slug" element={<WeeklyUpdateLoader />} />
               <Route path="/resources/professional-licensing" element={<ProfessionalLicensingGuide />} />
               <Route path="/resources/children-disclosure-toolkit" element={<ChildrenDisclosureToolkit />} />
@@ -172,20 +170,12 @@ function App() {
               {/* Accountability Watch */}
               <Route path="/resources/accountability-watch" element={<AccountabilityWatchIndex />} />
               <Route path="/resources/accountability-watch/:date" element={<AccountabilityWatchWeekly />} />
-<Route
-  path="/resources/community-integration-tips"
-  element={<CommunityIntegrationGuide />}
-/>
-<Route
-  path="/resources/state-registry"
-  element={<StateRegistryHub />}
-/>
-<Route
-  path="/resources/state-registry/states/:state"
-  element={<StateRegistryStatePage />}
-/>
-<Route path="/resources/prison-dos-and-donts" element={<Prison_Dos_and_Donts_Guide />} />
-<Route path="/resources/supervision-conditions-guide" element={<SupervisionConditionsGuide />} />
+              <Route path="/resources/community-integration-tips" element={<CommunityIntegrationGuide />} />
+              <Route path="/resources/state-registry" element={<StateRegistryHub />} />
+              <Route path="/resources/state-registry/states/:state" element={<StateRegistryStatePage />} />
+              <Route path="/resources/prison-dos-and-donts" element={<Prison_Dos_and_Donts_Guide />} />
+              <Route path="/resources/supervision-conditions-guide" element={<SupervisionConditionsGuide />} />
+              <Route path="/resources/prison-communication-mail-visits-monitoring" element={<PrisonCommunicationMailVisitsMonitoring />} />
 
               {/* Blog Routes */}
               <Route path="/blog/federal-sex-crime-process" element={<FederalSexCrimeProcess />} />
@@ -209,7 +199,7 @@ function App() {
               <Route path="/blog/playing-fields-and-schoolyards" element={<PlayingFieldsAndSchoolyards />} />
               <Route path="/blog/community-betrayal" element={<CommunityBetrayal />} />
               <Route path="/blog/two-men-one-release-date" element={<TwoMenOneReleaseDate />} />
-              <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />     
+              <Route path="/blog/who-is-solar" element={<WhoIsSOLAR />} />
               <Route path="/blog/when-everything-is-violent" element={<WhenEverythingIsViolent />} />
               <Route path="/blog/first-do-no-harm" element={<BlogPost_DoNoHarm />} />
               <Route path="/blog/community-ties" element={<CommunityTies />} />
@@ -217,91 +207,45 @@ function App() {
               <Route path="/blog/residency-restrictions-housing" element={<ResidencyRestrictionsHousing />} />
               <Route path="/blog/2025-09-25-high-profile-cases-conclusion" element={<HighProfileCasesConclusion />} />
               <Route path="/blog/classics-and-cancel-culture" element={<BlogPopCultureSexCrime />} />
-<Route
-  path="/blog/why-sex-offender-registries-fail-victims"
-  element={<WhySexOffenderRegistriesFailVictims />}
-/>
-<Route
-  path="/blog/welcome-to-the-neighborhood"
-  element={<WelcomeToTheNeighborhood />}
-/>
-<Route path="/blog/follow-the-money" element={<FollowTheMoney />} />
-<Route path="/blog/follow-the-money-part2" element={<FollowTheMoneyPart2 />} />
-<Route
-  path="/blog/halloween-safety-myth"
-  element={<HalloweenSafetyMyth />}
-/>
-<Route path="/blog/follow-the-money-part-3" element={<FollowTheMoneyPart3 />} />
-<Route path="/blog/follow-the-money-part-4" element={<FollowTheMoneyPart4 />} />
-<Route path="/blog/follow-the-money-part-5" element={<FollowTheMoneyPart5 />} />
-<Route path="/blog/what-good-is-the-registry"
-  element={<WhatGoodistheRegistry />} />
-<Route path="/blog/fifty-laws-zero-logic"
-  element={<FiftyLawsZeroLogic />} />
-<Route path="/blog/community-reintegration"
-  element={<CommunityReintegration />} />
-<Route path="/blog/children-we-dont-protect-part1" element={<ChildrenWeDontProtectPart1 />} />
-<Route path="/blog/the-cases-we-dont-investigate" element={<TheCasesWeDontInvestigate />} />
-<Route path="/blog/what-prison-is-actually-like"
-  element={<WhatPrisonIsActuallyLike />} />
-<Route path="/blog/understanding-risk-levels" element={<UnderstandingRiskLevels />} />
-<Route path="/blog/the-safety-illusion"
-  element={<TheSafetyIllusion />} />
-<Route path="/blog/when-the-label-becomes-the-target" element={<WhenTheLabelBecomesTheTarget />} />
-<Route path="/blog/the-people-in-the-room" element={<ThePeopleInTheRoom />} />
-<Route path="/resources/prison-communication-mail-visits-monitoring" element={<PrisonCommunicationMailVisitsMonitoring />} />
-<Route path="/blog/we-dont-register-risk" element={<WeDontRegisterRisk />} />
-<Route
-  path="/blog/permanent-punishment-public-temporary-shame-powerful"
-element={<PermanentPunishmentPublicTemporaryShame />} />
-<Route path="/blog/when-the-room-laughs-policy-fails" element={<WhenRoomLaughsPolicyFails />} />
-<Route
-  path="/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there"
-  element={<PrisonCultureMoralCertainty />}
-/>
-<Route
-  path="/blog/the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle"
-element={<TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle />}
-/>
-<Route
-  path="/blog/child-safety-theater-isnt-child-safety"
-  element={<ChildSafetyTheaterIsntChildSafety />}
-/>
-<Route
-  path="/blog/vancouver-case-public-lists-not-prevention-plan" element={<VancouverCasePublicListsNotPreventionPlan />} />
-<Route
-  path="/blog/the-registry-is-not-a-prevention-plan"
-  element={<TheRegistryIsNotAPreventionPlan />} />
-<Route
-  path="/blog/safety-zones-are-not-safety-systems"
-  element={<SafetyZonesAreNotSafetySystems />} />
-<Route
-  path="/blog/public-registries-dont-excuse-institutional-failure"
-element={<PublicRegistriesDontExcuseInstitutionalFailure />} />
-<Route path="/blog/the-danger-was-never-queerness" element={<TheDangerWasNeverQueerness />} />
-<Route
-  path="/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report"
-element={<WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport />} />
-<Route path="/blog/the-children-warned-them" element={<TheChildrenWarnedThem />} />
-<Route path="/blog greenville-county-allegations-registry-maps-miss"
-element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
-<Route
-  path="/blog/calling-everything-pedophilia-does-not-protect-children" element={<CallingEverythingPedophiliaDoesNotProtectChildren />} />
-<Route
-  path="/blog/abuse-access-vulnerability-not-just-age"
-  element={<AbuseAccessVulnerabilityNotJustAge />} />
-<Route
-  path="/blog/primetime-predators-sting-culture"
-  element={<PrimetimePredatorsStingCulture />} />
-<Route
-  path="/blog/child-safety-theater-goes-live"
-  element={<ChildSafetyTheaterGoesLive />} />
-<Route
-  path="/blog/above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy"  element={<AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy />} />
-<Route
-  path="/blog/liberty-for-some-registries-lifelong-punishment-american-exceptionalism"
-  element={<LibertyForSomeRegistries />} />
-<Route path="/blog/sixteen-children-no-registry" element={<SixteenChildrenNoRegistry />} />
+              <Route path="/blog/why-sex-offender-registries-fail-victims" element={<WhySexOffenderRegistriesFailVictims />} />
+              <Route path="/blog/welcome-to-the-neighborhood" element={<WelcomeToTheNeighborhood />} />
+              <Route path="/blog/follow-the-money" element={<FollowTheMoney />} />
+              <Route path="/blog/follow-the-money-part2" element={<FollowTheMoneyPart2 />} />
+              <Route path="/blog/halloween-safety-myth" element={<HalloweenSafetyMyth />} />
+              <Route path="/blog/follow-the-money-part-3" element={<FollowTheMoneyPart3 />} />
+              <Route path="/blog/follow-the-money-part-4" element={<FollowTheMoneyPart4 />} />
+              <Route path="/blog/follow-the-money-part-5" element={<FollowTheMoneyPart5 />} />
+              <Route path="/blog/what-good-is-the-registry" element={<WhatGoodistheRegistry />} />
+              <Route path="/blog/fifty-laws-zero-logic" element={<FiftyLawsZeroLogic />} />
+              <Route path="/blog/community-reintegration" element={<CommunityReintegration />} />
+              <Route path="/blog/children-we-dont-protect-part1" element={<ChildrenWeDontProtectPart1 />} />
+              <Route path="/blog/the-cases-we-dont-investigate" element={<TheCasesWeDontInvestigate />} />
+              <Route path="/blog/what-prison-is-actually-like" element={<WhatPrisonIsActuallyLike />} />
+              <Route path="/blog/understanding-risk-levels" element={<UnderstandingRiskLevels />} />
+              <Route path="/blog/the-safety-illusion" element={<TheSafetyIllusion />} />
+              <Route path="/blog/when-the-label-becomes-the-target" element={<WhenTheLabelBecomesTheTarget />} />
+              <Route path="/blog/the-people-in-the-room" element={<ThePeopleInTheRoom />} />
+              <Route path="/blog/we-dont-register-risk" element={<WeDontRegisterRisk />} />
+              <Route path="/blog/permanent-punishment-public-temporary-shame-powerful" element={<PermanentPunishmentPublicTemporaryShame />} />
+              <Route path="/blog/when-the-room-laughs-policy-fails" element={<WhenRoomLaughsPolicyFails />} />
+              <Route path="/blog/prison-culture-loves-moral-certainty-until-the-accused-works-there" element={<PrisonCultureMoralCertainty />} />
+              <Route path="/blog/the-illusion-of-child-safety-grady-judd-police-stings-taylor-cadle" element={<TheIllusionOfChildSafetyGradyJuddPoliceStingsTaylorCadle />} />
+              <Route path="/blog/child-safety-theater-isnt-child-safety" element={<ChildSafetyTheaterIsntChildSafety />} />
+              <Route path="/blog/vancouver-case-public-lists-not-prevention-plan" element={<VancouverCasePublicListsNotPreventionPlan />} />
+              <Route path="/blog/the-registry-is-not-a-prevention-plan" element={<TheRegistryIsNotAPreventionPlan />} />
+              <Route path="/blog/safety-zones-are-not-safety-systems" element={<SafetyZonesAreNotSafetySystems />} />
+              <Route path="/blog/public-registries-dont-excuse-institutional-failure" element={<PublicRegistriesDontExcuseInstitutionalFailure />} />
+              <Route path="/blog/the-danger-was-never-queerness" element={<TheDangerWasNeverQueerness />} />
+              <Route path="/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report" element={<WhyStrangerDangerBecameLawAndInstitutionalAbuseBecameAReport />} />
+              <Route path="/blog/the-children-warned-them" element={<TheChildrenWarnedThem />} />
+              <Route path="/blog/greenville-county-allegations-registry-maps-miss" element={<GreenvilleCountyAllegationsRegistryMapsMiss />} />
+              <Route path="/blog/calling-everything-pedophilia-does-not-protect-children" element={<CallingEverythingPedophiliaDoesNotProtectChildren />} />
+              <Route path="/blog/abuse-access-vulnerability-not-just-age" element={<AbuseAccessVulnerabilityNotJustAge />} />
+              <Route path="/blog/primetime-predators-sting-culture" element={<PrimetimePredatorsStingCulture />} />
+              <Route path="/blog/child-safety-theater-goes-live" element={<ChildSafetyTheaterGoesLive />} />
+              <Route path="/blog/above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy" element={<AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy />} />
+              <Route path="/blog/liberty-for-some-registries-lifelong-punishment-american-exceptionalism" element={<LibertyForSomeRegistries />} />
+              <Route path="/blog/sixteen-children-no-registry" element={<SixteenChildrenNoRegistry />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
@@ -320,7 +264,6 @@ function WeeklyUpdateLoader(): JSX.Element {
   const matchKey = Object.keys(weeklyModules).find(k => k.endsWith(`/${slug}.tsx`));
   if (!matchKey) return <div className="p-6">Update not found.</div>;
 
-  // Lazy-load the matching weekly page component
   const LazyComp = lazy(weeklyModules[matchKey] as any);
 
   return (
