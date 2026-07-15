@@ -82,7 +82,7 @@ export default function ContextualActionCard({
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link
             to={href}
-            className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-slate-800"
+            className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-bold !text-white no-underline shadow-sm transition hover:bg-slate-800 hover:!text-white"
           >
             {config.recommendation.actionLabel}
           </Link>
