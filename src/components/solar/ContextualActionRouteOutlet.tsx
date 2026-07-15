@@ -97,8 +97,8 @@ const contextualActionsByPath: Record<string, ContextualRouteAction> = {
 
   "/resources/supervision-conditions-guide": {
     placement: {
-      mode: "append-to-section",
-      anchorText: "Resources and next steps",
+      mode: "before-anchor",
+      anchorText: "Sources & verification",
     },
     recipientId: "state-lawmaker",
     primaryPositionId: "one-size-fits-all",
@@ -128,7 +128,7 @@ const contextualActionsByPath: Record<string, ContextualRouteAction> = {
   "/resources/accountability-watch/2026-07-01": {
     placement: {
       mode: "after-section",
-      anchorText: "Watchlist",
+      anchorText: "Monitoring Items / Watchlist",
     },
     recipientId: "journalist",
     primaryPositionId: "closer-to-home",
