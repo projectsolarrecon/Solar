@@ -156,7 +156,7 @@ const contextualActionsByPath: Record<string, ContextualRouteAction> = {
   },
 };
 
-function findExactTextElement(text: string): HTMLElement | null {
+function findTextElement(text: string): HTMLElement | null {
   const candidates = Array.from(
     document.querySelectorAll<HTMLElement>(
       "h1, h2, h3, h4, p, span, div, section",
@@ -167,7 +167,9 @@ function findExactTextElement(text: string): HTMLElement | null {
     candidates.find(
       (item) =>
         item.children.length === 0 && item.textContent?.trim() === text,
-    ) ?? null
+    ) ??
+    candidates.find((item) => item.textContent?.trim() === text) ??
+    null
   );
 }
 
@@ -178,7 +180,7 @@ function findSection(element: HTMLElement): HTMLElement | null {
 function createMountNode(
   config: ContextualRouteAction,
 ): HTMLDivElement | null {
-  const anchor = findExactTextElement(config.placement.anchorText);
+  const anchor = findTextElement(config.placement.anchorText);
   if (!anchor) return null;
 
   const mountNode = document.createElement("div");
