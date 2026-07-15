@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import ContextualActionRouteOutlet from "./solar/ContextualActionRouteOutlet";
 
 interface LayoutProps {
   children: ReactNode;
@@ -43,6 +44,7 @@ function Layout({ children }: LayoutProps) {
       <main className="flex-1">
         {children}
       </main>
+      <ContextualActionRouteOutlet />
       <Footer />
     </div>
   );

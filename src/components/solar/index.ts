@@ -8,6 +8,7 @@ export { default as PullQuote } from "./PullQuote";
 export { default as Divider } from "./Divider";
 export { default as TOC } from "./TOC";
 export { default as SourcesOffline } from "./SourcesOffline";
+export { default as ContextualActionCard } from "./ContextualActionCard";
 
 export {
   IconList,
