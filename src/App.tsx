@@ -119,6 +119,7 @@ import AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy from "./pages/blog/
 import SupervisionConditionsGuide from "./pages/resources/SupervisionConditionsGuide";
 import LibertyForSomeRegistries from "./pages/blog/LibertyForSomeRegistries";
 import SixteenChildrenNoRegistry from "./pages/blog/SixteenChildrenNoRegistry";
+import RegisterEveryCrimeOrNone from "./pages/blog/RegisterEveryCrimeOrNone";
 
 function App() {
   return (
@@ -186,7 +187,6 @@ function App() {
               <Route path="/blog/rethinking-registry" element={<RethinkingRegistry />} />
               <Route path="/blog/legal-rights" element={<LegalRights />} />
               <Route path="/blog/dangerous-myth" element={<DangerousMyth />} />
-              <Route path="/blog/register-all-felons" element={<RegisterAllFelons />} />
               <Route path="/blog/vigilantism-registry" element={<VigilantismRegistry />} />
               <Route path="/blog/high-profile-cases-stranger-danger" element={<HighProfileCasesStrangerDanger />} />
               <Route path="/blog/finding-work-after-registry" element={<FindingWorkAfterRegistry />} />
@@ -244,6 +244,14 @@ function App() {
               <Route path="/blog/above-the-law-or-becoming-it-manosphere-child-safety-hypocrisy" element={<AboveTheLawOrBecomingItManosphereChildSafetyHypocrisy />} />
               <Route path="/blog/liberty-for-some-registries-lifelong-punishment-american-exceptionalism" element={<LibertyForSomeRegistries />} />
               <Route path="/blog/sixteen-children-no-registry" element={<SixteenChildrenNoRegistry />} />
+<Route
+  path="/blog/register-every-crime-or-none"
+  element={<RegisterEveryCrimeOrNone />}
+/>
+<Route
+  path="/blog/register-all-felons"
+  element={<RegisterEveryCrimeOrNone />}
+/>
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
