@@ -13,6 +13,31 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "register-every-crime-or-none",
+  title: "Register Every Crime or None: The RECON Test for Public Registries",
+  excerpt:
+    "If public registries are necessary for safety, why stop at one crime? RECON forces registry defenders to choose between consistent logic and selective punishment.",
+  author: "The SOLAR Project",
+  date: "Jul 17, 2026",
+  readTime: "10 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "RECON",
+    "public registries",
+    "registry reform",
+    "selective punishment",
+    "public safety mythology",
+    "collateral consequences",
+    "proportionality",
+    "reentry",
+    "public notification",
+    "recidivism",
+    "child safety",
+    "evidence-based policy",
+  ],
+  path: "/blog/register-every-crime-or-none",
+},
+{
   id: "sixteen-children-no-registry",
   title: "Sixteen Children, No Registry: The Contradiction America Refuses to Face",
   excerpt:
