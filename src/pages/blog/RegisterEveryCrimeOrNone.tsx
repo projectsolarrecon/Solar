@@ -782,7 +782,7 @@ const articlePartThree = (
       This is not a principled safety framework. It is a hierarchy of sympathy.
     </PullQuote>
 
-    <BandHeader title="The Real Choice" icon="⚖️" />
+        <BandHeader title="The Honest Conclusions Are Limited" icon="⚖️" />
 
     <p>There are only two honest positions.</p>
 
@@ -812,6 +812,10 @@ const articlePartThree = (
 
     <p>But it is your logic. We are just taking it seriously.</p>
 
+ <PullQuote>
+      Ridiculous? Maybe. But it is your logic. We are just taking it seriously.
+    </PullQuote>
+
     <p>
       The second position is registry abolition or serious registry rollback:
       public registries are punitive, destabilizing, overbroad, and weakly
@@ -822,6 +826,32 @@ const articlePartThree = (
     <p>That is the position SOLAR urges people to take seriously.</p>
 
     <p>
+      What does not survive scrutiny is the middle position: that people
+      convicted of sex offenses uniquely belong on public registries, while
+      everyone else is protected from the same logic by sudden concerns about
+      fairness, proportionality, reentry, family impact, civil liberties, and
+      government overreach.
+    </p>
+
+    <p>
+      If this argument makes a reader feel a little antagonized, good. If it
+      makes them feel conflicted, even better. That discomfort may be the first
+      sign that they are not just repeating the usual registry script. They are
+      actually confronting the logic underneath it.
+    </p>
+
+    <p>
+      A person can still choose the universal-registry position. It would be
+      bleak, sprawling, and dangerous, but at least it would be consistent.
+    </p>
+
+    <p>
+      A person can choose the anti-registry position. That is the position SOLAR
+      believes is better supported by evidence, fairness, public safety, and
+      human dignity.
+    </p>
+
+    <p>
       But what registry defenders cannot honestly defend is the middle position:
       public registries are supposedly necessary for safety, but only when
       applied to the group society is most willing to exile.
@@ -829,10 +859,27 @@ const articlePartThree = (
 
     <p>That is not evidence-based policy.</p>
 
-    <p>That is selective outrage wearing a safety vest.</p>
+    <p>It is selective punishment.</p>
 
-    <PullQuote>
-      Ridiculous? Maybe. But it is your logic. We are just taking it seriously.
+    <p>
+      And if someone’s entire response is reflexive disgust — if the argument
+      begins and ends with the idea that one category of people is uniquely
+      untouchable, uniquely irredeemable, and uniquely undeserving of ordinary
+      legal principles — then they are not making a public-safety argument.
+    </p>
+
+    <p>
+      They are announcing a prejudice and asking everyone else to mistake it for
+      policy.
+    </p>
+
+    <p>That is not policy, and it is not worth engaging with.</p>
+
+    <p>SOLAR | RECON does not owe it the courtesy of pretending otherwise.</p>
+
+       <PullQuote>
+      A person can still choose the universal-registry position. It would be
+      bleak, sprawling, and dangerous, but at least it would be consistent.
     </PullQuote>
 
     <BandHeader
