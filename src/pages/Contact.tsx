@@ -1,4 +1,4 @@
-      import SEO from "../components/SEO";
+import SEO from "../components/SEO";
 
 function Contact() {
   return (
@@ -43,8 +43,21 @@ function Contact() {
             </div>
 
             <div className="bg-white rounded-lg shadow-md p-8">
-              <form className="space-y-6" action="mailto:projectsolarrecon@gmail.com" method="post" encType="text/plain">
-                <input type="hidden" name="subject" value="Contact Form - Contact Page" />
+              <form
+                className="space-y-6"
+                name="solar-contact"
+                method="post"
+                action="/contact"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+              >
+                <input type="hidden" name="form-name" value="solar-contact" />
+                <p className="hidden" aria-hidden="true">
+                  <label>
+                    Don't fill this out if you're human:{" "}
+                    <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
