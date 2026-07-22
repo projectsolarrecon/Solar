@@ -29,6 +29,20 @@
     </script>
   </head>
   <body>
+    <!-- Netlify scans static HTML at deploy time to register this React-rendered form. -->
+    <form name="solar-contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="inquiryType">
+        <option value="general">General Information</option>
+      </select>
+      <textarea name="message"></textarea>
+      <input type="checkbox" name="privacyAgreement" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
