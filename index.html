@@ -29,7 +29,7 @@
     </script>
   </head>
   <body>
-    <!-- Netlify scans static HTML at deploy time to register this React-rendered form. -->
+    <!-- Netlify scans static HTML at deploy time to register React-rendered forms. -->
     <form name="solar-contact" netlify netlify-honeypot="bot-field" hidden>
       <input type="text" name="firstName" />
       <input type="text" name="lastName" />
@@ -43,7 +43,101 @@
       <input type="text" name="bot-field" />
     </form>
 
+    <form name="solar-resource-request" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="resourceType" />
+      <textarea name="details"></textarea>
+      <input type="email" name="email" />
+      <input type="text" name="bot-field" />
+    </form>
+
+    <form name="solar-newsletter" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="source" />
+      <input type="text" name="bot-field" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (() => {
+        const encode = (data) => new URLSearchParams(data).toString();
+
+        const submitToNetlify = async (formName, data) => {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: encode({ 'form-name': formName, ...data }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Netlify form submission failed: ${response.status}`);
+          }
+        };
+
+        document.addEventListener('submit', async (event) => {
+          const form = event.target;
+          if (!(form instanceof HTMLFormElement) || form.getAttribute('name') === 'solar-contact') return;
+
+          const section = form.closest('section');
+          const heading = section?.querySelector('h2')?.textContent?.trim();
+          if (heading !== "Can't Find What You Need?") return;
+
+          event.preventDefault();
+          const inputs = form.querySelectorAll('input');
+          const resourceType = inputs[0]?.value?.trim() || '';
+          const email = inputs[1]?.value?.trim() || '';
+          const details = form.querySelector('textarea')?.value?.trim() || '';
+          const button = form.querySelector('button[type="submit"]');
+
+          if (!resourceType) {
+            alert('Please tell us what type of resource you are looking for.');
+            return;
+          }
+
+          if (button) button.disabled = true;
+          try {
+            await submitToNetlify('solar-resource-request', { resourceType, details, email });
+            form.reset();
+            alert('Your resource request has been submitted.');
+          } catch (error) {
+            console.error(error);
+            alert('We could not submit your request. Please try again.');
+          } finally {
+            if (button) button.disabled = false;
+          }
+        });
+
+        document.addEventListener('click', async (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const button = target.closest('button');
+          if (!button || button.textContent?.trim() !== 'Subscribe') return;
+
+          const section = button.closest('section');
+          const emailInput = section?.querySelector('input[type="email"]');
+          if (!(emailInput instanceof HTMLInputElement)) return;
+
+          event.preventDefault();
+          const email = emailInput.value.trim();
+          if (!email || !emailInput.checkValidity()) {
+            emailInput.reportValidity();
+            return;
+          }
+
+          const source = window.location.pathname === '/blog' ? 'Blog page' : 'Resources page';
+          button.disabled = true;
+          try {
+            await submitToNetlify('solar-newsletter', { email, source });
+            emailInput.value = '';
+            alert('Thank you. Your email has been submitted.');
+          } catch (error) {
+            console.error(error);
+            alert('We could not submit your email. Please try again.');
+          } finally {
+            button.disabled = false;
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
