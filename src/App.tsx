@@ -120,6 +120,7 @@ import SupervisionConditionsGuide from "./pages/resources/SupervisionConditionsG
 import LibertyForSomeRegistries from "./pages/blog/LibertyForSomeRegistries";
 import SixteenChildrenNoRegistry from "./pages/blog/SixteenChildrenNoRegistry";
 import RegisterEveryCrimeOrNone from "./pages/blog/RegisterEveryCrimeOrNone";
+import WhyWePublishAccountabilityWatch from "./pages/blog/WhyWePublishAccountabilityWatch";
 
 function App() {
   return (
@@ -251,6 +252,10 @@ function App() {
 <Route
   path="/blog/register-all-felons"
   element={<RegisterEveryCrimeOrNone />}
+/>
+<Route
+  path="/blog/why-we-publish-accountability-watch"
+  element={<WhyWePublishAccountabilityWatch />}
 />
 
               {/* 404 Route */}
