@@ -13,6 +13,27 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "why-we-publish-accountability-watch",
+  title: "Why We Publish Accountability Watch",
+  excerpt:
+    "Accountability Watch is not a crime roundup. It is SOLAR’s record of the gap between stranger-danger mythology and the real prevention work communities keep avoiding.",
+  author: "The SOLAR Project",
+  date: "Jul 23, 2026",
+  readTime: "8 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "accountability watch",
+    "trusted access",
+    "institutional failure",
+    "prevention",
+    "public safety myths",
+    "registry mythology",
+    "stranger danger",
+    "child safety theater",
+  ],
+  path: "/blog/why-we-publish-accountability-watch",
+},
+{
   id: "register-every-crime-or-none",
   title: "Register Every Crime or None: The RECON Test for Public Registries",
   excerpt:
