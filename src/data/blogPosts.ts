@@ -13,6 +13,32 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-crimes-we-medicalize-castration-arousal-testing-sex-offenses",
+  title:
+    "The Crimes We Medicalize: Castration Laws, Arousal Testing, and the Separate System Built Around Sex Offenses",
+  excerpt:
+    "Sex-offense policy has normalized chemical castration, penile arousal testing, and treatment polygraphs as “public safety.” SOLAR asks why one class of conviction is subjected to a separate bodily-surveillance regime.",
+  author: "The SOLAR Project",
+  date: "Jul 24, 2026",
+  readTime: "12 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "chemical castration",
+    "surgical castration",
+    "penile plethysmograph",
+    "treatment polygraph",
+    "bodily autonomy",
+    "supervised release",
+    "sex offense treatment",
+    "coerced treatment",
+    "medicalized punishment",
+    "unequal accountability",
+    "evidence-based policy",
+  ],
+  path:
+    "/blog/the-crimes-we-medicalize-castration-arousal-testing-sex-offenses",
+},
+{
   id: "why-we-publish-accountability-watch",
   title: "Why We Publish Accountability Watch",
   excerpt:
