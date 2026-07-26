@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-registry-punishes-afterward-trusted-access",
+  title:
+    "The Registry Punishes Afterward. It Does Not See Trusted Access Coming.",
+  excerpt:
+    "Registry politics punishes the already-known. It does not detect trusted access, authority, secrecy, or institutional shielding before harm happens.",
+  author: "The SOLAR Project",
+  date: "Jul 26, 2026",
+  readTime: "7–9 min read",
+  category: "Institutional Abuse",
+  tags: [
+    "trusted access",
+    "public officials",
+    "schools",
+    "registry burdens",
+    "political hypocrisy",
+    "West Virginia",
+    "digital grooming",
+    "institutional accountability",
+    "registry fees",
+    "public safety mythology",
+  ],
+  path: "/blog/the-registry-punishes-afterward-trusted-access",
+},
+{
   id: "the-crimes-we-medicalize-castration-arousal-testing-sex-offenses",
   title:
     "The Crimes We Medicalize: Castration Laws, Arousal Testing, and the Separate System Built Around Sex Offenses",
