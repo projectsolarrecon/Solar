@@ -122,6 +122,7 @@ import SixteenChildrenNoRegistry from "./pages/blog/SixteenChildrenNoRegistry";
 import RegisterEveryCrimeOrNone from "./pages/blog/RegisterEveryCrimeOrNone";
 import WhyWePublishAccountabilityWatch from "./pages/blog/WhyWePublishAccountabilityWatch";
 import TheCrimesWeMedicalize from "./pages/blog/TheCrimesWeMedicalize";
+import TheRegistryPunishesAfterwardTrustedAccess from "./pages/blog/TheRegistryPunishesAfterwardTrustedAccess";
 
 function App() {
   return (
@@ -262,6 +263,8 @@ function App() {
   path="/blog/the-crimes-we-medicalize-castration-arousal-testing-sex-offenses"
   element={<TheCrimesWeMedicalize />}
 />
+<Route
+  path="/blog/the-registry-punishes-afterward-trusted-access" element={<TheRegistryPunishesAfterwardTrustedAccess />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
