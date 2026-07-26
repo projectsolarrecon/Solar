@@ -13,6 +13,34 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "everyone-saw-the-warning-signs",
+  title: "Everyone Saw the Warning Signs",
+  excerpt:
+    "Registry politics points families toward the mythological stranger. Real prevention would point them toward the ecosystem the Tates exemplified.",
+  author: "The SOLAR Project",
+  date: "Jul 27, 2026",
+  readTime: "8–10 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "Andrew Tate",
+    "stranger danger",
+    "public safety mythology",
+    "misogyny",
+    "sexual exploitation",
+    "celebrity influence",
+    "manosphere",
+    "trafficking allegations",
+    "institutional accountability",
+    "trusted access",
+    "grooming",
+    "coercion",
+    "young women",
+    "girls",
+    "registry politics",
+  ],
+  path: "/blog/everyone-saw-the-warning-signs",
+},
+{
   id: "the-registry-punishes-afterward-trusted-access",
   title:
     "The Registry Punishes Afterward. It Does Not See Trusted Access Coming.",
