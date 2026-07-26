@@ -123,6 +123,7 @@ import RegisterEveryCrimeOrNone from "./pages/blog/RegisterEveryCrimeOrNone";
 import WhyWePublishAccountabilityWatch from "./pages/blog/WhyWePublishAccountabilityWatch";
 import TheCrimesWeMedicalize from "./pages/blog/TheCrimesWeMedicalize";
 import TheRegistryPunishesAfterwardTrustedAccess from "./pages/blog/TheRegistryPunishesAfterwardTrustedAccess";
+import EveryoneSawTheWarningSigns from "./pages/blog/EveryoneSawTheWarningSigns";
 
 function App() {
   return (
@@ -265,6 +266,9 @@ function App() {
 />
 <Route
   path="/blog/the-registry-punishes-afterward-trusted-access" element={<TheRegistryPunishesAfterwardTrustedAccess />} />
+<Route
+  path="/blog/everyone-saw-the-warning-signs"
+  element={<EveryoneSawTheWarningSigns />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
