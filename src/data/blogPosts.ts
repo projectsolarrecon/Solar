@@ -13,6 +13,29 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "exposure-is-not-prevention",
+  title: "Exposure Is Not Prevention",
+  excerpt:
+    "A public accusation is not a child-safety system. A viral post is not a protection plan. A registry map is not prevention. Exposure is not public safety.",
+  author: "The SOLAR Project",
+  date: "Jul 27, 2026",
+  readTime: "11 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "trusted access",
+    "public shaming",
+    "registry myths",
+    "child safety",
+    "domestic violence",
+    "youth sports",
+    "accusation culture",
+    "institutional accountability",
+    "media spectacle",
+    "public exposure",
+  ],
+  path: "/blog/exposure-is-not-prevention",
+},
+{
   id: "everyone-saw-the-warning-signs",
   title: "Everyone Saw the Warning Signs",
   excerpt:
