@@ -124,6 +124,7 @@ import WhyWePublishAccountabilityWatch from "./pages/blog/WhyWePublishAccountabi
 import TheCrimesWeMedicalize from "./pages/blog/TheCrimesWeMedicalize";
 import TheRegistryPunishesAfterwardTrustedAccess from "./pages/blog/TheRegistryPunishesAfterwardTrustedAccess";
 import EveryoneSawTheWarningSigns from "./pages/blog/EveryoneSawTheWarningSigns";
+import ExposureIsNotPrevention from "./pages/blog/ExposureIsNotPrevention";
 
 function App() {
   return (
@@ -269,6 +270,9 @@ function App() {
 <Route
   path="/blog/everyone-saw-the-warning-signs"
   element={<EveryoneSawTheWarningSigns />} />
+<Route
+  path="/blog/exposure-is-not-prevention"
+  element={<ExposureIsNotPrevention />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
