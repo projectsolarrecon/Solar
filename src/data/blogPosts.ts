@@ -13,6 +13,32 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "either-the-list-was-arbitrary-or-congress-has-some-explaining-to-do",
+  title: "Either the List Was Arbitrary, or Congress Has Some Explaining to Do",
+  excerpt:
+    "The First Step Act claims to reward rehabilitation, but its time-credit exclusions can bar simple § 2252A possession while allowing eligibility for manslaughter, drug, gun, and enticement convictions.",
+  author: "The SOLAR Project",
+  date: "Jul 29, 2026",
+  readTime: "8 min read",
+  category: "Incarceration & Prison Reality",
+  tags: [
+    "First Step Act",
+    "earned time credits",
+    "BOP",
+    "federal prison",
+    "sentencing reform",
+    "sex offense policy",
+    "drug offenses",
+    "gun offenses",
+    "manslaughter",
+    "reentry",
+    "rehabilitation",
+    "statutory exclusions",
+    "recidivism reduction",
+  ],
+  path: "/blog/either-the-list-was-arbitrary-or-congress-has-some-explaining-to-do",
+},
+{
   id: "exposure-is-not-prevention",
   title: "Exposure Is Not Prevention",
   excerpt:
