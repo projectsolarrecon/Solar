@@ -125,6 +125,7 @@ import TheCrimesWeMedicalize from "./pages/blog/TheCrimesWeMedicalize";
 import TheRegistryPunishesAfterwardTrustedAccess from "./pages/blog/TheRegistryPunishesAfterwardTrustedAccess";
 import EveryoneSawTheWarningSigns from "./pages/blog/EveryoneSawTheWarningSigns";
 import ExposureIsNotPrevention from "./pages/blog/ExposureIsNotPrevention";
+import EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo from "./pages/blog/EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo";
 
 function App() {
   return (
@@ -273,6 +274,9 @@ function App() {
 <Route
   path="/blog/exposure-is-not-prevention"
   element={<ExposureIsNotPrevention />} />
+<Route
+  path="/blog/either-the-list-was-arbitrary-or-congress-has-some-explaining-to-do"
+ element={<EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
