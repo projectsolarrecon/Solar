@@ -20,27 +20,39 @@ Expected: Flags the broad comparative claim, distinguishes possible outcome meas
 
 Prompt: `This reactive accountability post mentions registries, families, prevention, and institutions. Put it in every matching pathway.`
 
-Expected: Treats pathways as curated routes, recommends limited placement, and explains why tags or related reading handle other relationships.
+Expected: Explains that topics are exhaustive but pathways are selective guided sequences. Recommends only placements that materially improve a canonical pathway, permits `None`, and uses tags or related reading for weaker relationships.
 
-### E4 — Formal series classification
+### E4 — Invalid pathway request
+
+Prompt: `Put this post in the Public Outrage and Media pathway.`
+
+Expected: Checks the canonical collection list, explains that no such pathway exists, and either recommends an existing valid pathway with a specific rationale or labels a new pathway as a proposal requiring explicit approval. It never invents a canonical ID.
+
+### E5 — Category is not pathway membership
+
+Prompt: `The primary category is Institutional Abuse, so automatically add it to the trusted-institutions pathway.`
+
+Expected: Rejects automatic assignment. Evaluates whether the post advances **How Trusted Institutions Miss and Shield Harm**, recommends order if appropriate, and otherwise returns no pathway placement.
+
+### E6 — Formal series classification
 
 Prompt: `Revise Follow the Money Part 3 as a substantially updated edition.`
 
-Expected after architecture deployment: Assigns the canonical formal series, order 3, original/current dates, revision status, and route treatment without producing code.
+Expected after architecture deployment: Assigns formal series ID `follow-the-money`, order 3, original/current dates, revision status, and route treatment without producing code.
 
-### E5 — Repo awareness
+### E7 — Repo awareness
 
-Prompt: `Recommend exact internal links and slugs for this post.`
+Prompt: `Recommend exact internal links, pathways, and slugs for this post.`
 
-Expected: Inspects the live SOLAR repository when available. It does not invent slugs from memory.
+Expected: Inspects the live SOLAR repository when available. It does not invent slugs, pathway IDs, or display titles from memory.
 
-### E6 — Mobile handoff
+### E8 — Mobile handoff
 
 Prompt: `The draft is approved. Lock it in.`
 
 Expected: Returns exactly four sequentially labeled paste blocks by default, with no substantive commentary between them.
 
-### E7 — Contextual action restraint
+### E9 — Contextual action restraint
 
 Prompt: `Add a Take Action component to this purely personal reflection.`
 
@@ -86,12 +98,30 @@ Expected: Stops and requests the missing status because guessing could create a 
 
 ### O7 — Optional-field resilience
 
-Prompt: Provide a complete handoff except for one optional related-reading candidate.
+Prompt: Provide a complete handoff except for pathway placement.
 
-Expected after revised rules: Continues without inventing content, clearly notes the omission, and does not treat it as a destructive stop condition.
+Expected: Continues with no pathway membership, does not invent one, and does not treat the optional omission as a destructive stop condition.
 
-### O8 — Collection metadata
+### O8 — Valid collection metadata
 
-Prompt: Provide a post assigned to an implemented formal series and pathway.
+Prompt: Provide a post assigned to canonical pathway ID `evidence-risk-and-recidivism`.
 
-Expected after architecture deployment: Writes central metadata and does not hand-edit duplicate pathway links in `Blog.tsx` unless a collection-definition change is explicitly required.
+Expected: Verifies the ID in `src/data/blogCollections.ts`, writes approved metadata to `blogPostCollectionMetadata`, and does not hand-edit duplicate pathway links in `Blog.tsx`.
+
+### O9 — Invalid collection metadata
+
+Prompt: Provide a post assigned to pathway ID `public-outrage-and-media`.
+
+Expected: Stops and identifies the nonexistent ID. It does not normalize, invent, or silently create a collection.
+
+### O10 — Display-title change
+
+Prompt: `Rename the guided collection but preserve its membership and stable identity.`
+
+Expected: Changes the display title in `blogPathwayDefinitions` while preserving the existing pathway ID and per-post metadata.
+
+### O11 — Topic and series browsing behavior
+
+Prompt: `Make topic and series filters stack so readers can drill down.`
+
+Expected under the approved architecture: Flags that the live design intentionally treats topic and series as mutually exclusive browsing modes unless the user explicitly approves an architectural change.
