@@ -122,10 +122,10 @@ interface BlogPathwayDefinition {
 export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   {
     id: "new-to-solar",
-    title: "New to SOLAR",
-    eyebrow: "Start here",
+    title: "New to SOLAR? Start Here",
+    eyebrow: "Orientation",
     description:
-      "A guided introduction to SOLAR’s worldview: registry critique, real risk, lived consequences, and real public safety.",
+      "A guided introduction to SOLAR’s worldview, from registry critique and real risk to lived consequences and real public safety.",
     pinnedPaths: [
       "/blog/who-is-solar",
       "/blog/rethinking-registry",
@@ -140,9 +140,9 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   {
     id: "why-registries-fail",
     title: "Why Registries Fail",
-    eyebrow: "Policy & evidence",
+    eyebrow: "Understand the argument",
     description:
-      "The core evidence and policy path for understanding why registry-centered safety fails communities, families, and victims.",
+      "Read the core evidence and policy analysis explaining why registry-centered safety fails communities, families, and victims.",
     pinnedPaths: [
       "/blog/the-registry-is-not-a-prevention-plan",
       "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
@@ -158,9 +158,9 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   {
     id: "what-real-prevention-requires",
     title: "What Real Prevention Requires",
-    eyebrow: "What really works",
+    eyebrow: "Move beyond safety theater",
     description:
-      "A constructive path for readers asking what should replace safety theater and downstream public labeling.",
+      "A constructive sequence for readers asking what should replace public labeling, symbolic restrictions, and downstream punishment.",
     pinnedPaths: [
       "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
       "/blog/the-registry-is-not-a-prevention-plan",
@@ -174,10 +174,10 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   },
   {
     id: "institutional-abuse-and-trusted-access",
-    title: "Institutional Abuse and Trusted Access",
-    eyebrow: "Inside the circle of trust",
+    title: "How Trusted Institutions Miss and Shield Harm",
+    eyebrow: "Follow access and authority",
     description:
-      "A route through SOLAR’s work on authority, access, institutional silence, and the stranger-danger myth.",
+      "A guided route through authority, trusted access, institutional silence, and the harms that stranger-danger policy routinely misses.",
     pinnedPaths: [
       "/blog/why-stranger-danger-became-law-and-institutional-abuse-became-a-report",
       "/blog/high-profile-cases-stranger-danger",
@@ -192,10 +192,10 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   },
   {
     id: "evidence-risk-and-recidivism",
-    title: "Evidence, Risk, and Recidivism",
-    eyebrow: "Evidence literacy",
+    title: "How to Read the Evidence Without Being Misled",
+    eyebrow: "Build evidence literacy",
     description:
-      "For readers who want research, risk, classification, and recidivism claims explained carefully instead of weaponized.",
+      "A careful sequence for understanding risk, classification, recidivism, and the claims most often distorted in public debate.",
     pinnedPaths: [
       "/blog/understanding-risk-levels",
       "/blog/what-good-is-the-registry",
@@ -206,10 +206,10 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   },
   {
     id: "for-families-and-supporters",
-    title: "For Families and Supporters",
-    eyebrow: "Crisis to stability",
+    title: "Someone You Love Has Been Accused or Convicted—Start Here",
+    eyebrow: "From crisis to stability",
     description:
-      "A calm, practical path for spouses, parents, friends, and chosen family supporting someone through accusation, custody, registration, or reentry.",
+      "A calm, practical route for spouses, parents, friends, and chosen family navigating accusation, custody, registration, incarceration, or reentry.",
     pinnedPaths: [
       "/blog/when-someone-you-love-is-accused",
       "/blog/legal-rights",
@@ -223,10 +223,10 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   },
   {
     id: "reentry-and-stability",
-    title: "Reentry and Stability",
+    title: "What It Takes to Rebuild a Stable Life",
     eyebrow: "Stability is safety",
     description:
-      "A pathway about registry life, work, belonging, family strain, financial burden, incarceration reality, and rebuilding.",
+      "A guided sequence about registry life, work, belonging, family strain, financial burden, incarceration reality, and rebuilding.",
     pinnedPaths: [
       "/blog/life-on-registry",
       "/blog/finding-work-after-registry",
@@ -238,10 +238,10 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   },
   {
     id: "recon-and-unequal-accountability",
-    title: "RECON and Unequal Accountability",
-    eyebrow: "Register every crime or none",
+    title: "Why Is Lifelong Public Punishment Applied So Selectively?",
+    eyebrow: "RECON and unequal accountability",
     description:
-      "SOLAR’s sharpest comparative path on selective punishment, public shaming, hypocrisy, and the logic of registry society.",
+      "A comparative route through selective punishment, public shaming, hypocrisy, and the logic of registry society.",
     pinnedPaths: [
       "/blog/register-all-felons",
       "/blog/we-dont-register-risk",
@@ -255,7 +255,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   {
     id: "institutional-danger",
     title: "Institutional Danger",
-    eyebrow: "Eight-part series",
+    eyebrow: "Eight-part ordered series",
     description:
       "Read SOLAR’s original series on danger embedded in trusted institutions, authority, professional roles, and community access.",
     pinnedPaths: [],
@@ -264,7 +264,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
   {
     id: "follow-the-money",
     title: "Follow the Money",
-    eyebrow: "Five-part series",
+    eyebrow: "Five-part ordered series",
     description:
       "Trace the incentives and industries that profit from punishment, surveillance, compliance, and incarceration.",
     pinnedPaths: [],
@@ -300,8 +300,10 @@ export function resolveBlogPathways(posts: BlogPost[]): ResolvedBlogPathway[] {
       const metadataMembers = posts
         .filter((post) => blogPostCollectionMetadata[post.path]?.pathways?.includes(pathway.id))
         .sort((a, b) => {
-          const aOrder = blogPostCollectionMetadata[a.path]?.series?.order ?? Number.MAX_SAFE_INTEGER;
-          const bOrder = blogPostCollectionMetadata[b.path]?.series?.order ?? Number.MAX_SAFE_INTEGER;
+          const aOrder =
+            blogPostCollectionMetadata[a.path]?.series?.order ?? Number.MAX_SAFE_INTEGER;
+          const bOrder =
+            blogPostCollectionMetadata[b.path]?.series?.order ?? Number.MAX_SAFE_INTEGER;
           return aOrder - bOrder;
         })
         .map((post) => post.path);
