@@ -29,12 +29,20 @@ function Blog() {
       : "all";
   };
 
+  const initialCategory = getInitialCategory();
+  const initialSeries = initialCategory === "All Posts" ? getInitialSeries() : "all";
+
   const [visiblePosts, setVisiblePosts] = useState(getInitialVisiblePosts);
-  const [activeCategory, setActiveCategory] = useState(getInitialCategory);
-  const [activeSeries, setActiveSeries] = useState<BlogSeriesFilterValue>(getInitialSeries);
+  const [activeCategory, setActiveCategory] = useState(initialCategory);
+  const [activeSeries, setActiveSeries] =
+    useState<BlogSeriesFilterValue>(initialSeries);
   const [expandedPathways, setExpandedPathways] = useState<string[]>([]);
+  const [showPathways, setShowPathways] = useState(
+    initialCategory === "All Posts" && initialSeries === "all",
+  );
 
   const readerPathways = useMemo(() => resolveBlogPathways(allBlogPosts), []);
+  const hasActiveFilter = activeCategory !== "All Posts" || activeSeries !== "all";
 
   useEffect(() => {
     sessionStorage.setItem("blogVisiblePosts", visiblePosts.toString());
@@ -48,18 +56,19 @@ function Blog() {
     sessionStorage.setItem("blogActiveSeries", activeSeries);
   }, [activeSeries]);
 
-  const filteredPosts = useMemo(
-    () =>
-      allBlogPosts.filter((post) => {
-        const categoryMatches =
-          activeCategory === "All Posts" || post.category === activeCategory;
-        const seriesMatches =
-          activeSeries === "all" ||
-          getBlogPostCollectionMetadata(post.path)?.series?.id === activeSeries;
-        return categoryMatches && seriesMatches;
-      }),
-    [activeCategory, activeSeries],
-  );
+  const filteredPosts = useMemo(() => {
+    if (activeSeries !== "all") {
+      return allBlogPosts.filter(
+        (post) => getBlogPostCollectionMetadata(post.path)?.series?.id === activeSeries,
+      );
+    }
+
+    if (activeCategory !== "All Posts") {
+      return allBlogPosts.filter((post) => post.category === activeCategory);
+    }
+
+    return allBlogPosts;
+  }, [activeCategory, activeSeries]);
 
   const displayedPosts = filteredPosts.slice(0, visiblePosts);
   const remainingPosts = filteredPosts.length - visiblePosts;
@@ -67,14 +76,49 @@ function Blog() {
 
   const resetVisiblePosts = () => setVisiblePosts(4);
 
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
+  const scrollToResults = () => {
+    window.requestAnimationFrame(() => {
+      const results = document.getElementById("latest-posts");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      results?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  };
+
+  const clearFilters = (scroll = false) => {
+    setActiveCategory("All Posts");
+    setActiveSeries("all");
+    setShowPathways(true);
     resetVisiblePosts();
+    if (scroll) scrollToResults();
+  };
+
+  const handleCategoryChange = (category: string) => {
+    if (category === "All Posts") {
+      clearFilters(true);
+      return;
+    }
+
+    setActiveCategory(category);
+    setActiveSeries("all");
+    setShowPathways(false);
+    resetVisiblePosts();
+    scrollToResults();
   };
 
   const handleSeriesChange = (series: BlogSeriesFilterValue) => {
+    if (series === "all") {
+      clearFilters(true);
+      return;
+    }
+
     setActiveSeries(series);
+    setActiveCategory("All Posts");
+    setShowPathways(false);
     resetVisiblePosts();
+    scrollToResults();
   };
 
   const togglePathway = (id: string) => {
@@ -84,6 +128,9 @@ function Blog() {
         : [...current, id],
     );
   };
+
+  const activeFilterLabel =
+    activeSeries !== "all" ? blogSeries[activeSeries].title : activeCategory;
 
   return (
     <div className="bg-white">
@@ -111,6 +158,11 @@ function Blog() {
 
       <section className="bg-gray-50 py-5 md:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+          <div className="text-center">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600">
+              Browse by topic
+            </h2>
+          </div>
           <div className="-mx-4 overflow-x-auto px-4 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
             <div className="flex w-max gap-3 md:w-auto md:flex-wrap md:justify-center md:gap-4">
               {blogCategories.map((category) => (
@@ -119,7 +171,7 @@ function Blog() {
                   type="button"
                   onClick={() => handleCategoryChange(category)}
                   className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    category === activeCategory
+                    category === activeCategory && activeSeries === "all"
                       ? "bg-blue-700 text-white"
                       : "bg-white text-gray-700 hover:bg-blue-50 hover:text-blue-700"
                   }`}
@@ -137,38 +189,39 @@ function Blog() {
         </div>
       </section>
 
-      <BlogPathways
-        pathways={readerPathways}
-        expandedPathways={expandedPathways}
-        onToggle={togglePathway}
-      />
+      {showPathways && (
+        <BlogPathways
+          pathways={readerPathways}
+          expandedPathways={expandedPathways}
+          onToggle={togglePathway}
+        />
+      )}
 
       <section id="latest-posts" className="py-16 scroll-mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {(activeCategory !== "All Posts" || activeSeries !== "all") && (
-            <div className="mb-8 flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600">
-              <span>Showing:</span>
-              {activeCategory !== "All Posts" && (
-                <span className="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-800">
-                  {activeCategory}
-                </span>
-              )}
-              {activeSeries !== "all" && (
-                <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-800">
-                  {blogSeries[activeSeries].title}
-                </span>
-              )}
-              <button
-                type="button"
-                onClick={() => {
-                  setActiveCategory("All Posts");
-                  setActiveSeries("all");
-                  resetVisiblePosts();
-                }}
-                className="font-semibold text-blue-700 hover:text-blue-900 hover:underline"
-              >
-                Clear filters
-              </button>
+          {hasActiveFilter && (
+            <div className="mb-8 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 md:px-6">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <p className="text-sm text-slate-700">
+                  Showing <span className="font-semibold text-slate-900">{activeFilterLabel}</span>
+                </p>
+                <div className="flex flex-wrap gap-3 text-sm font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => setShowPathways((current) => !current)}
+                    className="text-slate-700 hover:text-blue-800 hover:underline"
+                  >
+                    {showPathways ? "Hide reader pathways" : "Show reader pathways"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => clearFilters(false)}
+                    className="text-blue-700 hover:text-blue-900 hover:underline"
+                  >
+                    Clear filter
+                  </button>
+                </div>
+              </div>
             </div>
           )}
 
@@ -250,15 +303,11 @@ function Blog() {
           {filteredPosts.length === 0 && (
             <div className="text-center mt-12">
               <p className="text-gray-600 mb-4">
-                No posts match the selected category and series filters.
+                No posts are currently assigned to this browsing selection.
               </p>
               <button
                 type="button"
-                onClick={() => {
-                  setActiveCategory("All Posts");
-                  setActiveSeries("all");
-                  resetVisiblePosts();
-                }}
+                onClick={() => clearFilters(false)}
                 className="text-blue-600 hover:text-blue-800 font-medium"
               >
                 View all posts →
