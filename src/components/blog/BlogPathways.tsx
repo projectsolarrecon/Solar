@@ -17,19 +17,19 @@ export default function BlogPathways({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-10">
           <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 mb-4">
-            Start reading by pathway
+            Guided reading collections
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
             Not sure where to begin?
           </h2>
           <p className="text-base md:text-lg text-gray-600">
-            Choose a guided reading route, browse by topic or series, or jump straight to the newest articles.
+            Topics show every article about a subject. These curated collections recommend what to read first and next.
           </p>
           <a
             href="#latest-posts"
             className="inline-flex mt-5 text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline"
           >
-            Jump to latest posts ↓
+            Skip to the latest articles ↓
           </a>
         </div>
 
@@ -79,7 +79,7 @@ export default function BlogPathways({
                       onClick={() => onToggle(pathway.id)}
                       className="mt-4 text-sm font-semibold text-slate-700 hover:text-blue-800"
                     >
-                      {isExpanded ? "Show fewer" : `View full pathway (${hiddenCount} more)`}
+                      {isExpanded ? "Show fewer" : `View full collection (${hiddenCount} more)`}
                     </button>
                   )}
                 </article>
@@ -89,7 +89,7 @@ export default function BlogPathways({
         </div>
 
         <p className="mt-3 text-center text-xs text-slate-500 md:hidden">
-          Swipe to explore more pathways →
+          Swipe to explore more guided collections →
         </p>
       </div>
     </section>
