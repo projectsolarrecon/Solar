@@ -160,8 +160,11 @@ function Blog() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
           <div className="text-center">
             <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600">
-              Browse by topic
+              Explore by topic
             </h2>
+            <p className="mt-1 text-xs text-slate-500">
+              See every article assigned to a broad subject.
+            </p>
           </div>
           <div className="-mx-4 overflow-x-auto px-4 pb-2 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
             <div className="flex w-max gap-3 md:w-auto md:flex-wrap md:justify-center md:gap-4">
@@ -211,7 +214,7 @@ function Blog() {
                     onClick={() => setShowPathways((current) => !current)}
                     className="text-slate-700 hover:text-blue-800 hover:underline"
                   >
-                    {showPathways ? "Hide reader pathways" : "Show reader pathways"}
+                    {showPathways ? "Hide guided collections" : "Show guided collections"}
                   </button>
                   <button
                     type="button"
