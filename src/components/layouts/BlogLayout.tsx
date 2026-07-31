@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BlogSeriesNavigation from "../blog/BlogSeriesNavigation";
 import SEO from "../SEO";
-import ShareBar from "../solar/ShareBar"; // you'll add this component next
+import ShareBar from "../solar/ShareBar";
 
 export default function BlogLayout({
   title,
@@ -26,11 +27,13 @@ export default function BlogLayout({
     <div className="bg-white">
       <SEO title={title} description={description} keywords={keywords} />
 
-      {/* Hero */}
       <section className="bg-gradient-to-r from-slate-700/90 to-slate-600/90 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
-            <Link to="/blog" className="inline-flex items-center text-slate-200 hover:text-white transition-colors">
+            <Link
+              to="/blog"
+              className="inline-flex items-center text-slate-200 hover:text-white transition-colors"
+            >
               ← Back to Blog
             </Link>
           </div>
@@ -54,12 +57,14 @@ export default function BlogLayout({
         </div>
       </section>
 
-      <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-500"></div>
+      <div className="h-1 bg-gradient-to-r from-slate-600 to-slate-500" />
 
-      {/* Content */}
+      <BlogSeriesNavigation placement="banner" />
+
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <ShareBar />
         {children}
+        <BlogSeriesNavigation placement="footer" />
         <ShareBar />
       </article>
     </div>
