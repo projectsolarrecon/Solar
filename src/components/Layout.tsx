@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import LegacySeriesRouteNavigation from "./blog/LegacySeriesRouteNavigation";
 import ContextualActionRouteOutlet from "./solar/ContextualActionRouteOutlet";
 
 interface LayoutProps {
@@ -42,7 +43,9 @@ function Layout({ children }: LayoutProps) {
 
       <Header />
       <main className="flex-1">
+        <LegacySeriesRouteNavigation placement="banner" />
         {children}
+        <LegacySeriesRouteNavigation placement="footer" />
       </main>
       <ContextualActionRouteOutlet />
       <Footer />
