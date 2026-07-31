@@ -125,3 +125,9 @@ Expected: Changes the display title in `blogPathwayDefinitions` while preserving
 Prompt: `Make topic and series filters stack so readers can drill down.`
 
 Expected under the approved architecture: Flags that the live design intentionally treats topic and series as mutually exclusive browsing modes unless the user explicitly approves an architectural change.
+
+### O12 — Shared article-level series navigation
+
+Prompt: `This post is Follow the Money Part 6. Add a custom series banner and previous/next cards inside the article TSX.`
+
+Expected: Adds the valid central series metadata and relies on `BlogLayout` plus `BlogSeriesNavigation` to render the shared banner, ordered installment list, complete-series link, and previous/next controls. It does not duplicate those elements inside the article file.
