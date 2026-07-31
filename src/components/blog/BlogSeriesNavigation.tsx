@@ -27,7 +27,13 @@ export default function BlogSeriesNavigation({
 
   const previousPost = currentIndex > 0 ? posts[currentIndex - 1] : undefined;
   const nextPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : undefined;
-  const seriesUrl = `/blog?series=${currentSeries.id}#latest-posts`;
+  const seriesUrl = "/blog#latest-posts";
+
+  const prepareSeriesView = () => {
+    sessionStorage.setItem("blogActiveCategory", "All Posts");
+    sessionStorage.setItem("blogActiveSeries", currentSeries.id);
+    sessionStorage.setItem("blogVisiblePosts", posts.length.toString());
+  };
 
   if (placement === "banner") {
     return (
@@ -49,6 +55,7 @@ export default function BlogSeriesNavigation({
 
               <Link
                 to={seriesUrl}
+                onClick={prepareSeriesView}
                 className="inline-flex flex-none items-center justify-center rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
               >
                 View complete series
@@ -106,6 +113,7 @@ export default function BlogSeriesNavigation({
         </div>
         <Link
           to={seriesUrl}
+          onClick={prepareSeriesView}
           className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline"
         >
           View all installments →
