@@ -7,22 +7,22 @@ Upload the following files with the deployable Output Instructions. The July bas
 ## Required knowledge
 
 1. `SOLAR_Contextual_Action_Standard_Canonical_Knowledge_v1.1.pdf`
-   - Governs contextual-action component implementation and recipient/action alignment.
+   - Contextual-action implementation and recipient/action alignment.
 
 2. `SOLAR_Source_Standards.txt`
-   - Governs source validation, inline claim support, Data Sources treatment, timeliness, and source normalization limits.
+   - Source validation, inline support, Data Sources, timeliness, and normalization limits.
 
 3. `SOLAR_Internal_Linking_Guide.txt`
-   - Governs route verification, meaningful anchor text, related reading, and stable-hub fallback.
+   - Route verification, anchor text, related reading, and stable-hub fallback.
 
-4. `docs/gpt-config/blog/shared/BLOG-ARCHITECTURE-DRAFT.md`
-   - Governs central collection metadata, canonical IDs, formal series, shared navigation, and archive treatment.
+4. `docs/gpt-config/blog/shared/BLOG-ARCHITECTURE-CANONICAL-2026-07-31.md`
+   - Central collection metadata, canonical IDs, formal series, shared navigation, and archive treatment.
 
 5. `docs/gpt-config/blog/output/REPO-COMPONENT-REFERENCE-2026-07-31.md`
-   - Governs current blog layout, shared primitives, metadata locations, route work, and components to avoid.
+   - Current layout, primitives, metadata locations, routes, and components to avoid.
 
 6. `docs/gpt-config/blog/REGRESSION-TESTS.md`
-   - Used during Preview validation.
+   - Preview validation only.
 
 ## Do not upload
 
@@ -34,12 +34,12 @@ Upload the following files with the deployable Output Instructions. The July bas
 - `SOLAR_Pathway_Update_Recommendation_Rules.md`
 - July Instructions baseline
 
-These files contain stale component guidance, duplicate role rules, or obsolete manual pathway mechanics. Still-valid safeguards have been reconciled into the deployable Instructions and current repo reference.
+These files contain stale component guidance, duplicate role rules, or obsolete manual pathway mechanics. Their still-valid safeguards are now reconciled into the deployable Instructions and current repository reference.
 
 ## Live-repo rule
 
-Uploaded component documentation is a navigation aid, not authority over the repository. The Output GPT must inspect the current live files before producing publish-ready implementation whenever repository access is available.
+Uploaded component documentation is a navigation aid, not authority over the repository. Inspect current live files before publish-ready implementation whenever repository access is available.
 
 ## Deployment record
 
-Record the exact uploaded filename, version, and date after manual configuration. Do not replace the current GPT until the regression suite passes.
+Record the exact uploaded filenames, versions, and deployment date. Do not replace the current GPT until the regression suite passes.
