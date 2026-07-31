@@ -53,13 +53,13 @@ export default function BlogSeriesNavigation({
                 </p>
               </div>
 
-              <Link
-                to={seriesUrl}
+              <a
+                href={seriesUrl}
                 onClick={prepareSeriesView}
                 className="inline-flex flex-none items-center justify-center rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-900"
               >
                 View complete series
-              </Link>
+              </a>
             </div>
 
             <details className="mt-5 border-t border-slate-200 pt-4">
@@ -111,13 +111,13 @@ export default function BlogSeriesNavigation({
             {series.title}: Part {currentIndex + 1} of {posts.length}
           </h2>
         </div>
-        <Link
-          to={seriesUrl}
+        <a
+          href={seriesUrl}
           onClick={prepareSeriesView}
           className="text-sm font-semibold text-blue-700 hover:text-blue-900 hover:underline"
         >
           View all installments →
-        </Link>
+        </a>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
