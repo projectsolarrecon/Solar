@@ -48,6 +48,25 @@ Implemented formal series IDs:
 
 Formal series membership is objective publication metadata. A post belongs only when it is an installment of that series.
 
+### Article-level series experience
+
+Formal-series articles receive their shared reader experience automatically through:
+
+- `src/components/blog/BlogSeriesNavigation.tsx`
+- `src/components/layouts/BlogLayout.tsx`
+
+For a post with valid formal-series metadata, the layout renders:
+
+- a series banner immediately below the article hero;
+- the current installment position and total installment count;
+- the series description;
+- a collapsible ordered list of all installments with the current article identified;
+- a link back to the blog with the complete series filter activated;
+- previous and next installment navigation after the article body;
+- first- and final-installment states where one direction is unavailable.
+
+Individual article TSX files must not recreate these banners, lists, or previous/next links. The shared layout derives them from central metadata.
+
 ## Guided reader pathways
 
 A pathway is a curated reading sequence built around a reader need, question, or argument. It is not an alternate category archive.
@@ -149,7 +168,9 @@ The Output GPT must:
 - never hand-edit duplicated pathway arrays in `Blog.tsx`;
 - change `blogPathwayDefinitions` only for an explicitly approved new pathway, rename, curated-order change, replacement, or removal;
 - preserve stable IDs when only reader-facing titles change;
-- treat missing optional pathway membership as `None`, not as a stop condition.
+- treat missing optional pathway membership as `None`, not as a stop condition;
+- rely on `BlogLayout` for the shared formal-series banner and previous/next navigation;
+- never duplicate article-level series navigation inside an individual article unless the shared architecture has explicitly changed.
 
 ## Reader interaction
 
