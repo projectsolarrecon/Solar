@@ -39,7 +39,7 @@ const SEO: React.FC<SEOProps> = ({
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', canonical || `https://solarproject.org${location.pathname}`);
+    canonicalLink.setAttribute('href', canonical || `https://thesolarproject.org${location.pathname}`);
 
     // Update Open Graph tags
     const ogTitle = document.querySelector('meta[property="og:title"]');
@@ -54,7 +54,7 @@ const SEO: React.FC<SEOProps> = ({
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) {
-      ogUrl.setAttribute('content', canonical || `https://solarproject.org${location.pathname}`);
+      ogUrl.setAttribute('content', canonical || `https://thesolarproject.org${location.pathname}`);
     }
 
     // Update Twitter Card tags
