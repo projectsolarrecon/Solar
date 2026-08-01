@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2026-08-01",
+  title: "Accountability Watch — July 2026 Roundup",
+  slug: "2026-08-01",
+  path: "/resources/accountability-watch/2026-08-01",
+  summary:
+    "July 2026 accountability cases centered on educators, school administrators, youth ministers, clergy, youth-sports coaches, Scouting leadership, law-enforcement and corrections personnel, healthcare and juvenile-detention authority, household control, technology and business legitimacy, celebrity/public-profile influence, and institutional-accountability findings. Across the month, risk emerged through trusted roles, custody, professional authority, household dependency, institutional legitimacy, wealth/status access, and public influence rather than through registry-centered warning assumptions.",
+},
+{
   date: "2026-07-01",
   title: "Accountability Watch — June 2026 Roundup",
   slug: "2026-07-01",
