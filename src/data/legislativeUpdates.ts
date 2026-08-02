@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "August 1, 2026",
+  title: "Legislative Tracker — July 2026 Update",
+  slug: "2026-08-01",
+  summary:
+    "July’s verified registry-policy developments centered on burden expansion: Florida widened location-based restrictions and arrest exposure, Iowa shortened reporting windows and added in-person duties, Kansas added a registration technology fee, and Beaumont moved toward a proposed local housing exclusion zone.",
+  tags: ["state", "local", "implementation", "housing", "compliance"],
+},
+{
   date: "July 1, 2026",
   title: "Legislative Tracker — June 2026 Update",
   slug: "2026-07-01",
