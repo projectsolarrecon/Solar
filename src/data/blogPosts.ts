@@ -13,6 +13,33 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "scott-peterson-california-parole-registry-refusal-believe-change",
+  title:
+    "Scott Peterson, California Parole, and the Registry’s Refusal to Believe in Change",
+  excerpt:
+    "California’s Scott Peterson parole controversy reveals a deeper registry double standard: states know how to reassess punishment, risk, and rehabilitation, but often refuse to apply that logic to people on sex-offense registries.",
+  author: "The SOLAR Project",
+  date: "Aug 11, 2026",
+  readTime: "8 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "Scott Peterson",
+    "California parole",
+    "Laci Peterson",
+    "SB 384",
+    "SORNA",
+    "Florida registry",
+    "lifetime registration",
+    "individualized risk assessment",
+    "rehabilitation",
+    "public safety",
+    "registry reform",
+    "permanent punishment",
+    "collateral consequences",
+  ],
+  path: "/blog/scott-peterson-california-parole-registry-refusal-believe-change",
+},
+{
   id: "either-the-list-was-arbitrary-or-congress-has-some-explaining-to-do",
   title: "Either the List Was Arbitrary, or Congress Has Some Explaining to Do",
   excerpt:
