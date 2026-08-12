@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>SOLAR State Registry Matrix Prototype</title>
+  <link rel="icon" href="/solar-favicon.png" />
+  <style>
+    :root {
+      --ink:#182230; --muted:#5b6573; --line:#d9dee5; --paper:#fff; --wash:#f5f7f9;
+      --good-bg:#e8f4ec; --good:#23633b; --mixed-bg:#fff5d9; --mixed:#765c12; --bad-bg:#fbe9e8; --bad:#8a332e;
+      --navy:#26384a; --navy2:#344b60;
+    }
+    *{box-sizing:border-box} body{margin:0;background:var(--wash);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit} .hero{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:54px 22px 46px;border-bottom:4px solid #d69743}
+    .wrap{max-width:1260px;margin:0 auto}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;opacity:.82}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.02;margin:10px 0 14px}.hero p{max-width:850px;font-size:18px;line-height:1.6;color:#e5ebf0;margin:0}.prototype{display:inline-flex;margin-top:22px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.09);padding:8px 12px;border-radius:999px;font-size:13px;font-weight:700}
+    main{padding:28px 18px 70px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 30px rgba(20,31,45,.06);overflow:hidden;margin-bottom:22px}.intro{padding:24px 26px;display:grid;grid-template-columns:1.4fr 1fr;gap:26px}.intro h2,.section-title{margin:0 0 10px;font-size:23px}.intro p{margin:0;color:var(--muted);line-height:1.6}.legend{display:flex;flex-wrap:wrap;gap:9px;align-content:start}.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;border:1px solid transparent}.dot{width:9px;height:9px;border-radius:50%}.good{background:var(--good-bg);color:var(--good);border-color:#c9e4d1}.good .dot{background:#438258}.mixed{background:var(--mixed-bg);color:var(--mixed);border-color:#efdca5}.mixed .dot{background:#a6811c}.bad{background:var(--bad-bg);color:var(--bad);border-color:#efc8c5}.bad .dot{background:#a74c46}.neutral{background:#edf1f5;color:#536170;border-color:#dce3ea}.neutral .dot{background:#788694}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 0 22px}.state-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.state-card h3{margin:0 0 6px;font-size:24px}.state-card p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.5}.lens{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;border-top:1px solid #edf0f3;padding:11px 0;font-size:13px}.lens:first-of-type{border-top:0}.grade{font-weight:850}
+    .table-head{padding:22px 24px 10px}.table-head p{margin:0;color:var(--muted);line-height:1.5}.table-scroll{overflow-x:auto}.matrix{width:100%;min-width:1040px;border-collapse:separate;border-spacing:0}.matrix th{position:sticky;top:0;background:#eff3f6;color:#293949;text-align:left;font-size:12px;letter-spacing:.03em;text-transform:uppercase;padding:13px 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.matrix th:first-child{width:225px}.matrix td{vertical-align:top;padding:14px;border-bottom:1px solid #e8ecf0;border-right:1px solid #edf0f3;font-size:13px;line-height:1.4}.matrix td:first-child{font-weight:800;background:#fafbfc;color:#283644}.matrix tr:last-child td{border-bottom:0}.value{font-weight:800;margin-bottom:6px}.note{color:var(--muted);font-size:12px}.valence{display:inline-flex;margin-top:8px;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.05em;padding:4px 7px;border-radius:999px}.v-good{background:var(--good-bg);color:var(--good)}.v-mixed{background:var(--mixed-bg);color:var(--mixed)}.v-bad{background:var(--bad-bg);color:var(--bad)}.v-neutral{background:#edf1f5;color:#586573}
+    .foot{padding:20px 24px;color:var(--muted);font-size:12px;line-height:1.6;background:#fafbfc;border-top:1px solid var(--line)}
+    @media(max-width:800px){.intro{grid-template-columns:1fr}.summary{grid-template-columns:1fr}.hero{padding-top:38px}.state-card{padding:17px}}
+  </style>
+</head>
+<body>
+  <header class="hero"><div class="wrap">
+    <div class="eyebrow">The SOLAR Project · 50-State Registry Project</div>
+    <h1>State Registry Matrix</h1>
+    <p>A decision-level comparison of how state registry systems affect housing, public exposure, risk-based differentiation, reporting burden, and the possibility of reduced restrictions over time.</p>
+    <div class="prototype">Prototype · Florida / Oregon / Tennessee</div>
+  </div></header>
+
+  <main><div class="wrap">
+    <section class="panel intro">
+      <div><h2>How to read this prototype</h2><p>The descriptive value and the judgment about that value are intentionally separate. A state can have <strong>high risk responsiveness</strong>, which is generally favorable, while also having <strong>high public exposure</strong>, which is generally unfavorable. Conditional access to a better outcome still counts as structurally favorable when the law creates a real path to it.</p></div>
+      <div class="legend">
+        <span class="pill good"><span class="dot"></span>Favorable</span>
+        <span class="pill mixed"><span class="dot"></span>Neutral / mixed</span>
+        <span class="pill bad"><span class="dot"></span>Unfavorable</span>
+        <span class="pill neutral"><span class="dot"></span>Descriptive / no valence</span>
+      </div>
+    </section>
+
+    <section class="summary">
+      <article class="state-card"><h3>Florida</h3><p>Broad public, offense/designation-driven system with short deadlines and a significant local-rule layer.</p><div class="lens"><span>Daily-life restrictions</span><span class="grade" style="color:var(--bad)">Very high</span></div><div class="lens"><span>Public exposure</span><span class="grade" style="color:var(--bad)">Very high</span></div><div class="lens"><span>Compliance burden</span><span class="grade" style="color:var(--bad)">Very high</span></div><div class="lens"><span>Exit / improvement</span><span class="grade" style="color:var(--bad)">Poor</span></div></article>
+      <article class="state-card"><h3>Oregon</h3><p>Classification-sensitive system where individualized risk can materially affect visibility, restrictions, and relief.</p><div class="lens"><span>Daily-life restrictions</span><span class="grade" style="color:var(--mixed)">Moderate</span></div><div class="lens"><span>Public exposure</span><span class="grade" style="color:var(--good)">Lower for lower levels</span></div><div class="lens"><span>Compliance burden</span><span class="grade" style="color:var(--mixed)">Moderate</span></div><div class="lens"><span>Exit / improvement</span><span class="grade" style="color:var(--good)">Meaningful</span></div></article>
+      <article class="state-card"><h3>Tennessee</h3><p>Broad public, offense/designation-driven system with substantial statewide housing/work restrictions.</p><div class="lens"><span>Daily-life restrictions</span><span class="grade" style="color:var(--bad)">Very high</span></div><div class="lens"><span>Public exposure</span><span class="grade" style="color:var(--bad)">Very high</span></div><div class="lens"><span>Compliance burden</span><span class="grade" style="color:var(--bad)">High</span></div><div class="lens"><span>Exit / improvement</span><span class="grade" style="color:var(--mixed)">Limited but real</span></div></article>
+    </section>
+
+    <section class="panel">
+      <div class="table-head"><h2 class="section-title">Core comparison</h2><p>Version 0.1 uses fourteen primary decision variables. Notes preserve scope where a normalized label alone would be misleading.</p></div>
+      <div class="table-scroll"><table class="matrix">
+        <thead><tr><th>Decision variable</th><th>Florida</th><th>Oregon</th><th>Tennessee</th></tr></thead>
+        <tbody>
+          <tr><td>Overall architecture</td><td><div class="value">Broad public / offense-designation driven</div><span class="valence v-neutral">Descriptive</span></td><td><div class="value">Risk-classification driven</div><span class="valence v-neutral">Descriptive</span></td><td><div class="value">Broad public / offense-designation driven</div><span class="valence v-neutral">Descriptive</span></td></tr>
+          <tr><td>Residence restriction breadth</td><td><div class="value">Conditional</div><div class="note">Statewide 1,000-ft rule for specified offenses involving victims under 16; local rules may add more.</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">No blanket rule for all registrants</div><div class="note">Sharper restrictions cluster around Level III, SVDO, and supervision categories.</div><span class="valence v-good">Favorable</span></td><td><div class="value">Broad statewide rule</div><div class="note">1,000-ft residence/work framework plus additional minor-victim restrictions.</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Distance / protected places</td><td><div class="value">1,000 ft</div><div class="note">Conditional by offense and victim age.</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">No universal distance buffer validated</div><span class="valence v-good">Favorable</span></td><td><div class="value">1,000 ft</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Presence / place restrictions</td><td><div class="value">Conditional + local overlay</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Targeted by level / designation</div><span class="valence v-good">Favorable</span></td><td><div class="value">Conditional but substantial</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Local-rule exposure</td><td><div class="value">Allowed</div><div class="note">Florida expressly recognizes municipal/county restrictions as a meaningful separate layer.</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Unclear — validate</div><span class="valence v-mixed">Mixed / unknown</span></td><td><div class="value">Unclear — validate</div><span class="valence v-mixed">Mixed / unknown</span></td></tr>
+          <tr><td>Classification basis</td><td><div class="value">Offense / status designation</div><span class="valence v-neutral">Descriptive</span></td><td><div class="value">Individual risk + Level I / II / III</div><span class="valence v-neutral">Descriptive</span></td><td><div class="value">Offense / status designation</div><span class="valence v-neutral">Descriptive</span></td></tr>
+          <tr><td>Risk responsiveness</td><td><div class="value">Low</div><div class="note">Present-risk assessment changes relatively little in the core architecture.</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">High</div><div class="note">Classification materially affects public exposure, restrictions, and relief.</div><span class="valence v-good">Favorable</span></td><td><div class="value">Low</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Public posting breadth</td><td><div class="value">Broad</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Risk-level limited</div><div class="note">Level III is the primary public-website category.</div><span class="valence v-good">Favorable</span></td><td><div class="value">Broad</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Address exposure</td><td><div class="value">Broad public address disclosure</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Classification-sensitive</div><span class="valence v-good">Favorable</span></td><td><div class="value">Broad public address disclosure</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Routine reporting burden</td><td><div class="value">Mixed; commonly semiannual / quarterly</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Annual birthday reporting</div><span class="valence v-good">Favorable</span></td><td><div class="value">Annual / quarterly by designation</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Change deadline sensitivity</td><td><div class="value">Often 48 hours</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Generally 10 days</div><span class="valence v-good">Favorable</span></td><td><div class="value">Generally 48 hours</div><div class="note">Weekends/holidays excluded; online identifiers use a separate 3-day rule.</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Registration duration</td><td><div class="value">Lifetime for most</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Indefinite until relief</div><div class="note">Must be read together with Oregon's meaningful relief framework.</div><span class="valence v-mixed">Mixed</span></td><td><div class="value">Long-term / lifetime for many</div><span class="valence v-bad">Unfavorable</span></td></tr>
+          <tr><td>Removal accessibility</td><td><div class="value">Very narrow</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Meaningful for qualifying lower-risk cases</div><span class="valence v-good">Favorable</span></td><td><div class="value">Narrow but real</div><span class="valence v-mixed">Mixed</span></td></tr>
+          <tr><td>Reclassification / burden responsiveness</td><td><div class="value">Minimal</div><span class="valence v-bad">Unfavorable</span></td><td><div class="value">Meaningful / central feature</div><span class="valence v-good">Favorable</span></td><td><div class="value">Limited</div><span class="valence v-bad">Unfavorable</span></td></tr>
+        </tbody>
+      </table></div>
+      <div class="foot"><strong>Prototype note:</strong> This page is intentionally not a legal guide and does not replace the underlying State Truth Files. It exists so the SOLAR team can visually test the comparison framework while the schema is being calibrated. No single “best-to-worst” score is used.</div>
+    </section>
+  </div></main>
+</body>
+</html>
