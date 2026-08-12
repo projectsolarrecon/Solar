@@ -1,5 +1,3 @@
-// PASTE 1 OF 4 — New blog page TSX file, part 1
-
 import React from "react";
 import { Link } from "react-router-dom";
 import BlogLayout from "../../components/layouts/BlogLayout";
@@ -112,6 +110,11 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
           conviction is a sex offense.
         </p>
 
+        <PullQuote>
+          The scandal is that this same imagination so often disappears when the conviction
+          is a sex offense.
+        </PullQuote>
+
         <BandHeader title="Review is not release" icon="⚖️" />
 
         <p>
@@ -131,16 +134,12 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>That distinction matters.</p>
 
-        <PullQuote>Review is not release.</PullQuote>
-
         <p>
           Review is not release. Review is not forgiveness. Review is not exoneration.
           Review is not a promise that the person will ever walk out of prison.
         </p>
 
         <p>Review means the state is willing to ask a question.</p>
-
-        <PullQuote>Who is this person now?</PullQuote>
 
         <p>Who is this person now?</p>
 
@@ -206,6 +205,10 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
           public-safety tool or it is not.
         </p>
 
+        <PullQuote>
+          Individualized reassessment is either a legitimate public-safety tool or it is not.
+        </PullQuote>
+
         <p>
           If it is responsible enough to consider after decades of incarceration for
           people convicted of extreme violence, then it cannot be dismissed as naïve,
@@ -220,8 +223,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
         <p>Not a shortcut around accountability.</p>
 
         <p>A meaningful chance to show who they are now.</p>
-
-// PASTE 2 OF 4 — New blog page TSX file, part 2
 
         <BandHeader title="The registry is built to resist that question" icon="🧱" />
 
@@ -286,8 +287,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
           secondary. Age becomes secondary. Treatment becomes secondary. Stability
           becomes secondary. Decades without another offense become secondary.
         </p>
-
-        <PullQuote>The label does the work.</PullQuote>
 
         <p>The label does the work.</p>
 
@@ -419,8 +418,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>That is not individualized public safety.</p>
 
-        <PullQuote>That is category punishment.</PullQuote>
-
         <p>That is category punishment.</p>
 
         <BandHeader title="Murder can have an endpoint. The registry often does not." icon="⏳" />
@@ -481,8 +478,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>But the label remains.</p>
 
-// PASTE 3 OF 4 — New blog page TSX file, part 3
-
         <BandHeader title="That is the real double standard" icon="⚖️" />
 
         <p>
@@ -509,6 +504,11 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>Sex offenses are often treated as proof of what a person permanently is.</p>
 
+        <PullQuote>
+          Some crimes are treated as terrible things a person did. Sex offenses are often
+          treated as proof of what a person permanently is.
+        </PullQuote>
+
         <p>That difference matters.</p>
 
         <p>
@@ -527,6 +527,11 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
           premise. If the person can change, if risk can decline, if decades of lawful
           conduct can matter, then the label can no longer do all the work.
         </p>
+
+        <PullQuote>
+          If the person can change, if risk can decline, if decades of lawful conduct can
+          matter, then the label can no longer do all the work.
+        </PullQuote>
 
         <p>The state would have to ask better questions.</p>
 
@@ -603,8 +608,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>Do not guarantee relief.</p>
 
-        <PullQuote>Ask the question.</PullQuote>
-
         <p>Ask the question.</p>
 
         <BandHeader title="The registry’s refusal to believe in change" icon="🔓" />
@@ -633,8 +636,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
 
         <p>That is not evidence-based safety.</p>
 
-        <PullQuote>That is permanent punishment wearing the language of prevention.</PullQuote>
-
         <p>That is permanent punishment wearing the language of prevention.</p>
 
         <PullQuote>
@@ -658,8 +659,6 @@ export default function ScottPetersonCaliforniaParoleRegistryRefusalBelieveChang
           The scandal is that, for so many people on registries, the law still cannot
           imagine change at all.
         </p>
-
-// PASTE 4 OF 4 — New blog page TSX file, part 4
 
         <ContextualActionCard config={contextualAction} />
 
