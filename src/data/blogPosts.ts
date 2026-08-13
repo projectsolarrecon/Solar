@@ -13,6 +13,31 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-registry-the-court-reviewed-no-longer-exists",
+  title: "The Registry the Court Reviewed No Longer Exists",
+  excerpt:
+    "FAC v. Glass may matter because it asks courts to compare the registry constitutionalized decades ago with the far more restrictive institution Florida has built since.",
+  author: "The SOLAR Project",
+  date: "Aug 13, 2026",
+  readTime: "11–13 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "Florida registry",
+    "constitutional litigation",
+    "Ex Post Facto Clause",
+    "Eighth Amendment",
+    "vagueness",
+    "First Amendment",
+    "residency restrictions",
+    "presence restrictions",
+    "Smith v. Doe",
+    "McGuire v. Marshall",
+    "Doe v. Miami-Dade County",
+    "Ellingburg v. United States",
+  ],
+  path: "/blog/the-registry-the-court-reviewed-no-longer-exists",
+},
+{
   id: "scott-peterson-california-parole-registry-refusal-believe-change",
   title:
     "Scott Peterson, California Parole, and the Registry’s Refusal to Believe in Change",
