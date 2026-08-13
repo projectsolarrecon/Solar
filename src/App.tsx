@@ -127,6 +127,7 @@ import EveryoneSawTheWarningSigns from "./pages/blog/EveryoneSawTheWarningSigns"
 import ExposureIsNotPrevention from "./pages/blog/ExposureIsNotPrevention";
 import EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo from "./pages/blog/EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo";
 import ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange from "./pages/blog/ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange";
+import TheRegistryTheCourtReviewedNoLongerExists from "./pages/blog/TheRegistryTheCourtReviewedNoLongerExists";
 
 function App() {
   return (
@@ -280,6 +281,9 @@ function App() {
  element={<EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo />} />
 <Route
   path="/blog/scott-peterson-california-parole-registry-refusal-believe-change" element={<ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange />} />
+<Route
+  path="/blog/the-registry-the-court-reviewed-no-longer-exists"
+element={<TheRegistryTheCourtReviewedNoLongerExists />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
