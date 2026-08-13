@@ -68,23 +68,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           Northern District of Florida, names FDLE Commissioner Mark Glass and dozens of county and
           municipal defendants, and seeks declaratory and injunctive relief against state and local
           registry restrictions. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           ) (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/florida-action-committee-files-landmark-federal-constitutional-challenge-to-floridas-sex-offender-registry-laws/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC announcement
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/florida-action-committee-files-landmark-federal-constitutional-challenge-to-floridas-sex-offender-registry-laws/" target="_blank" rel="noopener noreferrer">FAC announcement</a>
           )
         </p>
 
@@ -92,19 +78,24 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <p>
           The more important point is that <em>Florida Action Committee v. Glass</em> appears to
-          operate on two constitutional tracks.
+          operate on <strong>two constitutional tracks</strong>.
         </p>
 
-        <p>
-          One is ambitious: the argument that Florida’s modern registry system has become punishment
-          in substance, whatever civil label courts have historically used.
-        </p>
-
-        <p>
-          The other is more conventional but still significant: the argument that even if courts
-          continue calling the registry “civil,” Florida’s rules still cross independent constitutional
-          lines involving vagueness, physical presence, travel, and speech.
-        </p>
+        <div className="grid gap-4 md:grid-cols-2 my-6 not-prose">
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-800">
+            <p>
+              One is ambitious: the argument that Florida’s modern registry system has become <strong>punishment
+              in substance</strong>, whatever civil label courts have historically used.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-slate-800">
+            <p>
+              The other is more conventional but still significant: the argument that <strong>even if courts
+              continue calling the registry “civil,”</strong> Florida’s rules still cross independent constitutional
+              lines involving vagueness, physical presence, travel, and speech.
+            </p>
+          </div>
+        </div>
 
         <p>
           That two-track structure is why this case is worth watching. Not because a district-court
@@ -124,9 +115,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           more developed factual record about what Florida’s registry has become.
         </p>
 
-        <p>A “landmark” result is premature.</p>
-
-        <p>A landmark-capable question is not.</p>
+        <PullQuote>
+          A “landmark” result is premature. A landmark-capable question is not.
+        </PullQuote>
 
         <BandHeader title="Two Constitutional Tracks Inside One Complaint" icon="⚖️" />
 
@@ -142,14 +133,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           introduction says Florida’s system has moved from public notification into “endless
           governmental supervision, exclusion zones, speech bans, and travel restrictions” that
           allegedly make large parts of ordinary life unavailable. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -163,25 +147,20 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           court to declare, among other things, that specified residency and presence restrictions
           impose cruel and unusual punishment and that newly adopted burdens may not be retroactively
           applied. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
-        <p>
-          Here is the plain-English version: if the registry is treated as a civil safety rule, courts
-          give the government much more room. If it is treated as punishment, then constitutional
-          rules about punishment come into play. The Ex Post Facto Clause limits retroactive
-          punishment — the government generally cannot increase punishment after the fact. The
-          Eighth Amendment limits cruel and unusual punishment. So the label matters because the
-          label controls which constitutional doors are open.
-        </p>
+        <Callout variant="policy" title="Why the label matters" icon="🔎">
+          <p>
+            Here is the plain-English version: if the registry is treated as a civil safety rule, courts
+            give the government much more room. If it is treated as punishment, then constitutional
+            rules about punishment come into play. The Ex Post Facto Clause limits retroactive
+            punishment — the government generally cannot increase punishment after the fact. The
+            Eighth Amendment limits cruel and unusual punishment. So the label matters because the
+            label controls which constitutional doors are open.
+          </p>
+        </Callout>
 
         <p>The second track inside <em>FAC v. Glass</em> is different.</p>
 
@@ -191,22 +170,13 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           doctrine even if the registry remains classified as civil regulation.
         </p>
 
-        <p>
-          That track includes claims that Florida and local governments have used vague criminal terms
-          such as “loiter,” “congregate,” “regularly congregate,” and “vicinity”; that presence
-          restrictions criminalize otherwise innocent presence in public places; that travel-notice
-          rules unlawfully burden interstate travel; and that some public-park speech restrictions are
-          content-based or speaker-based bans on protected expression. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
-          )
-        </p>
+        <p>That track includes claims that</p>
+        <ul className="list-disc pl-6">
+          <li>Florida and local governments have used vague criminal terms such as “loiter,” “congregate,” “regularly congregate,” and “vicinity”;</li>
+          <li>that presence restrictions criminalize otherwise innocent presence in public places;</li>
+          <li>that travel-notice rules unlawfully burden interstate travel;</li>
+          <li>and that some public-park speech restrictions are content-based or speaker-based bans on protected expression. (<a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>)</li>
+        </ul>
 
         <p>
           This matters materially because a person does not need a court to declare the whole registry
@@ -219,12 +189,12 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <p>That is the strategic importance of the complaint’s architecture.</p>
 
-        <p>Track One asks: has the modern registry finally become punishment?</p>
-
-        <p>
-          Track Two asks: even if courts keep calling it civil, has Florida crossed other constitutional
-          lines anyway?
-        </p>
+        <Callout variant="policy" title="The two-track strategy" icon="⚖️">
+          <ul className="list-disc pl-6">
+            <li>Track One asks: has the modern registry finally become punishment?</li>
+            <li>Track Two asks: even if courts keep calling it civil, has Florida crossed other constitutional lines anyway?</li>
+          </ul>
+        </Callout>
 
         <BandHeader title="The Hard Road Through Smith and McGuire" icon="🧭" />
 
@@ -235,16 +205,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           <em>Smith</em>, the Court held that Alaska’s registration statute was nonpunitive and that
           its retroactive application did not violate the Ex Post Facto Clause. The Court used an
           intent-effects framework: if the legislature intended a civil regulatory scheme, challengers
-          must show by the “clearest proof” that the law’s effects are so punitive that they override
+          must show by the <strong>“clearest proof”</strong> that the law’s effects are so punitive that they override
           that civil label. (
-          <a
-            className={linkCls}
-            href="https://www.law.cornell.edu/supremecourt/text/538/84"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Smith v. Doe
-          </a>
+          <a className={linkCls} href="https://www.law.cornell.edu/supremecourt/text/538/84" target="_blank" rel="noopener noreferrer">Smith v. Doe</a>
           )
         </p>
 
@@ -272,20 +235,13 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           The court rejected Ex Post Facto challenges to several provisions, including residency and
           employment restrictions, weekly homeless reporting, travel notification, and direct
           community notification. (
-          <a
-            className={linkCls}
-            href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-10958/15-10958-2022-10-03.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            McGuire v. Marshall
-          </a>
+          <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-10958/15-10958-2022-10-03.html" target="_blank" rel="noopener noreferrer">McGuire v. Marshall</a>
           )
         </p>
 
         <p>
-          That means FAC cannot simply say the restrictions are harsh and win. Harshness alone is not
-          the doctrinal test. Courts applying <em>Smith</em> ask whether the cumulative effects are so
+          That means FAC cannot simply say the restrictions are harsh and win. <strong>Harshness alone is not
+          the doctrinal test.</strong> Courts applying <em>Smith</em> ask whether the cumulative effects are so
           punitive that they overcome the legislature’s stated civil purpose.
         </p>
 
@@ -319,14 +275,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           something narrower but important: it held that two plaintiffs had plausibly alleged that
           the residency restriction was so punitive in effect that the claim should survive a motion
           to dismiss and proceed to discovery. (
-          <a
-            className={linkCls}
-            href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Doe v. Miami-Dade County
-          </a>
+          <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html" target="_blank" rel="noopener noreferrer">Doe v. Miami-Dade County</a>
           )
         </p>
 
@@ -340,9 +289,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <Callout variant="legal" title="Procedural posture" icon="⚖️">
           <p>
-            Surviving a motion to dismiss would not mean FAC has proved the registry is punishment. It
-            would mean the court has allowed FAC to build the factual record needed to test that
-            claim.
+            Surviving a motion to dismiss would <strong>not mean FAC has proved the registry is punishment.</strong> It
+            would mean the court has allowed FAC to <strong>build the factual record needed to test that
+            claim.</strong>
           </p>
         </Callout>
 
@@ -358,14 +307,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           caused homelessness by severely limiting available, affordable housing. The court also noted
           allegations that the ordinance was excessive in relation to its stated public-safety
           purpose. (
-          <a
-            className={linkCls}
-            href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Doe v. Miami-Dade County
-          </a>
+          <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html" target="_blank" rel="noopener noreferrer">Doe v. Miami-Dade County</a>
           )
         </p>
 
@@ -374,18 +316,11 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
         <p>
           It does not challenge only one isolated rule. It emphasizes the overlap between state
           restrictions and local ordinances. It alleges that Florida’s statewide residency restriction
-          alone blocks access to nearly 98.9 percent of residential housing units for newly subject
+          alone blocks access to nearly <strong>98.9 percent</strong> of residential housing units for newly subject
           individuals when legal and practical factors are considered, and that local ordinances make
           the problem worse in major urban areas. The complaint specifically alleges that Broward
-          County reaches 99 percent legal unavailability under combined restrictions. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          County reaches <strong>99 percent legal unavailability</strong> under combined restrictions. (
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -397,14 +332,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           <em>McGuire</em> on that ground, arguing that Alabama registrants retained a meaningful
           ability to live and move within communities, while Florida’s layered restrictions allegedly
           eliminate those opportunities in densely populated areas and whole counties. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -415,7 +343,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           practice as large-scale exclusion from housing and ordinary community life.
         </p>
 
-        <p>That is the factual distinction FAC needs.</p>
+        <p><strong>That is the factual distinction FAC needs.</strong></p>
 
         <p>That does not mean FAC will win.</p>
 
@@ -431,10 +359,12 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           carefully.
         </p>
 
-        <p>
-          It did not overrule <em>Smith v. Doe</em>. It did not hold that sex-offense registries are
-          punishment. It did not announce a new registry doctrine.
-        </p>
+        <Callout variant="legal" title="What Ellingburg did not decide" icon="⚖️">
+          <p>
+            It <strong>did not overrule <em>Smith v. Doe</em>.</strong> It <strong>did not hold that sex-offense registries are
+            punishment.</strong> It <strong>did not announce a new registry doctrine.</strong>
+          </p>
+        </Callout>
 
         <p>
           What it did hold is that restitution under the federal Mandatory Victims Restitution Act is
@@ -442,14 +372,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           looking closely at statutory text and structure: restitution under the MVRA is labeled a
           penalty, imposed only after conviction, ordered at sentencing, enforced in a criminal
           proceeding, and codified within the federal criminal code. (
-          <a
-            className={linkCls}
-            href="https://www.law.cornell.edu/supremecourt/text/24-482"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ellingburg v. United States
-          </a>
+          <a className={linkCls} href="https://www.law.cornell.edu/supremecourt/text/24-482" target="_blank" rel="noopener noreferrer">Ellingburg v. United States</a>
           )
         </p>
 
@@ -476,14 +399,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           on civil labels, and suggested that many nominally civil laws would have been treated as
           punishment under an older understanding of the Ex Post Facto Clauses when they impose
           coercive penalties for public wrongs. (
-          <a
-            className={linkCls}
-            href="https://www.law.cornell.edu/supremecourt/text/24-482"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Ellingburg v. United States
-          </a>
+          <a className={linkCls} href="https://www.law.cornell.edu/supremecourt/text/24-482" target="_blank" rel="noopener noreferrer">Ellingburg v. United States</a>
           )
         </p>
 
@@ -528,14 +444,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           grown through almost two dozen statutory amendments into a far more burdensome system. It
           also alleges that Florida’s current regime limits physical liberty in ways that the{" "}
           <em>Smith</em> Court did not confront when reviewing Alaska’s earlier scheme. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -543,30 +452,19 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           FAC’s own public explanation makes the same point: the lawsuit asks the court to examine
           Florida’s registry “as it exists today,” after decades of legislative expansion and local
           restrictions, not as a simpler notification system. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/fac-weekly-update-2026-08-12-monumental-lawsuit-filed-by-fac/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC weekly update
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/fac-weekly-update-2026-08-12-monumental-lawsuit-filed-by-fac/" target="_blank" rel="noopener noreferrer">FAC weekly update</a>
           )
         </p>
 
-        <p>That is the constitutional Ship of Theseus problem.</p>
-
-        <p>
-          If every plank of a ship is replaced, is it still the same ship? And if a registry begins as
-          a notification system but accumulates supervision-like reporting, exclusion zones, speech
-          limits, travel restrictions, local banishment effects, and felony enforcement for technical
-          violations, at what point is it no longer the same civil system courts once reviewed?
-        </p>
-
-        <p>
-          A doctrine saying that one registry was civil in 2003 cannot logically mean that every future
-          restriction attached to every future registry inherits constitutional immunity forever.
-        </p>
+        <Callout variant="policy" title="The Ship of Theseus problem" icon="⏳">
+          <p>That is the constitutional Ship of Theseus problem.</p>
+          <p>
+            If every plank of a ship is replaced, is it still the same ship? And if a registry begins as
+            a notification system but accumulates supervision-like reporting, exclusion zones, speech
+            limits, travel restrictions, local banishment effects, and felony enforcement for technical
+            violations, at what point is it no longer the same civil system courts once reviewed?
+          </p>
+        </Callout>
 
         <PullQuote>
           A doctrine saying that one registry was civil in 2003 cannot logically mean that every
@@ -607,9 +505,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           defended as enforcement.
         </p>
 
-        <p>But people do not live under these rules one at a time.</p>
-
-        <p>They live under the combined system.</p>
+        <PullQuote>
+          But people do not live under these rules one at a time. They live under the combined system.
+        </PullQuote>
 
         <p>
           That is why FAC’s complaint focuses on overlap: state law plus county law plus municipal law
@@ -617,20 +515,11 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           alleges that registrants may avoid populated areas, commercial districts, public facilities,
           and civic spaces because the boundaries of prohibited areas are difficult to determine with
           precision. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
-        <p>
-          This is where SOLAR’s broader critique fits the constitutional issue.
-        </p>
+        <p>This is where SOLAR’s broader critique fits the constitutional issue.</p>
 
         <p>
           Government says these systems are prospective public-safety regulation rather than
@@ -675,10 +564,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <p>That is the line FAC is asking the court to examine.</p>
 
-        <BandHeader
-          title="The Independent Claims May Keep the Bigger Question Alive"
-          icon="🔀"
-        />
+        <BandHeader title="The Independent Claims May Keep the Bigger Question Alive" icon="🔀" />
 
         <p>
           The conventional constitutional claims may prove just as important as the ambitious
@@ -701,14 +587,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           punitive. It argues that criminal restrictions using terms like “loiter,” “children,”
           “congregating,” “regularly congregate,” and “vicinity” fail to give fair notice and invite
           arbitrary enforcement. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -726,14 +605,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           violate liberty principles recognized in cases like <em>City of Chicago v. Morales</em>.
           The complaint frames the issue as criminalizing harmless presence rather than targeting
           distinct culpable conduct. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -741,14 +613,7 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           The First Amendment claim is also independent. FAC alleges that Section 856.022(4)(a) and
           similar local provisions impose speaker-based and content-based restrictions on protected
           expression in traditional public forums. (
-          <a
-            className={linkCls}
-            href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAC complaint
-          </a>
+          <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
           )
         </p>
 
@@ -779,14 +644,13 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <p>The more realistic material possibilities are narrower, staged, and legally specific.</p>
 
-        <p>
-          The court could dismiss some claims and allow others to proceed. It could allow FAC to
-          develop evidence about residency exclusion while rejecting other theories. It could permit
-          vagueness or First Amendment claims to move forward without reaching the broader question of
-          whether the whole regime is punishment. It could treat statewide provisions differently
-          from local ordinances. It could find some plaintiffs have standing to challenge some rules
-          but not others.
-        </p>
+        <ul className="list-disc pl-6">
+          <li>The court could dismiss some claims and allow others to proceed.</li>
+          <li>It could allow FAC to develop evidence about residency exclusion while rejecting other theories.</li>
+          <li>It could permit vagueness or First Amendment claims to move forward without reaching the broader question of whether the whole regime is punishment.</li>
+          <li>It could treat statewide provisions differently from local ordinances.</li>
+          <li>It could find some plaintiffs have standing to challenge some rules but not others.</li>
+        </ul>
 
         <p>That may sound unsatisfying, but in constitutional litigation, partial survival can matter.</p>
 
@@ -857,13 +721,13 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <p>So the early questions to watch are practical ones.</p>
 
-        <p>
-          Does the court treat FAC’s allegations as meaningfully different from the earlier cases?
-          Does it allow factual development on cumulative burden? Does it view <em>Miami-Dade</em> as
-          a narrow one-off or as a doorway for this kind of claim? Does it read <em>Ellingburg</em> as
-          irrelevant to registry litigation, or as a useful reminder that structure and effect matter?
-          Does it separate the conventional constitutional claims from the broader punishment theory?
-        </p>
+        <ul className="list-disc pl-6">
+          <li>Does the court treat FAC’s allegations as meaningfully different from the earlier cases?</li>
+          <li>Does it allow factual development on cumulative burden?</li>
+          <li>Does it view <em>Miami-Dade</em> as a narrow one-off or as a doorway for this kind of claim?</li>
+          <li>Does it read <em>Ellingburg</em> as irrelevant to registry litigation, or as a useful reminder that structure and effect matter?</li>
+          <li>Does it separate the conventional constitutional claims from the broader punishment theory?</li>
+        </ul>
 
         <p>Those questions will tell us more than the headline.</p>
 
@@ -895,9 +759,9 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
           pretend the only relevant fact is the label attached decades ago.
         </p>
 
-        <p>The registry the Supreme Court reviewed in 2003 no longer exists.</p>
-
-        <p>The question now is whether constitutional doctrine is willing to notice.</p>
+        <PullQuote>
+          The registry the Supreme Court reviewed in 2003 no longer exists. The question now is whether constitutional doctrine is willing to notice.
+        </PullQuote>
 
         <ContextualActionCard config={contextualAction} />
 
@@ -908,104 +772,48 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
         <ul className="list-disc pl-6">
           <li>
             Florida Action Committee —{" "}
-            <a
-              className={linkCls}
-              href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FAC complaint
-            </a>
+            <a className={linkCls} href="https://floridaactioncommittee.org/wp-content/uploads/2026/08/FAC-v-Glass-ET-AL.pdf" target="_blank" rel="noopener noreferrer">FAC complaint</a>
             . Primary legal filing supporting the complaint’s allegations, constitutional claims,
             cumulative-burden theory, and requested declaratory and injunctive relief.
           </li>
           <li>
             Florida Action Committee —{" "}
-            <a
-              className={linkCls}
-              href="https://floridaactioncommittee.org/florida-action-committee-files-landmark-federal-constitutional-challenge-to-floridas-sex-offender-registry-laws/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FAC announcement
-            </a>
+            <a className={linkCls} href="https://floridaactioncommittee.org/florida-action-committee-files-landmark-federal-constitutional-challenge-to-floridas-sex-offender-registry-laws/" target="_blank" rel="noopener noreferrer">FAC announcement</a>
             . FAC’s public announcement and framing of the August 2026 filing.
           </li>
           <li>
             Florida Action Committee —{" "}
-            <a
-              className={linkCls}
-              href="https://floridaactioncommittee.org/fac-weekly-update-2026-08-12-monumental-lawsuit-filed-by-fac/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              FAC weekly update
-            </a>
+            <a className={linkCls} href="https://floridaactioncommittee.org/fac-weekly-update-2026-08-12-monumental-lawsuit-filed-by-fac/" target="_blank" rel="noopener noreferrer">FAC weekly update</a>
             . FAC’s explanation that the challenge asks courts to examine the registry as it exists
             today.
           </li>
           <li>
             Supreme Court of the United States —{" "}
-            <a
-              className={linkCls}
-              href="https://www.law.cornell.edu/supremecourt/text/538/84"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Smith v. Doe
-            </a>
+            <a className={linkCls} href="https://www.law.cornell.edu/supremecourt/text/538/84" target="_blank" rel="noopener noreferrer">Smith v. Doe</a>
             . Binding Supreme Court precedent applying the intent-effects framework and “clearest
             proof” standard.
           </li>
           <li>
             U.S. Court of Appeals for the Eleventh Circuit —{" "}
-            <a
-              className={linkCls}
-              href="https://law.justia.com/cases/federal/appellate-courts/F3/410/1337/574385/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Doe v. Moore
-            </a>
+            <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/F3/410/1337/574385/" target="_blank" rel="noopener noreferrer">Doe v. Moore</a>
             . Eleventh Circuit precedent addressing earlier Florida registration and notification
             provisions.
           </li>
           <li>
             U.S. Court of Appeals for the Eleventh Circuit —{" "}
-            <a
-              className={linkCls}
-              href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Doe v. Miami-Dade County
-            </a>
+            <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-14336/15-14336-2017-01-25.html" target="_blank" rel="noopener noreferrer">Doe v. Miami-Dade County</a>
             . Eleventh Circuit decision allowing a punitive-effects challenge to a residency
             restriction to proceed past dismissal.
           </li>
           <li>
             U.S. Court of Appeals for the Eleventh Circuit —{" "}
-            <a
-              className={linkCls}
-              href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-10958/15-10958-2022-10-03.html"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              McGuire v. Marshall
-            </a>
+            <a className={linkCls} href="https://law.justia.com/cases/federal/appellate-courts/ca11/15-10958/15-10958-2022-10-03.html" target="_blank" rel="noopener noreferrer">McGuire v. Marshall</a>
             . Eleventh Circuit decision illustrating the difficulty of satisfying the “clearest
             proof” standard.
           </li>
           <li>
             Supreme Court of the United States —{" "}
-            <a
-              className={linkCls}
-              href="https://www.law.cornell.edu/supremecourt/text/24-482"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ellingburg v. United States
-            </a>
+            <a className={linkCls} href="https://www.law.cornell.edu/supremecourt/text/24-482" target="_blank" rel="noopener noreferrer">Ellingburg v. United States</a>
             . The Supreme Court’s 2026 restitution decision, including the majority’s punishment
             analysis and the separate Thomas concurrence joined by Justice Gorsuch.
           </li>
@@ -1015,22 +823,13 @@ export default function TheRegistryTheCourtReviewedNoLongerExists(): JSX.Element
 
         <ul className="list-disc pl-6">
           <li>
-            <Link
-              className={linkCls}
-              to="/blog/the-registry-is-not-a-prevention-plan"
-            >
-              The Registry Is Not a Prevention Plan
-            </Link>
+            <Link className={linkCls} to="/blog/the-registry-is-not-a-prevention-plan">The Registry Is Not a Prevention Plan</Link>
           </li>
           <li>
-            <Link className={linkCls} to="/advocacy">
-              SOLAR’s broader reform framework
-            </Link>
+            <Link className={linkCls} to="/advocacy">SOLAR’s broader reform framework</Link>
           </li>
           <li>
-            <Link className={linkCls} to="/resources/state-registry">
-              state registry overview pages
-            </Link>
+            <Link className={linkCls} to="/resources/state-registry">state registry overview pages</Link>
           </li>
         </ul>
       </article>
