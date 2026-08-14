@@ -8,10 +8,6 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  SoftDivider,
-  QuickStartPanel,
-  GuideChecklist,
-  ScriptBox,
   OverviewCards,
   ResourceLinkGrid,
 } from "../../components/solar";
@@ -35,7 +31,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data / government report",
     href: "https://bjs.ojp.gov/content/pub/pdf/rsorp94.pdf",
     usefulFor:
-      "Comparative rearrest and reconviction data, same-type recidivism, follow-up-period limits, and the distinction between detected recidivism and total offending.",
+      "Comparing rearrest, reconviction, and same-type recidivism across offense categories and understanding how detected recidivism changes with the measure used.",
   },
   SE02: {
     shortTitle: "SMART — Adult Sexual Recidivism",
@@ -44,7 +40,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government research brief",
     href: "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/recidivismofadultsexualoffenders.pdf",
     usefulFor:
-      "A broad federal synthesis of sexual recidivism research, including measurement limits, subgroup differences, follow-up periods, and declining risk over time.",
+      "Understanding sexual recidivism rates, subgroup differences, follow-up periods, measurement challenges, and how risk changes over time.",
   },
   SE03: {
     shortTitle: "25-Year SORN Meta-Analysis",
@@ -54,7 +50,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Peer-reviewed meta-analysis",
     href: "https://link.springer.com/article/10.1007/s11292-021-09480-z",
     usefulFor:
-      "A major peer-reviewed synthesis of 25 years of research on whether broad registration and notification policies have demonstrated an overall recidivism benefit.",
+      "A major peer-reviewed synthesis of 25 years of research on whether broad registration and notification policies reduce recidivism.",
   },
   SE04: {
     shortTitle: "Prescott & Rockoff — SORN Effects",
@@ -63,7 +59,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Peer-reviewed study / working paper",
     href: "https://www.nber.org/papers/w13803",
     usefulFor:
-      "Separating the possible effects of law-enforcement registration from public notification instead of treating all registry policies as one intervention.",
+      "Examining whether law-enforcement registration and public notification have different effects on offending, deterrence, and recidivism.",
   },
   SE05: {
     shortTitle: "NIJ-Funded — South Carolina SORN Evaluation",
@@ -73,7 +69,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "NIJ-funded research report",
     href: "https://www.ojp.gov/pdffiles1/nij/grants/231989.pdf",
     usefulFor:
-      "A South Carolina evaluation of SORN policy effects on sexual violence, recidivism, deterrence, and unintended consequences; useful as one jurisdiction-specific contribution to the broader SORN evidence base.",
+      "A detailed South Carolina evaluation of SORN policy effects on sexual violence, recidivism, deterrence, and unintended consequences.",
   },
   SE06: {
     shortTitle: "SMART/LOC — Registry Collateral Effects",
@@ -83,7 +79,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government evidence review",
     href: "https://smart.ojp.gov/media/document/6346",
     usefulFor:
-      "A federal evidence review of housing, employment, wellbeing, family burdens, and the methodological limits of research on claimed collateral consequences of registration and notification policies.",
+      "Reviewing research on how registration and notification affect housing, employment, wellbeing, family relationships, and reintegration.",
   },
   SE07: {
     shortTitle: "Levenson — Family Collateral Harm",
@@ -101,7 +97,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Peer-reviewed study",
     href: "https://www.fl-counties.com/wp-content/uploads/2022/09/WhereforartThouCJPR2013.pdf",
     usefulFor:
-      "Examining how residence restrictions can interact with housing availability, transience, and community stability.",
+      "Examining the relationship between residence restrictions, housing availability, transience, and community stability.",
   },
   SE09: {
     shortTitle: "Colorado SOMB — Residence-Restriction Safety",
@@ -111,7 +107,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "State government report",
     href: "https://dcj.colorado.gov/dcj-offices/ors/doc-rpt",
     usefulFor:
-      "Official Colorado policy analysis of safety issues surrounding sex-offender living arrangements and locations, including concerns about residence restrictions and community stability.",
+      "Official Colorado analysis of safety issues surrounding living arrangements, residence restrictions, and community placement.",
   },
   SE10: {
     shortTitle: "Human Rights Watch — No Easy Answers",
@@ -129,7 +125,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data / government report",
     href: "https://bjs.ojp.gov/content/pub/pdf/saycrle.pdf",
     usefulFor:
-      "Official data showing that reported sexual assaults against young children overwhelmingly involve family members or acquaintances rather than strangers.",
+      "Official data on who commits reported sexual assaults against young children, including the predominance of family members and acquaintances over strangers.",
   },
   SE12: {
     shortTitle: "OJJDP — Child Maltreatment Perpetrators",
@@ -147,7 +143,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government research synthesis",
     href: "https://www.ed.gov/research/educator-sexual-misconduct-a-synthesis-of-existing-literature",
     usefulFor:
-      "Trusted-access and institutional-prevention framing in schools, including authority, access, reporting, and safeguarding failures.",
+      "Understanding trusted access, authority, grooming, reporting, and safeguarding issues in school settings.",
   },
   SE14: {
     shortTitle: "DOJ OIG — Larry Nassar Investigation",
@@ -156,7 +152,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Inspector General report",
     href: "https://oig.justice.gov/sites/default/files/reports/21-093.pdf",
     usefulFor:
-      "A documented case study of institutional failure after credible abuse allegations and the limits of relying on public registries for prevention.",
+      "A documented case study of institutional failure after credible abuse allegations and the consequences of delayed action.",
   },
   SE15: {
     shortTitle: "CDC — Firearm Injury & Death",
@@ -165,7 +161,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data explainer",
     href: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
     usefulFor:
-      "Official public-health data for comparative analysis of how another serious source of harm is measured and addressed; SOLAR uses it as context when examining differences in public-safety policy responses.",
+      "Official public-health data for comparing the scale of serious harms and the prevention systems used to address them.",
   },
   SE16: {
     shortTitle: "NHTSA — Impaired-Driving Prevention",
@@ -174,7 +170,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government report",
     href: "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
     usefulFor:
-      "Documenting prevention-and-technology approaches to impaired driving; SOLAR uses it as comparative policy context rather than as evidence that different harms require identical responses.",
+      "Showing how a recurring public-safety harm is addressed through prevention, technology, enforcement, research, and intervention.",
   },
   SE17: {
     shortTitle: "BJS — Domestic Violence",
@@ -183,7 +179,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data / government report",
     href: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
     usefulFor:
-      "Official victimization data for comparing how another serious, often underreported form of interpersonal harm is measured and addressed.",
+      "Official victimization data on another serious and often underreported form of interpersonal harm.",
   },
   SE18: {
     shortTitle: "Smith v. Doe",
@@ -201,7 +197,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Supreme Court decision",
     href: "https://supreme.justia.com/cases/federal/us/582/15-1194/",
     usefulFor:
-      "Showing that people with convictions retain constitutional rights and that broad registry-related restrictions can violate the First Amendment.",
+      "Understanding constitutional limits on broad registry-related restrictions and the continuing rights of people with convictions.",
   },
   SE20: {
     shortTitle: "GAO — SORNA Implementation",
@@ -219,7 +215,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Expert policy recommendations",
     href: "https://members.atsa.com/learn/Details/report-registration-and-community-notification-of-adults-convicted-of-a-sexual-crime-recommendations-for-evidence-based-reform-194317",
     usefulFor:
-      "Translating research on risk, treatment, desistance, and reintegration into concrete registry-reform principles.",
+      "Evidence-based recommendations for individualized risk assessment, treatment, review, reintegration, registration, and community notification policy.",
   },
   SE22: {
     shortTitle: "Hanson et al. — Risk Declines Over Time",
@@ -237,7 +233,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government research brief",
     href: "https://smart.ojp.gov/sites/g/files/xyckuh231/files/media/document/theeffectivenessoftreatmentforadultsexualoffenders.pdf",
     usefulFor:
-      "A federal synthesis connecting treatment evidence to risk reduction, rehabilitation, and prevention.",
+      "A federal synthesis of treatment research and its relationship to risk reduction, rehabilitation, and prevention.",
   },
   SE24: {
     shortTitle: "Housing Instability Among Veterans",
@@ -256,7 +252,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Victim-prevention / nonprofit resource",
     href: "https://www.nsvrc.org/sarts/toolkit/7-4/",
     usefulFor:
-      "Connecting registry-policy evidence to broader prevention, survivor response, multidisciplinary practice, and community safety.",
+      "Connecting sexual-violence response to broader prevention, survivor support, multidisciplinary practice, and community safety.",
   },
   SE26: {
     shortTitle: "The Marshall Project — Banished",
@@ -265,7 +261,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Investigative media / illustrative case",
     href: "https://www.themarshallproject.org/2018/10/03/banished",
     usefulFor:
-      "A concrete Miami-Dade illustration of how layered residence restrictions can produce displacement and homelessness.",
+      "A concrete Miami-Dade illustration of displacement and homelessness produced by layered residence restrictions.",
   },
   SE27: {
     shortTitle: "SMART — 2025 Case Law Summary",
@@ -275,7 +271,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government legal summary",
     href: "https://smart.ojp.gov/sorna/current-law/case-law/introduction",
     usefulFor:
-      "Issue-spotting and orientation to registry litigation, constitutional doctrine, and lower-court developments current through July 2025.",
+      "Orientation to registry litigation, constitutional doctrine, and lower-court developments current through July 2025.",
   },
   SE28: {
     shortTitle: "Banishment by a Thousand Laws",
@@ -293,7 +289,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government research report",
     href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
     usefulFor:
-      "Federal non-production recidivism, including the finding that 4.3% of the studied cohort was rearrested for a sex offense within three years.",
+      "Federal non-production recidivism data, including the finding that 4.3% of the studied cohort was rearrested for a sex offense within three years.",
   },
   SE30: {
     shortTitle: "USSC — CP Recidivism Study (2012)",
@@ -303,117 +299,71 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government research report",
     href: "https://www.ussc.gov/sites/default/files/pdf/news/congressional-testimony-and-reports/sex-offense-topics/201212-federal-child-pornography-offenses/Chapter_11.pdf",
     usefulFor:
-      "Longer-follow-up federal non-production recidivism data, including known sexual and contact-sexual recidivism and comparison with contact-offender cohorts.",
+      "Longer-follow-up federal non-production recidivism data, including known sexual and contact-sexual recidivism and comparisons with contact-offender cohorts.",
   },
 };
 
-const evidenceThemes = [
+type PositionRecord = {
+  title: string;
+  body: string;
+  icon: string;
+  sourceIds: SourceId[];
+};
+
+const positions: PositionRecord[] = [
   {
-    id: "registry-efficacy",
-    title: "Registry efficacy and recidivism",
+    title:
+      "The sex offender registry system is ineffective, harmful, and rooted in misinformation.",
+    body:
+      "It does not prevent crime. The vast majority of sex offenses are committed by individuals not on any registry, and empirical evidence consistently shows lower recidivism rates for people convicted of sex offenses than commonly assumed.",
     icon: "📊",
-    anchorIds: ["SE01", "SE03", "SE04", "SE05", "SE29", "SE30"] as SourceId[],
-    supports:
-      "Broad registration and notification systems have not demonstrated a clear overall reduction in sexual recidivism across the research base, and federal non-production studies show comparatively low observed sexual-recidivism rates in that subgroup.",
-    doesNotProve:
-      "This does not mean every registry function is useless, nor do rearrest figures measure every undetected offense.",
-    avoid: "“Registries have no impact on public safety.”",
-    safer:
-      "Research has not shown a clear overall recidivism benefit from broad SORN policies, and federal non-production studies report comparatively low observed sexual recidivism.",
-    whyMatters:
-      "This evidence helps separate empirical risk from the assumption that people convicted of sexual offenses are uniformly or exceptionally likely to reoffend.",
+    sourceIds: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE29", "SE30"],
   },
   {
-    id: "known-perpetrators",
-    title: "Known perpetrators and prevention reality",
-    icon: "🧭",
-    anchorIds: ["SE11", "SE12", "SE13", "SE25"] as SourceId[],
-    supports:
-      "Official and prevention-oriented sources show that most sexual harms against children involve someone the child knows, including family members, acquaintances, caregivers, or trusted authority figures.",
-    doesNotProve:
-      "This does not mean stranger-perpetrated abuse never happens, should be ignored, or cannot be serious.",
-    avoid: "“Stranger danger is a myth.”",
-    safer:
-      "Because most sexual harms against children involve known, trusted, or family-connected people, public registries are a limited tool for primary prevention.",
-    whyMatters:
-      "Prevention policy has to address trusted access, family and caregiving contexts, reporting systems, institutional accountability, and early intervention—not only public notification.",
-  },
-  {
-    id: "collateral-consequences",
-    title: "Collateral consequences and family harm",
+    title:
+      "Registry systems cause lasting harm to individuals, families, and communities.",
+    body:
+      "Rather than increasing safety, registries foster fear, isolation, discrimination, and vigilante violence. Children and families often suffer consequences through no fault of their own.",
     icon: "🏠",
-    anchorIds: ["SE06", "SE07", "SE08", "SE09", "SE24", "SE26"] as SourceId[],
-    supports:
-      "Registry requirements and related restrictions are linked to housing instability, employment barriers, stigma, family spillover harm, and reintegration problems.",
-    doesNotProve:
-      "This does not prove every housing, employment, or family hardship is caused only by the registry rather than conviction, supervision, poverty, or other systems.",
-    avoid: "“Registry laws directly cause homelessness and job loss.”",
-    safer:
-      "Research suggests registry requirements and restrictions can destabilize housing, employment, and family support systems that are necessary for safe reintegration.",
-    whyMatters:
-      "Stable housing, work, family support, and community connection are public-safety factors, not side issues.",
+    sourceIds: ["SE06", "SE07", "SE08", "SE09", "SE10", "SE24", "SE26"],
   },
   {
-    id: "punitive-effects",
-    title: "Punitive effects and constitutional concerns",
-    icon: "⚖️",
-    anchorIds: ["SE10", "SE18", "SE19", "SE20", "SE27", "SE28"] as SourceId[],
-    supports:
-      "Modern layered restrictions can burden speech, movement, housing, association, and community participation in ways that raise serious punitive-effect and constitutional concerns.",
-    doesNotProve:
-      "This does not prove every current registry law is automatically unconstitutional. Smith v. Doe remains a central precedent.",
-    avoid: "“The sex offense registry is unconstitutional punishment.”",
-    safer:
-      "Although registries have often been labeled civil, modern restrictions can impose punishment-like burdens and raise serious constitutional concerns.",
-    whyMatters:
-      "Legal labels matter, but so do lived burdens, modern restrictions, and constitutional limits.",
+    title: "The real risk to children often lies closer to home.",
+    body:
+      "Authority figures—including family members, teachers, coaches, clergy, and community leaders—are more likely to perpetrate sexual harm than strangers. Public registry systems misdirect attention toward the stranger-danger myth.",
+    icon: "🧭",
+    sourceIds: ["SE11", "SE12", "SE13", "SE14", "SE25"],
   },
   {
-    id: "desistance",
-    title: "Desistance, treatment, and individualized reform",
-    icon: "🌱",
-    anchorIds: ["SE02", "SE21", "SE22", "SE23", "SE29", "SE30"] as SourceId[],
-    supports:
-      "Risk varies by person and context, sexual recidivism risk generally declines with sustained offense-free time, and meaningful subgroup differences matter.",
-    doesNotProve:
-      "This does not prove risk reaches zero, that everyone presents the same risk, or that any one tool perfectly predicts future behavior.",
-    avoid: "“High-risk offenders are no longer a threat after a few years.”",
-    safer:
-      "Risk changes over time and differs across subgroups, which supports individualized assessment, treatment, and review rather than permanent status alone.",
-    whyMatters:
-      "One-size-fits-all policy can miss both genuine risk and genuine change.",
-  },
-  {
-    id: "comparative-safety",
-    title: "Comparative public-safety logic",
+    title:
+      "Other types of crime present a greater and more consistent danger to public safety.",
+    body:
+      "Many serious harms to children and communities are addressed through prevention, regulation, treatment, and sentence-bound accountability rather than lifelong public branding.",
     icon: "🧩",
-    anchorIds: ["SE01", "SE12", "SE15", "SE16", "SE17"] as SourceId[],
-    supports:
-      "Comparative data and policy examples show that serious harms can have different recidivism patterns and are often addressed through prevention, regulation, enforcement, technology, treatment, or services rather than permanent public identity branding.",
-    doesNotProve:
-      "This does not mean different crimes are identical harms or require identical responses.",
-    avoid: "“Drunk driving is more dangerous than sexual offending.”",
-    safer:
-      "Comparisons can reveal whether policy responses are proportionate to observed risk and whether permanent public status is being used selectively.",
-    whyMatters:
-      "Comparative evidence helps test intuitions against data rather than treating one category of offense as analytically unique by assumption.",
+    sourceIds: ["SE01", "SE15", "SE16", "SE17"],
   },
   {
-    id: "institutional-responsibility",
-    title: "Institutional responsibility and trusted access",
-    icon: "🏛️",
-    anchorIds: ["SE13", "SE14", "SE25"] as SourceId[],
-    supports:
-      "Abuse can continue when institutions fail to act on warnings, reports, grooming behavior, or trusted-access risks.",
-    doesNotProve:
-      "This does not prove institutions are the sole or primary cause of sexual abuse, or that one institutional scandal establishes a universal prevalence rate.",
-    avoid: "“Institutions are the primary cause of sexual abuse.”",
-    safer:
-      "Effective prevention requires institutional accountability because public registries cannot substitute for action when warning signs arise inside trusted systems.",
-    whyMatters:
-      "Schools, sports programs, medical systems, churches, youth organizations, and other institutions need prevention systems that work before and after criminal prosecution.",
+    title: "Registries are punitive in practice, not administrative in nature.",
+    body:
+      "Public exposure, recurring reporting, restrictions, and collateral consequences operate as continuing punishment after a sentence has been served and stand in tension with due process, proportionality, and fairness.",
+    icon: "⚖️",
+    sourceIds: ["SE10", "SE18", "SE19", "SE20", "SE27", "SE28"],
   },
-] as const;
+  {
+    title: "One-size-fits-all registry laws are fundamentally flawed.",
+    body:
+      "Blanket restrictions ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
+    icon: "🌱",
+    sourceIds: ["SE02", "SE21", "SE22", "SE23", "SE29", "SE30"],
+  },
+  {
+    title: "Registries create a permanent underclass.",
+    body:
+      "They block access to housing, employment, education, financial services, and community participation, stripping people of the tools necessary to rebuild their lives and reintegrate safely.",
+    icon: "🚪",
+    sourceIds: ["SE06", "SE07", "SE08", "SE09", "SE10", "SE24", "SE26"],
+  },
+];
 
 const anchorSourceIds: SourceId[] = [
   "SE03",
@@ -430,115 +380,42 @@ const anchorSourceIds: SourceId[] = [
   "SE14",
 ];
 
-const carefulConclusions = [
+const sourceGroups: { title: string; description: string; ids: SourceId[] }[] = [
   {
-    claim:
-      "Broad public registration and notification systems have not shown a clear overall recidivism benefit.",
-    ids: ["SE03", "SE04", "SE05"] as SourceId[],
-  },
-  {
-    claim:
-      "Sexual recidivism is often lower than public belief, but risk varies by person, subgroup, measurement, and follow-up period.",
-    ids: ["SE01", "SE02", "SE22"] as SourceId[],
-  },
-  {
-    claim:
-      "Federal studies of non-production child-pornography offenders have found comparatively low observed rates of subsequent sexual offending, including low rates of later contact sexual offending; these figures measure known or detected recidivism rather than every undetected offense.",
-    ids: ["SE29", "SE30"] as SourceId[],
-  },
-  {
-    claim:
-      "Most sexual harms against children involve someone known, trusted, or family-connected—not an unknown stranger.",
-    ids: ["SE11", "SE12", "SE13"] as SourceId[],
-  },
-  {
-    claim:
-      "Public registries are limited tools for primary prevention because they identify people already detected and convicted.",
-    ids: ["SE05", "SE11", "SE25"] as SourceId[],
-  },
-  {
-    claim:
-      "Registry requirements and restrictions can destabilize housing, employment, family support, and reintegration.",
-    ids: ["SE06", "SE07", "SE08", "SE09", "SE24"] as SourceId[],
-  },
-  {
-    claim:
-      "Modern registry systems can impose punishment-like burdens even when legally labeled civil.",
-    ids: ["SE18", "SE19", "SE20", "SE27", "SE28"] as SourceId[],
-  },
-  {
-    claim:
-      "Risk changes over time, and policy should include individualized assessment, treatment, and review.",
-    ids: ["SE02", "SE21", "SE22", "SE23"] as SourceId[],
-  },
-  {
-    claim:
-      "Prevention requires institutional accountability, not just public lists.",
-    ids: ["SE13", "SE14", "SE25"] as SourceId[],
-  },
-] as const;
-
-const commonOverstatements = [
-  {
-    avoid: "Registries do nothing.",
-    better:
-      "Broad registration and notification policies have not demonstrated a clear overall recidivism benefit.",
-  },
-  {
-    avoid: "All registries are unconstitutional.",
-    better:
-      "Modern registry restrictions raise serious constitutional concerns and may operate punitively in practice, even though Smith v. Doe remains a central precedent.",
-  },
-  {
-    avoid: "Registries directly cause homelessness and job loss.",
-    better:
-      "Registry requirements and restrictions are linked to housing instability, employment barriers, and reintegration harm.",
-  },
-  {
-    avoid: "95% of sexual crimes are committed by first-time offenders.",
-    better:
-      "Do not use the specific 95% figure unless the primary source is fully verified. Safer language: many sexual offenses are committed by people not already listed on a public registry.",
-  },
-  {
-    avoid: "Stranger danger is a myth.",
-    better:
-      "Stranger-perpetrated abuse exists, but official data show that most sexual harms against children involve known, trusted, or family-connected people.",
-  },
-  {
-    avoid: "A rearrest rate is the true reoffense rate.",
-    better:
-      "Rearrest measures detected recidivism. Use it carefully, and distinguish observed rates from every offense that may have occurred undetected.",
-  },
-] as const;
-
-const sourceGroups: { title: string; ids: SourceId[] }[] = [
-  {
-    title: "Recidivism and SORN effectiveness",
+    title: "Recidivism and registry effectiveness",
+    description:
+      "Research on reoffending, federal non-production cases, and whether registration and notification reduce crime.",
     ids: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE29", "SE30"],
   },
   {
-    title: "Child safety and known perpetrators",
-    ids: ["SE11", "SE12", "SE13", "SE25"],
+    title: "Child safety and trusted access",
+    description:
+      "Sources on who harms children, trusted-access settings, institutional responsibility, and prevention beyond public lists.",
+    ids: ["SE11", "SE12", "SE13", "SE14", "SE25"],
   },
   {
-    title: "Family harm, housing, and collateral consequences",
+    title: "Housing, families, and collateral harm",
+    description:
+      "Research and reporting on housing, family spillover, residence restrictions, displacement, and reintegration.",
     ids: ["SE06", "SE07", "SE08", "SE09", "SE10", "SE24", "SE26"],
   },
   {
     title: "Constitutional law and punitive effects",
+    description:
+      "Cases and legal analysis that frame the civil-versus-punitive debate and the constitutional limits on registry-related restrictions.",
     ids: ["SE18", "SE19", "SE20", "SE27", "SE28"],
   },
   {
-    title: "Desistance, treatment, and evidence-based reform",
-    ids: ["SE21", "SE22", "SE23"],
+    title: "Risk, treatment, and individualized reform",
+    description:
+      "Research on changing risk, treatment, desistance, subgroup differences, and evidence-based alternatives to blanket policy.",
+    ids: ["SE02", "SE21", "SE22", "SE23", "SE29", "SE30"],
   },
   {
     title: "Comparative public safety",
+    description:
+      "Official sources that help compare how other serious and recurring harms are measured, prevented, regulated, and punished.",
     ids: ["SE15", "SE16", "SE17"],
-  },
-  {
-    title: "Institutional responsibility",
-    ids: ["SE13", "SE14", "SE25"],
   },
 ];
 
@@ -566,7 +443,7 @@ export default function ResearchDataResources(): JSX.Element {
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
         title="Research & Data Resources | The SOLAR Project"
-        description="A plain-language evidence map for understanding registry research, recidivism data, prevention, collateral consequences, constitutional concerns, and evidence-based reform."
+        description="Explore the research and data behind SOLAR's positions on sex offense registries, recidivism, child safety, collateral harm, constitutional concerns, and evidence-based reform."
         keywords="sex offense registry research, registry reform evidence, recidivism data, sex offender registration and notification, collateral consequences, prevention, SOLAR Project"
       />
 
@@ -588,9 +465,8 @@ export default function ResearchDataResources(): JSX.Element {
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A plain-language evidence map for understanding what research does
-            and does not say about registries, public notification, recidivism,
-            prevention, reentry, and public safety.
+            Explore the research behind SOLAR’s positions on registries,
+            recidivism, child safety, public policy, reintegration, and reform.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -606,7 +482,7 @@ export default function ResearchDataResources(): JSX.Element {
               href="#source-library"
               className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
             >
-              Jump to complete source library
+              Jump to source library
             </a>
           </div>
         </div>
@@ -617,211 +493,131 @@ export default function ResearchDataResources(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start here: how to read this guide" icon="🧭">
+        <GuideIntro title="The evidence behind our advocacy" icon="🧭">
           <p>
-            This guide is for anyone trying to understand what the evidence says
-            about sex offense registries, public notification, recidivism,
-            prevention, collateral consequences, constitutional concerns, and
-            reentry.
+            SOLAR is an advocacy organization. We read the research, compare the
+            findings across disciplines and jurisdictions, and use that evidence
+            to shape the positions that guide our public education and reform work.
           </p>
           <p>
-            Strong advocacy does not require overstating the evidence. This
-            guide does not argue that sexual harm is rare, harmless, or
-            unimportant. It argues that public safety policy should be honest
-            about what registries can and cannot do.
+            This guide brings those positions and their supporting sources
+            together in one place. It is designed for readers who want to see
+            where our conclusions come from, explore the underlying research,
+            or use the same sources in their own advocacy and analysis.
           </p>
           <p>
-            Source IDs such as SE01 are retained for stable cross-reference, but
-            every link now includes a reader-friendly source name so you can see
-            what you are opening before you click.
+            No single study carries the whole argument. Taken together, these
+            sources shape our understanding of what registry policy does, what it
+            fails to do, who is actually at risk, and what evidence-based public
+            safety can look like instead.
           </p>
         </GuideIntro>
 
-        <QuickStartPanel
-          title="Three ways to use this guide"
-          subtitle="Start with the question you are trying to answer."
-          icon="📌"
-          urgentActions={[
-            <span key="claim">
-              <strong>Understand the claim.</strong> Are you talking about
-              recidivism, rearrest, reconviction, reoffense, prevention, legal
-              burden, or reentry impact?
-            </span>,
-            <span key="source">
-              <strong>Check the source type.</strong> Official data,
-              peer-reviewed research, court decisions, expert recommendations,
-              advocacy reports, and media examples do different jobs.
-            </span>,
-          ]}
-          nextActions={[
-            <span key="language">
-              <strong>Use careful wording.</strong> Say what the evidence
-              supports without turning one study into a universal rule.
-            </span>,
-            <span key="caveat">
-              <strong>Look for the limit.</strong> Strong evidence still has
-              boundaries. A good source also tells you what it does not prove.
-            </span>,
-          ]}
-          reminder={
-            <span>
-              Evidence-based registry reform is not anti-victim. It is
-              pro-prevention, pro-accountability, and pro-honesty.
-            </span>
-          }
-        />
-
-        <GuideCallout tone="research" icon="🔎" title="Measurement matters">
+        <GuideCallout tone="research" icon="🔎" title="A note on recidivism data">
           <p>
-            “Recidivism,” “rearrest,” “reconviction,” and “reoffense” are not
-            interchangeable. Rearrest measures contact with law enforcement.
-            Reconviction measures a later conviction. Reoffense is broader, but
-            true reoffending is difficult to measure because many harms are not
-            reported or detected.
-          </p>
-          <p>
-            When reading a statistic, look for the measure, the population, the
-            follow-up period, and whether the source is discussing detected
-            events or all possible harm. Comparative findings can still be
-            informative even when every category is imperfectly measured.
+            Recidivism can be measured by rearrest, reconviction, reincarceration,
+            or other recorded events. Those measures are not identical, and not
+            every offense is reported or detected. Follow-up periods and study
+            populations also matter. We include those distinctions because they
+            help readers understand the numbers—not because they erase the
+            patterns the research shows.
           </p>
         </GuideCallout>
 
         <GuideSectionHeader
-          id="evidence-at-a-glance"
+          id="solar-positions"
           number="1"
-          title="What the evidence shows"
-          subtitle="Seven recurring evidence themes, with named source links instead of anonymous source-number pills."
+          title="SOLAR positions and supporting evidence"
+          subtitle="Our seven core advocacy positions, paired with the research and data that inform them."
         />
 
         <OverviewCards
           columns={3}
           cards={[
             {
-              eyebrow: "Theme 1",
-              title: "Registry efficacy",
+              eyebrow: "Position 1",
+              title: "The registry does not deliver what it promises",
               icon: "📊",
               tone: "research",
               description:
-                "What broad SORN policies and federal recidivism studies have and have not shown.",
+                "Research on recidivism and registry effectiveness challenges assumptions about prevention and repeat offending.",
             },
             {
-              eyebrow: "Theme 2",
-              title: "Prevention reality",
-              icon: "🧭",
-              tone: "info",
-              description:
-                "Why known people, trusted access, and first-time detection matter.",
-            },
-            {
-              eyebrow: "Theme 3",
-              title: "Collateral harm",
+              eyebrow: "Position 2",
+              title: "Registry harm reaches beyond the person listed",
               icon: "🏠",
               tone: "family",
               description:
-                "How restrictions can affect housing, work, families, and stability.",
+                "Housing, employment, family relationships, and community stability can all be affected.",
             },
             {
-              eyebrow: "Theme 4",
-              title: "Legal concerns",
-              icon: "⚖️",
-              tone: "legal",
+              eyebrow: "Position 3",
+              title: "Child safety requires looking closer to home",
+              icon: "🧭",
+              tone: "info",
               description:
-                "How modern restrictions can create punishment-like burdens.",
+                "Prevention has to account for family, trusted-access, institutional, and authority-based risks.",
             },
             {
-              eyebrow: "Theme 5",
-              title: "Risk changes",
-              icon: "🌱",
-              tone: "success",
-              description:
-                "Why subgroup differences, individualized review, treatment, and time offense-free matter.",
-            },
-            {
-              eyebrow: "Theme 6",
-              title: "Policy comparison",
+              eyebrow: "Position 4",
+              title: "Public safety policy is selective",
               icon: "🧩",
               tone: "neutral",
               description:
-                "How comparative data can test assumptions about risk and policy proportionality.",
+                "Other serious harms are addressed through prevention, regulation, treatment, and sentence-bound accountability.",
             },
             {
-              eyebrow: "Theme 7",
-              title: "Trusted access",
-              icon: "🏛️",
+              eyebrow: "Position 5",
+              title: "Registries punish in practice",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Public exposure, recurring obligations, restrictions, and exclusion continue long after sentencing.",
+            },
+            {
+              eyebrow: "Position 6",
+              title: "Risk is individual and changes over time",
+              icon: "🌱",
+              tone: "success",
+              description:
+                "Research supports individualized assessment, treatment, review, and recognition of desistance.",
+            },
+            {
+              eyebrow: "Position 7",
+              title: "Permanent status creates a permanent underclass",
+              icon: "🚪",
               tone: "warning",
               description:
-                "Why prevention also requires institutional accountability where trust, authority, and access can be misused.",
+                "Barriers to housing, work, services, and community participation make successful reintegration harder.",
             },
           ]}
         />
 
         <div className="mt-6 grid gap-5">
-          {evidenceThemes.map((theme, index) => (
-            <GuideSectionCard key={theme.id}>
-              <div className="flex flex-col gap-4">
+          {positions.map((position, index) => (
+            <GuideSectionCard key={position.title}>
+              <div className="flex items-start gap-3">
+                <span className="text-2xl" aria-hidden="true">
+                  {position.icon}
+                </span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Theme {index + 1}
+                    SOLAR Position {index + 1}
                   </p>
-                  <h3 className="mt-1 text-xl font-bold text-slate-900">
-                    <span aria-hidden="true" className="mr-2">
-                      {theme.icon}
-                    </span>
-                    {theme.title}
+                  <h3 className="mt-1 text-xl font-bold text-slate-950">
+                    {position.title}
                   </h3>
-                </div>
-
-                {renderSourceLinks(theme.anchorIds)}
-              </div>
-
-              <div className="mt-5 grid gap-4 md:grid-cols-2">
-                <div className="rounded-2xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
-                  <h4 className="font-semibold text-emerald-950">
-                    What the evidence supports
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-emerald-950">
-                    {theme.supports}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100">
-                  <h4 className="font-semibold text-amber-950">
-                    What it does not prove
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-amber-950">
-                    {theme.doesNotProve}
+                  <p className="mt-3 leading-relaxed text-slate-700">
+                    {position.body}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-4 grid gap-4 md:grid-cols-3">
-                <div className="rounded-2xl bg-rose-50 p-4 ring-1 ring-rose-100">
-                  <h4 className="font-semibold text-rose-950">
-                    Overstatement to avoid
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-rose-950">
-                    {theme.avoid}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-sky-50 p-4 ring-1 ring-sky-100">
-                  <h4 className="font-semibold text-sky-950">
-                    More careful wording
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-sky-950">
-                    {theme.safer}
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                  <h4 className="font-semibold text-slate-950">
-                    Why this matters
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                    {theme.whyMatters}
-                  </p>
-                </div>
+              <div className="mt-5 border-t border-slate-200 pt-4">
+                <p className="mb-3 text-sm font-semibold text-slate-900">
+                  Supporting research and data
+                </p>
+                {renderSourceLinks(position.sourceIds)}
               </div>
             </GuideSectionCard>
           ))}
@@ -831,15 +627,16 @@ export default function ResearchDataResources(): JSX.Element {
           id="anchor-sources"
           number="2"
           title="Key sources to start with"
-          subtitle="A front shelf of especially useful sources, now drawn from the same catalog used everywhere else on the page."
+          subtitle="A front shelf of especially useful studies, reports, and cases for understanding the evidence behind SOLAR’s positions."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              These are not the only useful sources. They are strong starting
-              points because they are official, peer-reviewed, legally central,
-              or especially helpful for careful public framing.
+              If you are new to the subject, these sources are good entry points.
+              They cover registry effectiveness, recidivism, child safety,
+              constitutional law, collateral harm, desistance, and evidence-based
+              reform from several different angles.
             </p>
           </GuideProse>
 
@@ -867,7 +664,7 @@ export default function ResearchDataResources(): JSX.Element {
                     {source.organization}
                   </p>
                   <p className="mt-4 text-sm leading-relaxed text-slate-700">
-                    <strong>Why we use it:</strong> {source.usefulFor}
+                    {source.usefulFor}
                   </p>
 
                   <a
@@ -885,147 +682,50 @@ export default function ResearchDataResources(): JSX.Element {
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="careful-conclusions"
+          id="federal-non-production"
           number="3"
-          title="Careful conclusions supported by the evidence"
-          subtitle="Plain-language conclusions paired with named, visible sources rather than citation IDs alone."
-        />
-
-        <GuideSectionCard>
-          <div className="grid gap-4">
-            {carefulConclusions.map((item) => (
-              <div
-                key={item.claim}
-                className="rounded-2xl bg-white p-4 ring-1 ring-slate-200"
-              >
-                <p className="text-slate-800">{item.claim}</p>
-                <div className="mt-3">{renderSourceLinks(item.ids)}</div>
-              </div>
-            ))}
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="common-overstatements"
-          number="4"
-          title="Common overstatements to avoid"
-          subtitle="Good evidence is strongest when it is not stretched past what it proves."
-        />
-
-        <GuideSectionCard>
-          <div className="grid gap-4">
-            {commonOverstatements.map((item) => (
-              <div
-                key={item.avoid}
-                className="grid gap-3 rounded-2xl border border-slate-200 bg-white p-4 md:grid-cols-2"
-              >
-                <div className="rounded-xl bg-rose-50 p-4 ring-1 ring-rose-100">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-rose-800">
-                    Avoid
-                  </p>
-                  <p className="mt-2 font-semibold text-rose-950">
-                    {item.avoid}
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-emerald-50 p-4 ring-1 ring-emerald-100">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-emerald-800">
-                    Better
-                  </p>
-                  <p className="mt-2 font-semibold text-emerald-950">
-                    {item.better}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <SoftDivider />
-
-          <ScriptBox
-            title="A careful way to explain the evidence"
-            tone="neutral"
-            context="Use this as a plain-language model for testimony, public comments, articles, or conversations."
-            script={`The evidence does not support treating broad public registration and notification as a complete prevention strategy. The stronger reading is more careful: broad SORN policies have not demonstrated a clear overall recidivism benefit, observed recidivism varies substantially by subgroup, most sexual harms against children involve someone known or trusted, and effective prevention requires individualized risk assessment, treatment, stable reentry, reporting systems, and institutional accountability.\n\nThat does not mean harm is rare or that accountability is optional. It means public safety policy should be honest about what a registry can and cannot do.`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="why-evidence-based-reform-matters"
-          number="5"
-          title="Why evidence-based reform matters"
-          subtitle="Evidence is a tool for prevention, accountability, dignity, and better public policy."
+          title="A closer look at federal non-production recidivism"
+          subtitle="Federal Sentencing Commission research gives us a particularly useful view of one often-misunderstood subgroup."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SOLAR uses evidence to challenge ineffective policy, not to
-              minimize harm. The goal is safer prevention, more honest public
-              policy, meaningful accountability, and a path back into community
-              life after sentence completion.
+              Federal non-production child-pornography cases are frequently
+              discussed as though repeat sexual offending is nearly inevitable.
+              The Sentencing Commission’s own research does not support that
+              picture.
             </p>
             <p>
-              Evidence-based registry reform asks whether a policy actually
-              reduces harm, whether it creates new instability, whether it
-              respects constitutional limits, and whether it helps communities
-              respond to real risk instead of fear alone.
+              In the Commission’s 2021 study, 4.3% of the studied non-production
+              cohort was rearrested for a sex offense within three years. Its
+              earlier longer-follow-up work found similarly low known sexual and
+              contact-sexual recidivism relative to common public assumptions and
+              to contact-offender comparison groups.
+            </p>
+            <p>
+              These findings matter because they reinforce a broader principle
+              running throughout this guide: offense labels are poor substitutes
+              for individualized risk, and very different people can be swept
+              into the same permanent legal category.
             </p>
           </GuideProse>
-
-          <GuideChecklist
-            id="reading-research-checklist"
-            title="How to read registry research carefully"
-            columns={1}
-            items={[
-              {
-                id: "define-measure",
-                label:
-                  "Check the measure: rearrest, reconviction, reoffense, recidivism, prevalence, burden, or legal doctrine.",
-              },
-              {
-                id: "source-type",
-                label:
-                  "Notice the source type: official data, peer-reviewed research, government report, court decision, expert policy guidance, advocacy report, or media example.",
-              },
-              {
-                id: "population",
-                label:
-                  "Ask who the source is studying: adults, youth, people released from prison, non-production offenders, people under supervision, children, families, veterans, or a specific state population.",
-              },
-              {
-                id: "follow-up",
-                label:
-                  "Check the time period. A three-year follow-up and a fifteen-year follow-up do not answer the same question.",
-              },
-              {
-                id: "comparison",
-                label:
-                  "When making comparisons, ask whether the same measurement limits affect the other offense categories too and whether any differential undercount is large enough to alter the observed relationship.",
-              },
-              {
-                id: "avoid-overclaim",
-                label:
-                  "Look for what the source does not prove before turning a finding into a public claim.",
-              },
-            ]}
-          />
+          <div className="mt-5">{renderSourceLinks(["SE29", "SE30"])}</div>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="source-library"
-          number="6"
+          number="4"
           title="Complete source library"
-          subtitle="Every source cited on this page, with a short explanation of why SOLAR considers it useful."
+          subtitle="Browse every source cited in this guide by topic and see what each one contributes to the larger evidence base."
         />
 
-        <GuideCallout tone="research" icon="📚" title="How this library is organized">
+        <GuideCallout tone="research" icon="📚" title="Use the library your way">
           <p>
-            Each source has a stable SE number for internal cross-reference, a
-            reader-friendly short name, the full title, source type, and a short
-            explanation of the job we believe it can responsibly do. Some
-            sources appear in more than one topic because they answer more than
-            one kind of question.
+            Each entry includes a short name, full title, source type, and a
+            plain-language description of what you can learn from it. Some
+            sources appear in more than one topic because they speak to more than
+            one part of the registry debate.
           </p>
         </GuideCallout>
 
@@ -1033,6 +733,9 @@ export default function ResearchDataResources(): JSX.Element {
           {sourceGroups.map((group) => (
             <GuideSectionCard key={group.title}>
               <h3 className="text-xl font-bold text-slate-950">{group.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                {group.description}
+              </p>
               <div className="mt-5 grid gap-4 md:grid-cols-2">
                 {group.ids.map((id) => {
                   const source = sourceCatalog[id];
@@ -1060,7 +763,7 @@ export default function ResearchDataResources(): JSX.Element {
                         {source.organization}
                       </p>
                       <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                        <strong>Why we find it useful:</strong> {source.usefulFor}
+                        {source.usefulFor}
                       </p>
 
                       <a
@@ -1081,14 +784,14 @@ export default function ResearchDataResources(): JSX.Element {
 
         <GuideSectionHeader
           id="research-tools"
-          number="7"
-          title="Research tools and next steps"
-          subtitle="These are places to continue researching; they are separate from the source library SOLAR cites above."
+          number="5"
+          title="Keep researching"
+          subtitle="Official databases, research indexes, and legal resources for going beyond the sources collected here."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Useful research starting points"
+            title="Research starting points"
             resources={[
               {
                 label: "Bureau of Justice Statistics",
@@ -1100,14 +803,14 @@ export default function ResearchDataResources(): JSX.Element {
               {
                 label: "SMART Office",
                 description:
-                  "Federal resources on sex-offender management, SORNA, case law summaries, and research briefs.",
+                  "Federal resources on sex-offender management, SORNA, case law, research, treatment, and policy.",
                 href: "https://smart.ojp.gov/",
                 badge: "Official",
               },
               {
                 label: "U.S. Sentencing Commission",
                 description:
-                  "Federal sentencing data and research, including dedicated reports on non-production child-pornography offenses and recidivism.",
+                  "Federal sentencing data and research, including reports on non-production child-pornography offenses and recidivism.",
                 href: "https://www.ussc.gov/research",
                 badge: "Official",
               },
@@ -1121,34 +824,26 @@ export default function ResearchDataResources(): JSX.Element {
               {
                 label: "PubMed",
                 description:
-                  "Search tool for peer-reviewed biomedical and behavioral research abstracts.",
+                  "Search peer-reviewed biomedical, behavioral, treatment, and public-health research.",
                 href: "https://pubmed.ncbi.nlm.nih.gov/",
                 badge: "Research",
               },
               {
                 label: "Google Scholar",
                 description:
-                  "Broad search tool for academic literature, citations, and related research.",
+                  "Search academic literature, citations, related studies, and newer work building on the sources in this guide.",
                 href: "https://scholar.google.com/",
                 badge: "Research",
               },
               {
                 label: "U.S. Supreme Court opinions on Justia",
                 description:
-                  "Readable access point for Supreme Court opinions including Smith and Packingham.",
+                  "Readable access to Supreme Court opinions, including Smith v. Doe and Packingham v. North Carolina.",
                 href: "https://supreme.justia.com/",
                 badge: "Court",
               },
             ]}
           />
-
-          <GuideCallout tone="reminder" icon="🔗" title="Source maintenance">
-            <p>
-              Government PDFs and agency pages move. Because every source on
-              this page now lives in one catalog, a broken URL or revised title
-              can be corrected once and reflected everywhere it appears.
-            </p>
-          </GuideCallout>
         </GuideSectionCard>
       </main>
     </div>
