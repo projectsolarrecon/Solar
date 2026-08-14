@@ -13,6 +13,39 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "who-else-should-kathleen-parker-forgive-behind-bars",
+  title: "Who Else Should Kathleen Parker Forgive Behind Bars?",
+  excerpt:
+    "Kathleen Parker says those who knowingly harm children are “best forgiven behind bars.” But her own columns defend proportionality, distinctions and rehabilitation when the crime is not sexual. So which principle does she actually believe?",
+  author: "The SOLAR Project",
+  date: "Aug 13, 2026",
+  readTime: "13–15 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "Kathleen Parker",
+    "Washington Post",
+    "Warren Perry",
+    "Pawleys Island Community Church",
+    "South Carolina",
+    "RECON",
+    "unequal accountability",
+    "selective punishment",
+    "proportionality",
+    "individualized justice",
+    "rehabilitation",
+    "probation",
+    "sex offense policy",
+    "registry politics",
+    "public safety",
+    "child safety",
+    "criminal justice",
+    "media commentary",
+    "moral panic",
+    "second chances",
+  ],
+  path: "/blog/who-else-should-kathleen-parker-forgive-behind-bars",
+},
+{
   id: "the-registry-the-court-reviewed-no-longer-exists",
   title: "The Registry the Court Reviewed No Longer Exists",
   excerpt:
