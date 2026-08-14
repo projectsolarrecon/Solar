@@ -54,34 +54,36 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Peer-reviewed meta-analysis",
     href: "https://link.springer.com/article/10.1007/s11292-021-09480-z",
     usefulFor:
-      "The strongest single synthesis on whether broad registration and notification policies have demonstrated an overall recidivism benefit.",
+      "A major peer-reviewed synthesis of 25 years of research on whether broad registration and notification policies have demonstrated an overall recidivism benefit.",
   },
   SE04: {
     shortTitle: "Prescott & Rockoff — SORN Effects",
     title: "Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
     organization: "NBER / Journal of Law and Economics",
     type: "Peer-reviewed study / working paper",
-    href: "https://www.nber.org/system/files/working_papers/w13803/w13803.pdf",
+    href: "https://www.nber.org/papers/w13803",
     usefulFor:
       "Separating the possible effects of law-enforcement registration from public notification instead of treating all registry policies as one intervention.",
   },
   SE05: {
-    shortTitle: "NIJ — SORN Evaluation",
-    title: "National Institute of Justice SORN Evaluation",
-    organization: "National Institute of Justice",
-    type: "Government-funded evaluation",
+    shortTitle: "NIJ-Funded — South Carolina SORN Evaluation",
+    title:
+      "Evaluating the Effectiveness of Sex Offender Registration and Notification Policies for Reducing Sexual Violence against Women",
+    organization: "University of South Carolina research team / NIJ-funded",
+    type: "NIJ-funded research report",
     href: "https://www.ojp.gov/pdffiles1/nij/grants/231989.pdf",
     usefulFor:
-      "Evaluating registry and notification policy outcomes and prevention limits, including the fact that registries primarily identify people already detected by the justice system.",
+      "A South Carolina evaluation of SORN policy effects on sexual violence, recidivism, deterrence, and unintended consequences; useful as one jurisdiction-specific contribution to the broader SORN evidence base.",
   },
   SE06: {
-    shortTitle: "SMART — Registry Collateral Effects",
-    title: "Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
-    organization: "SMART Office, U.S. Department of Justice",
+    shortTitle: "SMART/LOC — Registry Collateral Effects",
+    title:
+      "Sex Offender Registration and Notification Policies: Summary and Assessment of Research on Claimed Impacts to Registered Offenders",
+    organization: "Federal Research Division, Library of Congress, for the SMART Office",
     type: "Government evidence review",
-    href: "https://smart.ojp.gov/doc/SORNA-Summary-Assessment-Research.pdf",
+    href: "https://smart.ojp.gov/media/document/6346",
     usefulFor:
-      "A balanced federal review of housing, employment, wellbeing, family burdens, and the methodological limits of collateral-consequence research.",
+      "A federal evidence review of housing, employment, wellbeing, family burdens, and the methodological limits of research on claimed collateral consequences of registration and notification policies.",
   },
   SE07: {
     shortTitle: "Levenson — Family Collateral Harm",
@@ -102,13 +104,14 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
       "Examining how residence restrictions can interact with housing availability, transience, and community stability.",
   },
   SE09: {
-    shortTitle: "CSOR — Residence-Restriction Safety Issues",
-    title: "Report on Safety Issues Raised by Residence Restrictions",
-    organization: "Center for Sex Offender Management / research resource",
-    type: "Research report",
-    href: "https://www.csor-home.org/wp-content/uploads/2014/01/Report-on-Safety-Issues.pdf",
+    shortTitle: "Colorado SOMB — Residence-Restriction Safety",
+    title:
+      "Report by the Sex Offender Management Board (SOMB) on Safety Issues Raised by Living Arrangements for and Locations of Sex Offenders in the Community (2004)",
+    organization: "Colorado Sex Offender Management Board",
+    type: "State government report",
+    href: "https://dcj.colorado.gov/dcj-offices/ors/doc-rpt",
     usefulFor:
-      "A research-oriented discussion of public-safety concerns created by residence restrictions and destabilizing reentry conditions.",
+      "Official Colorado policy analysis of safety issues surrounding sex-offender living arrangements and locations, including concerns about residence restrictions and community stability.",
   },
   SE10: {
     shortTitle: "Human Rights Watch — No Easy Answers",
@@ -162,7 +165,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data explainer",
     href: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
     usefulFor:
-      "Comparative public-safety context: how another serious source of harm is addressed through prevention, regulation, services, and data rather than permanent public identity branding.",
+      "Official public-health data for comparative analysis of how another serious source of harm is measured and addressed; SOLAR uses it as context when examining differences in public-safety policy responses.",
   },
   SE16: {
     shortTitle: "NHTSA — Impaired-Driving Prevention",
@@ -171,7 +174,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Government report",
     href: "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
     usefulFor:
-      "Comparative policy context showing a prevention-and-technology response to a recurring public-safety harm.",
+      "Documenting prevention-and-technology approaches to impaired driving; SOLAR uses it as comparative policy context rather than as evidence that different harms require identical responses.",
   },
   SE17: {
     shortTitle: "BJS — Domestic Violence",
@@ -180,7 +183,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     type: "Official data / government report",
     href: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
     usefulFor:
-      "Comparative context on serious relational harm and how public policy can rely on interventions other than permanent public registries.",
+      "Official victimization data for comparing how another serious, often underreported form of interpersonal harm is measured and addressed.",
   },
   SE18: {
     shortTitle: "Smith v. Doe",
@@ -214,7 +217,7 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     title: "Registration and Community Notification of Adults Convicted of a Sexual Crime: Recommendations for Evidence-Based Reform",
     organization: "Association for the Treatment and Prevention of Sexual Abuse",
     type: "Expert policy recommendations",
-    href: "https://members.atsa.com/ap/CloudFile/Download/pB50ZeZr",
+    href: "https://members.atsa.com/learn/Details/report-registration-and-community-notification-of-adults-convicted-of-a-sexual-crime-recommendations-for-evidence-based-reform-194317",
     usefulFor:
       "Translating research on risk, treatment, desistance, and reintegration into concrete registry-reform principles.",
   },
@@ -238,12 +241,13 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
   },
   SE24: {
     shortTitle: "Housing Instability Among Veterans",
-    title: "Housing Instability and Homelessness Among Veterans with Sexual-Offense Histories",
+    title:
+      "Association Between Registered Sex Offender Status and Risk of Housing Instability and Homelessness among Veterans",
     organization: "Peer-reviewed research",
     type: "Peer-reviewed study / PubMed index",
     href: "https://pubmed.ncbi.nlm.nih.gov/32960141/",
     usefulFor:
-      "Quantitative evidence on housing instability and homelessness in a specific registered-offender population.",
+      "Quantitative evidence on the association between registered-sex-offender status and housing instability or homelessness in a large veteran population.",
   },
   SE25: {
     shortTitle: "NSVRC — SART Prevention Toolkit",
@@ -265,19 +269,20 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
   },
   SE27: {
     shortTitle: "SMART — 2025 Case Law Summary",
-    title: "2025 Case Law Summary",
+    title:
+      "Sex Offender Registration and Notification in the United States: Case Law Summary — July 2025",
     organization: "SMART Office, U.S. Department of Justice",
     type: "Government legal summary",
-    href: "https://smart.ojp.gov/2025-Case-Law-Summary-508.pdf",
+    href: "https://smart.ojp.gov/sorna/current-law/case-law/introduction",
     usefulFor:
-      "Issue-spotting and orientation to current registry litigation, constitutional doctrine, and important lower-court developments.",
+      "Issue-spotting and orientation to registry litigation, constitutional doctrine, and lower-court developments current through July 2025.",
   },
   SE28: {
     shortTitle: "Banishment by a Thousand Laws",
     title: "Banishment by a Thousand Laws: Residency Restrictions on Sex Offenders",
     organization: "Washington University Law Review",
     type: "Law review article",
-    href: "https://openscholarship.wustl.edu/cgi/viewcontent.cgi?article=1144&context=law_lawreview",
+    href: "https://openscholarship.wustl.edu/law_lawreview/vol85/iss1/3/",
     usefulFor:
       "Legal and policy analysis of residence restrictions, exclusion zones, cumulative burdens, and modern banishment theory.",
   },
@@ -286,13 +291,14 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     title: "Federal Sentencing of Child Pornography: Non-Production Offenses",
     organization: "U.S. Sentencing Commission",
     type: "Government research report",
-    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210629_Non-Production-CP.pdf",
+    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
     usefulFor:
       "Federal non-production recidivism, including the finding that 4.3% of the studied cohort was rearrested for a sex offense within three years.",
   },
   SE30: {
     shortTitle: "USSC — CP Recidivism Study (2012)",
-    title: "Recidivism by Child Pornography Offenders — 2012 Report to Congress, Chapter 11",
+    title:
+      "Report to the Congress: Federal Child Pornography Offenses — Chapter 11: Recidivism by Child Pornography Offenders",
     organization: "U.S. Sentencing Commission",
     type: "Government research report",
     href: "https://www.ussc.gov/sites/default/files/pdf/news/congressional-testimony-and-reports/sex-offense-topics/201212-federal-child-pornography-offenses/Chapter_11.pdf",
