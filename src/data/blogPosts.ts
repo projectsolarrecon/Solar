@@ -18,7 +18,7 @@ export const allBlogPosts: BlogPost[] = [
   excerpt:
     "Kathleen Parker says those who knowingly harm children are “best forgiven behind bars.” But her own columns defend proportionality, distinctions and rehabilitation when the crime is not sexual. So which principle does she actually believe?",
   author: "The SOLAR Project",
-  date: "Aug 13, 2026",
+  date: "Aug 14, 2026",
   readTime: "13–15 min read",
   category: "Systemic Accountability",
   tags: [
