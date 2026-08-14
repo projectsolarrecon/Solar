@@ -55,6 +55,10 @@ const sourceLinks = {
   SE27: "https://smart.ojp.gov/2025-Case-Law-Summary-508.pdf",
   SE28:
     "https://openscholarship.wustl.edu/cgi/viewcontent.cgi?article=1144&context=law_lawreview",
+  SE29:
+    "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210629_Non-Production-CP.pdf",
+  SE30:
+    "https://www.ussc.gov/sites/default/files/pdf/news/congressional-testimony-and-reports/sex-offense-topics/201212-federal-child-pornography-offenses/Chapter_11.pdf",
 } as const;
 
 const evidenceThemes = [
@@ -190,6 +194,28 @@ const anchorSources = [
     href: sourceLinks.SE01,
   },
   {
+    id: "SE29",
+    title: "Federal Sentencing of Child Pornography: Non-Production Offenses",
+    type: "U.S. Sentencing Commission report",
+    why: "Current federal source with a dedicated recidivism analysis of non-production child-pornography offenders.",
+    supports:
+      "Among 1,093 non-production offenders released from incarceration or placed on probation in 2015, 4.3% were rearrested for a sex offense within three years.",
+    caveat:
+      "Rearrest is detected recidivism, not a count of every undetected offense, and a three-year follow-up does not establish lifetime risk.",
+    href: sourceLinks.SE29,
+  },
+  {
+    id: "SE30",
+    title: "Recidivism by Child Pornography Offenders — 2012 Report to Congress, Chapter 11",
+    type: "U.S. Sentencing Commission report",
+    why: "Longer-follow-up federal study focused specifically on non-production child-pornography offenders and comparisons with contact sex offenders.",
+    supports:
+      "In a 610-offender cohort followed for an average of 8.5 years, known sexual recidivism was 7.4% and known contact-sexual recidivism was 3.6%; the Commission found general and contact-sexual recidivism lower than in the BJS contact-sex-offender comparison group.",
+    caveat:
+      "The cohort was sentenced in 1999–2000 and official records undercount undetected offending; the Commission expressly describes the results as known recidivism.",
+    href: sourceLinks.SE30,
+  },
+  {
     id: "SE04",
     title: "Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
     type: "Peer-reviewed study / NBER working paper",
@@ -290,7 +316,12 @@ const carefulConclusions = [
   {
     claim:
       "Sexual recidivism is often lower than public belief, but risk varies by person, subgroup, measurement, and follow-up period.",
-    ids: "SE01, SE02, SE22",
+    ids: "SE01, SE02, SE22, SE29, SE30",
+  },
+  {
+    claim:
+      "Federal studies of non-production child-pornography offenders have found comparatively low observed rates of subsequent sexual offending, including low rates of later contact sexual offending; these figures measure known or detected recidivism rather than every undetected offense.",
+    ids: "SE29, SE30",
   },
   {
     claim:
@@ -376,6 +407,22 @@ const sourceTopics = [
         relevance:
           "Explains how recidivism estimates vary by subgroup, measure, and follow-up period.",
         href: sourceLinks.SE02,
+      },
+      {
+        id: "SE29",
+        title: "USSC 2021 non-production child-pornography report",
+        type: "Official federal data",
+        relevance:
+          "Tracks 1,093 federal non-production offenders and reports a 4.3% sex-offense rearrest rate within three years.",
+        href: sourceLinks.SE29,
+      },
+      {
+        id: "SE30",
+        title: "USSC 2012 Chapter 11 recidivism study",
+        type: "Official federal data",
+        relevance:
+          "Longer-follow-up study of 610 federal non-production offenders: 7.4% known sexual recidivism and 3.6% known contact-sexual recidivism over an average 8.5 years, with explicit methodological cautions.",
+        href: sourceLinks.SE30,
       },
       {
         id: "SE03",
@@ -1184,6 +1231,13 @@ export default function ResearchDataResources(): JSX.Element {
                 badge: "Official",
               },
               {
+                label: "U.S. Sentencing Commission",
+                description:
+                  "Official federal sentencing research, including dedicated studies of non-production child-pornography offenses and recidivism.",
+                href: "https://www.ussc.gov/",
+                badge: "Official",
+              },
+              {
                 label: "SMART Office",
                 description:
                   "Federal resources on sex offender management, SORNA, case law summaries, and research briefs.",
@@ -1235,6 +1289,18 @@ export default function ResearchDataResources(): JSX.Element {
                 href: sourceLinks.SE02,
                 description:
                   "SMART Office research brief on adult recidivism patterns and measurement limits.",
+              },
+              {
+                label: "SE29 — Federal Sentencing of Child Pornography: Non-Production Offenses",
+                href: sourceLinks.SE29,
+                description:
+                  "U.S. Sentencing Commission report with a 1,093-offender recidivism analysis and three-year sex-offense rearrest findings.",
+              },
+              {
+                label: "SE30 — Recidivism by Child Pornography Offenders — 2012 Report to Congress, Chapter 11",
+                href: sourceLinks.SE30,
+                description:
+                  "U.S. Sentencing Commission study of 610 federal non-production offenders over an average 8.5-year follow-up, including known sexual and contact-sexual recidivism findings and methodological cautions.",
               },
               {
                 label:
