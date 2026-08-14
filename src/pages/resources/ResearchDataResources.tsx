@@ -685,7 +685,7 @@ export default function ResearchDataResources(): JSX.Element {
           id="federal-non-production"
           number="3"
           title="A closer look at federal non-production recidivism"
-          subtitle="Federal Sentencing Commission research gives us a particularly useful view of one often-misunderstood subgroup."
+          subtitle="U.S. Sentencing Commission research gives us a particularly useful view of one often-misunderstood subgroup."
         />
 
         <GuideSectionCard>
