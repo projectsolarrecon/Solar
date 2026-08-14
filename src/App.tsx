@@ -128,6 +128,7 @@ import ExposureIsNotPrevention from "./pages/blog/ExposureIsNotPrevention";
 import EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo from "./pages/blog/EitherTheListWasArbitraryOrCongressHasSomeExplainingToDo";
 import ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange from "./pages/blog/ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange";
 import TheRegistryTheCourtReviewedNoLongerExists from "./pages/blog/TheRegistryTheCourtReviewedNoLongerExists";
+import WhoElseShouldKathleenParkerForgiveBehindBars from "./pages/blog/WhoElseShouldKathleenParkerForgiveBehindBars";
 
 function App() {
   return (
@@ -284,6 +285,8 @@ function App() {
 <Route
   path="/blog/the-registry-the-court-reviewed-no-longer-exists"
 element={<TheRegistryTheCourtReviewedNoLongerExists />} />
+<Route
+  path="/blog/who-else-should-kathleen-parker-forgive-behind-bars" element={<WhoElseShouldKathleenParkerForgiveBehindBars />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
