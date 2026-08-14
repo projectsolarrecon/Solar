@@ -11,7 +11,7 @@ export default function WhoElseShouldKathleenParkerForgiveBehindBars(): JSX.Elem
       title="Who Else Should Kathleen Parker Forgive Behind Bars?"
       description="Kathleen Parker says people who knowingly harm children are best “forgiven behind bars.” Her own writing on punishment, culpability and rehabilitation dismantles that rule."
       keywords="Kathleen Parker sex offender column, Kathleen Parker, Warren Perry, Pawleys Island Community Church, South Carolina sex offender registry, probation, child sexual exploitation, Washington Post opinion, Colin Gray, rehabilitation, proportionality, individualized justice, individualized risk assessment, RECON, selective punishment, registry reform, forgiveness and justice"
-      date="Aug 13, 2026"
+      date="Aug 14, 2026"
       readTime="13–15 min read"
       badge="📝 BLOG"
       lede="Kathleen Parker says people who knowingly harm children are “best forgiven behind bars.” But her own writing has already defended the distinctions, proportionality and rehabilitation that her Pawleys Island column suddenly abandons."
