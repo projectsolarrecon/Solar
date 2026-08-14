@@ -307,11 +307,6 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
   },
 };
 
-const sourceOrder = Object.keys(sourceCatalog) as SourceId[];
-const sourceLinks = Object.fromEntries(
-  sourceOrder.map((id) => [id, sourceCatalog[id].href]),
-) as Record<SourceId, string>;
-
 const evidenceThemes = [
   {
     id: "registry-efficacy",
