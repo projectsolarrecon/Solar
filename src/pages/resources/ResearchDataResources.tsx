@@ -301,6 +301,44 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
     usefulFor:
       "Longer-follow-up federal non-production recidivism data, including known sexual and contact-sexual recidivism and comparisons with contact-offender cohorts.",
   },
+  SE31: {
+    shortTitle: "Agan — Fear without Function?",
+    title: "Sex Offender Registries: Fear without Function?",
+    organization: "The Journal of Law and Economics",
+    type: "Peer-reviewed study",
+    href: "https://www.journals.uchicago.edu/doi/abs/10.1086/658483",
+    usefulFor:
+      "Testing registry effectiveness across three empirical designs, including state-level sexual-offense rates, post-release recidivism, and whether registry locations predict where sexual abuse occurs.",
+  },
+  SE32: {
+    shortTitle: "Hanson et al. — Once a Sexual Offender, Not Always",
+    title:
+      "Reductions in Risk Based on Time Offense-Free in the Community: Once a Sexual Offender, Not Always a Sexual Offender",
+    organization: "Psychology, Public Policy, and Law",
+    type: "Peer-reviewed study",
+    href: "https://doi.org/10.1037/law0000135",
+    usefulFor:
+      "Long-term evidence that sexual recidivism risk declines with sustained offense-free time across age and initial-risk groups, supporting reviewable policies that recognize desistance.",
+  },
+  SE33: {
+    shortTitle: "Thornton et al. — Residual Risk",
+    title:
+      "Estimating Lifetime and Residual Risk for Individuals Who Remain Sexual Offense Free in the Community: Practical Applications",
+    organization: "Sexual Abuse",
+    type: "Peer-reviewed study / PubMed index",
+    href: "https://pubmed.ncbi.nlm.nih.gov/31478439/",
+    usefulFor:
+      "Showing how evaluators can incorporate offense-free time into individualized estimates of lifetime, residual, and year-by-year sexual recidivism risk.",
+  },
+  SE34: {
+    shortTitle: "Hanson, Lee & Thornton — High-Risk Long-Term Recidivism",
+    title: "Long Term Recidivism Rates Among Individuals at High Risk to Sexually Reoffend",
+    organization: "Sexual Abuse",
+    type: "Peer-reviewed study / open-access full text",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11421192/",
+    usefulFor:
+      "Long-term evidence from a deliberately high-risk sample showing substantial heterogeneity in risk while also examining how residual risk changes after extended offense-free periods.",
+  },
 };
 
 type PositionRecord = {
@@ -317,7 +355,7 @@ const positions: PositionRecord[] = [
     body:
       "It does not prevent crime. The vast majority of sex offenses are committed by individuals not on any registry, and empirical evidence consistently shows lower recidivism rates for people convicted of sex offenses than commonly assumed.",
     icon: "📊",
-    sourceIds: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE29", "SE30"],
+    sourceIds: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE31", "SE29", "SE30"],
   },
   {
     title:
@@ -354,7 +392,7 @@ const positions: PositionRecord[] = [
     body:
       "Blanket restrictions ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
     icon: "🌱",
-    sourceIds: ["SE02", "SE21", "SE22", "SE23", "SE29", "SE30"],
+    sourceIds: ["SE02", "SE21", "SE22", "SE32", "SE33", "SE34", "SE23", "SE29", "SE30"],
   },
   {
     title: "Registries create a permanent underclass.",
@@ -371,10 +409,12 @@ const anchorSourceIds: SourceId[] = [
   "SE29",
   "SE30",
   "SE04",
+  "SE31",
   "SE11",
   "SE18",
   "SE19",
   "SE22",
+  "SE32",
   "SE06",
   "SE21",
   "SE14",
@@ -385,7 +425,7 @@ const sourceGroups: { title: string; description: string; ids: SourceId[] }[] = 
     title: "Recidivism and registry effectiveness",
     description:
       "Research on reoffending, federal non-production cases, and whether registration and notification reduce crime.",
-    ids: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE29", "SE30"],
+    ids: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE31", "SE29", "SE30"],
   },
   {
     title: "Child safety and trusted access",
@@ -409,7 +449,7 @@ const sourceGroups: { title: string; description: string; ids: SourceId[] }[] = 
     title: "Risk, treatment, and individualized reform",
     description:
       "Research on changing risk, treatment, desistance, subgroup differences, and evidence-based alternatives to blanket policy.",
-    ids: ["SE02", "SE21", "SE22", "SE23", "SE29", "SE30"],
+    ids: ["SE02", "SE21", "SE22", "SE32", "SE33", "SE34", "SE23", "SE29", "SE30"],
   },
   {
     title: "Comparative public safety",
