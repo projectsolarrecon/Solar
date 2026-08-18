@@ -88,16 +88,26 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>That is more revealing than an ordinary denial.</p>
 
-        <p>
-          The apparent logic was not simply <em>I did not do this</em>. It was
-          something closer to:{" "}
-          <em>
-            I am attracted to women. I am not sexually deviant in the way I
-            understand that term. I am therefore not the kind of person who is a
-            sex offender. And because I am not that kind of person, these
-            accusations cannot be true.
-          </em>
-        </p>
+        <Callout variant="neutral" title="The reasoning" icon="🧩">
+          <div className="grid gap-2 text-center sm:grid-cols-4 sm:items-center">
+            <div className="rounded-lg bg-white/70 p-3 font-semibold">
+              I am attracted to women
+            </div>
+            <div className="rounded-lg bg-white/70 p-3 font-semibold">
+              I am not sexually deviant
+            </div>
+            <div className="rounded-lg bg-white/70 p-3 font-semibold">
+              I am not a sex offender
+            </div>
+            <div className="rounded-lg bg-white/70 p-3 font-semibold">
+              These accusations cannot be true
+            </div>
+          </div>
+          <p className="mt-3 mb-0 text-sm">
+            This is a condensed representation of the logic investigators
+            attributed to Caruso, not a verbatim quotation.
+          </p>
+        </Callout>
 
         <p>
           Caruso was arrested on August 18 on five felony counts: kidnapping,
@@ -171,6 +181,33 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           patterns of risk.
         </p>
 
+        <Callout variant="research" title="Online-only and contact are not interchangeable" icon="💻">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">Online-only offending</div>
+              <p className="mt-2 mb-0 text-sm">
+                Can be serious and harmful while involving no direct physical
+                contact with a victim. The mechanisms, access patterns and
+                prospective risk questions may differ from hands-on abuse.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">Contact offending</div>
+              <p className="mt-2 mb-0 text-sm">
+                Involves direct physical access and raises its own questions about
+                coercion, opportunity, relationship, authority, repetition and
+                safeguarding.
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 mb-0 text-sm">
+            <strong>Different does not mean harmless versus harmful.</strong> It
+            means the same broad legal label can conceal materially different
+            mechanisms and risk questions. Crossover can occur, which is another
+            reason individualized assessment matters.
+          </p>
+        </Callout>
+
         <p>
           The relevant distinctions are not cosmetic. Conduct may be violent or
           nonviolent, coercive or non-coercive, contact or entirely non-contact.
@@ -182,13 +219,6 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
         </p>
 
         <p>Different does not mean harmless.</p>
-
-        <p>
-          <strong>
-            Different means different—and justice has no business pretending
-            otherwise.
-          </strong>
-        </p>
 
         <PullQuote>
           “Different means different—and justice has no business pretending
@@ -300,13 +330,26 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>The alleged pathway was already built.</p>
 
-        <p>
-          Family relationship created familiarity. Grandparent status created
-          presumptive legitimacy. Adult authority created control. Family trust
-          created access. A shared vacation created opportunity. Existing
-          relationships meant that proximity did not have to be engineered by a
-          stranger; it came with the role.
-        </p>
+        <Callout variant="research" title="How trusted access was already built" icon="🔑">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ["Family relationship", "Familiarity"],
+              ["Grandparent status", "Presumptive legitimacy"],
+              ["Adult authority", "Control"],
+              ["Family trust", "Access"],
+              ["Shared vacation", "Opportunity"],
+            ].map(([source, effect]) => (
+              <div key={source} className="rounded-lg bg-white/70 p-3">
+                <div className="font-semibold text-slate-900">{source}</div>
+                <div className="mt-1 text-sm">→ {effect}</div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 mb-0 text-sm">
+            Existing relationships meant proximity did not have to be engineered
+            by a stranger; it came with the role.
+          </p>
+        </Callout>
 
         <p>
           Professional and political standing need not have caused anyone to
@@ -348,16 +391,36 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           with abuse by people already within the child’s world.
         </p>
 
+        <Callout variant="research" title="Stranger involvement was the exception" icon="📊">
+          <div className="grid gap-3 text-center sm:grid-cols-3">
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="text-3xl font-bold text-teal-900">7%</div>
+              <div className="mt-1 text-sm">all juvenile victims</div>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="text-3xl font-bold text-teal-900">5%</div>
+              <div className="mt-1 text-sm">children ages 6–11</div>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="text-3xl font-bold text-teal-900">3%</div>
+              <div className="mt-1 text-sm">children younger than 6</div>
+            </div>
+          </div>
+          <p className="mt-3 mb-0 text-sm">
+            In the BJS study, almost all identified offenders were already known
+            to the juvenile victim.
+          </p>
+        </Callout>
+
         <p>
           This does not mean every trusted adult should be treated as suspicious.
         </p>
 
         <p>It means trust cannot substitute for safeguarding.</p>
 
-        <BandHeader
-          title="Stranger-danger mythology can fail before conviction, too."
-          icon="🗺️"
-        />
+        <h3 className="mt-10 text-xl font-bold text-slate-900">
+          Stranger-danger mythology can fail before conviction, too.
+        </h3>
 
         <p>Registry politics often speaks a geographic language.</p>
 
@@ -375,16 +438,32 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>The allegations against Caruso describe something almost opposite.</p>
 
-        <p>Not stranger access, but trusted access.</p>
-
-        <p>Not intrusion into a family, but membership within one.</p>
-
-        <p>Not social marginality, but credibility.</p>
-
-        <p>
-          Not a person who first had to reach the child, but an adult to whom the
-          child could already be entrusted.
-        </p>
+        <Callout variant="neutral" title="The prevention image and the alleged pathway" icon="🗺️">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="mb-3 font-semibold text-slate-900">
+                Familiar stranger-danger image
+              </div>
+              <div className="space-y-2 text-sm">
+                <div>Stranger</div>
+                <div>Intrusion into a family</div>
+                <div>Social marginality</div>
+                <div>Seeking access</div>
+              </div>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="mb-3 font-semibold text-slate-900">
+                Alleged Caruso pathway
+              </div>
+              <div className="space-y-2 text-sm">
+                <div>Trusted relative</div>
+                <div>Membership within the family</div>
+                <div>Credibility and status</div>
+                <div>Already entrusted with access</div>
+              </div>
+            </div>
+          </div>
+        </Callout>
 
         <p>That distinction matters far beyond this case.</p>
 
@@ -426,13 +505,6 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>
           That is enough to support a narrower and more important proposition.
-        </p>
-
-        <p>
-          <strong>
-            A map of previously convicted people is not a map of where sexual
-            harm originates.
-          </strong>
         </p>
 
         <PullQuote>
@@ -494,6 +566,32 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           </a>{" "}
           itself recounted his legislative service from 2018 through 2025.
         </p>
+
+        <Callout variant="legal" title="Why his institutional position matters" icon="🏛️">
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="rounded-lg bg-white/70 p-3">
+              <div className="font-semibold text-slate-900">Former legislator</div>
+              <p className="mt-1 mb-0 text-sm">
+                Worked inside the system that writes criminal and collateral
+                rules.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-3">
+              <div className="font-semibold text-slate-900">Circuit-court clerk</div>
+              <p className="mt-1 mb-0 text-sm">
+                Led an office responsible for records produced by criminal,
+                civil and family-court processes.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-3">
+              <div className="font-semibold text-slate-900">Florida officeholder</div>
+              <p className="mt-1 mb-0 text-sm">
+                Operated in a state where sex-offense registration creates
+                extensive, highly visible consequences.
+              </p>
+            </div>
+          </div>
+        </Callout>
 
         <p>
           It would therefore be remarkable if a longtime Florida lawmaker and
@@ -561,23 +659,37 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           strange reported defense.
         </p>
 
-        <p>Caruso’s apparent logic moved from identity to conduct:</p>
-
-        <p>
-          <strong>
-            I am not that kind of person, therefore I could not have committed
-            that kind of act.
-          </strong>
-        </p>
-
-        <p>Post-conviction policy can perform the same error in reverse:</p>
-
-        <p>
-          <strong>
-            You committed qualifying conduct, therefore you permanently are that
-            kind of person.
-          </strong>
-        </p>
+        <Callout variant="policy" title="The mirror-image categorical mistake" icon="↔️">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="mb-2 text-sm font-semibold uppercase tracking-wide">
+                Caruso’s reported reasoning
+              </div>
+              <div className="font-semibold text-slate-900">
+                I am not that kind of person.
+              </div>
+              <div className="my-2 text-xl">↓</div>
+              <div className="font-semibold text-slate-900">
+                Therefore I could not have committed that kind of act.
+              </div>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="mb-2 text-sm font-semibold uppercase tracking-wide">
+                Categorical post-conviction reasoning
+              </div>
+              <div className="font-semibold text-slate-900">
+                You committed qualifying conduct.
+              </div>
+              <div className="my-2 text-xl">↓</div>
+              <div className="font-semibold text-slate-900">
+                Therefore you permanently are that kind of person.
+              </div>
+            </div>
+          </div>
+          <p className="mt-3 mb-0 text-sm font-semibold">
+            Both substitute an imagined identity for individualized analysis.
+          </p>
+        </Callout>
 
         <p>
           The first substitutes an imagined identity for evidence about what
@@ -685,10 +797,9 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           It is proof that the category does not convey <strong>enough</strong>.
         </p>
 
-        <BandHeader
-          title="Serious conduct makes this argument stronger, not weaker."
-          icon="⚖️"
-        />
+        <h3 className="mt-10 text-xl font-bold text-slate-900">
+          Serious conduct makes this argument stronger, not weaker.
+        </h3>
 
         <p>
           There is an understandable temptation to hear any discussion of
@@ -739,8 +850,6 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
           He <em>is a sex offender</em>.
         </p>
 
-        <p>The noun quietly swallows the person.</p>
-
         <PullQuote>“The noun quietly swallows the person.”</PullQuote>
 
         <BandHeader
@@ -750,27 +859,25 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>Criminal law spends enormous energy distinguishing facts.</p>
 
-        <p>What happened?</p>
-
-        <p>Was there force?</p>
-
-        <p>Was there coercion?</p>
-
-        <p>Was there contact?</p>
-
-        <p>How old were the people involved?</p>
-
-        <p>What was their relationship?</p>
-
-        <p>Was the conduct repeated?</p>
-
-        <p>Was a position of authority exploited?</p>
-
-        <p>What does the evidence establish?</p>
-
-        <p>What mental state did the law require?</p>
-
-        <p>What does the person’s history show?</p>
+        <div className="my-6 grid gap-2 sm:grid-cols-2">
+          {[
+            "What happened?",
+            "Was there force?",
+            "Was there coercion?",
+            "Was there contact?",
+            "How old were the people involved?",
+            "What was their relationship?",
+            "Was the conduct repeated?",
+            "Was a position of authority exploited?",
+            "What does the evidence establish?",
+            "What mental state did the law require?",
+            "What does the person’s history show?",
+          ].map((question) => (
+            <div key={question} className="rounded-lg bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800 ring-1 ring-slate-200">
+              {question}
+            </div>
+          ))}
+        </div>
 
         <p>
           Those distinctions affect charging, proof, sentencing and treatment.
@@ -911,51 +1018,41 @@ export default function WhatDoesASexOffenderLookLike(): JSX.Element {
 
         <p>A more serious framework begins with four questions.</p>
 
-        <p>
-          <strong>What did the person do?</strong>
-        </p>
-
-        <p>
-          That is principally a question of culpability and proportional
-          punishment. Serious, coercive, violent, repeated or trust-exploiting
-          conduct can justify severe consequences. Individualization does not
-          imply softness. It implies that severity should attach to reasons.
-        </p>
-
-        <p>
-          <strong>Why did it happen?</strong>
-        </p>
-
-        <p>
-          That is a different question. Understanding the mechanism matters to
-          treatment and prevention. Sexual interest, antisociality, opportunity,
-          compulsive behavior, distorted cognition, access, substance misuse and
-          other factors do not operate identically in every case. Federal
-          research on typologies and risk repeatedly underscores that people who
-          commit sexual offenses do not constitute a single psychologically
-          uniform population.
-        </p>
-
-        <p>
-          <strong>What risk does the person present now?</strong>
-        </p>
-
-        <p>
-          Past conduct belongs in that inquiry. It does not finish it. Modern
-          risk assessment exists precisely to estimate prospective risk using
-          combinations of empirically relevant factors, and the SMART Office
-          warns that no single characteristic is a robust predictor by itself.
-        </p>
-
-        <p>
-          <strong>What intervention actually reduces that risk?</strong>
-        </p>
-
-        <p>
-          That question should determine management, supervision and treatment
-          strategy. The federal review explicitly recognizes the need for
-          tailored interventions matched to risk and need.
-        </p>
+        <Callout variant="neutral" title="What individualized justice actually asks" icon="🔬">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">What did the person do?</div>
+              <p className="mt-2 mb-0 text-sm">
+                Culpability and proportional punishment. Serious, coercive,
+                violent, repeated or trust-exploiting conduct can justify severe
+                consequences.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">Why did it happen?</div>
+              <p className="mt-2 mb-0 text-sm">
+                Mechanism, treatment and prevention. Different combinations of
+                sexual interest, antisociality, opportunity, cognition, access
+                and other factors call for different responses.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">What risk exists now?</div>
+              <p className="mt-2 mb-0 text-sm">
+                Past conduct belongs in the inquiry, but prospective risk requires
+                combinations of empirically relevant factors rather than a single
+                label.
+              </p>
+            </div>
+            <div className="rounded-lg bg-white/70 p-4">
+              <div className="font-semibold text-slate-900">What intervention reduces that risk?</div>
+              <p className="mt-2 mb-0 text-sm">
+                Management, supervision and treatment should be matched to actual
+                risk and need rather than applied uniformly.
+              </p>
+            </div>
+          </div>
+        </Callout>
 
         <p>Those are four different questions.</p>
 
