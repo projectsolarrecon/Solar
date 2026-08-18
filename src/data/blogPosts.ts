@@ -13,6 +13,28 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "what-does-a-sex-offender-look-like",
+  title: "What Does a Sex Offender Look Like?",
+  excerpt:
+    "What happens when “committed a sex offense” becomes “is a sex offender”? The Michael Caruso case exposes how stereotypes about identity, trust, access, and danger can mislead both registry policy and sexual-harm prevention.",
+  author: "The SOLAR Project",
+  date: "Aug 18, 2026",
+  readTime: "11–12 min read",
+  category: "Prevention & Public Safety",
+  tags: [
+    "trusted access",
+    "stranger danger",
+    "sexual offending",
+    "registry policy",
+    "public notification",
+    "risk assessment",
+    "individualized justice",
+    "category collapse",
+    "Michael Caruso",
+  ],
+  path: "/blog/what-does-a-sex-offender-look-like",
+},
+{
   id: "who-else-should-kathleen-parker-forgive-behind-bars",
   title: "Who Else Should Kathleen Parker Forgive Behind Bars?",
   excerpt:
