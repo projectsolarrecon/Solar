@@ -130,6 +130,7 @@ import ScottPetersonCaliforniaParoleRegistryRefusalBelieveChange from "./pages/b
 import TheRegistryTheCourtReviewedNoLongerExists from "./pages/blog/TheRegistryTheCourtReviewedNoLongerExists";
 import WhoElseShouldKathleenParkerForgiveBehindBars from "./pages/blog/WhoElseShouldKathleenParkerForgiveBehindBars";
 import WhatDoesASexOffenderLookLike from "./pages/blog/WhatDoesASexOffenderLookLike";
+import NotYouDOJIndividualizedJustice from "./pages/blog/NotYouDOJIndividualizedJustice";
 
 function App() {
   return (
@@ -291,6 +292,8 @@ element={<TheRegistryTheCourtReviewedNoLongerExists />} />
 <Route
   path="/blog/what-does-a-sex-offender-look-like"
   element={<WhatDoesASexOffenderLookLike />} />
+<Route
+  path="/blog/not-you-doj-individualized-justice-registered-people" element={<NotYouDOJIndividualizedJustice />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
