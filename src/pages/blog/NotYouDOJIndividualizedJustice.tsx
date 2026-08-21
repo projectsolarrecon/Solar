@@ -7,11 +7,15 @@ import {
   ContextualActionCard,
   Divider,
   PullQuote,
+  TOC,
 } from "../../components/solar";
 import type { ContextualActionConfig } from "../../data/advocacy/contextualAction";
 
 const linkCls =
   "text-blue-700 underline underline-offset-2 hover:text-blue-900";
+
+const supportingHeadingCls =
+  "mt-10 mb-4 text-2xl font-semibold tracking-tight text-slate-900";
 
 const contextualAction: ContextualActionConfig = {
   recipientId: "federal-lawmaker",
@@ -63,6 +67,8 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           </p>
         </Callout>
 
+        <TOC />
+
         <p>The United States Department of Justice has discovered rehabilitation.</p>
 
         <p>
@@ -110,14 +116,19 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           this sounds almost revolutionary.
         </p>
 
-        <p>
-          DOJ: Permanent categorical disabilities are too crude. We should
-          individually assess risk and character.
-        </p>
-
-        <p>People convicted of sex offenses: Great. We have been saying that for years.</p>
-
-        <p>DOJ: Not you.</p>
+        <Callout variant="neutral" title="The principle, selectively applied">
+          <p>
+            <strong>DOJ:</strong> Permanent categorical disabilities are too crude.
+            We should individually assess risk and character.
+          </p>
+          <p>
+            <strong>People convicted of sex offenses:</strong> Great. We have been
+            saying that for years.
+          </p>
+          <p>
+            <strong>DOJ:</strong> Not you.
+          </p>
+        </Callout>
 
         <p>That is, remarkably, what the new rule actually does.</p>
 
@@ -132,6 +143,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>It is blatant hypocrisy.</p>
 
+        <h2 className="sr-only">DOJ discovers individualized justice</h2>
         <BandHeader title="DOJ discovers individualized justice" icon="⚖️" />
 
         <p>
@@ -194,23 +206,17 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>It wants the person.</p>
 
-        <p>What happened?</p>
-
-        <p>What did you actually do?</p>
-
-        <p>What has happened since?</p>
-
-        <p>How did you behave in prison?</p>
-
-        <p>How did you behave on supervision?</p>
-
-        <p>How many years have passed?</p>
-
-        <p>What does your recent record show?</p>
-
-        <p>What do people who know you say about your character?</p>
-
-        <p>Are you dangerous now?</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>What happened?</p>
+          <p>What did you actually do?</p>
+          <p>What has happened since?</p>
+          <p>How did you behave in prison?</p>
+          <p>How did you behave on supervision?</p>
+          <p>How many years have passed?</p>
+          <p>What does your recent record show?</p>
+          <p>What do people who know you say about your character?</p>
+          <p>Are you dangerous now?</p>
+        </div>
 
         <p>This is the language of individualized justice.</p>
 
@@ -219,10 +225,9 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           registration laws have been demanding for years.
         </p>
 
-        <BandHeader
-          title="The government understands that a conviction is not a person"
-          icon="🧭"
-        />
+        <h2 className={supportingHeadingCls}>
+          The government understands that a conviction is not a person
+        </h2>
 
         <p>
           The philosophical premise behind the new rule deserves attention
@@ -260,16 +265,16 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>That is the federal government making the argument.</p>
 
-        <p>Not SOLAR.</p>
-
-        <p>Not a civil-rights organization.</p>
-
-        <p>Not a defense attorney.</p>
-
-        <p>The Department of Justice.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>Not SOLAR.</p>
+          <p>Not a civil-rights organization.</p>
+          <p>Not a defense attorney.</p>
+          <p>The Department of Justice.</p>
+        </div>
 
         <p>And then DOJ gets to registered people.</p>
 
+        <h2 className="sr-only">Not you</h2>
         <BandHeader title="Not you" icon="🚫" />
 
         <p>The new regulation establishes several levels of presumptive disqualification.</p>
@@ -285,13 +290,12 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>Other serious offenses are treated differently.</p>
 
-        <p>Drug trafficking gets a ten-year presumption.</p>
-
-        <p>So do threats of violence.</p>
-
-        <p>So do manufacture, possession, transfer or use of explosives.</p>
-
-        <p>So does certain firearm-related conduct.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>Drug trafficking gets a ten-year presumption.</p>
+          <p>So do threats of violence.</p>
+          <p>So do manufacture, possession, transfer or use of explosives.</p>
+          <p>So does certain firearm-related conduct.</p>
+        </div>
 
         <p>
           After ten years from completion of the sentence, those categorical
@@ -323,22 +327,22 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>The presumption lasts as long as the registration obligation does.</p>
 
-        <p>That may mean ten years.</p>
-
-        <p>It may mean twenty-five years.</p>
-
-        <p>
-          It may mean{" "}
-          <a
-            className={linkCls}
-            href="https://www.law.cornell.edu/uscode/text/34/20915"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            life
-          </a>
-          .
-        </p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>That may mean ten years.</p>
+          <p>It may mean twenty-five years.</p>
+          <p>
+            It may mean{" "}
+            <a
+              className={linkCls}
+              href="https://www.law.cornell.edu/uscode/text/34/20915"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              life
+            </a>
+            .
+          </p>
+        </div>
 
         <p>
           And unlike the individualized firearms-restoration process DOJ just
@@ -349,6 +353,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>It was produced by a statute.</p>
 
+        <h2 className="sr-only">The circularity is breathtaking</h2>
         <BandHeader title="The circularity is breathtaking" icon="🔄" />
 
         <p>Here is the problem in its simplest form:</p>
@@ -362,10 +367,13 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>That is the circle.</p>
 
-        <p>
-          The government first creates the label because it assumes danger, then
-          later cites the label as proof of the danger it originally assumed.
-        </p>
+        <Callout variant="warning" title="The circular logic">
+          <p>
+            The government first creates the label because it assumes danger,
+            then later cites the label as proof of the danger it originally
+            assumed.
+          </p>
+        </Callout>
 
         <p>Nothing new has been established.</p>
 
@@ -420,7 +428,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>They did.</p>
 
-        <BandHeader title="DOJ was warned about exactly this problem" icon="📣" />
+        <h2 className={supportingHeadingCls}>DOJ was warned about exactly this problem</h2>
 
         <p>
           During the rulemaking process, commenters specifically objected to
@@ -450,18 +458,18 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           program is supposed to solve.
         </p>
 
-        <p>DOJ heard the argument.</p>
-
-        <p>DOJ understood the argument.</p>
-
-        <p>DOJ rejected it.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>DOJ heard the argument.</p>
+          <p>DOJ understood the argument.</p>
+          <p>DOJ rejected it.</p>
+        </div>
 
         <p>
           And the government’s explanation may be even more revealing than the
           rule itself.
         </p>
 
-        <BandHeader title="DOJ pretends the registry is a risk assessment" icon="🎯" />
+        <h2 className={supportingHeadingCls}>DOJ pretends the registry is a risk assessment</h2>
 
         <p>
           According to DOJ,{" "}
@@ -529,6 +537,9 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           classification system built substantially from the offense alone.
         </p>
 
+        <Divider />
+
+        <h2 className="sr-only">Apparently ten years can transform a drug trafficker</h2>
         <BandHeader
           title="Apparently ten years can transform a drug trafficker"
           icon="⏳"
@@ -590,24 +601,29 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>Imagine the comparison.</p>
 
-        <p>
-          One person participated in a serious drug-trafficking operation.
-          Weapons may have been present. Associates may have used violence. A
-          gun charge may never have resulted in conviction. Ten years after
-          sentence completion, DOJ is prepared to examine the actual person: his
-          criminal history, his conduct, his character, his prison record, his
-          supervision history and his intervening years.
-        </p>
+        <div className="not-prose my-6 grid gap-4 md:grid-cols-2">
+          <Callout variant="neutral" title="Drug trafficking">
+            <p>
+              One person participated in a serious drug-trafficking operation.
+              Weapons may have been present. Associates may have used violence. A
+              gun charge may never have resulted in conviction. Ten years after
+              sentence completion, DOJ is prepared to examine the actual person:
+              his criminal history, his conduct, his character, his prison
+              record, his supervision history and his intervening years.
+            </p>
+          </Callout>
 
-        <p>
-          Another person was convicted of simple possession arising from
-          nonviolent, non-coercive, noncontact, online-only conduct by the
-          defendant. No firearm was involved. No threat was involved. No
-          physical contact occurred. No coercion was alleged. Twenty years
-          later, he has no subsequent convictions and an exemplary record.
-        </p>
-
-        <p>But he lives in a jurisdiction requiring him to remain registered.</p>
+          <Callout variant="policy" title="Continuing registration">
+            <p>
+              Another person was convicted of simple possession arising from
+              nonviolent, non-coercive, noncontact, online-only conduct by the
+              defendant. No firearm was involved. No threat was involved. No
+              physical contact occurred. No coercion was alleged. Twenty years
+              later, he has no subsequent convictions and an exemplary record.
+            </p>
+            <p>But he lives in a jurisdiction requiring him to remain registered.</p>
+          </Callout>
+        </div>
 
         <p>DOJ’s answer is not:</p>
 
@@ -634,7 +650,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>It is a population-specific exception to it.</p>
 
-        <BandHeader title="DOJ already knows how to look behind labels" icon="🔎" />
+        <h2 className={supportingHeadingCls}>DOJ already knows how to look behind labels</h2>
 
         <p>
           The inconsistency becomes even more difficult to excuse when we look
@@ -681,15 +697,13 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>The federal government is perfectly capable of distinguishing among:</p>
 
-        <p>a sex offense,</p>
-
-        <p>a violent offense,</p>
-
-        <p>a firearm offense,</p>
-
-        <p>the actual conduct underlying a conviction,</p>
-
-        <p>and an individualized risk determination.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>a sex offense,</p>
+          <p>a violent offense,</p>
+          <p>a firearm offense,</p>
+          <p>the actual conduct underlying a conviction,</p>
+          <p>and an individualized risk determination.</p>
+        </div>
 
         <p>
           Indeed, the current BOP Program Statement expressly lists § 2251 and
@@ -754,7 +768,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>The registration label is independently doing the work.</p>
 
-        <BandHeader title="Sexual recidivism is not firearm dangerousness" icon="📊" />
+        <h2 className={supportingHeadingCls}>Sexual recidivism is not firearm dangerousness</h2>
 
         <p>
           DOJ also responded to commenters who argued that some registered
@@ -773,13 +787,12 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           to answer.
         </p>
 
-        <p>Suppose we grant DOJ every benefit of the doubt.</p>
-
-        <p>Suppose some studies underestimate sexual recidivism.</p>
-
-        <p>Suppose longer follow-up produces higher cumulative rates.</p>
-
-        <p>Suppose sexual offending presents unique measurement difficulties.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>Suppose we grant DOJ every benefit of the doubt.</p>
+          <p>Suppose some studies underestimate sexual recidivism.</p>
+          <p>Suppose longer follow-up produces higher cumulative rates.</p>
+          <p>Suppose sexual offending presents unique measurement difficulties.</p>
+        </div>
 
         <p>None of that establishes the proposition that matters here:</p>
 
@@ -813,10 +826,14 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>Again:</p>
 
-        <p>Individualized assessment when DOJ wants it.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>Individualized assessment when DOJ wants it.</p>
+          <p>Categorical inference when the population changes.</p>
+        </div>
 
-        <p>Categorical inference when the population changes.</p>
+        <Divider />
 
+        <h2 className="sr-only">The registry becomes evidence of itself</h2>
         <BandHeader title="The registry becomes evidence of itself" icon="♻️" />
 
         <p>This has implications far beyond guns.</p>
@@ -844,15 +861,13 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>That is how a categorical system becomes self-validating.</p>
 
-        <p>The government assigns a person a status because of an old conviction.</p>
-
-        <p>The status produces years or decades of restrictions.</p>
-
-        <p>Other agencies encounter the status.</p>
-
-        <p>They interpret the existence of the status as evidence of present risk.</p>
-
-        <p>That perceived risk justifies additional restrictions.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>The government assigns a person a status because of an old conviction.</p>
+          <p>The status produces years or decades of restrictions.</p>
+          <p>Other agencies encounter the status.</p>
+          <p>They interpret the existence of the status as evidence of present risk.</p>
+          <p>That perceived risk justifies additional restrictions.</p>
+        </div>
 
         <p>
           Then those additional restrictions become further evidence that this
@@ -871,7 +886,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           restoring firearm rights to other people with felony convictions.
         </p>
 
-        <BandHeader title="We are not arguing that everyone should have a gun" icon="🧱" />
+        <h2 className={supportingHeadingCls}>We are not arguing that everyone should have a gun</h2>
 
         <p>
           This article does not require anyone to believe that every person
@@ -905,13 +920,12 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           term.
         </p>
 
-        <p>If character matters, it matters.</p>
-
-        <p>If conduct matters, it matters.</p>
-
-        <p>If time matters, it matters.</p>
-
-        <p>If individualized circumstances matter, they matter.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>If character matters, it matters.</p>
+          <p>If conduct matters, it matters.</p>
+          <p>If time matters, it matters.</p>
+          <p>If individualized circumstances matter, they matter.</p>
+        </div>
 
         <p>
           And if registration status itself accurately establishes present
@@ -920,6 +934,7 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           it.
         </p>
 
+        <h2 className="sr-only">The hypocrisy is the point</h2>
         <BandHeader title="The hypocrisy is the point" icon="⚠️" />
 
         <p>The hypocrisy here is not subtle.</p>
@@ -937,17 +952,14 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
           references and “other relevant individual circumstances.”
         </p>
 
-        <p>It recognizes that drug traffickers can change.</p>
-
-        <p>It recognizes that people convicted of firearm offenses can change.</p>
-
-        <p>It recognizes that people convicted of serious felonies can change.</p>
-
-        <p>It recognizes that time without additional crime tells us something.</p>
-
-        <p>It recognizes that the statute of conviction is not always enough.</p>
-
-        <p>It recognizes that categorical exclusion can be too crude.</p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>It recognizes that drug traffickers can change.</p>
+          <p>It recognizes that people convicted of firearm offenses can change.</p>
+          <p>It recognizes that people convicted of serious felonies can change.</p>
+          <p>It recognizes that time without additional crime tells us something.</p>
+          <p>It recognizes that the statute of conviction is not always enough.</p>
+          <p>It recognizes that categorical exclusion can be too crude.</p>
+        </div>
 
         <p>
           It even tells courts and commenters that past conduct may justify
@@ -974,20 +986,14 @@ export default function NotYouDOJIndividualizedJustice(): JSX.Element {
 
         <p>And then it reaches the population that has spent years saying:</p>
 
-        <p>Please stop treating our past conviction as a permanent diagnosis.</p>
-
-        <p>Please assess actual risk.</p>
-
-        <p>Please distinguish offense categories from individual people.</p>
-
-        <p>Please consider rehabilitation.</p>
-
-        <p>Please consider the passage of time.</p>
-
-        <p>
-          Please stop assuming a legal label itself proves present
-          dangerousness.
-        </p>
+        <div className="my-6 space-y-1 [&>p]:my-0">
+          <p>Please stop treating our past conviction as a permanent diagnosis.</p>
+          <p>Please assess actual risk.</p>
+          <p>Please distinguish offense categories from individual people.</p>
+          <p>Please consider rehabilitation.</p>
+          <p>Please consider the passage of time.</p>
+          <p>Please stop assuming a legal label itself proves present dangerousness.</p>
+        </div>
 
         <p>The Department of Justice has finally answered:</p>
 
