@@ -13,6 +13,31 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "not-you-doj-individualized-justice-registered-people",
+  title: "Not You: DOJ Discovers Individualized Justice—Except for Registered People",
+  excerpt:
+    "DOJ says convictions should not permanently substitute for present-risk assessment—except when registration status lets the government recycle an old offense label as proof of current danger.",
+  author: "The SOLAR Project",
+  date: "Aug 20, 2026",
+  readTime: "10–12 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "DOJ",
+    "firearm rights restoration",
+    "18 U.S.C. § 925(c)",
+    "SORNA",
+    "sex-offender registration",
+    "individualized assessment",
+    "public safety",
+    "recidivism",
+    "civil disabilities",
+    "federal policy",
+    "reentry",
+    "hypocrisy",
+  ],
+  path: "/blog/not-you-doj-individualized-justice-registered-people",
+},
+{
   id: "what-does-a-sex-offender-look-like",
   title: "What Does a Sex Offender Look Like?",
   excerpt:
