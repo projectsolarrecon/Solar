@@ -41,7 +41,7 @@ const sourceLinks = {
   bostick: "https://www.law.cornell.edu/supremecourt/text/501/429",
   miranda: "https://www.law.cornell.edu/supremecourt/text/384/436",
   hiibel: "https://www.law.cornell.edu/supremecourt/text/542/177",
-  schneckloth: "https://www.oyez.org/cases/1972/71-732",
+  schneckloth: "https://supreme.justia.com/cases/federal/us/412/218/",
   riley: "https://www.law.cornell.edu/supremecourt/text/13-132",
   consentSearches:
     "https://constitution.congress.gov/browse/essay/amdt4-6-2/ALDE_00000792/",
@@ -50,25 +50,62 @@ const sourceLinks = {
   fernandez: "https://www.law.cornell.edu/supremecourt/text/12-7822",
   griffin: "https://www.law.cornell.edu/supremecourt/text/483/868",
   knights: "https://supreme.justia.com/cases/federal/us/534/112/",
-  samson: "https://www.law.cornell.edu/supct/html/04-9728.ZO.html",
+  samson: "https://supreme.justia.com/cases/federal/us/547/843/",
   usMarshalsSexOffenderInvestigations:
     "https://www.usmarshals.gov/sex-offender-investigations",
-  childWelfareStateLaws:
-    "https://www.childwelfare.gov/resources/states-territories-tribes/state-statutes/",
+  childWelfareResources:
+    "https://www.childwelfare.gov/resources/states-territories-tribes/",
   childWelfarePolicyLinks:
     "https://www.childwelfare.gov/resources/links-state-and-tribal-child-welfare-law-and-policy/",
   childWelfareHowSystemWorks:
-    "https://www.childwelfare.gov/topics/systemwide/how-system-works/",
+    "https://www.childwelfare.gov/pubPDFs/cpswork.pdf",
   georgiaSafetyPlan:
     "https://pamms.dhs.ga.gov/dfcs/cws/19-12/",
   missouriInvestigations:
     "https://dssmanuals.mo.gov/child-welfare-manual/section-2-chapter-5-child-abuse-and-neglect-reports-subsection-3-investigations/",
   rcfpRecordingGuide: "https://www.rcfp.org/reporters-recording-guide/",
   usaLegalAid: "https://www.usa.gov/legal-aid",
-  lawHelp: "https://www.lawhelp.org/",
+  lscLegalAid:
+    "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
   stateBarDirectory:
     "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
 };
+
+const inlineLinkClass =
+  "font-medium text-blue-700 underline decoration-blue-600 underline-offset-2 hover:text-blue-900 hover:decoration-blue-900";
+
+function ExternalGuideLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={inlineLinkClass}
+    >
+      {children}
+    </a>
+  );
+}
+
+function InternalGuideLink({
+  to,
+  children,
+}: {
+  to: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <Link to={to} className={inlineLinkClass}>
+      {children}
+    </Link>
+  );
+}
 
 export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
   const handlePrint = () => window.print();
@@ -182,7 +219,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <span key="help">
               Contact the right kind of help: criminal defense,
               supervision/revocation counsel, dependency or family counsel,
-              public defender, legal aid, or a trusted advocate.
+              public defender, <ExternalGuideLink href={sourceLinks.usaLegalAid}>legal aid</ExternalGuideLink>, or a trusted advocate.
             </span>,
           ]}
           reminder={
@@ -325,9 +362,8 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <p>
               Registry and address-verification visits can involve a sheriff’s
               office, police department, state registry unit, local registering
-              agency, task force, or another official channel. SORNA creates
-              federal baseline registration standards, but many live details —
-              including who verifies, how often, what happens at a residence,
+              agency, task force, or another official channel. <ExternalGuideLink href={sourceLinks.smartSornaCurrentLaw}>SORNA creates federal baseline registration standards</ExternalGuideLink>, but many live details —
+              including <ExternalGuideLink href={sourceLinks.smartSornaInPerson}>in-person verification</ExternalGuideLink>, who performs it, what happens at a residence,
               and how worksite verification is handled — depend on state,
               tribal, territorial, local, and agency rules.
             </p>
@@ -339,7 +375,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               questions unrelated to verification. The practical move is to ask
               what they are verifying, what authority they are relying on, and
               whether they are requesting something or saying a specific legal
-              duty applies now.
+              duty applies now. For the reporting-and-proof side of the system, use the SOLAR <InternalGuideLink to="/resources/registry-compliance-verification-guide">Registry Compliance & Verification Survival Guide</InternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -429,7 +465,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Police contact can be a consensual conversation, a detention, an
+              Police contact can be a <ExternalGuideLink href={sourceLinks.bostick}>consensual conversation</ExternalGuideLink>, an <ExternalGuideLink href={sourceLinks.terry}>investigative detention</ExternalGuideLink>, an
               arrest, a request for consent, a warrant situation, or something
               else. Those categories matter, but they are not always obvious in
               the moment. Questions about registry status, travel, address,
@@ -440,8 +476,8 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <p>
               You do not have to solve the legal category at the door. A safer
               move is to ask whether you are required to answer now, whether you
-              are free to leave or end the conversation, and whether you may
-              speak with a lawyer before answering more questions.
+              are <ExternalGuideLink href={sourceLinks.bostick}>free to leave or end the conversation</ExternalGuideLink>, and whether you may
+              speak with a lawyer before answering more questions. The legal effect of asking for counsel depends on the setting; the <ExternalGuideLink href={sourceLinks.usCourtsMirandaSummary}>Miranda framework</ExternalGuideLink> specifically concerns custodial interrogation.
             </p>
           </GuideProse>
 
@@ -467,8 +503,11 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               },
               {
                 id: "devices",
-                label:
-                  "Treat phones, computers, cloud accounts, apps, passwords, and biometric unlocking requests as higher-risk issues.",
+                label: (
+                  <span>
+                    Treat <ExternalGuideLink href={sourceLinks.riley}>phones and digital devices</ExternalGuideLink>, cloud accounts, apps, passwords, and biometric unlocking requests as higher-risk issues.
+                  </span>
+                ),
               },
               {
                 id: "children",
@@ -534,7 +573,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               duties to answer, report, permit visits, submit to inspections, or
               comply with searches. But probation, parole, and supervised
               release are not identical, and the answer can depend on the
-              written condition, jurisdiction, suspicion requirement, scope,
+              <ExternalGuideLink href={sourceLinks.usCourtsSearchConditions}>written search condition</ExternalGuideLink>, jurisdiction, suspicion requirement, scope,
               actor, place, purpose, and whether police or another agency is
               involved.
             </p>
@@ -545,7 +584,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               dangerous in both directions. The safer question is narrower: what
               does the written condition say, who is acting under it, what place
               or item is being searched or inspected, and what reason or purpose
-              is being given?
+              is being given? For the deeper condition-by-condition workflow, use the SOLAR <InternalGuideLink to="/resources/supervision-conditions-guide">Supervision Conditions Survival Guide</InternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -619,7 +658,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               “Can we look around?” “We need to verify the address.” “Your
               officer said this is required.” “CPS needs to see the home.” “Your
               roommate said it is okay.” “We have paperwork.” These are not all
-              the same thing.
+              the same thing. <ExternalGuideLink href={sourceLinks.consentSearches}>Consent is one recognized Fourth Amendment pathway</ExternalGuideLink>, but it is not interchangeable with a warrant, court order, supervision condition, or emergency claim.
             </p>
 
             <p>
@@ -627,9 +666,9 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               adult child, landlord, employer, or other third party may have
               some authority over some spaces or property in some circumstances,
               but there is no safe universal rule that another person can always
-              consent to search everything. Common spaces, private bedrooms,
+              consent to search everything. <ExternalGuideLink href={sourceLinks.georgiaRandolph}>Co-occupant consent and objection can be fact-specific</ExternalGuideLink>. Common spaces, private bedrooms,
               locked containers, devices, work property, children’s property,
-              and cloud accounts can raise different questions.
+              and cloud accounts can raise different questions. For the broader constitutional framework, use SOLAR’s <InternalGuideLink to="/resources/know-your-rights">Your Rights at Every Stage</InternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -734,9 +773,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <p>
               Mixed-agency encounters are confusing by design or by necessity.
               A registry officer may arrive with police. Probation may arrive
-              with detectives. CPS may arrive with law enforcement. U.S.
-              Marshals or task-force officers may participate in sex-offender
-              registration investigations. The presence of one agency does not
+              with detectives. CPS may arrive with law enforcement. <ExternalGuideLink href={sourceLinks.usMarshalsSexOffenderInvestigations}>U.S. Marshals or task-force officers may participate in sex-offender registration investigations</ExternalGuideLink>. The presence of one agency does not
               automatically mean every person there has the same authority for
               every request.
             </p>
@@ -796,8 +833,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             title="Federal task-force caution"
           >
             <p>
-              The U.S. Marshals Service has specific sex-offender investigation
-              roles under federal law and works with state, local, tribal, and
+              The <ExternalGuideLink href={sourceLinks.usMarshalsSexOffenderInvestigations}>U.S. Marshals Service has specific sex-offender investigation roles</ExternalGuideLink> under federal law and works with state, local, tribal, and
               territorial authorities. That role should not be turned into a
               blanket assumption that every federal or task-force encounter
               authorizes entry, search, questioning, or seizure without looking
@@ -818,7 +854,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <p>
               CPS, DCF, DHS, child protective services, child welfare, family
               services, and dependency agencies use different names in different
-              places. Their authority usually comes from state, tribal, local,
+              places. <ExternalGuideLink href={sourceLinks.childWelfareHowSystemWorks}>The child welfare system is not a single entity</ExternalGuideLink>; authority usually comes from state, tribal, local,
               administrative, and family or dependency-court systems. CPS may
               request voluntary cooperation, ask to inspect a home, seek to
               interview a child, propose a safety plan, coordinate with police,
@@ -831,7 +867,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
               exposure. That does not mean the same legal answer applies in
               every state or every family. Safety plans, child interviews,
               parent-rights notices, emergency removals, registry-status risk
-              factors, and CPS/police coordination are state-specific issues.
+              factors, and CPS/police coordination are <ExternalGuideLink href={sourceLinks.childWelfareResources}>state-, territory-, and tribe-specific issues</ExternalGuideLink>. Use the Gateway’s <ExternalGuideLink href={sourceLinks.childWelfarePolicyLinks}>state and tribal law and policy links</ExternalGuideLink> to get closer to the controlling local source.
             </p>
 
             <p>
@@ -1107,7 +1143,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Documentation matters. But recording law varies by state, setting,
+              Documentation matters. But <ExternalGuideLink href={sourceLinks.rcfpRecordingGuide}>recording law varies by state and setting</ExternalGuideLink>,
               audio or video, public or private place, expectation of privacy,
               phone-call rules, and whether supervision or device restrictions
               apply. Do not rely on a static state recording-law chart unless it
@@ -1279,7 +1315,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
             <p>
               “The right kind of lawyer” may mean criminal defense counsel,
               public defender, supervision or revocation counsel, dependency or
-              family counsel, appellate or post-conviction counsel, legal aid,
+              family counsel, appellate or post-conviction counsel, <ExternalGuideLink href={sourceLinks.lscLegalAid}>civil legal aid</ExternalGuideLink>,
               or a lawyer familiar with registry issues in your state.
             </p>
           </GuideProse>
@@ -1351,7 +1387,7 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
           >
             <p>
               Asking for counsel can have different legal effects depending on
-              whether this is police questioning, supervision, registry
+              whether this is <ExternalGuideLink href={sourceLinks.usCourtsMirandaSummary}>custodial police questioning</ExternalGuideLink>, supervision, registry
               administration, CPS, family court, or another process. This
               language is meant to slow the moment down and preserve clarity; it
               is not a substitute for legal advice.
@@ -1430,11 +1466,11 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
                   "USMS role in Adam Walsh Act / sex-offender registration investigations.",
               },
               {
-                label: "Child Welfare Information Gateway: state statutes",
-                href: sourceLinks.childWelfareStateLaws,
+                label: "Child Welfare Information Gateway: state, territory, and tribal resources",
+                href: sourceLinks.childWelfareResources,
                 badge: "Official",
                 description:
-                  "State, territory, and tribal child-welfare statute lookup for CPS-specific authority questions.",
+                  "Search state, territory, and tribal child-welfare laws, policies, manuals, and agency resources for CPS-specific authority questions.",
               },
               {
                 label: "Child Welfare Information Gateway: state and tribal policy links",
@@ -1472,11 +1508,11 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
                   "National starting point for legal aid and public legal-help resources.",
               },
               {
-                label: "LawHelp.org",
-                href: sourceLinks.lawHelp,
+                label: "Legal Services Corporation: find legal aid",
+                href: sourceLinks.lscLegalAid,
                 badge: "Legal help",
                 description:
-                  "Legal-aid directory for state-specific help and self-help resources.",
+                  "Location-based finder for LSC-funded civil legal-aid organizations.",
               },
               {
                 label: "ABA lawyer referral directories",
@@ -1680,10 +1716,10 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
                   "Supports the national-level distinction between CPS systems and police systems.",
               },
               {
-                label: "Child Welfare Information Gateway: state statutes",
-                href: sourceLinks.childWelfareStateLaws,
+                label: "Child Welfare Information Gateway: state, territory, and tribal resources",
+                href: sourceLinks.childWelfareResources,
                 description:
-                  "Supports the warning that CPS entry, interviews, safety plans, and emergency authority are state-specific.",
+                  "Supports the warning that CPS entry, interviews, safety plans, and emergency authority are state-, territory-, and tribe-specific.",
               },
               {
                 label: "Child Welfare Information Gateway: state and tribal law and policy links",
@@ -1716,10 +1752,10 @@ export default function PoliceRegistryCPSEncountersGuide(): JSX.Element {
                   "Supports the legal-help escalation section.",
               },
               {
-                label: "LawHelp.org",
-                href: sourceLinks.lawHelp,
+                label: "Legal Services Corporation: find legal aid",
+                href: sourceLinks.lscLegalAid,
                 description:
-                  "Supports finding state-specific legal aid and self-help resources.",
+                  "Supports finding a local LSC-funded civil legal-aid organization.",
               },
               {
                 label: "ABA state lawyer referral directories",
