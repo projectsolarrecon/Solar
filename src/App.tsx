@@ -50,6 +50,7 @@ import FinancialPlanningGuide from './pages/resources/FinancialPlanningGuide';
 import FinancialSupportStrategies from './pages/resources/FinancialSupportStrategies';
 import ResourceGuideSandbox from './pages/resources/ResourceGuideSandbox';
 import RegistryComplianceVerificationGuide from './pages/resources/RegistryComplianceVerificationGuide';
+import PoliceRegistryCPSEncountersGuide from './pages/resources/PoliceRegistryCPSEncountersGuide';
 import LegislativeAdvocacyGuide from './pages/resources/LegislativeAdvocacyGuide';
 import HighProfileCasesStrangerDanger from './pages/blog/HighProfileCasesStrangerDanger';
 import FindingWorkAfterRegistry from './pages/blog/FindingWorkAfterRegistry';
@@ -170,6 +171,7 @@ function App() {
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/resource-guide-sandbox" element={<ResourceGuideSandbox />} />
               <Route path="/resources/registry-compliance-verification-guide" element={<RegistryComplianceVerificationGuide />} />
+              <Route path="/resources/police-registry-cps-encounters" element={<PoliceRegistryCPSEncountersGuide />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
               <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
               <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
