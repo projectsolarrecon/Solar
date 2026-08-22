@@ -170,6 +170,12 @@ function Resources() {
           link: "/resources/police-registry-cps-encounters"
         },
         {
+          name: "Scams, Extortion, Doxxing & Harassment Survival Guide",
+          type: "Guide + Checklist",
+          description: "A practical response guide for fake official calls, payment scams, registry-removal schemes, doxxing, impersonation, stalking, threats, evidence preservation, account security, and safe reporting.",
+          link: "/resources/scams-extortion-doxxing-harassment-survival-guide"
+        },
+        {
           name: "Travel Notification & Temporary Presence Checklist",
           type: "Checklist",
           description: "A practical checklist for short trips, overnight stays, interstate visits, business travel, and what to verify before leaving.",
