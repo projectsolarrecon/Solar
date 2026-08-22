@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import SEO from "../../components/SEO";
 import ShareBar from "../../components/solar/ShareBar";
@@ -8,186 +9,38 @@ import {
   GuideCallout,
   GuideIntro,
   QuickStartPanel,
+  GuideChecklist,
   ScriptBox,
   OfflineOptions,
-  DocumentPacket,
   VerifyBeforeActing,
-  CommonMistakes,
   OverviewCards,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
-  RoleGuidanceGrid,
-  TimelineGuidanceGrid,
-  DoDontJudgment,
-  SoftDivider,
 } from "../../components/solar";
 
-const lastChecked = "June 28, 2026";
-
 const sourceLinks = {
-  conditionsOverview:
+  smartCurrentLaw: "https://www.smart.ojp.gov/sorna/current-law",
+  smartFaqs: "https://www.smart.ojp.gov/faqs",
+  smartInPerson:
+    "https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification",
+  smartImplementation:
+    "https://smart.ojp.gov/sorna/current-law/implementation-documents",
+  nsopwAllRegistries: "https://www.nsopw.gov/all-registries",
+  dojSorna:
+    "https://www.justice.gov/criminal/criminal-ceos/sex-offender-registration-and-notification-act-sorna",
+  usCourtsConditions:
     "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
-  authority:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-1-authority-probation-and-supervised-release-conditions",
-  standardConditions:
-    "https://www.uscourts.gov/appendix-standard-condition-language-probation-and-supervised-release-conditions",
-  travel:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-2-leaving-judicial-district-probation-and-supervised",
-  search:
+  usCourtsSearch:
     "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-search-and-seizure-probation-and-supervised-release",
-  association:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-association-and-contact-restrictions-probation-and",
-  revocations:
-    "https://www.uscourts.gov/data-news/judiciary-news/2022/06/14/just-facts-revocations-failure-comply-supervision-conditions-and-sentencing-outcomes",
-  probationPretrial:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services",
-  pretrial:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/pretrial-services",
-  distinctions:
-    "https://www.sdd.uscourts.gov/content/what-difference-between-probation-parole-and-supervised-release",
-  sorna:
-    "https://smart.ojp.gov/sorna",
-  smartFaq:
-    "https://smart.ojp.gov/faqs",
-  nsopw: "https://www.nsopw.gov/",
-  bopNotice: "https://www.bop.gov/policy/forms/BP_A0648.pdf",
-  legalAid: "https://www.usa.gov/legal-aid",
+  icaosReporting:
+    "https://interstatecompact.org/icaos-rules/chapter/ch3/rule-3-103-3",
+  icaosTransfer:
+    "https://interstatecompact.org/icaos-rules/chapter/ch3/rule-3-101-3",
+  usaLegalAid: "https://www.usa.gov/legal-aid",
+  usMarshalsSexOffenderInvestigations:
+    "https://www.usmarshals.gov/sites/default/files/media/document/2022-Sex-Offender-investigations.pdf",
 };
-
-const sourceList = [
-  {
-    label: "U.S. Courts — Overview of Probation and Supervised Release Conditions",
-    href: sourceLinks.conditionsOverview,
-    description:
-      "Supports the guide’s framing that supervision conditions set the parameters of federal probation and supervised release and are used by probation officers to monitor compliance.",
-  },
-  {
-    label: "U.S. Courts — Authority for Probation and Supervised Release Conditions",
-    href: sourceLinks.authority,
-    description:
-      "Supports the distinction between court authority, sentencing conditions, and officer implementation in federal probation and supervised release.",
-  },
-  {
-    label: "U.S. Courts — Standard Condition Language",
-    href: sourceLinks.standardConditions,
-    description:
-      "Supports examples of standard federal supervision topics, including reporting, travel, employment, officer visits, truthful answers, and related conditions.",
-  },
-  {
-    label: "U.S. Courts — Leaving the Judicial District",
-    href: sourceLinks.travel,
-    description:
-      "Supports the travel-permission warning that leaving an approved district may require advance permission from the court or probation officer.",
-  },
-  {
-    label: "U.S. Courts — Search and Seizure Condition",
-    href: sourceLinks.search,
-    description:
-      "Supports careful language about federal search conditions, reasonable suspicion, reasonable time, and reasonable manner when that condition applies.",
-  },
-  {
-    label: "U.S. Courts — Association and Contact Restrictions",
-    href: sourceLinks.association,
-    description:
-      "Supports the guide’s warning that contact restrictions may apply to victims, minors, co-defendants, or other people connected to case-specific risk factors.",
-  },
-  {
-    label: "U.S. Courts — Revocations for Failure to Comply with Supervision Conditions",
-    href: sourceLinks.revocations,
-    description:
-      "Supports the explanation that technical violations can include conduct such as failure to report, failed drug testing, treatment refusal, or possession of contraband.",
-  },
-  {
-    label: "U.S. Courts — Probation and Pretrial Services",
-    href: sourceLinks.probationPretrial,
-    description:
-      "Supports the guide’s general description of federal probation and pretrial services officers as court personnel who investigate and supervise people charged with or convicted of federal crimes.",
-  },
-  {
-    label: "U.S. Courts — Pretrial Services",
-    href: sourceLinks.pretrial,
-    description:
-      "Supports the plain-language distinction between pretrial supervision and post-conviction supervision.",
-  },
-  {
-    label: "U.S. District Court, District of South Dakota — Probation, Parole, and Supervised Release",
-    href: sourceLinks.distinctions,
-    description:
-      "Supports the short distinction between probation, parole, and supervised release.",
-  },
-  {
-    label: "DOJ SMART Office — SORNA",
-    href: sourceLinks.sorna,
-    description:
-      "Supports the guide’s explanation that SORNA sets minimum national standards for sex offender registration and notification.",
-  },
-  {
-    label: "DOJ SMART Office — Registration FAQs",
-    href: sourceLinks.smartFaq,
-    description:
-      "Supports the statement that SORNA requires registration and keeping registration current in each jurisdiction where a person lives, works, or goes to school.",
-  },
-  {
-    label: "Dru Sjodin National Sex Offender Public Website",
-    href: sourceLinks.nsopw,
-    description:
-      "Supports the guide’s description of NSOPW as a DOJ-linked national search portal that draws from state, territorial, and tribal registry systems.",
-  },
-  {
-    label: "Bureau of Prisons — Sex Offender Registration and Treatment Notification Form",
-    href: sourceLinks.bopNotice,
-    description:
-      "Supports the guide’s warning that people leaving federal custody may receive registration-related notice before release, but local registration agencies still control local reporting steps.",
-  },
-  {
-    label: "USA.gov — Find Legal Aid",
-    href: sourceLinks.legalAid,
-    description:
-      "Supports the legal-help resource link for people who need free or low-cost legal assistance.",
-  },
-];
-
-const resourceLinks = [
-  {
-    label: "U.S. Courts supervision condition overview",
-    href: sourceLinks.conditionsOverview,
-    badge: "Official",
-    description:
-      "Federal overview of probation and supervised release conditions, including standard and special conditions.",
-  },
-  {
-    label: "Federal monthly supervision reporting system",
-    href: "https://supervision.uscourts.gov/",
-    badge: "Federal",
-    description:
-      "Electronic reporting portal used in some federal districts. Use only if your officer gives you access and tells you to report this way.",
-  },
-  {
-    label: "DOJ SMART Office registration FAQs",
-    href: sourceLinks.smartFaq,
-    badge: "Official",
-    description:
-      "Federal FAQ explaining general SORNA registration concepts. Your state, local, tribal, or territorial registry office may still have additional rules.",
-  },
-  {
-    label: "NSOPW national registry portal",
-    href: sourceLinks.nsopw,
-    badge: "DOJ",
-    description:
-      "National public search portal that pulls from state, territorial, and tribal registry systems. It is not a substitute for asking your registry office about your own duties.",
-  },
-  {
-    label: "USA.gov legal aid finder",
-    href: sourceLinks.legalAid,
-    badge: "Legal help",
-    description:
-      "Starting point for finding free or low-cost legal help if you need advice about a violation, modification, travel, housing, or registration problem.",
-  },
-];
-
-const linkClass =
-  "font-semibold text-slate-900 underline decoration-slate-400 underline-offset-4 hover:text-slate-700";
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -195,9 +48,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Supervision Conditions Survival Guide | The SOLAR Project"
-        description="Plain-language guide to probation, parole, supervised release, treatment rules, registry overlap, searches, violations, documentation, and communication with officers."
-        keywords="probation, parole, supervised release, supervision conditions, registry compliance, treatment rules, violation, reentry, documentation, SOLAR Project"
+        title="Registry Compliance & Verification Survival Guide | The SOLAR Project"
+        description="A practical SOLAR guide for verifying registry duties, calendaring deadlines, reporting changes, saving proof of what you did, and handling unclear or disputed instructions."
+        keywords="registry compliance, sex offense registry, registration verification, reporting duties, supervision conditions, proof of reporting, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -214,13 +67,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Supervision Conditions Survival Guide
+            Registry Compliance & Verification Survival Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Plain-language guide to probation, parole, supervised release,
-            treatment rules, searches, violations, documentation, and
-            communication with officers.
+            A practical system for figuring out what may need to be reported,
+            who controls the rule, how to verify the requirement, how to
+            calendar deadlines, and how to save proof of what you did.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -247,1137 +100,1506 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🧭">
+        <GuideIntro title="Start Here: The Compliance Survival Loop" icon="🧭">
           <p>
-            Supervision can feel like trying to follow several rulebooks at the
-            same time. That is often exactly what is happening.
+            Registry rules can feel like a maze, especially when instructions
+            are verbal, offices are closed, portals fail, or different people
+            give different answers. This guide gives you a steady operating
+            system: verify the rule, calendar the deadline, report through the
+            required channel, document what happened, preserve proof, and resolve
+            conflicts carefully.
           </p>
 
           <p>
-            You may have conditions from a court, instructions from a probation
-            or parole officer, rules from treatment, and separate registry duties
-            from a sheriff, police department, state registry unit, or tribal
-            authority. Those systems may overlap, but they are not the same.
-          </p>
-
-          <p>
-            This guide is not legal advice. It is a survival tool: read the
-            paperwork, identify who has authority, verify before acting, save
-            proof, communicate calmly, and get help early when the risk is
-            serious.
+            This guide is not a replacement for your state law, tribal law,
+            territorial rule, court order, supervision condition, registry
+            notice, or legal advice. It is a practical survival guide for
+            building records and reducing avoidable risk while you verify the
+            rule that applies to your exact situation.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If you are newly released, newly assigned conditions, or worried about a violation"
-          subtitle="Start with the steps that reduce confusion and prevent avoidable damage."
+          title="If you are worried about a deadline or reporting duty"
+          subtitle="Use this before guessing, waiting, or relying on memory."
           icon="⚡"
           urgentActions={[
-            <span>
-              Gather your judgment, release papers, written conditions, registry
-              instructions, treatment contract, safety plan, and officer contact
-              information.
+            <span key="verify">
+              Identify the exact duty you are worried about: address, work,
+              school, travel, online identifier, vehicle, temporary location, or
+              something else.
             </span>,
-            <span>
-              Do not guess about travel, housing, internet use, devices,
-              employment, contact with minors, contact with protected people, or
-              registry deadlines.
+            <span key="authority">
+              Find the authority that controls that duty in your jurisdiction
+              and ask for the deadline, method, and form or written instruction.
             </span>,
-            <span>
-              If you think you missed something, report the problem calmly and
-              quickly. Hiding, deleting, disappearing, or waiting usually makes
-              the risk worse.
+            <span key="calendar">
+              Put the deadline and follow-up reminders somewhere you will
+              actually see them.
             </span>,
           ]}
           nextActions={[
-            <span>
-              Make one paper or digital supervision folder and start a dated log
-              of every instruction, appointment, approval, denial, payment, and
-              attempted contact.
+            <span key="report">
+              Report through the required channel, not just the easiest or most
+              familiar channel.
             </span>,
-            <span>
-              Ask narrow questions: “Which rule controls this?” “Who can approve
-              it?” “Can I get that in writing?”
+            <span key="save">
+              Save proof of what you did: receipt, stamped copy, screenshot,
+              confirmation number, email, certified-mail record, or call notes.
             </span>,
-            <span>
-              Contact counsel or legal aid before making statements about an
-              alleged violation, new law-enforcement contact, search dispute, or
-              treatment discharge.
+            <span key="clarify">
+              If instructions conflict, document both answers and keep asking
+              which authority controls the exact duty.
             </span>,
           ]}
           reminder={
             <span>
-              The goal is not to win an argument in the moment. The goal is to
-              stay safe, stay reachable, document what happened, and avoid making
-              the situation harder to fix.
+              A saved record can help show what you did and what you were told.
+              It does not automatically prove that every legal requirement was
+              satisfied.
             </span>
           }
         />
 
-        <GuideSectionHeader
-          id="rulebooks"
-          number="1"
-          title="You may have more than one rulebook"
-          subtitle="Probation, parole, supervised release, treatment, and registry duties can overlap without being the same authority."
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "Step 1",
+              title: "Verify",
+              icon: "🔎",
+              tone: "legal",
+              description:
+                "Ask which authority controls this exact duty, where the rule is written, what deadline applies, and what method is required.",
+            },
+            {
+              eyebrow: "Step 2",
+              title: "Calendar",
+              icon: "📅",
+              tone: "info",
+              description:
+                "Build reminder layers around the deadlines that apply to you. Do not rely on memory or one alert.",
+            },
+            {
+              eyebrow: "Step 3",
+              title: "Report",
+              icon: "📨",
+              tone: "success",
+              description:
+                "Use the required reporting channel and ask for a receipt, confirmation, or written record when possible.",
+            },
+            {
+              eyebrow: "Step 4",
+              title: "Document",
+              icon: "📝",
+              tone: "neutral",
+              description:
+                "Write down who you contacted, what you asked, what you were told, and what next step or deadline was given.",
+            },
+            {
+              eyebrow: "Step 5",
+              title: "Preserve proof",
+              icon: "🗂️",
+              tone: "reminder",
+              description:
+                "Keep a paper and/or digital packet showing proof of appearance, proof of submission, proof of attempt, and instructions received.",
+            },
+            {
+              eyebrow: "Step 6",
+              title: "Resolve conflicts carefully",
+              icon: "⚖️",
+              tone: "warning",
+              description:
+                "When answers conflict or a deadline may be disputed, avoid oversharing and seek legal help before making statements that could create risk.",
+            },
+          ]}
         />
 
-        <GuideSectionCard>
-          <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="Core idea: separate rulebooks can all apply at once"
-          >
-            <p>
-              <strong>Registry is separate.</strong> Supervision, registry,
-              treatment, court orders, and parole-board instructions may all
-              create obligations. One office knowing about a change does not
-              always mean every other office has received the notice it requires.
-            </p>
-          </GuideCallout>
-
-          <GuideProse>
-            <p>
-              People often use “probation,” “parole,” and “supervision” as if
-              they mean the same thing. In real life, the distinction matters.
-              The authority, paperwork, decision-maker, violation process, and
-              person who can approve exceptions may be different. A federal court
-              has a useful plain-language summary of{" "}
-              <a
-                href={sourceLinks.distinctions}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                the difference between probation, parole, and supervised release
-              </a>
-              .
-            </p>
-
-            <p>
-              <strong>Probation</strong> usually means a court allowed someone to
-              serve all or part of a sentence in the community instead of jail or
-              prison. <strong>Parole</strong> usually means someone was released
-              from prison before the full sentence ended and is supervised by a
-              parole agency or parole board. <strong>Federal supervised release</strong>{" "}
-              usually starts after a federal prison sentence; it is not the same
-              as federal parole. <strong>Pretrial release</strong> happens before
-              conviction or final case outcome.
-            </p>
-
-            <p>
-              Treatment rules and registry duties may run alongside supervision,
-              but they are not automatically the same thing. The{" "}
-              <a
-                href={sourceLinks.conditionsOverview}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                U.S. Courts’ federal supervision condition overview
-              </a>{" "}
-              explains how conditions shape federal supervision. The{" "}
-              <a
-                href={sourceLinks.smartFaq}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                DOJ SMART Office registration FAQs
-              </a>{" "}
-              explain registration duties at a national-framework level. Those
-              are related systems, not one single rulebook.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="warning" icon="🚦" title="The practical rule">
-            <p>
-              Permission from one system may not satisfy another system. Your
-              officer might approve travel, but the registry office may still
-              require notice. The registry office might accept an address update,
-              but your officer may still need to approve where you live. A
-              treatment provider might allow something, but your court conditions
-              may still forbid it.
-            </p>
-          </GuideCallout>
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Court sentence",
-                title: "Probation",
-                icon: "🏛️",
-                tone: "legal",
-                description:
-                  "Community supervision ordered by a court, often instead of some or all incarceration. The sentencing court usually remains important.",
-              },
-              {
-                eyebrow: "Release from prison",
-                title: "Parole",
-                icon: "🗝️",
-                tone: "reentry",
-                description:
-                  "Community supervision after release from prison under a parole agency, parole board, or state correctional authority.",
-              },
-              {
-                eyebrow: "Federal post-prison term",
-                title: "Supervised release",
-                icon: "📋",
-                tone: "info",
-                description:
-                  "A federal supervision term imposed by the court and served after prison. U.S. probation officers supervise it.",
-              },
-              {
-                eyebrow: "Before conviction",
-                title: "Pretrial release",
-                icon: "⏳",
-                tone: "warning",
-                description:
-                  "Release rules while a case is still pending. Conditions may include reporting, travel limits, no-contact orders, or monitoring.",
-              },
-              {
-                eyebrow: "Program rules",
-                title: "Treatment",
-                icon: "🧠",
-                tone: "research",
-                description:
-                  "Provider rules, treatment contracts, group expectations, safety plans, assignments, payment rules, and discharge standards.",
-              },
-              {
-                eyebrow: "Separate reporting system",
-                title: "Registry duties",
-                icon: "📍",
-                tone: "urgent",
-                description:
-                  "Registration rules are separate from supervision even when they overlap. The registry agency may be a sheriff, police department, state unit, or tribal office.",
-              },
-            ]}
-          />
-
-                    <VerifyBeforeActing
-            title="When systems overlap, verify the authority"
-            whoToAsk={
-              <span>
-                Ask the authority that controls the specific rule: officer,
-                court clerk, attorney, treatment provider, registry office,
-                parole board, or pretrial services officer.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “Which rulebook applies to this exact action? Who can approve
-                it? Is there a form, deadline, or written approval I need before
-                I act?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save the written condition, agency name, person you spoke with,
-                date, time, phone number, email, form, approval, denial, and any
-                confirmation number.
-              </span>
-            }
-          />
-        </GuideSectionCard>
+        <GuideCallout tone="legal" icon="⚖️" title="Important legal boundary">
+          <p>
+            Registry duties, supervision duties, court conditions, and local
+            office procedures can overlap, but they are not always the same
+            rulebook. When the stakes are high, verify the exact rule with the
+            authority responsible for that duty and save the answer if possible.
+          </p>
+        </GuideCallout>
 
         <GuideSectionHeader
-          id="timeline"
+          id="who-controls"
           number="2"
-          title="What changes over time"
-          subtitle="Supervision risk is not the same on day one, month one, routine supervision, or after a warning."
+          title="Who Controls This Rule?"
+          subtitle="The safest question is not “which kind of official?” It is “which authority controls this exact duty, and where is that documented?”"
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Supervision is not just a list of rules. It is a sequence of
-              deadlines, appointments, approvals, reporting habits, treatment
-              expectations, and documentation. The first few days are usually
-              about getting oriented. Later, risk often comes from ordinary life
-              changes that nobody planned for.
+              A registry office, sheriff’s office, police department, state
+              police unit, tribal office, territory agency, court, or supervision
+              officer may all matter in different situations. But do not assume
+              they are separate in every place, and do not assume that the person
+              who answers the phone controls every rule.
+            </p>
+
+            <p>
+              Start by naming the specific duty. Then ask who controls that duty
+              in that jurisdiction, where the duty is written, what deadline
+              applies, what method is required, and what proof you can receive or
+              keep.
             </p>
           </GuideProse>
-
-          <TimelineGuidanceGrid
-            title="A safer supervision timeline"
-            stages={[
-              {
-                stage: "First 72 hours",
-                icon: "🕒",
-                whatChanges:
-                  "Reporting deadlines, release instructions, housing approval, medication, transportation, registry instructions, and initial officer contact may all happen quickly.",
-                whatToDo:
-                  "Report as instructed, save every paper, write down names and times, confirm where you are allowed to stay, and ask before leaving the approved area.",
-              },
-              {
-                stage: "First month",
-                icon: "🗂️",
-                whatChanges:
-                  "You may receive reporting instructions, treatment intake, employment expectations, device rules, drug testing, polygraph scheduling, registration appointments, and home visits.",
-                whatToDo:
-                  "Build your supervision folder, make a calendar, ask how to contact your officer after hours, and clarify which changes require advance approval.",
-              },
-              {
-                stage: "Routine supervision",
-                icon: "📆",
-                whatChanges:
-                  "Risk often comes from ordinary life changes: work schedule, address, phone, internet, family contact, transportation, money, treatment fees, or missed messages.",
-                whatToDo:
-                  "Keep reporting, update changes early, save proof, attend treatment, respond calmly, and do not let small confusion become silence.",
-              },
-              {
-                stage: "Before a major change",
-                icon: "🚦",
-                whatChanges:
-                  "Travel, moving, new work, new household members, device changes, online accounts, dating, school events, and contact with minors can trigger several rulebooks.",
-                whatToDo:
-                  "Ask before acting. Confirm supervision approval, registry reporting, treatment rules, court orders, and any local restrictions.",
-              },
-              {
-                stage: "After a warning or alleged violation",
-                icon: "⚠️",
-                whatChanges:
-                  "Statements, texts, deleted content, missed appointments, treatment discharge, new police contact, or angry arguments may be used later.",
-                whatToDo:
-                  "Stay reachable, preserve records, write a factual timeline, avoid arguing, and contact counsel before making detailed admissions or signing anything you do not understand.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="reminder" icon="📝" title="Small records matter">
-            <p>
-              A dated note made the same day is often more useful than a vague
-              memory weeks later. Write down what happened while it is fresh:
-              who said what, what you asked, what answer you received, and what
-              you did next.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="high-risk"
-          number="3"
-          title="High-risk areas to verify before acting"
-          subtitle="These are the places where guessing can create supervision, treatment, registry, or court problems."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              <strong>When the consequence could be a violation, do not rely on
-              vibes, memory, or someone else’s case.</strong> Check the written
-              condition, ask the authority that controls the decision, and save
-              proof of the answer. U.S. Courts publishes{" "}
-              <a
-                href={sourceLinks.standardConditions}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                standard federal condition language
-              </a>{" "}
-              showing how ordinary topics like reporting, work, travel, officer
-              visits, and truthful answers can become supervision requirements.
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>
-                Read the exact written condition before relying on memory or
-                someone else’s experience.
-              </span>,
-              <span>
-                Ask for permission before travel, moving, changing jobs, changing
-                devices, adding online accounts, or changing household members.
-              </span>,
-              <span>
-                Report problems early: transportation failures, illness, job
-                changes, payment issues, missed calls, police contact, or
-                treatment conflicts.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not assume registry reporting is handled just because your
-                officer knows about the change.
-              </span>,
-              <span>
-                Do not delete messages, apps, accounts, browser history, or files
-                after a question, search, warning, or investigation begins.
-              </span>,
-              <span>
-                Do not contact protected people, alleged victims, witnesses,
-                children, or restricted family members unless the written rules
-                and required approvals clearly allow it.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                If a rule feels unreasonable, confusing, impossible, or in
-                conflict with another rule, document the conflict and ask counsel
-                about modification instead of silently ignoring it.
-              </span>,
-              <span>
-                If an officer gives verbal permission, follow the instruction,
-                but make a dated note and ask whether you can confirm it by text,
-                email, portal message, or written travel pass.
-              </span>,
-            ]}
-          />
-
-          <SoftDivider label="Common verification topics" />
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                title: "Travel",
-                icon: "🧳",
-                tone: "warning",
-                description: (
-                  <span>
-                    Leaving a district, county, state, or approved area may
-                    require officer, court, parole, treatment, and registry
-                    steps. For federal supervision, U.S. Courts explains the
-                    condition about{" "}
-                    <a
-                      href={sourceLinks.travel}
-                      className={linkClass}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      leaving the judicial district
-                    </a>
-                    .
-                  </span>
-                ),
-              },
-              {
-                title: "Housing",
-                icon: "🏠",
-                tone: "legal",
-                description:
-                  "An address may need approval from supervision and separate registration with the registry office. Local restrictions can also matter.",
-              },
-              {
-                title: "Work",
-                icon: "🛠️",
-                tone: "info",
-                description:
-                  "Job duties, location, schedule, minors, internet use, travel, licensing, and disclosure rules may all affect approval.",
-              },
-              {
-                title: "Devices and internet",
-                icon: "💻",
-                tone: "privacy",
-                description:
-                  "Phones, tablets, smart TVs, gaming systems, social media, cloud accounts, work devices, and monitoring software can create risk.",
-              },
-              {
-                title: "Contact rules",
-                icon: "🚧",
-                tone: "urgent",
-                description: (
-                  <span>
-                    No-contact orders, minor-contact rules, family court orders,
-                    treatment safety plans, and supervision conditions can
-                    overlap. U.S. Courts separately discusses federal{" "}
-                    <a
-                      href={sourceLinks.association}
-                      className={linkClass}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      association and contact restrictions
-                    </a>
-                    .
-                  </span>
-                ),
-              },
-              {
-                title: "Treatment",
-                icon: "🧠",
-                tone: "research",
-                description:
-                  "Treatment attendance, assignments, payment, group behavior, polygraphs, safety plans, and discharge rules can affect supervision.",
-              },
-            ]}
-          />
 
           <VerifyBeforeActing
-            whoToAsk={
-              <span>
-                Start with your supervising officer for supervision questions,
-                the registry office for registration questions, treatment staff
-                for program rules, and counsel for legal-risk questions.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “I am trying to avoid a violation. Before I do this, do I need
-                approval, notice, a form, a travel pass, a registry update, or
-                treatment permission?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save written approvals, screenshots, mailed forms, certified
-                mail receipts, portal confirmations, travel passes, appointment
-                cards, treatment receipts, and notes from phone calls.
-              </span>
-            }
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="communication"
-          number="4"
-          title="Communicating with officers and treatment providers"
-          subtitle="Calm, narrow communication is usually safer than arguing, oversharing, disappearing, or guessing."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              <strong>You do not need perfect words. You need clear words.</strong>{" "}
-              The safest communication is usually short, factual, respectful,
-              and focused on the next required step.
-            </p>
-
-            <p>
-              Do not turn every message into a legal argument. Do not confess to
-              things you do not understand. Do not threaten, insult, or debate in
-              writing. Ask the practical question, document the answer, and get
-              legal advice when the issue could become a violation.
-            </p>
-          </GuideProse>
-
-          <ScriptBox
-            title="Ask your officer for clarification"
-            tone="neutral"
-            context="Use this when you are unsure what a condition requires."
-            script={`Hello [Officer Name], I am trying to make sure I follow my conditions correctly.\n\nMy question is: [short question].\n\nWhich condition or instruction controls this, and do I need written approval before I act?\n\nThank you. I am saving this with my supervision records.`}
+            whoToAsk="The office or authority responsible for the exact duty you are trying to satisfy: the registering agency, court, supervision officer, compact office, tribal office, territory agency, or another official source."
+            whatToAsk="Ask: Which authority controls this requirement? Where is it written? What deadline applies? What method is required? Is there a form, portal, appointment, receipt, or written confirmation?"
+            whatToSave="Save the source of the answer, the date, the name or department, the phone number or email, the rule or form cited, and any receipt or written instruction."
           />
 
-          <ScriptBox
-            title="Ask for written confirmation after verbal permission"
-            tone="legal"
-            context="Use this after a phone call or office conversation where you received an instruction or approval."
-            script={`Hello [Officer Name], thank you for speaking with me today.\n\nMy notes say you told me: [short summary of instruction or approval].\n\nI plan to follow that instruction unless I hear otherwise. Could you please confirm whether my notes are accurate?\n\nThank you.`}
-          />
-
-          <ScriptBox
-            title="Report a problem before it becomes silence"
-            tone="warning"
-            context="Use this when transportation, illness, work, money, or an emergency affects an appointment or requirement."
-            script={`Hello [Officer/Treatment Provider], I need to report a problem right away.\n\n[Briefly describe the problem: transportation failed, illness, work schedule, family emergency, payment issue, etc.]\n\nI am not trying to miss or avoid the requirement. What is the next step you want me to take, and how should I document it?`}
-          />
-
-          <ScriptBox
-            title="Ask a registry office a narrow question"
-            tone="urgent"
-            context="Use this when a move, job, school, vehicle, online identifier, travel, or temporary stay may trigger registry reporting."
-            script={`Hello, my name is [Name]. I am trying to understand my registration duties before I act.\n\nThe situation is: [short description].\n\nDo I need to report this in person, by phone, online, or with a form? What is the deadline, and can I get a receipt or written confirmation after I report it?`}
-          />
-
-          <GuideCallout tone="privacy" icon="🔒" title="Assume messages may be saved">
-            <p>
-              Texts, emails, portal messages, voicemails, screenshots, and
-              treatment notes may later matter. Write like a judge, officer,
-              attorney, or hearing officer could read the message out loud.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="documents"
-          number="5"
-          title="Build a supervision folder"
-          subtitle="Documentation turns confusion into a record. It also helps attorneys, family, officers, and treatment providers understand what happened."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              <strong>Your folder is not just paperwork.</strong> It is your
-              memory, your proof of effort, and your best way to help an attorney
-              or advocate understand what happened. Keep it simple enough that
-              you can actually maintain it.
-            </p>
-          </GuideProse>
-
-          <DocumentPacket
-            title="Documents and proof to save"
-            intro={
-              <span>
-                Keep a paper folder if possible. Use a digital backup only if
-                your device and internet rules allow it.
-              </span>
-            }
-            categories={[
+          <GuideChecklist
+            id="authority-map"
+            title="Authority map: questions to answer before relying on an instruction"
+            columns={1}
+            items={[
               {
-                title: "Core supervision papers",
-                items: [
-                  <span>
-                    Judgment, sentencing order, release papers, bond order, or
-                    parole certificate.
-                  </span>,
-                  <span>Standard and special conditions of supervision.</span>,
-                  <span>
-                    Officer name, phone number, email, office address,
-                    after-hours instructions, and reporting method.
-                  </span>,
-                  <span>
-                    Modification orders, violation paperwork, summonses,
-                    warrants, hearing notices, and attorney information.
-                  </span>,
-                ],
+                id: "exact-duty",
+                label:
+                  "What exact duty am I trying to satisfy: registration, verification, address change, employment, school, travel, online identifier, vehicle, temporary location, supervision approval, or something else?",
               },
               {
-                title: "Registry and treatment papers",
-                items: [
-                  <span>
-                    Registry instructions, appointment receipts, address updates,
-                    travel notices, and confirmation numbers.
-                  </span>,
-                  <span>
-                    Treatment contract, group rules, safety plan, payment
-                    records, assignments, attendance notes, and discharge
-                    warnings.
-                  </span>,
-                  <span>
-                    Polygraph appointment notices, instructions, and any written
-                    explanation of consequences for missed or incomplete testing.
-                  </span>,
-                ],
+                id: "controls-duty",
+                label:
+                  "Which authority controls this exact duty in this jurisdiction?",
               },
               {
-                title: "Everyday proof",
-                items: [
-                  <span>
-                    Appointment cards, bus receipts, gas receipts, paystubs, work
-                    schedules, medical notes, prescription records, and proof of
-                    job search.
-                  </span>,
-                  <span>
-                    Copies of emails, texts, portal messages, letters, certified
-                    mail receipts, screenshots, and written approvals.
-                  </span>,
-                  <span>
-                    A dated call log with who you called, when you called, what
-                    number you used, who answered, and what they said.
-                  </span>,
-                ],
+                id: "written-source",
+                label:
+                  "Where is the rule written: statute, regulation, agency form, registry notice, court order, supervision condition, compact instruction, or portal instruction?",
               },
               {
-                title: "Searches, warnings, and disputes",
-                items: [
-                  <span>
-                    Search date, time, officers present, areas searched, items
-                    taken, receipts, device names, passwords requested, and
-                    witnesses.
-                  </span>,
-                  <span>
-                    Warnings, alleged violations, missed appointments, treatment
-                    conflicts, failed tests, police contact, or emergency events.
-                  </span>,
-                  <span>
-                    Your own factual timeline written as soon as possible,
-                    without guesses, insults, or legal conclusions.
-                  </span>,
-                ],
+                id: "required-method",
+                label:
+                  "What method is required: in person, portal, phone, email, mail, appointment, written form, or another method?",
+              },
+              {
+                id: "proof-available",
+                label:
+                  "What proof can I keep: receipt, stamped copy, confirmation number, email, screenshot, certified-mail record, or contact log?",
               },
             ]}
           />
 
-          <GuideCallout tone="info" icon="✍️" title="Use facts, not arguments">
-            <p>
-              A good note says: “June 4, 2:15 p.m., called registry office,
-              spoke with Ms. R., asked about temporary work in County B, was told
-              to appear in person within [deadline].” A weaker note says:
-              “They said I was fine.” Details matter.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="searches"
-          number="6"
-          title="Searches, devices, and home visits"
-          subtitle="Search rules are highly condition-specific. Do not rely on generic advice."
-        />
-
-        <GuideSectionCard>
           <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="This section is about safety and documentation, not deciding whether a search is lawful"
+            tone="reminder"
+            icon="🧩"
+            title="Registry duties and supervision duties may overlap"
           >
             <p>
-              Search law can turn on your exact condition, jurisdiction, facts,
-              and court history. This guide does not tell you whether a search is
-              lawful. It helps you avoid making the moment worse, preserve
-              details, and raise legal issues through counsel.
-            </p>
-          </GuideCallout>
-
-          <GuideProse>
-            <p>
-              Some people under supervision have search conditions. Some do not.
-              Some search conditions apply to a person, home, vehicle, papers,
-              computers, phones, online accounts, or other property. Some
-              require reasonable suspicion. Some are broader. The words in your
-              actual condition matter. U.S. Courts provides a federal reference
-              page on the{" "}
-              <a
-                href={sourceLinks.search}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                search and seizure condition
-              </a>{" "}
-              when that condition applies.
-            </p>
-
-            <p>
-              If officers arrive for a visit or search, the safest immediate
-              posture is usually to stay calm, avoid physical resistance, avoid
-              arguing in the doorway, and document what happened afterward. That
-              does not mean every search is lawful or that you give up legal
-              arguments. It means you preserve safety first and legal arguments
-              through counsel.
-            </p>
-          </GuideProse>
-
-          <DoDontJudgment
-            dos={[
-              <span>Read your exact search condition before there is a dispute.</span>,
-              <span>
-                Keep required devices, apps, accounts, and monitoring software
-                available as instructed.
-              </span>,
-              <span>
-                Ask calmly what authority or condition the search is based on if
-                it is safe to ask.
-              </span>,
-              <span>
-                Write down what happened immediately afterward and contact
-                counsel if there is a dispute.
-              </span>,
-            ]}
-            donts={[
-              <span>
-                Do not physically block, threaten, grab, delete, destroy, hide,
-                or run.
-              </span>,
-              <span>
-                Do not invite unnecessary conflict by arguing about
-                constitutional law in the moment.
-              </span>,
-              <span>
-                Do not assume a roommate, spouse, child, or guest understands
-                what your conditions allow.
-              </span>,
-            ]}
-            judgment={[
-              <span>
-                If a device belongs to an employer, family member, child, or
-                roommate, ask counsel and your officer in advance how to handle
-                access, monitoring, and privacy boundaries.
-              </span>,
-              <span>
-                If you are required to disclose passwords or accounts, ask for
-                the instruction in writing and keep a list only in a way that
-                complies with your monitoring and privacy rules.
-              </span>,
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="👪" title="For households">
-            <p>
-              Families should not hide devices, create secret accounts, route
-              internet access around monitoring, or become the person’s private
-              workaround. If a household device, child’s device, work laptop, or
-              shared account could create risk, ask for rules in writing before
-              using it.
+              A supervision officer may give instructions that matter to your
+              supervision, while a registry agency may control a separate
+              registration duty. If you are supervised, ask both questions when
+              needed: “What does my supervision condition require?” and “What
+              does the registry rule require?”
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="treatment"
-          number="7"
-          title="Treatment rules and discharge risk"
-          subtitle="Treatment may be supportive, stressful, expensive, confusing, or all of those at once. It can also affect supervision."
+          id="first-registration"
+          number="3"
+          title="First Registration and Recurring Verification"
+          subtitle="Prepare for appointments without assuming national deadlines, cadence, documents, or office procedures."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Sex-offense-specific treatment often has rules beyond ordinary
-              counseling: attendance, assignments, group behavior, payment,
-              safety plans, contact rules, disclosure exercises, polygraphs,
-              device restrictions, and provider communication with supervision.
+              First registration and recurring verification are common registry
+              events, but the timing, documents, office, method, and frequency
+              can vary. Some places use appointments. Some require in-person
+              verification. Some use forms or portals. Some jurisdictions may
+              require verification more often than federal minimums.
             </p>
 
             <p>
-              <strong>Treatment rules are not automatically criminal laws, but
-              they can become supervision problems.</strong> That is especially
-              true if your conditions require treatment, require truthful
-              participation, require payment efforts, or require compliance with
-              provider rules. Discharge, suspension, refusal to participate, or
-              missed treatment can carry serious consequences.
+              The safe move is to prepare before you go, ask what the appointment
+              is updating, and save proof of appearance or submission when the
+              office provides it.
             </p>
           </GuideProse>
 
-          <VerifyBeforeActing
-            title="Before changing anything about treatment"
-            whoToAsk={
-              <span>
-                Ask the treatment provider about program rules and your
-                supervising officer or attorney about supervision consequences.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “If I miss, pause, change providers, cannot pay, disagree with a
-                rule, or am at risk of discharge, what happens next and who is
-                notified?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Save attendance records, payment receipts, appointment notices,
-                assignments submitted, warning letters, discharge notices, and
-                written instructions about how to return to compliance.
-              </span>
-            }
+          <GuideChecklist
+            id="appointment-preparation"
+            title="Appointment preparation checklist"
+            columns={1}
+            items={[
+              {
+                id: "confirm-place",
+                label:
+                  "Confirm the correct office, address, appointment time, parking or entry instructions, and whether walk-ins are accepted.",
+              },
+              {
+                id: "confirm-documents",
+                label:
+                  "Ask what documents to bring: identification, proof of residence, employment or school information, vehicle information, travel information, court paperwork, supervision paperwork, or other required records.",
+              },
+              {
+                id: "bring-notices",
+                label:
+                  "Bring appointment notices, prior registration forms, verification letters, and any written instructions you received.",
+              },
+              {
+                id: "ask-updated",
+                label:
+                  "Ask what information is being updated and whether anything still needs to be submitted after the appointment.",
+              },
+              {
+                id: "request-proof",
+                label:
+                  "Ask whether the office can provide a receipt, stamped copy, confirmation number, or other proof of appearance or submission.",
+              },
+              {
+                id: "save-after",
+                label:
+                  "After the appointment, write down the date, time, office, person or department, what happened, and any next deadline.",
+              },
+            ]}
           />
 
           <ScriptBox
-            title="Ask treatment about a rule"
-            tone="research"
-            context="Use this when a treatment rule is unclear or appears to conflict with supervision, family needs, work, or registry duties."
-            script={`Hello [Provider Name], I want to make sure I understand the treatment rule correctly.\n\nThe rule I am asking about is: [rule].\n\nWhat exactly am I required to do, what is the deadline, and what happens if there is a conflict with work, family, registry reporting, or supervision instructions?`}
+            title="Script: ask before an appointment"
+            tone="neutral"
+            context="Use this when you are trying to prepare without guessing what to bring."
+            script={`Hello, my name is [Name]. I have a registration or verification appointment on [date], or I am trying to schedule one.
+
+Can you tell me what documents I need to bring, what information will be updated, what deadline applies, and whether I can receive a receipt, stamped copy, confirmation number, or other written proof of appearance or submission?
+
+I am taking notes. Could you please tell me the office or department name for my record?`}
           />
 
-          <GuideCallout tone="warning" icon="⚠️" title="Do not wait until discharge">
+          <GuideCallout tone="warning" icon="⚠️" title="Do not assume cadence">
             <p>
-              If money, transportation, work, illness, language access,
-              disability, or family responsibilities are interfering with
-              treatment, report the problem early and document your effort to
-              solve it. Silence can look like refusal even when the real problem
-              is logistics.
+              Do not rely on a national verification schedule or someone else’s
+              reporting pattern. Verify your own cadence, your own deadline, and
+              your own required method with the authority that controls your
+              registration.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="violations"
-          number="8"
-          title="Warnings, alleged violations, and what to do next"
-          subtitle="A warning is a moment to slow down, preserve records, and get advice — not a moment to panic or disappear."
+          id="reporting-triggers"
+          number="4"
+          title="Reporting Triggers: What Changes Might Need Notice?"
+          subtitle="Use this as an issue-spotting checklist, not as a universal list of legal duties."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Violations can involve new arrests, missed reporting, failed tests,
-              unapproved travel, contact violations, treatment problems,
-              possession of prohibited items, registry failures, dishonest
-              answers, or other conduct that conflicts with conditions.
-            </p>
-
-            <p>
-              Some violations are called “technical” because they involve
-              breaking supervision rules rather than committing a new crime.
-              Technical does not always mean minor. U.S. Courts describes
-              technical violations as including conduct such as failure to
-              report, failed drug testing, refusal to participate in treatment,
-              or possession of contraband in its overview of{" "}
-              <a
-                href={sourceLinks.revocations}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                revocations for failure to comply with supervision conditions
-              </a>
-              .
-            </p>
-
-            <p>
-              If you are accused of a violation, do not rely only on your memory
-              or your feelings about fairness. Build a factual timeline, preserve
-              records, stay reachable, and talk to counsel before making detailed
-              admissions, signing statements, waiving hearings, or agreeing to
-              consequences you do not understand.
+              SORNA uses residence, employment, and school as core registration
+              categories, but the details of deadlines, methods, and required
+              updates depend on the jurisdiction. Your jurisdiction may also
+              require updates for other categories. Verify the category, the
+              deadline, the method, who receives the notice, and what proof to
+              save.
             </p>
           </GuideProse>
 
-          <CommonMistakes
-            title="Common violation traps"
-            mistakes={[
-              {
-                mistake: "Waiting because you are embarrassed or afraid.",
-                whyItMatters:
-                  "Late reporting can turn a fixable problem into a larger compliance issue.",
-                betterMove:
-                  "Report the problem early, keep the message short, and ask what step will bring you back into compliance.",
-              },
-              {
-                mistake: "Assuming verbal permission is enough forever.",
-                whyItMatters:
-                  "People remember conversations differently, and officers can change.",
-                betterMove:
-                  "Make a dated note and ask for written confirmation when the issue matters.",
-              },
-              {
-                mistake: "Deleting messages, apps, files, accounts, or browser history.",
-                whyItMatters:
-                  "Deletion can be treated as suspicious or as a separate problem, especially with device or monitoring conditions.",
-                betterMove:
-                  "Stop, preserve what exists, and ask counsel before changing anything.",
-              },
-              {
-                mistake: "Using another person’s supervision rules as your guide.",
-                whyItMatters:
-                  "Conditions can differ by case, court, officer, risk assessment, treatment provider, state, and registry agency.",
-                betterMove:
-                  "Read your own conditions and verify your own rule with the authority that controls it.",
-              },
-              {
-                mistake: "Arguing in the moment instead of documenting.",
-                whyItMatters:
-                  "Anger can create new allegations and distract from the real issue.",
-                betterMove:
-                  "Stay calm, comply with immediate safety instructions, write down what happened, and raise disputes through counsel or the proper process.",
-              },
-              {
-                mistake: "Treating registry reporting as part of probation only.",
-                whyItMatters:
-                  "Registry duties are usually separate and may be administered by a different law-enforcement agency.",
-                betterMove:
-                  "Ask the registry office directly about deadlines, forms, in-person reporting, and receipts.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="urgent" icon="🚨" title="Get legal help quickly when risk is serious">
-            <p>
-              Contact counsel or legal aid as soon as possible if there is a new
-              arrest, alleged violation, warrant, summons, search dispute,
-              treatment discharge, failed polygraph, police contact, registry
-              failure, or pressure to sign something you do not understand. The{" "}
-              <a
-                href={sourceLinks.legalAid}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                USA.gov legal aid finder
-              </a>{" "}
-              can be a starting point if you do not already have a lawyer.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="supporters"
-          number="9"
-          title="Family and supporter guidance"
-          subtitle="Supporters can help a lot, but they should not become the rule interpreter, secret workaround, or messenger for everything."
-        />
-
-        <GuideSectionCard>
-          <RoleGuidanceGrid
-            title="How different people can help"
-            roles={[
-              {
-                role: "Person under supervision",
-                icon: "🧍",
-                guidance:
-                  "Keep the folder, ask narrow questions, stay reachable, report changes early, and do not let shame turn into silence.",
-              },
-              {
-                role: "Spouse, partner, or close family",
-                icon: "🏡",
-                guidance:
-                  "Help with calendars, transportation, copies, receipts, and calm reminders. Do not hide devices, route around monitoring, or speak for the person without permission.",
-              },
-              {
-                role: "Parent or adult child",
-                icon: "👪",
-                guidance:
-                  "Support stability without guessing about contact rules. If minors, school events, family gatherings, or caregiving are involved, verify first.",
-              },
-              {
-                role: "Reentry helper or advocate",
-                icon: "🤝",
-                guidance:
-                  "Help the person prepare questions, organize documents, find legal aid, and identify conflicts between housing, work, treatment, registry, and supervision rules.",
-              },
-              {
-                role: "Attorney or legal worker",
-                icon: "⚖️",
-                guidance:
-                  "Clarify which authority controls, whether modification is possible, what the violation process looks like, and what the person should avoid saying or signing.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="family" icon="💬" title="A safer supporter sentence">
-            <p>
-              “I can help you organize the papers and remember deadlines, but I
-              cannot guess what your officer, treatment provider, court, or
-              registry office requires. Let’s ask the right office and save the
-              answer.”
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="offline"
-          number="10"
-          title="Offline and limited-access options"
-          subtitle="Many people under supervision have limited internet, no printer, monitored devices, transportation barriers, or unstable housing."
-        />
-
-        <GuideSectionCard>
-          <OfflineOptions
-            title="If internet access, printing, or transportation is limited"
-            icon="📞"
+          <GuideChecklist
+            id="possible-triggers"
+            title="Possible reporting categories to verify"
+            columns={2}
             items={[
-              <span>
-                Ask officers, treatment providers, and registry offices for paper
-                forms, mailed instructions, appointment cards, and written
-                receipts.
-              </span>,
-              <span>
-                Keep a small notebook with dates, times, names, phone numbers,
-                instructions, attempted calls, voicemails, and confirmation
-                numbers.
-              </span>,
-              <span>
-                Use a trusted helper to print public forms only if your
-                conditions allow it and the helper is not helping you hide,
-                bypass, or access prohibited content.
-              </span>,
-              <span>
-                If you cannot submit an online report, ask whether mail, office
-                drop-off, phone reporting, or another approved method is allowed.
-              </span>,
-              <span>
-                If transportation fails, document the failure: bus cancellation,
-                ride no-show, repair receipt, medical issue, work conflict, or
-                weather emergency.
-              </span>,
-              <span>
-                Store copies in more than one safe place if possible: paper
-                folder, trusted person, attorney, or approved digital storage.
-              </span>,
+              {
+                id: "residence-address",
+                label: "Residence, address, mailing address, or where you stay.",
+              },
+              {
+                id: "temporary-location",
+                label:
+                  "Temporary location, overnight stay, short-term housing, hotel, shelter, or other temporary place.",
+              },
+              {
+                id: "employment",
+                label:
+                  "Employment, work location, contract work, gig work, volunteer work, or work schedule changes.",
+              },
+              {
+                id: "school",
+                label:
+                  "School, training, certification program, college, trade program, or campus attendance.",
+              },
+              {
+                id: "vehicle",
+                label:
+                  "Vehicle, license plate, vehicle access, or vehicle ownership or use.",
+              },
+              {
+                id: "phone",
+                label: "Phone number, device, app-based number, or contact method.",
+              },
+              {
+                id: "email",
+                label: "Email address or other electronic contact information.",
+              },
+              {
+                id: "online-id",
+                label:
+                  "Online identifier, username, social media account, gaming handle, or platform profile.",
+              },
+              {
+                id: "name-change",
+                label: "Legal name change, alias, or other identity information.",
+              },
+              {
+                id: "travel",
+                label:
+                  "Travel, overnight stay, temporary relocation, out-of-state trip, or international travel.",
+              },
+              {
+                id: "homelessness",
+                label:
+                  "Homelessness, transient status, unstable housing, sleeping in a vehicle, or emergency shelter.",
+              },
+              {
+                id: "displacement",
+                label:
+                  "Emergency displacement after eviction, fire, storm, family crisis, hospitalization, or disaster.",
+              },
             ]}
-            note={
-              <span>
-                Do not use a public computer, library computer, or helper’s
-                device for anything your conditions forbid. Access limits still
-                apply when the device belongs to someone else.
-              </span>
-            }
           />
 
-          <GuideCallout tone="reentry" icon="🧭" title="Phone-only is still workable">
+          <VerifyBeforeActing
+            whoToAsk="The registering agency or other authority that controls the specific category in your jurisdiction. If you are supervised, also ask the officer or office responsible for your supervision condition."
+            whatToAsk="Ask whether this category must be reported, what counts as a reportable change, when the clock starts, how notice must be given, and whether proof of reporting is available."
+            whatToSave="Save the written answer, form, portal instructions, receipt, confirmation number, screenshot, or call note showing what you asked and what you were told."
+          />
+
+          <GuideCallout
+            tone="privacy"
+            icon="🔐"
+            title="Technology-related duties need extra care"
+          >
             <p>
-              A phone-only system can still produce records. Use voicemail logs,
-              call screenshots if allowed, mailed letters, certified mail,
-              appointment cards, paper receipts, and handwritten notes. The goal
-              is not perfect technology. The goal is proof of effort and clear
-              communication.
+              Online identifiers, phones, email, monitoring software, device
+              restrictions, and private platform rules are different systems.
+              Registry law, supervision conditions, treatment rules, monitoring
+              requirements, and platform policies may not say the same thing.
+              Verify the rule that controls the action you are about to take.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="trigger-mistakes"
+            title="Common mistakes to avoid"
+            columns={1}
+            items={[
+              {
+                id: "assuming-not-trigger",
+                label:
+                  "Assuming a change does not count because it seems small, temporary, informal, unpaid, or inconvenient to report.",
+              },
+              {
+                id: "asking-wrong-office",
+                label:
+                  "Relying on an answer from an office that does not control the exact duty.",
+              },
+              {
+                id: "no-proof",
+                label:
+                  "Reporting a change but saving no proof of what you submitted, when you submitted it, or who received it.",
+              },
+              {
+                id: "confusing-supervision",
+                label:
+                  "Assuming supervision approval automatically satisfies a registry duty, or assuming registry reporting automatically satisfies a supervision duty.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="compliance-system"
+          number="5"
+          title="Build Your Compliance System"
+          subtitle="A reliable system matters more than memory, willpower, or one perfect reminder."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The goal is not to build a fancy calendar. The goal is to make
+              deadlines hard to miss and easy to prove. Use reminder layers that
+              fit the duty. For some recurring deadlines, you may want reminders
+              weeks ahead. For short-notice reporting duties, you may need
+              same-day and next-day reminders. The point is not one perfect
+              schedule; the point is not relying on memory.
+            </p>
+
+            <p>
+              Weekends, holidays, office closures, portal failures, storms, and
+              disasters do not automatically change a deadline unless the
+              authority that controls the duty says they do. Build your system so
+              you can act early when possible and document obstacles when early
+              action is not possible.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="deadline-worksheet"
+            title="Deadline worksheet"
+            columns={1}
+            items={[
+              {
+                id: "name-duty",
+                label:
+                  "Name the duty: registration, verification, address change, employment update, school update, travel notice, online identifier, vehicle update, or another category.",
+              },
+              {
+                id: "source",
+                label:
+                  "Write the source: statute, agency form, registry notice, portal instruction, supervision condition, court order, compact instruction, or written agency answer.",
+              },
+              {
+                id: "deadline",
+                label:
+                  "Write the deadline exactly as given. Include when the clock starts, not just when it ends.",
+              },
+              {
+                id: "method",
+                label:
+                  "Write the required method: in person, portal, email, mail, phone, appointment, form, or another method.",
+              },
+              {
+                id: "backup",
+                label:
+                  "Write the backup method or office contact if the primary method fails.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Write what proof you can save: receipt, stamped copy, screenshot, confirmation number, email, certified-mail record, or call log.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="reminder-layers"
+            title="Reminder layers tool"
+            columns={1}
+            items={[
+              {
+                id: "calendar-main",
+                label:
+                  "Put the deadline on a calendar you check daily or weekly.",
+              },
+              {
+                id: "early-warning",
+                label:
+                  "Add an early warning far enough ahead to gather documents, arrange transportation, request time off, or ask for clarification.",
+              },
+              {
+                id: "near-warning",
+                label:
+                  "Add a closer reminder for short-notice tasks or final confirmation.",
+              },
+              {
+                id: "human-backup",
+                label:
+                  "Use a trusted person, case manager, attorney, or family member as a backup reminder when safe and appropriate.",
+              },
+              {
+                id: "paper-backup",
+                label:
+                  "Keep a paper calendar or deadline sheet if phone access, internet access, or supervision technology restrictions make digital reminders unreliable.",
+              },
+              {
+                id: "review-rhythm",
+                label:
+                  "Review upcoming registry and supervision deadlines at the same time each week.",
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet or phone access is limited"
+            items={[
+              "Use a paper calendar, notebook, or printed monthly calendar.",
+              "Ask for mailed forms, printed appointment notices, or written instructions.",
+              "Keep agency phone numbers, office addresses, and hours in your paper folder.",
+              "Ask a trusted helper to print forms or save official pages, but do not rely on them to interpret the rule for you.",
+              "If you are incarcerated, in treatment, in a shelter, or under technology limits, ask staff how to request forms, make official calls, or mail notices.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="report-save-record"
+          number="6"
+          title="Report It and Save the Record"
+          subtitle="Use the required channel, then save proof of what you did—not just what you meant to do."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Reporting is only part of the system. The other part is preserving
+              a record of the action: proof of appearance, proof of submission,
+              proof of reporting, proof of attempt, or a record of the
+              instruction received.
+            </p>
+
+            <p>
+              A receipt, stamped copy, screenshot, certified-mail record, call
+              log, email, confirmation number, or portal message can help show
+              what you did. That does not automatically mean a court or agency
+              will decide the legal obligation was fully satisfied. Use careful
+              language: proof of what you did.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="reporting-record"
+            title="After you report, save the record"
+            columns={1}
+            items={[
+              {
+                id: "required-channel",
+                label:
+                  "Confirm you used the required channel, not only the channel that was easiest.",
+              },
+              {
+                id: "receipt",
+                label:
+                  "Ask for a receipt, stamped copy, confirmation number, portal message, email, or other written proof of appearance or submission.",
+              },
+              {
+                id: "screenshot",
+                label:
+                  "If using a portal, save screenshots showing the date, time, account, submitted information, and confirmation screen when safe and allowed.",
+              },
+              {
+                id: "mail-proof",
+                label:
+                  "If mailing, save copies of what you mailed and the certified-mail, tracking, or delivery record.",
+              },
+              {
+                id: "contact-log",
+                label:
+                  "If calling, write a contact log with the date, time, office, person or department, number called, question asked, and answer given.",
+              },
+              {
+                id: "next-deadline",
+                label:
+                  "Write down the next deadline or follow-up step before putting the paperwork away.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: ask for a receipt or written confirmation"
+            tone="neutral"
+            context="Use this after submitting information, appearing in person, or receiving instructions."
+            script={`Can I please receive a receipt, stamped copy, confirmation number, email, or other written confirmation showing that I appeared or submitted this information today?
+
+If that is not available, can you tell me what record the office keeps and what I should write down for my own file?`}
+          />
+
+          <GuideCallout
+            tone="reminder"
+            icon="🗂️"
+            title="About a “Compliance Proof Packet”"
+          >
+            <p>
+              A Compliance Proof Packet is a user-friendly name for your records
+              folder. A packet can help show what you did and what you were told.
+              It does not automatically prove that every legal requirement was
+              satisfied.
+            </p>
+          </GuideCallout>
+
+          <OfflineOptions
+            title="Low-tech ways to preserve proof"
+            items={[
+              "Use a folder, envelope, binder, or notebook labeled with the year.",
+              "Ask for stamped copies when you hand-deliver forms.",
+              "Write call notes immediately after the call, while details are fresh.",
+              "Keep postal receipts stapled to copies of what you mailed.",
+              "If you cannot print, write down the exact portal confirmation number, date, time, and page title.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="unclear-instructions"
+          number="7"
+          title="When the Instructions Are Not Clear"
+          subtitle="Verbal, conflicting, unavailable, or unclear instructions need careful documentation—not guessing."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Sometimes the person you reach is unsure. Sometimes one office
+              points you to another. Sometimes an instruction is verbal. Sometimes
+              an agency portal is unclear. Your job is to slow the situation
+              down, ask narrow questions, avoid oversharing, and preserve a
+              record of the answer.
+            </p>
+
+            <p>
+              When instructions conflict, do not simply rely on whichever
+              official was available. Keep asking which authority controls the
+              exact duty and where that authority has documented the rule.
+            </p>
+          </GuideProse>
+
+          <ScriptBox
+            title="Script: narrow clarification request"
+            tone="neutral"
+            context="Use this when you need the office to identify the duty, deadline, and method."
+            script={`Hello, my name is [Name]. I am trying to make sure I follow the correct reporting procedure for [issue].
+
+Which office handles this requirement, what deadline applies, and is there a form, portal instruction, or written rule I should use?
+
+I am taking notes. Could you please tell me your name or department and the best way to confirm this in writing?`}
+          />
+
+          <ScriptBox
+            title="Script: confirm a verbal instruction in writing"
+            tone="neutral"
+            context="Use this after a phone call or in-person conversation when the instruction matters."
+            script={`Thank you for speaking with me today. I want to make sure I understood correctly.
+
+My notes say that on [date] at [time], [office/department/person] told me [instruction], with a deadline of [deadline] and a next step of [next step].
+
+If I misunderstood anything, please let me know what I should correct. If there is a form or written instruction I should follow, please send it or tell me where to find it.`}
+          />
+
+          <GuideChecklist
+            id="verbal-instruction-notes"
+            title="Verbal instruction notes"
+            columns={1}
+            items={[
+              { id: "date", label: "Date and time of the conversation." },
+              { id: "office", label: "Office, agency, department, or location." },
+              {
+                id: "person",
+                label:
+                  "Person’s name, badge number, title, or department if available.",
+              },
+              {
+                id: "contact",
+                label: "Phone number, email address, portal, or office address.",
+              },
+              { id: "question", label: "The exact question you asked." },
+              { id: "answer", label: "The answer or instruction given." },
+              { id: "deadline", label: "Any deadline or clock-start date stated." },
+              {
+                id: "next-step",
+                label: "Any next step, form, appointment, or office referral.",
+              },
+              {
+                id: "written-request",
+                label:
+                  "Whether you asked for written confirmation and what response you received.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            whoToAsk="The authority responsible for the exact duty, not merely the most available person."
+            whatToAsk="Ask whether the instruction is official, where it is written, what deadline applies, and how to document your action."
+            whatToSave="Save your notes, the written clarification request, any response, screenshots, emails, portal messages, and follow-up attempts."
+          />
+
+          <GuideChecklist
+            id="unclear-mistakes"
+            title="Common mistakes when instructions are unclear"
+            columns={1}
+            items={[
+              {
+                id: "guessing",
+                label:
+                  "Guessing instead of asking a narrow question tied to the exact duty.",
+              },
+              {
+                id: "oversharing",
+                label:
+                  "Volunteering unnecessary details when the goal is only to identify the correct procedure.",
+              },
+              {
+                id: "no-notes",
+                label: "Relying on memory after a verbal instruction.",
+              },
+              {
+                id: "no-authority-check",
+                label:
+                  "Treating a helpful answer as controlling without checking whether that office has authority over the duty.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="moves-temporary-locations"
+          number="8"
+          title="Moves and Temporary Locations"
+          subtitle="This section covers the reporting-and-proof workflow, not the full interstate moving process."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Moving can create questions in both the old jurisdiction and the
+              new jurisdiction. Temporary locations can also matter, depending on
+              the rule. Your job is to verify what notice is required before
+              leaving, what must happen after arrival, and what proof to save in
+              both places when required.
+            </p>
+
+            <p>
+              Interstate supervision transfer is not the same thing as registry
+              reporting. A supervision compact instruction may control where and
+              how a supervised person reports for supervision, while registry
+              duties may still require separate registration or notice steps.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="move-notice-proof"
+            title="Move-notice proof worksheet"
+            columns={1}
+            items={[
+              {
+                id: "old-jurisdiction",
+                label:
+                  "Ask the old jurisdiction what notice is required before leaving and what proof of notice is available.",
+              },
+              {
+                id: "new-jurisdiction",
+                label:
+                  "Ask the new jurisdiction what registration, appearance, appointment, or notice is required after arrival.",
+              },
+              {
+                id: "temporary",
+                label:
+                  "Ask whether a temporary stay, hotel, shelter, hospital, family home, vehicle, or other short-term location creates a reporting duty.",
+              },
+              {
+                id: "method",
+                label:
+                  "Confirm whether notice must be in person, by portal, by mail, by email, by phone, or through a specific form.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Save proof of notice, proof of appearance, proof of submission, proof of attempt, and instructions received in both places.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="before-after-move"
+            title="Before leaving / after arrival / after completion"
+            columns={1}
+            items={[
+              {
+                id: "before-leaving",
+                label:
+                  "Before leaving: verify old-jurisdiction notice requirements, supervision travel or transfer rules, and any deadline that starts before departure.",
+              },
+              {
+                id: "after-arrival",
+                label:
+                  "After arrival: verify new-jurisdiction registration or notice requirements and calendar the first required appearance or deadline.",
+              },
+              {
+                id: "after-completion",
+                label:
+                  "After completion: save receipts, stamped forms, emails, screenshots, certified-mail records, and contact logs in one packet.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="warning" icon="🚧" title="Do not combine systems">
+            <p>
+              Approval to travel, relocate, or transfer supervision may not
+              satisfy a registry reporting duty. Registry reporting may not
+              satisfy a supervision condition. When both systems apply, verify
+              both and keep records for both.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
+          id="compliance-visits"
+          number="9"
+          title="Compliance / Address Verification Visits"
+          subtitle="This section is administrative documentation only. It is not a live-encounter rights guide."
+        />
+
+        <GuideSectionCard>
+          <GuideCallout tone="legal" icon="⚖️" title="Scope boundary">
+            <p>
+              This section does not answer whether officers can enter, search,
+              ask questions, require consent, rely on another resident’s consent,
+              prevent recording, or question you under supervision conditions.
+              Those issues depend on the facts, the jurisdiction, your status,
+              and your conditions. Use Know Your Rights and Supervision
+              Conditions guidance for those questions.
+            </p>
+          </GuideCallout>
+
+          <GuideProse>
+            <p>
+              Compliance or address verification visits may involve local, state,
+              tribal, territorial, or federal actors depending on the place and
+              the issue. This guide focuses only on what to document after the
+              visit so you have a clear administrative record.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="visit-notes"
+            title="Compliance-visit notes sheet"
+            columns={1}
+            items={[
+              { id: "visit-date", label: "Date and approximate time of the visit." },
+              { id: "agency", label: "Agency, office, department, or unit involved." },
+              {
+                id: "names",
+                label:
+                  "Names, badge numbers, business cards, or identifying information if available.",
+              },
+              {
+                id: "stated-purpose",
+                label:
+                  "What the visit was described as: address verification, compliance check, investigation, supervision contact, or something else.",
+              },
+              {
+                id: "documents",
+                label:
+                  "Any forms, notices, cards, receipts, or written instructions provided.",
+              },
+              {
+                id: "follow-up",
+                label:
+                  "Any deadline, requested follow-up, appointment, or instruction given.",
+              },
+              {
+                id: "witnesses",
+                label:
+                  "Who else was present, including household members, property managers, or support people.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="after-visit"
+            title="After-visit documentation checklist"
+            columns={1}
+            items={[
+              {
+                id: "write-notes",
+                label: "Write notes as soon as you can, while details are fresh.",
+              },
+              {
+                id: "save-paper",
+                label:
+                  "Save any written notice, card, receipt, or document in your packet.",
+              },
+              {
+                id: "calendar-followup",
+                label: "Calendar any follow-up deadline or appointment.",
+              },
+              {
+                id: "ask-clarify",
+                label:
+                  "If an instruction was unclear, ask a narrow clarification question in writing when possible.",
+              },
+              {
+                id: "legal-help",
+                label:
+                  "If the visit becomes an investigation, allegation, search, questioning, threat of arrest, or possible violation, shift to Know Your Rights and legal-help steps.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="obstacles-emergencies"
+          number="10"
+          title="Office Closed, Portal Failed, Disaster, or Emergency Displacement"
+          subtitle="Document attempts and ask for the next available method. Do not assume the obstacle excuses the deadline."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Offices close. Portals fail. Holidays happen. Storms, fires,
+              evictions, hospitalizations, family emergencies, and disasters can
+              disrupt ordinary reporting plans. These events may matter, but they
+              do not automatically excuse a deadline unless the authority that
+              controls the duty says so.
+            </p>
+
+            <p>
+              When an obstacle appears, document the obstacle, document your
+              attempts, seek instructions from the authority responsible for the
+              duty, and preserve proof of what happened.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="office-closed-portal-failed"
+            title="Office-closed / portal-failed documentation checklist"
+            columns={1}
+            items={[
+              {
+                id: "attempt-date",
+                label:
+                  "Write the date and time you attempted to report or contact the office.",
+              },
+              {
+                id: "closure-proof",
+                label:
+                  "Save proof of closure, outage, holiday notice, voicemail, website message, portal error, or emergency notice.",
+              },
+              {
+                id: "alternate-method",
+                label:
+                  "Look for an official alternate method: emergency phone line, email, portal message, mail, another office, or next available appointment.",
+              },
+              {
+                id: "request-instruction",
+                label:
+                  "Ask what method to use now and whether the office will document your attempted reporting.",
+              },
+              {
+                id: "save-attempts",
+                label:
+                  "Save screenshots, call logs, emails, certified-mail records, appointment requests, and notes.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="emergency-displacement"
+            title="Emergency displacement reporting checklist"
+            columns={1}
+            items={[
+              {
+                id: "safe-location",
+                label:
+                  "Stabilize immediate safety first, then identify where you are actually staying or reachable.",
+              },
+              {
+                id: "verify-transient",
+                label:
+                  "Ask whether homelessness, transient status, shelter stay, vehicle sleeping, hotel stay, or temporary family housing creates a special reporting duty.",
+              },
+              {
+                id: "supervision",
+                label:
+                  "If supervised, ask your supervision officer or office about emergency movement, housing approval, and reporting expectations.",
+              },
+              {
+                id: "documents",
+                label:
+                  "Save eviction papers, shelter letters, disaster notices, hotel receipts, hospital paperwork, closure notices, or other records explaining the displacement.",
+              },
+              {
+                id: "followup",
+                label:
+                  "Calendar the next required contact, appointment, or update after the emergency step.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Script: attempted reporting / next available method"
+            tone="neutral"
+            context="Use this when an office is closed, a portal fails, or an emergency blocks the ordinary method."
+            script={`Hello, my name is [Name]. I am trying to report or confirm [issue] before the deadline.
+
+I attempted to [call/use the portal/come to the office/mail/email] on [date/time], but [office closed/portal error/disaster/emergency displacement] prevented the usual method.
+
+What method should I use now, and can the office document that I attempted to report? I am saving records of my attempts and would appreciate written instructions if available.`}
+          />
+
+          <OfflineOptions
+            title="If technology fails or access is limited"
+            items={[
+              "Use phone, mail, in-person office contact, or a trusted helper only if that method is allowed or officially accepted.",
+              "Take a photo of posted closure signs or write down the exact sign text if photography is not safe or allowed.",
+              "Keep envelopes, tracking numbers, returned mail, delivery records, and written notes together.",
+              "If you cannot access a portal, write down the error message, time, device used, and any help-desk ticket number.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="missed-disputed"
           number="11"
-          title="Resources and next steps"
-          subtitle="Use official sources as starting points, then verify the rule that applies to your case and location."
+          title="Missed, Disputed, or Alleged Noncompliance"
+          subtitle="Triage carefully. The more criminal exposure is possible, the less you should guess or volunteer."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A deadline problem is not always the same kind of problem. The
+              safest next step depends on whether a deadline is still coming, is
+              unclear, may have been missed, is being disputed, or may create
+              criminal exposure.
+            </p>
+
+            <p>
+              Knowingly failing to register or update as required under SORNA can
+              be a federal crime, and state or tribal failure-to-register
+              penalties vary. If the facts may create criminal exposure, do not
+              try to talk your way out of it alone. Preserve records, avoid
+              guessing, and seek legal advice if possible.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={1}
+            cards={[
+              {
+                eyebrow: "Level 1",
+                title: "A deadline is approaching",
+                icon: "📅",
+                tone: "info",
+                description:
+                  "Verify the rule, calendar reminders, prepare documents, report through the required method, and save proof of what you did.",
+              },
+              {
+                eyebrow: "Level 2",
+                title: "It is unclear whether a deadline was missed",
+                icon: "❓",
+                tone: "warning",
+                description:
+                  "Collect the rule, notices, dates, and records. Ask narrow procedural questions without volunteering unnecessary facts.",
+              },
+              {
+                eyebrow: "Level 3",
+                title: "A reporting duty is disputed or possibly missed",
+                icon: "🧾",
+                tone: "legal",
+                description:
+                  "Preserve proof, identify the controlling authority, and consider legal help before making explanations that could be used against you.",
+              },
+              {
+                eyebrow: "Level 4",
+                title: "An agency alleges noncompliance",
+                icon: "🚨",
+                tone: "urgent",
+                description:
+                  "Save all notices and records. Do not guess, argue, or provide broad explanations without understanding your legal risk.",
+              },
+              {
+                eyebrow: "Level 5",
+                title: "The facts may create criminal exposure",
+                icon: "⚖️",
+                tone: "urgent",
+                description:
+                  "Prioritize legal counsel, Know Your Rights guidance, proof preservation, and careful silence over self-incriminating explanations.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="missed-disputed-do"
+            title="Do / do not / use judgment"
+            columns={1}
+            items={[
+              {
+                id: "do-preserve",
+                label:
+                  "Do preserve records: notices, receipts, screenshots, call logs, emails, forms, mail records, portal messages, and witness information.",
+              },
+              {
+                id: "do-identify",
+                label:
+                  "Do identify the exact duty, the source of the duty, the deadline, the required method, and the authority responsible.",
+              },
+              {
+                id: "do-legal",
+                label:
+                  "Do seek legal advice if an agency alleges noncompliance or the facts may create criminal exposure.",
+              },
+              {
+                id: "do-not-explain",
+                label:
+                  "Do not give a broad explanation of what happened to an agency if the issue may be criminal without legal advice.",
+              },
+              {
+                id: "do-not-guess",
+                label:
+                  "Do not guess dates, times, locations, or reasons. Guessing can make records less reliable and statements more risky.",
+              },
+              {
+                id: "judgment",
+                label:
+                  "Use judgment with narrow procedural questions, such as asking where to submit a form, who controls the rule, or how to request a receipt.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="If criminal exposure is possible">
+            <p>
+              This guide does not tell you how to answer investigative questions
+              or explain a possible violation. Preserve proof, avoid unnecessary
+              statements, and use legal counsel or Know Your Rights guidance
+              before discussing facts that could be used against you.
+            </p>
+          </GuideCallout>
+
+          <GuideChecklist
+            id="counsel-packet"
+            title="Packet to prepare for legal counsel"
+            columns={1}
+            items={[
+              {
+                id: "timeline",
+                label: "A timeline of dates, deadlines, attempts, and contacts.",
+              },
+              {
+                id: "notices",
+                label: "All notices, forms, letters, emails, and portal messages.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Receipts, stamped copies, screenshots, certified-mail records, tracking numbers, and call logs.",
+              },
+              {
+                id: "instructions",
+                label: "Verbal instruction notes and written clarification requests.",
+              },
+              {
+                id: "conditions",
+                label:
+                  "Court orders, supervision conditions, travel approvals, or compact instructions.",
+              },
+              {
+                id: "allegation",
+                label:
+                  "Any allegation, citation, warrant notice, violation report, or agency letter.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="durable-packet"
+          number="12"
+          title="Durable Compliance Proof Packet"
+          subtitle="Keep records organized enough that a stressed future version of you can find them quickly."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A durable packet is a paper and/or digital record system for proof
+              of what you did, what you were told, and what instructions you
+              received. It is not a guarantee that every obligation was legally
+              satisfied. It is a way to make your actions easier to verify and
+              explain to a lawyer, supervision officer, registry office, court,
+              or advocate if needed.
+            </p>
+
+            <p>
+              Store sensitive records carefully. Your packet may include
+              addresses, identifiers, case information, supervision details,
+              travel plans, and family information. Keep it accessible to you,
+              but do not leave it where others can casually copy, photograph, or
+              misuse it.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="packet-categories"
+            title="Compliance Proof Packet categories"
+            columns={2}
+            items={[
+              { id: "registration", label: "Registration paperwork and forms." },
+              {
+                id: "verification",
+                label: "Verification receipts and appointment records.",
+              },
+              {
+                id: "appointment",
+                label: "Appointment notices and scheduling records.",
+              },
+              {
+                id: "change-notices",
+                label:
+                  "Change notices for address, work, school, travel, vehicles, identifiers, or other categories.",
+              },
+              {
+                id: "correspondence",
+                label: "Agency correspondence, emails, letters, and portal messages.",
+              },
+              {
+                id: "screenshots",
+                label: "Portal screenshots and confirmation pages.",
+              },
+              {
+                id: "mail",
+                label:
+                  "Certified-mail receipts, tracking records, returned mail, and delivery proof.",
+              },
+              { id: "logs", label: "Call logs and contact logs." },
+              {
+                id: "verbal",
+                label: "Verbal instruction notes and clarification requests.",
+              },
+              {
+                id: "moves",
+                label: "Move notices and old/new jurisdiction records.",
+              },
+              {
+                id: "emergency",
+                label:
+                  "Emergency, closure, outage, displacement, shelter, hotel, or disaster proof.",
+              },
+              {
+                id: "supervision",
+                label:
+                  "Supervision approvals, travel permissions, compact instructions, and court conditions.",
+              },
+              {
+                id: "legal",
+                label: "Attorney, defender, legal aid, or advocate contacts.",
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="Paper and digital backup options"
+            items={[
+              "Use a binder, accordion folder, envelope system, or notebook if digital access is unreliable.",
+              "Keep the most important current documents in one easy-to-find section.",
+              "Scan or photograph documents when safe, but keep originals when they matter.",
+              "Use clear filenames such as 2026-08-21-address-update-receipt.pdf.",
+              "Keep a simple index page listing the most recent deadline, next appointment, and emergency contact numbers.",
+            ]}
+          />
+
+          <GuideCallout tone="privacy" icon="🔐" title="Protect the packet">
+            <p>
+              If someone helps you manage records, choose that person carefully.
+              A helper may need access to deadlines or forms, but they do not
+              automatically need every case detail, login, password, or private
+              document.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources-sources"
+          number="13"
+          title="Official Resources, Related SOLAR Guides, and Sources"
+          subtitle="Use official sources for verification, then use SOLAR guides for practical next steps."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Official resources and help"
-            description={
-              <span>
-                These links are starting points. They do not replace your court
-                order, parole certificate, officer instructions, treatment
-                contract, registry office, or legal advice.
-              </span>
-            }
-            resources={resourceLinks}
-          />
-
-          <SoftDivider />
-
-          <GuideCallout tone="info" icon="🔎" title="How to use the source links">
-            <p>
-              Use official pages to understand the framework, then verify the
-              exact step with the office that controls your case. Federal pages
-              can explain federal supervised release. They do not automatically
-              answer state parole, state probation, local registry, treatment, or
-              case-specific court-order questions.
-            </p>
-          </GuideCallout>
-
-          <RelatedGuides
-            guides={[
+            title="Official verification resources"
+            resources={[
               {
-                title: "Reentry Checklist",
+                label: "SMART Office — SORNA Current Law",
                 description:
-                  "Helps organize housing, identification, benefits, health care, employment, supervision, and family logistics after release.",
-                to: "/resources/reentry-checklist",
+                  "Federal source spine for SORNA statutes, guidelines, rules, and implementation documents.",
+                href: sourceLinks.smartCurrentLaw,
+                badge: "Official",
               },
               {
-                title: "Interstate Moving Guide",
+                label: "SMART Office — SORNA FAQs",
                 description:
-                  "Useful before moving or staying across state lines, especially when supervision approval and registry reporting may both apply.",
-                to: "/resources/interstate-moving-guide",
+                  "Federal FAQ page explaining SORNA implementation, jurisdiction review, and minimum-standard concepts.",
+                href: sourceLinks.smartFaqs,
+                badge: "Official",
               },
               {
-                title: "International Travel Guide",
+                label: "SMART Office — In-Person Registration / Verification",
                 description:
-                  "Use before any international travel discussion, especially where registry notification and supervision approval may overlap.",
-                to: "/resources/international-travel-guide",
+                  "Implementation document discussing SORNA in-person registration and verification requirements.",
+                href: sourceLinks.smartInPerson,
+                badge: "Official",
               },
               {
-                title: "Housing Search Guide",
+                label: "NSOPW — All Registries",
                 description:
-                  "Helps evaluate addresses, document answers, and communicate with landlords while managing registry and supervision risk.",
-                to: "/resources/housing-search-guide",
+                  "Directory of public state, territory, and tribal registry links for finding jurisdiction-specific sources.",
+                href: sourceLinks.nsopwAllRegistries,
+                badge: "Official",
               },
               {
-                title: "Your Rights at Every Stage",
+                label: "DOJ Criminal Division — SORNA",
                 description:
-                  "Use when a supervision issue becomes a legal dispute, search issue, new investigation, or violation allegation.",
-                to: "/resources/know-your-rights",
+                  "Federal overview noting SORNA registration/update duties and federal failure-to-register exposure.",
+                href: sourceLinks.dojSorna,
+                badge: "Official",
+              },
+              {
+                label: "U.S. Courts — Probation and Supervised Release Conditions",
+                description:
+                  "Federal court resource explaining probation and supervised release condition structure.",
+                href: sourceLinks.usCourtsConditions,
+                badge: "Official",
+              },
+              {
+                label: "ICAOS — Reporting Instructions for Sex Offenders",
+                description:
+                  "Interstate compact rule source for supervised interstate reporting-instruction context.",
+                href: sourceLinks.icaosReporting,
+                badge: "Official",
+              },
+              {
+                label: "USA.gov — Legal Aid",
+                description:
+                  "Government starting point for finding free or low-cost legal help.",
+                href: sourceLinks.usaLegalAid,
+                badge: "Official",
               },
             ]}
           />
 
-          <SoftDivider />
+          <RelatedGuides
+            guides={[
+              {
+                title: "State Registry Hub",
+                description:
+                  "Use this to find state, territory, or tribal registry pages and official jurisdiction-specific information.",
+                to: "/resources/state-registry-hub",
+              },
+              {
+                title: "Supervision Conditions",
+                description:
+                  "Use this when a probation, parole, supervised release, or treatment condition may control the next step.",
+                to: "/resources/supervision-conditions",
+              },
+              {
+                title: "Know Your Rights",
+                description:
+                  "Use this before answering investigative questions, consenting to searches, or explaining facts that may create criminal exposure.",
+                to: "/resources/know-your-rights",
+              },
+              {
+                title: "Interstate Moving",
+                description:
+                  "Use this for the fuller moving process. This guide only covers the reporting-and-proof workflow.",
+                to: "/resources/interstate-moving",
+              },
+              {
+                title: "International Travel",
+                description:
+                  "Use this when travel crosses a national border or may trigger federal, state, destination-country, or supervision rules.",
+                to: "/resources/international-travel",
+              },
+              {
+                title: "Housing Search",
+                description:
+                  "Use this when housing instability, displacement, shelters, or address rules affect registration planning.",
+                to: "/resources/housing-search",
+              },
+              {
+                title: "Reentry Checklist",
+                description:
+                  "Use this for broader release planning, document gathering, housing, work, supervision, and first-week tasks.",
+                to: "/resources/reentry-checklist",
+              },
+              {
+                title: "Employment / Job Search Resources",
+                description:
+                  "Use this when work location, job applications, disclosure, or employment changes may affect reporting duties.",
+                to: "/resources/employment-job-search",
+              },
+            ]}
+          />
 
           <SourceList
-            title="Sources & verification"
-            note={
-              <span>
-                Source links were live-checked on {lastChecked}. Supervision,
-                registry, treatment, and court rules can change by jurisdiction
-                and by case, so verify before relying on any general guide.
-              </span>
-            }
-            sources={sourceList}
+            note="Links were selected as official verification starting points. State, territory, tribal, court, supervision, and agency-specific rules should still be checked before relying on any deadline, method, office, or reporting category."
+            sources={[
+              {
+                label: "SMART Office — SORNA Current Law",
+                href: sourceLinks.smartCurrentLaw,
+                description:
+                  "Supports the federal framework and implementation-document source spine.",
+              },
+              {
+                label: "SMART Office — SORNA FAQs",
+                href: sourceLinks.smartFaqs,
+                description:
+                  "Supports jurisdictional variation, minimum-standard framing, and verification caution.",
+              },
+              {
+                label:
+                  "SMART Office — SORNA In-Person Registration Requirements",
+                href: sourceLinks.smartInPerson,
+                description:
+                  "Supports the discussion of registration and verification as common system events while avoiding universal appointment rules.",
+              },
+              {
+                label: "SMART Office — Implementation Documents",
+                href: sourceLinks.smartImplementation,
+                description:
+                  "Supports the idea that implementation guidance and jurisdiction procedures matter.",
+              },
+              {
+                label: "NSOPW — All Registries",
+                href: sourceLinks.nsopwAllRegistries,
+                description:
+                  "Supports directing readers to official state, territory, and tribal registry sources.",
+              },
+              {
+                label: "DOJ Criminal Division — SORNA",
+                href: sourceLinks.dojSorna,
+                description:
+                  "Supports residence, employment, and school as core SORNA categories and the federal failure-to-register caution.",
+              },
+              {
+                label:
+                  "U.S. Courts — Overview of Probation and Supervised Release Conditions",
+                href: sourceLinks.usCourtsConditions,
+                description:
+                  "Supports the distinction between supervision conditions and registry duties.",
+              },
+              {
+                label: "U.S. Courts — Search and Seizure Conditions",
+                href: sourceLinks.usCourtsSearch,
+                description:
+                  "Included only to route search/seizure and supervision-search questions away from this administrative documentation guide.",
+              },
+              {
+                label: "ICAOS — Reporting Instructions for Sex Offenders",
+                href: sourceLinks.icaosReporting,
+                description:
+                  "Supports the boundary between interstate supervision reporting instructions and registry reporting duties.",
+              },
+              {
+                label: "ICAOS — Transfer of Supervision of Sex Offenders",
+                href: sourceLinks.icaosTransfer,
+                description:
+                  "Supports the reminder that supervision transfer and registry reporting are separate systems.",
+              },
+              {
+                label: "USA.gov — Legal Aid",
+                href: sourceLinks.usaLegalAid,
+                description:
+                  "Supports legal-help routing when noncompliance is disputed, alleged, or may create criminal exposure.",
+              },
+              {
+                label: "U.S. Marshals Service — Sex Offender Investigations",
+                href: sourceLinks.usMarshalsSexOffenderInvestigations,
+                description:
+                  "Supports narrow federal enforcement/compliance context without turning this guide into an encounter-rights guide.",
+              },
+            ]}
           />
         </GuideSectionCard>
       </main>
