@@ -66,12 +66,24 @@ function Resources() {
           type: "Guide",
           description: "Plain-language survival advice + legal deep dives for registrants and families navigating housing and tenant rights.",
           link: "/resources/tenant-rights"
-        },
+        }
+      ]
+    },
+    {
+      title: "Safety, Privacy & Crisis Response",
+      icon: "🛡️",
+      resources: [
         {
           name: "Housing Crisis, Homelessness & Disaster Survival Guide",
           type: "Guide + Checklist",
           description: "Crisis-first guide for sudden housing loss, homelessness, shelter access, disaster displacement, transient registration, communication continuity, documents, medication, money, transportation, and stabilizing the next 72 hours.",
           link: "/resources/housing-crisis-homelessness-disaster-survival-guide"
+        },
+        {
+          name: "Scams, Extortion, Doxxing & Harassment Survival Guide",
+          type: "Guide + Checklist",
+          description: "A practical response guide for fake official calls, payment scams, registry-removal schemes, doxxing, impersonation, stalking, threats, evidence preservation, account security, and safe reporting.",
+          link: "/resources/scams-extortion-doxxing-harassment-survival-guide"
         }
       ]
     },
@@ -168,12 +180,6 @@ function Resources() {
           type: "Guide + Checklist",
           description: "Practical guide for identifying who is contacting you, what authority they may be using, what they are asking you to do, what changes because of registry or supervision status, and how to document the encounter afterward.",
           link: "/resources/police-registry-cps-encounters"
-        },
-        {
-          name: "Scams, Extortion, Doxxing & Harassment Survival Guide",
-          type: "Guide + Checklist",
-          description: "A practical response guide for fake official calls, payment scams, registry-removal schemes, doxxing, impersonation, stalking, threats, evidence preservation, account security, and safe reporting.",
-          link: "/resources/scams-extortion-doxxing-harassment-survival-guide"
         },
         {
           name: "Travel Notification & Temporary Presence Checklist",
