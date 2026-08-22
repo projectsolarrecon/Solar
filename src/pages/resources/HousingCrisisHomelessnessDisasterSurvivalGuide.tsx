@@ -28,7 +28,7 @@ import {
 const sourceLinks = {
   hudFindShelter: "https://www.hud.gov/findshelter",
   usaGovDisasterHousing: "https://www.usa.gov/disaster-housing-shelter",
-  unitedWay211: "https://www.211.org/about-us",
+  unitedWay211: "https://211.org/about-us/your-local-211",
   uspsGeneralDelivery: "https://www.usps.com/locator/glossary.htm",
   smartSornaCurrentLaw: "https://www.smart.ojp.gov/sorna/current-law",
   smartResidenceHomelessTransient:
@@ -41,9 +41,46 @@ const sourceLinks = {
   abaDisasterLegalServices:
     "https://www.americanbar.org/groups/young_lawyers/about/initiatives/disaster-legal-services/free-legal-assistance-to-natural-disaster-survivors/",
   legalAid: "https://www.usa.gov/legal-aid",
-  lawHelp: "https://www.lawhelp.org/",
-  findTreatment: "https://findtreatment.gov/",
+  lscLegalAid:
+    "https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help",
+  findTreatment: "https://findtreatment.gov/locator",
 };
+
+const inlineLinkClass =
+  "font-medium text-blue-700 underline decoration-blue-600 underline-offset-2 hover:text-blue-900 hover:decoration-blue-900";
+
+function ExternalGuideLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={inlineLinkClass}
+    >
+      {children}
+    </a>
+  );
+}
+
+function InternalGuideLink({
+  to,
+  children,
+}: {
+  to: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <Link to={to} className={inlineLinkClass}>
+      {children}
+    </Link>
+  );
+}
 
 export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.Element {
   const handlePrint = () => window.print();
@@ -160,8 +197,8 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               proof you saved.
             </span>,
             <span key="resources">
-              Use local crisis systems such as 211, HUD Find Shelter, local
-              emergency management, disaster shelters, legal aid, or a reentry
+              Use local crisis systems such as <ExternalGuideLink href={sourceLinks.unitedWay211}>211</ExternalGuideLink>, <ExternalGuideLink href={sourceLinks.hudFindShelter}>HUD Find Shelter</ExternalGuideLink>, local
+              emergency management, disaster shelters, <ExternalGuideLink href={sourceLinks.legalAid}>legal aid</ExternalGuideLink>, or a reentry
               provider.
             </span>,
             <span key="tomorrow">
@@ -246,7 +283,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               Both kinds of emergencies can create registry or supervision
               consequences. The first job is not to name the perfect legal
               category. The first job is to see what must be activated:
-              emergency shelter, disaster aid, tenant legal aid, supervision
+              emergency shelter, <ExternalGuideLink href={sourceLinks.usaGovDisasterHousing}>disaster housing or shelter assistance</ExternalGuideLink>, <InternalGuideLink to="/resources/tenant-rights">tenant-rights help</InternalGuideLink>, supervision
               contact, registry triage, medication replacement, transportation,
               mail, or a family safety plan.
             </p>
@@ -360,8 +397,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               <span>
                 The registering agency, your supervision officer if applicable,
                 the shelter or lodging provider, local emergency-management
-                staff, a legal-aid or defense lawyer, or the state registry
-                source listed for your jurisdiction.
+                staff, an <ExternalGuideLink href={sourceLinks.legalAid}>appropriate legal-aid resource</ExternalGuideLink> or defense lawyer, or the SOLAR <InternalGuideLink to="/resources/state-registry">Registry Rules by State</InternalGuideLink> source for your jurisdiction.
               </span>
             }
             whatToAsk={
@@ -410,14 +446,14 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               current residence information, and some jurisdictions use terms
               such as “homeless,” “transient,” “no fixed residence,” “temporary
               residence,” or “habitual location.” The exact rule is not
-              nationally uniform.
+              nationally uniform. The SOLAR <InternalGuideLink to="/resources/registry-compliance-verification-guide">Registry Compliance & Verification Survival Guide</InternalGuideLink> owns the detailed reporting, proof, closure, and missed-deadline workflow.
             </p>
 
             <p>
               Supervision is separate. Probation, parole, supervised release,
               treatment, or court conditions may require approval or immediate
               contact even when the registry rule is different. Do not assume
-              notifying one office automatically satisfies the other.
+              notifying one office automatically satisfies the other. Use the SOLAR <InternalGuideLink to="/resources/supervision-conditions-guide">Supervision Conditions Survival Guide</InternalGuideLink> when the controlling question is a supervision condition.
             </p>
           </GuideProse>
 
@@ -516,7 +552,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
             </p>
 
             <p>
-              SMART’s SORNA implementation guidance says jurisdictions must
+              <ExternalGuideLink href={sourceLinks.smartResidenceHomelessTransient}>SMART’s SORNA implementation guidance on residence, homeless registrants, and transient workers</ExternalGuideLink> says jurisdictions must
               register homeless and transient people and must collect a
               description of where someone habitually lives with as much
               definiteness as possible under the circumstances. But that federal
@@ -610,6 +646,10 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               before traveling across town when possible, ask what rule controls,
               and write down the answer.
             </p>
+
+            <p>
+              For immediate searches, use <ExternalGuideLink href={sourceLinks.hudFindShelter}>HUD Find Shelter</ExternalGuideLink> or your <ExternalGuideLink href={sourceLinks.unitedWay211}>local 211</ExternalGuideLink>. If the housing loss is disaster-related, the federal <ExternalGuideLink href={sourceLinks.usaGovDisasterHousing}>disaster housing and shelter guide</ExternalGuideLink> collects FEMA, transitional-hotel, Red Cross, and 211 pathways.
+            </p>
           </GuideProse>
 
           <GuideChecklist
@@ -686,14 +726,14 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               A fire, flood, hurricane, tornado, wildfire, evacuation order,
               power outage, destroyed residence, road closure, or office closure
               can make ordinary reporting and supervision routines impossible.
-              The unique job here is survival plus documentation.
+              The unique job here is survival plus documentation. For current federal shelter and temporary-housing pathways, use <ExternalGuideLink href={sourceLinks.usaGovDisasterHousing}>USAGov’s disaster housing guide</ExternalGuideLink>.
             </p>
 
             <p>
               If registry or supervision obligations are affected, use this
               guide to keep yourself alive, reachable, and documented. Use the
-              Registry Compliance & Verification guide for detailed reporting
-              attempts, receipts, missed deadlines, and disputed instructions.
+              <InternalGuideLink to="/resources/registry-compliance-verification-guide">Registry Compliance & Verification Survival Guide</InternalGuideLink> for detailed reporting
+              attempts, receipts, missed deadlines, and disputed instructions. If a disaster creates a civil legal problem beyond registry compliance, <ExternalGuideLink href={sourceLinks.abaDisasterLegalServices}>ABA Disaster Legal Services</ExternalGuideLink> explains where free disaster-related legal assistance may be activated.
             </p>
           </GuideProse>
 
@@ -769,7 +809,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               This section stays crisis-focused. Device monitoring, internet
               bans, platform rules, searches, and supervision technology
               conditions belong in the future Technology Access & Monitoring
-              guide and the Supervision Conditions guide.
+              guide and the existing <InternalGuideLink to="/resources/supervision-conditions-guide">Supervision Conditions Survival Guide</InternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -841,7 +881,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
 
             <p>
               Mail continuity matters too. You may need a trusted person,
-              service provider, shelter, general delivery option, PO box, or
+              service provider, shelter, <ExternalGuideLink href={sourceLinks.uspsGeneralDelivery}>USPS General Delivery option</ExternalGuideLink>, PO box, or
               agency-approved mailing contact. But do not confuse mail with
               residence. Ask each agency what address it needs and what that
               address does legally.
@@ -929,7 +969,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               This guide does not become a full benefits, banking, medical, or
               transportation manual. The crisis job is narrower: protect enough
               money, medication, health access, and mobility to survive the next
-              few days and attend required appointments.
+              few days and attend required appointments. If mental-health or substance-use treatment continuity is part of the crisis, <ExternalGuideLink href={sourceLinks.findTreatment}>FindTreatment.gov’s locator</ExternalGuideLink> is a direct national search tool.
             </p>
           </GuideProse>
 
@@ -986,7 +1026,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               assistance, and disaster aid may matter. This guide should help you
               identify what to gather and who to contact first. Deeper
               eligibility, applications, appeals, and long-term administration
-              belong in the future Benefits & Basic Administration guide.
+              belong in the future Benefits & Basic Administration guide. Longer-term household recovery can also use SOLAR’s <InternalGuideLink to="/resources/financial-planning-guide">Financial Planning Guide</InternalGuideLink>.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -1005,7 +1045,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               roommate, elderly parent, disabled household member, family host,
               friend, landlord, social worker, shelter staff, or pet caretaker.
               Do not assume the only question is whether someone is kind enough
-              to offer space.
+              to offer space. The SOLAR <InternalGuideLink to="/resources/family-support-guide">Family & Allies Guide</InternalGuideLink> is the deeper resource for supporters helping someone through a crisis.
             </p>
 
             <p>
@@ -1013,7 +1053,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               involving residence approval, child contact, proximity, local law,
               supervision, registry reporting, household consent, privacy, or
               search conditions. Verify before settling in if there is time to do
-              so safely.
+              so safely. If police or CPS become involved, switch to the SOLAR <InternalGuideLink to="/resources/police-registry-cps-encounters">Police, Registry & CPS Encounters</InternalGuideLink> guide.
             </p>
           </GuideProse>
 
@@ -1086,8 +1126,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
             title="Pets and service animals belong in the crisis plan"
           >
             <p>
-              In disaster shelters serving disaster survivors, civil-rights
-              guidance requires shelter providers to allow a person with a
+              In disaster shelters serving disaster survivors, <ExternalGuideLink href={sourceLinks.hhsEmergencyPreparedness}>HHS civil-rights guidance on emergency preparedness</ExternalGuideLink> requires shelter providers to allow a person with a
               disability to be accompanied by a service animal, and a service
               animal is not treated as a pet. Other settings — motels, private
               hosts, transportation, non-disaster shelters, and temporary lodging
@@ -1110,7 +1149,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               This timeline is a planning aid, not a legal deadline. Registry,
               supervision, court, treatment, shelter, or disaster rules may
               require faster action. When a real legal deadline exists, follow
-              the legal deadline.
+              the legal deadline. Once the immediate crisis stabilizes, use SOLAR’s <InternalGuideLink to="/resources/housing-search-guide">Housing Search Guide</InternalGuideLink> for longer-term housing and the <InternalGuideLink to="/resources/interstate-moving-guide">Interstate Moving Guide</InternalGuideLink> if temporary displacement becomes a state or jurisdictional relocation.
             </p>
           </GuideProse>
 
@@ -1359,8 +1398,8 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
               Contact the right kind of help when there is no safe place to
               sleep, a child or dependent is at risk, a shelter denies access, a
               deadline may be missed, a vehicle is impounded, a medication is
-              unavailable, instructions conflict, police or CPS are involved, or
-              disaster conditions make ordinary reporting impossible.
+              unavailable, instructions conflict, <InternalGuideLink to="/resources/police-registry-cps-encounters">police or CPS are involved</InternalGuideLink>, or
+              disaster conditions make ordinary reporting impossible. For civil legal help, use <ExternalGuideLink href={sourceLinks.legalAid}>USA.gov’s legal-aid finder</ExternalGuideLink> or the <ExternalGuideLink href={sourceLinks.lscLegalAid}>Legal Services Corporation finder</ExternalGuideLink>.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -1398,11 +1437,11 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
                   "Federal overview of finding shelter and temporary housing after disasters.",
               },
               {
-                label: "211",
+                label: "211 local help finder",
                 href: sourceLinks.unitedWay211,
                 badge: "Referral",
                 description:
-                  "Local referrals for housing, food, transportation, health care, disaster recovery, and other basic needs.",
+                  "Find a local 211 for housing, food, transportation, health care, disaster recovery, and other basic needs.",
                 phone: "Dial 211 where available",
               },
               {
@@ -1441,25 +1480,25 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
                   "Federal overview of probation and supervised-release conditions; individual orders and local practice still matter.",
               },
               {
-                label: "FindTreatment.gov",
+                label: "FindTreatment.gov locator",
                 href: sourceLinks.findTreatment,
                 badge: "Health",
                 description:
-                  "Treatment locator for mental-health and substance-use services. Use for continuity, not emergency medical advice.",
+                  "Direct treatment locator for mental-health and substance-use services. Use for continuity, not emergency medical advice.",
               },
               {
-                label: "Legal aid",
+                label: "USA.gov legal aid finder",
                 href: sourceLinks.legalAid,
                 badge: "Legal help",
                 description:
-                  "USAGov starting point for legal-aid resources.",
+                  "Government starting point for free or low-cost legal-help resources.",
               },
               {
-                label: "LawHelp.org",
-                href: sourceLinks.lawHelp,
+                label: "Legal Services Corporation: find legal aid",
+                href: sourceLinks.lscLegalAid,
                 badge: "Legal help",
                 description:
-                  "Find state and local legal-aid information, including housing, disaster, benefits, and related civil legal issues.",
+                  "Location-based finder for LSC-funded civil legal-aid organizations.",
               },
             ]}
           />
@@ -1533,7 +1572,7 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
                   "Supports disaster shelter, FEMA shelter search, Red Cross shelter, 211, and transitional sheltering references.",
               },
               {
-                label: "211",
+                label: "211 local help finder",
                 href: sourceLinks.unitedWay211,
                 description:
                   "Supports local-resource referral language for housing, food, transportation, health care, and crisis needs.",
@@ -1581,6 +1620,12 @@ export default function HousingCrisisHomelessnessDisasterSurvivalGuide(): JSX.El
                 href: sourceLinks.abaDisasterLegalServices,
                 description:
                   "Supports disaster legal-help routing where disaster legal services are activated.",
+              },
+              {
+                label: "Legal Services Corporation — I Need Legal Help",
+                href: sourceLinks.lscLegalAid,
+                description:
+                  "Supports direct location-based civil legal-aid routing.",
               },
             ]}
             note="National sources support crisis navigation, disaster shelter lookup, local-resource referrals, mail issue-spotting, and verification pathways. State, local, agency, court, and supervision sources are still required before publishing any jurisdiction-specific rule."
