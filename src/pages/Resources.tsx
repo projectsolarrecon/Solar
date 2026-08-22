@@ -164,6 +164,12 @@ function Resources() {
           link: "/resources/registry-compliance-verification-guide"
         },
         {
+          name: "Police, Registry & CPS Encounters",
+          type: "Guide + Checklist",
+          description: "Practical guide for identifying who is contacting you, what authority they may be using, what they are asking you to do, what changes because of registry or supervision status, and how to document the encounter afterward.",
+          link: "/resources/police-registry-cps-encounters"
+        },
+        {
           name: "Travel Notification & Temporary Presence Checklist",
           type: "Checklist",
           description: "A practical checklist for short trips, overnight stays, interstate visits, business travel, and what to verify before leaving.",
