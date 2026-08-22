@@ -19,52 +19,28 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
+  RoleGuidanceGrid,
+  TimelineGuidanceGrid,
   DoDontJudgment,
   RedFlagGreenFlag,
-  RoleGuidanceGrid,
 } from "../../components/solar";
 
 const sourceLinks = {
+  hudFindShelter: "https://www.hud.gov/findshelter",
+  usaGovDisasterHousing: "https://www.usa.gov/disaster-housing-shelter",
+  unitedWay211: "https://www.211.org/about-us",
+  uspsGeneralDelivery: "https://www.usps.com/locator/glossary.htm",
   smartSornaCurrentLaw: "https://www.smart.ojp.gov/sorna/current-law",
-  smartSornaImplementation:
-    "https://smart.ojp.gov/sorna/current-law/implementation-documents",
-  smartSornaInPerson:
-    "https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification",
   nsopwAllRegistries: "https://www.nsopw.gov/all-registries",
-  usCourtsSupervisionConditions:
+  usCourtsSupervision:
     "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
-  usCourtsSearchConditions:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions/chapter-3-search-and-seizure-probation-and-supervised-release",
-  usCourtsMirandaSummary:
-    "https://www.uscourts.gov/about-federal-courts/educational-resources/educational-activities/fifth-amendment-activities/miranda-v-arizona/facts-and-case-summary-miranda-v-arizona",
-  terry: "https://www.law.cornell.edu/supremecourt/text/392/1",
-  bostick: "https://www.law.cornell.edu/supremecourt/text/501/429",
-  miranda: "https://www.law.cornell.edu/supremecourt/text/384/436",
-  hiibel: "https://www.law.cornell.edu/supremecourt/text/542/177",
-  schneckloth: "https://www.oyez.org/cases/1972/71-732",
-  riley: "https://www.law.cornell.edu/supremecourt/text/13-132",
-  consentSearches:
-    "https://constitution.congress.gov/browse/essay/amdt4-6-2/ALDE_00000792/",
-  georgiaRandolph:
-    "https://supreme.justia.com/cases/federal/us/547/103/",
-  fernandez: "https://www.law.cornell.edu/supremecourt/text/12-7822",
-  griffin: "https://www.law.cornell.edu/supremecourt/text/483/868",
-  knights:
-    "https://www.ojp.gov/ncjrs/virtual-library/abstracts/us-v-knights-supreme-court-rules-searches-probationers-police",
-  samson: "https://www.law.cornell.edu/supct/html/04-9728.ZO.html",
-  usMarshalsSexOffenderInvestigations:
-    "https://www.usmarshals.gov/sex-offender-investigations",
-  childWelfareStateLaws:
-    "https://www.childwelfare.gov/resources/state-statutes/",
-  childWelfarePolicyLinks:
-    "https://www.childwelfare.gov/resources/links-state-and-tribal-child-welfare-law-and-policy/",
-  childWelfareHowSystemWorks:
-    "https://www.childwelfare.gov/topics/systemwide/how-system-works/",
-  rcfpRecordingGuide: "https://www.rcfp.org/reporters-recording-guide/",
-  usaLegalAid: "https://www.usa.gov/legal-aid",
+  hhsEmergencyPreparedness:
+    "https://www.hhs.gov/civil-rights/for-individuals/special-topics/emergency-preparedness/index.html",
+  abaDisasterLegalServices:
+    "https://www.americanbar.org/groups/young_lawyers/about/initiatives/disaster-legal-services/free-legal-assistance-to-natural-disaster-survivors/",
+  legalAid: "https://www.usa.gov/legal-aid",
   lawHelp: "https://www.lawhelp.org/",
-  stateBarDirectory:
-    "https://www.americanbar.org/groups/legal_services/flh-home/flh-bar-directories-and-lawyer-finders/",
+  findTreatment: "https://findtreatment.gov/",
 };
 
 export default function ResourceGuideSandbox(): JSX.Element {
@@ -73,9 +49,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Police, Registry & CPS Encounters | The SOLAR Project"
-        description="A practical SOLAR guide for police, registry, probation/parole, task-force, and CPS encounters: identify authority, preserve rights, avoid preventable mistakes, and document what happened."
-        keywords="police encounter, registry verification, CPS investigation, probation search, parole visit, sex offense registry, consent search, government encounter, SOLAR Project"
+        title="Housing Crisis, Homelessness & Disaster Survival Guide | The SOLAR Project"
+        description="A practical SOLAR crisis guide for people who lost housing, are entering homelessness, are displaced by disaster, or need to stabilize the next 72 hours while avoiding registry or supervision mistakes."
+        keywords="housing crisis, homelessness, disaster evacuation, transient registration, emergency shelter, registry compliance, supervision conditions, sex offense registry, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -92,16 +68,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Police, Registry & CPS Encounters
+            Housing Crisis, Homelessness & Disaster Survival Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            When police, registry staff, probation, parole, federal officers, or
-            CPS contact you at home, work, by phone, or in public, the safest
-            first step is to slow the moment down. This guide helps you identify
-            who is contacting you, what authority they may be using, what they
-            are asking you to do, what may change because of registration or
-            supervision, and how to document what happened afterward.
+            If you may not have a safe or lawful place to sleep tonight, start
+            with safety, communication, documents, medication, money, and the
+            few legal questions that cannot wait.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -128,65 +101,76 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start here: slow the encounter down" icon="🧭">
+        <GuideIntro title="Start here: solve tonight first" icon="🧭">
           <p>
-            A government encounter can feel urgent even when it is not clear
-            what kind of encounter it is. Before you explain, agree, sign,
-            unlock, invite someone in, or answer detailed questions, try to
-            identify three things: the actor, the authority, and the request.
+            Housing crises destroy normal planning assumptions. You may be
+            dealing with a lockout, eviction, motel loss, family conflict,
+            disaster evacuation, shelter denial, release without workable
+            housing, or a registry or supervision rule that suddenly made a
+            place unusable.
           </p>
 
           <p>
-            This guide is not a substitute for legal advice. It is a practical
-            first-response tool for reducing avoidable risk while you figure out
-            who is contacting you, what they say gives them authority, what they
-            are asking you to do, and what you need to write down afterward.
+            This guide is for the first hours and days. It helps you stabilize,
+            stay reachable, protect documents and medication, verify whether a
+            temporary location creates registry or supervision consequences, and
+            build a proof packet. It is not a full registry-compliance manual,
+            tenant-rights guide, benefits guide, or long-term housing search
+            guide.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If this is happening right now"
-          subtitle="Use this before guessing, arguing, oversharing, or assuming you have no choice."
+          title="I lost housing today"
+          subtitle="Do these before trying to solve every long-term problem at once."
           icon="⚡"
           urgentActions={[
-            <span key="identify">
-              Ask for name, agency, badge or ID number, phone number, and
-              purpose.
+            <span key="physical-safety">
+              Get physically safe: leave danger, call emergency services if
+              needed, and move away from fire, flood, violence, heat, cold, or
+              immediate threat.
             </span>,
-            <span key="authority">
-              Ask whether they are requesting, ordering, verifying, serving
-              paperwork, executing a warrant, or acting under a supervision or
-              court condition.
+            <span key="sleep-tonight">
+              Identify the most realistic place to sleep tonight, then verify
+              whether it creates a registry, supervision, local-law, child-contact,
+              shelter-policy, or transportation problem.
             </span>,
-            <span key="calm">
-              Do not physically block, argue at the threshold, destroy anything,
-              guess, or explain more than necessary.
+            <span key="essentials">
+              Put ID, wallet, phone, charger, medication, keys, glasses, court
+              papers, registry paperwork, supervision conditions, and insurance
+              cards in one bag if you can.
             </span>,
-            <span key="exposure">
-              If children, devices, a search, a safety plan, new allegations,
-              arrest, or a violation threat are involved, treat the exposure as
-              higher.
+            <span key="contacts">
+              Contact supervision if you are required to do so or if approval may
+              be needed. Treat registry and supervision as separate rulebooks.
+            </span>,
+            <span key="reachable">
+              Decide how people can reach you tonight: phone, voicemail, text,
+              email, trusted contact, shelter phone, library phone, or written
+              callback plan.
             </span>,
           ]}
           nextActions={[
-            <span key="log">
-              Write down what happened as soon as possible.
+            <span key="proof">
+              Start a simple notes page with the date, time, why housing became
+              unavailable, where you are sleeping, who you contacted, and what
+              proof you saved.
             </span>,
-            <span key="save">
-              Save cards, papers, notices, warrants, texts, emails, voicemails,
-              property receipts, and names.
+            <span key="resources">
+              Use local crisis systems such as 211, HUD Find Shelter, local
+              emergency management, disaster shelters, legal aid, or a reentry
+              provider.
             </span>,
-            <span key="help">
-              Contact the right kind of help: criminal defense,
-              supervision/revocation counsel, dependency or family counsel,
-              public defender, legal aid, or a trusted advocate.
+            <span key="tomorrow">
+              By tomorrow, work on mail, replacement documents, medication
+              continuity, transportation, longer temporary housing, and legal
+              follow-up.
             </span>,
           ]}
           reminder={
             <span>
-              Calm does not mean passive. You can ask clarifying questions,
-              avoid physical resistance, preserve your position, and document
-              what happened.
+              You do not have to solve everything today. But safety, sleep,
+              medication, reachability, and legal triage cannot be ignored.
             </span>
           }
         />
@@ -195,44 +179,28 @@ export default function ResourceGuideSandbox(): JSX.Element {
           columns={3}
           cards={[
             {
-              eyebrow: "Step 1",
-              title: "Identify the actor",
-              icon: "👤",
-              tone: "info",
+              eyebrow: "Tonight",
+              title: "Stabilize",
+              icon: "🛟",
+              tone: "urgent",
               description:
-                "Who is contacting you: registry staff, police, sheriff, probation, parole, CPS, federal officers, or a mixed team?",
+                "Find a realistic sleeping option, protect medication and documents, charge your phone, and keep dependents or pets safe.",
             },
             {
-              eyebrow: "Step 2",
-              title: "Identify the authority",
+              eyebrow: "Before relying on a location",
+              title: "Verify",
               icon: "⚖️",
               tone: "legal",
               description:
-                "What rule, warrant, court order, supervision condition, agency role, or emergency claim are they relying on?",
+                "Check whether the temporary location creates registry, supervision, residence, presence, shelter, local-law, or child-contact issues.",
             },
             {
-              eyebrow: "Step 3",
-              title: "Identify the request",
-              icon: "❓",
-              tone: "warning",
-              description:
-                "Are they asking to talk, enter, inspect, search, interview a child, take property, photograph something, or schedule follow-up?",
-            },
-            {
-              eyebrow: "Step 4",
-              title: "Preserve rights",
-              icon: "🛡️",
-              tone: "privacy",
-              description:
-                "Do not assume a request is a lawful order, and do not assume a duty to report means consent to every question, entry, or search.",
-            },
-            {
-              eyebrow: "Step 5",
-              title: "Document and get help",
+              eyebrow: "All week",
+              title: "Document",
               icon: "🗂️",
               tone: "success",
               description:
-                "Write down what happened while memory is fresh, save paperwork, and get legal help when exposure increases.",
+                "Keep receipts, call logs, closure notices, evacuation records, shelter paperwork, photos, messages, names, and instructions.",
             },
           ]}
         />
@@ -240,1116 +208,514 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideCallout
           tone="legal"
           icon="⚖️"
-          title="Sandbox note for reviewers"
+          title="National guidance can help you stabilize. Local rules still control legal details."
         >
           <p>
-            This preview intentionally keeps constitutional doctrine operational
-            rather than exhaustive. The broader doctrine belongs in the Know
-            Your Rights guide; full supervision management belongs in the
-            Supervision Conditions guide; and calendars, receipts, and ordinary
-            registry reporting systems belong in the Registry Compliance &
-            Verification guide.
+            This guide can safely tell you how to triage, document, preserve
+            communication, and find crisis resources. It cannot safely tell you
+            that a shelter, motel, couch, campground, vehicle, or mailing address
+            is always allowed or always reportable. Those answers can change by
+            state law, local ordinance, registering agency, court order,
+            supervision condition, shelter policy, and emergency-management
+            decision.
           </p>
         </GuideCallout>
 
         <GuideSectionHeader
-          id="who-is-here"
+          id="kind-of-crisis"
           number="1"
-          title="Who is here, and what authority are they using?"
-          subtitle="Separate the person at the door from the legal authority they say they are using."
+          title="Identify what kind of crisis this is"
+          subtitle="The label matters only because it tells you what systems to activate and what proof to save."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A badge, agency shirt, business card, or official vehicle tells
-              you something, but not everything. The important question is not
-              only “Who are you?” It is “What are you here for, and what
-              authority are you relying on?”
+              A housing crisis can start because the outside world breaks — a
+              wildfire, hurricane, flood, fire, tornado, utility failure, or
+              evacuation order. It can also start because the housing system
+              breaks — eviction, lockout, shelter loss, motel loss, family
+              conflict, residence rejection, or release from jail or prison
+              without workable housing.
             </p>
 
             <p>
-              A registry officer may be verifying an address. A police officer
-              may be investigating. A probation or parole officer may be acting
-              under a written supervision condition. CPS may be asking for
-              voluntary cooperation, acting under agency authority, seeking a
-              court order, or responding to an emergency claim. A mixed team may
-              include more than one agency with more than one purpose.
-            </p>
-
-            <p>
-              Do not guess. Ask, write it down, and save any card, notice,
-              warrant, court order, referral number, case number, or form they
-              show or leave.
+              Both kinds of emergencies can create registry or supervision
+              consequences. The first job is not to name the perfect legal
+              category. The first job is to see what must be activated: emergency
+              shelter, disaster aid, tenant legal aid, supervision contact,
+              registry triage, medication replacement, transportation, mail, or a
+              family safety plan.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="actor-authority-request"
-            title="At the start, try to identify"
+            id="crisis-type-checklist"
+            title="What happened?"
             columns={1}
             items={[
               {
-                id: "name",
+                id: "housing-loss",
                 label:
-                  "Name, agency, badge number, ID number, phone number, and supervisor or office if available.",
+                  "Housing became unavailable: eviction, lockout, landlord termination, roommate or family conflict, shelter exit, motel loss, or unsafe residence.",
               },
               {
-                id: "purpose",
+                id: "disaster",
                 label:
-                  "Purpose: registry verification, police investigation, supervision visit, CPS contact, warrant, court order, paperwork service, address check, worksite verification, or something else.",
+                  "A disaster or emergency made the residence unsafe or unreachable: fire, flood, hurricane, tornado, wildfire, storm, utility failure, evacuation, or closure.",
               },
               {
-                id: "authority",
+                id: "rule-created-crisis",
                 label:
-                  "Authority claimed: request, law, registry duty, court order, warrant, supervision condition, CPS authority, emergency authority, or consent.",
+                  "A registry, supervision, local-law, child-contact, residence-approval, or housing-restriction issue made the planned location unusable.",
               },
               {
-                id: "request",
+                id: "release-discharge",
                 label:
-                  "What they are asking you to do: answer questions, step outside, let someone in, show documents, unlock a device, sign a plan, allow a child interview, or schedule follow-up.",
+                  "You were released from jail, prison, hospital, treatment, or a program without a workable place to go.",
               },
               {
-                id: "paperwork",
+                id: "vehicle-infrastructure",
                 label:
-                  "What paperwork exists: warrant, order, condition, notice, referral, business card, property receipt, safety plan, or written instruction.",
+                  "A vehicle breakdown, tow, impoundment, dead battery, insurance lapse, or fuel problem removed both transportation and sleeping/storage access.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="sleep-tonight"
+          number="2"
+          title="Where can I sleep tonight?"
+          subtitle="Choose the safest realistic option, then verify before relying on it."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A temporary sleeping place is not automatically lawful, reportable,
+              unreportable, supervision-approved, or safe just because it is only
+              for one night. A family couch, motel, shelter, vehicle, campground,
+              disaster shelter, or reentry bed can each raise different
+              questions.
+            </p>
+
+            <p>
+              That does not mean every option is impossible. It means the safer
+              move is to ask narrow questions, save the answer, and have a backup
+              plan before spending your last cash or traveling across town.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="sleeping-location-verification"
+            title="Emergency sleeping-location verification"
+            columns={1}
+            items={[
+              {
+                id: "address",
+                label:
+                  "Write down the exact place: street address, shelter name, motel name, campsite, parking location, or clear geographic description.",
+              },
+              {
+                id: "jurisdiction",
+                label:
+                  "Identify the city, county, state, tribal land, or other jurisdiction where the place is located.",
+              },
+              {
+                id: "registry-question",
+                label:
+                  "Ask whether staying there, even temporarily, creates a registration, address, residence, transient, presence, or reporting issue.",
+              },
+              {
+                id: "supervision-question",
+                label:
+                  "If supervised, ask whether the stay needs advance approval, immediate notice, travel permission, child-contact review, or curfew adjustment.",
+              },
+              {
+                id: "local-law",
+                label:
+                  "Check local rules when relevant: vehicle sleeping, camping, loitering, proximity restrictions, shelter zones, parks, school zones, or anti-camping ordinances.",
+              },
+              {
+                id: "provider-policy",
+                label:
+                  "Ask the shelter, motel, program, campground, or host what its own admission, ID, curfew, background, child, pet, medication, and mail rules are.",
+              },
+              {
+                id: "proof",
+                label:
+                  "Save proof: call log, name of person spoken to, text, email, receipt, intake paper, screenshot, business card, voicemail, or written notes.",
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            title="Before you rely on a temporary location"
+            whoToAsk={
+              <span>
+                The registering agency, your supervision officer if applicable,
+                the shelter or lodging provider, local emergency-management staff,
+                a legal-aid or defense lawyer, or the state registry source
+                listed for your jurisdiction.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “I am temporarily displaced and may sleep at [location] from
+                [date/time] to [date/time]. Does this create any reporting,
+                residence, transient, presence, supervision, child-contact, or
+                local-law issue I need to handle today?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Date, time, name, agency or provider, phone number, exact
+                question, exact answer, and any written confirmation.
+              </span>
+            }
+          />
+
+          <GuideCallout
+            tone="warning"
+            icon="🚗"
+            title="Vehicle sleeping is both a housing issue and an infrastructure issue"
+          >
+            <p>
+              If a vehicle is your sleeping place, it may also hold your
+              documents, phone charger, medication, clothes, work tools, and
+              transportation to appointments. A tow, impoundment, dead battery,
+              fuel problem, or insurance issue can collapse several systems at
+              once. Treat the vehicle as both shelter and critical
+              infrastructure.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="registry-supervision-triage"
+          number="3"
+          title="Registry and supervision triage during displacement"
+          subtitle="Spot the issue, separate the rulebooks, and route detailed compliance questions to the deeper guides."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Losing housing can matter because many registry systems require
+              current residence information, and some jurisdictions use terms
+              such as “homeless,” “transient,” “no fixed residence,” “temporary
+              residence,” or “habitual location.” The exact rule is not
+              nationally uniform.
+            </p>
+
+            <p>
+              Supervision is separate. Probation, parole, supervised release,
+              treatment, or court conditions may require approval or immediate
+              contact even when the registry rule is different. Do not assume
+              notifying one office automatically satisfies the other.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="registry-supervision-triage-checklist"
+            title="Questions to answer today"
+            columns={1}
+            items={[
+              {
+                id: "lost-residence",
+                label:
+                  "Did losing the prior residence create a change-of-address, change-of-residence, or no-fixed-address issue?",
+              },
+              {
+                id: "temporary-location",
+                label:
+                  "Does the temporary place count as a residence, temporary residence, shelter stay, lodging, transient location, or reportable location?",
+              },
+              {
+                id: "no-address",
+                label:
+                  "If there is no ordinary street address, what information does the jurisdiction accept: shelter name, intersection, vehicle location, geographic description, or reporting to a specific office?",
+              },
+              {
+                id: "frequency",
+                label:
+                  "Does homeless or transient status trigger more frequent in-person reporting, verification, or location updates?",
+              },
+              {
+                id: "separate-supervision",
+                label:
+                  "Does supervision require separate permission, immediate notice, travel approval, curfew change, residence approval, or treatment-program communication?",
+              },
+              {
+                id: "written-record",
+                label:
+                  "Did you preserve proof of every call, visit, message, office closure, instruction, and attempted contact?",
               },
             ]}
           />
 
           <ScriptBox
-            title="Script 1: door identification"
-            tone="neutral"
-            context="Use this to slow a threshold encounter down and create a record without escalating."
-            script={`Hello. I want to understand what this is about. Can you please tell me your name, agency, badge or ID number, and the purpose of the visit? Are you here for registry verification, supervision, CPS, a warrant or court order, or something else? I am going to write down what you tell me.`}
+            title="Script: registry emergency-displacement notification"
+            tone="legal"
+            context="Use this only as a short triage script. Detailed reporting, receipts, and deadline disputes belong in the Registry Compliance & Verification guide."
+            script={`Hello, my name is [Name]. I am registered in [jurisdiction]. I lost access to my housing on [date/time] because [brief reason]. I am trying to understand what I must do today while I am temporarily displaced.\n\nMy current temporary location is [location or “not yet stable”]. Who handles emergency displacement, homeless or transient reporting, and temporary-location questions? What exactly should I report, how should I report it, and how can I get written proof of the instruction or attempted contact?`}
+          />
+
+          <ScriptBox
+            title="Script: supervision emergency-housing notification"
+            tone="warning"
+            context="Use this separately from registry contact if you are on probation, parole, supervised release, treatment supervision, or another court condition."
+            script={`Hello, this is [Name]. I am under supervision with [officer/office]. I lost access to my housing on [date/time] because [brief reason]. I need to know what housing, travel, curfew, contact, child-contact, and reporting instructions apply right now.\n\nMy possible temporary location is [location]. Is this approved, not approved, or do you need more information? If I cannot reach you again, what should I document and where should I go for written instructions?`}
+          />
+
+          <RelatedGuides
+            title="Use these deeper guides when triage turns into compliance"
+            guides={[
+              {
+                title: "Registry Compliance & Verification Survival Guide",
+                description:
+                  "For exact reporting duties, receipts, proof of attempted compliance, office closures, failed reporting channels, missed deadlines, and disputed instructions.",
+                to: "/resources/registry-compliance-verification-guide",
+              },
+              {
+                title: "Supervision Conditions Survival Guide",
+                description:
+                  "For residence approval, travel limits, curfew, treatment rules, search conditions, device limits, contact restrictions, and violation risk.",
+                to: "/resources/supervision-conditions-guide",
+              },
+              {
+                title: "Registry Rules by State",
+                description:
+                  "For state-specific registry sources before relying on a national summary.",
+                to: "/resources/state-registry",
+              },
+            ]}
           />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="registry-verification"
-          number="2"
-          title="Registry or address-verification visits"
-          subtitle="Handle live verification without turning this guide into a full registry-compliance calendar."
+          id="homeless-transient-registration"
+          number="4"
+          title="Homeless, transient, and no-fixed-address registration"
+          subtitle="Do not guess the rule. Learn the terms your jurisdiction uses and document the answer."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Registry and address-verification visits can involve a sheriff’s
-              office, police department, state registry unit, local registering
-              agency, task force, or another official channel. SORNA creates
-              federal baseline registration standards, but many live details —
-              including who verifies, how often, what happens at a residence,
-              and how worksite verification is handled — depend on state,
-              tribal, territorial, local, and agency rules.
+              Some jurisdictions have special procedures for people without a
+              fixed residence. Others use different words or fold the issue into
+              residence, address, temporary lodging, location, or in-person
+              verification rules. A national guide cannot safely turn that into
+              one rule.
             </p>
 
             <p>
-              A duty to register or verify information is not automatically the
-              same thing as consent to enter a home, search a room, inspect a
-              device, question every household member, or answer investigative
-              questions unrelated to verification. The practical move is to ask
-              what they are verifying, what authority they are relying on, and
-              whether they are requesting something or saying a specific legal
-              duty applies now.
+              Your goal is to find the controlling words, ask the narrow question,
+              and save the answer. A mailing address, shelter mail desk, trusted
+              friend’s address, or post office option may help officials reach
+              you. It does not automatically answer where you legally reside or
+              what you must report.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="registry-visit-checklist"
-            title="During a registry or address-verification contact"
+            id="homeless-transient-verification"
+            title="Terms and questions to verify"
             columns={1}
             items={[
               {
-                id: "verify-purpose",
+                id: "terms",
                 label:
-                  "Ask whether the contact is address verification, worksite verification, a registration update, a compliance check, a criminal investigation, or a mixed-purpose visit.",
+                  "Search or ask about these terms: homeless, transient, no fixed residence, no fixed address, temporary residence, habitual location, residence, place where you sleep, shelter address, vehicle, geographic description, change of residence, and temporary presence.",
               },
               {
-                id: "ask-scope",
+                id: "classification",
                 label:
-                  "Ask what information they need to verify and whether any request goes beyond verification.",
+                  "Ask whether the jurisdiction has a homeless, transient, no-fixed-address, or similar classification.",
               },
               {
-                id: "entry-request",
+                id: "required-information",
                 label:
-                  "If entry is requested, ask whether they are asking for consent, relying on a warrant or court order, or relying on a supervision condition.",
+                  "Ask what information must be reported when there is no conventional address.",
               },
               {
-                id: "supervision-overlap",
+                id: "frequency",
                 label:
-                  "If you are on probation, parole, or supervised release, ask whether this is also a supervision visit or search.",
+                  "Ask whether the status changes reporting frequency, in-person verification, check-ins, or location updates.",
               },
               {
-                id: "worksite",
+                id: "locations",
                 label:
-                  "If worksite verification is involved, write down who contacted the employer, what was said, and whether any follow-up or reporting duty was created.",
+                  "Ask whether each shelter, motel, couch, vehicle location, campground, or outdoor sleeping area must be reported separately.",
               },
               {
-                id: "save-proof",
+                id: "proof-to-keep",
                 label:
-                  "Save cards, notices, forms, receipts, emails, texts, voicemails, and your after-encounter notes.",
+                  "Keep proof of where you slept, dates, attempts to report, agency instructions, shelter paperwork, motel receipts, transportation limits, and office closures.",
               },
             ]}
           />
 
           <GuideCallout
             tone="reminder"
-            icon="🧩"
-            title="Keep the rulebooks separate"
+            icon="📬"
+            title="Mailing address and residence are different questions"
           >
             <p>
-              Registry duties, supervision duties, police investigations, and
-              CPS concerns can overlap, but they are not always the same
-              rulebook. Ask which authority controls the specific request in
-              front of you.
-            </p>
-          </GuideCallout>
-
-          <RelatedGuides
-            title="Related SOLAR guides for registry encounters"
-            guides={[
-              {
-                title: "Registry Compliance & Verification Survival Guide",
-                description:
-                  "Use this for reporting duties, calendars, receipts, verification appointments, and compliance proof packets.",
-                to: "/resources/registry-compliance-verification-guide",
-              },
-              {
-                title: "Registry Rules by State",
-                description:
-                  "Use this to begin state-specific registry research before relying on a national summary.",
-                to: "/resources/state-registry",
-              },
-              {
-                title: "Supervision Conditions Survival Guide",
-                description:
-                  "Use this when a visit may also involve probation, parole, supervised release, treatment rules, or a search condition.",
-                to: "/resources/supervision-conditions-guide",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="police-sheriff-contact"
-          number="3"
-          title="Police or sheriff contact"
-          subtitle="Translate general rights principles into registry-specific police encounters."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Police contact can be a consensual conversation, a detention, an
-              arrest, a request for consent, a warrant situation, or something
-              else. Those categories matter, but they are not always obvious in
-              the moment. Questions about registry status, travel, address,
-              work, internet use, devices, children, or reporting history can
-              create higher exposure even when the conversation sounds casual.
-            </p>
-
-            <p>
-              You do not have to solve the legal category at the door. A safer
-              move is to ask whether you are required to answer now, whether you
-              are free to leave or end the conversation, and whether you may
-              speak with a lawyer before answering more questions.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="police-contact-checklist"
-            title="Police or sheriff contact: practical checks"
-            columns={1}
-            items={[
-              {
-                id: "contact-type",
-                label:
-                  "Ask whether this is a request for conversation, a detention, an arrest, a warrant, a registry issue, or another official action.",
-              },
-              {
-                id: "free-to-leave",
-                label:
-                  "If safe, ask whether you are free to leave, step away, or end the conversation.",
-              },
-              {
-                id: "lawyer",
-                label:
-                  "Ask whether you may speak with a lawyer before answering more questions.",
-              },
-              {
-                id: "devices",
-                label:
-                  "Treat phones, computers, cloud accounts, apps, passwords, and biometric unlocking requests as higher-risk issues.",
-              },
-              {
-                id: "children",
-                label:
-                  "Treat questions involving children, household members, school, childcare, custody, or CPS as higher-risk issues.",
-              },
-              {
-                id: "document",
-                label:
-                  "Afterward, write down the questions asked, answers given, names, agencies, case numbers, and any next deadline.",
-              },
-            ]}
-          />
-
-          <ScriptBox
-            title="Script 2: police questioning"
-            tone="legal"
-            context="Use this to avoid guessing or oversharing during investigative questioning."
-            script={`I want to cooperate with lawful requirements, but I do not want to guess or explain something incorrectly. Am I required to answer this right now, am I free to leave or end this conversation, and may I speak with a lawyer before answering more questions?`}
-          />
-
-          <CommonMistakes
-            title="Common police-contact mistakes"
-            mistakes={[
-              {
-                mistake: "Trying to talk your way out of uncertainty.",
-                whyItMatters:
-                  "A detailed explanation can create new questions, contradictions, or statements that are later used in another setting.",
-                betterMove:
-                  "Ask what is required right now, whether you can end the conversation, and whether you may speak with counsel first.",
-              },
-              {
-                mistake:
-                  "Assuming a friendly or informal tone means the contact has no legal risk.",
-                whyItMatters:
-                  "Casual questions can still become part of a police, registry, supervision, CPS, or violation record.",
-                betterMove:
-                  "Stay calm, answer only what you are required to answer, and document what was asked.",
-              },
-              {
-                mistake:
-                  "Unlocking, handing over, deleting, hiding, or changing device content in panic.",
-                whyItMatters:
-                  "Device issues can create criminal, supervision, registry, employment, privacy, or family-court exposure.",
-                betterMove:
-                  "Do not destroy or alter anything. Ask what authority is being used and contact counsel promptly.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="supervision-encounters"
-          number="4"
-          title="Probation, parole, or supervised-release encounters"
-          subtitle="Supervision can change the analysis, but the details still matter."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Supervision status can reduce privacy expectations and create
-              duties to answer, report, permit visits, submit to inspections, or
-              comply with searches. But probation, parole, and supervised
-              release are not identical, and the answer can depend on the
-              written condition, jurisdiction, suspicion requirement, scope,
-              actor, place, purpose, and whether police or another agency is
-              involved.
-            </p>
-
-            <p>
-              Do not rely on broad statements like “being on paper means you
-              cannot refuse a warrantless search.” That shortcut can be
-              dangerous in both directions. The safer question is narrower: what
-              does the written condition say, who is acting under it, what place
-              or item is being searched or inspected, and what reason or purpose
-              is being given?
-            </p>
-          </GuideProse>
-
-          <VerifyBeforeActing
-            title="Verify the supervision authority before assuming the answer"
-            whoToAsk="Your supervising officer, defense or revocation counsel, the supervision office, or the court paperwork that lists your actual conditions."
-            whatToAsk="Ask what condition applies, whether it covers the place or item involved, who may act under it, whether suspicion is required, and what you must do right now."
-            whatToSave="Save the written condition, officer name, date, instruction, search paperwork, property receipt, violation warning, and any follow-up deadline."
-          />
-
-          <GuideChecklist
-            id="supervision-visit-checklist"
-            title="During a supervision-related encounter"
-            columns={1}
-            items={[
-              {
-                id: "written-condition",
-                label:
-                  "Ask which written condition or court order applies to the request.",
-              },
-              {
-                id: "actor",
-                label:
-                  "Identify who is acting: probation, parole, supervised release, police, registry, CPS, treatment, or a mixed team.",
-              },
-              {
-                id: "scope",
-                label:
-                  "Ask what area, item, device, vehicle, account, room, workplace, or document is within the claimed scope.",
-              },
-              {
-                id: "purpose",
-                label:
-                  "Ask whether the purpose is supervision compliance, violation investigation, new criminal investigation, registry verification, CPS safety, or another purpose.",
-              },
-              {
-                id: "no-resistance",
-                label:
-                  "Do not physically resist. If you dispute the scope, state your position calmly, do not interfere, and document what happened.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="warning"
-            icon="⚠️"
-            title="Police overlap raises the stakes"
-          >
-            <p>
-              When police participate in a supervision contact, the line between
-              supervision management and criminal investigation can matter. Do
-              not argue the law at the threshold. Preserve your position, avoid
-              physical interference, write down who did what, and seek counsel
-              promptly if the search, questioning, seizure, or violation threat
-              is disputed.
+              A place to receive mail can be important for benefits, notices,
+              employers, lawyers, agencies, and family. But it may not satisfy a
+              registry residence duty, supervision residence-approval rule, or
+              local-law requirement. Treat mail continuity as a communication
+              tool, not as a substitute for legal verification.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="consent-warrants-searches"
+          id="shelters-emergency-housing"
           number="5"
-          title="Consent, warrants, searches, and shared spaces"
-          subtitle="Consent, warrants, emergency claims, supervision conditions, CPS orders, and third-party consent are different pathways."
+          title="Shelters, disaster shelters, and emergency housing"
+          subtitle="Call ahead when possible, ask narrow questions, and build a backup plan."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A search request can come wrapped in many different words:
-              “Can we look around?” “We need to verify the address.” “Your
-              officer said this is required.” “CPS needs to see the home.” “Your
-              roommate said it is okay.” “We have paperwork.” These are not all
-              the same thing.
+              Emergency shelter access can depend on several different systems:
+              state law, local rule, emergency-management decision, provider
+              policy, supervision condition, ID requirement, bed availability,
+              family composition, disability need, medication storage, pet policy,
+              and safety planning.
             </p>
 
             <p>
-              Shared homes need special caution. A spouse, roommate, parent,
-              adult child, landlord, employer, or other third party may have
-              some authority over some spaces or property in some circumstances,
-              but there is no safe universal rule that another person can always
-              consent to search everything. Common spaces, private bedrooms,
-              locked containers, devices, work property, children’s property,
-              and cloud accounts can raise different questions.
+              Do not assume people on registries are always excluded. Do not
+              assume every shelter must accept you. The practical move is to call
+              before traveling across town when possible, ask what rule controls,
+              and write down the answer.
             </p>
           </GuideProse>
 
-          <DoDontJudgment
-            dos={[
-              <span key="ask-authority">
-                Ask what authority is being used and what area or item is at
-                issue.
-              </span>,
-              <span key="say-position">
-                If you do not consent, say so calmly and clearly.
-              </span>,
-              <span key="avoid-interference">
-                Avoid physical interference, threats, blocking, or sudden
-                movements.
-              </span>,
-              <span key="write-down">
-                Write down who entered, who objected, who consented, what was
-                searched, and what was taken or copied.
-              </span>,
-            ]}
-            donts={[
-              <span key="destroy">
-                Do not delete, hide, move, destroy, wipe, or alter anything.
-              </span>,
-              <span key="universal">
-                Do not assume a roommate, spouse, landlord, or employer can
-                always consent to everything.
-              </span>,
-              <span key="same">
-                Do not treat refusing consent as the same thing as disobeying a
-                lawful order.
-              </span>,
-              <span key="fight">
-                Do not physically resist a search even if you believe it is too
-                broad.
-              </span>,
-            ]}
-            judgment={[
-              <span key="devices">
-                Devices, passwords, biometric unlocking, work property, child
-                materials, cloud accounts, and locked spaces usually deserve
-                immediate legal help.
-              </span>,
-              <span key="supervision">
-                If you are supervised, compare the request against the written
-                condition before assuming the scope.
-              </span>,
+          <GuideChecklist
+            id="shelter-call-ahead-checklist"
+            title="Shelter or emergency-housing call-ahead checklist"
+            columns={1}
+            items={[
+              {
+                id: "eligibility",
+                label:
+                  "Ask whether the program accepts adults in your situation and whether any registry, supervision, warrant, ID, family, or local-policy issue affects intake.",
+              },
+              {
+                id: "intake",
+                label:
+                  "Ask intake hours, location, transportation options, what to bring, what not to bring, and whether beds are first-come, referral-only, or coordinated-entry.",
+              },
+              {
+                id: "documents",
+                label:
+                  "Ask what ID, paperwork, medication list, prescriptions, release papers, benefit letters, or referral documents are needed.",
+              },
+              {
+                id: "rules",
+                label:
+                  "Ask about curfew, length of stay, bag limits, phone charging, medication storage, mail, visitors, work schedules, and appointment conflicts.",
+              },
+              {
+                id: "family",
+                label:
+                  "Ask whether partners, children, dependent adults, service animals, or pets can stay together and what proof or referral is needed.",
+              },
+              {
+                id: "backup",
+                label:
+                  "If denied, ask whether they know another program, warming or cooling center, coordinated-entry point, reentry provider, domestic-violence program, disaster shelter, or 211 referral.",
+              },
             ]}
           />
 
           <ScriptBox
-            title="Script 3: no-consent / no-interference"
-            tone="legal"
-            context="Use this to preserve the no-consent position while avoiding physical resistance."
-            script={`I do not consent to a search. I will not physically interfere. Please tell me what authority you are relying on and what area or item you intend to search.`}
+            title="Script: shelter eligibility call"
+            tone="neutral"
+            context="Use this before spending limited money, battery, or transportation on a trip that may not work."
+            script={`Hello, my name is [Name]. I need emergency shelter for [tonight/date]. Before I travel there, I need to ask about eligibility and intake.\n\nDo you accept someone in my situation? Are there any registry, supervision, ID, warrant, family, child, medication, pet, service-animal, or local-policy issues I should know before coming? If you cannot help, who should I call next?`}
           />
 
-          <GuideChecklist
-            id="search-scope-checklist"
-            title="If a search, entry, inspection, or viewing request happens"
-            columns={1}
-            items={[
-              {
-                id: "authority",
-                label:
-                  "Ask whether the authority is consent, warrant, court order, supervision condition, CPS document, emergency authority, or another source.",
-              },
-              {
-                id: "scope",
-                label:
-                  "Ask what place, room, vehicle, document, account, device, app, container, or item is included.",
-              },
-              {
-                id: "who-consented",
-                label:
-                  "Write down who consented, who objected, who was present, and whether anyone was removed or separated.",
-              },
-              {
-                id: "paperwork",
-                label:
-                  "Ask for a copy of any warrant, order, condition, inventory, receipt, safety plan, or written instruction.",
-              },
-              {
-                id: "seized",
-                label:
-                  "If anything is taken, copied, photographed, downloaded, or viewed, use the seizure checklist later in this guide.",
-              },
-            ]}
-          />
+          <GuideCallout
+            tone="privacy"
+            icon="🛡️"
+            title="Domestic-violence shelters may be the right emergency pathway for some readers"
+          >
+            <p>
+              Domestic-violence and survivor-services programs can have specific
+              eligibility, confidentiality, safety, child-related, location, and
+              admission policies. This guide does not replace survivor-safety
+              planning. Contact the program directly, a survivor-services hotline,
+              or an appropriate advocate if that pathway may fit your situation.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="mixed-agency"
+          id="disaster-evacuation"
           number="6"
-          title="Mixed-agency and task-force encounters"
-          subtitle="More uniforms do not automatically mean one merged authority."
+          title="Disaster evacuation and office closures"
+          subtitle="When normal systems break, preserve proof of what happened and what you tried to do."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Mixed-agency encounters are confusing by design or by necessity.
-              A registry officer may arrive with police. Probation may arrive
-              with detectives. CPS may arrive with law enforcement. U.S.
-              Marshals or task-force officers may participate in sex-offender
-              registration investigations. The presence of one agency does not
-              automatically mean every person there has the same authority for
-              every request.
+              A fire, flood, hurricane, tornado, wildfire, evacuation order,
+              power outage, destroyed residence, road closure, or office closure
+              can make ordinary reporting and supervision routines impossible.
+              The unique job here is survival plus documentation.
             </p>
 
             <p>
-              Your goal is not to debate the authority at the door. Your goal is
-              to identify who is in charge, what each agency is there to do, and
-              whether the action is a request, an order, paperwork service, a
-              warrant, a court order, a supervision condition, CPS action, or
-              something else.
+              If registry or supervision obligations are affected, use this guide
+              to keep yourself alive, reachable, and documented. Use the Registry
+              Compliance & Verification guide for detailed reporting attempts,
+              receipts, missed deadlines, and disputed instructions.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="mixed-agency-checklist"
-            title="When more than one agency is involved"
+            id="disaster-proof-checklist"
+            title="Disaster and evacuation proof to save"
             columns={1}
             items={[
               {
-                id: "lead",
+                id: "order",
                 label:
-                  "Ask who is leading the contact and who will answer questions about authority and scope.",
+                  "Evacuation order, emergency alert, county or state notice, FEMA or local emergency-management update, shelter notice, or disaster declaration.",
               },
               {
-                id: "agency-purpose",
+                id: "housing-damage",
                 label:
-                  "Ask what each agency is there for: registry, supervision, police investigation, CPS, warrant, task-force work, or another purpose.",
+                  "Photos or videos of damage, fire report, utility outage notice, landlord message, insurance message, repair notice, or safety notice.",
               },
               {
-                id: "request-order",
+                id: "temporary-stay",
                 label:
-                  "Ask whether each action is a request, a legal requirement, paperwork service, a warrant, a court order, or a supervision condition.",
+                  "Shelter intake record, hotel or motel receipt, campground receipt, host message, transportation receipt, gas receipt, toll receipt, or parking record.",
               },
               {
-                id: "separate-notes",
+                id: "office-closure",
                 label:
-                  "Write separate notes for each agency: names, titles, questions asked, areas searched, documents shown, and property handled.",
+                  "Registry office closure notice, supervision office closure notice, voicemail recording details, website notice, door sign photo, or email auto-reply.",
               },
               {
-                id: "exposure",
+                id: "attempts",
                 label:
-                  "Treat mixed CPS + police, probation + police, registry + police, or USMS + local encounters as higher exposure.",
+                  "Call logs, emails, texts, voicemail notes, names, badge or employee numbers, confirmation numbers, and the exact instructions given.",
               },
-            ]}
-          />
-
-          <ScriptBox
-            title="Script 4: mixed-agency clarification"
-            tone="warning"
-            context="Use this to separate actor, agency, authority, and request during confusing multi-agency contacts."
-            script={`I see more than one agency here. Can you please tell me who is in charge of this contact, what each agency is here for, and whether you are asking, ordering, serving paperwork, or acting under a warrant, court order, or supervision condition?`}
-          />
-
-          <GuideCallout
-            tone="legal"
-            icon="🧭"
-            title="Federal task-force caution"
-          >
-            <p>
-              The U.S. Marshals Service has specific sex-offender investigation
-              roles under federal law and works with state, local, tribal, and
-              territorial authorities. That role should not be turned into a
-              blanket assumption that every federal or task-force encounter
-              authorizes entry, search, questioning, or seizure without looking
-              at the specific authority being used.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="cps"
-          number="7"
-          title="CPS / child-protective-services encounters"
-          subtitle="CPS is not simply police, and CPS requests, safety plans, court orders, and emergency authority are not the same thing."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              CPS, DCF, DHS, child protective services, child welfare, family
-              services, and dependency agencies use different names in different
-              places. Their authority usually comes from state, tribal, local,
-              administrative, and family or dependency-court systems. CPS may
-              request voluntary cooperation, ask to inspect a home, seek to
-              interview a child, propose a safety plan, coordinate with police,
-              seek a court order, or act under emergency authority.
-            </p>
-
-            <p>
-              Allegations involving a registrant, a person with a sex-offense
-              conviction, or a person on supervision can increase practical
-              exposure. That does not mean the same legal answer applies in
-              every state or every family. Safety plans, child interviews,
-              parent-rights notices, emergency removals, registry-status risk
-              factors, and CPS/police coordination are state-specific issues.
-            </p>
-
-            <p>
-              Treat signing, agreeing, allowing interviews, making detailed
-              statements, or changing household arrangements as serious steps.
-              The safest move is to ask what authority CPS is using, whether the
-              request is voluntary or required, what paperwork exists, and
-              whether you can speak with the right kind of lawyer before signing
-              or answering more questions.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="cps-checklist"
-            title="CPS contact: clarify before you agree"
-            columns={1}
-            items={[
               {
-                id: "agency",
+                id: "return-plan",
                 label:
-                  "Ask for the worker’s name, agency, phone number, supervisor, case or referral number, and reason for contact.",
-              },
-              {
-                id: "voluntary-required",
-                label:
-                  "Ask whether the request is voluntary, required by a court order, based on emergency authority, or something CPS is asking you to agree to.",
-              },
-              {
-                id: "paperwork",
-                label:
-                  "Ask for copies of any safety plan, notice, court order, rights form, referral document, or written instruction.",
-              },
-              {
-                id: "child-interview",
-                label:
-                  "Ask what authority is being used for any child interview and whether a parent, lawyer, advocate, or other person may be present.",
-              },
-              {
-                id: "police-overlap",
-                label:
-                  "If police are present or contacted, ask what police are there for and whether there is a criminal investigation.",
-              },
-              {
-                id: "before-signing",
-                label:
-                  "Do not sign a safety plan, voluntary agreement, release, or written statement casually. Ask for time to speak with the right kind of lawyer.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="family"
-            icon="👨‍👩‍👧‍👦"
-            title="CPS can affect more than one legal system"
-          >
-            <p>
-              A CPS statement or agreement may affect family court, dependency
-              court, criminal exposure, supervision compliance, housing,
-              visitation, custody, treatment, and household stability. You may
-              need criminal defense counsel, dependency or family counsel, or
-              both.
-            </p>
-          </GuideCallout>
-
-          <ScriptBox
-            title="Script 5: CPS clarification"
-            tone="family"
-            context="Use this to avoid treating CPS requests, safety plans, court orders, and emergency authority as the same thing."
-            script={`I want to understand what you are asking and what authority you are using. Is this request voluntary, required by a court order, based on emergency authority, or something you are asking me to agree to? May I have a copy of any paperwork and time to speak with the right kind of lawyer before signing anything?`}
-          />
-
-          <RoleGuidanceGrid
-            title="Different people in the household may need different guidance"
-            roles={[
-              {
-                role: "Parent or caregiver contacted by CPS",
-                icon: "🧑‍🍼",
-                guidance:
-                  "Ask what CPS is requesting, what authority applies, what paperwork exists, and whether you can speak with dependency or family counsel before signing or making detailed statements.",
-              },
-              {
-                role: "Registrant or supervised person in the home",
-                icon: "🧭",
-                guidance:
-                  "Treat CPS contact as a possible family, supervision, registry, and criminal exposure issue. Avoid guessing, document the contact, and get legal advice before statements or agreements.",
-              },
-              {
-                role: "Supportive family member or roommate",
-                icon: "🏠",
-                guidance:
-                  "Do not assume you can consent for everyone or explain the legal situation for another adult. Write down what happened and encourage the directly affected person to seek counsel.",
-              },
-              {
-                role: "Advocate or trusted helper",
-                icon: "🗂️",
-                guidance:
-                  "Help preserve paperwork, names, dates, and deadlines. Avoid coaching anyone to hide facts or destroy records.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="remote-contact"
-          number="8"
-          title="Phone, text, email, and remote contact"
-          subtitle="An encounter does not have to happen at the door to create legal or supervision exposure."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Some contacts begin with a voicemail, text, email, portal message,
-              blocked number, social-media message, or request for documents.
-              A remote request can still matter for registry compliance,
-              supervision, CPS, or a criminal investigation.
-            </p>
-
-            <p>
-              Before sending photos, documents, screenshots, account
-              information, device information, travel details, work details, or
-              family information, verify identity, agency, purpose, deadline,
-              and the authority for the request. When possible, ask for written
-              confirmation through an official channel.
-            </p>
-          </GuideProse>
-
-          <ScriptBox
-            title="Script 6: phone / text / email verification"
-            tone="privacy"
-            context="Use this before you send information or answer questions remotely."
-            script={`Thank you for contacting me. Before I answer questions or send documents, can you please confirm your name, agency, phone number, email address, and the reason for the request? If there is a deadline, form, court order, supervision condition, or case number, please send that in writing or tell me exactly what to write down.`}
-          />
-
-          <GuideChecklist
-            id="remote-contact-checklist"
-            title="Before responding remotely"
-            columns={1}
-            items={[
-              {
-                id: "identity",
-                label:
-                  "Confirm name, agency, role, official phone number, official email address, and office location.",
-              },
-              {
-                id: "purpose",
-                label:
-                  "Ask for the reason for the request and whether it relates to registry, supervision, CPS, police, court, or another process.",
-              },
-              {
-                id: "deadline",
-                label:
-                  "Ask whether there is a deadline, appointment, form, order, condition, case number, or referral number.",
-              },
-              {
-                id: "written",
-                label:
-                  "Ask for written confirmation when possible, especially before sending documents, photos, screenshots, account information, or device information.",
-              },
-              {
-                id: "save",
-                label:
-                  "Save texts, emails, voicemails, screenshots, call logs, letters, portal messages, and your notes.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="privacy"
-            icon="🔐"
-            title="Remote does not always mean low risk"
-          >
-            <p>
-              A quick text asking for a photo, location, password, document, or
-              explanation may seem routine. If the request touches devices,
-              children, travel, work, housing, supervision, registry status, or
-              new allegations, slow down and verify before responding.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="workplace"
-          number="9"
-          title="Workplace encounters"
-          subtitle="Handle worksite verification and official contact at work without turning this into an employment-law guide."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Registry, police, probation, parole, or supervised-release contact
-              at work can create practical harm even when the underlying purpose
-              is routine. Worksite verification authority varies by state and
-              local practice. Employer contact can also affect supervision
-              reporting, workplace privacy, job stability, coworkers, and
-              employer-owned devices or documents.
-            </p>
-
-            <p>
-              If officials contact you at work or contact your employer, write
-              down who came, who they spoke with, what they said the purpose was,
-              whether any documents or devices were requested, and whether you
-              were given a new instruction or deadline.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="workplace-contact-checklist"
-            title="If contact happens at work"
-            columns={1}
-            items={[
-              {
-                id: "purpose",
-                label:
-                  "Ask whether this is worksite verification, supervision contact, police investigation, CPS contact, warrant service, or something else.",
-              },
-              {
-                id: "privacy",
-                label:
-                  "If possible, ask to speak in a private area rather than in front of coworkers, customers, or clients.",
-              },
-              {
-                id: "employer",
-                label:
-                  "Write down whether the employer, supervisor, HR, security, coworkers, or clients were contacted.",
-              },
-              {
-                id: "property",
-                label:
-                  "Note whether work devices, employer records, schedules, badges, emails, vehicles, or files were requested, viewed, copied, or taken.",
-              },
-              {
-                id: "follow-up",
-                label:
-                  "Afterward, check whether you must report the contact to supervision, registry, counsel, employer, HR, or another authority.",
-              },
-            ]}
-          />
-
-          <RelatedGuides
-            title="Related SOLAR guides for workplace issues"
-            guides={[
-              {
-                title: "Job Search Strategies",
-                description:
-                  "Use this for employer communication, job stability, disclosure planning, and work-search strategy.",
-                to: "/resources/job-search-guide",
-              },
-              {
-                title: "Registry Compliance & Verification Survival Guide",
-                description:
-                  "Use this for employment reporting duties, verification records, and proof of what you submitted.",
-                to: "/resources/registry-compliance-verification-guide",
-              },
-              {
-                title: "Supervision Conditions Survival Guide",
-                description:
-                  "Use this when a worksite contact may involve supervision approval, employment conditions, or violation risk.",
-                to: "/resources/supervision-conditions-guide",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="recording-documentation"
-          number="10"
-          title="Recording, notes, and evidence preservation"
-          subtitle="Document what happened without relying on a stale state recording-law chart."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Documentation matters. But recording law varies by state, setting,
-              audio or video, public or private place, expectation of privacy,
-              phone-call rules, and whether supervision or device restrictions
-              apply. A static recording chart can become stale quickly, so this
-              guide does not include one.
-            </p>
-
-            <p>
-              If you are unsure whether recording is allowed, the safer fallback
-              is to write detailed notes immediately afterward and save all
-              paperwork, messages, cards, receipts, voicemails, photos of
-              documents, and property forms. If recording is allowed and safe,
-              do not interfere with officials, do not secretly violate a rule
-              you are unsure about, and do not escalate the encounter just to
-              record it.
-            </p>
-          </GuideProse>
-
-          <VerifyBeforeActing
-            title="Before relying on recording"
-            whoToAsk="A lawyer in your state, a reliable state-specific legal resource, your supervision officer or condition if you are under technology limits, or an official recording-law source."
-            whatToAsk="Ask whether audio recording, video recording, phone-call recording, recording inside a home, recording public officials, or recording while supervised is allowed in your exact setting."
-            whatToSave="Save the source you checked, the date, the rule or advice, and your fallback written notes."
-          />
-
-          <DocumentPacket
-            title="After-Encounter Documentation Log"
-            intro={
-              <span>
-                Use this universal log as soon as possible after any police,
-                registry, supervision, CPS, task-force, workplace, phone, text,
-                email, or mixed-agency encounter.
-              </span>
-            }
-            categories={[
-              {
-                title: "Basic details",
-                items: [
-                  "Date:",
-                  "Start and end time:",
-                  "Location:",
-                  "How contact happened: door / phone / text / email / workplace / public / other",
-                  "Names of officials:",
-                  "Agencies:",
-                  "Badge, ID, business-card, case, or referral numbers:",
-                  "Who else was present:",
-                ],
-              },
-              {
-                title: "Purpose and authority",
-                items: [
-                  "Stated purpose:",
-                  "Was this described as registry verification, police contact, supervision, CPS, warrant/order, or mixed?",
-                  "What documents were shown:",
-                  "Was entry requested?",
-                  "Was consent requested?",
-                  "Was a warrant, court order, supervision condition, or emergency authority mentioned?",
-                ],
-              },
-              {
-                title: "What happened",
-                items: [
-                  "What questions were asked:",
-                  "What answers were given:",
-                  "What was viewed, searched, photographed, copied, downloaded, or seized:",
-                  "Were children, household members, employer, landlord, or coworkers contacted:",
-                  "Were instructions given:",
-                  "Were papers, cards, notices, or receipts left:",
-                ],
-              },
-              {
-                title: "Follow-up",
-                items: [
-                  "Follow-up date or deadline:",
-                  "Who needs to be contacted now:",
-                  "Notes written by:",
-                  "Time notes were written:",
-                ],
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="seizure-checklist"
-            title="If anything was taken, copied, photographed, or downloaded"
-            columns={1}
-            items={[
-              {
-                id: "authority",
-                label: "Ask what authority is being used.",
-              },
-              {
-                id: "receipt",
-                label: "Ask for a receipt or inventory.",
-              },
-              {
-                id: "item",
-                label:
-                  "Write down the item, device, document, account, or file involved.",
-              },
-              {
-                id: "serial",
-                label: "Write down serial numbers if known.",
-              },
-              {
-                id: "owner",
-                label:
-                  "Note whether the item belongs to you, another resident, an employer, a child, or someone else.",
-              },
-              {
-                id: "action",
-                label:
-                  "Note whether the item was taken, copied, photographed, downloaded, or only viewed.",
-              },
-              {
-                id: "access",
-                label:
-                  "Note whether passwords, passcodes, biometric access, cloud accounts, or apps were requested.",
-              },
-              {
-                id: "paperwork",
-                label:
-                  "Note whether a warrant, court order, supervision condition, CPS document, or consent form was shown.",
-              },
-              {
-                id: "save",
-                label:
-                  "Save any receipt, property form, warrant, card, or case number.",
-              },
-              {
-                id: "counsel",
-                label:
-                  "Contact counsel promptly if devices, work property, child-related material, registry allegations, supervision violations, or new criminal allegations are involved.",
-              },
-            ]}
-          />
-
-          <OfflineOptions
-            title="If recording, printing, or internet access is limited"
-            icon="📝"
-            items={[
-              "Use a notebook, envelope, or printed log page kept near the door or in a safe folder.",
-              "Write notes immediately after the encounter, before memory changes.",
-              "Ask a trusted person to help preserve voicemails, texts, emails, cards, notices, receipts, or photos of documents.",
-              "Keep paper copies of supervision conditions, registry paperwork, CPS forms, court orders, and lawyer contact information.",
-              "If you are incarcerated, in treatment, in a shelter, or under technology restrictions, ask how to make legal calls, receive mailed forms, or preserve paper records.",
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="call-counsel"
-          number="11"
-          title="When to stop explaining and call counsel"
-          subtitle="Use an escalation ladder instead of trying to talk through high-exposure situations alone."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Some encounters are routine. Others can affect criminal charges,
-              supervision, registry status, CPS, family court, employment,
-              housing, custody, or device access. When exposure increases, the
-              safest move is often to stop explaining and get the right kind of
-              help.
-            </p>
-
-            <p>
-              “The right kind of lawyer” may mean criminal defense counsel,
-              public defender, supervision or revocation counsel, dependency or
-              family counsel, appellate or post-conviction counsel, legal aid,
-              or a lawyer familiar with registry issues in your state.
-            </p>
-          </GuideProse>
-
-          <RedFlagGreenFlag
-            red={
-              <ul className="list-disc pl-6 space-y-2">
-                <li>New allegations, arrest threat, or violation threat.</li>
-                <li>Warrant, court order, safety plan, or emergency removal claim.</li>
-                <li>Device seizure, password request, biometric unlocking request, cloud-account issue, or work-device issue.</li>
-                <li>CPS request to sign, leave the home, restrict contact, allow child interviews, or change custody/visitation.</li>
-                <li>Mixed agency contact involving police + CPS, police + supervision, registry + police, or task-force officers.</li>
-                <li>Conflicting instructions from registry, supervision, CPS, police, court, employer, or treatment.</li>
-              </ul>
-            }
-            green={
-              <ul className="list-disc pl-6 space-y-2">
-                <li>You have names, agencies, paperwork, and a clear stated purpose.</li>
-                <li>You understand whether the contact is a request, legal requirement, warrant/order, supervision condition, CPS action, or follow-up appointment.</li>
-                <li>You preserved your position without physical interference.</li>
-                <li>You wrote notes quickly and saved cards, notices, messages, receipts, or orders.</li>
-                <li>You know which lawyer, office, advocate, or legal-aid resource to contact next.</li>
-              </ul>
-            }
-          />
-
-          <GuideChecklist
-            id="escalation-checklist"
-            title="Call for help promptly when"
-            columns={1}
-            items={[
-              {
-                id: "warrant",
-                label:
-                  "A warrant, court order, emergency order, safety plan, or removal threat appears.",
-              },
-              {
-                id: "arrest",
-                label:
-                  "Someone threatens arrest, a new charge, revocation, violation, detention, or removal of a child.",
-              },
-              {
-                id: "devices",
-                label:
-                  "Phones, computers, cloud accounts, apps, storage devices, work devices, or passwords are involved.",
-              },
-              {
-                id: "children",
-                label:
-                  "CPS, child interviews, custody, visitation, school, childcare, or household safety planning is involved.",
-              },
-              {
-                id: "mixed",
-                label:
-                  "Multiple agencies are present or the purpose changes during the encounter.",
-              },
-              {
-                id: "conflict",
-                label:
-                  "You receive conflicting instructions or are asked to sign something you do not understand.",
+                  "Date you left, date you returned or tried to return, why you could not return, and what changed about the residence.",
               },
             ]}
           />
@@ -1357,360 +723,833 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideCallout
             tone="legal"
             icon="⚖️"
-            title="Carefully framed counsel language"
+            title="Proof helps explain what happened. It does not automatically prove compliance."
           >
             <p>
-              Asking for counsel can have different legal effects depending on
-              whether this is police questioning, supervision, registry
-              administration, CPS, family court, or another process. This
-              language is meant to slow the moment down and preserve clarity; it
-              is not a substitute for legal advice.
+              A closure notice, evacuation order, receipt, or call log can be
+              extremely important. But it does not automatically mean every legal
+              duty was satisfied. Save the proof, then use the detailed
+              compliance guide or legal help to evaluate what else is required.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="communication-continuity"
+          number="7"
+          title="Phone, charging, internet, and communication continuity"
+          subtitle="Treat communication as crisis infrastructure, not a convenience."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              In a housing crisis, a dead phone can mean missed agency calls,
+              missed employer contact, missed shelter updates, missed pharmacy
+              information, missed legal help, and no proof of attempted contact.
+              Communication is part of survival.
             </p>
 
             <p>
-              “I want to understand this and respond appropriately, but I do not
-              want to guess or make things worse. I would like to speak with the
-              right kind of lawyer or advocate before answering more questions
-              or signing anything, unless you are telling me there is a specific
-              legal requirement I must respond to right now. Please tell me what
-              authority you are relying on and what deadline or immediate action
-              you say applies.”
+              This section stays crisis-focused. Device monitoring, internet bans,
+              platform rules, searches, and supervision technology conditions
+              belong in the future Technology Access & Monitoring guide and the
+              Supervision Conditions guide.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="communication-checklist"
+            title="Communication continuity checklist"
+            columns={1}
+            items={[
+              {
+                id: "battery",
+                label:
+                  "Charge whenever safe: shelter, library, community center, courthouse, hospital, transit station, car charger, workplace, or trusted person.",
+              },
+              {
+                id: "numbers",
+                label:
+                  "Write key numbers on paper: supervision, registering agency, lawyer, family helper, employer, pharmacy, doctor, shelter, 211, and emergency contacts.",
+              },
+              {
+                id: "voicemail",
+                label:
+                  "Keep voicemail working if possible. Clear space for messages and write down callback numbers immediately.",
+              },
+              {
+                id: "backup-contact",
+                label:
+                  "Choose a trusted callback contact if you cannot keep your phone charged or active. Tell agencies exactly how to reach you.",
+              },
+              {
+                id: "email",
+                label:
+                  "Use email when available because it creates a timestamped record. If you cannot access email, keep paper notes.",
+              },
+              {
+                id: "privacy",
+                label:
+                  "If calls are not private at a shelter, library, or public place, keep questions narrow and ask how to follow up securely.",
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If internet, power, or privacy is limited"
+            icon="📝"
+            items={[
+              "Use a notebook as your contact log: date, time, number called, person reached, message left, and next step.",
+              "Ask a shelter, library, legal-aid office, social worker, or trusted helper about phone access, printing, charging, and faxing.",
+              "Carry paper copies of the most important numbers and instructions because your phone may die or be lost.",
+              "If supervised or under technology restrictions, ask before using a device, account, app, public computer, or third-party phone in a way that could create a violation issue.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="documents-mail-address"
+          number="8"
+          title="ID, documents, mail, and address continuity"
+          subtitle="Protect what helps you prove who you are, where you were, and how agencies can reach you."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Identification and paperwork can determine whether you can enter a
+              shelter, fill a prescription, get a motel room, access benefits,
+              talk to an agency, replace money, verify supervision conditions, or
+              prove where you were during a crisis.
+            </p>
+
+            <p>
+              Mail continuity matters too. You may need a trusted person, service
+              provider, shelter, general delivery option, PO box, or agency-approved
+              mailing contact. But do not confuse mail with residence. Ask each
+              agency what address it needs and what that address does legally.
+            </p>
+          </GuideProse>
+
+          <DocumentPacket
+            title="Emergency document grab list"
+            intro={
+              <span>
+                Keep originals when safe. If originals are lost or unsafe to
+                carry, keep photos or copies where allowed and keep a paper list
+                of what must be replaced.
+              </span>
+            }
+            categories={[
+              {
+                title: "Identity and basic access",
+                items: [
+                  "State ID or driver license",
+                  "Social Security card or number record",
+                  "Birth certificate",
+                  "Passport or immigration documents if applicable",
+                  "Insurance card, Medicaid/Medicare card, or benefit card",
+                  "Emergency contacts and trusted helper information",
+                ],
+              },
+              {
+                title: "Legal and supervision records",
+                items: [
+                  "Registry paperwork and registering-agency contact information",
+                  "Supervision conditions, officer name, office number, and reporting schedule",
+                  "Court orders, release papers, treatment-program paperwork, and appointment notices",
+                  "Attorney, public defender, legal-aid, or advocate contact information",
+                ],
+              },
+              {
+                title: "Housing, money, health, and transportation",
+                items: [
+                  "Lease, eviction notice, lockout notice, shelter papers, motel receipts, or landlord messages",
+                  "Prescription bottles, medication list, pharmacy information, and medical-device information",
+                  "Bank card, cash, benefit card, prepaid card, checkbook, or card-replacement information",
+                  "Vehicle registration, insurance, title/lien information, parking records, and transit cards",
+                ],
+              },
+            ]}
+          />
+
+          <VerifyBeforeActing
+            title="Before relying on a mailing arrangement"
+            whoToAsk={
+              <span>
+                The agency that needs to contact you, the registering agency,
+                supervision if applicable, USPS or the mail provider, and legal
+                help if the address will be used for legal notices.
+              </span>
+            }
+            whatToAsk={
+              <span>
+                “Is this address only for mail, or are you treating it as my
+                residence, temporary residence, service address, shelter address,
+                or official contact address?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                The address used, purpose of the address, date provided, agency
+                name, staff name, written confirmation, and any limits on using
+                that address.
+              </span>
+            }
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="money-health-transportation"
+          number="9"
+          title="Money, medication, healthcare, and transportation"
+          subtitle="Keep the systems that get you through tomorrow from collapsing tonight."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              This guide does not become a full benefits, banking, medical, or
+              transportation manual. The crisis job is narrower: protect enough
+              money, medication, health access, and mobility to survive the next
+              few days and attend required appointments.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="basic-systems-checklist"
+            title="Basic systems checklist"
+            columns={1}
+            items={[
+              {
+                id: "money",
+                label:
+                  "Protect wallet, cards, cash, benefit cards, prepaid phone funds, and account access. If cards are stolen, ask the issuer about freezing or replacing them.",
+              },
+              {
+                id: "expenses",
+                label:
+                  "Before spending all available cash on one motel night, check whether shelter, 211, emergency assistance, family help, disaster housing, or a reentry provider can reduce the immediate cost.",
+              },
+              {
+                id: "receipts",
+                label:
+                  "Save receipts for motel, gas, food, transit, prescriptions, phone service, storage, repairs, towing, and emergency supplies.",
+              },
+              {
+                id: "medication",
+                label:
+                  "Keep prescription bottles, medication list, pharmacy name, prescriber name, insurance card, and refill dates together.",
+              },
+              {
+                id: "healthcare",
+                label:
+                  "If medication, medical devices, mobility aids, mental-health treatment, or treatment-program attendance are interrupted, contact the pharmacy, provider, clinic, shelter social worker, or supervision/treatment contact as soon as possible.",
+              },
+              {
+                id: "transportation",
+                label:
+                  "Protect access to required appointments, shelter, pharmacy, food, work, charging, and legal help. Check transit, gas, rides, shelter transport, disaster routes, and vehicle safety.",
+              },
+              {
+                id: "vehicle-compound-risk",
+                label:
+                  "If your car is also your shelter or storage, protect it from towing, impoundment, dead battery, fuel loss, parking tickets, and unsafe parking when possible.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="reentry"
+            icon="🧩"
+            title="Benefits and assistance belong here only as crisis navigation"
+          >
+            <p>
+              SNAP, Medicaid, SSI/SSDI, unemployment, HUD programs, rental
+              assistance, and disaster aid may matter. This guide should help you
+              identify what to gather and who to contact first. Deeper eligibility,
+              applications, appeals, and long-term administration belong in the
+              future Benefits & Basic Administration guide.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="family-hosts-pets"
+          number="10"
+          title="Family, temporary hosts, household members, and animals"
+          subtitle="A well-meant offer can help, but it still needs safety and rule checks."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Housing crises often involve other people: a partner, child,
+              roommate, elderly parent, disabled household member, family host,
+              friend, landlord, social worker, shelter staff, or pet caretaker.
+              Do not assume the only question is whether someone is kind enough
+              to offer space.
+            </p>
+
+            <p>
+              A couch, spare room, motel room, or family home may create issues
+              involving residence approval, child contact, proximity, local law,
+              supervision, registry reporting, household consent, privacy, or
+              search conditions. Verify before settling in if there is time to do
+              so safely.
+            </p>
+          </GuideProse>
+
+          <RoleGuidanceGrid
+            title="Different people need different instructions"
+            roles={[
+              {
+                role: "Person who lost housing",
+                icon: "🧭",
+                guidance:
+                  "Ask whether the temporary location creates registry, supervision, child-contact, residence, travel, or local-law issues. Save the answer and keep your own notes.",
+              },
+              {
+                role: "Temporary host or family member",
+                icon: "🏠",
+                guidance:
+                  "Do not promise that the arrangement is legally safe until the affected person has checked supervision, registry, and local restrictions. Avoid giving legal answers you cannot verify.",
+              },
+              {
+                role: "Household with children or dependents",
+                icon: "👪",
+                guidance:
+                  "Verify child-contact conditions, household rules, court orders, supervision instructions, and any CPS or family-court implications before assuming the arrangement works.",
+              },
+              {
+                role: "Supporter helping from a distance",
+                icon: "☎️",
+                guidance:
+                  "Help with calls, printing, charging, transportation, receipts, and notes. Do not pressure the person to hide information, ignore supervision, or guess at registry rules.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="temporary-host-checklist"
+            title="Temporary host checklist"
+            columns={1}
+            items={[
+              {
+                id: "who-lives-there",
+                label:
+                  "Who lives at the location, including children, dependent adults, roommates, visitors, or people under court orders?",
+              },
+              {
+                id: "rules",
+                label:
+                  "Could supervision, registry, residence restrictions, child-contact rules, local ordinances, landlord rules, or lease terms affect the stay?",
+              },
+              {
+                id: "duration",
+                label:
+                  "What is the expected start date, end date, sleeping space, mail plan, transportation plan, and backup plan?",
+              },
+              {
+                id: "privacy",
+                label:
+                  "Will agency calls, legal calls, medication, documents, and personal information be private enough?",
+              },
+              {
+                id: "animals",
+                label:
+                  "If pets or service animals are involved, ask shelters, motels, hosts, transportation providers, and disaster programs about rules before relying on the location.",
+              },
+            ]}
+          />
+
+          <GuideCallout
+            tone="family"
+            icon="🐾"
+            title="Pets and service animals belong in the crisis plan"
+          >
+            <p>
+              An otherwise workable shelter, motel, ride, or host may become
+              unusable if an animal cannot come with the household. Service
+              animals and pets can be treated differently under emergency and
+              disability rules, but details still depend on the setting. Ask
+              directly and save the answer.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="first-week-plan"
+          number="11"
+          title="First 6 hours, 24 hours, 72 hours, and 7 days"
+          subtitle="Use this as a printable crisis ladder. Legal deadlines may be faster."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              This timeline is a planning aid, not a legal deadline. Registry,
+              supervision, court, treatment, shelter, or disaster rules may
+              require faster action. When a real legal deadline exists, follow the
+              legal deadline.
+            </p>
+          </GuideProse>
+
+          <TimelineGuidanceGrid
+            title="Crisis stabilization ladder"
+            stages={[
+              {
+                stage: "First 6 hours",
+                icon: "⏱️",
+                whatChanges:
+                  "The main risk is immediate collapse: no safe place, no medication, no phone, no way to contact required people, and no proof of what happened.",
+                whatToDo:
+                  "Get physically safe. Identify tonight’s sleeping option. Gather ID, medication, phone, charger, wallet, keys, and legal papers. Contact supervision if needed. Start a notes page.",
+              },
+              {
+                stage: "First 24 hours",
+                icon: "🌙",
+                whatChanges:
+                  "Temporary choices may start creating registry, supervision, work, medication, transportation, shelter, or family consequences.",
+                whatToDo:
+                  "Verify the temporary location. Call shelter or lodging before travel. Preserve receipts and call logs. Tell agencies how to reach you. Ask about mail, medication, and transportation.",
+              },
+              {
+                stage: "By 72 hours",
+                icon: "📌",
+                whatChanges:
+                  "The crisis shifts from one night to a temporary system. Missing documents, mail, refills, appointments, and proof gaps become harder to fix.",
+                whatToDo:
+                  "Build the documentation packet. Arrange mail or callback contact. Replace essential documents if lost. Contact legal aid, 211, reentry services, or disaster aid. Make a backup sleeping plan.",
+              },
+              {
+                stage: "First week",
+                icon: "🗓️",
+                whatChanges:
+                  "The focus moves toward stable housing, health continuity, benefits navigation, property storage, transportation, and agency follow-up.",
+                whatToDo:
+                  "Begin longer housing search. Follow up with registry and supervision if needed. Review notes for missing proof. Keep receipts. Recheck whether the temporary location is still lawful and workable.",
+              },
+            ]}
+          />
+
+          <DoDontJudgment
+            dos={[
+              <span key="sleep">
+                Solve physical safety, sleep, medication, phone, and reachability
+                first.
+              </span>,
+              <span key="verify">
+                Verify legal consequences before relying on a shelter, couch,
+                motel, vehicle, campground, or cross-jurisdiction move.
+              </span>,
+              <span key="document">
+                Document names, dates, instructions, attempted contacts, receipts,
+                and proof while memory is fresh.
+              </span>,
+            ]}
+            donts={[
+              <span key="guess">
+                Do not guess that “temporary” means “not reportable” or
+                “automatically approved.”
+              </span>,
+              <span key="overspend">
+                Do not spend your last money without checking shelter, 211,
+                disaster, reentry, or legal-aid options when available.
+              </span>,
+              <span key="ignore">
+                Do not ignore supervision, registry, court, treatment, or child-contact
+                instructions because the crisis feels unfair or overwhelming.
+              </span>,
+            ]}
+            judgment={[
+              <span key="wait">
+                Long-term benefits, document replacement, storage, and housing
+                applications may be urgent soon, but they may not be the first
+                problem to solve tonight.
+              </span>,
+              <span key="help">
+                A trusted helper can make calls, print documents, charge a phone,
+                or organize receipts, but legal decisions still need qualified
+                guidance.
+              </span>,
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="documentation-packet"
+          number="12"
+          title="Crisis documentation packet"
+          subtitle="Create a record of what happened, what you did, and what still needs an answer."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Documentation is not busywork. It can help you explain displacement,
+              preserve proof of attempted contact, request help, replace records,
+              show where you stayed, and remember instructions when stress makes
+              memory unreliable.
+            </p>
+
+            <p>
+              This packet proves what happened and what you tried to do. It does
+              not automatically prove that every legal obligation was satisfied.
+            </p>
+          </GuideProse>
+
+          <DocumentPacket
+            title="Housing crisis proof packet"
+            intro={
+              <span>
+                Use paper, photos, screenshots, envelopes, folders, or a notebook.
+                The system only works if you can find the proof later.
+              </span>
+            }
+            categories={[
+              {
+                title: "Crisis basics",
+                items: [
+                  "Date and time housing became unavailable",
+                  "Reason housing became unavailable",
+                  "Last stable residence",
+                  "People present when the crisis started",
+                  "Property left behind and how to retrieve it if safe",
+                ],
+              },
+              {
+                title: "Temporary-location log",
+                items: [
+                  "Date and time arrived",
+                  "Sleeping location or geographic description",
+                  "City, county, state, or jurisdiction",
+                  "Who approved, denied, or gave instructions",
+                  "Proof kept: receipt, intake record, message, photo, call log, or written note",
+                ],
+              },
+              {
+                title: "Agency contact-attempt log",
+                items: [
+                  "Agency or office contacted",
+                  "Phone number, email, website, or physical office visited",
+                  "Date and time of attempt",
+                  "Person spoken to or message left",
+                  "Instructions given, closure notice, confirmation number, or next appointment",
+                ],
+              },
+              {
+                title: "Disaster, shelter, health, money, and transportation proof",
+                items: [
+                  "Evacuation orders, emergency alerts, fire reports, damage photos, utility notices, or closure notices",
+                  "Shelter papers, motel receipts, campground receipts, host messages, or denial records",
+                  "Medication records, pharmacy contacts, clinic messages, and treatment-program contacts",
+                  "Bank, benefit-card, card-replacement, cash, fuel, transit, towing, storage, or repair receipts",
+                ],
+              },
+            ]}
+          />
+
+          <OfflineOptions
+            title="If you only have paper"
+            icon="✍️"
+            items={[
+              "Use one envelope for receipts and one notebook page for calls.",
+              "Write the same five things every time: date, time, place, person, instruction.",
+              "Ask a shelter worker, librarian, social worker, advocate, or trusted person to photocopy or photograph key documents.",
+              "Keep one small card with emergency contacts, medications, supervision, registry office, lawyer, pharmacy, and shelter numbers.",
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="mistakes-escalation"
+          number="13"
+          title="Common mistakes and when to get help now"
+          subtitle="Avoid panic moves, and escalate when the risk is bigger than a checklist."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            title="Common crisis mistakes"
+            mistakes={[
+              {
+                mistake:
+                  "Assuming a temporary place cannot create legal consequences.",
+                whyItMatters:
+                  "Some jurisdictions and supervision conditions treat temporary locations, shelters, vehicles, motels, or no-fixed-residence situations as legally important.",
+                betterMove:
+                  "Verify before relying on the location and save the answer.",
+              },
+              {
+                mistake:
+                  "Treating registry and supervision as one notification.",
+                whyItMatters:
+                  "One office may not control the other rulebook. A registry update may not satisfy supervision, and supervision approval may not satisfy registry reporting.",
+                betterMove:
+                  "Make separate contacts or document separate attempts when both systems may apply.",
+              },
+              {
+                mistake:
+                  "Losing proof because everything is on a dying phone.",
+                whyItMatters:
+                  "Screenshots, call logs, receipts, and messages can disappear when a phone dies, breaks, is lost, or is stolen.",
+                betterMove:
+                  "Use paper backup, ask a trusted helper to save copies, and write down the essentials immediately.",
+              },
+              {
+                mistake:
+                  "Spending all available money on the first option.",
+                whyItMatters:
+                  "One motel night can leave no money for food, fuel, phone service, medication, storage, or transportation.",
+                betterMove:
+                  "Check 211, shelter systems, local emergency assistance, reentry providers, disaster resources, or family support before using all remaining funds when possible.",
+              },
+            ]}
+          />
+
+          <RedFlagGreenFlag
+            red={
+              <ul className="list-disc pl-6 space-y-2">
+                <li>No safe or lawful place to sleep tonight.</li>
+                <li>Threat of arrest, violation, warrant, or missed reporting deadline.</li>
+                <li>Conflicting instructions from registry, supervision, shelter, police, court, or treatment.</li>
+                <li>Child, dependent adult, domestic-violence, CPS, or family-court risk.</li>
+                <li>Lost medication, stolen ID, vehicle impoundment, or inability to reach required offices.</li>
+                <li>Disaster, office closure, power outage, or transportation failure has made ordinary compliance impossible.</li>
+              </ul>
+            }
+            green={
+              <ul className="list-disc pl-6 space-y-2">
+                <li>You have a safe sleeping plan for tonight and a backup plan.</li>
+                <li>You know who controls registry, supervision, shelter, and local-rule questions.</li>
+                <li>You have names, dates, phone numbers, receipts, messages, closure notices, or other proof.</li>
+                <li>You have a way to receive calls, texts, email, mail, or third-party messages.</li>
+                <li>You know what must happen tomorrow and what can wait a few days.</li>
+              </ul>
+            }
+          />
+
+          <GuideCallout
+            tone="urgent"
+            icon="🚩"
+            title="Get help quickly when the checklist is not enough"
+          >
+            <p>
+              Contact the right kind of help when there is no safe place to
+              sleep, a child or dependent is at risk, a shelter denies access, a
+              deadline may be missed, a vehicle is impounded, a medication is
+              unavailable, instructions conflict, police or CPS are involved, or
+              disaster conditions make ordinary reporting impossible.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="resources"
-          number="12"
-          title="Resources, related SOLAR guides, and sources"
-          subtitle="Use official sources to verify the rule that applies to your exact encounter."
+          number="14"
+          title="Resources and next steps"
+          subtitle="Use national resources for triage, then verify legal details locally."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Official and high-authority resources"
+            title="National crisis and verification resources"
             description={
               <span>
-                These sources help verify federal baselines, supervision
-                conditions, federal task-force roles, CPS state-law materials,
-                recording-law cautions, and legal-help pathways.
+                These links help with resource navigation and source checking.
+                They do not guarantee shelter eligibility or answer state-specific
+                registry or supervision questions.
               </span>
             }
             resources={[
               {
-                label: "SMART Office: SORNA current law",
+                label: "HUD Find Shelter",
+                href: sourceLinks.hudFindShelter,
+                badge: "Official",
+                description:
+                  "Search for shelter, food, health care, clothing, and homeless-assistance resources by location.",
+              },
+              {
+                label: "USAGov disaster housing and shelter",
+                href: sourceLinks.usaGovDisasterHousing,
+                badge: "Official",
+                description:
+                  "Federal overview of finding shelter and temporary housing after disasters.",
+              },
+              {
+                label: "211",
+                href: sourceLinks.unitedWay211,
+                badge: "Referral",
+                description:
+                  "Local referrals for housing, food, transportation, health care, disaster recovery, and other basic needs.",
+                phone: "Dial 211 where available",
+              },
+              {
+                label: "USPS location services and General Delivery glossary",
+                href: sourceLinks.uspsGeneralDelivery,
+                badge: "Official",
+                description:
+                  "Starting point for mail-location services. Verify locally before relying on any mail arrangement.",
+              },
+              {
+                label: "SMART Office SORNA current law",
                 href: sourceLinks.smartSornaCurrentLaw,
-                badge: "Official",
+                badge: "Federal",
                 description:
-                  "Federal SORNA baseline for registration and keeping registration current.",
+                  "Federal baseline registry-law materials. State and local rules still control many practical details.",
               },
               {
-                label: "SMART Office: SORNA implementation documents",
-                href: sourceLinks.smartSornaImplementation,
-                badge: "Official",
-                description:
-                  "Federal implementation materials, including in-person verification guidance.",
-              },
-              {
-                label: "NSOPW: all registries",
+                label: "NSOPW all registries",
                 href: sourceLinks.nsopwAllRegistries,
                 badge: "Official",
                 description:
-                  "Directory of state, territory, and tribal registry sites for jurisdiction-specific starting points.",
+                  "Directory of state, territory, tribal, and federal registry links for source checking.",
               },
               {
-                label: "U.S. Courts: supervision conditions overview",
-                href: sourceLinks.usCourtsSupervisionConditions,
-                badge: "Official",
+                label: "U.S. Courts supervision conditions overview",
+                href: sourceLinks.usCourtsSupervision,
+                badge: "Federal",
                 description:
-                  "Federal probation and supervised-release condition overview.",
+                  "Federal overview of probation and supervised-release conditions; individual orders and local practice still matter.",
               },
               {
-                label: "U.S. Courts: search and seizure conditions",
-                href: sourceLinks.usCourtsSearchConditions,
-                badge: "Official",
+                label: "FindTreatment.gov",
+                href: sourceLinks.findTreatment,
+                badge: "Health",
                 description:
-                  "Federal supervised-release search-condition discussion and sample condition context.",
+                  "Treatment locator for mental-health and substance-use services. Use for continuity, not emergency medical advice.",
               },
               {
-                label: "U.S. Marshals: sex offender investigations",
-                href: sourceLinks.usMarshalsSexOffenderInvestigations,
-                badge: "Official",
-                description:
-                  "USMS role in Adam Walsh Act / sex-offender registration investigations.",
-              },
-              {
-                label: "Child Welfare Information Gateway: state statutes",
-                href: sourceLinks.childWelfareStateLaws,
-                badge: "Official",
-                description:
-                  "State child-welfare statute starting point for CPS-specific authority questions.",
-              },
-              {
-                label: "Child Welfare Information Gateway: state and tribal policy links",
-                href: sourceLinks.childWelfarePolicyLinks,
-                badge: "Official",
-                description:
-                  "Links to state and tribal child-welfare law and policy materials.",
-              },
-              {
-                label: "Reporters Committee recording guide",
-                href: sourceLinks.rcfpRecordingGuide,
-                badge: "Legal resource",
-                description:
-                  "State-by-state recording-law starting point; verify before relying on it in a live encounter.",
-              },
-              {
-                label: "USA.gov legal aid finder",
-                href: sourceLinks.usaLegalAid,
+                label: "Legal aid",
+                href: sourceLinks.legalAid,
                 badge: "Legal help",
                 description:
-                  "National starting point for legal aid and public legal-help resources.",
+                  "USAGov starting point for legal-aid resources.",
               },
               {
                 label: "LawHelp.org",
                 href: sourceLinks.lawHelp,
                 badge: "Legal help",
                 description:
-                  "Legal-aid directory for state-specific help and self-help resources.",
-              },
-              {
-                label: "ABA lawyer referral directories",
-                href: sourceLinks.stateBarDirectory,
-                badge: "Referral",
-                description:
-                  "State bar and lawyer-referral starting point when legal aid is unavailable or not the right fit.",
+                  "Find state and local legal-aid information, including housing, disaster, benefits, and related civil legal issues.",
               },
             ]}
           />
 
           <RelatedGuides
+            title="Related SOLAR guides"
             guides={[
-              {
-                title: "Your Rights at Every Stage",
-                description:
-                  "Use this for the broader constitutional framework behind police questioning, searches, silence, counsel, and documentation.",
-                to: "/resources/know-your-rights",
-              },
-              {
-                title: "Supervision Conditions Survival Guide",
-                description:
-                  "Use this for probation, parole, supervised release, treatment, search conditions, violations, and officer communication.",
-                to: "/resources/supervision-conditions-guide",
-              },
               {
                 title: "Registry Compliance & Verification Survival Guide",
                 description:
-                  "Use this for registry reporting duties, verification appointments, receipts, calendars, and compliance proof packets.",
+                  "Use this for detailed reporting duties, receipts, attempted compliance, office closures, missed deadlines, and disputed instructions.",
                 to: "/resources/registry-compliance-verification-guide",
               },
               {
-                title: "Registry Rules by State",
+                title: "Police, Registry & CPS Encounters",
                 description:
-                  "Use this as the starting point for state-specific registration, verification, and restriction research.",
-                to: "/resources/state-registry",
-              },
-              {
-                title: "Interstate Moving Guide",
-                description:
-                  "Use this when address changes, temporary presence, travel, or relocation may trigger multiple jurisdictions.",
-                to: "/resources/interstate-moving-guide",
-              },
-              {
-                title: "Tenant Rights Survival Guide",
-                description:
-                  "Use this for housing entry, landlord, lease, shared-residence, and tenant-stability questions.",
-                to: "/resources/tenant-rights",
+                  "Use this if police, registry staff, CPS, probation, parole, or a mixed-agency team contacts you during the crisis.",
+                to: "/resources/police-registry-cps-encounters",
               },
               {
                 title: "Housing Search Guide",
                 description:
-                  "Use this for housing verification, landlord communication, and address-planning strategy.",
+                  "Use this after immediate stabilization when you are ready to look for longer-term housing.",
                 to: "/resources/housing-search-guide",
               },
               {
-                title: "The SOLAR Family & Allies Guide",
+                title: "Tenant Rights Survival Guide",
                 description:
-                  "Use this for family support, communication, boundaries, and crisis navigation.",
-                to: "/resources/family-support-guide",
+                  "Use this for eviction notices, lockouts, leases, landlord entry, repairs, and tenant-law questions.",
+                to: "/resources/tenant-rights-survival-guide",
               },
               {
-                title: "Children & Disclosure + Relationship Rebuilding Toolkit",
+                title: "Supervision Conditions Survival Guide",
                 description:
-                  "Use this for child-sensitive communication, family relationships, and disclosure planning.",
-                to: "/resources/children-disclosure-toolkit",
+                  "Use this for probation, parole, supervised release, residence approval, travel, curfew, treatment, and violation-risk questions.",
+                to: "/resources/supervision-conditions-guide",
               },
               {
-                title: "Job Search Strategies",
+                title: "Interstate Moving Guide",
                 description:
-                  "Use this for employer communication, workplace stability, and disclosure planning.",
-                to: "/resources/job-search-guide",
+                  "Use this if emergency displacement becomes relocation across city, county, state, tribal, or national boundaries.",
+                to: "/resources/interstate-moving-guide",
+              },
+              {
+                title: "Financial Planning Guide",
+                description:
+                  "Use this after the immediate crisis for budgeting, emergency reserves, debt, insurance, and longer-term financial recovery.",
+                to: "/resources/financial-planning-guide",
+              },
+              {
+                title: "Family & Allies Guide",
+                description:
+                  "Use this when family members, partners, hosts, or supporters need practical ways to help without making the situation worse.",
+                to: "/resources/family-allies-guide",
               },
             ]}
           />
 
           <SourceList
-            title="Sources & verification"
-            note={
-              <span>
-                Sources were live-checked for this sandbox draft. State law,
-                local policy, supervision conditions, CPS procedures, recording
-                rules, and court orders still need state- and case-specific
-                verification before a reader relies on them.
-              </span>
-            }
             sources={[
               {
-                label: "SMART Office: SORNA current law",
+                label: "HUD Find Shelter",
+                href: sourceLinks.hudFindShelter,
+                description:
+                  "Supports national referral language for shelter, food, health care, clothing, and homeless-assistance lookup.",
+              },
+              {
+                label: "USAGov — How to find housing after a disaster",
+                href: sourceLinks.usaGovDisasterHousing,
+                description:
+                  "Supports disaster shelter, FEMA shelter search, Red Cross shelter, 211, and transitional sheltering references.",
+              },
+              {
+                label: "211",
+                href: sourceLinks.unitedWay211,
+                description:
+                  "Supports local-resource referral language for housing, food, transportation, health care, and crisis needs.",
+              },
+              {
+                label: "USPS location glossary",
+                href: sourceLinks.uspsGeneralDelivery,
+                description:
+                  "Supports mail-continuity issue spotting; does not answer registry residence questions.",
+              },
+              {
+                label: "SMART Office — SORNA current law",
                 href: sourceLinks.smartSornaCurrentLaw,
                 description:
-                  "Supports the federal baseline that SORNA requires registration to be kept current where a person resides, works, or attends school.",
+                  "Supports the national-versus-state registry boundary and federal baseline framing.",
               },
               {
-                label: "SMART Office: implementation documents",
-                href: sourceLinks.smartSornaImplementation,
+                label: "NSOPW — All registries",
+                href: sourceLinks.nsopwAllRegistries,
                 description:
-                  "Supports the boundary between federal standards and jurisdiction-specific implementation details.",
+                  "Supports state, territory, and tribal registry source-checking pathways.",
               },
               {
-                label: "SMART Office: in-person verification",
-                href: sourceLinks.smartSornaInPerson,
+                label: "U.S. Courts — Overview of probation and supervised release conditions",
+                href: sourceLinks.usCourtsSupervision,
                 description:
-                  "Supports the limited registry-verification framing without treating verification as blanket search authority.",
+                  "Supports the distinction between registry duties and supervision conditions.",
               },
               {
-                label: "U.S. Courts: supervision conditions overview",
-                href: sourceLinks.usCourtsSupervisionConditions,
+                label: "HHS Emergency Preparedness",
+                href: sourceLinks.hhsEmergencyPreparedness,
                 description:
-                  "Supports the distinction between court-imposed supervision conditions and other rulebooks.",
+                  "Supports accessibility, emergency communication, disability, service-animal, and whole-community disaster planning language.",
               },
               {
-                label: "U.S. Courts: search and seizure conditions",
-                href: sourceLinks.usCourtsSearchConditions,
+                label: "ABA Disaster Legal Services",
+                href: sourceLinks.abaDisasterLegalServices,
                 description:
-                  "Supports careful treatment of federal supervised-release search conditions, including scope and purpose.",
-              },
-              {
-                label: "Terry v. Ohio",
-                href: sourceLinks.terry,
-                description:
-                  "Supports the distinction between investigative detention and other police contact.",
-              },
-              {
-                label: "Florida v. Bostick",
-                href: sourceLinks.bostick,
-                description:
-                  "Supports the practical distinction between police requests and situations where compliance is conveyed as required.",
-              },
-              {
-                label: "Miranda v. Arizona",
-                href: sourceLinks.miranda,
-                description:
-                  "Supports the custodial-interrogation caution and careful counsel language.",
-              },
-              {
-                label: "Hiibel v. Sixth Judicial District Court",
-                href: sourceLinks.hiibel,
-                description:
-                  "Supports the warning that identification duties vary by state and context.",
-              },
-              {
-                label: "Schneckloth v. Bustamonte",
-                href: sourceLinks.schneckloth,
-                description:
-                  "Supports the consent-search caution and the need to avoid assuming consent.",
-              },
-              {
-                label: "Riley v. California",
-                href: sourceLinks.riley,
-                description:
-                  "Supports extra caution around phones, digital devices, and digital information.",
-              },
-              {
-                label: "Library of Congress Constitution Annotated: consent searches",
-                href: sourceLinks.consentSearches,
-                description:
-                  "Supports third-party consent cautions and the shared-residence decision aid.",
-              },
-              {
-                label: "Georgia v. Randolph",
-                href: sourceLinks.georgiaRandolph,
-                description:
-                  "Supports the caution that co-occupant consent issues are fact-specific.",
-              },
-              {
-                label: "Fernandez v. California",
-                href: sourceLinks.fernandez,
-                description:
-                  "Supports careful treatment of later co-occupant consent after an objecting occupant is removed.",
-              },
-              {
-                label: "Griffin v. Wisconsin",
-                href: sourceLinks.griffin,
-                description:
-                  "Supports the supervision-search discussion without overclaiming that supervision erases all privacy interests.",
-              },
-              {
-                label: "OJP summary of United States v. Knights",
-                href: sourceLinks.knights,
-                description:
-                  "Supports the probation-search caution involving police and reasonable suspicion.",
-              },
-              {
-                label: "Samson v. California",
-                href: sourceLinks.samson,
-                description:
-                  "Supports the parole-search caution while avoiding blanket claims across all supervision types.",
-              },
-              {
-                label: "U.S. Marshals Service: sex offender investigations",
-                href: sourceLinks.usMarshalsSexOffenderInvestigations,
-                description:
-                  "Supports the federal task-force role caution without converting that role into blanket entry or search authority.",
-              },
-              {
-                label: "Child Welfare Information Gateway: how the child welfare system works",
-                href: sourceLinks.childWelfareHowSystemWorks,
-                description:
-                  "Supports the national-level distinction between CPS systems and police systems.",
-              },
-              {
-                label: "Child Welfare Information Gateway: state statutes",
-                href: sourceLinks.childWelfareStateLaws,
-                description:
-                  "Supports the warning that CPS entry, interviews, safety plans, and emergency authority are state-specific.",
-              },
-              {
-                label: "Child Welfare Information Gateway: state and tribal law and policy links",
-                href: sourceLinks.childWelfarePolicyLinks,
-                description:
-                  "Supports state- and tribal-specific CPS verification before acting.",
-              },
-              {
-                label: "Reporters Committee: recording guide",
-                href: sourceLinks.rcfpRecordingGuide,
-                description:
-                  "Supports the recording-law verification boundary and the decision not to include a static recording-law chart.",
-              },
-              {
-                label: "USA.gov legal aid",
-                href: sourceLinks.usaLegalAid,
-                description:
-                  "Supports the legal-help escalation section.",
-              },
-              {
-                label: "LawHelp.org",
-                href: sourceLinks.lawHelp,
-                description:
-                  "Supports finding state-specific legal aid and self-help resources.",
-              },
-              {
-                label: "ABA state lawyer referral directories",
-                href: sourceLinks.stateBarDirectory,
-                description:
-                  "Supports referral pathways when a public defender, legal aid, or existing counsel is not available.",
+                  "Supports disaster legal-help routing where disaster legal services are activated.",
               },
             ]}
+            note="National sources support crisis navigation, disaster shelter lookup, local-resource referrals, mail issue-spotting, and verification pathways. State, local, agency, court, and supervision sources are still required before publishing any jurisdiction-specific rule."
           />
         </GuideSectionCard>
       </main>
