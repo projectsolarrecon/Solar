@@ -8,6 +8,8 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
+  PullQuoteBlock,
+  SoftDivider,
   QuickStartPanel,
   GuideChecklist,
   ScriptBox,
@@ -19,29 +21,199 @@ import {
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
+  PathwayCard,
   RoleGuidanceGrid,
   TimelineGuidanceGrid,
   DoDontJudgment,
   RedFlagGreenFlag,
+  DualDepthSection,
 } from "../../components/solar";
 
 const sourceLinks = {
-  hudFindShelter: "https://www.hud.gov/findshelter",
-  usaGovDisasterHousing: "https://www.usa.gov/disaster-housing-shelter",
-  unitedWay211: "https://www.211.org/about-us",
-  uspsGeneralDelivery: "https://www.usps.com/locator/glossary.htm",
-  smartSornaCurrentLaw: "https://www.smart.ojp.gov/sorna/current-law",
-  nsopwAllRegistries: "https://www.nsopw.gov/all-registries",
-  usCourtsSupervision:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/post-conviction-supervision/overview-probation-and-supervised-release-conditions",
-  hhsEmergencyPreparedness:
-    "https://www.hhs.gov/civil-rights/for-individuals/special-topics/emergency-preparedness/index.html",
-  abaDisasterLegalServices:
-    "https://www.americanbar.org/groups/young_lawyers/about/initiatives/disaster-legal-services/free-legal-assistance-to-natural-disaster-survivors/",
-  legalAid: "https://www.usa.gov/legal-aid",
-  lawHelp: "https://www.lawhelp.org/",
-  findTreatment: "https://findtreatment.gov/",
+  ftcGovernmentImpersonators:
+    "https://consumer.ftc.gov/articles/how-avoid-government-impersonation-scam",
+  ftcLawEnforcementScams:
+    "https://consumer.ftc.gov/consumer-alerts/2025/06/scammers-are-impersonating-local-law-enforcement",
+  ftcWhatToDoIfScammed:
+    "https://consumer.ftc.gov/articles/what-do-if-you-were-scammed",
+  ftcReportFraud: "https://reportfraud.ftc.gov/",
+  identityTheft: "https://www.identitytheft.gov/Steps",
+  ic3Complaint: "https://complaint.ic3.gov/",
+  fbiImpersonationBoston:
+    "https://www.fbi.gov/contact-us/field-offices/boston/news/fbi-warns-new-englanders-to-beware-of-law-enforcement-and-government-impersonation-scams",
+  fbiImpersonationJacksonville:
+    "https://www.fbi.gov/contact-us/field-offices/jacksonville/news/fbi-jacksonville-warns-public-to-beware-of-scammers-impersonating-fbi-special-agents-in-north-florida",
+  cfpbFraudScams:
+    "https://www.consumerfinance.gov/ask-cfpb/what-are-some-common-types-of-fraud-and-scams-en-2092/",
+  uspisReport: "https://www.uspis.gov/report",
+  usaReportCrime: "https://www.usa.gov/report-crime",
+  usaStateConsumer: "https://www.usa.gov/state-consumer",
+  dojOvwStalking: "https://www.justice.gov/ovw/stalking",
+  ovcStalking: "https://ovc.ojp.gov/topics/stalking",
+  sparcDocumentationLog: "https://www.stalkingawareness.org/documentation-log/",
+  rcfpRecordingGuide: "https://www.rcfp.org/reporters-recording-guide/",
+  rcfpRecordingIntro:
+    "https://www.rcfp.org/introduction-to-reporters-recording-guide/",
+  lawHelp: "https://www.lawhelp.org/find-help",
+  lscFindHelp: "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help",
+  abaFindLegalHelp:
+    "https://www.americanbar.org/groups/legal_services/flh-home/",
+  xPrivateInformation:
+    "https://help.x.com/en/rules-and-policies/personal-information",
+  xReportViolation:
+    "https://help.x.com/en/rules-and-policies/x-report-violation",
+  facebookReport:
+    "https://www.facebook.com/help/212722115425932/",
+  tiktokReportIllegal:
+    "https://www.tiktok.com/legal/page/global/reporting-illegal-content/en",
 };
+
+const sources = [
+  {
+    label: "FTC — How to avoid a government impersonation scam",
+    href: sourceLinks.ftcGovernmentImpersonators,
+    description:
+      "Supports the guidance to pause suspicious official-sounding contacts, avoid caller-supplied numbers, and verify through an independently located official source.",
+  },
+  {
+    label: "FTC — Scammers impersonating local law enforcement",
+    href: sourceLinks.ftcLawEnforcementScams,
+    description:
+      "Supports red flags around fake warrant, jury duty, sheriff, police, and urgent-payment calls.",
+  },
+  {
+    label: "FTC — What to do if you were scammed",
+    href: sourceLinks.ftcWhatToDoIfScammed,
+    description:
+      "Supports payment-response steps after money, banking credentials, gift cards, crypto, wires, or payment app transfers are involved.",
+  },
+  {
+    label: "FTC — ReportFraud.gov",
+    href: sourceLinks.ftcReportFraud,
+    description:
+      "Official federal reporting portal for consumer fraud, scams, impersonation, and bad business practices.",
+  },
+  {
+    label: "IdentityTheft.gov",
+    href: sourceLinks.identityTheft,
+    description:
+      "Official FTC identity-theft recovery tool for people whose personal information has been misused.",
+  },
+  {
+    label: "FBI Internet Crime Complaint Center",
+    href: sourceLinks.ic3Complaint,
+    description:
+      "Official FBI portal for internet-enabled fraud, cybercrime, and online extortion reporting.",
+  },
+  {
+    label: "FBI — Law enforcement and government impersonation scams",
+    href: sourceLinks.fbiImpersonationBoston,
+    description:
+      "Supports the warning that scammers may impersonate law enforcement and use fear, urgency, and spoofed information.",
+  },
+  {
+    label: "FBI Jacksonville — FBI impersonation scam warning",
+    href: sourceLinks.fbiImpersonationJacksonville,
+    description:
+      "Supports the warning that scammers may spoof numbers, claim official authority, and demand payment.",
+  },
+  {
+    label: "Consumer Financial Protection Bureau — Fraud and scams",
+    href: sourceLinks.cfpbFraudScams,
+    description:
+      "Supports quick contact with banks, card issuers, and payment providers when money or financial credentials may be at risk.",
+  },
+  {
+    label: "U.S. Postal Inspection Service — Report mail fraud",
+    href: sourceLinks.uspisReport,
+    description:
+      "Official reporting source when threatening, fraudulent, or impersonation material arrives through the mail.",
+  },
+  {
+    label: "USA.gov — Report a crime",
+    href: sourceLinks.usaReportCrime,
+    description:
+      "Supports the general distinction between emergency reporting, local law enforcement, and non-emergency channels.",
+  },
+  {
+    label: "USA.gov — State consumer protection offices",
+    href: sourceLinks.usaStateConsumer,
+    description:
+      "Directory for state attorney general and consumer-protection offices.",
+  },
+  {
+    label: "DOJ Office on Violence Against Women — Stalking",
+    href: sourceLinks.dojOvwStalking,
+    description:
+      "Official federal source for stalking-related awareness and victim-resource framing.",
+  },
+  {
+    label: "Office for Victims of Crime — Stalking",
+    href: sourceLinks.ovcStalking,
+    description:
+      "Federal victim-resource source for stalking safety planning and support.",
+  },
+  {
+    label: "SPARC — Stalking incident and behavior documentation log",
+    href: sourceLinks.sparcDocumentationLog,
+    description:
+      "Practical documentation resource for repeated unwanted contact, threats, surveillance, and stalking patterns.",
+  },
+  {
+    label: "Reporters Committee — Reporter’s Recording Guide",
+    href: sourceLinks.rcfpRecordingGuide,
+    description:
+      "Current recording-law reference used only as a verification starting point, not as a substitute for state-specific legal advice.",
+  },
+  {
+    label: "Reporters Committee — Introduction to recording law guide",
+    href: sourceLinks.rcfpRecordingIntro,
+    description:
+      "Supports caution around interstate calls and state-by-state recording-law variation.",
+  },
+  {
+    label: "LawHelp.org — Find legal aid",
+    href: sourceLinks.lawHelp,
+    description:
+      "Legal-aid directory for people who need help with protective orders, consumer fraud, housing, employment, or civil legal issues.",
+  },
+  {
+    label: "Legal Services Corporation — Get legal help",
+    href: sourceLinks.lscFindHelp,
+    description:
+      "National legal-aid finder for civil legal assistance.",
+  },
+  {
+    label: "American Bar Association — Find Legal Help",
+    href: sourceLinks.abaFindLegalHelp,
+    description:
+      "State-by-state legal help and lawyer referral directory.",
+  },
+  {
+    label: "X Help Center — Private information policy",
+    href: sourceLinks.xPrivateInformation,
+    description:
+      "Platform-specific reference for reporting exposed private information on X.",
+  },
+  {
+    label: "X Help Center — Report a violation",
+    href: sourceLinks.xReportViolation,
+    description:
+      "Platform-specific reporting process for X.",
+  },
+  {
+    label: "Facebook Help Center — Report abusive things",
+    href: sourceLinks.facebookReport,
+    description:
+      "Platform-specific reporting process for Facebook.",
+  },
+  {
+    label: "TikTok — Reporting illegal content",
+    href: sourceLinks.tiktokReportIllegal,
+    description:
+      "Platform-specific reporting pathway for TikTok content concerns.",
+  },
+];
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -49,9 +221,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Housing Crisis, Homelessness & Disaster Survival Guide | The SOLAR Project"
-        description="A practical SOLAR crisis guide for people who lost housing, are entering homelessness, are displaced by disaster, or need to stabilize the next 72 hours while avoiding registry or supervision mistakes."
-        keywords="housing crisis, homelessness, disaster evacuation, transient registration, emergency shelter, registry compliance, supervision conditions, sex offense registry, SOLAR Project"
+        title="Scams, Extortion, Doxxing & Harassment Survival Guide | The SOLAR Project"
+        description="A calm, practical SOLAR guide for people targeted by registry-related scams, fake official calls, doxxing, extortion, threats, stalking, or harassment."
+        keywords="sex offense registry scams, fake warrant scam, doxxing, harassment, extortion, evidence preservation, registry safety, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -64,17 +236,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </Link>
 
           <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
-            Internal Sandbox Preview
+            SOLAR Resource Guide
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Housing Crisis, Homelessness & Disaster Survival Guide
+            Scams, Extortion, Doxxing & Harassment Survival Guide
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            If you may not have a safe or lawful place to sleep tonight, start
-            with safety, communication, documents, medication, money, and the
-            few legal questions that cannot wait.
+            A practical first-response guide for people who may be targeted
+            because of registry status, criminal-history stigma, supervision,
+            public records, or fear-based harassment.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -83,7 +255,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               onClick={handlePrint}
               className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
             >
-              🖨️ Print Sandbox
+              🖨️ Print Guide
             </button>
 
             <a
@@ -101,1455 +273,1711 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start here: solve tonight first" icon="🧭">
+        <GuideIntro title="Start here" icon="🧭">
           <p>
-            Housing crises destroy normal planning assumptions. You may be
-            dealing with a lockout, eviction, motel loss, family conflict,
-            disaster evacuation, shelter denial, release without workable
-            housing, or a registry or supervision rule that suddenly made a
-            place unusable.
+            If you are reading this because someone called, posted, threatened,
+            exposed, impersonated, followed, or pressured you, pause before you
+            respond. Fear is exactly what scammers and harassers often use to
+            make people act too fast.
           </p>
 
           <p>
-            This guide is for the first hours and days. It helps you stabilize,
-            stay reachable, protect documents and medication, verify whether a
-            temporary location creates registry or supervision consequences, and
-            build a proof packet. It is not a full registry-compliance manual,
-            tenant-rights guide, benefits guide, or long-term housing search
-            guide.
+            This guide is written for people on registries, people accused or
+            convicted of sex offenses, loved ones, and supporters. Registry
+            status can make a threat feel more dangerous because personal
+            information may already be public, police contact may feel risky,
+            and family or housing may be affected. Those concerns are real.
+            The safest first move is still usually the same: slow down, verify
+            independently, preserve evidence, secure what can be secured, and
+            choose the right reporting path.
+          </p>
+
+          <p>
+            This is not legal advice, and it does not promise that police,
+            courts, platforms, or agencies will act in every case. It is a
+            survival guide for the first steps that protect your money, records,
+            household, and options.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="I lost housing today"
-          subtitle="Do these before trying to solve every long-term problem at once."
-          icon="⚡"
+          title="If something feels wrong right now"
+          subtitle="Use this loop before paying, replying, deleting, blocking, confronting, or publicly posting."
+          icon="🛑"
           urgentActions={[
-            <span key="physical-safety">
-              Get physically safe: leave danger, call emergency services if
-              needed, and move away from fire, flood, violence, heat, cold, or
-              immediate threat.
+            <span>
+              <strong>Check immediate safety.</strong> If someone is at your
+              home or workplace, there is an imminent threat, a weapon is
+              mentioned, a child or dependent is threatened, or you cannot get
+              to a safer place, contact emergency services first.
             </span>,
-            <span key="sleep-tonight">
-              Identify the most realistic place to sleep tonight, then verify
-              whether it creates a registry, supervision, local-law, child-contact,
-              shelter-policy, or transportation problem.
+            <span>
+              <strong>Do not pay or send information.</strong> Do not provide
+              Social Security numbers, registry numbers, passwords, PINs,
+              verification codes, banking credentials, copies of ID, or registry
+              paperwork to an inbound caller, texter, emailer, or social-media
+              account you have not independently verified.
             </span>,
-            <span key="essentials">
-              Put ID, wallet, phone, charger, medication, keys, glasses, court
-              papers, registry paperwork, supervision conditions, and insurance
-              cards in one bag if you can.
+            <span>
+              <strong>Preserve before you block or delete.</strong> Screenshot,
+              save URLs, write down times, keep voicemails, and save payment
+              requests before cutting off contact when it is safe to do so.
             </span>,
-            <span key="contacts">
-              Contact supervision if you are required to do so or if approval may
-              be needed. Treat registry and supervision as separate rulebooks.
-            </span>,
-            <span key="reachable">
-              Decide how people can reach you tonight: phone, voicemail, text,
-              email, trusted contact, shelter phone, library phone, or written
-              callback plan.
+            <span>
+              <strong>Do not confront or retaliate.</strong> Do not threaten
+              back, doxx someone, make fake accounts, bait the person, hack,
+              track, or try to “teach them a lesson.”
             </span>,
           ]}
           nextActions={[
-            <span key="proof">
-              Start a simple notes page with the date, time, why housing became
-              unavailable, where you are sleeping, who you contacted, and what
-              proof you saved.
+            <span>
+              <strong>Verify the claim through an independent source.</strong>{" "}
+              Find the official agency, court, registry, probation, bank, or
+              platform contact yourself. Do not use the phone number, email,
+              website, payment portal, or callback instructions supplied by the
+              suspicious person.
             </span>,
-            <span key="resources">
-              Use local crisis systems such as 211, HUD Find Shelter, local
-              emergency management, disaster shelters, legal aid, or a reentry
-              provider.
+            <span>
+              <strong>Secure accounts and money.</strong> Change compromised
+              passwords, check recovery email and phone numbers, revoke unknown
+              sessions, contact your bank or payment app, and follow any
+              supervision or device-monitoring conditions before changing
+              technology.
             </span>,
-            <span key="tomorrow">
-              By tomorrow, work on mail, replacement documents, medication
-              continuity, transportation, longer temporary housing, and legal
-              follow-up.
+            <span>
+              <strong>Report in the right lane.</strong> Local threats,
+              stalking, and vandalism may need local law enforcement. Internet
+              fraud may belong with IC3. Consumer scams may belong with the FTC.
+              Identity theft belongs with IdentityTheft.gov. Platform abuse
+              should also be reported through the platform.
+            </span>,
+            <span>
+              <strong>Document the response.</strong> Save report numbers,
+              confirmation emails, names, dates, times, and what you were told.
+              Keep updating the same packet if the pattern continues.
             </span>,
           ]}
           reminder={
             <span>
-              You do not have to solve everything today. But safety, sleep,
-              medication, reachability, and legal triage cannot be ignored.
+              A real agency may sometimes call. The safer rule is not “every
+              call is fake.” The safer rule is: do not rely on the inbound
+              caller’s identity or payment instructions. Verify through an
+              official number or source you found yourself.
             </span>
           }
         />
+
+        <PullQuoteBlock>
+          Slow is safe. Preserve first. Verify independently. Report through the
+          right channel. Do not let fear push you into paying, deleting,
+          threatening back, or exposing someone else.
+        </PullQuoteBlock>
 
         <OverviewCards
           columns={3}
           cards={[
             {
-              eyebrow: "Tonight",
-              title: "Stabilize",
-              icon: "🛟",
+              eyebrow: "Lane 1",
+              title: "Fake official pressure",
+              icon: "☎️",
               tone: "urgent",
               description:
-                "Find a realistic sleeping option, protect medication and documents, charge your phone, and keep dependents or pets safe.",
+                "A caller claims to be police, sheriff, registry, court, probation, parole, FBI, or another agency and demands money, information, or immediate action.",
             },
             {
-              eyebrow: "Before relying on a location",
-              title: "Verify",
-              icon: "⚖️",
+              eyebrow: "Lane 2",
+              title: "Exposure or impersonation",
+              icon: "🌐",
+              tone: "privacy",
+              description:
+                "Someone posts your address, employer, family information, registry page, edited images, false claims, or creates an account pretending to be you.",
+            },
+            {
+              eyebrow: "Lane 3",
+              title: "Threats or stalking pattern",
+              icon: "🚨",
+              tone: "warning",
+              description:
+                "There are repeated messages, appearances, vandalism, surveillance, escalating threats, or conduct that makes your household or workplace feel unsafe.",
+            },
+            {
+              eyebrow: "Lane 4",
+              title: "Money or identity risk",
+              icon: "💳",
               tone: "legal",
               description:
-                "Check whether the temporary location creates registry, supervision, residence, presence, shelter, local-law, or child-contact issues.",
+                "You sent money, clicked a link, shared personal information, lost account access, or believe someone is using your identity.",
             },
             {
-              eyebrow: "All week",
-              title: "Document",
-              icon: "🗂️",
-              tone: "success",
+              eyebrow: "Lane 5",
+              title: "Family, work, or housing pressure",
+              icon: "🏠",
+              tone: "family",
               description:
-                "Keep receipts, call logs, closure notices, evacuation records, shelter paperwork, photos, messages, names, and instructions.",
+                "A harasser contacts your family, employer, landlord, school, treatment provider, church, neighbor, or support network.",
+            },
+            {
+              eyebrow: "Lane 6",
+              title: "Compliance uncertainty",
+              icon: "📋",
+              tone: "reentry",
+              description:
+                "The threat mentions registration, supervision, verification, address changes, travel, missed appointments, or arrest risk.",
             },
           ]}
         />
 
-        <GuideCallout
-          tone="legal"
-          icon="⚖️"
-          title="National guidance can help you stabilize. Local rules still control legal details."
-        >
-          <p>
-            This guide can safely tell you how to triage, document, preserve
-            communication, and find crisis resources. It cannot safely tell you
-            that a shelter, motel, couch, campground, vehicle, or mailing address
-            is always allowed or always reportable. Those answers can change by
-            state law, local ordinance, registering agency, court order,
-            supervision condition, shelter policy, and emergency-management
-            decision.
-          </p>
-        </GuideCallout>
-
         <GuideSectionHeader
-          id="kind-of-crisis"
+          id="problem-lane"
           number="1"
-          title="Identify what kind of crisis this is"
-          subtitle="The label matters only because it tells you what systems to activate and what proof to save."
+          title="Identify what kind of problem this is"
+          subtitle="You do not need a perfect legal label. You need the safest response lane."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A housing crisis can start because the outside world breaks — a
-              wildfire, hurricane, flood, fire, tornado, utility failure, or
-              evacuation order. It can also start because the housing system
-              breaks — eviction, lockout, shelter loss, motel loss, family
-              conflict, residence rejection, or release from jail or prison
-              without workable housing.
+              Scams, doxxing, harassment, threats, stalking, and extortion can
+              overlap. A fake sheriff call may also be identity theft. A doxxing
+              post may also lead to employer harassment. A platform threat may
+              also create a real-world safety issue. Start with the lane that
+              creates the most immediate risk.
             </p>
 
             <p>
-              Both kinds of emergencies can create registry or supervision
-              consequences. The first job is not to name the perfect legal
-              category. The first job is to see what must be activated: emergency
-              shelter, disaster aid, tenant legal aid, supervision contact,
-              registry triage, medication replacement, transportation, mail, or a
-              family safety plan.
+              Registry status can make classification harder. A scammer may know
+              your registration status, address, conviction label, employer, or
+              supervision history because some information is public, scraped,
+              reposted, purchased, guessed, or shared by someone else. Knowing
+              something true about you does not prove the person is legitimate.
             </p>
           </GuideProse>
 
+          <RedFlagGreenFlag
+            red={
+              <div className="space-y-2">
+                <p>
+                  Treat the situation as urgent if someone demands immediate
+                  payment to avoid arrest, tells you not to call your attorney or
+                  family, claims you must stay on the phone, threatens children
+                  or household members, appears at your home or workplace, or
+                  combines your address with explicit threats.
+                </p>
+              </div>
+            }
+            green={
+              <div className="space-y-2">
+                <p>
+                  A safer process gives you time to verify, points you to
+                  published agency contact information, allows counsel or a
+                  trusted supporter to be involved, gives written instructions,
+                  and does not demand irreversible payment methods.
+                </p>
+              </div>
+            }
+          />
+
           <GuideChecklist
-            id="crisis-type-checklist"
-            title="What happened?"
-            columns={1}
+            id="problem-lane-checklist"
+            title="Choose the first response lane"
+            columns={2}
             items={[
               {
-                id: "housing-loss",
+                id: "official",
                 label:
-                  "Housing became unavailable: eviction, lockout, landlord termination, roommate or family conflict, shelter exit, motel loss, or unsafe residence.",
+                  "Fake official contact: police, registry, court, probation, parole, warrant, missed verification, or compliance demand.",
               },
               {
-                id: "disaster",
+                id: "payment",
                 label:
-                  "A disaster or emergency made the residence unsafe or unreachable: fire, flood, hurricane, tornado, wildfire, storm, utility failure, evacuation, or closure.",
+                  "Payment pressure: gift cards, crypto, wire, payment app, cash deposit, “bond,” fine, fee, or emergency compliance payment.",
               },
               {
-                id: "rule-created-crisis",
+                id: "removal",
                 label:
-                  "A registry, supervision, local-law, child-contact, residence-approval, or housing-restriction issue made the planned location unusable.",
+                  "Registry-removal promise: guaranteed removal, secret loophole, fake legal service, or pay-to-fix listing offer.",
               },
               {
-                id: "release-discharge",
+                id: "identity",
                 label:
-                  "You were released from jail, prison, hospital, treatment, or a program without a workable place to go.",
+                  "Identity or account risk: impersonation profile, account takeover, recovery email changed, financial account risk, or personal information misuse.",
               },
               {
-                id: "vehicle-infrastructure",
+                id: "exposure",
                 label:
-                  "A vehicle breakdown, tow, impoundment, dead battery, insurance lapse, or fuel problem removed both transportation and sleeping/storage access.",
+                  "Doxxing or exposure: address, employer, phone number, family, photos, registry page, or private details posted or amplified.",
+              },
+              {
+                id: "threat",
+                label:
+                  "Threats, stalking, or vandalism: repeated unwanted contact, property damage, following, surveillance, appearances, or escalation.",
+              },
+              {
+                id: "secondary",
+                label:
+                  "Secondary targeting: family, employer, landlord, school, church, treatment provider, or support network contacted.",
+              },
+              {
+                id: "official-misconduct",
+                label:
+                  "Possible misconduct by someone with authority: government employee, supervision officer, registry worker, journalist, activist, or private investigator.",
               },
             ]}
           />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Do not over-label it">
+            <p>
+              Do not assume every cruel post is criminal, every threat creates a
+              protective-order case, or every repost of registry information is
+              unlawful. Also do not assume nothing can be done because you are on
+              a registry. The safer approach is to preserve the facts, describe
+              the conduct clearly, verify legal options locally, and avoid
+              escalating on your own.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="sleep-tonight"
+          id="fake-agency-scams"
           number="2"
-          title="Where can I sleep tonight?"
-          subtitle="Choose the safest realistic option, then verify before relying on it."
+          title="Fake agency, warrant, registry, court, and supervision scams"
+          subtitle="A caller can sound official, use real names, spoof caller ID, and still be a scam."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              A temporary sleeping place is not automatically lawful, reportable,
-              unreportable, supervision-approved, or safe just because it is only
-              for one night. A family couch, motel, shelter, vehicle, campground,
-              disaster shelter, or reentry bed can each raise different
-              questions.
+              People on registries can be especially vulnerable to official
+              impersonation scams because the scammer can use shame, fear of
+              arrest, fear of a violation, and fear of publicity. The caller may
+              claim to be from a sheriff’s office, police department, court,
+              registry unit, probation, parole, the FBI, or another agency. They
+              may say you missed registration, missed DNA or fingerprints,
+              failed to verify an address, ignored a warrant, violated
+              supervision, or owe a fee.
             </p>
 
             <p>
-              That does not mean every option is impossible. It means the safer
-              move is to ask narrow questions, save the answer, and have a backup
-              plan before spending your last cash or traveling across town.
+              The safest national rule is simple:{" "}
+              <a
+                href={sourceLinks.ftcGovernmentImpersonators}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                do not trust caller ID or the caller’s instructions by
+                themselves
+              </a>
+              . Pause the contact, find the official number yourself, and verify
+              through that published source. The{" "}
+              <a
+                href={sourceLinks.ftcLawEnforcementScams}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FTC warns that scammers impersonating local law enforcement may
+                threaten arrest and demand payment
+              </a>
+              , and the{" "}
+              <a
+                href={sourceLinks.fbiImpersonationBoston}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FBI has warned about law-enforcement and government
+                impersonation scams
+              </a>
+              .
             </p>
           </GuideProse>
 
+          <DoDontJudgment
+            dos={[
+              "Pause the inbound contact and write down the claimed name, agency, badge or employee number, callback number, case number, warrant number, and exact demand.",
+              "Find the agency’s official number yourself through an official website, printed paperwork, court record, supervision paperwork, or a known contact.",
+              "Ask the real agency whether the person, unit, issue, case number, payment instruction, or compliance concern is legitimate.",
+              "If the issue might involve actual registry or supervision compliance, document your verification attempt and follow up through the proper official channel.",
+            ]}
+            donts={[
+              "Do not pay with gift cards, cryptocurrency, wire transfer, payment app, cash deposit, Bitcoin ATM, prepaid card, or “bond” instructions from the caller.",
+              "Do not stay on the phone just because the caller says hanging up will cause arrest.",
+              "Do not send copies of ID, registry paperwork, Social Security numbers, bank information, passwords, PINs, or verification codes to an unverified caller.",
+              "Do not call back using the number, link, QR code, or payment portal supplied by the suspicious person unless you independently confirm it.",
+            ]}
+            judgment={[
+              "A real agency may call about real issues. Verification protects you from both scams and accidental noncompliance.",
+              "If you are under supervision, follow your actual reporting instructions, but verify suspicious payment or emergency demands through known official channels.",
+              "If a real warrant, violation, or compliance problem may exist, consider contacting counsel before giving detailed statements.",
+            ]}
+          />
+
           <GuideChecklist
-            id="sleeping-location-verification"
-            title="Emergency sleeping-location verification"
+            id="fake-agency-verification"
+            title="Fake-agency verification checklist"
             columns={1}
             items={[
               {
-                id: "address",
+                id: "stop",
                 label:
-                  "Write down the exact place: street address, shelter name, motel name, campsite, parking location, or clear geographic description.",
+                  "End or pause the inbound contact calmly. Do not argue, threaten, confess, or explain.",
+              },
+              {
+                id: "write",
+                label:
+                  "Write down the claimed agency, name, unit, badge or employee number, case or warrant number, callback number, date, time, and exact demand.",
+              },
+              {
+                id: "official-number",
+                label:
+                  "Find the official number yourself. Use an official agency website, court site, registry office listing, supervision paperwork, or known contact.",
+              },
+              {
+                id: "call",
+                label:
+                  "Call the agency directly and ask whether the person, unit, issue, and instruction are legitimate.",
+              },
+              {
+                id: "payment",
+                label:
+                  "Ask whether the agency ever accepts the requested payment method for this type of issue. Be especially careful with gift cards, crypto, wires, payment apps, cash deposits, or Bitcoin ATMs.",
+              },
+              {
+                id: "document",
+                label:
+                  "Document who you spoke with, the number called, date, time, department, and what you were told.",
+              },
+              {
+                id: "counsel",
+                label:
+                  "If the verified issue could affect arrest, supervision, registration, travel, housing, or employment, consider counsel or legal aid before giving detailed statements.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Suspicious official call"
+            tone="urgent"
+            context="Use this when the caller claims to be police, sheriff, registry, court, probation, parole, FBI, or another official office."
+            script={`I’m going to verify this through the agency’s published number before I provide information or make any payment.`}
+          />
+
+          <ScriptBox
+            title="Agency verification call"
+            tone="legal"
+            context="Use the official number you found yourself, not the number supplied by the suspicious caller."
+            script={`Hello, my name is [Name]. I received a call from someone claiming to be [name/unit] about [issue]. Before I act, I’m trying to confirm whether this person and request are legitimate.
+
+Can you tell me whether this office has a person or unit by that name, whether there is a real case or compliance issue tied to this, and what the official next step is?
+
+I am taking notes. Could you please repeat your name or department so I can write it down correctly?`}
+          />
+
+          <GuideCallout tone="warning" icon="📞" title="Caller ID is not proof">
+            <p>
+              A scammer may spoof a real agency number or know real public
+              information about you. That does not prove the call is legitimate.
+              Verification through a number or source you independently locate
+              is safer than arguing with the caller or obeying payment
+              instructions under pressure.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="registry-removal-scams"
+          number="3"
+          title="Registry-removal, legal-service, and “we can fix your listing” scams"
+          subtitle="Real legal relief may exist in some places, but guaranteed shortcuts are dangerous."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Some scams target people who desperately want relief from public
+              listing, registration duties, employment barriers, housing
+              exclusion, or stigma. The pitch may promise “guaranteed removal,”
+              “secret federal loopholes,” “instant expungement,” “we know the
+              registry office,” or “pay today or your listing will get worse.”
+            </p>
+
+            <p>
+              Be careful. Actual registry relief depends on state law, conviction
+              history, sentence, risk level, time elapsed, court orders,
+              supervision status, and agency practice. A private company cannot
+              simply erase government records because it charges a fee. A real
+              lawyer also should be willing to identify the actual legal remedy,
+              jurisdiction, process, limits, and risks.
+            </p>
+          </GuideProse>
+
+          <DualDepthSection
+            simpleTitle="The safe first rule"
+            simple={
+              <p>
+                Do not pay for a promise until you can verify the person,
+                license, company, legal remedy, jurisdiction, written fee
+                agreement, and realistic limits.
+              </p>
+            }
+            deepTitle="Why registry-relief promises need extra care"
+            deep={
+              <p>
+                A claim can sound legal without being legally meaningful.
+                Expungement, sealing, pardon, termination, risk-level review,
+                registration relief, and public-listing removal are different
+                processes in different states. Some may not be available. Some
+                may require a court order. Some may change criminal records but
+                not registration duties. Treat broad promises as advertising,
+                not authority.
+              </p>
+            }
+          />
+
+          <GuideChecklist
+            id="registry-removal-verification"
+            title="Before paying for registry-removal or legal-service help"
+            columns={1}
+            items={[
+              {
+                id: "identity",
+                label:
+                  "Get the full legal name of the attorney, firm, company, or service provider.",
+              },
+              {
+                id: "license",
+                label:
+                  "Verify any attorney through the state bar or licensing authority in the state where the legal work will happen.",
+              },
+              {
+                id: "remedy",
+                label:
+                  "Ask the exact legal remedy being pursued: court petition, risk-level review, termination, expungement, sealing, pardon, correction of error, or something else.",
               },
               {
                 id: "jurisdiction",
                 label:
-                  "Identify the city, county, state, tribal land, or other jurisdiction where the place is located.",
+                  "Ask which state, court, registry agency, or supervision authority controls the decision.",
               },
               {
-                id: "registry-question",
+                id: "guarantee",
                 label:
-                  "Ask whether staying there, even temporarily, creates a registration, address, residence, transient, presence, or reporting issue.",
+                  "Be skeptical of guarantees, secret loopholes, pressure to pay immediately, or threats that your listing will worsen unless you pay.",
               },
               {
-                id: "supervision-question",
+                id: "writing",
                 label:
-                  "If supervised, ask whether the stay needs advance approval, immediate notice, travel permission, child-contact review, or curfew adjustment.",
+                  "Get the scope, fee, refund policy, and limits in writing before paying.",
               },
               {
-                id: "local-law",
+                id: "second-opinion",
                 label:
-                  "Check local rules when relevant: vehicle sleeping, camping, loitering, proximity restrictions, shelter zones, parks, school zones, or anti-camping ordinances.",
-              },
-              {
-                id: "provider-policy",
-                label:
-                  "Ask the shelter, motel, program, campground, or host what its own admission, ID, curfew, background, child, pet, medication, and mail rules are.",
-              },
-              {
-                id: "proof",
-                label:
-                  "Save proof: call log, name of person spoken to, text, email, receipt, intake paper, screenshot, business card, voicemail, or written notes.",
+                  "If the amount is large or the claim sounds too good to be true, seek a second opinion from legal aid, a licensed attorney, or a trusted bar referral source.",
               },
             ]}
           />
 
-          <VerifyBeforeActing
-            title="Before you rely on a temporary location"
-            whoToAsk={
-              <span>
-                The registering agency, your supervision officer if applicable,
-                the shelter or lodging provider, local emergency-management staff,
-                a legal-aid or defense lawyer, or the state registry source
-                listed for your jurisdiction.
-              </span>
-            }
-            whatToAsk={
-              <span>
-                “I am temporarily displaced and may sleep at [location] from
-                [date/time] to [date/time]. Does this create any reporting,
-                residence, transient, presence, supervision, child-contact, or
-                local-law issue I need to handle today?”
-              </span>
-            }
-            whatToSave={
-              <span>
-                Date, time, name, agency or provider, phone number, exact
-                question, exact answer, and any written confirmation.
-              </span>
-            }
-          />
-
-          <GuideCallout
-            tone="warning"
-            icon="🚗"
-            title="Vehicle sleeping is both a housing issue and an infrastructure issue"
-          >
+          <GuideCallout tone="legal" icon="⚖️" title="This guide does not decide eligibility">
             <p>
-              If a vehicle is your sleeping place, it may also hold your
-              documents, phone charger, medication, clothes, work tools, and
-              transportation to appointments. A tow, impoundment, dead battery,
-              fuel problem, or insurance issue can collapse several systems at
-              once. Treat the vehicle as both shelter and critical
-              infrastructure.
+              This section is about spotting risky promises. It does not tell
+              you whether you qualify for registry relief, expungement,
+              termination, sealing, pardon, or public-listing removal. Those are
+              state-specific legal questions.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="registry-supervision-triage"
-          number="3"
-          title="Registry and supervision triage during displacement"
-          subtitle="Spot the issue, separate the rulebooks, and route detailed compliance questions to the deeper guides."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Losing housing can matter because many registry systems require
-              current residence information, and some jurisdictions use terms
-              such as “homeless,” “transient,” “no fixed residence,” “temporary
-              residence,” or “habitual location.” The exact rule is not
-              nationally uniform.
-            </p>
-
-            <p>
-              Supervision is separate. Probation, parole, supervised release,
-              treatment, or court conditions may require approval or immediate
-              contact even when the registry rule is different. Do not assume
-              notifying one office automatically satisfies the other.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="registry-supervision-triage-checklist"
-            title="Questions to answer today"
-            columns={1}
-            items={[
-              {
-                id: "lost-residence",
-                label:
-                  "Did losing the prior residence create a change-of-address, change-of-residence, or no-fixed-address issue?",
-              },
-              {
-                id: "temporary-location",
-                label:
-                  "Does the temporary place count as a residence, temporary residence, shelter stay, lodging, transient location, or reportable location?",
-              },
-              {
-                id: "no-address",
-                label:
-                  "If there is no ordinary street address, what information does the jurisdiction accept: shelter name, intersection, vehicle location, geographic description, or reporting to a specific office?",
-              },
-              {
-                id: "frequency",
-                label:
-                  "Does homeless or transient status trigger more frequent in-person reporting, verification, or location updates?",
-              },
-              {
-                id: "separate-supervision",
-                label:
-                  "Does supervision require separate permission, immediate notice, travel approval, curfew change, residence approval, or treatment-program communication?",
-              },
-              {
-                id: "written-record",
-                label:
-                  "Did you preserve proof of every call, visit, message, office closure, instruction, and attempted contact?",
-              },
-            ]}
-          />
-
-          <ScriptBox
-            title="Script: registry emergency-displacement notification"
-            tone="legal"
-            context="Use this only as a short triage script. Detailed reporting, receipts, and deadline disputes belong in the Registry Compliance & Verification guide."
-            script={`Hello, my name is [Name]. I am registered in [jurisdiction]. I lost access to my housing on [date/time] because [brief reason]. I am trying to understand what I must do today while I am temporarily displaced.\n\nMy current temporary location is [location or “not yet stable”]. Who handles emergency displacement, homeless or transient reporting, and temporary-location questions? What exactly should I report, how should I report it, and how can I get written proof of the instruction or attempted contact?`}
-          />
-
-          <ScriptBox
-            title="Script: supervision emergency-housing notification"
-            tone="warning"
-            context="Use this separately from registry contact if you are on probation, parole, supervised release, treatment supervision, or another court condition."
-            script={`Hello, this is [Name]. I am under supervision with [officer/office]. I lost access to my housing on [date/time] because [brief reason]. I need to know what housing, travel, curfew, contact, child-contact, and reporting instructions apply right now.\n\nMy possible temporary location is [location]. Is this approved, not approved, or do you need more information? If I cannot reach you again, what should I document and where should I go for written instructions?`}
-          />
-
-          <RelatedGuides
-            title="Use these deeper guides when triage turns into compliance"
-            guides={[
-              {
-                title: "Registry Compliance & Verification Survival Guide",
-                description:
-                  "For exact reporting duties, receipts, proof of attempted compliance, office closures, failed reporting channels, missed deadlines, and disputed instructions.",
-                to: "/resources/registry-compliance-verification-guide",
-              },
-              {
-                title: "Supervision Conditions Survival Guide",
-                description:
-                  "For residence approval, travel limits, curfew, treatment rules, search conditions, device limits, contact restrictions, and violation risk.",
-                to: "/resources/supervision-conditions-guide",
-              },
-              {
-                title: "Registry Rules by State",
-                description:
-                  "For state-specific registry sources before relying on a national summary.",
-                to: "/resources/state-registry",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="homeless-transient-registration"
+          id="preserve-evidence"
           number="4"
-          title="Homeless, transient, and no-fixed-address registration"
-          subtitle="Do not guess the rule. Learn the terms your jurisdiction uses and document the answer."
+          title="Preserve evidence before you block, delete, repair, or respond"
+          subtitle="Screenshots are not perfect, but preserving something now is usually better than trying to rebuild it later."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Some jurisdictions have special procedures for people without a
-              fixed residence. Others use different words or fold the issue into
-              residence, address, temporary lodging, location, or in-person
-              verification rules. A national guide cannot safely turn that into
-              one rule.
+              Evidence can disappear quickly. A scammer may delete a profile. A
+              harasser may edit a post. A platform may remove content without
+              giving you a copy. A caller may stop leaving voicemails once they
+              realize you are documenting. Preserve first when it is safe.
             </p>
 
             <p>
-              Your goal is to find the controlling words, ask the narrow question,
-              and save the answer. A mailing address, shelter mail desk, trusted
-              friend’s address, or post office option may help officials reach
-              you. It does not automatically answer where you legally reside or
-              what you must report.
+              You do not need forensic software to start. Use the phone you
+              have, paper notes, screenshots, voicemail, printed pages, a trusted
+              helper, and a second safe storage location. Do not break into
+              accounts, track devices, or try to identify anonymous people
+              through invasive means.
             </p>
           </GuideProse>
 
           <GuideChecklist
-            id="homeless-transient-verification"
-            title="Terms and questions to verify"
-            columns={1}
+            id="evidence-preservation"
+            title="Universal evidence-preservation checklist"
+            columns={2}
             items={[
               {
-                id: "terms",
+                id: "full-screen",
                 label:
-                  "Search or ask about these terms: homeless, transient, no fixed residence, no fixed address, temporary residence, habitual location, residence, place where you sleep, shelter address, vehicle, geographic description, change of residence, and temporary presence.",
+                  "Screenshot the full screen, not only the threatening sentence.",
               },
               {
-                id: "classification",
+                id: "url",
                 label:
-                  "Ask whether the jurisdiction has a homeless, transient, no-fixed-address, or similar classification.",
+                  "Save the URL, profile link, post link, username, handle, phone number, or email address.",
               },
               {
-                id: "required-information",
+                id: "datetime",
                 label:
-                  "Ask what information must be reported when there is no conventional address.",
+                  "Write the date, time, and time zone. If the platform shows relative time, note the exact time you viewed it.",
               },
               {
-                id: "frequency",
+                id: "thread",
                 label:
-                  "Ask whether the status changes reporting frequency, in-person verification, check-ins, or location updates.",
-              },
-              {
-                id: "locations",
-                label:
-                  "Ask whether each shelter, motel, couch, vehicle location, campground, or outdoor sleeping area must be reported separately.",
-              },
-              {
-                id: "proof-to-keep",
-                label:
-                  "Keep proof of where you slept, dates, attempts to report, agency instructions, shelter paperwork, motel receipts, transportation limits, and office closures.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="reminder"
-            icon="📬"
-            title="Mailing address and residence are different questions"
-          >
-            <p>
-              A place to receive mail can be important for benefits, notices,
-              employers, lawyers, agencies, and family. But it may not satisfy a
-              registry residence duty, supervision residence-approval rule, or
-              local-law requirement. Treat mail continuity as a communication
-              tool, not as a substitute for legal verification.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="shelters-emergency-housing"
-          number="5"
-          title="Shelters, disaster shelters, and emergency housing"
-          subtitle="Call ahead when possible, ask narrow questions, and build a backup plan."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Emergency shelter access can depend on several different systems:
-              state law, local rule, emergency-management decision, provider
-              policy, supervision condition, ID requirement, bed availability,
-              family composition, disability need, medication storage, pet policy,
-              and safety planning.
-            </p>
-
-            <p>
-              Do not assume people on registries are always excluded. Do not
-              assume every shelter must accept you. The practical move is to call
-              before traveling across town when possible, ask what rule controls,
-              and write down the answer.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="shelter-call-ahead-checklist"
-            title="Shelter or emergency-housing call-ahead checklist"
-            columns={1}
-            items={[
-              {
-                id: "eligibility",
-                label:
-                  "Ask whether the program accepts adults in your situation and whether any registry, supervision, warrant, ID, family, or local-policy issue affects intake.",
-              },
-              {
-                id: "intake",
-                label:
-                  "Ask intake hours, location, transportation options, what to bring, what not to bring, and whether beds are first-come, referral-only, or coordinated-entry.",
-              },
-              {
-                id: "documents",
-                label:
-                  "Ask what ID, paperwork, medication list, prescriptions, release papers, benefit letters, or referral documents are needed.",
-              },
-              {
-                id: "rules",
-                label:
-                  "Ask about curfew, length of stay, bag limits, phone charging, medication storage, mail, visitors, work schedules, and appointment conflicts.",
-              },
-              {
-                id: "family",
-                label:
-                  "Ask whether partners, children, dependent adults, service animals, or pets can stay together and what proof or referral is needed.",
-              },
-              {
-                id: "backup",
-                label:
-                  "If denied, ask whether they know another program, warming or cooling center, coordinated-entry point, reentry provider, domestic-violence program, disaster shelter, or 211 referral.",
-              },
-            ]}
-          />
-
-          <ScriptBox
-            title="Script: shelter eligibility call"
-            tone="neutral"
-            context="Use this before spending limited money, battery, or transportation on a trip that may not work."
-            script={`Hello, my name is [Name]. I need emergency shelter for [tonight/date]. Before I travel there, I need to ask about eligibility and intake.\n\nDo you accept someone in my situation? Are there any registry, supervision, ID, warrant, family, child, medication, pet, service-animal, or local-policy issues I should know before coming? If you cannot help, who should I call next?`}
-          />
-
-          <GuideCallout
-            tone="privacy"
-            icon="🛡️"
-            title="Domestic-violence shelters may be the right emergency pathway for some readers"
-          >
-            <p>
-              Domestic-violence and survivor-services programs can have specific
-              eligibility, confidentiality, safety, child-related, location, and
-              admission policies. This guide does not replace survivor-safety
-              planning. Contact the program directly, a survivor-services hotline,
-              or an appropriate advocate if that pathway may fit your situation.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="disaster-evacuation"
-          number="6"
-          title="Disaster evacuation and office closures"
-          subtitle="When normal systems break, preserve proof of what happened and what you tried to do."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A fire, flood, hurricane, tornado, wildfire, evacuation order,
-              power outage, destroyed residence, road closure, or office closure
-              can make ordinary reporting and supervision routines impossible.
-              The unique job here is survival plus documentation.
-            </p>
-
-            <p>
-              If registry or supervision obligations are affected, use this guide
-              to keep yourself alive, reachable, and documented. Use the Registry
-              Compliance & Verification guide for detailed reporting attempts,
-              receipts, missed deadlines, and disputed instructions.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="disaster-proof-checklist"
-            title="Disaster and evacuation proof to save"
-            columns={1}
-            items={[
-              {
-                id: "order",
-                label:
-                  "Evacuation order, emergency alert, county or state notice, FEMA or local emergency-management update, shelter notice, or disaster declaration.",
-              },
-              {
-                id: "housing-damage",
-                label:
-                  "Photos or videos of damage, fire report, utility outage notice, landlord message, insurance message, repair notice, or safety notice.",
-              },
-              {
-                id: "temporary-stay",
-                label:
-                  "Shelter intake record, hotel or motel receipt, campground receipt, host message, transportation receipt, gas receipt, toll receipt, or parking record.",
-              },
-              {
-                id: "office-closure",
-                label:
-                  "Registry office closure notice, supervision office closure notice, voicemail recording details, website notice, door sign photo, or email auto-reply.",
-              },
-              {
-                id: "attempts",
-                label:
-                  "Call logs, emails, texts, voicemail notes, names, badge or employee numbers, confirmation numbers, and the exact instructions given.",
-              },
-              {
-                id: "return-plan",
-                label:
-                  "Date you left, date you returned or tried to return, why you could not return, and what changed about the residence.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="legal"
-            icon="⚖️"
-            title="Proof helps explain what happened. It does not automatically prove compliance."
-          >
-            <p>
-              A closure notice, evacuation order, receipt, or call log can be
-              extremely important. But it does not automatically mean every legal
-              duty was satisfied. Save the proof, then use the detailed
-              compliance guide or legal help to evaluate what else is required.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="communication-continuity"
-          number="7"
-          title="Phone, charging, internet, and communication continuity"
-          subtitle="Treat communication as crisis infrastructure, not a convenience."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              In a housing crisis, a dead phone can mean missed agency calls,
-              missed employer contact, missed shelter updates, missed pharmacy
-              information, missed legal help, and no proof of attempted contact.
-              Communication is part of survival.
-            </p>
-
-            <p>
-              This section stays crisis-focused. Device monitoring, internet bans,
-              platform rules, searches, and supervision technology conditions
-              belong in the future Technology Access & Monitoring guide and the
-              Supervision Conditions guide.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="communication-checklist"
-            title="Communication continuity checklist"
-            columns={1}
-            items={[
-              {
-                id: "battery",
-                label:
-                  "Charge whenever safe: shelter, library, community center, courthouse, hospital, transit station, car charger, workplace, or trusted person.",
-              },
-              {
-                id: "numbers",
-                label:
-                  "Write key numbers on paper: supervision, registering agency, lawyer, family helper, employer, pharmacy, doctor, shelter, 211, and emergency contacts.",
-              },
-              {
-                id: "voicemail",
-                label:
-                  "Keep voicemail working if possible. Clear space for messages and write down callback numbers immediately.",
-              },
-              {
-                id: "backup-contact",
-                label:
-                  "Choose a trusted callback contact if you cannot keep your phone charged or active. Tell agencies exactly how to reach you.",
+                  "Save the full message thread when possible, including what came before and after.",
               },
               {
                 id: "email",
                 label:
-                  "Use email when available because it creates a timestamped record. If you cannot access email, keep paper notes.",
+                  "For email, save the message and headers if you know how, but do not alter or forward it in ways that lose information.",
               },
               {
-                id: "privacy",
+                id: "voicemail",
                 label:
-                  "If calls are not private at a shelter, library, or public place, keep questions narrow and ask how to follow up securely.",
+                  "Save caller ID, voicemail, transcript if available, and the exact words used.",
+              },
+              {
+                id: "payment",
+                label:
+                  "Save payment requests, QR codes, wallet addresses, payment handles, receipts, invoices, and transaction IDs.",
+              },
+              {
+                id: "reports",
+                label:
+                  "Save platform report confirmations, police report numbers, IC3 complaint numbers, FTC confirmations, and bank claim numbers.",
+              },
+              {
+                id: "witnesses",
+                label:
+                  "Write down witness names, contact information, and what they saw or received.",
+              },
+              {
+                id: "property",
+                label:
+                  "Photograph vandalism, damage, mail, packages, signs, vehicles, doors, windows, and surrounding context.",
+              },
+              {
+                id: "video",
+                label:
+                  "Save surveillance-camera clips that are lawfully available to you before they overwrite.",
+              },
+              {
+                id: "backup",
+                label:
+                  "Copy important evidence to a second safe place: printed folder, external drive, trusted helper, secure cloud, or attorney.",
+              },
+            ]}
+          />
+
+          <DocumentPacket
+            title="Scam / harassment documentation packet"
+            intro={
+              <p>
+                This packet documents what happened and what you did. It does
+                not automatically prove a crime occurred or guarantee a legal
+                remedy, but it gives police, platforms, banks, counsel, or
+                agencies a clearer record.
+              </p>
+            }
+            categories={[
+              {
+                title: "Incident basics",
+                items: [
+                  "Date, time, time zone, and location if relevant.",
+                  "Channel: phone, text, email, mail, social media, workplace, home, school, platform, or in person.",
+                  "Claimed identity, agency, office, employer, account name, handle, phone number, email, or profile URL.",
+                  "Exact demand, threat, accusation, post, or false claim.",
+                ],
+              },
+              {
+                title: "Money and identity",
+                items: [
+                  "Amount requested or sent.",
+                  "Payment method requested: gift card, crypto, wire, payment app, cash deposit, prepaid card, Bitcoin ATM, or card.",
+                  "Payment destination, wallet address, QR code, username, invoice, receipt, transaction ID, or bank claim number.",
+                  "Information shared: SSN, date of birth, registry number, ID copy, address, banking credentials, password, PIN, or verification code.",
+                ],
+              },
+              {
+                title: "Digital evidence",
+                items: [
+                  "Screenshots, URLs, usernames, account handles, email headers, voicemails, videos, and message threads.",
+                  "Platform report confirmations and appeal numbers.",
+                  "Dates when posts were edited, removed, reposted, or amplified.",
+                  "Names of family members, employers, landlords, or others contacted.",
+                ],
+              },
+              {
+                title: "Official response",
+                items: [
+                  "Agency verification notes: number called, person reached, department, date, time, and answer.",
+                  "Police or sheriff report number, officer name, precinct, case number, and supplemental evidence instructions.",
+                  "IC3, FTC, state attorney general, bank, payment app, postal inspector, or platform confirmation numbers.",
+                  "Unresolved safety issue and next follow-up date.",
+                ],
               },
             ]}
           />
 
           <OfflineOptions
-            title="If internet, power, or privacy is limited"
-            icon="📝"
+            title="If you have low battery, no printer, limited internet, or phone-only access"
+            note="The goal is to preserve enough to show what happened, even if you cannot make a perfect file."
             items={[
-              "Use a notebook as your contact log: date, time, number called, person reached, message left, and next step.",
-              "Ask a shelter, library, legal-aid office, social worker, or trusted helper about phone access, printing, charging, and faxing.",
-              "Carry paper copies of the most important numbers and instructions because your phone may die or be lost.",
-              "If supervised or under technology restrictions, ask before using a device, account, app, public computer, or third-party phone in a way that could create a violation issue.",
+              "Write a paper log with date, time, phone number, username, exact words, amount demanded, and what you did next.",
+              "Take photos of another phone screen if you cannot screenshot.",
+              "Ask a trusted helper to print, screenshot, or save links if you cannot use the internet privately.",
+              "Keep envelopes, letters, notes, damaged property photos, and receipts in one physical folder.",
+              "If you are under supervision with technology restrictions, ask counsel, your supervising officer, or a trusted approved helper before installing apps, opening new accounts, or changing monitored devices.",
             ]}
           />
+
+          <GuideCallout tone="privacy" icon="🔒" title="Preserve without spreading">
+            <p>
+              Do not repost threats or private information publicly just to prove
+              what happened. Save the evidence in a controlled way and share it
+              only with the people or offices who need it: counsel, police,
+              platform safety teams, bank fraud departments, supervision or
+              registry contacts when compliance is implicated, or trusted
+              supporters helping you stay safe.
+            </p>
+          </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="documents-mail-address"
-          number="8"
-          title="ID, documents, mail, and address continuity"
-          subtitle="Protect what helps you prove who you are, where you were, and how agencies can reach you."
+          id="online-harassment-doxxing"
+          number="5"
+          title="Online harassment, doxxing, impersonation, and exposure"
+          subtitle="Focus on preservation, safety, platform reporting, and careful communication — not public fights."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Identification and paperwork can determine whether you can enter a
-              shelter, fill a prescription, get a motel room, access benefits,
-              talk to an agency, replace money, verify supervision conditions, or
-              prove where you were during a crisis.
+              Online harassment may include reposting registry information,
+              publishing your address or employer, contacting your family,
+              impersonating you, posting edited images, making false claims,
+              review bombing, mass messaging, or encouraging others to target
+              you. Some posts may be cruel but not clearly illegal. Other posts
+              may involve threats, impersonation, private information, fraud,
+              stalking patterns, or platform-policy violations.
             </p>
 
             <p>
-              Mail continuity matters too. You may need a trusted person, service
-              provider, shelter, general delivery option, PO box, or agency-approved
-              mailing contact. But do not confuse mail with residence. Ask each
-              agency what address it needs and what that address does legally.
+              The safer workflow is: preserve the post, assess threat level,
+              lock down accounts, report to the platform or host, document the
+              response, consider law enforcement or counsel if risk increases,
+              and inform only the household, employer, landlord, or supporter
+              who actually needs to know.
             </p>
           </GuideProse>
 
-          <DocumentPacket
-            title="Emergency document grab list"
-            intro={
-              <span>
-                Keep originals when safe. If originals are lost or unsafe to
-                carry, keep photos or copies where allowed and keep a paper list
-                of what must be replaced.
-              </span>
+          <GuideChecklist
+            id="doxxing-response"
+            title="Doxxing / exposure response checklist"
+            columns={1}
+            items={[
+              {
+                id: "preserve",
+                label:
+                  "Preserve screenshots, URLs, usernames, timestamps, message threads, and any comments encouraging contact or harm.",
+              },
+              {
+                id: "threat",
+                label:
+                  "Separate ordinary insults from threats, stalking patterns, impersonation, fraud, private-information exposure, or calls for others to act.",
+              },
+              {
+                id: "accounts",
+                label:
+                  "Secure exposed accounts: passwords, recovery email, recovery phone, active sessions, forwarding rules, and MFA if compatible with your supervision or technology conditions.",
+              },
+              {
+                id: "platform",
+                label:
+                  "Report the specific post or account through the platform’s own reporting process. Use the policy category that fits: threats, private information, impersonation, harassment, fraud, or illegal content.",
+              },
+              {
+                id: "document-response",
+                label:
+                  "Save the platform report confirmation, appeal number, automated response, denial, removal notice, or no-response date.",
+              },
+              {
+                id: "necessary-notice",
+                label:
+                  "Notify only the people who need safety information: household members, employer reception/security, landlord/property manager, school/childcare when truly necessary, or a trusted helper.",
+              },
+              {
+                id: "law-enforcement",
+                label:
+                  "Consider law enforcement or counsel if the exposure is tied to threats, stalking, extortion, vandalism, identity theft, false reports, or real-world appearances.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Platform report"
+            tone="privacy"
+            context="Use this for threats, impersonation, private information, or platform-policy violations. Edit it to fit the platform’s reporting category."
+            script={`This account/post contains [threat/impersonation/private information]. I preserved the URL and screenshots. Please review it under your policy for [threats/impersonation/privacy/etc.].`}
+          />
+
+          <ResourceLinkGrid
+            title="Platform reporting examples"
+            description={
+              <p>
+                Platform rules and takedown decisions are platform-specific.
+                Use the platform’s own reporting path and save confirmation
+                numbers or automated replies.
+              </p>
             }
-            categories={[
+            resources={[
               {
-                title: "Identity and basic access",
-                items: [
-                  "State ID or driver license",
-                  "Social Security card or number record",
-                  "Birth certificate",
-                  "Passport or immigration documents if applicable",
-                  "Insurance card, Medicaid/Medicare card, or benefit card",
-                  "Emergency contacts and trusted helper information",
-                ],
+                label: "X — Private information policy",
+                href: sourceLinks.xPrivateInformation,
+                badge: "Platform",
+                description:
+                  "Reference for exposed private information and doxxing-type reports on X.",
               },
               {
-                title: "Legal and supervision records",
-                items: [
-                  "Registry paperwork and registering-agency contact information",
-                  "Supervision conditions, officer name, office number, and reporting schedule",
-                  "Court orders, release papers, treatment-program paperwork, and appointment notices",
-                  "Attorney, public defender, legal-aid, or advocate contact information",
-                ],
+                label: "X — Report a violation",
+                href: sourceLinks.xReportViolation,
+                badge: "Platform",
+                description:
+                  "Reporting pathway for violations on X.",
               },
               {
-                title: "Housing, money, health, and transportation",
-                items: [
-                  "Lease, eviction notice, lockout notice, shelter papers, motel receipts, or landlord messages",
-                  "Prescription bottles, medication list, pharmacy information, and medical-device information",
-                  "Bank card, cash, benefit card, prepaid card, checkbook, or card-replacement information",
-                  "Vehicle registration, insurance, title/lien information, parking records, and transit cards",
-                ],
+                label: "Facebook — Report abusive things",
+                href: sourceLinks.facebookReport,
+                badge: "Platform",
+                description:
+                  "Reporting pathway for abusive content, threats, impersonation, and related Facebook concerns.",
+              },
+              {
+                label: "TikTok — Reporting illegal content",
+                href: sourceLinks.tiktokReportIllegal,
+                badge: "Platform",
+                description:
+                  "Reporting pathway for illegal-content concerns on TikTok.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="warning" icon="📣" title="Do not amplify the post">
+            <p>
+              Publicly arguing with a harasser can send more people to the post,
+              create screenshots that remove context, and increase risk to your
+              household. Preserve it, report it, and share only with people who
+              need to help.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="account-money-security"
+          number="6"
+          title="Account, device, identity, and money triage"
+          subtitle="Keep this narrow: secure what may be exposed, preserve evidence, and use the right recovery path."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              If you clicked a link, shared information, sent money, lost account
+              access, or think someone is using your identity, treat it as a
+              security problem and a documentation problem. Preserve what
+              happened before cleaning up. Then secure accounts, money, and
+              identity records.
+            </p>
+
+            <p>
+              If you are under supervision, on a device-monitoring plan, or have
+              internet or app restrictions, do not assume ordinary cybersecurity
+              advice is automatically safe for you. Changing devices, deleting
+              apps, creating new accounts, using encrypted tools, or installing
+              MFA apps may raise supervision questions. Verify first.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="account-security"
+            title="Account and money triage checklist"
+            columns={2}
+            items={[
+              {
+                id: "preserve-before-clean",
+                label:
+                  "Preserve the suspicious message, link, login alert, receipt, account notice, or payment request before deleting or cleaning up.",
+              },
+              {
+                id: "password",
+                label:
+                  "Change compromised passwords from a safe device. Use unique passwords, not reused ones.",
+              },
+              {
+                id: "mfa",
+                label:
+                  "Enable MFA where compatible with your supervision, treatment, monitoring, or device conditions.",
+              },
+              {
+                id: "sessions",
+                label:
+                  "Log out unknown sessions and check recent account activity.",
+              },
+              {
+                id: "recovery",
+                label:
+                  "Check recovery email, recovery phone, forwarding rules, backup codes, and trusted devices.",
+              },
+              {
+                id: "financial",
+                label:
+                  "Contact your bank, card issuer, payment app, or transfer service quickly if money or account numbers may be involved.",
+              },
+              {
+                id: "credit",
+                label:
+                  "Consider fraud alerts, credit freezes, or credit monitoring if identity information was exposed or misused.",
+              },
+              {
+                id: "identitytheft",
+                label:
+                  "Use IdentityTheft.gov if someone used your identity or opened accounts in your name.",
               },
             ]}
           />
 
           <VerifyBeforeActing
-            title="Before relying on a mailing arrangement"
+            title="Verify technology steps before acting"
             whoToAsk={
               <span>
-                The agency that needs to contact you, the registering agency,
-                supervision if applicable, USPS or the mail provider, and legal
-                help if the address will be used for legal notices.
+                Your supervising officer, attorney, treatment provider, approved
+                device-monitoring contact, or the person who manages your
+                technology condition.
               </span>
             }
             whatToAsk={
               <span>
-                “Is this address only for mail, or are you treating it as my
-                residence, temporary residence, service address, shelter address,
-                or official contact address?”
+                “Can I change passwords, enable MFA, revoke sessions, install an
+                authenticator app, replace this device, or create a new account
+                without violating my conditions?”
               </span>
             }
             whatToSave={
               <span>
-                The address used, purpose of the address, date provided, agency
-                name, staff name, written confirmation, and any limits on using
-                that address.
+                Save the date, time, person, department, and answer. Ask for
+                written confirmation if possible.
               </span>
             }
           />
-        </GuideSectionCard>
 
-        <GuideSectionHeader
-          id="money-health-transportation"
-          number="9"
-          title="Money, medication, healthcare, and transportation"
-          subtitle="Keep the systems that get you through tomorrow from collapsing tonight."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
+          <GuideCallout tone="info" icon="🧾" title="Where to report money and identity issues">
             <p>
-              This guide does not become a full benefits, banking, medical, or
-              transportation manual. The crisis job is narrower: protect enough
-              money, medication, health access, and mobility to survive the next
-              few days and attend required appointments.
-            </p>
-          </GuideProse>
-
-          <GuideChecklist
-            id="basic-systems-checklist"
-            title="Basic systems checklist"
-            columns={1}
-            items={[
-              {
-                id: "money",
-                label:
-                  "Protect wallet, cards, cash, benefit cards, prepaid phone funds, and account access. If cards are stolen, ask the issuer about freezing or replacing them.",
-              },
-              {
-                id: "expenses",
-                label:
-                  "Before spending all available cash on one motel night, check whether shelter, 211, emergency assistance, family help, disaster housing, or a reentry provider can reduce the immediate cost.",
-              },
-              {
-                id: "receipts",
-                label:
-                  "Save receipts for motel, gas, food, transit, prescriptions, phone service, storage, repairs, towing, and emergency supplies.",
-              },
-              {
-                id: "medication",
-                label:
-                  "Keep prescription bottles, medication list, pharmacy name, prescriber name, insurance card, and refill dates together.",
-              },
-              {
-                id: "healthcare",
-                label:
-                  "If medication, medical devices, mobility aids, mental-health treatment, or treatment-program attendance are interrupted, contact the pharmacy, provider, clinic, shelter social worker, or supervision/treatment contact as soon as possible.",
-              },
-              {
-                id: "transportation",
-                label:
-                  "Protect access to required appointments, shelter, pharmacy, food, work, charging, and legal help. Check transit, gas, rides, shelter transport, disaster routes, and vehicle safety.",
-              },
-              {
-                id: "vehicle-compound-risk",
-                label:
-                  "If your car is also your shelter or storage, protect it from towing, impoundment, dead battery, fuel loss, parking tickets, and unsafe parking when possible.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="reentry"
-            icon="🧩"
-            title="Benefits and assistance belong here only as crisis navigation"
-          >
-            <p>
-              SNAP, Medicaid, SSI/SSDI, unemployment, HUD programs, rental
-              assistance, and disaster aid may matter. This guide should help you
-              identify what to gather and who to contact first. Deeper eligibility,
-              applications, appeals, and long-term administration belong in the
-              future Benefits & Basic Administration guide.
+              For internet-enabled fraud, use{" "}
+              <a
+                href={sourceLinks.ic3Complaint}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IC3
+              </a>
+              . For consumer scams, use{" "}
+              <a
+                href={sourceLinks.ftcReportFraud}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ReportFraud.gov
+              </a>
+              . For identity theft recovery, use{" "}
+              <a
+                href={sourceLinks.identityTheft}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IdentityTheft.gov
+              </a>
+              . If money moved through a bank, card, wire, payment app, or
+              transfer service, contact that provider quickly and save the claim
+              number.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="family-hosts-pets"
-          number="10"
-          title="Family, temporary hosts, household members, and animals"
-          subtitle="A well-meant offer can help, but it still needs safety and rule checks."
+          id="physical-safety"
+          number="7"
+          title="Threats, stalking, vandalism, and physical safety"
+          subtitle="Separate immediate danger from documentation, but keep building the record."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Housing crises often involve other people: a partner, child,
-              roommate, elderly parent, disabled household member, family host,
-              friend, landlord, social worker, shelter staff, or pet caretaker.
-              Do not assume the only question is whether someone is kind enough
-              to offer space.
+              Some harassment stays online. Some moves into the real world. If a
+              person appears at your home or workplace, threatens physical harm,
+              damages property, follows you, watches your household, leaves
+              items, contacts neighbors, or repeatedly escalates, treat safety as
+              the first issue.
             </p>
 
             <p>
-              A couch, spare room, motel room, or family home may create issues
-              involving residence approval, child contact, proximity, local law,
-              supervision, registry reporting, household consent, privacy, or
-              search conditions. Verify before settling in if there is time to do
-              so safely.
-            </p>
-          </GuideProse>
-
-          <RoleGuidanceGrid
-            title="Different people need different instructions"
-            roles={[
-              {
-                role: "Person who lost housing",
-                icon: "🧭",
-                guidance:
-                  "Ask whether the temporary location creates registry, supervision, child-contact, residence, travel, or local-law issues. Save the answer and keep your own notes.",
-              },
-              {
-                role: "Temporary host or family member",
-                icon: "🏠",
-                guidance:
-                  "Do not promise that the arrangement is legally safe until the affected person has checked supervision, registry, and local restrictions. Avoid giving legal answers you cannot verify.",
-              },
-              {
-                role: "Household with children or dependents",
-                icon: "👪",
-                guidance:
-                  "Verify child-contact conditions, household rules, court orders, supervision instructions, and any CPS or family-court implications before assuming the arrangement works.",
-              },
-              {
-                role: "Supporter helping from a distance",
-                icon: "☎️",
-                guidance:
-                  "Help with calls, printing, charging, transportation, receipts, and notes. Do not pressure the person to hide information, ignore supervision, or guess at registry rules.",
-              },
-            ]}
-          />
-
-          <GuideChecklist
-            id="temporary-host-checklist"
-            title="Temporary host checklist"
-            columns={1}
-            items={[
-              {
-                id: "who-lives-there",
-                label:
-                  "Who lives at the location, including children, dependent adults, roommates, visitors, or people under court orders?",
-              },
-              {
-                id: "rules",
-                label:
-                  "Could supervision, registry, residence restrictions, child-contact rules, local ordinances, landlord rules, or lease terms affect the stay?",
-              },
-              {
-                id: "duration",
-                label:
-                  "What is the expected start date, end date, sleeping space, mail plan, transportation plan, and backup plan?",
-              },
-              {
-                id: "privacy",
-                label:
-                  "Will agency calls, legal calls, medication, documents, and personal information be private enough?",
-              },
-              {
-                id: "animals",
-                label:
-                  "If pets or service animals are involved, ask shelters, motels, hosts, transportation providers, and disaster programs about rules before relying on the location.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="family"
-            icon="🐾"
-            title="Pets and service animals belong in the crisis plan"
-          >
-            <p>
-              An otherwise workable shelter, motel, ride, or host may become
-              unusable if an animal cannot come with the household. Service
-              animals and pets can be treated differently under emergency and
-              disability rules, but details still depend on the setting. Ask
-              directly and save the answer.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="first-week-plan"
-          number="11"
-          title="First 6 hours, 24 hours, 72 hours, and 7 days"
-          subtitle="Use this as a printable crisis ladder. Legal deadlines may be faster."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              This timeline is a planning aid, not a legal deadline. Registry,
-              supervision, court, treatment, shelter, or disaster rules may
-              require faster action. When a real legal deadline exists, follow the
-              legal deadline.
+              This guide does not decide whether the conduct legally counts as
+              stalking, harassment, extortion, vandalism, or a protective-order
+              case. Those rules vary. But you can still document the pattern and
+              ask the proper local office what the next step is.
             </p>
           </GuideProse>
 
           <TimelineGuidanceGrid
-            title="Crisis stabilization ladder"
+            title="What to do by stage"
             stages={[
               {
-                stage: "First 6 hours",
-                icon: "⏱️",
+                stage: "Immediate danger",
+                icon: "🚨",
                 whatChanges:
-                  "The main risk is immediate collapse: no safe place, no medication, no phone, no way to contact required people, and no proof of what happened.",
+                  "Safety comes before evidence. The person is present, a weapon is mentioned, a child or dependent is threatened, or harm appears imminent.",
                 whatToDo:
-                  "Get physically safe. Identify tonight’s sleeping option. Gather ID, medication, phone, charger, wallet, keys, and legal papers. Contact supervision if needed. Start a notes page.",
+                  "Call emergency services, move to a safer location if you can, tell household members, and preserve evidence only when safe.",
               },
               {
-                stage: "First 24 hours",
-                icon: "🌙",
-                whatChanges:
-                  "Temporary choices may start creating registry, supervision, work, medication, transportation, shelter, or family consequences.",
-                whatToDo:
-                  "Verify the temporary location. Call shelter or lodging before travel. Preserve receipts and call logs. Tell agencies how to reach you. Ask about mail, medication, and transportation.",
-              },
-              {
-                stage: "By 72 hours",
-                icon: "📌",
-                whatChanges:
-                  "The crisis shifts from one night to a temporary system. Missing documents, mail, refills, appointments, and proof gaps become harder to fix.",
-                whatToDo:
-                  "Build the documentation packet. Arrange mail or callback contact. Replace essential documents if lost. Contact legal aid, 211, reentry services, or disaster aid. Make a backup sleeping plan.",
-              },
-              {
-                stage: "First week",
+                stage: "Repeated pattern",
                 icon: "🗓️",
                 whatChanges:
-                  "The focus moves toward stable housing, health continuity, benefits navigation, property storage, transportation, and agency follow-up.",
+                  "The incidents may look small one by one but become more serious together.",
                 whatToDo:
-                  "Begin longer housing search. Follow up with registry and supervision if needed. Review notes for missing proof. Keep receipts. Recheck whether the temporary location is still lawful and workable.",
+                  "Keep an incident log with dates, times, locations, screenshots, voicemails, witnesses, photos, and prior report numbers.",
+              },
+              {
+                stage: "Property targeting",
+                icon: "🏚️",
+                whatChanges:
+                  "Vandalism, packages, signs, vehicles, mail, doors, windows, pets, or home entrances may create safety and housing risk.",
+                whatToDo:
+                  "Photograph damage before repair when safe, save receipts, ask neighbors or property managers about footage, and request a report number.",
+              },
+              {
+                stage: "After a report",
+                icon: "📄",
+                whatChanges:
+                  "The record matters even if no arrest, takedown, or immediate action happens.",
+                whatToDo:
+                  "Save the report number, ask how to submit supplemental evidence, and keep adding new incidents to the same packet.",
               },
             ]}
           />
 
-          <DoDontJudgment
-            dos={[
-              <span key="sleep">
-                Solve physical safety, sleep, medication, phone, and reachability
-                first.
-              </span>,
-              <span key="verify">
-                Verify legal consequences before relying on a shelter, couch,
-                motel, vehicle, campground, or cross-jurisdiction move.
-              </span>,
-              <span key="document">
-                Document names, dates, instructions, attempted contacts, receipts,
-                and proof while memory is fresh.
-              </span>,
-            ]}
-            donts={[
-              <span key="guess">
-                Do not guess that “temporary” means “not reportable” or
-                “automatically approved.”
-              </span>,
-              <span key="overspend">
-                Do not spend your last money without checking shelter, 211,
-                disaster, reentry, or legal-aid options when available.
-              </span>,
-              <span key="ignore">
-                Do not ignore supervision, registry, court, treatment, or child-contact
-                instructions because the crisis feels unfair or overwhelming.
-              </span>,
-            ]}
-            judgment={[
-              <span key="wait">
-                Long-term benefits, document replacement, storage, and housing
-                applications may be urgent soon, but they may not be the first
-                problem to solve tonight.
-              </span>,
-              <span key="help">
-                A trusted helper can make calls, print documents, charge a phone,
-                or organize receipts, but legal decisions still need qualified
-                guidance.
-              </span>,
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="documentation-packet"
-          number="12"
-          title="Crisis documentation packet"
-          subtitle="Create a record of what happened, what you did, and what still needs an answer."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Documentation is not busywork. It can help you explain displacement,
-              preserve proof of attempted contact, request help, replace records,
-              show where you stayed, and remember instructions when stress makes
-              memory unreliable.
-            </p>
-
-            <p>
-              This packet proves what happened and what you tried to do. It does
-              not automatically prove that every legal obligation was satisfied.
-            </p>
-          </GuideProse>
-
-          <DocumentPacket
-            title="Housing crisis proof packet"
-            intro={
-              <span>
-                Use paper, photos, screenshots, envelopes, folders, or a notebook.
-                The system only works if you can find the proof later.
-              </span>
-            }
-            categories={[
-              {
-                title: "Crisis basics",
-                items: [
-                  "Date and time housing became unavailable",
-                  "Reason housing became unavailable",
-                  "Last stable residence",
-                  "People present when the crisis started",
-                  "Property left behind and how to retrieve it if safe",
-                ],
-              },
-              {
-                title: "Temporary-location log",
-                items: [
-                  "Date and time arrived",
-                  "Sleeping location or geographic description",
-                  "City, county, state, or jurisdiction",
-                  "Who approved, denied, or gave instructions",
-                  "Proof kept: receipt, intake record, message, photo, call log, or written note",
-                ],
-              },
-              {
-                title: "Agency contact-attempt log",
-                items: [
-                  "Agency or office contacted",
-                  "Phone number, email, website, or physical office visited",
-                  "Date and time of attempt",
-                  "Person spoken to or message left",
-                  "Instructions given, closure notice, confirmation number, or next appointment",
-                ],
-              },
-              {
-                title: "Disaster, shelter, health, money, and transportation proof",
-                items: [
-                  "Evacuation orders, emergency alerts, fire reports, damage photos, utility notices, or closure notices",
-                  "Shelter papers, motel receipts, campground receipts, host messages, or denial records",
-                  "Medication records, pharmacy contacts, clinic messages, and treatment-program contacts",
-                  "Bank, benefit-card, card-replacement, cash, fuel, transit, towing, storage, or repair receipts",
-                ],
-              },
-            ]}
+          <ScriptBox
+            title="Police report"
+            tone="legal"
+            context="Use this when you are trying to document a pattern, not argue the entire case in the first conversation."
+            script={`I want to document a pattern of threats/harassment. I have dates, screenshots, messages, and prior incident information. I am not asking you to decide the whole case right now; I want the conduct documented and to understand the appropriate next step.`}
           />
 
-          <OfflineOptions
-            title="If you only have paper"
-            icon="✍️"
+          <GuideChecklist
+            id="physical-safety-log"
+            title="Incident log items"
+            columns={2}
             items={[
-              "Use one envelope for receipts and one notebook page for calls.",
-              "Write the same five things every time: date, time, place, person, instruction.",
-              "Ask a shelter worker, librarian, social worker, advocate, or trusted person to photocopy or photograph key documents.",
-              "Keep one small card with emergency contacts, medications, supervision, registry office, lawyer, pharmacy, and shelter numbers.",
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="mistakes-escalation"
-          number="13"
-          title="Common mistakes and when to get help now"
-          subtitle="Avoid panic moves, and escalate when the risk is bigger than a checklist."
-        />
-
-        <GuideSectionCard>
-          <CommonMistakes
-            title="Common crisis mistakes"
-            mistakes={[
               {
-                mistake:
-                  "Assuming a temporary place cannot create legal consequences.",
-                whyItMatters:
-                  "Some jurisdictions and supervision conditions treat temporary locations, shelters, vehicles, motels, or no-fixed-residence situations as legally important.",
-                betterMove:
-                  "Verify before relying on the location and save the answer.",
+                id: "date-time",
+                label: "Date, time, time zone, and location.",
               },
               {
-                mistake:
-                  "Treating registry and supervision as one notification.",
-                whyItMatters:
-                  "One office may not control the other rulebook. A registry update may not satisfy supervision, and supervision approval may not satisfy registry reporting.",
-                betterMove:
-                  "Make separate contacts or document separate attempts when both systems may apply.",
+                id: "what-happened",
+                label: "What happened, using exact words when possible.",
               },
               {
-                mistake:
-                  "Losing proof because everything is on a dying phone.",
-                whyItMatters:
-                  "Screenshots, call logs, receipts, and messages can disappear when a phone dies, breaks, is lost, or is stolen.",
-                betterMove:
-                  "Use paper backup, ask a trusted helper to save copies, and write down the essentials immediately.",
+                id: "who",
+                label:
+                  "Known person, unknown person, vehicle, account, phone number, or description.",
               },
               {
-                mistake:
-                  "Spending all available money on the first option.",
-                whyItMatters:
-                  "One motel night can leave no money for food, fuel, phone service, medication, storage, or transportation.",
-                betterMove:
-                  "Check 211, shelter systems, local emergency assistance, reentry providers, disaster resources, or family support before using all remaining funds when possible.",
+                id: "evidence",
+                label:
+                  "Screenshots, voicemails, photos, video clips, letters, envelopes, receipts, or damaged property.",
+              },
+              {
+                id: "witnesses",
+                label:
+                  "Witness names, contact information, and what each person saw or received.",
+              },
+              {
+                id: "impact",
+                label:
+                  "Safety effect: could not go home, missed work, children scared, landlord contacted, property damaged, or financial loss.",
+              },
+              {
+                id: "reports",
+                label:
+                  "Police report number, platform report number, bank claim number, IC3 or FTC confirmation, or agency contact note.",
+              },
+              {
+                id: "next-step",
+                label:
+                  "Next planned follow-up: supervisor request, supplemental evidence, counsel call, platform appeal, bank follow-up, or safety change.",
               },
             ]}
           />
 
-          <RedFlagGreenFlag
-            red={
-              <ul className="list-disc pl-6 space-y-2">
-                <li>No safe or lawful place to sleep tonight.</li>
-                <li>Threat of arrest, violation, warrant, or missed reporting deadline.</li>
-                <li>Conflicting instructions from registry, supervision, shelter, police, court, or treatment.</li>
-                <li>Child, dependent adult, domestic-violence, CPS, or family-court risk.</li>
-                <li>Lost medication, stolen ID, vehicle impoundment, or inability to reach required offices.</li>
-                <li>Disaster, office closure, power outage, or transportation failure has made ordinary compliance impossible.</li>
-              </ul>
-            }
-            green={
-              <ul className="list-disc pl-6 space-y-2">
-                <li>You have a safe sleeping plan for tonight and a backup plan.</li>
-                <li>You know who controls registry, supervision, shelter, and local-rule questions.</li>
-                <li>You have names, dates, phone numbers, receipts, messages, closure notices, or other proof.</li>
-                <li>You have a way to receive calls, texts, email, mail, or third-party messages.</li>
-                <li>You know what must happen tomorrow and what can wait a few days.</li>
-              </ul>
-            }
-          />
-
-          <GuideCallout
-            tone="urgent"
-            icon="🚩"
-            title="Get help quickly when the checklist is not enough"
-          >
+          <GuideCallout tone="urgent" icon="🚫" title="Avoid confrontation">
             <p>
-              Contact the right kind of help when there is no safe place to
-              sleep, a child or dependent is at risk, a shelter denies access, a
-              deadline may be missed, a vehicle is impounded, a medication is
-              unavailable, instructions conflict, police or CPS are involved, or
-              disaster conditions make ordinary reporting impossible.
+              Do not go to the suspected person’s home, post their private
+              information, threaten them, follow them, bait them, or create fake
+              accounts to engage. That can increase danger and may create legal,
+              supervision, platform, housing, or employment problems for you.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
-          number="14"
-          title="Resources and next steps"
-          subtitle="Use national resources for triage, then verify legal details locally."
+          id="family-work-housing"
+          number="8"
+          title="Family, household members, employers, landlords, and supporters"
+          subtitle="Share enough to protect people. Do not spread the harassment farther than necessary."
         />
 
         <GuideSectionCard>
-          <ResourceLinkGrid
-            title="National crisis and verification resources"
-            description={
+          <GuideProse>
+            <p>
+              Harassment aimed at a person on a registry often spills onto
+              spouses, partners, children, parents, roommates, employers,
+              landlords, neighbors, churches, schools, or treatment providers.
+              The goal is not to tell everyone everything. The goal is to give
+              the right people enough information to stay safe, preserve
+              evidence, and avoid being manipulated.
+            </p>
+          </GuideProse>
+
+          <RoleGuidanceGrid
+            title="What different people may need"
+            roles={[
+              {
+                role: "Person being targeted",
+                icon: "🧍",
+                guidance:
+                  "Preserve evidence, verify official claims, avoid retaliation, secure accounts, and decide who truly needs safety information.",
+              },
+              {
+                role: "Household or family",
+                icon: "👥",
+                guidance:
+                  "Know what to preserve, what not to amplify, who to call in an emergency, and how to notify the targeted person if messages, mail, calls, or visitors appear.",
+              },
+              {
+                role: "Employer, reception, or workplace security",
+                icon: "🏢",
+                guidance:
+                  "They may need a simple heads-up that someone could call, email, post, appear, or make accusations. They do not need your whole legal history unless there is a specific reason.",
+              },
+              {
+                role: "Landlord or property manager",
+                icon: "🔑",
+                guidance:
+                  "They may need to preserve footage, messages, mail, repair records, or reports if harassment reaches the property. Keep housing disclosures narrow and practical.",
+              },
+            ]}
+          />
+
+          <GuideChecklist
+            id="secondary-target-safety"
+            title="Secondary-target safety checklist"
+            columns={1}
+            items={[
+              {
+                id: "who-needs-to-know",
+                label:
+                  "Decide who actually needs to know for safety, evidence, housing, work, childcare, or emergency contact reasons.",
+              },
+              {
+                id: "what-to-share",
+                label:
+                  "Share the narrow safety issue: someone may call, post, appear, send mail, make threats, or impersonate you.",
+              },
+              {
+                id: "what-not-to-share",
+                label:
+                  "Avoid forwarding rumors, reposting private information, debating strangers online, or giving unnecessary legal history.",
+              },
+              {
+                id: "preserve",
+                label:
+                  "Ask family, employer, landlord, or supporter to preserve messages, caller ID, emails, footage, photos, mail, envelopes, and dates.",
+              },
+              {
+                id: "contact-plan",
+                label:
+                  "Create an emergency contact plan: who calls police, who contacts the targeted person, who saves footage, and who watches for children or dependents.",
+              },
+              {
+                id: "housing-work",
+                label:
+                  "If job or housing loss may be imminent, contact counsel, legal aid, tenant resources, or workplace support before oversharing.",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="Employer or landlord safety notification"
+            tone="family"
+            context="Use this when a targeted contact may reach work or housing and the person receiving the notice does not need the whole story."
+            script={`I’m dealing with targeted harassment. I do not need you to investigate it, but I want you to know that someone may contact you or appear here. Please preserve any messages or footage and let me know if that happens.`}
+          />
+
+          <GuideCallout tone="family" icon="🧡" title="For loved ones and supporters">
+            <p>
+              Your job is not to win an online argument. Your job is to help the
+              person slow down, preserve evidence, avoid retaliation, verify
+              official claims, and stay housed, employed, connected, and safe.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="recording"
+          number="9"
+          title="Recording calls or encounters"
+          subtitle="Recording can help, but recording law varies. Verify before relying on a shortcut."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              It can be tempting to secretly record every call. Be careful.
+              Recording laws vary by state, by call type, by where each person
+              is located, and by whether the communication is private, public,
+              telephonic, electronic, or in person. The internet shorthand of
+              “one-party” and “two-party” consent can be incomplete or stale.
+            </p>
+
+            <p>
+              You can usually take contemporaneous notes without creating the
+              same issue as secretly recording a live conversation. Saving
+              voicemail, text messages, emails, letters, and messages you
+              received is also different from secretly recording a live
+              conversation. Still, avoid universal assumptions and verify the
+              current rule before recording.
+            </p>
+          </GuideProse>
+
+          <VerifyBeforeActing
+            title="Before you record"
+            whoToAsk={
               <span>
-                These links help with resource navigation and source checking.
-                They do not guarantee shelter eligibility or answer state-specific
-                registry or supervision questions.
+                A licensed attorney, legal aid, a state-specific legal resource,
+                or a current recording-law reference such as the{" "}
+                <a
+                  href={sourceLinks.rcfpRecordingGuide}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Reporters Committee recording guide
+                </a>{" "}
+                as a starting point.
               </span>
             }
+            whatToAsk={
+              <span>
+                “Can I lawfully record this type of communication in my state,
+                and what if the other person is in another state?”
+              </span>
+            }
+            whatToSave={
+              <span>
+                Save the source checked, date checked, state involved, and any
+                legal advice or written guidance you receive.
+              </span>
+            }
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Safer alternatives when recording is uncertain">
+            <p>
+              Take notes during or immediately after the contact. Save
+              voicemails and messages you received. Screenshot the caller ID.
+              Write down exact words, date, time, number, claimed identity, and
+              demand. Ask for written instructions through an official channel.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="reporting-pathways"
+          number="10"
+          title="Reporting pathways"
+          subtitle="Different problems go to different places. Use the right lane and save confirmations."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Reporting is not one-size-fits-all. A fake registry payment call,
+              a hacked account, a doxxing post, vandalism, and a stalking
+              pattern may need different channels. You may use more than one,
+              but do not assume one report solves everything.
+            </p>
+          </GuideProse>
+
+          <PathwayCard
+            title="Local police, sheriff, or emergency services"
+            subtitle="Use for immediate danger, real-world threats, stalking patterns, vandalism, property targeting, or local fraud."
+            icon="🚓"
+            whyItWorks={
+              <p>
+                Local law enforcement may be the right starting point for
+                physical danger, repeated appearances, property damage, local
+                suspects, or incident documentation. Ask for a report or
+                reference number.
+              </p>
+            }
+            steps={[
+              "Call emergency services for immediate danger.",
+              "Use the local non-emergency number for documentation when there is no immediate danger.",
+              "Bring a short incident summary and your evidence packet.",
+              "Ask how to submit supplemental evidence if the pattern continues.",
+            ]}
+            bestFit="Threats, stalking-like patterns, vandalism, someone appearing at home or work, local fraud, or a false report creating immediate safety or compliance risk."
+          />
+
+          <PathwayCard
+            title="IC3, FTC, bank, payment service, and postal inspectors"
+            subtitle="Use for fraud, internet-enabled crime, identity theft, payment loss, and mail-based schemes."
+            icon="🧾"
+            whyItWorks={
+              <p>
+                Online fraud and consumer scams often need specialized reporting
+                channels. IC3 handles internet-enabled fraud reports. The FTC
+                handles consumer fraud and identity-theft recovery pathways.
+                Banks and payment services handle transaction disputes. Postal
+                inspectors handle mail fraud.
+              </p>
+            }
+            steps={[
+              "Use IC3 for internet-enabled fraud, cybercrime, online extortion, or account-based fraud.",
+              "Use ReportFraud.gov for consumer scams, impersonation, and fraudulent services.",
+              "Use IdentityTheft.gov if someone used your identity or opened accounts in your name.",
+              "Contact your bank, card issuer, payment app, wire service, or transfer provider quickly if money moved.",
+              "Use USPIS if the scam or threat arrived through U.S. mail.",
+            ]}
+            bestFit="Fake payment demands, online extortion, identity theft, account takeover, fraudulent registry-removal services, mailed threats, and payment losses."
+          />
+
+          <PathwayCard
+            title="Platform, employer, landlord, registry, supervision, or counsel"
+            subtitle="Use when the problem affects a specific system or legal obligation."
+            icon="🧭"
+            whyItWorks={
+              <p>
+                A platform can review its own policy. An employer or landlord
+                can preserve footage or messages. Registry or supervision
+                contacts may be needed only if the issue affects actual
+                compliance. Counsel may be needed when legal risk is unclear.
+              </p>
+            }
+            steps={[
+              "Report platform abuse through the platform’s own process and save confirmations.",
+              "Notify employer or landlord only as needed for safety and evidence preservation.",
+              "Contact registry or supervision through known official channels if the scam or threat involves real compliance questions.",
+              "Contact counsel or legal aid for protective-order questions, disputed reports, extortion, defamation/privacy issues, or possible government-employee misconduct.",
+            ]}
+            bestFit="Doxxing, impersonation, workplace or housing targeting, platform harassment, compliance uncertainty, or legal-risk escalation."
+          />
+
+          <ResourceLinkGrid
+            title="Primary reporting links"
             resources={[
               {
-                label: "HUD Find Shelter",
-                href: sourceLinks.hudFindShelter,
+                label: "IC3 — Internet Crime Complaint Center",
+                href: sourceLinks.ic3Complaint,
+                badge: "FBI",
+                description:
+                  "Internet-enabled fraud, cybercrime, account compromise, online extortion, and related reports.",
+              },
+              {
+                label: "FTC — ReportFraud.gov",
+                href: sourceLinks.ftcReportFraud,
+                badge: "FTC",
+                description:
+                  "Consumer fraud, scams, impersonation, fraudulent services, and bad business practices.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                badge: "FTC",
+                description:
+                  "Personal recovery plan when identity information has been misused.",
+              },
+              {
+                label: "USPIS — Report mail fraud",
+                href: sourceLinks.uspisReport,
                 badge: "Official",
                 description:
-                  "Search for shelter, food, health care, clothing, and homeless-assistance resources by location.",
+                  "Mail fraud, suspicious mailed demands, mailed threats, or postal-service-related fraud.",
               },
               {
-                label: "USAGov disaster housing and shelter",
-                href: sourceLinks.usaGovDisasterHousing,
-                badge: "Official",
+                label: "USA.gov — State consumer protection offices",
+                href: sourceLinks.usaStateConsumer,
+                badge: "Directory",
                 description:
-                  "Federal overview of finding shelter and temporary housing after disasters.",
-              },
-              {
-                label: "211",
-                href: sourceLinks.unitedWay211,
-                badge: "Referral",
-                description:
-                  "Local referrals for housing, food, transportation, health care, disaster recovery, and other basic needs.",
-                phone: "Dial 211 where available",
-              },
-              {
-                label: "USPS location services and General Delivery glossary",
-                href: sourceLinks.uspsGeneralDelivery,
-                badge: "Official",
-                description:
-                  "Starting point for mail-location services. Verify locally before relying on any mail arrangement.",
-              },
-              {
-                label: "SMART Office SORNA current law",
-                href: sourceLinks.smartSornaCurrentLaw,
-                badge: "Federal",
-                description:
-                  "Federal baseline registry-law materials. State and local rules still control many practical details.",
-              },
-              {
-                label: "NSOPW all registries",
-                href: sourceLinks.nsopwAllRegistries,
-                badge: "Official",
-                description:
-                  "Directory of state, territory, tribal, and federal registry links for source checking.",
-              },
-              {
-                label: "U.S. Courts supervision conditions overview",
-                href: sourceLinks.usCourtsSupervision,
-                badge: "Federal",
-                description:
-                  "Federal overview of probation and supervised-release conditions; individual orders and local practice still matter.",
-              },
-              {
-                label: "FindTreatment.gov",
-                href: sourceLinks.findTreatment,
-                badge: "Health",
-                description:
-                  "Treatment locator for mental-health and substance-use services. Use for continuity, not emergency medical advice.",
-              },
-              {
-                label: "Legal aid",
-                href: sourceLinks.legalAid,
-                badge: "Legal help",
-                description:
-                  "USAGov starting point for legal-aid resources.",
+                  "State attorney general or consumer-protection offices for local scam reporting.",
               },
               {
                 label: "LawHelp.org",
                 href: sourceLinks.lawHelp,
-                badge: "Legal help",
+                badge: "Legal aid",
                 description:
-                  "Find state and local legal-aid information, including housing, disaster, benefits, and related civil legal issues.",
+                  "Find nonprofit legal aid by state for civil legal issues.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="nonresponse"
+          number="11"
+          title="If police, platforms, or agencies do not act"
+          subtitle="Non-response is frustrating. Keep the record clean and escalate without flooding, threatening, or retaliating."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              A report does not guarantee an arrest, takedown, investigation,
+              prosecution, protective order, refund, damages, or account
+              restoration. That does not mean your report was pointless. A clean
+              record can still matter if the conduct escalates, if another
+              agency gets involved, if you need counsel, or if a landlord,
+              employer, supervision officer, registry agency, or platform later
+              asks what happened.
+            </p>
+          </GuideProse>
+
+          <GuideChecklist
+            id="nonresponse-escalation"
+            title="Calm escalation ladder"
+            columns={1}
+            items={[
+              {
+                id: "number",
+                label:
+                  "Ask for a report number, reference number, ticket number, or confirmation email.",
+              },
+              {
+                id: "supplement",
+                label:
+                  "Ask how to submit supplemental evidence if new incidents happen.",
+              },
+              {
+                id: "unit",
+                label:
+                  "Ask whether a supervisor, cybercrime unit, fraud unit, victim-services unit, stalking unit, detective, platform appeals process, or safety team is appropriate.",
+              },
+              {
+                id: "document-response",
+                label:
+                  "Write down the date, time, name, department, platform response, agency response, and what you were told.",
+              },
+              {
+                id: "alternate-channel",
+                label:
+                  "Use another proper channel if available: IC3, FTC, state attorney general, bank, payment service, postal inspectors, platform appeal, legal aid, or counsel.",
+              },
+              {
+                id: "victim-services",
+                label:
+                  "Consider victim-services resources if threats, stalking, violence, or repeated harassment are involved.",
+              },
+              {
+                id: "avoid-flooding",
+                label:
+                  "Do not repeatedly flood emergency lines, threaten officials, publicly accuse specific people without evidence, or retaliate.",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="reminder" icon="🧭" title="When the suspected person has authority">
+            <p>
+              If you believe the harasser is a government employee, registry
+              worker, supervision officer, journalist, activist, private
+              investigator, landlord, employer, or someone with influence, be
+              especially careful. Preserve evidence, avoid public accusations
+              until you have a record, verify reporting options, and consider
+              counsel or legal aid before making statements that could affect
+              supervision, housing, employment, or safety.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="common-mistakes"
+          number="12"
+          title="Common mistakes"
+          subtitle="These are understandable under stress, but they can make the situation harder to fix."
+        />
+
+        <GuideSectionCard>
+          <CommonMistakes
+            title="Avoid these moves"
+            mistakes={[
+              {
+                mistake: "Paying because the caller sounds official.",
+                whyItMatters:
+                  "Scammers use fear of arrest, registry violations, public shame, and urgent deadlines to make people act before verifying.",
+                betterMove:
+                  "Pause, independently locate the official number, verify the claim, and document the answer.",
+              },
+              {
+                mistake: "Trusting caller ID, badge numbers, or public details.",
+                whyItMatters:
+                  "Numbers can be spoofed, and registry-related information may already be public or easy to guess.",
+                betterMove:
+                  "Treat identity as unverified until you confirm through a source you found yourself.",
+              },
+              {
+                mistake: "Deleting, blocking, or closing accounts before saving evidence.",
+                whyItMatters:
+                  "Evidence may disappear, and you may lose the ability to show the pattern.",
+                betterMove:
+                  "Screenshot, save URLs, preserve voicemails, write notes, and then block or report when safe.",
+              },
+              {
+                mistake: "Threatening back or publicly arguing with harassers.",
+                whyItMatters:
+                  "It can escalate risk, amplify the post, create new screenshots, and cause legal or supervision problems.",
+                betterMove:
+                  "Preserve, report, document, and communicate only with people who need to help.",
+              },
+              {
+                mistake: "Posting the suspected person’s private information.",
+                whyItMatters:
+                  "Retaliatory doxxing can create danger and may expose you to legal, platform, housing, employment, or supervision consequences.",
+                betterMove:
+                  "Give evidence to counsel, police, platforms, banks, or appropriate agencies instead.",
+              },
+              {
+                mistake: "Trying to trace, hack, bait, stalk, or identify anonymous people through invasive means.",
+                whyItMatters:
+                  "That can be unsafe and may be unlawful, even if the other person started it.",
+                betterMove:
+                  "Save what is visible to you, report through proper channels, and seek help if risk escalates.",
+              },
+              {
+                mistake: "Assuming police cannot help because you are registered.",
+                whyItMatters:
+                  "Fear of being dismissed can stop people from documenting threats, vandalism, stalking, fraud, or false reports.",
+                betterMove:
+                  "Bring a calm packet, ask for documentation, and save the report number.",
+              },
+              {
+                mistake: "Assuming police or platforms must act because the conduct feels threatening.",
+                whyItMatters:
+                  "Agencies and platforms may decline, delay, or classify the issue differently.",
+                betterMove:
+                  "Document the response, ask about supplemental evidence, and use the proper escalation path.",
+              },
+            ]}
+          />
+
+          <SoftDivider label="Escalate sooner when risk increases" />
+
+          <GuideChecklist
+            id="escalate-now"
+            title="Escalate immediately if any of these are present"
+            columns={2}
+            items={[
+              {
+                id: "imminent",
+                label: "Threat of imminent physical harm.",
+              },
+              {
+                id: "appearance",
+                label: "Person appears at your home, work, school, treatment site, church, or family member’s location.",
+              },
+              {
+                id: "weapon",
+                label: "Weapon threat or threat involving serious injury.",
+              },
+              {
+                id: "child",
+                label: "Child, dependent, elder, pet, or household member is threatened.",
+              },
+              {
+                id: "address-threat",
+                label: "Home address newly exposed alongside explicit threats or calls for action.",
+              },
+              {
+                id: "account-money",
+                label: "Account takeover, bank risk, payment loss, identity theft, or unauthorized transaction.",
+              },
+              {
+                id: "extortion",
+                label: "Extortion or blackmail involving intimate, private, legal, employment, housing, or family information.",
+              },
+              {
+                id: "vandalism",
+                label: "Vandalism, property targeting, vehicle damage, mail tampering, or escalating real-world conduct.",
+              },
+              {
+                id: "false-report",
+                label: "False report or impersonation that could create arrest, registry, supervision, employment, or housing risk.",
+              },
+              {
+                id: "official-confusion",
+                label: "Supervision, registry, court, or law-enforcement identity confusion that could affect compliance.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="13"
+          title="Resources, related SOLAR guides, and sources"
+          subtitle="Use official reporting channels, legal-aid directories, and related SOLAR guides to keep moving without guessing."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Outside resources"
+            description={
+              <p>
+                Use these links for reporting, verification, recovery, or legal
+                help. Save confirmation numbers and dates checked.
+              </p>
+            }
+            resources={[
+              {
+                label: "FBI IC3",
+                href: sourceLinks.ic3Complaint,
+                badge: "Cybercrime",
+                description:
+                  "Internet-enabled fraud, cybercrime, online extortion, and account-related scams.",
+              },
+              {
+                label: "FTC ReportFraud",
+                href: sourceLinks.ftcReportFraud,
+                badge: "Fraud",
+                description:
+                  "Consumer scams, impersonation, fraudulent registry-removal services, and bad business practices.",
+              },
+              {
+                label: "IdentityTheft.gov",
+                href: sourceLinks.identityTheft,
+                badge: "Identity theft",
+                description:
+                  "Personal recovery plan if someone used your identity or opened accounts in your name.",
+              },
+              {
+                label: "CFPB fraud and scams guidance",
+                href: sourceLinks.cfpbFraudScams,
+                badge: "Money",
+                description:
+                  "Consumer finance guidance for common fraud and scam issues.",
+              },
+              {
+                label: "USPIS report page",
+                href: sourceLinks.uspisReport,
+                badge: "Mail",
+                description:
+                  "Mail fraud, suspicious mailed demands, or postal-related scam reporting.",
+              },
+              {
+                label: "SPARC documentation log",
+                href: sourceLinks.sparcDocumentationLog,
+                badge: "Stalking",
+                description:
+                  "Incident and behavior log for repeated unwanted contact or stalking patterns.",
+              },
+              {
+                label: "Reporters Committee recording guide",
+                href: sourceLinks.rcfpRecordingGuide,
+                badge: "Recording law",
+                description:
+                  "State-by-state recording-law reference to check before recording calls or encounters.",
+              },
+              {
+                label: "LawHelp.org",
+                href: sourceLinks.lawHelp,
+                badge: "Legal aid",
+                description:
+                  "Find nonprofit legal aid by state for civil legal issues.",
               },
             ]}
           />
 
           <RelatedGuides
-            title="Related SOLAR guides"
             guides={[
-              {
-                title: "Registry Compliance & Verification Survival Guide",
-                description:
-                  "Use this for detailed reporting duties, receipts, attempted compliance, office closures, missed deadlines, and disputed instructions.",
-                to: "/resources/registry-compliance-verification-guide",
-              },
               {
                 title: "Police, Registry & CPS Encounters",
                 description:
-                  "Use this if police, registry staff, CPS, probation, parole, or a mixed-agency team contacts you during the crisis.",
+                  "Use when the issue becomes an actual encounter with police, registry staff, CPS, probation, parole, or another official office.",
                 to: "/resources/police-registry-cps-encounters",
               },
               {
-                title: "Housing Search Guide",
+                title: "Registry Compliance & Verification Survival Guide",
                 description:
-                  "Use this after immediate stabilization when you are ready to look for longer-term housing.",
-                to: "/resources/housing-search-guide",
+                  "Use when a threat or suspicious contact mentions registration duties, address verification, travel, deadlines, or compliance.",
+                to: "/resources/registry-compliance-verification-guide",
               },
               {
-                title: "Tenant Rights Survival Guide",
+                title: "Know Your Rights",
                 description:
-                  "Use this for eviction notices, lockouts, leases, landlord entry, repairs, and tenant-law questions.",
-                to: "/resources/tenant-rights-survival-guide",
+                  "Use when searches, questioning, counsel, consent, silence, or legal-risk decisions are involved.",
+                to: "/resources/know-your-rights",
               },
               {
                 title: "Supervision Conditions Survival Guide",
                 description:
-                  "Use this for probation, parole, supervised release, residence approval, travel, curfew, treatment, and violation-risk questions.",
+                  "Use before changing devices, accounts, apps, internet access, or contact patterns while under supervision.",
                 to: "/resources/supervision-conditions-guide",
-              },
-              {
-                title: "Interstate Moving Guide",
-                description:
-                  "Use this if emergency displacement becomes relocation across city, county, state, tribal, or national boundaries.",
-                to: "/resources/interstate-moving-guide",
-              },
-              {
-                title: "Financial Planning Guide",
-                description:
-                  "Use this after the immediate crisis for budgeting, emergency reserves, debt, insurance, and longer-term financial recovery.",
-                to: "/resources/financial-planning-guide",
               },
               {
                 title: "Family & Allies Guide",
                 description:
-                  "Use this when family members, partners, hosts, or supporters need practical ways to help without making the situation worse.",
-                to: "/resources/family-allies-guide",
+                  "Use when loved ones, household members, or supporters are secondary targets or helping preserve evidence.",
+                to: "/resources/family-support-guide",
+              },
+              {
+                title: "Tenant Rights",
+                description:
+                  "Use when harassment threatens housing, landlord relationships, repair records, notices, or eviction risk.",
+                to: "/resources/tenant-rights",
+              },
+              {
+                title: "Financial Planning Guide",
+                description:
+                  "Use for broader financial stability, documentation, accounts, and planning after a scam or financial disruption.",
+                to: "/resources/financial-planning-guide",
+              },
+              {
+                title: "State Registry Hub",
+                description:
+                  "Use to find state-specific registry information and official state-level verification paths.",
+                to: "/resources/state-registry",
               },
             ]}
           />
 
           <SourceList
-            sources={[
-              {
-                label: "HUD Find Shelter",
-                href: sourceLinks.hudFindShelter,
-                description:
-                  "Supports national referral language for shelter, food, health care, clothing, and homeless-assistance lookup.",
-              },
-              {
-                label: "USAGov — How to find housing after a disaster",
-                href: sourceLinks.usaGovDisasterHousing,
-                description:
-                  "Supports disaster shelter, FEMA shelter search, Red Cross shelter, 211, and transitional sheltering references.",
-              },
-              {
-                label: "211",
-                href: sourceLinks.unitedWay211,
-                description:
-                  "Supports local-resource referral language for housing, food, transportation, health care, and crisis needs.",
-              },
-              {
-                label: "USPS location glossary",
-                href: sourceLinks.uspsGeneralDelivery,
-                description:
-                  "Supports mail-continuity issue spotting; does not answer registry residence questions.",
-              },
-              {
-                label: "SMART Office — SORNA current law",
-                href: sourceLinks.smartSornaCurrentLaw,
-                description:
-                  "Supports the national-versus-state registry boundary and federal baseline framing.",
-              },
-              {
-                label: "NSOPW — All registries",
-                href: sourceLinks.nsopwAllRegistries,
-                description:
-                  "Supports state, territory, and tribal registry source-checking pathways.",
-              },
-              {
-                label: "U.S. Courts — Overview of probation and supervised release conditions",
-                href: sourceLinks.usCourtsSupervision,
-                description:
-                  "Supports the distinction between registry duties and supervision conditions.",
-              },
-              {
-                label: "HHS Emergency Preparedness",
-                href: sourceLinks.hhsEmergencyPreparedness,
-                description:
-                  "Supports accessibility, emergency communication, disability, service-animal, and whole-community disaster planning language.",
-              },
-              {
-                label: "ABA Disaster Legal Services",
-                href: sourceLinks.abaDisasterLegalServices,
-                description:
-                  "Supports disaster legal-help routing where disaster legal services are activated.",
-              },
-            ]}
-            note="National sources support crisis navigation, disaster shelter lookup, local-resource referrals, mail issue-spotting, and verification pathways. State, local, agency, court, and supervision sources are still required before publishing any jurisdiction-specific rule."
+            sources={sources}
+            note={
+              <p>
+                Sources were selected for direct verification value: federal
+                fraud and cybercrime reporting, official consumer guidance,
+                stalking documentation resources, platform reporting pages,
+                recording-law verification, and legal-aid directories. State law
+                can change the answer for recording, protective orders,
+                stalking, harassment, extortion, defamation, tenant rights,
+                employment issues, registry relief, and local reporting duties.
+              </p>
+            }
           />
         </GuideSectionCard>
       </main>
