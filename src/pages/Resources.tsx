@@ -158,10 +158,10 @@ function Resources() {
           link: "#"
         },
         {
-          name: "Registry Compliance Checklist",
-          type: "Checklist",
-          description: "Practical checklist for registration appointments, address changes, employment, school, vehicles, travel, online identifiers, and recordkeeping.",
-          link: "#"
+          name: "Registry Compliance & Verification Survival Guide",
+          type: "Guide + Checklist",
+          description: "Practical guide for registration appointments, recurring verification, change reporting, receipts, agency conflicts, compliance checks, missed deadlines, and building a durable proof packet.",
+          link: "/resources/registry-compliance-verification-guide"
         },
         {
           name: "Travel Notification & Temporary Presence Checklist",
