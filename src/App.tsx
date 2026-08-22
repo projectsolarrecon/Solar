@@ -52,6 +52,7 @@ import ResourceGuideSandbox from './pages/resources/ResourceGuideSandbox';
 import RegistryComplianceVerificationGuide from './pages/resources/RegistryComplianceVerificationGuide';
 import PoliceRegistryCPSEncountersGuide from './pages/resources/PoliceRegistryCPSEncountersGuide';
 import HousingCrisisHomelessnessDisasterSurvivalGuide from './pages/resources/HousingCrisisHomelessnessDisasterSurvivalGuide';
+import ScamsExtortionDoxxingHarassmentSurvivalGuide from './pages/resources/ScamsExtortionDoxxingHarassmentSurvivalGuide';
 import LegislativeAdvocacyGuide from './pages/resources/LegislativeAdvocacyGuide';
 import HighProfileCasesStrangerDanger from './pages/blog/HighProfileCasesStrangerDanger';
 import FindingWorkAfterRegistry from './pages/blog/FindingWorkAfterRegistry';
@@ -174,6 +175,7 @@ function App() {
               <Route path="/resources/registry-compliance-verification-guide" element={<RegistryComplianceVerificationGuide />} />
               <Route path="/resources/police-registry-cps-encounters" element={<PoliceRegistryCPSEncountersGuide />} />
               <Route path="/resources/housing-crisis-homelessness-disaster-survival-guide" element={<HousingCrisisHomelessnessDisasterSurvivalGuide />} />
+              <Route path="/resources/scams-extortion-doxxing-harassment-survival-guide" element={<ScamsExtortionDoxxingHarassmentSurvivalGuide />} />
               <Route path="/resources/legislative-advocacy-guide" element={<LegislativeAdvocacyGuide />} />
               <Route path="/resources/tenant-rights" element={<TenantRightsGuide />} />
               <Route path="/resources/legislative-tracker" element={<LegislativeTracker />} />
