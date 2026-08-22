@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import ResourceGuideSandbox from "./ResourceGuideSandbox";
+import RegistryComplianceVerificationGuideContent from "./RegistryComplianceVerificationGuideContent";
 
 export default function RegistryComplianceVerificationGuide(): JSX.Element {
   useLayoutEffect(() => {
@@ -10,5 +10,5 @@ export default function RegistryComplianceVerificationGuide(): JSX.Element {
     jumpToSources?.setAttribute("href", "#resources-sources");
   }, []);
 
-  return <ResourceGuideSandbox />;
+  return <RegistryComplianceVerificationGuideContent />;
 }
