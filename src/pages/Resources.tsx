@@ -68,10 +68,10 @@ function Resources() {
           link: "/resources/tenant-rights"
         },
         {
-          name: "Emergency Housing Survival Guide",
-          type: "Guide",
-          description: "A practical process, script, documentation checklist, and fallback ladder for families facing urgent housing instability.",
-          link: "#"
+          name: "Housing Crisis, Homelessness & Disaster Survival Guide",
+          type: "Guide + Checklist",
+          description: "Crisis-first guide for sudden housing loss, homelessness, shelter access, disaster displacement, transient registration, communication continuity, documents, medication, money, transportation, and stabilizing the next 72 hours.",
+          link: "/resources/housing-crisis-homelessness-disaster-survival-guide"
         }
       ]
     },
