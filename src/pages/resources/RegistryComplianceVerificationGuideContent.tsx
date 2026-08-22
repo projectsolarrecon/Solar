@@ -24,6 +24,8 @@ const sourceLinks = {
   smartFaqs: "https://www.smart.ojp.gov/faqs",
   smartInPerson:
     "https://smart.ojp.gov/sorna/current-law/implementation-documents/person-verification",
+  smartResidenceHomelessTransient:
+    "https://smart.ojp.gov/sorna/current-law/implementation-documents/determination-residence-homeless-offenders-and-transient-workers",
   smartImplementation:
     "https://smart.ojp.gov/sorna/current-law/implementation-documents",
   nsopwAllRegistries: "https://www.nsopw.gov/all-registries",
@@ -41,6 +43,42 @@ const sourceLinks = {
   usMarshalsSexOffenderInvestigations:
     "https://www.usmarshals.gov/sites/default/files/media/document/2022-Sex-Offender-investigations.pdf",
 };
+
+const inlineLinkClass =
+  "font-medium text-blue-700 underline decoration-blue-600 underline-offset-2 hover:text-blue-900 hover:decoration-blue-900";
+
+function ExternalGuideLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={inlineLinkClass}
+    >
+      {children}
+    </a>
+  );
+}
+
+function InternalGuideLink({
+  to,
+  children,
+}: {
+  to: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <Link to={to} className={inlineLinkClass}>
+      {children}
+    </Link>
+  );
+}
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -245,7 +283,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               Start by naming the specific duty. Then ask who controls that duty
               in that jurisdiction, where the duty is written, what deadline
               applies, what method is required, and what proof you can receive or
-              keep.
+              keep. The SOLAR <InternalGuideLink to="/resources/state-registry">Registry Rules by State</InternalGuideLink> hub is a practical starting point for jurisdiction-specific official sources.
             </p>
           </GuideProse>
 
@@ -315,8 +353,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               First registration and recurring verification are common registry
               events, but the timing, documents, office, method, and frequency
-              can vary. Some places use appointments. Some require in-person
-              verification. Some use forms or portals. Some jurisdictions may
+              can vary. Some places use appointments. Some require <ExternalGuideLink href={sourceLinks.smartInPerson}>in-person verification</ExternalGuideLink>. Some use forms or portals. Some jurisdictions may
               require verification more often than federal minimums.
             </p>
 
@@ -396,8 +433,7 @@ I am taking notes. Could you please tell me the office or department name for my
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SORNA uses residence, employment, and school as core registration
-              categories, but the details of deadlines, methods, and required
+              <ExternalGuideLink href={sourceLinks.dojSorna}>SORNA uses residence, employment, and school as core registration categories</ExternalGuideLink>, but the details of deadlines, methods, and required
               updates depend on the jurisdiction. Your jurisdiction may also
               require updates for other categories. Verify the category, the
               deadline, the method, who receives the notice, and what proof to
@@ -458,8 +494,14 @@ I am taking notes. Could you please tell me the office or department name for my
               },
               {
                 id: "homelessness",
-                label:
-                  "Homelessness, transient status, unstable housing, sleeping in a vehicle, or emergency shelter.",
+                label: (
+                  <span>
+                    <ExternalGuideLink href={sourceLinks.smartResidenceHomelessTransient}>
+                      Homelessness or transient status
+                    </ExternalGuideLink>
+                    , unstable housing, sleeping in a vehicle, or emergency shelter.
+                  </span>
+                ),
               },
               {
                 id: "displacement",
@@ -859,10 +901,11 @@ If I misunderstood anything, please let me know what I should correct. If there 
             </p>
 
             <p>
-              Interstate supervision transfer is not the same thing as registry
+              <ExternalGuideLink href={sourceLinks.icaosTransfer}>Interstate supervision transfer</ExternalGuideLink> is not the same thing as registry
               reporting. A supervision compact instruction may control where and
               how a supervised person reports for supervision, while registry
               duties may still require separate registration or notice steps.
+              For the fuller relocation workflow, use the SOLAR <InternalGuideLink to="/resources/interstate-moving-guide">Interstate Moving Guide</InternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -946,8 +989,7 @@ If I misunderstood anything, please let me know what I should correct. If there 
               ask questions, require consent, rely on another resident’s consent,
               prevent recording, or question you under supervision conditions.
               Those issues depend on the facts, the jurisdiction, your status,
-              and your conditions. Use Know Your Rights and Supervision
-              Conditions guidance for those questions.
+              and your conditions. Use <InternalGuideLink to="/resources/police-registry-cps-encounters">Police, Registry & CPS Encounters</InternalGuideLink>, <InternalGuideLink to="/resources/know-your-rights">Your Rights at Every Stage</InternalGuideLink>, and <InternalGuideLink to="/resources/supervision-conditions-guide">Supervision Conditions Survival Guide</InternalGuideLink> for those questions.
             </p>
           </GuideCallout>
 
@@ -1156,11 +1198,10 @@ What method should I use now, and can the office document that I attempted to re
             </p>
 
             <p>
-              Knowingly failing to register or update as required under SORNA can
-              be a federal crime, and state or tribal failure-to-register
+              <ExternalGuideLink href={sourceLinks.dojSorna}>Knowingly failing to register or update as required under SORNA can be a federal crime</ExternalGuideLink>, and state or tribal failure-to-register
               penalties vary. If the facts may create criminal exposure, do not
               try to talk your way out of it alone. Preserve records, avoid
-              guessing, and seek legal advice if possible.
+              guessing, and seek <ExternalGuideLink href={sourceLinks.usaLegalAid}>legal advice if possible</ExternalGuideLink>.
             </p>
           </GuideProse>
 
@@ -1252,8 +1293,7 @@ What method should I use now, and can the office document that I attempted to re
             <p>
               This guide does not tell you how to answer investigative questions
               or explain a possible violation. Preserve proof, avoid unnecessary
-              statements, and use legal counsel or Know Your Rights guidance
-              before discussing facts that could be used against you.
+              statements, and use legal counsel or <InternalGuideLink to="/resources/know-your-rights">Your Rights at Every Stage</InternalGuideLink> before discussing facts that could be used against you.
             </p>
           </GuideCallout>
 
@@ -1432,6 +1472,13 @@ What method should I use now, and can the office document that I attempted to re
                 badge: "Official",
               },
               {
+                label: "SMART Office — Residence, Homeless, and Transient Guidance",
+                description:
+                  "Implementation document addressing residence determination, homeless registrants, and transient workers under SORNA.",
+                href: sourceLinks.smartResidenceHomelessTransient,
+                badge: "Official",
+              },
+              {
                 label: "NSOPW — All Registries",
                 description:
                   "Directory of public state, territory, and tribal registry links for finding jurisdiction-specific sources.",
@@ -1475,13 +1522,13 @@ What method should I use now, and can the office document that I attempted to re
                 title: "State Registry Hub",
                 description:
                   "Use this to find state, territory, or tribal registry pages and official jurisdiction-specific information.",
-                to: "/resources/state-registry-hub",
+                to: "/resources/state-registry",
               },
               {
                 title: "Supervision Conditions",
                 description:
                   "Use this when a probation, parole, supervised release, or treatment condition may control the next step.",
-                to: "/resources/supervision-conditions",
+                to: "/resources/supervision-conditions-guide",
               },
               {
                 title: "Know Your Rights",
@@ -1490,22 +1537,28 @@ What method should I use now, and can the office document that I attempted to re
                 to: "/resources/know-your-rights",
               },
               {
+                title: "Police, Registry & CPS Encounters",
+                description:
+                  "Use this for live registry, police, supervision, mixed-agency, or CPS contacts involving entry, searches, questioning, or property.",
+                to: "/resources/police-registry-cps-encounters",
+              },
+              {
                 title: "Interstate Moving",
                 description:
                   "Use this for the fuller moving process. This guide only covers the reporting-and-proof workflow.",
-                to: "/resources/interstate-moving",
+                to: "/resources/interstate-moving-guide",
               },
               {
                 title: "International Travel",
                 description:
                   "Use this when travel crosses a national border or may trigger federal, state, destination-country, or supervision rules.",
-                to: "/resources/international-travel",
+                to: "/resources/international-travel-guide",
               },
               {
                 title: "Housing Search",
                 description:
                   "Use this when housing instability, displacement, shelters, or address rules affect registration planning.",
-                to: "/resources/housing-search",
+                to: "/resources/housing-search-guide",
               },
               {
                 title: "Reentry Checklist",
@@ -1517,7 +1570,7 @@ What method should I use now, and can the office document that I attempted to re
                 title: "Employment / Job Search Resources",
                 description:
                   "Use this when work location, job applications, disclosure, or employment changes may affect reporting duties.",
-                to: "/resources/employment-job-search",
+                to: "/resources/job-search-guide",
               },
             ]}
           />
@@ -1543,6 +1596,12 @@ What method should I use now, and can the office document that I attempted to re
                 href: sourceLinks.smartInPerson,
                 description:
                   "Supports the discussion of registration and verification as common system events while avoiding universal appointment rules.",
+              },
+              {
+                label: "SMART Office — Determination of Residence, Homeless Offenders and Transient Workers",
+                href: sourceLinks.smartResidenceHomelessTransient,
+                description:
+                  "Supports the homeless/transient reporting issue-spotting language while preserving the jurisdiction-specific implementation boundary.",
               },
               {
                 label: "SMART Office — Implementation Documents",
