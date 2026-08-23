@@ -51,6 +51,7 @@ import FinancialSupportStrategies from './pages/resources/FinancialSupportStrate
 import ResourceGuideSandbox from './pages/resources/ResourceGuideSandbox';
 import RiskAssessmentGuide from './pages/resources/RiskAssessmentGuide';
 import RecidivismEvidenceGuide from './pages/resources/RecidivismEvidenceGuide';
+import RegistryEffectivenessEvidenceGuide from './pages/resources/RegistryEffectivenessEvidenceGuide';
 import RegistryComplianceVerificationGuide from './pages/resources/RegistryComplianceVerificationGuide';
 import PoliceRegistryCPSEncountersGuide from './pages/resources/PoliceRegistryCPSEncountersGuide';
 import HousingCrisisHomelessnessDisasterSurvivalGuide from './pages/resources/HousingCrisisHomelessnessDisasterSurvivalGuide';
@@ -176,6 +177,7 @@ function App() {
               <Route path="/resources/resource-guide-sandbox" element={<ResourceGuideSandbox />} />
               <Route path="/resources/risk-assessment-guide" element={<RiskAssessmentGuide />} />
               <Route path="/resources/recidivism-evidence-guide" element={<RecidivismEvidenceGuide />} />
+              <Route path="/resources/registry-effectiveness-evidence-guide" element={<RegistryEffectivenessEvidenceGuide />} />
               <Route path="/resources/registry-compliance-verification-guide" element={<RegistryComplianceVerificationGuide />} />
               <Route path="/resources/police-registry-cps-encounters" element={<PoliceRegistryCPSEncountersGuide />} />
               <Route path="/resources/housing-crisis-homelessness-disaster-survival-guide" element={<HousingCrisisHomelessnessDisasterSurvivalGuide />} />
