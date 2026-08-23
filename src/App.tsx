@@ -49,6 +49,7 @@ import InternationalTravelGuide from './pages/resources/InternationalTravelGuide
 import FinancialPlanningGuide from './pages/resources/FinancialPlanningGuide';
 import FinancialSupportStrategies from './pages/resources/FinancialSupportStrategies';
 import ResourceGuideSandbox from './pages/resources/ResourceGuideSandbox';
+import RiskAssessmentGuide from './pages/resources/RiskAssessmentGuide';
 import RegistryComplianceVerificationGuide from './pages/resources/RegistryComplianceVerificationGuide';
 import PoliceRegistryCPSEncountersGuide from './pages/resources/PoliceRegistryCPSEncountersGuide';
 import HousingCrisisHomelessnessDisasterSurvivalGuide from './pages/resources/HousingCrisisHomelessnessDisasterSurvivalGuide';
@@ -172,6 +173,7 @@ function App() {
               <Route path="/resources/financial-planning-guide" element={<FinancialPlanningGuide />} />
               <Route path="/resources/financial-support-strategies" element={<FinancialSupportStrategies />} />
               <Route path="/resources/resource-guide-sandbox" element={<ResourceGuideSandbox />} />
+              <Route path="/resources/risk-assessment-guide" element={<RiskAssessmentGuide />} />
               <Route path="/resources/registry-compliance-verification-guide" element={<RegistryComplianceVerificationGuide />} />
               <Route path="/resources/police-registry-cps-encounters" element={<PoliceRegistryCPSEncountersGuide />} />
               <Route path="/resources/housing-crisis-homelessness-disaster-survival-guide" element={<HousingCrisisHomelessnessDisasterSurvivalGuide />} />
