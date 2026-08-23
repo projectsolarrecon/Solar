@@ -121,7 +121,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <QuickStartPanel
           title="If you have a report or score in front of you"
-          subtitle="Find these five things before trying to decide whether the result is high, low, accurate, or fair."
+          subtitle="Find these five things before deciding what the result actually means."
           icon="🔍"
           urgentActions={[
             <span key="tool">
@@ -159,6 +159,65 @@ export default function ResourceGuideSandbox(): JSX.Element {
           }
         />
 
+        <GuideSectionCard>
+          <GuideProse>
+            <h3>Go where you need to go</h3>
+            <p>
+              If you only need help understanding a report in front of you,
+              Sections 1–4 are the best place to start. The later sections explain
+              particular tools, research findings, and questions to ask when the
+              assessment is being used in a decision.
+            </p>
+          </GuideProse>
+
+          <nav
+            aria-label="Guide sections"
+            className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            <a
+              href="#encounter"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              1. Why am I seeing this?
+            </a>
+
+            <a
+              href="#decode"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              2. Decode the result
+            </a>
+
+            <a
+              href="#glossary"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              3. Words in the report
+            </a>
+
+            <a
+              href="#foundations"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              4. Understand the science
+            </a>
+
+            <a
+              href="#baseline-static"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              5–10. Look up a tool
+            </a>
+
+            <a
+              href="#questions"
+              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
+            >
+              12. Questions to ask
+            </a>
+          </nav>
+        </GuideSectionCard>
+
         <GuideCallout
           tone="research"
           icon="🔎"
@@ -187,6 +246,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
               reviewed, one or more instruments may be scored, treatment providers
               or supervision officers may add information, and a final report may
               combine several different kinds of conclusions.
+            </p>
+
+            <p>
+              Different settings also use assessment for different purposes.
+              Depending on the case, an assessment may inform sentencing,
+              treatment planning, supervision intensity, release planning,
+              institutional decisions, civil proceedings, or another specific
+              decision. The purpose matters because a tool designed for one
+              question should not automatically be treated as answering every
+              other one.
             </p>
 
             <p>You might see all of the following in one document:</p>
@@ -278,6 +347,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
             <p>
               Those lines are related, but they are not interchangeable.
+            </p>
+
+            <p>
+              A real report may include only some of these layers. For example, it
+              may give a score and category without an absolute percentage, or it
+              may discuss treatment needs without reporting a separate actuarial
+              estimate. The point of this example is to show how different kinds
+              of information fit together when they do appear.
             </p>
           </GuideProse>
 
