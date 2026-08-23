@@ -320,6 +320,12 @@ function Resources() {
       icon: "📊",
       resources: [
         {
+          name: "Understanding Sex-Offense Risk Assessment",
+          type: "Guide",
+          description: "Plain-language guide to reading risk-assessment reports, decoding scores and categories, understanding major tools, and separating group-based evidence from individualized certainty.",
+          link: "/resources/risk-assessment-guide"
+        },
+        {
           name: "How to Read a Registry Study Without Getting Misled",
           type: "Guide",
           description: "Reader-friendly guide to study design, definitions, base rates, limitations, and common ways registry research gets overstated.",
