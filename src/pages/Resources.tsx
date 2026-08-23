@@ -332,6 +332,12 @@ function Resources() {
           link: "/resources/recidivism-evidence-guide"
         },
         {
+          name: "Understanding Registry Effectiveness",
+          type: "Guide",
+          description: "Evidence guide to what registration and public notification are supposed to accomplish, what the strongest pooled and state-level studies found, where targeted notification differs from universal disclosure, and how costs and collateral effects belong in the analysis.",
+          link: "/resources/registry-effectiveness-evidence-guide"
+        },
+        {
           name: "How to Read a Registry Study Without Getting Misled",
           type: "Guide",
           description: "Reader-friendly guide to study design, definitions, base rates, limitations, and common ways registry research gets overstated.",
