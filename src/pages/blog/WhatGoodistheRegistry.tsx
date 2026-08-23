@@ -67,23 +67,27 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           something more powerful than evidence: assumption.
         </p>
 
-        <p>
-          The assumption that people convicted of sex offenses form a uniquely
-          dangerous class.
-        </p>
-
-        <p>
-          The assumption that they remain dangerous in roughly the same way.
-        </p>
-
-        <p>
-          The assumption that sexual recidivism is extraordinarily high.
-        </p>
-
-        <p>
-          The assumption that putting names, photographs, addresses, and labels in
-          front of the public must therefore make people safer.
-        </p>
+        <div className="not-prose my-8 overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 text-white shadow-sm">
+          <div className="border-b border-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-slate-300">
+            The assumptions beneath the system
+          </div>
+          <div className="divide-y divide-white/10 px-5 sm:px-6">
+            <p className="py-4 text-base leading-relaxed text-slate-100">
+              The assumption that people convicted of sex offenses form a uniquely
+              dangerous class.
+            </p>
+            <p className="py-4 text-base leading-relaxed text-slate-100">
+              The assumption that they remain dangerous in roughly the same way.
+            </p>
+            <p className="py-4 text-base leading-relaxed text-slate-100">
+              The assumption that sexual recidivism is extraordinarily high.
+            </p>
+            <p className="py-4 text-base leading-relaxed text-slate-100">
+              The assumption that putting names, photographs, addresses, and labels in
+              front of the public must therefore make people safer.
+            </p>
+          </div>
+        </div>
 
         <p>SOLAR has now published the evidence trail behind those claims.</p>
 
@@ -115,6 +119,41 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           asks the question registry policy itself has to answer: does registration
           and public notification measurably reduce future offending?
         </p>
+
+        <div className="not-prose my-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            The evidence behind this essay
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            <Link
+              to="/resources/risk-assessment-guide"
+              className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white"
+            >
+              <div className="font-bold text-slate-900">Risk Assessment</div>
+              <div className="mt-1 text-sm leading-relaxed text-slate-600">
+                why a label is not a risk assessment
+              </div>
+            </Link>
+            <Link
+              to="/resources/recidivism-evidence-guide"
+              className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white"
+            >
+              <div className="font-bold text-slate-900">Recidivism Evidence</div>
+              <div className="mt-1 text-sm leading-relaxed text-slate-600">
+                why one category-wide rate misleads
+              </div>
+            </Link>
+            <Link
+              to="/resources/registry-effectiveness-evidence-guide"
+              className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white"
+            >
+              <div className="font-bold text-slate-900">Registry Effectiveness</div>
+              <div className="mt-1 text-sm leading-relaxed text-slate-600">
+                what broad SORN evidence actually finds
+              </div>
+            </Link>
+          </div>
+        </div>
 
         <p>
           We published those guides so readers do not have to take SOLAR’s word for
@@ -165,9 +204,7 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           certainty about an individual future.
         </p>
 
-        <p>
-          In other words: <strong>a label is not a risk assessment.</strong>
-        </p>
+        <PullQuote>“A label is not a risk assessment.”</PullQuote>
 
         <p>
           That should be obvious. Yet broad registry policy routinely acts as though
@@ -217,47 +254,49 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           into something the public is told not to trust.
         </p>
 
-        <p>
-          That assumption also acquired institutional authority. In{" "}
-          <em>McKune v. Lile</em> in 2002, a Supreme Court plurality cited an
-          estimate that the recidivism rate of untreated people convicted of sex
-          offenses could be “as high as 80%.” The following year,{" "}
-          <em>Smith v. Doe</em> described the risk of recidivism as “frightening and
-          high,” expressly relying on <em>McKune</em>. (
-          <a
-            className={linkCls}
-            href="https://www.law.cornell.edu/supremecourt/text/00-1187"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            law.cornell.edu
-          </a>
-          )
-        </p>
+        <Callout variant="info" title="How ‘frightening and high’ became conventional wisdom" icon="📚">
+          <p>
+            That assumption also acquired institutional authority. In{" "}
+            <em>McKune v. Lile</em> in 2002, a Supreme Court plurality cited an
+            estimate that the recidivism rate of untreated people convicted of sex
+            offenses could be “as high as 80%.” The following year,{" "}
+            <em>Smith v. Doe</em> described the risk of recidivism as “frightening and
+            high,” expressly relying on <em>McKune</em>. (
+            <a
+              className={linkCls}
+              href="https://www.law.cornell.edu/supremecourt/text/00-1187"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              law.cornell.edu
+            </a>
+            )
+          </p>
 
-        <p>
-          Ira and Tara Ellman later traced that 80% estimate backward. In their 2015
-          article, <em>“‘Frightening and High’: The Supreme Court’s Crucial Mistake
-          About Sex Crime Statistics,”</em> they showed that the National Institute
-          of Corrections publication cited in <em>McKune</em> ultimately relied on a{" "}
-          <em>Psychology Today</em> article whose 80% assertion was not itself
-          supported by an empirical citation. (
-          <a
-            className={linkCls}
-            href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2616429"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            papers.ssrn.com
-          </a>
-          )
-        </p>
+          <p>
+            Ira and Tara Ellman later traced that 80% estimate backward. In their 2015
+            article, <em>“‘Frightening and High’: The Supreme Court’s Crucial Mistake
+            About Sex Crime Statistics,”</em> they showed that the National Institute
+            of Corrections publication cited in <em>McKune</em> ultimately relied on a{" "}
+            <em>Psychology Today</em> article whose 80% assertion was not itself
+            supported by an empirical citation. (
+            <a
+              className={linkCls}
+              href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2616429"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              papers.ssrn.com
+            </a>
+            )
+          </p>
 
-        <p>
-          A dramatic claim with almost no empirical foundation acquired the
-          authority of Supreme Court language, and that language then helped the
-          claim survive as common knowledge.
-        </p>
+          <p>
+            A dramatic claim with almost no empirical foundation acquired the
+            authority of Supreme Court language, and that language then helped the
+            claim survive as common knowledge.
+          </p>
+        </Callout>
 
         <p>
           But once you actually read recidivism research carefully, the simplicity
@@ -319,15 +358,22 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           intervention.
         </p>
 
-        <p>
-          The registry would <strong>still have to work</strong>.
-        </p>
-
-        <p>Fear does not validate a mechanism.</p>
-
-        <p>Seriousness of harm does not validate a mechanism.</p>
-
-        <p>Moral condemnation does not validate a mechanism.</p>
+        <div className="not-prose my-8 rounded-2xl border border-slate-300 bg-slate-900 p-5 text-white shadow-sm sm:p-6">
+          <p className="m-0 text-xl font-bold leading-snug sm:text-2xl">
+            The registry would <strong>still have to work</strong>.
+          </p>
+          <div className="mt-5 grid gap-3 md:grid-cols-3">
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm font-semibold leading-relaxed text-slate-100">
+              Fear does not validate a mechanism.
+            </div>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm font-semibold leading-relaxed text-slate-100">
+              Seriousness of harm does not validate a mechanism.
+            </div>
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4 text-sm font-semibold leading-relaxed text-slate-100">
+              Moral condemnation does not validate a mechanism.
+            </div>
+          </div>
+        </div>
 
         <p>
           A policy sold as a public-safety intervention has to demonstrate a
@@ -389,9 +435,11 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>Because the registry performs one function extremely well:</p>
 
-        <p>
-          <strong>It tells the public who the designated bad people are.</strong>
-        </p>
+        <div className="not-prose my-7 rounded-2xl border-l-4 border-slate-900 bg-slate-100 px-5 py-5 sm:px-6">
+          <p className="m-0 text-xl font-extrabold leading-snug text-slate-950 sm:text-2xl">
+            It tells the public who the designated bad people are.
+          </p>
+        </div>
 
         <p>
           It gives communities a map, a label, and a ritual of exclusion. It tells
@@ -405,9 +453,14 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           <strong>those people are the danger.</strong>
         </p>
 
-        <p>That may be psychologically satisfying.</p>
-
-        <p>It is not the same thing as prevention.</p>
+        <div className="not-prose my-6 border-y border-slate-200 py-5 text-center">
+          <p className="m-0 text-lg font-semibold text-slate-900">
+            That may be psychologically satisfying.
+          </p>
+          <p className="mt-1 text-lg font-extrabold text-slate-950">
+            It is not the same thing as prevention.
+          </p>
+        </div>
 
         <p>A registry is visible in ways that prevention rarely is.</p>
 
@@ -425,7 +478,16 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>The registry is easy.</p>
 
-        <p>Names. Addresses. Photographs. Alerts. Search boxes.</p>
+        <div className="not-prose my-7 flex flex-wrap justify-center gap-2 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          {["Names.", "Addresses.", "Photographs.", "Alerts.", "Search boxes."].map((item) => (
+            <span
+              key={item}
+              className="rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
         <p>It makes vigilance tangible.</p>
 
@@ -434,13 +496,15 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           dislodging it.
         </p>
 
-        <p>
-          The registry survives not because the evidence proves that broad public
-          exposure works as advertised, but in significant part because it satisfies
-          political and psychological needs that measurable prevention does not
-          satisfy nearly as neatly. It gives the public a visible class of people to
-          fear, watch, exclude, and blame.
-        </p>
+        <div className="not-prose my-8 rounded-2xl border border-slate-300 bg-slate-50 p-5 shadow-sm sm:p-6">
+          <p className="m-0 text-lg font-semibold leading-relaxed text-slate-900">
+            The registry survives not because the evidence proves that broad public
+            exposure works as advertised, but in significant part because it satisfies
+            political and psychological needs that measurable prevention does not
+            satisfy nearly as neatly. It gives the public a visible class of people to
+            fear, watch, exclude, and blame.
+          </p>
+        </div>
 
         <p>It divides society into watchers and watched.</p>
 
@@ -466,13 +530,11 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           receives an electoral reward for asking the harder question.
         </p>
 
-        <p>
-          <strong>
-            The registry’s greatest success may not be preventing sexual harm. It
-            may be convincing everyone who is not on it that danger has been
-            identified, contained, and assigned to somebody else.
-          </strong>
-        </p>
+        <PullQuote>
+          “The registry’s greatest success may not be preventing sexual harm. It may
+          be convincing everyone who is not on it that danger has been identified,
+          contained, and assigned to somebody else.”
+        </PullQuote>
 
         <BandHeader title="The Cruelty Is Not Incidental" />
 
@@ -490,6 +552,31 @@ export default function WhatGoodistheRegistry(): JSX.Element {
           psychological distress, family burdens, privacy, and the administrative
           demands of maintaining public-registration systems.
         </p>
+
+        <div className="not-prose my-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+            Documented burdens
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {[
+              "Housing",
+              "Employment",
+              "Harassment",
+              "Family impacts",
+              "Social isolation",
+              "Psychological distress",
+              "Privacy",
+              "Compliance demands",
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm font-semibold text-slate-700"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
 
         <p>
           That does not prove that every collateral consequence causes future
@@ -552,12 +639,10 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>But that is precisely the problem.</p>
 
-        <p>
-          <strong>
-            The burdens are certain and visible. The public-safety return is far
-            harder to demonstrate.
-          </strong>
-        </p>
+        <PullQuote>
+          “The burdens are certain and visible. The public-safety return is far harder
+          to demonstrate.”
+        </PullQuote>
 
         <BandHeader title="We Have Confused Condemnation With Prevention" />
 
@@ -639,38 +724,45 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>Open the map and danger appears geographically organized.</p>
 
-        <p>Here is a person.</p>
+        <div className="not-prose my-8 grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-slate-300 bg-slate-900 p-5 text-white sm:p-6">
+            <div className="text-xs font-bold uppercase tracking-[0.16em] text-slate-300">
+              What the map shows
+            </div>
+            <div className="mt-4 space-y-2 text-lg font-semibold">
+              <p className="m-0">Here is a person.</p>
+              <p className="m-0">Here is an address.</p>
+              <p className="m-0">Here is a photograph.</p>
+              <p className="m-0">Here is the threat.</p>
+            </div>
+          </div>
 
-        <p>Here is an address.</p>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+            <div className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+              What the map doesn’t show
+            </div>
+            <div className="mt-4 space-y-2 text-sm leading-relaxed text-slate-700">
+              <p className="m-0">It does not show the family member who has never been convicted.</p>
+              <p className="m-0">It does not show the coach who has cultivated trust.</p>
+              <p className="m-0">It does not show the teacher whose access has gone unquestioned.</p>
+              <p className="m-0">It does not show the clergy member protected by institutional deference.</p>
+              <p className="m-0">It does not show the respected community leader.</p>
+              <p className="m-0">
+                It does not show the person inside an organization that has weak reporting
+                systems, poor boundaries, or incentives to protect its own reputation.
+              </p>
+              <p className="m-0">
+                It does not show the person whose first detectable offense has not happened
+                yet.
+              </p>
+            </div>
+          </div>
+        </div>
 
-        <p>Here is a photograph.</p>
-
-        <p>Here is the threat.</p>
-
-        <p>
-          But a map of people we have already caught is not a map of where the next
-          harm will come from.
-        </p>
-
-        <p>It does not show the family member who has never been convicted.</p>
-
-        <p>It does not show the coach who has cultivated trust.</p>
-
-        <p>It does not show the teacher whose access has gone unquestioned.</p>
-
-        <p>It does not show the clergy member protected by institutional deference.</p>
-
-        <p>It does not show the respected community leader.</p>
-
-        <p>
-          It does not show the person inside an organization that has weak reporting
-          systems, poor boundaries, or incentives to protect its own reputation.
-        </p>
-
-        <p>
-          It does not show the person whose first detectable offense has not happened
-          yet.
-        </p>
+        <PullQuote>
+          “A map of people we have already caught is not a map of where the next harm
+          will come from.”
+        </PullQuote>
 
         <p>
           This does not mean every sexual offense involves a known person or trusted
@@ -733,14 +825,16 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>Those values belong together.</p>
 
-        <p>Safety without opportunity can become exclusion.</p>
-
-        <p>Accountability without proportionality can become permanent punishment.</p>
-
-        <p>
-          Liberty without responsibility is incomplete, but responsibility without
-          the possibility of redemption becomes social death.
-        </p>
+        <div className="not-prose my-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <div className="space-y-3 text-base leading-relaxed text-slate-800">
+            <p className="m-0 font-semibold">Safety without opportunity can become exclusion.</p>
+            <p className="m-0 font-semibold">Accountability without proportionality can become permanent punishment.</p>
+            <p className="m-0 font-semibold">
+              Liberty without responsibility is incomplete, but responsibility without
+              the possibility of redemption becomes social death.
+            </p>
+          </div>
+        </div>
 
         <p>Registry systems too often create exactly that condition.</p>
 
@@ -860,23 +954,26 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>It is better accountability.</p>
 
-        <p>Individualized risk assessment instead of offense-label destiny.</p>
-
-        <p>Targeted intervention instead of blanket suspicion.</p>
-
-        <p>Treatment instead of fatalism.</p>
-
-        <p>Institutional safeguards instead of stranger-danger mythology.</p>
-
-        <p>Stable housing and employment instead of engineered exclusion.</p>
-
-        <p>Review instead of permanence.</p>
-
-        <p>Measured outcomes instead of presumed benefits.</p>
-
-        <p>Prevention instead of spectacle.</p>
-
-        <p>Truth instead of reassurance.</p>
+        <div className="not-prose my-8 grid gap-3 md:grid-cols-2">
+          {[
+            "Individualized risk assessment instead of offense-label destiny.",
+            "Targeted intervention instead of blanket suspicion.",
+            "Treatment instead of fatalism.",
+            "Institutional safeguards instead of stranger-danger mythology.",
+            "Stable housing and employment instead of engineered exclusion.",
+            "Review instead of permanence.",
+            "Measured outcomes instead of presumed benefits.",
+            "Prevention instead of spectacle.",
+            "Truth instead of reassurance.",
+          ].map((item) => (
+            <div
+              key={item}
+              className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold leading-relaxed text-slate-800"
+            >
+              {item}
+            </div>
+          ))}
+        </div>
 
         <p>
           The registry performs one function extremely well: it tells the public who
@@ -905,13 +1002,13 @@ export default function WhatGoodistheRegistry(): JSX.Element {
 
         <p>It is also far more serious.</p>
 
-        <p>
-          <strong>
+        <div className="not-prose my-8 rounded-2xl bg-slate-900 px-5 py-6 text-white shadow-sm sm:px-7">
+          <p className="m-0 text-lg font-bold leading-relaxed sm:text-xl">
             We do not oppose accountability. We oppose pretending that permanent
             exposure is accountability, that stigma is prevention, or that a list is
             a safety strategy.
-          </strong>
-        </p>
+          </p>
+        </div>
 
         <ContextualActionCard config={contextualAction} />
 
