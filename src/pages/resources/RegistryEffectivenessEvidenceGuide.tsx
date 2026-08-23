@@ -718,11 +718,15 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
               <h3 className="mt-2 text-lg font-bold text-slate-900">New York</h3>
               <GuideProse>
                 <p>
-                  The New York time-series study found no support for SORN reducing
-                  the studied categories of sexual offending. Its design cannot
-                  fully separate registration from notification or eliminate every
-                  broader time trend, but it remains an important major-state
-                  evaluation showing no detectable policy effect.
+                  The{" "}
+                  <a href={sourceLinks.sandlerFreemanSocia} className={linkCls} target="_blank" rel="noreferrer">
+                    New York time-series study by Sandler, Freeman, and Socia
+                  </a>{" "}
+                  found no support for SORN reducing the studied categories of
+                  sexual offending. Its design cannot fully separate registration
+                  from notification or eliminate every broader time trend, but it
+                  remains an important major-state evaluation showing no detectable
+                  policy effect.
                 </p>
               </GuideProse>
             </div>
