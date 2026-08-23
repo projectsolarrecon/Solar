@@ -326,6 +326,12 @@ function Resources() {
           link: "/resources/risk-assessment-guide"
         },
         {
+          name: "Understanding Recidivism Evidence",
+          type: "Guide",
+          description: "Plain-language guide to recidivism measures, overall versus sexual-specific outcomes, absolute and relative risk, offense specialization, comparator evidence, CSEM-specific findings, and common interpretation mistakes.",
+          link: "/resources/recidivism-evidence-guide"
+        },
+        {
           name: "How to Read a Registry Study Without Getting Misled",
           type: "Guide",
           description: "Reader-friendly guide to study design, definitions, base rates, limitations, and common ways registry research gets overstated.",
