@@ -42,6 +42,9 @@ const sourceLinks = {
 const inlineLinkCls =
   "font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
+const toolJumpLinkCls =
+  "font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-900";
+
 export default function RiskAssessmentGuide(): JSX.Element {
   const handlePrint = () => window.print();
 
@@ -128,8 +131,27 @@ export default function RiskAssessmentGuide(): JSX.Element {
           icon="🔍"
           urgentActions={[
             <span key="tool">
-              <strong>1. Find the instrument name.</strong> Static-99R? CPORT?
-              STABLE-2007? PCRA? SOTIPS? Something else?
+              <strong>1. Find the instrument name.</strong>{" "}
+              <a href="#baseline-static" className={toolJumpLinkCls}>
+                Static-99R
+              </a>
+              ?{" "}
+              <a href="#csem" className={toolJumpLinkCls}>
+                CPORT
+              </a>
+              ?{" "}
+              <a href="#dynamic" className={toolJumpLinkCls}>
+                STABLE-2007
+              </a>
+              ?{" "}
+              <a href="#federal-general" className={toolJumpLinkCls}>
+                PCRA
+              </a>
+              ?{" "}
+              <a href="#change-sensitive" className={toolJumpLinkCls}>
+                SOTIPS
+              </a>
+              ? Something else?
             </span>,
             <span key="result">
               <strong>2. Find the actual result.</strong> Is it a raw score, risk
@@ -270,17 +292,43 @@ export default function RiskAssessmentGuide(): JSX.Element {
               federal process.
             </p>
 
-            <p>You might see all of the following in one document:</p>
+            <p className="font-semibold text-slate-900">
+              You might see all of the following in one document:
+            </p>
 
-            <ul>
-              <li>a historical or static risk score;</li>
-              <li>a dynamic or change-sensitive assessment;</li>
-              <li>a risk category or relative-risk level;</li>
-              <li>a reference-group recidivism estimate;</li>
-              <li>treatment targets or needs;</li>
-              <li>supervision recommendations;</li>
-              <li>professional judgment or an override;</li>
-              <li>other case-specific comments.</li>
+            <ul className="space-y-2">
+              <li>
+                <strong>Historical or static risk score:</strong> a score based on
+                historical factors;
+              </li>
+              <li>
+                <strong>Dynamic or change-sensitive assessment:</strong> an
+                assessment of factors intended to change over time;
+              </li>
+              <li>
+                <strong>Risk category or relative-risk level:</strong> a group
+                classification or comparison;
+              </li>
+              <li>
+                <strong>Reference-group recidivism estimate:</strong> an observed
+                or estimated rate tied to a comparison population;
+              </li>
+              <li>
+                <strong>Treatment targets or needs:</strong> issues identified for
+                treatment or intervention;
+              </li>
+              <li>
+                <strong>Supervision recommendations:</strong> recommendations about
+                case management or supervision;
+              </li>
+              <li>
+                <strong>Professional judgment or an override:</strong> a conclusion
+                or adjustment beyond the instrument output;
+              </li>
+              <li>
+                <strong>Other case-specific comments:</strong> additional
+                information the evaluator considers relevant.
+              </li>
             </ul>
 
             <p>
@@ -334,9 +382,12 @@ export default function RiskAssessmentGuide(): JSX.Element {
               are deliberately illustrative rather than real scoring instructions:
             </p>
 
-            <ul>
+            <ul className="space-y-2">
               <li>
-                <strong>Instrument:</strong> Static-99R
+                <strong>Instrument:</strong>{" "}
+                <a href="#baseline-static" className={toolJumpLinkCls}>
+                  Static-99R
+                </a>
               </li>
               <li>
                 <strong>Raw score:</strong> [score]
@@ -596,8 +647,8 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <h3>Outcome definition and follow-up period</h3>
             <p>
-              Rearrest, charge, reconviction, reincarceration, self-report, and
-              detected offending are not interchangeable. Official outcomes can
+              <strong>Rearrest, charge, reconviction, reincarceration, self-report,
+              and detected offending are not interchangeable.</strong> Official outcomes can
               miss undetected conduct; self-report has different limitations.
             </p>
             <p>
@@ -672,7 +723,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <h3>Base rates</h3>
             <p>
-              A base rate is how often the outcome occurs in the population being
+              <strong>A base rate</strong> is how often the outcome occurs in the population being
               studied before a particular score is considered. When the outcome is
               uncommon, precise individual prediction becomes harder.
             </p>
@@ -685,7 +736,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <h3>AUC: ranking, not probability</h3>
             <p>
-              AUC is a discrimination statistic. In plain English: if you randomly
+              <strong>AUC is a discrimination statistic.</strong> In plain English: if you randomly
               select one person who later had the measured recidivism outcome and
               one who did not, the AUC estimates how often the tool ranks the
               person with the later outcome as higher risk.
@@ -709,7 +760,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
           <GuideProse>
             <h3>Calibration</h3>
             <p>
-              Calibration asks a different question: do the predicted or
+              <strong>Calibration asks a different question:</strong> do the predicted or
               reference-group percentages line up with the observed rates in the
               population where the tool is being used?
             </p>
@@ -751,7 +802,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>Static-99R</h3>
+            <h3>
+              <a
+                href={sourceLinks.staticCoding}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Static-99R
+              </a>
+            </h3>
           </GuideProse>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -958,7 +1018,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>STABLE-2007</h3>
+            <h3>
+              <a
+                href={sourceLinks.stable}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                STABLE-2007
+              </a>
+            </h3>
             <p>
               STABLE-2007 is designed to assess relatively stable but changeable
               risk and need factors relevant to sexual recidivism. Ratings draw on
@@ -1036,7 +1105,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>CPORT</h3>
+            <h3>
+              <a
+                href={sourceLinks.cportDevelopment}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CPORT
+              </a>
+            </h3>
           </GuideProse>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -1191,7 +1269,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>PCRA and PCRA-R</h3>
+            <h3>
+              <a
+                href={sourceLinks.pcra}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                PCRA and PCRA-R
+              </a>
+            </h3>
             <p>
               The federal{" "}
               <a
@@ -1257,7 +1344,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>SOTIPS</h3>
+            <h3>
+              <a
+                href={sourceLinks.sotips}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                SOTIPS
+              </a>
+            </h3>
             <p>
               The Sex Offender Treatment Intervention and Progress Scale is a
               structured, change-sensitive assessment used in treatment and
@@ -1298,7 +1394,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
           <SoftDivider />
 
           <GuideProse>
-            <h3>VRS-SO</h3>
+            <h3>
+              <a
+                href={sourceLinks.vrsFoundational}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                VRS-SO
+              </a>
+            </h3>
             <p>
               The Violence Risk Scale–Sexual Offense version combines static and
               dynamic information. It is designed to assess baseline risk,
@@ -1345,7 +1450,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SPJ uses defined risk factors and a structured process, while leaving
+              <strong>SPJ uses defined risk factors and a structured process</strong>, while leaving
               room for professional synthesis. That makes it meaningfully
               different from an unstructured impression such as “this person feels
               dangerous” or “my experience tells me the score is wrong.”
@@ -1360,7 +1465,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
               judgment in that synthesis.
             </p>
             <p>
-              The practical lesson is not “scores only.” Individualized
+              <strong>The practical lesson is not “scores only.”</strong> Individualized
               professional information can matter.
             </p>
             <p>
@@ -1411,7 +1516,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
               or initial PCRA assessment.
             </p>
 
-            <ul>
+            <ul className="space-y-2">
               <li>
                 <strong>Outcome:</strong> rearrest for any new sexual offense.
               </li>
@@ -1604,7 +1709,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <ul>
+            <ul className="space-y-2">
               <li>
                 <strong>“Low risk” does not mean zero risk.</strong>
               </li>
