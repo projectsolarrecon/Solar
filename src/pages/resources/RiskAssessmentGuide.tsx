@@ -28,11 +28,16 @@ const sourceLinks = {
     "https://www.waspc.org/assets/Static%2099%20Coding_manual_2016_v2.pdf",
   staticWorkbook:
     "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
+  static2002:
+    "https://www.securitepublique.gc.ca/cnt/rsrcs/pblctns/sttc-2002/index-en.aspx",
   stable: "https://doi.org/10.1177/0093854815602094",
+  acute:
+    "https://bja.ojp.gov/sites/g/files/xyckuh186/files/media/document/acute.pdf",
   cportDevelopment: "https://pubmed.ncbi.nlm.nih.gov/25844514/",
   cportValidation: "https://pubmed.ncbi.nlm.nih.gov/29592774/",
   cportSpanish: "https://pubmed.ncbi.nlm.nih.gov/32482122/",
   cportCritical: "https://pubmed.ncbi.nlm.nih.gov/37471014/",
+  casic: "https://pubmed.ncbi.nlm.nih.gov/28383984/",
   pcra: "https://www.uscourts.gov/file/22846/download",
   sotips: "https://pubmed.ncbi.nlm.nih.gov/22368161/",
   vrsFoundational: "https://pubmed.ncbi.nlm.nih.gov/17845123/",
@@ -44,6 +49,9 @@ const inlineLinkCls =
 
 const toolJumpLinkCls =
   "font-semibold text-blue-700 underline underline-offset-2 hover:text-blue-900";
+
+const conceptHeadingCls =
+  "mt-8 border-l-4 border-slate-400 pl-3 text-lg font-bold text-slate-900";
 
 export default function RiskAssessmentGuide(): JSX.Element {
   const handlePrint = () => window.print();
@@ -619,7 +627,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>Relative risk vs. absolute risk</h3>
+            <h3 className={conceptHeadingCls}>Relative risk vs. absolute risk</h3>
             <p>
               <strong>Relative risk</strong> answers a comparison question:
               higher or lower compared with whom? <strong>Absolute risk</strong>
@@ -635,7 +643,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Group prediction vs. individual certainty</h3>
+            <h3 className={conceptHeadingCls}>Group prediction vs. individual certainty</h3>
             <p>
               Risk instruments estimate patterns across groups and place an
               individual within those empirical patterns. They do not observe the
@@ -645,7 +653,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Outcome definition and follow-up period</h3>
+            <h3 className={conceptHeadingCls}>Outcome definition and follow-up period</h3>
             <p>
               <strong>Rearrest, charge, reconviction, reincarceration, self-report,
               and detected offending are not interchangeable.</strong> Official outcomes can
@@ -663,7 +671,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Validation population and population fit</h3>
+            <h3 className={conceptHeadingCls}>Validation population and population fit</h3>
             <p>
               Every validation study has a population: a jurisdiction, setting,
               offense mix, sex composition, age range, entry point, and follow-up
@@ -677,7 +685,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Static vs. dynamic factors</h3>
+            <h3 className={conceptHeadingCls}>Static vs. dynamic factors</h3>
             <p>
               <strong>Static factors</strong> are historical facts that do not
               change because time has passed or treatment has occurred: for
@@ -697,7 +705,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Actuarial, structured professional judgment, and unstructured judgment</h3>
+            <h3 className={conceptHeadingCls}>Actuarial, structured professional judgment, and unstructured judgment</h3>
             <p>
               <strong>Actuarial tools</strong> use specified empirical items and
               scoring rules to place people into relative risk groups or
@@ -721,7 +729,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>Base rates</h3>
+            <h3 className={conceptHeadingCls}>Base rates</h3>
             <p>
               <strong>A base rate</strong> is how often the outcome occurs in the population being
               studied before a particular score is considered. When the outcome is
@@ -734,7 +742,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
 
             <SoftDivider />
 
-            <h3>AUC: ranking, not probability</h3>
+            <h3 className={conceptHeadingCls}>AUC: ranking, not probability</h3>
             <p>
               <strong>AUC is a discrimination statistic.</strong> In plain English: if you randomly
               select one person who later had the measured recidivism outcome and
@@ -758,7 +766,7 @@ export default function RiskAssessmentGuide(): JSX.Element {
           </GuideCallout>
 
           <GuideProse>
-            <h3>Calibration</h3>
+            <h3 className={conceptHeadingCls}>Calibration</h3>
             <p>
               <strong>Calibration asks a different question:</strong> do the predicted or
               reference-group percentages line up with the observed rates in the
@@ -931,7 +939,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
           <SoftDivider />
 
           <GuideProse>
-            <h3>Static-2002R</h3>
+            <h3>
+              <a
+                href={sourceLinks.static2002}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Static-2002R
+              </a>
+            </h3>
           </GuideProse>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -1052,7 +1069,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
               practically relevant information beyond static history.
             </p>
 
-            <h3>ACUTE-2007</h3>
+            <h3>
+              <a
+                href={sourceLinks.acute}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ACUTE-2007
+              </a>
+            </h3>
             <p>
               ACUTE-2007 is aimed at shorter-term, rapidly changing concerns during
               community supervision. It is meant to be reassessed repeatedly and
@@ -1229,7 +1255,16 @@ export default function RiskAssessmentGuide(): JSX.Element {
           <SoftDivider />
 
           <GuideProse>
-            <h3>CASIC</h3>
+            <h3>
+              <a
+                href={sourceLinks.casic}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                CASIC
+              </a>
+            </h3>
             <p>
               CASIC is a structured proxy/index related to evidence of sexual
               interest in children. It was developed in part to operationalize a
@@ -1828,11 +1863,23 @@ export default function RiskAssessmentGuide(): JSX.Element {
                   "Reference-group, risk-level, relative-risk, and normative interpretation guidance.",
               },
               {
+                label: "Static-2002 coding rules — Public Safety Canada",
+                href: sourceLinks.static2002,
+                description:
+                  "Authoritative coding, target-population, domain, and interpretation guidance for Static-2002/Static-2002R.",
+              },
+              {
                 label:
                   "Hanson, Helmus & Harris (2015) — STABLE-2007 prospective study",
                 href: sourceLinks.stable,
                 description:
                   "Prospective evidence on dynamic risk/need assessment alongside static measures.",
+              },
+              {
+                label: "ACUTE-2007 — BJA Public Safety Risk Assessment Clearinghouse",
+                href: sourceLinks.acute,
+                description:
+                  "Official tool profile describing ACUTE-2007 as a short-term dynamic monitoring instrument for sexual recidivism risk.",
               },
               {
                 label: "Seto & Eke (2015) — CPORT development",
@@ -1858,6 +1905,12 @@ export default function RiskAssessmentGuide(): JSX.Element {
                 href: sourceLinks.cportCritical,
                 description:
                   "Population-specific limitations, small recidivist counts, missing data, and U.S.-validation concerns at the time of review.",
+              },
+              {
+                label: "Seto & Eke (2017) — CASIC",
+                href: sourceLinks.casic,
+                description:
+                  "Primary CASIC source on behavioral correlates of admitted sexual interest in children and use within CPORT-related assessment.",
               },
               {
                 label:
