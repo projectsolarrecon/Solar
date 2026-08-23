@@ -12,32 +12,62 @@ import {
   SoftDivider,
   QuickStartPanel,
   GuideChecklist,
-  GuideIconList,
-  VerifyBeforeActing,
+  ScriptBox,
   OverviewCards,
+  ResourceLinkGrid,
+  RelatedGuides,
   SourceList,
 } from "../../components/solar";
 
 const sourceLinks = {
-  federalCsem:
-    "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
-  actuarialMeta: "https://pubmed.ncbi.nlm.nih.gov/19290762/",
-  staticAge: "https://doi.org/10.1177/1079063211409951",
-  staticCalibration: "https://doi.org/10.1177/0093854812443648",
-  staticCoding:
-    "https://www.waspc.org/assets/Static%2099%20Coding_manual_2016_v2.pdf",
-  staticWorkbook:
-    "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
-  stable: "https://doi.org/10.1177/0093854815602094",
-  cportDevelopment: "https://pubmed.ncbi.nlm.nih.gov/25844514/",
-  cportValidation: "https://pubmed.ncbi.nlm.nih.gov/29592774/",
-  cportSpanish: "https://pubmed.ncbi.nlm.nih.gov/32482122/",
-  cportCritical: "https://pubmed.ncbi.nlm.nih.gov/37471014/",
-  pcra: "https://www.uscourts.gov/file/22846/download",
-  sotips: "https://pubmed.ncbi.nlm.nih.gov/22368161/",
-  vrsFoundational: "https://pubmed.ncbi.nlm.nih.gov/17845123/",
-  vrsUpdated: "https://pubmed.ncbi.nlm.nih.gov/29708372/",
-};
+  bjsSex1994: {
+    label: "BJS 1994 sex-offender prison-release study",
+    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-prison-1994",
+  },
+  bjsSex2005: {
+    label: "BJS 2005 rape/sexual-assault 9-year follow-up",
+    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
+  },
+  bjsAll1994: {
+    label: "BJS 1994 all-prisoner recidivism report",
+    href: "https://bjs.ojp.gov/content/pub/pdf/rpr94.pdf",
+  },
+  bjsAll2012: {
+    label: "BJS 2012 prisoner recidivism 5-year follow-up",
+    href: "https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/rpr34s125yfup1217.pdf",
+  },
+  ussc2010: {
+    label: "USSC federal offenders released in 2010",
+    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
+  },
+  usscCsem: {
+    label: "USSC non-production child pornography report",
+    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
+  },
+  federalCsem: {
+    label: "Federal Probation CSEM supervision study",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
+  },
+  simpleQuestion: {
+    label: "Sex Offender Recidivism: A Simple Question",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
+  },
+  updatedMetaAnalysis: {
+    label: "Predictors of Sexual Recidivism: An Updated Meta-Analysis",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/2004-02-prdctrs-sxl-rcdvsm-pdtd/index-en.aspx",
+  },
+  onlineOffenders: {
+    label: "Seto, Hanson, and Babchishin online-offense meta-analyses",
+    href: "https://doi.org/10.1177/1079063210369013",
+  },
+  treatmentMetaAnalysis: {
+    label: "Schmucker and Lösel treatment-effectiveness meta-analysis",
+    href: "https://doi.org/10.1007/s11292-015-9241-z",
+  },
+} as const;
+
+const linkClass =
+  "font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-900";
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -45,9 +75,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Understanding Sex-Offense Risk Assessment | The SOLAR Project"
-        description="A practical plain-language SOLAR guide to understanding risk-assessment reports, sexual-recidivism tools, dynamic assessment, AUC, calibration, base rates, population fit, and responsible interpretation."
-        keywords="risk assessment, Static-99R, Static-2002R, STABLE-2007, ACUTE-2007, CPORT, CASIC, PCRA, SOTIPS, VRS-SO, AUC, calibration, sexual recidivism"
+        title="Understanding Recidivism Evidence | The SOLAR Project"
+        description="A SOLAR resource guide for understanding recidivism statistics, sexual-offense comparator evidence, absolute risk, relative risk, CSEM-specific evidence, and common interpretation mistakes."
+        keywords="sex offense recidivism, recidivism evidence, sexual recidivism, CSEM recidivism, offense specialization, risk assessment, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -64,14 +94,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Understanding Sex-Offense Risk Assessment
+            Understanding Recidivism Evidence
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            If a risk score, evaluation, treatment report, or supervision
-            assessment has suddenly appeared in your life, this guide helps you
-            figure out what you are looking at, what the result actually means,
-            and what questions to ask before anyone treats it as certainty.
+            A plain-language guide to what recidivism statistics do and do not
+            show — and how to read them without turning group data into fear,
+            certainty, or myth.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -100,1604 +129,1337 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            Risk assessment is not one thing. A report may contain several
-            different kinds of information at once: a historical score, a
-            changeable-risk assessment, a treatment-need rating, a risk category,
-            a percentage, supervision recommendations, and professional comments.
+            There is no single “sex-offender recidivism rate.” The number
+            changes depending on who was studied, what counted as recidivism,
+            how long people were followed, when the clock started, and what
+            comparison group was used.
           </p>
+
           <p>
-            Those are not automatically the same thing. A treatment recommendation
-            is not automatically a recidivism probability. A supervision decision
-            is not automatically the instrument score. And a professional opinion
-            may include information that was never part of the actuarial result.
+            This guide is a companion to SOLAR’s risk-assessment guide. The risk
+            guide asks, “What does this score or tool mean?” This guide asks,
+            “What do observed reoffending data actually show?”
           </p>
+
           <p>
-            You do not need to master the statistics before you can begin. Start by
-            identifying what tool was used, what result it produced, what outcome
-            it is talking about, what time period applies, and what group the
-            result is being compared with.
+            The strongest takeaway is simple: people convicted of sexual
+            offenses are not uniquely or uniformly high-recidivism compared with
+            other major offense groups. The evidence is more specific, more
+            useful, and much less compatible with slogans.
           </p>
         </GuideIntro>
 
         <QuickStartPanel
-          title="If you have a report or score in front of you"
-          subtitle="Find these five things before deciding what the result actually means."
-          icon="🔍"
+          title="Read a recidivism statistic in this order"
+          subtitle="Before accepting a claim, slow the number down and identify what it is really measuring."
+          icon="⚡"
           urgentActions={[
-            <span key="tool">
-              <strong>1. Find the instrument name.</strong> Static-99R? CPORT?
-              STABLE-2007? PCRA? SOTIPS? Something else?
+            <span>
+              Check the <strong>population</strong>: prison releases,
+              supervision starts, CSEM-only cases, contact offenses, adults,
+              youth, federal cases, state cases, or another group.
             </span>,
-            <span key="result">
-              <strong>2. Find the actual result.</strong> Is it a raw score, risk
-              category, relative-risk level, estimated percentage, or several of
-              those?
-            </span>,
-            <span key="outcome">
-              <strong>3. Find the outcome.</strong> Sexual rearrest? Sexual
-              reconviction? Any recidivism? Treatment need? Short-term supervision
-              concern?
+            <span>
+              Check the <strong>outcome</strong>: any rearrest, sexual rearrest,
+              charge, reconviction, reincarceration, self-report, or another
+              measure.
             </span>,
           ]}
           nextActions={[
-            <span key="time">
-              <strong>4. Find the time period.</strong> Five years? Ten years?
-              Ongoing supervision? A shorter-term monitoring period?
+            <span>
+              Check the <strong>follow-up</strong>: three years, five years,
+              nine years, fifteen years, or another period.
             </span>,
-            <span key="group">
-              <strong>5. Find the comparison group.</strong> What population,
-              norm, or reference group is being used to interpret the score?
+            <span>
+              Check the <strong>comparison</strong>: compared with whom, in the
+              same study, using the same clock and outcome?
             </span>,
           ]}
           reminder={
             <span>
-              If you can answer those five questions, you can usually begin
-              interpreting the result. If you cannot, the report may be giving you
-              a conclusion without enough information to understand what the
-              conclusion means.
+              A dramatic relative-risk statement can describe a small absolute
+              rate. Always ask, “What were the actual percentages?”
             </span>
           }
         />
 
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>Go where you need to go</h3>
-            <p>
-              If you only need help understanding a report in front of you,
-              Sections 1–4 are the best place to start. The later sections explain
-              particular tools, research findings, and questions to ask when the
-              assessment is being used in a decision.
-            </p>
-          </GuideProse>
+        <OverviewCards
+          columns={3}
+          cards={[
+            {
+              eyebrow: "First question",
+              title: "What counted?",
+              icon: "📏",
+              tone: "info",
+              description:
+                "Rearrest, reconviction, reincarceration, official detection, and self-report are different measurements.",
+            },
+            {
+              eyebrow: "Second question",
+              title: "Who was studied?",
+              icon: "👥",
+              tone: "research",
+              description:
+                "Offense subtype, age, prior record, supervision context, and jurisdiction can materially change the picture.",
+            },
+            {
+              eyebrow: "Third question",
+              title: "Compared with what?",
+              icon: "⚖️",
+              tone: "legal",
+              description:
+                "Same-study comparisons are safer than pulling percentages from unrelated studies and treating them as equivalent.",
+            },
+          ]}
+        />
 
-          <nav
-            aria-label="Guide sections"
-            className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-          >
-            <a
-              href="#encounter"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              1. Why am I seeing this?
-            </a>
-
-            <a
-              href="#decode"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              2. Decode the result
-            </a>
-
-            <a
-              href="#glossary"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              3. Words in the report
-            </a>
-
-            <a
-              href="#foundations"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              4. Understand the science
-            </a>
-
-            <a
-              href="#baseline-static"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              5–10. Look up a tool
-            </a>
-
-            <a
-              href="#questions"
-              className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
-            >
-              12. Questions to ask
-            </a>
-          </nav>
-        </GuideSectionCard>
-
-        <GuideCallout
-          tone="research"
-          icon="🔎"
-          title="The core principle"
-        >
+        <GuideCallout tone="research" icon="🔎" title="The public misconception this guide addresses">
           <p>
-            Risk should be assessed as accurately, individually, transparently,
-            and empirically as possible rather than inferred categorically from
-            offense labels, intuition, or fear. Structured empirical assessment can
-            add useful information without producing certainty about an individual
-            future.
+            Public discussion often treats people convicted of sexual offenses
+            as uniquely, uniformly, or “shockingly” high-recidivism. Large
+            official datasets do not support that simplified claim. They show a
+            more careful pattern: overall recidivism is often lower than many
+            other offense groups, sexual-specific rearrest is a different
+            outcome, same-type specialization occurs across many offense
+            categories, and absolute detected sexual-recidivism rates are far
+            below popular assumptions of inevitable repeat offending.
           </p>
         </GuideCallout>
 
+        <nav
+          aria-label="Guide sections"
+          className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+        >
+          <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+            On this page
+          </h2>
+          <div className="mt-3 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
+            <a className={linkClass} href="#no-single-rate">
+              No single rate
+            </a>
+            <a className={linkClass} href="#definitions">
+              What recidivism means
+            </a>
+            <a className={linkClass} href="#five-checks">
+              Five checks
+            </a>
+            <a className={linkClass} href="#overall-sexual">
+              Overall vs. sexual recidivism
+            </a>
+            <a className={linkClass} href="#absolute-relative">
+              Absolute vs. relative risk
+            </a>
+            <a className={linkClass} href="#comparators">
+              Comparator evidence
+            </a>
+            <a className={linkClass} href="#specialization">
+              Same-type specialization
+            </a>
+            <a className={linkClass} href="#csem">
+              CSEM-specific evidence
+            </a>
+            <a className={linkClass} href="#individual-variation">
+              Individual variation
+            </a>
+            <a className={linkClass} href="#treatment-change">
+              Treatment and change
+            </a>
+            <a className={linkClass} href="#worked-examples">
+              Worked examples
+            </a>
+            <a className={linkClass} href="#final-checklist">
+              Final checklist
+            </a>
+          </div>
+        </nav>
+
         <GuideSectionHeader
-          id="encounter"
+          id="no-single-rate"
           number="1"
-          title="Why Am I Seeing a Risk Assessment?"
-          subtitle="What the process may look like before you ever get to the score."
+          title="There Is No Single “Sex-Offender Recidivism Rate”"
+          subtitle="A recidivism number is only meaningful after you know the population, outcome, clock, and comparison."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Depending on the setting, you may be interviewed, records may be
-              reviewed, one or more instruments may be scored, treatment providers
-              or supervision officers may add information, and a final report may
-              combine several different kinds of conclusions.
+              Recidivism is not one natural fact waiting to be quoted. It is a
+              measurement choice. A three-year rearrest rate for people released
+              from state prison is not the same thing as a five-year
+              reconviction rate for people starting federal supervision. A
+              CSEM-only cohort is not the same thing as a broader contact-offense
+              cohort. A study of any rearrest is not answering the same question
+              as a study of another detected sexual offense.
             </p>
 
             <p>
-              Different settings also use assessment for different purposes.
-              Depending on the case, an assessment may inform sentencing,
-              treatment planning, supervision intensity, release planning,
-              institutional decisions, civil proceedings, or another specific
-              decision. The purpose matters because a tool designed for one
-              question should not automatically be treated as answering every
-              other one.
+              This is why SOLAR treats precise recidivism claims as more useful
+              than broad labels. A good public statement should preserve the
+              population, outcome, measurement basis, follow-up length, and
+              starting point.
+            </p>
+          </GuideProse>
+
+          <SoftDivider />
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+              <h3 className="text-base font-bold text-slate-900">
+                Weak claim
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                “Sex offenders have a high recidivism rate.”
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+              <h3 className="text-base font-bold text-emerald-950">
+                Stronger claim
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-emerald-900">
+                “In this specific cohort, using this specific outcome, over this
+                specific follow-up period, the observed rate was ___.”
+              </p>
+            </div>
+          </div>
+
+          <GuideCallout tone="reminder" icon="🧩" title="The label is never the whole measurement">
+            <p>
+              Offense subtype, age, prior record, follow-up period,
+              jurisdiction, treatment history, supervision context, and outcome
+              definition can all change the meaning of a recidivism statistic.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="definitions"
+          number="2"
+          title="What Does “Recidivism” Mean?"
+          subtitle="Different measures answer different questions. They should not be collapsed into one generic rate."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              “Recidivism” can mean several different things. Some measures are
+              easier to count but less precise. Others are narrower but miss
+              conduct that was never detected or never prosecuted.
+            </p>
+          </GuideProse>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {[
+              {
+                term: "Rearrest",
+                meaning:
+                  "A new arrest was recorded. This is commonly used in large official datasets, including BJS and USSC reports.",
+                caution:
+                  "Rearrest is not the same as proof, conviction, or all offending.",
+              },
+              {
+                term: "Charge",
+                meaning:
+                  "A formal charge was filed after an accusation or arrest.",
+                caution:
+                  "Charging practices vary by jurisdiction and case type.",
+              },
+              {
+                term: "Reconviction",
+                meaning:
+                  "A new conviction occurred after plea or trial.",
+                caution:
+                  "This is narrower than rearrest and depends on prosecution and court outcomes.",
+              },
+              {
+                term: "Reincarceration",
+                meaning:
+                  "A person returned to custody after a new sentence or a violation.",
+                caution:
+                  "This can mix new crimes with supervision or release-condition violations.",
+              },
+              {
+                term: "Official detected offending",
+                meaning:
+                  "Behavior captured through official systems such as arrests, charges, convictions, or corrections records.",
+                caution:
+                  "It undercounts undetected conduct and should not be treated as a full measure of all behavior.",
+              },
+              {
+                term: "Self-report",
+                meaning:
+                  "A person reports past conduct, often in treatment, research, or clinical settings.",
+                caution:
+                  "It may reveal behavior official records missed, but it is not the same as prospective future recidivism.",
+              },
+            ].map((item) => (
+              <div
+                key={item.term}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+              >
+                <h3 className="text-base font-bold text-slate-900">
+                  {item.term}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                  {item.meaning}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  <strong>Watch for:</strong> {item.caution}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <GuideCallout tone="warning" icon="⚠️" title="Do not swap measures mid-argument">
+            <p>
+              A person can quote a rearrest study, call it “reoffending,” and
+              then talk as if it proved all future conduct. That move is
+              misleading. Keep the measurement basis attached to the claim.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="five-checks"
+          number="3"
+          title="Five Things to Check Before Believing a Recidivism Statistic"
+          subtitle="Most misuse becomes visible once you ask five simple questions."
+        />
+
+        <GuideSectionCard>
+          <GuideChecklist
+            id="five-checks-before-believing"
+            title="The five checks"
+            columns={1}
+            items={[
+              {
+                id: "population",
+                label:
+                  "Population: Who was studied — state prison releases, federal supervision cases, CSEM-only cases, contact offenses, adults, youth, or another group?",
+              },
+              {
+                id: "outcome",
+                label:
+                  "Outcome: What counted — any rearrest, sexual rearrest, same-type rearrest, reconviction, reincarceration, self-report, or something else?",
+              },
+              {
+                id: "follow-up",
+                label:
+                  "Follow-up length: How long were people followed — three years, five years, nine years, fifteen years, or another period?",
+              },
+              {
+                id: "starting-point",
+                label:
+                  "Starting point: When did the clock begin — prison release, supervision start, assessment date, treatment completion, or another milestone?",
+              },
+              {
+                id: "comparison",
+                label:
+                  "Comparison group: Compared with whom — and was it the same study, same clock, same outcome, and same jurisdictional setting?",
+              },
+            ]}
+          />
+
+          <ScriptBox
+            title="A simple way to ask for clarification"
+            tone="neutral"
+            context="Use this when someone quotes a recidivism number in a meeting, article, hearing, family conversation, or policy discussion."
+            script={`When you say that recidivism rate, what population was studied, what counted as recidivism, how long were people followed, when did the follow-up clock start, and what comparison group are you using?`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="overall-sexual"
+          number="4"
+          title="Overall Recidivism and Sexual Recidivism Are Different Questions"
+          subtitle="A group can have lower overall recidivism than many other groups while still showing elevated sexual-specific rearrest compared with nonsexual-offense groups."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The phrase “recidivism rate” often hides two different questions.
+              <strong> Overall recidivism</strong> asks whether a person had any
+              new detected justice-system event, such as any rearrest.
+              <strong> Sexual-specific recidivism</strong> asks whether the new
+              detected event was another sexual offense.
             </p>
 
-            <p>You might see all of the following in one document:</p>
-
-            <ul>
-              <li>a historical or static risk score;</li>
-              <li>a dynamic or change-sensitive assessment;</li>
-              <li>a risk category or relative-risk level;</li>
-              <li>a reference-group recidivism estimate;</li>
-              <li>treatment targets or needs;</li>
-              <li>supervision recommendations;</li>
-              <li>professional judgment or an override;</li>
-              <li>other case-specific comments.</li>
-            </ul>
-
             <p>
-              The practical problem is that these pieces can look like one unified
-              scientific conclusion even when they came from different methods and
+              The{" "}
+              <a
+                href={sourceLinks.bjsSex2005.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                BJS 2005 rape/sexual-assault 9-year follow-up
+              </a>{" "}
+              illustrates the difference. It reported that people released after
+              rape or sexual assault were less likely than other released
+              prisoners to be arrested for any crime over nine years, but more
+              likely to be arrested for rape or sexual assault.
+            </p>
+          </GuideProse>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h3 className="text-lg font-bold text-slate-900">
+                Overall recidivism
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                Asks: “Was there any new detected justice-system event?”
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                This is the better measure for broad claims about whether one
+                offense group is “high recidivism” in general.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h3 className="text-lg font-bold text-slate-900">
+                Sexual-specific recidivism
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                Asks: “Was there another detected sexual offense?”
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                This is a narrower question. It should not be used to imply that
+                overall recidivism is uniquely high.
+              </p>
+            </div>
+          </div>
+
+          <GuideCallout tone="info" icon="🧠" title="These facts are not contradictory">
+            <p>
+              A sexual-offense release group can have lower overall rearrest
+              than many other offense groups, while also having a higher relative
+              likelihood of another detected sexual offense than people whose
+              prior offenses were nonsexual. The key is to keep the outcome
+              attached to the claim.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="absolute-relative"
+          number="5"
+          title="Relative Risk and Absolute Risk Can Sound Very Different"
+          subtitle="A statement can be mathematically true and still rhetorically misleading if the absolute rates are hidden."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Relative-risk language compares one group to another. Absolute
+              risk tells you the actual percentage. Both can be useful, but they
               answer different questions.
             </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="legal"
-            icon="🧩"
-            title="The score and the final decision may not be the same thing"
-          >
-            <p>
-              An instrument may produce one result while an evaluator, probation
-              officer, agency, treatment provider, or decision-maker reaches a
-              broader conclusion using additional information.
-            </p>
-            <p>
-              When that happens, separate the two: <strong>What did the instrument
-              actually say?</strong> And <strong>what did the person or agency
-              decide?</strong> Then ask what information caused the difference.
-            </p>
-          </GuideCallout>
-
-          <GuideProse>
-            <p>
-              That distinction matters because a recommendation can be stricter,
-              more lenient, or simply different from the instrument output. The
-              difference may reflect another assessment, a treatment issue, an
-              agency rule, case-specific information, or an explicit professional
-              override.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="decode"
-          number="2"
-          title="How to Read the Result in Front of You"
-          subtitle="Start with the anatomy of the report before moving into the statistics behind it."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>A fictional anatomy of a risk-assessment result</h3>
 
             <p>
-              Imagine that a report contains the following kinds of entries. These
-              are deliberately illustrative rather than real scoring instructions:
-            </p>
-
-            <ul>
-              <li>
-                <strong>Instrument:</strong> Static-99R
-              </li>
-              <li>
-                <strong>Raw score:</strong> [score]
-              </li>
-              <li>
-                <strong>Risk level:</strong> [risk category]
-              </li>
-              <li>
-                <strong>Relative risk:</strong> [comparison with a reference group]
-              </li>
-              <li>
-                <strong>Estimated five-year rate:</strong> [percentage for the
-                applicable norm group]
-              </li>
-              <li>
-                <strong>Professional conclusion:</strong> [treatment, supervision,
-                or case recommendation]
-              </li>
-            </ul>
-
-            <p>
-              Those lines are related, but they are not interchangeable.
-            </p>
-
-            <p>
-              A real report may include only some of these layers. For example, it
-              may give a score and category without an absolute percentage, or it
-              may discuss treatment needs without reporting a separate actuarial
-              estimate. The point of this example is to show how different kinds
-              of information fit together when they do appear.
+              In the{" "}
+              <a
+                href={sourceLinks.bjsSex1994.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                BJS 1994 sex-offender prison-release study
+              </a>
+              , people released after sex offenses were more likely than
+              non-sex-offense releases to be rearrested for a sex crime. The
+              absolute rates were 5.3% versus 1.3% over three years.
             </p>
           </GuideProse>
 
-          <GuideIconList
-            title="What each line is doing"
-            items={[
-              {
-                icon: "🔢",
-                title: "Raw score",
-                description:
-                  "The instrument's scored total. By itself, it is not automatically a probability.",
-              },
-              {
-                icon: "🏷️",
-                title: "Risk category",
-                description:
-                  "A group classification used to organize or interpret scores.",
-              },
-              {
-                icon: "↔️",
-                title: "Relative risk",
-                description:
-                  "A comparison with another group. It answers higher or lower compared with whom.",
-              },
-              {
-                icon: "📅",
-                title: "Absolute estimate",
-                description:
-                  "A group-based observed or estimated event rate over a defined follow-up period.",
-              },
-              {
-                icon: "👥",
-                title: "Reference group",
-                description:
-                  "The population whose data are being used to interpret the score or percentage.",
-              },
-              {
-                icon: "🧑‍⚖️",
-                title: "Professional recommendation",
-                description:
-                  "A conclusion that may incorporate information beyond the instrument itself.",
-              },
-            ]}
-          />
-
-          <GuideCallout
-            tone="warning"
-            icon="⚠️"
-            title="If the recommendation and score seem inconsistent"
-          >
-            <p>
-              Ask whether another assessment, dynamic information, agency policy,
-              case-specific information, or an override changed the final
-              conclusion. Do not assume the instrument itself produced every
-              statement that appears in the report.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <h3>A five-step interpretation workflow</h3>
-          </GuideProse>
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "1",
-                title: "Identify",
-                icon: "🔍",
-                tone: "neutral",
-                description:
-                  "Identify the tool, version, and type of assessment.",
-              },
-              {
-                eyebrow: "2",
-                title: "Translate",
-                icon: "🗣️",
-                tone: "info",
-                description:
-                  "Translate the raw score, category, percentage, or recommendation into plain language.",
-              },
-              {
-                eyebrow: "3",
-                title: "Compare",
-                icon: "👥",
-                tone: "research",
-                description:
-                  "Find the population, norm, or reference group being used.",
-              },
-              {
-                eyebrow: "4",
-                title: "Check",
-                icon: "✅",
-                tone: "legal",
-                description:
-                  "Check the outcome, follow-up, coding rules, dynamic information, and any override.",
-              },
-              {
-                eyebrow: "5",
-                title: "Question",
-                icon: "❓",
-                tone: "warning",
-                description:
-                  "Question any conclusion that goes beyond what the tool was designed or validated to say.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="glossary"
-          number="3"
-          title="Words You May See in a Report"
-          subtitle="A compact glossary for the terms that matter most."
-        />
-
-        <GuideSectionCard>
-          <GuideIconList
-            title="Keep these definitions handy"
-            items={[
-              {
-                icon: "🔁",
-                title: "Recidivism",
-                description:
-                  "A new measured criminal-justice or study outcome after a defined starting point. Always ask exactly how the study defined it.",
-              },
-              {
-                icon: "🧱",
-                title: "Static",
-                description:
-                  "Based on historical facts that do not change because treatment occurs or time passes.",
-              },
-              {
-                icon: "🔄",
-                title: "Dynamic",
-                description:
-                  "Based on factors intended to capture characteristics that can change over time.",
-              },
-              {
-                icon: "🧮",
-                title: "Actuarial",
-                description:
-                  "Uses defined items and scoring rules derived from empirical data.",
-              },
-              {
-                icon: "👥",
-                title: "Norm / reference group",
-                description:
-                  "The comparison group used to interpret a score, category, relative-risk value, or estimated percentage.",
-              },
-              {
-                icon: "🧪",
-                title: "Validation",
-                description:
-                  "Testing how a tool performs in a population, setting, or sample beyond the data used to create or develop it.",
-              },
-              {
-                icon: "🏷️",
-                title: "Risk category",
-                description:
-                  "A group classification. It is not a statement that one individual will or will not reoffend.",
-              },
-              {
-                icon: "↪️",
-                title: "Override",
-                description:
-                  "A departure from, adjustment to, or broader conclusion beyond the instrument result.",
-              },
-              {
-                icon: "📊",
-                title: "AUC",
-                description:
-                  "A statistic describing how well a tool ranks higher- versus lower-risk cases. It is not an individual probability.",
-              },
-              {
-                icon: "🎯",
-                title: "Calibration",
-                description:
-                  "How well estimated or expected event rates line up with what is actually observed in a population.",
-              },
-              {
-                icon: "💻",
-                title: "CSEM",
-                description:
-                  "Child sexual exploitation material. Some instruments are designed specifically for people with CSEM-related offenses rather than sexual offenses generally.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="foundations"
-          number="4"
-          title="The Concepts Behind the Score"
-          subtitle="Once you know what kind of result you are looking at, these concepts explain how to interpret it responsibly."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>Relative risk vs. absolute risk</h3>
-            <p>
-              <strong>Relative risk</strong> answers a comparison question:
-              higher or lower compared with whom? <strong>Absolute risk</strong>
-              is an observed or estimated event rate over a defined period, such
-              as a five-year rate in a particular reference group.
-            </p>
-            <p>
-              A person can be higher than a low-risk comparison group while the
-              absolute event rate remains modest. A dramatic-sounding relative
-              difference does not automatically mean a high individual
-              probability.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Group prediction vs. individual certainty</h3>
-            <p>
-              Risk instruments estimate patterns across groups and place an
-              individual within those empirical patterns. They do not observe the
-              future. A group rate is evidence about a reference group, not an
-              individual destiny.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Outcome definition and follow-up period</h3>
-            <p>
-              Rearrest, charge, reconviction, reincarceration, self-report, and
-              detected offending are not interchangeable. Official outcomes can
-              miss undetected conduct; self-report has different limitations.
-            </p>
-            <p>
-              A recidivism rate is incomplete unless it tells you the outcome
-              definition, population, follow-up period, and starting point.
-            </p>
-            <p>
-              A five-year rearrest rate beginning at supervision start is not the
-              same quantity as a ten-year reconviction rate beginning at release.
-              Comparing them as if they were the same can create false precision.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Validation population and population fit</h3>
-            <p>
-              Every validation study has a population: a jurisdiction, setting,
-              offense mix, sex composition, age range, entry point, and follow-up
-              design. A tool validated in one population is not automatically
-              calibrated for another.
-            </p>
-            <p>
-              Before relying on a percentage, ask which reference group generated
-              it and whether that group resembles the person and setting at issue.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Static vs. dynamic factors</h3>
-            <p>
-              <strong>Static factors</strong> are historical facts that do not
-              change because time has passed or treatment has occurred: for
-              example, parts of a person&apos;s prior offense or supervision
-              history. Static tools are mainly about baseline group risk.
-            </p>
-            <p>
-              <strong>Dynamic factors</strong> are intended to capture
-              risk-relevant characteristics that can change. Some change over
-              months or years; others may shift much more quickly.
-            </p>
-            <p>
-              A dynamic score is not a promise that change has been measured
-              perfectly. It is an attempt to add current, change-sensitive
-              information to historical baseline information.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Actuarial, structured professional judgment, and unstructured judgment</h3>
-            <p>
-              <strong>Actuarial tools</strong> use specified empirical items and
-              scoring rules to place people into relative risk groups or
-              categories.
-            </p>
-            <p>
-              <strong>Structured professional judgment (SPJ)</strong> also uses a
-              defined framework, but leaves more room for professional synthesis of
-              case information.
-            </p>
-            <p>
-              <strong>Unstructured judgment</strong> is professional intuition
-              without a comparable standardized empirical structure.
-            </p>
-            <p>
-              Meta-analytic evidence in the SOLAR evidence matrix supports
-              empirically derived actuarial approaches over unstructured
-              professional intuition on average, with SPJ performing differently
-              from both and generally falling between them.
-            </p>
-
-            <SoftDivider />
-
-            <h3>Base rates</h3>
-            <p>
-              A base rate is how often the outcome occurs in the population being
-              studied before a particular score is considered. When the outcome is
-              uncommon, precise individual prediction becomes harder.
-            </p>
-            <p>
-              Even a tool that sorts people better than chance will still make
-              errors when applied to a low-frequency outcome.
-            </p>
-
-            <SoftDivider />
-
-            <h3>AUC: ranking, not probability</h3>
-            <p>
-              AUC is a discrimination statistic. In plain English: if you randomly
-              select one person who later had the measured recidivism outcome and
-              one who did not, the AUC estimates how often the tool ranks the
-              person with the later outcome as higher risk.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="warning"
-            icon="⚠️"
-            title="AUC .70 does not mean 70% chance of recidivism"
-          >
-            <p>
-              AUC does not itself give an individual probability. It does not
-              establish calibration, causation, or certainty. Moderate
-              discrimination can still contain useful information, but
-              better-than-chance ranking is not the same as knowing what one
-              person will do.
-            </p>
-          </GuideCallout>
-
-          <GuideProse>
-            <h3>Calibration</h3>
-            <p>
-              Calibration asks a different question: do the predicted or
-              reference-group percentages line up with the observed rates in the
-              population where the tool is being used?
-            </p>
-            <p>
-              A tool can rank people reasonably well and still overpredict or
-              underpredict absolute rates in another setting.
-            </p>
-            <p>
-              The workbook flags this issue for Static-99R/Static-2002R and CPORT.
-              Static meta-analytic research found more stability in relative
-              predictive accuracy than in absolute rates across samples. A Spanish
-              CPORT validation found observed sexual recidivism substantially below
-              developer expectations, illustrating why population-specific norms
-              and reference groups matter.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <PullQuoteBlock>
-          A useful risk estimate can be informative without being certain. The
-          question is not whether the tool is perfect, but whether it is being used
-          for the right question, population, outcome, and purpose.
-        </PullQuoteBlock>
-
-        <GuideSectionHeader
-          id="baseline-static"
-          number="5"
-          title="Baseline / Static Sexual-Recidivism Risk"
-          subtitle="Tools that ask what historical factors suggest about relative long-term risk."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>Static-99R</h3>
-          </GuideProse>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What question does it ask?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                How does this person&apos;s static historical profile compare with
-                other eligible adult men on long-term sexual-recidivism risk?
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+              <h3 className="text-lg font-bold text-amber-950">
+                Relative framing
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-amber-900">
+                “More than four times as likely to be rearrested for a sex
+                crime.”
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-amber-900">
+                This sounds dramatic because it compares one rate to another.
               </p>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-slate-900">What is it?</h4>
-              <p className="mt-1 text-slate-700">
-                A static actuarial sexual-recidivism instrument using ten
-                historical factors.
+            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+              <h3 className="text-lg font-bold text-emerald-950">
+                Absolute framing
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-emerald-900">
+                “5.3% versus 1.3% over three years.”
               </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Who was it built for?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                Adult men with qualifying sexual-offense histories under the
-                instrument&apos;s coding and eligibility rules.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Where might you encounter it?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                In evaluations that need a baseline actuarial estimate of
-                sexual-recidivism risk, including some sentencing, treatment,
-                supervision, civil, or correctional settings.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What output does it produce?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                A score that can be interpreted using risk levels, relative-risk
-                information, and current normative recidivism estimates tied to
-                reference groups.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What does the evidence say?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                The workbook identifies Static-99R as an established static
-                actuarial tool, while emphasizing that age weighting was revised
-                because age contributes meaningful predictive information and that
-                absolute rates vary across samples.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What should be checked before use?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                Eligibility, current coding rules, the version used, the norm or
-                reference group, and whether the case type fits the instrument.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Why does eligibility matter?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                CSEM-only cases require particular care. Not every person convicted
-                of a sexual offense is automatically appropriate to score with
-                Static-99R.
+              <p className="mt-3 text-sm leading-relaxed text-emerald-900">
+                This shows the actual observed detected rates.
               </p>
             </div>
           </div>
 
-          <GuideCallout
-            tone="legal"
-            icon="🧾"
-            title="What a Static-99R score does not mean"
-          >
+          <GuideCallout tone="research" icon="📌" title="The practical question">
             <p>
-              It is not a diagnosis, a moral-severity ranking, proof that someone
-              will reoffend, proof that someone will not reoffend, or an
-              individualized certainty. Current coding and current norms matter.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <h3>Static-2002R</h3>
-          </GuideProse>
-
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What question does it ask?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                Like Static-99R, it asks about relative long-term
-                sexual-recidivism risk from static historical information, but it
-                uses a different item and domain structure.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Where might you encounter it?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                In settings seeking a baseline actuarial sexual-recidivism
-                assessment using the Static-2002R framework.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What goes into it?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                Static historical domains including age and offense history,
-                scored under specific coding rules.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What does the evidence say?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                The workbook reports that revised age weights improved fit for
-                older people and that relative predictive accuracy was more stable
-                across samples than absolute recidivism rates within score groups.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">Main limitation</h4>
-              <p className="mt-1 text-slate-700">
-                Eligibility and the selected reference group matter. It is not
-                designed for every CSEM-only case.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What should not be assumed?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                An old score-to-percentage table should not be treated as timeless.
-                Norms and reference-group choices matter to interpretation.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout
-            tone="reminder"
-            icon="🧠"
-            title="SOLAR takeaway"
-          >
-            <p>
-              Static tools can provide an empirical baseline, but baseline is not
-              destiny. Their value depends on proper eligibility, coding, norms,
-              and interpretation.
+              When a statistic sounds shocking, ask: “What are the actual
+              absolute rates?” That question does not deny relative elevation. It
+              keeps the number from being turned into a myth of inevitable repeat
+              offending.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="dynamic"
+          id="comparators"
           number="6"
-          title="Changeable / Dynamic Risk and Needs"
-          subtitle="These tools ask different questions from static baseline tools."
+          title="Are Sexual-Offense Populations Uniquely High-Recidivism?"
+          subtitle="Large official datasets do not support that broad claim when the outcome is overall rearrest."
         />
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>STABLE-2007</h3>
             <p>
-              STABLE-2007 is designed to assess relatively stable but changeable
-              risk and need factors relevant to sexual recidivism. Ratings draw on
-              structured interview, file, treatment, and supervision information.
-            </p>
-            <p>
-              The output is used for risk/need formulation and treatment or
-              supervision planning rather than as a stand-alone long-term
-              probability.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> Most often in
-              treatment or community-supervision settings where professionals are
-              trying to understand changeable risk and need factors rather than
-              relying only on historical baseline information.
-            </p>
-            <p>
-              A prospective Canadian study in the workbook followed 768
-              community-supervised adult men and found that STABLE measures
-              predicted sexual, violent, and any recidivism. The workbook treats
-              this as evidence that dynamic information can add clinically and
-              practically relevant information beyond static history.
+              The strongest way to compare offense groups is to use the same
+              dataset, same follow-up clock, and same outcome. Same-study
+              comparisons avoid mixing unrelated percentages from different
+              populations.
             </p>
 
-            <h3>ACUTE-2007</h3>
             <p>
-              ACUTE-2007 is aimed at shorter-term, rapidly changing concerns during
-              community supervision. It is meant to be reassessed repeatedly and
-              interpreted in its supervision context.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> In ongoing community
-              supervision or monitoring where short-term changes may matter to
-              immediate case management.
-            </p>
-            <p>
-              It does not establish a person&apos;s long-term actuarial risk and
-              does not diagnose dangerousness.
+              Two Bureau of Justice Statistics reports are especially useful for
+              this guide: the{" "}
+              <a
+                href={sourceLinks.bjsSex1994.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                1994 sex-offender prison-release report
+              </a>{" "}
+              and the{" "}
+              <a
+                href={sourceLinks.bjsSex2005.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                2005 rape/sexual-assault 9-year follow-up
+              </a>
+              . Both undermine the simple claim that people released after sexual
+              offenses are the highest-recidivating offense group overall.
             </p>
           </GuideProse>
 
-          <GuideCallout
-            tone="info"
-            icon="🔄"
-            title="Stable dynamic is not the same as acute"
-          >
+          <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            <div className="bg-slate-100 px-4 py-3">
+              <h3 className="text-base font-bold text-slate-900">
+                Same-study comparator examples
+              </h3>
+            </div>
+
+            <div className="divide-y divide-slate-200">
+              <div className="grid gap-3 p-4 md:grid-cols-[1fr_1fr_1.2fr]">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    Study
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-slate-900">
+                    BJS 1994 state-prison release cohort
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    Outcome and clock
+                  </p>
+                  <p className="mt-1 text-sm text-slate-700">
+                    Any rearrest within three years of prison release.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    What it showed
+                  </p>
+                  <p className="mt-1 text-sm text-slate-700">
+                    43% of released sex-offense prisoners were rearrested for
+                    any offense, compared with 68% of released non-sex-offense
+                    prisoners.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid gap-3 p-4 md:grid-cols-[1fr_1fr_1.2fr]">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    Study
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-slate-900">
+                    BJS 2005 rape/sexual-assault release cohort
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    Outcome and clock
+                  </p>
+                  <p className="mt-1 text-sm text-slate-700">
+                    Any arrest within nine years of prison release.
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                    What it showed
+                  </p>
+                  <p className="mt-1 text-sm text-slate-700">
+                    67% of rape/sexual-assault releases were arrested for any
+                    crime, compared with 84% of other released prisoners.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <GuideCallout tone="success" icon="✅" title="Strong public takeaway">
             <p>
-              STABLE-2007 focuses on changeable factors that generally move over a
-              longer period. ACUTE-2007 focuses on shorter-term changes that may
-              matter for ongoing supervision. Neither should be treated as if it
-              were answering the same question as a static baseline score.
+              People convicted of sexual offenses are not uniquely or uniformly
+              high-recidivism compared with other major offense groups. The
+              answer changes when the outcome changes, which is exactly why
+              “recidivism” must be defined before it is cited.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="specialization"
+          number="7"
+          title="Same-Type Recidivism and Offense Specialization"
+          subtitle="Elevated same-type rearrest is a broader criminal-recidivism pattern, not something unique to sexual offending."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              People released after many kinds of offenses are
+              disproportionately likely to be rearrested for the same type of
+              offense. Researchers often call this <strong>offense specialization</strong>.
+              It matters because sexual-specific rearrest is sometimes treated
+              as if it proves sexual offending is uniquely persistent. The data
+              show a broader pattern.
+            </p>
+
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.bjsAll1994.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                BJS 1994 all-prisoner recidivism report
+              </a>{" "}
+              included a same-offense relative-likelihood table across many
+              release-offense categories.
+            </p>
+          </GuideProse>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              ["Homicide", "1.4×"],
+              ["Rape", "4.2×"],
+              ["Other sexual assault", "5.9×"],
+              ["Robbery", "2.7×"],
+              ["Assault", "1.9×"],
+              ["Burglary", "3.7×"],
+              ["Theft", "3.0×"],
+              ["Motor-vehicle theft", "2.9×"],
+              ["Fraud", "5.3×"],
+              ["Stolen property", "3.4×"],
+              ["Drug offenses", "2.1×"],
+              ["Public-order offenses", "1.2×"],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+              >
+                <p className="text-sm font-semibold text-slate-600">{label}</p>
+                <p className="mt-1 text-2xl font-bold text-slate-950">
+                  {value}
+                </p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                  Relative likelihood of rearrest for the same offense type.
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <GuideCallout tone="research" icon="🧭" title="What this does — and does not — show">
+            <p>
+              The magnitude of specialization differs across offense categories.
+              Category definitions and base rates also differ. But the pattern
+              itself is not unique to sexual offending. Elevated
+              sexual-specific rearrest should be understood partly as offense
+              specialization, not as proof that sexual offending alone is
+              uniquely persistent.
             </p>
           </GuideCallout>
 
-          <GuideCallout
-            tone="warning"
-            icon="⚠️"
-            title="Dynamic improvement does not guarantee safety"
-          >
+          <SoftDivider />
+
+          <GuideProse>
+            <h3>Same-type rates are not uniquely high either</h3>
             <p>
-              A lower dynamic score can be meaningful evidence of change without
-              proving that no future offending will occur. The same is true in the
-              other direction: a concerning rating is not certainty that an
-              offense will occur.
+              The{" "}
+              <a
+                href={sourceLinks.bjsAll2012.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                BJS 2012 prisoner recidivism 5-year follow-up
+              </a>{" "}
+              reported that 4% of prisoners released after rape or sexual
+              assault were arrested for rape or sexual assault within five
+              years. In the same report, same-type rearrest was much higher for
+              broader categories such as assault, property, drug, and
+              public-order releases.
+            </p>
+
+            <p>
+              The point is not to force a perfect ranking across differently
+              sized categories. The point is simpler: raw same-type recidivism
+              data do not support the claim that sexual offenses are uniquely
+              characterized by repetition of the same offense type.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="offense-categories"
+          number="8"
+          title="Why Offense Categories Matter"
+          subtitle="Broad sexual-offense statistics should not be casually applied to every subgroup."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              “Sex offense” is a broad legal and social category. It can include
+              contact offenses, non-contact offenses, CSEM-only offenses,
+              solicitation-related cases, registration-status offenses, and
+              mixed-history cases. Those groups should not be treated as if they
+              are empirically identical.
+            </p>
+          </GuideProse>
+
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900">
+                Contact-offense groups
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                May include people whose index offense involved physical contact
+                or attempted contact. Comparator reports often use categories
+                such as rape or sexual assault.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900">
+                CSEM-only groups
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                Should be read through CSEM-specific evidence when available,
+                not automatically replaced with broader contact-offense
+                statistics.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900">
+                Broader mixed groups
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                May combine different offense histories, ages, jurisdictions,
+                supervision settings, and measurement rules.
+              </p>
+            </div>
+          </div>
+
+          <GuideCallout tone="reminder" icon="📍" title="Use the closest population you can defend">
+            <p>
+              A broad prison-release sexual-offense statistic may be useful for
+              a broad public claim. It is usually not the best evidence for a
+              narrow person-specific or subgroup-specific claim.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
           id="csem"
-          number="7"
-          title="CSEM-Specific Assessment"
-          subtitle="Specialized tools should be judged within the populations and questions they were designed for."
+          number="9"
+          title="CSEM-Specific Evidence Is Its Own Empirical Lane"
+          subtitle="CSEM-only populations should not be treated as interchangeable with broader sexual-offense populations."
         />
 
         <GuideSectionCard>
           <GuideProse>
-            <h3>CPORT</h3>
+            <p>
+              CSEM stands for child sexual exploitation material. CSEM cases are
+              serious. They also require careful evidence use. Broad
+              contact-offense statistics should not be casually applied to
+              CSEM-only populations when CSEM-specific recidivism evidence is
+              available.
+            </p>
           </GuideProse>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What question does it ask?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                CPORT estimates relative sexual-recidivism risk among adult men
-                convicted of CSEM offenses.
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                Federal supervision cohort
+              </p>
+              <h3 className="mt-2 text-lg font-bold text-slate-900">
+                5,768 federal male CSEM supervisees
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                The{" "}
+                <a
+                  href={sourceLinks.federalCsem.href}
+                  className={linkClass}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Federal Probation CSEM supervision study
+                </a>{" "}
+                reported a fixed 60-month follow-up. In that cohort, 4.5% were
+                rearrested for any sexual offense, and fewer than 1% were
+                rearrested for a contact sex crime.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                <strong>Scope:</strong> rearrest, five years, federal male CSEM
+                supervision cohort — not lifetime risk and not all undetected
+                conduct.
               </p>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-slate-900">What is it?</h4>
-              <p className="mt-1 text-slate-700">
-                A primarily static actuarial tool using seven binary factors
-                involving age, criminal or supervision history, contact sexual
-                offending, sexual-interest evidence, and content indicators.
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                Pooled online/CSEM literature
               </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Where might you encounter it?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                In assessments involving adult men with CSEM-related offenses,
-                where a CSEM-specific empirical risk estimate is being considered.
+              <h3 className="mt-2 text-lg font-bold text-slate-900">
+                Prospective online-offense follow-up studies
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                The{" "}
+                <a
+                  href={sourceLinks.onlineOffenders.href}
+                  className={linkClass}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Seto, Hanson, and Babchishin online-offense meta-analyses
+                </a>{" "}
+                reported 4.6% new sexual offending, 2.0% new contact sexual
+                offending, and 3.4% new CSEM offending over follow-up periods of
+                roughly 1.5 to 6 years.
               </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What output does it produce?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                A summed score used for relative-risk grouping. The score is not,
-                by itself, an individualized probability.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What does the broader validation evidence say?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                The workbook includes development and validation studies showing
-                meaningful predictive discrimination, including an independent
-                validation AUC of .70 in a small 80-person cohort and combined
-                sample AUCs of .72 for any sexual recidivism and .74 for a new
-                CSEM offense.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What happened in the federal cohort?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                In a large federal CSEM validation cohort, CPORT produced modest
-                discrimination for five-year sexual rearrest: AUC .62, with a 95%
-                confidence interval of .58–.65.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                Why does population fit matter?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                A Spanish validation observed a much lower five-year sexual
-                recidivism base rate than the development sample and found
-                calibration concerns relative to developer expectations.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-slate-900">
-                What coding issue matters in the federal study?
-              </h4>
-              <p className="mt-1 text-slate-700">
-                The federal implementation used MITRE-extracted data elements that
-                differed from some standard CPORT scoring. That limits how broadly
-                the federal result should be generalized.
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                <strong>Scope:</strong> pooled online-offense studies,
+                prospective follow-up, fixed study windows — not lifetime risk.
               </p>
             </div>
           </div>
 
-          <GuideCallout
-            tone="research"
-            icon="⚖️"
-            title="CPORT is neither scientifically worthless nor a universal answer"
-          >
+          <GuideCallout tone="research" icon="🧾" title="Past hidden conduct is a different question">
             <p>
-              The workbook supports a mixed, population-sensitive reading. CPORT
-              has real empirical validation evidence; performance and calibration
-              vary; federal implementation produced only modest discrimination;
-              and later or stronger studies should not be erased because one
-              cohort was weaker.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <h3>CASIC</h3>
-            <p>
-              CASIC is a structured proxy/index related to evidence of sexual
-              interest in children. It was developed in part to operationalize a
-              CPORT-related factor when direct admission or other evidence is
-              unavailable.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> Within CPORT-related
-              CSEM assessment work where an evaluator needs a structured way to
-              code the relevant sexual-interest factor.
-            </p>
-            <p>
-              The workbook describes CASIC as relying on historical or behavioral
-              correlates, not as a stand-alone recidivism instrument.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="urgent"
-            icon="🚫"
-            title="CASIC is not a diagnosis"
-          >
-            <p>
-              A CASIC threshold does not diagnose pedophilia, does not establish
-              that a person will sexually offend, and should not be presented as a
-              stand-alone recidivism probability.
+              Some self-report studies of online-offense populations found more
+              prior undisclosed contact behavior than official records captured.
+              That is a history or prevalence finding. It is not the same as a
+              prospective recidivism rate. A study finding previously
+              undisclosed behavior does not establish that the same percentage
+              will commit a future offense.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="federal-general"
-          number="8"
-          title="General Federal Risk / Needs Assessment"
-          subtitle="General recidivism tools can contain relevant information without becoming specialized sexual-risk instruments."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>PCRA and PCRA-R</h3>
-            <p>
-              The federal Post Conviction Risk Assessment family is used for
-              general recidivism risk, criminogenic needs, supervision planning,
-              and allocation of intervention resources in federal post-conviction
-              supervision.
-            </p>
-            <p>
-              It combines criminal-history information with dynamic needs and
-              officer-assessment fields.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> In federal
-              post-conviction supervision, where probation officers use a general
-              risk-and-needs framework to support supervision planning.
-            </p>
-            <p>
-              That scope distinction matters. PCRA can include factors that
-              correlate with sexual recidivism, but its primary validated purpose
-              is general federal risk and needs.
-            </p>
-            <p>
-              Correlation with a specialized outcome does not transform it into a
-              specialized sexual-risk probability calculator.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="warning"
-            icon="🎯"
-            title="Do not make PCRA answer a question it was not built to answer"
-          >
-            <p>
-              In the federal CSEM cohort, PCRA&apos;s AUC for five-year sexual
-              rearrest was approximately .61. That is a discrimination result for
-              that cohort and outcome. It does not tell a court one individual
-              person&apos;s probability of committing another sex offense.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="change-sensitive"
-          number="9"
-          title="Treatment Progress / Change-Sensitive Assessment"
-          subtitle="These instruments are designed to capture information that a purely historical score cannot."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h3>SOTIPS</h3>
-            <p>
-              The Sex Offender Treatment Intervention and Progress Scale is a
-              structured, change-sensitive assessment used in treatment and
-              supervision contexts. It measures dynamic, treatment-relevant
-              factors over time rather than asking only what happened in the past.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> In community treatment
-              or supervision where practitioners are monitoring treatment-relevant
-              needs and change over time.
-            </p>
-            <p>
-              The primary validation study in the workbook involved 759 adult men
-              under correctional supervision in Vermont community treatment.
-              SOTIPS ratings predicted sexual, violent, and any recidivism and
-              return to prison.
-            </p>
-            <p>
-              Reductions in SOTIPS scores were associated with lower recidivism,
-              and combining SOTIPS with Static-99R improved prediction in that
-              validation study.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="research"
-            icon="📊"
-            title="Read the SOTIPS AUC range carefully"
-          >
-            <p>
-              The reported SOTIPS AUC range of .60–.85 spans different outcomes
-              and assessment times. The combined SOTIPS + Static-99R range of
-              .67–.89 also spans multiple outcomes. Neither range should be
-              presented as one single sexual-recidivism AUC.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <h3>VRS-SO</h3>
-            <p>
-              The Violence Risk Scale–Sexual Offense version combines static and
-              dynamic information. It is designed to assess baseline risk,
-              treatment targets, and treatment-related change and is more
-              intensive than a quick screening instrument.
-            </p>
-            <p>
-              <strong>Where might you encounter it?</strong> In more intensive
-              treatment or evaluation settings where baseline risk and
-              treatment-related change are both being assessed.
-            </p>
-            <p>
-              The workbook&apos;s foundational validation involved 321 adult men
-              and found prediction of sexual and nonsexual violent recidivism over
-              an average follow-up of about ten years.
-            </p>
-            <p>
-              Later multisite work developed updated risk categories and five- and
-              ten-year recidivism estimates using pretreatment risk and change
-              information.
-            </p>
-          </GuideProse>
-
-          <GuideCallout
-            tone="warning"
-            icon="⚠️"
-            title="Change scores are evidence, not verdicts"
-          >
-            <p>
-              A VRS-SO change score does not prove someone is safe or unsafe.
-              Treatment-related change can matter while the resulting inference
-              remains probabilistic and group based.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="spj"
+          id="individual-variation"
           number="10"
-          title="Where Structured Professional Judgment Fits"
-          subtitle="Structured professional judgment is not the same thing as unsupported clinical intuition."
+          title="Age, Criminal History, and Individual Variation"
+          subtitle="Offense label alone is a poor shorthand for individual recidivism risk."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              SPJ uses defined risk factors and a structured process, while leaving
-              room for professional synthesis. That makes it meaningfully
-              different from an unstructured impression such as “this person feels
-              dangerous” or “my experience tells me the score is wrong.”
+              Group statistics are useful, but they are not individual certainty.
+              Age, prior record, supervision history, offense history, and other
+              empirically relevant factors can materially change observed
+              recidivism likelihood.
             </p>
+
             <p>
-              The meta-analytic evidence in the workbook found empirically derived
-              actuarial approaches more accurate than unstructured professional
-              judgment across sexual, violent, and any recidivism outcomes.
-            </p>
-            <p>
-              SPJ performance was intermediate between actuarial and unstructured
-              judgment in that synthesis.
-            </p>
-            <p>
-              The practical lesson is not “scores only.” Individualized
-              professional information can matter.
-            </p>
-            <p>
-              The lesson is that a professional opinion does not become
-              individualized science merely because a professional expresses it. A
-              defensible assessment should connect judgment to a structured method,
-              relevant case facts, and an empirical baseline.
+              The{" "}
+              <a
+                href={sourceLinks.ussc2010.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                USSC federal offenders released in 2010 report
+              </a>{" "}
+              illustrates why offense labels are incomplete. In that federal
+              cohort, age and Criminal History Category were strongly associated
+              with rearrest differences. The matrix-supported takeaway is not
+              that any one factor explains everything; it is that category labels
+              alone are too blunt for individual or policy decisions.
             </p>
           </GuideProse>
 
-          <GuideCallout
-            tone="legal"
-            icon="↔️"
-            title="Separate instrument output from professional judgment"
-          >
+          <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <h3 className="text-lg font-bold text-slate-900">
+              A better way to think about individual variation
+            </h3>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {[
+                {
+                  label: "Offense category",
+                  text: "A starting point, not the whole risk picture.",
+                },
+                {
+                  label: "Age",
+                  text: "Risk patterns change across the life course.",
+                },
+                {
+                  label: "Criminal history",
+                  text: "Prior record can separate risk levels within the same broad category.",
+                },
+                {
+                  label: "Change over time",
+                  text: "Treatment, supervision, stability, and offense-free time can matter.",
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-xl border border-slate-200 bg-slate-50 p-4"
+                >
+                  <p className="text-sm font-bold text-slate-900">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <GuideCallout tone="legal" icon="⚖️" title="Connect this to risk assessment">
             <p>
-              If a report says the actuarial result is one thing but the final
-              classification or recommendation is another, ask where the
-              difference came from. Was another instrument used? Were dynamic
-              factors considered? Was there a formal override? Was the change
-              driven by policy rather than the assessment itself?
+              Recidivism evidence shows what happened in studied groups. Risk
+              assessment asks how risk is estimated for a person or subgroup.
+              For score interpretation, calibration, and tool limits, use
+              SOLAR’s companion{" "}
+              <Link
+                to="/resources/understanding-sex-offense-risk-assessment"
+                className={linkClass}
+              >
+                Understanding Sex-Offense Risk Assessment
+              </Link>{" "}
+              guide.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="worked-example"
+          id="treatment-change"
           number="11"
-          title="Worked Example: One Federal CSEM Cohort"
-          subtitle="A bounded example of outcome definition, base rates, population fit, and modest discrimination."
+          title="Treatment, Change, and Desistance"
+          subtitle="Risk is not fixed destiny. Structured intervention can change outcomes on average."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The federal study in the workbook examined a validation cohort of
-              <strong> 5,768 male federal CSEM supervisees</strong> using a fixed
-              <strong> 60-month follow-up</strong> beginning at supervision start
-              or initial PCRA assessment.
+              Recidivism evidence should not be read as permanent fate.
+              Structured intervention, supervision practices, age, offense-free
+              time, and stability can all matter. The public-safety question is
+              not only “What was the original label?” It is also “What has
+              changed, what supports stability, and what does the best available
+              evidence show now?”
             </p>
 
-            <ul>
-              <li>
-                <strong>Outcome:</strong> rearrest for any new sexual offense.
-              </li>
-              <li>
-                <strong>Observed five-year rate:</strong> 4.5% (262 of 5,768).
-              </li>
-              <li>
-                <strong>Contact sex-crime rearrest:</strong> fewer than 1%.
-              </li>
-              <li>
-                <strong>PCRA discrimination:</strong> AUC .61 (95% CI .58–.64).
-              </li>
-              <li>
-                <strong>CPORT discrimination:</strong> AUC .62 (95% CI .58–.65).
-              </li>
-            </ul>
-
             <p>
-              Those facts teach several different things at once. The outcome was
-              <em> rearrest</em>, not all offending. The population was male,
-              federal, and CSEM-specific. The follow-up was fixed at five years.
-              The sexual-rearrest base rate was low. And both AUCs showed modest
-              ranking ability rather than individualized certainty.
+              The{" "}
+              <a
+                href={sourceLinks.treatmentMetaAnalysis.href}
+                className={linkClass}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Schmucker and Lösel treatment-effectiveness meta-analysis
+              </a>{" "}
+              found lower average sexual recidivism among treated groups than
+              comparison groups across eligible studies. The supported claim is
+              restrained but important: treatment can reduce risk on average. It
+              is not a guarantee for any one person.
             </p>
           </GuideProse>
 
-          <GuideCallout
-            tone="research"
-            icon="🧪"
-            title="What this example does not show"
-          >
-            <p>
-              It does not prove CPORT is useless, prove PCRA is a sexual-risk
-              instrument, establish lifetime risk, or turn either AUC into a
-              probability.
-            </p>
-            <p>
-              The federal CPORT data extraction also differed from some standard
-              scoring elements, which limits how broadly the result should be
-              generalized.
-            </p>
-          </GuideCallout>
+          <PullQuoteBlock
+            quote="Risk is not fixed destiny. The evidence supports individualized, change-aware thinking rather than permanent categorical assumptions."
+            attribution="SOLAR evidence-literacy principle"
+          />
 
-          <GuideCallout
-            tone="neutral"
-            icon="🗂️"
-            title="Cohort boundary"
-          >
+          <GuideCallout tone="success" icon="🌱" title="The practical public-safety point">
             <p>
-              This worked example does not combine the separate nearly
-              6,900-person FY2017–FY2021 federal supervision-override cohort with
-              the 5,768-person validation cohort. They answer different questions
-              and should remain separate.
+              Stability, treatment, supervision quality, housing, work, family
+              support, and time offense-free are not soft extras. They are part
+              of serious public-safety thinking because they affect the real
+              conditions under which people live.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="questions"
+          id="worked-examples"
           number="12"
-          title="Questions to Ask When Someone Gives You a Risk Score"
-          subtitle="You do not need to self-score a professional instrument to ask whether it is being interpreted responsibly."
+          title="Worked Examples"
+          subtitle="Apply the evidence-literacy questions to real datasets before accepting the headline version."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <h3>Use the five-step workflow first</h3>
-            <p>
-              <strong>Identify → Translate → Compare → Check → Question.</strong>
-            </p>
-            <p>
-              That short workflow gets you oriented. The fuller checklist below is
-              for the details that matter when a score affects treatment,
-              supervision, sentencing, litigation, reporting, or policy.
-            </p>
-          </GuideProse>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                Example 1
+              </p>
+              <h3 className="mt-2 text-xl font-bold text-slate-900">
+                BJS comparator evidence
+              </h3>
 
+              <GuideProse>
+                <p>
+                  A common claim says people convicted of sexual offenses are
+                  uniquely high-recidivism. The{" "}
+                  <a
+                    href={sourceLinks.bjsSex2005.href}
+                    className={linkClass}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    BJS 2005 rape/sexual-assault follow-up
+                  </a>{" "}
+                  shows why that claim is too broad.
+                </p>
+
+                <ul>
+                  <li>
+                    <strong>Population:</strong> people released from state
+                    prison in 2005 after rape or sexual assault, compared with
+                    other released prisoners.
+                  </li>
+                  <li>
+                    <strong>Outcome:</strong> any arrest and rape/sexual-assault
+                    arrest.
+                  </li>
+                  <li>
+                    <strong>Follow-up:</strong> nine years after prison release.
+                  </li>
+                  <li>
+                    <strong>What it showed:</strong> lower overall arrest than
+                    other released prisoners, but higher rape/sexual-assault
+                    arrest.
+                  </li>
+                </ul>
+
+                <p>
+                  The accurate interpretation is not “no risk” and not “unique
+                  inevitable recidivism.” It is: the answer depends on the
+                  outcome being measured.
+                </p>
+              </GuideProse>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                Example 2
+              </p>
+              <h3 className="mt-2 text-xl font-bold text-slate-900">
+                Federal CSEM cohort
+              </h3>
+
+              <GuideProse>
+                <p>
+                  A broad sexual-offense statistic should not automatically be
+                  applied to CSEM-only cases. The{" "}
+                  <a
+                    href={sourceLinks.federalCsem.href}
+                    className={linkClass}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    federal CSEM supervision study
+                  </a>{" "}
+                  gives a more specific lane.
+                </p>
+
+                <ul>
+                  <li>
+                    <strong>Population:</strong> 5,768 federal male CSEM
+                    supervisees.
+                  </li>
+                  <li>
+                    <strong>Outcome:</strong> rearrest for any sexual offense
+                    and rearrest for a contact sex crime.
+                  </li>
+                  <li>
+                    <strong>Follow-up:</strong> fixed 60-month period.
+                  </li>
+                  <li>
+                    <strong>What it showed:</strong> 4.5% rearrest for any
+                    sexual offense and fewer than 1% rearrest for a contact sex
+                    crime.
+                  </li>
+                </ul>
+
+                <p>
+                  The accurate interpretation is not a lifetime safety claim. It
+                  is a fixed-period, official-detection finding showing why
+                  CSEM-only populations need subgroup-specific evidence.
+                </p>
+              </GuideProse>
+            </div>
+          </div>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="final-checklist"
+          number="13"
+          title="Questions to Ask Before Accepting a Recidivism Statistic"
+          subtitle="Use this as a practical guardrail when reading articles, policy testimony, court filings, supervision claims, or advocacy materials."
+        />
+
+        <GuideSectionCard>
           <GuideChecklist
-            id="risk-score-questions"
-            title="Full risk-score review checklist"
+            id="recidivism-statistic-checklist"
+            title="Before accepting the number, ask"
             columns={1}
             items={[
+              { id: "who", label: "Who was studied?" },
+              { id: "population", label: "What offense population was studied?" },
               {
-                id: "instrument",
-                label:
-                  "What instrument was used, and what question was it designed to answer?",
+                id: "counted",
+                label: "What counted as recidivism?",
               },
               {
-                id: "eligibility",
+                id: "basis",
                 label:
-                  "Was the person actually eligible to be scored with it under current rules?",
+                  "Was it rearrest, charge, reconviction, reincarceration, self-report, or something else?",
               },
               {
-                id: "version",
-                label:
-                  "Which version, coding rules, and norms were used?",
+                id: "length",
+                label: "How long were people followed?",
               },
               {
-                id: "population",
-                label:
-                  "What population was the tool validated on, and how well does that population fit this case?",
+                id: "start",
+                label: "When did follow-up begin?",
               },
               {
-                id: "outcome",
+                id: "overall-same-type",
                 label:
-                  "What exact outcome does it predict or measure: rearrest, reconviction, charge, reincarceration, treatment need, or something else?",
+                  "Is this overall recidivism, sexual-specific recidivism, or same-type recidivism?",
               },
               {
-                id: "followup",
+                id: "absolute-relative",
                 label:
-                  "Over what follow-up period, and starting from what point?",
+                  "Is the statement using absolute rates, relative comparisons, or both?",
               },
               {
-                id: "output",
-                label:
-                  "Is this score being presented as relative risk, an absolute rate, a risk category, or something else?",
+                id: "comparison",
+                label: "What is the comparison group?",
               },
               {
-                id: "reference",
+                id: "comparable",
                 label:
-                  "What reference group generated any percentage being quoted?",
+                  "Is the population comparable to the person, subgroup, or policy being discussed?",
               },
               {
-                id: "dynamic",
+                id: "history-future",
                 label:
-                  "Were current dynamic or treatment-change factors considered where relevant?",
+                  "Is historical undisclosed conduct being confused with future offending?",
               },
               {
-                id: "scorer",
+                id: "individual-certainty",
                 label:
-                  "Who scored the instrument, and what training or coding process was used?",
-              },
-              {
-                id: "override",
-                label:
-                  "Were any overrides or professional adjustments applied? If so, what specific evidence supported them?",
-              },
-              {
-                id: "purpose",
-                label:
-                  "Is the result being used for a purpose the tool was not designed or validated for?",
-              },
-              {
-                id: "certainty",
-                label:
-                  "Is someone treating a group estimate, AUC, or risk category as an individualized certainty?",
+                  "Is a group statistic being treated as an individual prediction?",
               },
             ]}
           />
 
-          <VerifyBeforeActing
-            whoToAsk="The evaluator or agency using the score, plus counsel or another qualified professional when the score affects a legal decision."
-            whatToAsk="Ask for the instrument name, version, eligibility basis, coding rules, outcome, follow-up period, reference group, and any override rationale."
-            whatToSave="Save the written report, score sheet if disclosure is permitted, cited norms, evaluator explanation, corrections, and any written response to a disputed coding item."
+          <GuideCallout tone="warning" icon="🚫" title="What recidivism statistics do not mean">
+            <p>
+              A group-level rate does not tell you with certainty what one
+              person will do. A fixed-period follow-up rate is not a lifetime
+              rate. A rearrest rate is not all offending. A CSEM-only finding is
+              not automatically interchangeable with a broad contact-offense
+              finding. A relative-risk statement is not complete until the
+              absolute rates are visible.
+            </p>
+          </GuideCallout>
+
+          <ScriptBox
+            title="A calm way to correct an overbroad claim"
+            tone="neutral"
+            context="Use this when someone treats one number as if it settles the entire question."
+            script={`That statistic may be important, but it only answers the question it actually measured. We need to know the population, outcome definition, follow-up length, starting point, and comparison group before using it as a public claim.`}
+          />
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="resources"
+          number="14"
+          title="Resources and Next Steps"
+          subtitle="Use these sources to verify claims, compare datasets, and keep moving through SOLAR’s evidence guides."
+        />
+
+        <GuideSectionCard>
+          <ResourceLinkGrid
+            title="Key public evidence sources"
+            resources={[
+              {
+                label: "BJS 2005 rape/sexual-assault 9-year follow-up",
+                description:
+                  "Official same-cohort comparator evidence for overall arrest and rape/sexual-assault arrest after prison release.",
+                href: sourceLinks.bjsSex2005.href,
+                badge: "Official",
+              },
+              {
+                label: "BJS 1994 sex-offender prison-release report",
+                description:
+                  "Official three-year comparator evidence often cited for the 5.3% versus 1.3% sexual rearrest example.",
+                href: sourceLinks.bjsSex1994.href,
+                badge: "Official",
+              },
+              {
+                label: "BJS 1994 all-prisoner recidivism report",
+                description:
+                  "Official same-offense specialization table across multiple offense categories.",
+                href: sourceLinks.bjsAll1994.href,
+                badge: "Official PDF",
+              },
+              {
+                label: "BJS 2012 prisoner recidivism 5-year follow-up",
+                description:
+                  "Official same-type rearrest comparator data across broad offense categories.",
+                href: sourceLinks.bjsAll2012.href,
+                badge: "Official PDF",
+              },
+              {
+                label: "USSC federal offenders released in 2010",
+                description:
+                  "Federal recidivism data showing variation by offense type, age, and criminal history.",
+                href: sourceLinks.ussc2010.href,
+                badge: "Official PDF",
+              },
+              {
+                label: "Federal Probation CSEM supervision study",
+                description:
+                  "Large federal CSEM-specific cohort with fixed 60-month follow-up.",
+                href: sourceLinks.federalCsem.href,
+                badge: "Government journal",
+              },
+            ]}
           />
 
-          <GuideCallout
-            tone="legal"
-            icon="📌"
-            title="Do not turn this guide into a self-scoring exercise"
-          >
-            <p>
-              Some instruments require professional training, controlled coding
-              rules, or records that a reader may not have. The goal here is to
-              understand and question interpretation, not to produce an unofficial
-              score and assume it is valid.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="does-not-mean"
-          number="13"
-          title="What Risk Language Does Not Mean"
-          subtitle="These are the most common interpretation errors to stop before they spread."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <ul>
-              <li>
-                <strong>“Low risk” does not mean zero risk.</strong>
-              </li>
-              <li>
-                <strong>
-                  “High relative risk” does not automatically mean a high absolute
-                  probability.
-                </strong>
-              </li>
-              <li>
-                <strong>
-                  AUC .70 does not mean a 70% chance of recidivism.
-                </strong>
-              </li>
-              <li>
-                <strong>
-                  A group recidivism rate is not an individual destiny.
-                </strong>
-              </li>
-              <li>
-                <strong>A static score is not moral severity.</strong>
-              </li>
-              <li>
-                <strong>CASIC is not a pedophilia diagnosis.</strong>
-              </li>
-              <li>
-                <strong>CPORT is not proof someone will offend.</strong>
-              </li>
-              <li>
-                <strong>
-                  PCRA is not a specialized sexual-risk probability calculator.
-                </strong>
-              </li>
-              <li>
-                <strong>
-                  Dynamic improvement does not guarantee no future offending.
-                </strong>
-              </li>
-              <li>
-                <strong>
-                  A professional recommendation is not automatically the same thing
-                  as the instrument result.
-                </strong>
-              </li>
-              <li>
-                <strong>
-                  Unstructured intuition is not individualized science simply
-                  because a professional expresses it.
-                </strong>
-              </li>
-            </ul>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="sources"
-          number="14"
-          title="Sources and Verification"
-          subtitle="The evidence below is the public-facing source backbone for the guide."
-        />
-
-        <GuideSectionCard>
-          <GuideCallout
-            tone="research"
-            icon="📚"
-            title="How to read the evidence"
-          >
-            <p>
-              Each numerical claim in this guide is tied to the canonical SOLAR
-              Evidence Matrix and its verified source record. Population, outcome,
-              follow-up, and important caveats are preserved in the text rather
-              than collapsed into a generic “recidivism rate.”
-            </p>
-          </GuideCallout>
+          <RelatedGuides
+            guides={[
+              {
+                title: "Understanding Sex-Offense Risk Assessment",
+                description:
+                  "Use this companion guide when the question is how risk tools, scores, AUC, calibration, and structured assessment should be interpreted.",
+                to: "/resources/understanding-sex-offense-risk-assessment",
+              },
+              {
+                title: "Reentry Planning Guide",
+                description:
+                  "Use this when the practical question is how to build stability after incarceration, supervision, or registry-related disruption.",
+                to: "/resources/reentry-planning",
+              },
+              {
+                title: "Family Support Guide",
+                description:
+                  "Use this when loved ones need plain-language help understanding evidence, fear, boundaries, and support.",
+                to: "/resources/family-support",
+              },
+            ]}
+          />
 
           <SourceList
-            note="Source inventory drawn from the canonical SOLAR Evidence Matrix. Workbook records list these sources as verified through August 22–23, 2026."
+            note="Sources below were selected from the canonical SOLAR Evidence Matrix and public URLs were live-checked during this sandbox drafting pass where browsing access allowed."
             sources={[
               {
-                label:
-                  "Federal CSEM risk-tool study — Cohen (2023), Federal Probation",
-                href: sourceLinks.federalCsem,
+                label: "Alper & Durose, BJS — Recidivism of Sex Offenders Released from State Prison: A 9-Year Follow-Up (2005–14)",
+                href: sourceLinks.bjsSex2005.href,
                 description:
-                  "Federal 5,768-person CSEM validation cohort; five-year sexual rearrest; PCRA and CPORT discrimination; federal implementation limitations.",
+                  "Supports same-cohort comparison of overall arrest and rape/sexual-assault arrest among 2005 rape/sexual-assault releases and other released prisoners.",
               },
               {
-                label:
-                  "Hanson & Morton-Bourgon (2009) — risk-assessment accuracy meta-analysis",
-                href: sourceLinks.actuarialMeta,
+                label: "Langan, Schmitt & Durose, BJS — Recidivism of Sex Offenders Released from Prison in 1994",
+                href: sourceLinks.bjsSex1994.href,
                 description:
-                  "Comparative evidence on actuarial assessment, structured professional judgment, and unstructured professional judgment.",
+                  "Supports the 43% versus 68% overall rearrest comparison and the 5.3% versus 1.3% sex-crime rearrest example.",
               },
               {
-                label: "Helmus et al. (2012) — revised age weights",
-                href: sourceLinks.staticAge,
+                label: "Langan & Levin, BJS — Recidivism of Prisoners Released in 1994",
+                href: sourceLinks.bjsAll1994.href,
                 description:
-                  "Age-related revision evidence for Static-99/Static-2002 and older-person fit.",
+                  "Supports offense-specialization relative-likelihood comparisons across homicide, rape, sexual assault, robbery, assault, property, fraud, drug, and public-order categories.",
               },
               {
-                label:
-                  "Helmus et al. (2012) — Static absolute rates across samples",
-                href: sourceLinks.staticCalibration,
+                label: "Antenangeli & Durose, BJS — Recidivism of Prisoners Released in 34 States in 2012",
+                href: sourceLinks.bjsAll2012.href,
                 description:
-                  "Key calibration evidence: relative accuracy can be more stable than absolute recidivism rates across samples.",
+                  "Supports same-type rearrest comparisons across broad offense categories, including rape/sexual assault, assault, property, drug, and public-order releases.",
               },
               {
-                label: "Static-99R Coding Rules Revised 2016",
-                href: sourceLinks.staticCoding,
+                label: "United States Sentencing Commission — Recidivism of Federal Offenders Released in 2010",
+                href: sourceLinks.ussc2010.href,
                 description:
-                  "Eligibility, coding, proper version use, and current-norm guidance.",
+                  "Supports federal offense-type, age, and criminal-history heterogeneity claims.",
               },
               {
-                label: "Static-99R Evaluators Workbook",
-                href: sourceLinks.staticWorkbook,
+                label: "United States Sentencing Commission — Federal Sentencing of Child Pornography: Non-Production Offenses",
+                href: sourceLinks.usscCsem.href,
                 description:
-                  "Reference-group, risk-level, relative-risk, and normative interpretation guidance.",
+                  "Supports CSEM-specific federal non-production child-pornography recidivism context.",
               },
               {
-                label:
-                  "Hanson, Helmus & Harris (2015) — STABLE-2007 prospective study",
-                href: sourceLinks.stable,
+                label: "Cohen, Federal Probation — Building a Risk Tool for Federal CSEM Supervisees",
+                href: sourceLinks.federalCsem.href,
                 description:
-                  "Prospective evidence on dynamic risk/need assessment alongside static measures.",
+                  "Supports the 5,768-person federal male CSEM supervision cohort, 60-month follow-up, 4.5% sexual rearrest, and fewer-than-1% contact-sex-crime rearrest findings.",
               },
               {
-                label: "Seto & Eke (2015) — CPORT development",
-                href: sourceLinks.cportDevelopment,
+                label: "Harris & Hanson — Sex Offender Recidivism: A Simple Question",
+                href: sourceLinks.simpleQuestion.href,
                 description:
-                  "Development of the CSEM-specific CPORT and its initial five-year outcome evidence.",
+                  "Supports long-follow-up sexual recidivism benchmarks and the principle that rates vary by follow-up length and subgroup.",
               },
               {
-                label: "Eke, Helmus & Seto (2019) — CPORT validation",
-                href: sourceLinks.cportValidation,
+                label: "Hanson & Morton-Bourgon — Predictors of Sexual Recidivism: An Updated Meta-Analysis",
+                href: sourceLinks.updatedMetaAnalysis.href,
                 description:
-                  "Independent validation and combined-sample discrimination evidence.",
+                  "Supports outcome-measurement and general sexual-recidivism evidence used as background in the matrix.",
               },
               {
-                label: "Soldino et al. (2021) — Spanish CPORT validation",
-                href: sourceLinks.cportSpanish,
+                label: "Seto, Hanson & Babchishin — Contact Sexual Offending by Men With Online Sexual Offenses",
+                href: sourceLinks.onlineOffenders.href,
                 description:
-                  "Low base-rate validation context and calibration concerns relative to developer expectations.",
+                  "Supports pooled online/CSEM prospective findings and the distinction between prior hidden conduct and future recidivism.",
               },
               {
-                label:
-                  "Critical review of CPORT use in CSEM-exclusive cases (2023)",
-                href: sourceLinks.cportCritical,
+                label: "Schmucker & Lösel — The Effects of Sexual Offender Treatment on Recidivism",
+                href: sourceLinks.treatmentMetaAnalysis.href,
                 description:
-                  "Population-specific limitations, small recidivist counts, missing data, and U.S.-validation concerns at the time of review.",
-              },
-              {
-                label:
-                  "Johnson et al. (2011) — PCRA construction and validation",
-                href: sourceLinks.pcra,
-                description:
-                  "Primary scope source for PCRA as a general federal post-conviction risk-and-needs instrument.",
-              },
-              {
-                label:
-                  "McGrath, Lasher & Cumming (2012) — SOTIPS validation",
-                href: sourceLinks.sotips,
-                description:
-                  "Primary 759-person validation source for SOTIPS predictive validity, change, and incremental value with Static-99R.",
-              },
-              {
-                label:
-                  "Olver et al. (2007) — VRS-SO validity and reliability",
-                href: sourceLinks.vrsFoundational,
-                description:
-                  "Foundational validation for VRS-SO risk and treatment-change assessment.",
-              },
-              {
-                label:
-                  "Olver et al. (2018) — VRS-SO updated risk categories",
-                href: sourceLinks.vrsUpdated,
-                description:
-                  "Multisite updated risk categories and five- and ten-year recidivism estimates incorporating pretreatment risk and change.",
+                  "Supports the restrained treatment-and-change claim that structured intervention can reduce sexual recidivism on average.",
               },
             ]}
           />
