@@ -136,9 +136,12 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </p>
 
           <p>
-            This guide is a companion to SOLAR’s risk-assessment guide. The risk
-            guide asks, “What does this score or tool mean?” This guide asks,
-            “What do observed reoffending data actually show?”
+            This guide is a companion to SOLAR’s{" "}
+            <Link to="/resources/risk-assessment-guide" className={linkClass}>
+              risk-assessment guide
+            </Link>
+            . The risk guide asks, “What does this score or tool mean?” This
+            guide asks, “What do observed reoffending data actually show?”
           </p>
 
           <p>
@@ -169,6 +172,11 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <span>
               Check the <strong>follow-up</strong>: three years, five years,
               nine years, fifteen years, or another period.
+            </span>,
+            <span>
+              Check the <strong>starting point</strong>: prison release,
+              supervision start, assessment date, treatment completion, or
+              another milestone.
             </span>,
             <span>
               Check the <strong>comparison</strong>: compared with whom, in the
@@ -254,6 +262,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </a>
             <a className={linkClass} href="#specialization">
               Same-type specialization
+            </a>
+            <a className={linkClass} href="#offense-categories">
+              Why offense categories matter
             </a>
             <a className={linkClass} href="#csem">
               CSEM-specific evidence
@@ -472,7 +483,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
           id="overall-sexual"
           number="4"
           title="Overall Recidivism and Sexual Recidivism Are Different Questions"
-          subtitle="A group can have lower overall recidivism than many other groups while still showing elevated sexual-specific rearrest compared with nonsexual-offense groups."
+          subtitle="Broad claims about being uniquely high-recidivism should not be built from a narrower sexual-specific outcome."
         />
 
         <GuideSectionCard>
@@ -486,6 +497,13 @@ export default function ResourceGuideSandbox(): JSX.Element {
             </p>
 
             <p>
+              This distinction matters because the public myth usually makes a
+              broad claim: that people convicted of sexual offenses are uniquely
+              high-recidivism in general. A narrow sexual-specific outcome does
+              not answer that broad question.
+            </p>
+
+            <p>
               The{" "}
               <a
                 href={sourceLinks.bjsSex2005.href}
@@ -495,10 +513,10 @@ export default function ResourceGuideSandbox(): JSX.Element {
               >
                 BJS 2005 rape/sexual-assault 9-year follow-up
               </a>{" "}
-              illustrates the difference. It reported that people released after
-              rape or sexual assault were less likely than other released
-              prisoners to be arrested for any crime over nine years, but more
-              likely to be arrested for rape or sexual assault.
+              illustrates why precision matters. It reported lower overall
+              arrest for people released after rape or sexual assault than for
+              other released prisoners, while also separately reporting
+              rape/sexual-assault arrest as a narrower outcome.
             </p>
           </GuideProse>
 
@@ -511,8 +529,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 Asks: “Was there any new detected justice-system event?”
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                This is the better measure for broad claims about whether one
-                offense group is “high recidivism” in general.
+                This is the measure to check before accepting broad claims about
+                whether an offense group is “high recidivism” in general.
               </p>
             </div>
 
@@ -524,19 +542,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 Asks: “Was there another detected sexual offense?”
               </p>
               <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                This is a narrower question. It should not be used to imply that
-                overall recidivism is uniquely high.
+                This is a narrower outcome. It should be named clearly and not
+                used as shorthand for overall recidivism.
               </p>
             </div>
           </div>
 
-          <GuideCallout tone="info" icon="🧠" title="These facts are not contradictory">
+          <GuideCallout tone="info" icon="🧠" title="Keep the outcome attached to the claim">
             <p>
-              A sexual-offense release group can have lower overall rearrest
-              than many other offense groups, while also having a higher relative
-              likelihood of another detected sexual offense than people whose
-              prior offenses were nonsexual. The key is to keep the outcome
-              attached to the claim.
+              A precise statement can acknowledge sexual-specific rearrest as a
+              distinct outcome without turning it into a broad claim that
+              sexual-offense populations are uniquely high-recidivism overall.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -1057,10 +1073,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               assessment asks how risk is estimated for a person or subgroup.
               For score interpretation, calibration, and tool limits, use
               SOLAR’s companion{" "}
-              <Link
-                to="/resources/understanding-sex-offense-risk-assessment"
-                className={linkClass}
-              >
+              <Link to="/resources/risk-assessment-guide" className={linkClass}>
                 Understanding Sex-Offense Risk Assessment
               </Link>{" "}
               guide.
@@ -1079,10 +1092,10 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideProse>
             <p>
               Recidivism evidence should not be read as permanent fate.
-              Structured intervention, supervision practices, age, offense-free
-              time, and stability can all matter. The public-safety question is
-              not only “What was the original label?” It is also “What has
-              changed, what supports stability, and what does the best available
+              Structured intervention, age, offense-free time, and
+              empirically relevant individual differences can all matter. The
+              public-safety question is not only “What was the original label?”
+              It is also “What has changed, and what does the best available
               evidence show now?”
             </p>
 
@@ -1110,10 +1123,10 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
           <GuideCallout tone="success" icon="🌱" title="The practical public-safety point">
             <p>
-              Stability, treatment, supervision quality, housing, work, family
-              support, and time offense-free are not soft extras. They are part
-              of serious public-safety thinking because they affect the real
-              conditions under which people live.
+              Serious public-safety thinking should be individualized and
+              change-aware. Treatment evidence, age patterns, offense-free time,
+              and criminal-history differences all point away from permanent
+              categorical assumptions.
             </p>
           </GuideCallout>
         </GuideSectionCard>
@@ -1165,8 +1178,8 @@ export default function ResourceGuideSandbox(): JSX.Element {
                   </li>
                   <li>
                     <strong>What it showed:</strong> lower overall arrest than
-                    other released prisoners, but higher rape/sexual-assault
-                    arrest.
+                    other released prisoners, with rape/sexual-assault arrest
+                    reported as a separate narrower outcome.
                   </li>
                 </ul>
 
@@ -1375,19 +1388,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 title: "Understanding Sex-Offense Risk Assessment",
                 description:
                   "Use this companion guide when the question is how risk tools, scores, AUC, calibration, and structured assessment should be interpreted.",
-                to: "/resources/understanding-sex-offense-risk-assessment",
+                to: "/resources/risk-assessment-guide",
               },
               {
                 title: "Reentry Planning Guide",
                 description:
                   "Use this when the practical question is how to build stability after incarceration, supervision, or registry-related disruption.",
-                to: "/resources/reentry-planning",
+                to: "/resources/reentry-checklist",
               },
               {
                 title: "Family Support Guide",
                 description:
                   "Use this when loved ones need plain-language help understanding evidence, fear, boundaries, and support.",
-                to: "/resources/family-support",
+                to: "/resources/family-support-guide",
               },
             ]}
           />
