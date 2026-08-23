@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "what-good-is-the-registry",
+  title: "What Good Is the Registry?",
+  excerpt:
+    "SOLAR examines what risk, recidivism, and registry-effectiveness evidence actually show—and asks whether broad public registration justifies its extraordinary burdens.",
+  author: "The SOLAR Project",
+  date: "Aug 23, 2026",
+  readTime: "16 minutes",
+  category: "Registry Policy & Reform",
+  tags: [
+    "registry effectiveness",
+    "public notification",
+    "recidivism",
+    "risk assessment",
+    "prevention",
+    "collateral consequences",
+    "stranger danger",
+    "individualized risk",
+    "public safety",
+    "reintegration",
+    "permanent punishment",
+  ],
+  path: "/blog/what-good-is-the-registry",
+},
+{
   id: "not-you-doj-individualized-justice-registered-people",
   title: "Not You: DOJ Discovers Individualized Justice—Except for Registered People",
   excerpt:
@@ -963,24 +987,6 @@ export const allBlogPosts: BlogPost[] = [
     "civil rights"
   ],
   path: "/blog/fifty-laws-zero-logic",
-},
-{
-  id: "what-good-is-the-registry",
-  title: "What Good Is the Registry?",
-  excerpt:
-    "If it can’t stop first-time offenders, doesn’t cut repeat offending beyond tools we already use, and makes communities less stable, what exactly is it doing?",
-  author: "SOLAR Project",
-  date: "2025-10-18",
-  readTime: "12 min read",
-  category: "Registry Policy & Reform",
-  tags: [
-    "registry reform",
-    "public safety",
-    "recidivism",
-    "criminal justice",
-    "policy evidence"
-  ],
-  path: "/blog/what-good-is-the-registry",
 },
 {
   id: "follow-the-money-part-5",
