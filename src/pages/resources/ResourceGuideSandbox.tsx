@@ -8,66 +8,42 @@ import {
   GuideProse,
   GuideCallout,
   GuideIntro,
-  PullQuoteBlock,
-  SoftDivider,
-  QuickStartPanel,
-  GuideChecklist,
-  ScriptBox,
   OverviewCards,
+  GuideChecklist,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
 } from "../../components/solar";
 
 const sourceLinks = {
-  bjsSex1994: {
-    label: "BJS 1994 sex-offender prison-release study",
-    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-prison-1994",
-  },
-  bjsSex2005: {
-    label: "BJS 2005 rape/sexual-assault 9-year follow-up",
-    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
-  },
-  bjsAll1994: {
-    label: "BJS 1994 all-prisoner recidivism report",
-    href: "https://bjs.ojp.gov/content/pub/pdf/rpr94.pdf",
-  },
-  bjsAll2012: {
-    label: "BJS 2012 prisoner recidivism 5-year follow-up",
-    href: "https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/rpr34s125yfup1217.pdf",
-  },
-  ussc2010: {
-    label: "USSC federal offenders released in 2010",
-    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
-  },
-  usscCsem: {
-    label: "USSC non-production child pornography report",
-    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
-  },
-  federalCsem: {
-    label: "Federal Probation CSEM supervision study",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
-  },
-  simpleQuestion: {
-    label: "Sex Offender Recidivism: A Simple Question",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
-  },
-  updatedMetaAnalysis: {
-    label: "Predictors of Sexual Recidivism: An Updated Meta-Analysis",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/2004-02-prdctrs-sxl-rcdvsm-pdtd/index-en.aspx",
-  },
-  onlineOffenders: {
-    label: "Seto, Hanson, and Babchishin online-offense meta-analyses",
-    href: "https://doi.org/10.1177/1079063210369013",
-  },
-  treatmentMetaAnalysis: {
-    label: "Schmucker and Lösel treatment-effectiveness meta-analysis",
-    href: "https://doi.org/10.1007/s11292-015-9241-z",
-  },
+  zgobaMitchell: "https://doi.org/10.1007/s11292-021-09480-z",
+  prescottRockoff: "https://www.journals.uchicago.edu/doi/10.1086/658485",
+  agan: "https://www.journals.uchicago.edu/doi/10.1086/658483",
+  sandlerFreemanSocia: "https://doi.org/10.1037/a0013881",
+  duweDonnay: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
+  letourneauRecidivism: "https://doi.org/10.1177/0887403409353148",
+  letourneauJudicial: "https://doi.org/10.1177/0734016809360330",
+  newJersey:
+    "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
+  levensonCotter:
+    "https://scholars.lynn.edu/en/publications/the-effect-of-megans-law-on-sex-offender-reintegration/",
+  andersonSample: "https://journals.sagepub.com/doi/10.1177/0887403408316705",
+  bonnarKidd: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2820068/",
+  freeman: "https://doi.org/10.1177/0011128708330852",
+  lasherMcGrath: "https://doi.org/10.1177/0306624X10387524",
+  cubellis: "https://doi.org/10.1177/0306624X16667574",
+  harrisLawEnforcement: "https://doi.org/10.1177/0887403416651671",
 } as const;
 
-const linkClass =
-  "font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 hover:text-sky-900";
+// These point to the existing evidence-guide destinations used for the trilogy.
+// If the production repo uses different slugs, adjust only these two constants.
+const relatedGuideRoutes = {
+  risk: "/resources/understanding-sex-offense-risk-assessment",
+  recidivism: "/resources/understanding-recidivism-evidence",
+} as const;
+
+const linkCls =
+  "font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
 export default function ResourceGuideSandbox(): JSX.Element {
   const handlePrint = () => window.print();
@@ -75,9 +51,9 @@ export default function ResourceGuideSandbox(): JSX.Element {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Understanding Recidivism Evidence | The SOLAR Project"
-        description="A SOLAR resource guide for understanding recidivism statistics, sexual-offense comparator evidence, absolute risk, relative risk, CSEM-specific evidence, and common interpretation mistakes."
-        keywords="sex offense recidivism, recidivism evidence, sexual recidivism, CSEM recidivism, offense specialization, risk assessment, SOLAR Project"
+        title="Registry Effectiveness: What Does the Evidence Show? | The SOLAR Project"
+        description="A plain-language SOLAR evidence guide examining whether sex-offense registration and public notification produce measurable public-safety benefits, what narrower findings show, and how costs and collateral effects belong in the analysis."
+        keywords="sex offense registry effectiveness, SORN evidence, sex offender registration research, public notification effectiveness, recidivism, registry policy, Megan's Law, SOLAR Project"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -90,17 +66,17 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </Link>
 
           <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
-            SOLAR Resource Guide
+            SOLAR Evidence Guide
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Understanding Recidivism Evidence
+            Registry Effectiveness: What Does the Evidence Show?
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            A plain-language guide to what recidivism statistics do and do not
-            show — and how to read them without turning group data into fear,
-            certainty, or myth.
+            Registration and public notification are often treated as obviously
+            protective. This guide asks the harder question: what measurable
+            public-safety benefit do they actually produce?
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -129,1255 +105,1069 @@ export default function ResourceGuideSandbox(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="🧭">
           <p>
-            There is no single “sex-offender recidivism rate.” The number
-            changes depending on who was studied, what counted as recidivism,
-            how long people were followed, when the clock started, and what
-            comparison group was used.
+            Sex-offense registration and notification laws are usually defended
+            as public-safety measures. But a policy is not proven effective
+            simply because it collects information, makes people visible, or
+            feels precautionary. Effectiveness has to be measured against an
+            outcome that matters: fewer offenses, fewer victims, lower
+            recidivism, better protective behavior, or some other demonstrated
+            safety gain.
           </p>
-
           <p>
-            This guide is a companion to SOLAR’s{" "}
-            <Link to="/resources/risk-assessment-guide" className={linkClass}>
-              risk-assessment guide
-            </Link>
-            . The risk guide asks, “What does this score or tool mean?” This
-            guide asks, “What do observed reoffending data actually show?”
-          </p>
-
-          <p>
-            The strongest takeaway is simple: people convicted of sexual
-            offenses are not uniquely or uniformly high-recidivism compared with
-            other major offense groups. The evidence is more specific, more
-            useful, and much less compatible with slogans.
+            This guide uses the SOLAR Evidence Matrix to separate the major
+            registry components, examine the strongest broad evidence, and show
+            where narrower findings do—and do not—support claims of benefit.
           </p>
         </GuideIntro>
 
-        <QuickStartPanel
-          title="Read a recidivism statistic in this order"
-          subtitle="Before accepting a claim, slow the number down and identify what it is really measuring."
-          icon="⚡"
-          urgentActions={[
-            <span>
-              Check the <strong>population</strong>: prison releases,
-              supervision starts, CSEM-only cases, contact offenses, adults,
-              youth, federal cases, state cases, or another group.
-            </span>,
-            <span>
-              Check the <strong>outcome</strong>: any rearrest, sexual rearrest,
-              charge, reconviction, reincarceration, self-report, or another
-              measure.
-            </span>,
-          ]}
-          nextActions={[
-            <span>
-              Check the <strong>follow-up</strong>: three years, five years,
-              nine years, fifteen years, or another period.
-            </span>,
-            <span>
-              Check the <strong>starting point</strong>: prison release,
-              supervision start, assessment date, treatment completion, or
-              another milestone.
-            </span>,
-            <span>
-              Check the <strong>comparison</strong>: compared with whom, in the
-              same study, using the same clock and outcome?
-            </span>,
-          ]}
-          reminder={
-            <span>
-              A dramatic relative-risk statement can describe a small absolute
-              rate. Always ask, “What were the actual percentages?”
-            </span>
-          }
-        />
-
-        <OverviewCards
-          columns={3}
-          cards={[
-            {
-              eyebrow: "First question",
-              title: "What counted?",
-              icon: "📏",
-              tone: "info",
-              description:
-                "Rearrest, reconviction, reincarceration, official detection, and self-report are different measurements.",
-            },
-            {
-              eyebrow: "Second question",
-              title: "Who was studied?",
-              icon: "👥",
-              tone: "research",
-              description:
-                "Offense subtype, age, prior record, supervision context, and jurisdiction can materially change the picture.",
-            },
-            {
-              eyebrow: "Third question",
-              title: "Compared with what?",
-              icon: "⚖️",
-              tone: "legal",
-              description:
-                "Same-study comparisons are safer than pulling percentages from unrelated studies and treating them as equivalent.",
-            },
-          ]}
-        />
-
-        <GuideCallout tone="research" icon="🔎" title="The public misconception this guide addresses">
+        <GuideCallout tone="family" icon="🏠" title="For people living with the system">
           <p>
-            Public discussion often treats people convicted of sexual offenses
-            as uniquely, uniformly, or “shockingly” high-recidivism. Large
-            official datasets do not support that simplified claim. They show a
-            more careful pattern: overall recidivism is often lower than many
-            other offense groups, sexual-specific rearrest is a different
-            outcome, same-type specialization occurs across many offense
-            categories, and absolute detected sexual-recidivism rates are far
-            below popular assumptions of inevitable repeat offending.
+            If registration has reshaped where you can live, where you can work,
+            how your family is treated, or whether your address is publicly
+            searchable, it is reasonable to ask what measurable public-safety
+            benefit those burdens produce. This guide takes that question
+            seriously.
           </p>
         </GuideCallout>
 
-        <nav
-          aria-label="Guide sections"
-          className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-        >
-          <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">
-            On this page
-          </h2>
-          <div className="mt-3 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
-            <a className={linkClass} href="#no-single-rate">
-              No single rate
-            </a>
-            <a className={linkClass} href="#definitions">
-              What recidivism means
-            </a>
-            <a className={linkClass} href="#five-checks">
-              Five checks
-            </a>
-            <a className={linkClass} href="#overall-sexual">
-              Overall vs. sexual recidivism
-            </a>
-            <a className={linkClass} href="#absolute-relative">
-              Absolute vs. relative risk
-            </a>
-            <a className={linkClass} href="#comparators">
-              Comparator evidence
-            </a>
-            <a className={linkClass} href="#specialization">
-              Same-type specialization
-            </a>
-            <a className={linkClass} href="#offense-categories">
-              Why offense categories matter
-            </a>
-            <a className={linkClass} href="#csem">
-              CSEM-specific evidence
-            </a>
-            <a className={linkClass} href="#individual-variation">
-              Individual variation
-            </a>
-            <a className={linkClass} href="#treatment-change">
-              Treatment and change
-            </a>
-            <a className={linkClass} href="#worked-examples">
-              Worked examples
-            </a>
-            <a className={linkClass} href="#final-checklist">
-              Final checklist
-            </a>
-          </div>
-        </nav>
+        <GuideSectionCard>
+          <GuideProse>
+            <h2>The third guide in SOLAR’s evidence sequence</h2>
+            <p>
+              The{" "}
+              <Link to={relatedGuideRoutes.risk} className={linkCls}>
+                Understanding Sex-Offense Risk Assessment
+              </Link>{" "}
+              guide explains why risk is heterogeneous and why individualized
+              assessment matters. The{" "}
+              <Link to={relatedGuideRoutes.recidivism} className={linkCls}>
+                Understanding Recidivism Evidence
+              </Link>{" "}
+              guide explains why recidivism depends on population, outcome,
+              follow-up, subgroup, and comparison.
+            </p>
+            <p>
+              This guide takes the next step: given what we know about risk and
+              recidivism, does categorical registration or public notification
+              produce enough measurable safety benefit to justify the system
+              built around it?
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
 
         <GuideSectionHeader
-          id="no-single-rate"
+          id="supposed-to-accomplish"
           number="1"
-          title="There Is No Single “Sex-Offender Recidivism Rate”"
-          subtitle="A recidivism number is only meaningful after you know the population, outcome, clock, and comparison."
+          title="What Is the Registry Supposed to Accomplish?"
+          subtitle="The theory contains several different mechanisms, and they should not be collapsed into one."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Recidivism is not one natural fact waiting to be quoted. It is a
-              measurement choice. A three-year rearrest rate for people released
-              from state prison is not the same thing as a five-year
-              reconviction rate for people starting federal supervision. A
-              CSEM-only cohort is not the same thing as a broader contact-offense
-              cohort. A study of any rearrest is not answering the same question
-              as a study of another detected sexual offense.
+              Registry laws can serve several claimed functions at once. A
+              law-enforcement database may be intended to help police identify
+              or locate people. Public notification may be intended to help
+              residents change their behavior. Verification rules may be
+              intended to keep records current. Some policies are also defended
+              as deterrence: the prospect of registration or public exposure is
+              supposed to discourage offending.
             </p>
-
             <p>
-              This is why SOLAR treats precise recidivism claims as more useful
-              than broad labels. A good public statement should preserve the
-              population, outcome, measurement basis, follow-up length, and
-              starting point.
+              Those are different mechanisms. A database can have investigative
+              utility without proving that public Internet disclosure reduces
+              sexual offending. A website can be widely available without
+              proving that people use it, act on it, or prevent victimization.
             </p>
           </GuideProse>
 
-          <SoftDivider />
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Mechanism 1",
+                title: "Information",
+                icon: "🗂️",
+                tone: "info",
+                description:
+                  "Keep identifying and location information available to law enforcement.",
+              },
+              {
+                eyebrow: "Mechanism 2",
+                title: "Public warning",
+                icon: "📣",
+                tone: "warning",
+                description:
+                  "Give the public information that might change protective behavior or increase surveillance.",
+              },
+              {
+                eyebrow: "Mechanism 3",
+                title: "Deterrence",
+                icon: "🛑",
+                tone: "legal",
+                description:
+                  "Create consequences or visibility that are expected to discourage future offending.",
+              },
+            ]}
+          />
+        </GuideSectionCard>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-              <h3 className="text-base font-bold text-slate-900">
-                Weak claim
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                “Sex offenders have a high recidivism rate.”
-              </p>
-            </div>
+        <GuideSectionHeader
+          id="effectiveness"
+          number="2"
+          title="What Does “Effectiveness” Mean?"
+          subtitle="Administrative activity is not the same thing as a public-safety outcome."
+        />
 
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-              <h3 className="text-base font-bold text-emerald-950">
-                Stronger claim
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-emerald-900">
-                “In this specific cohort, using this specific outcome, over this
-                specific follow-up period, the observed rate was ___.”
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="reminder" icon="🧩" title="The label is never the whole measurement">
+        <GuideSectionCard>
+          <GuideProse>
             <p>
-              Offense subtype, age, prior record, follow-up period,
-              jurisdiction, treatment history, supervision context, and outcome
-              definition can all change the meaning of a recidivism statistic.
+              A fair evaluation begins by naming the outcome. Researchers can
+              ask whether a policy changes sexual recidivism, overall
+              recidivism, first-time sexual offending, victimization,
+              deterrence, apprehension, public protective behavior, information
+              accuracy, administrative workload, cost, or collateral effects.
+            </p>
+            <p>
+              Calling a registry “effective” without specifying which outcome
+              improved can hide the central question. People looking at a
+              website is not the same outcome as fewer victims. Police having
+              access to a database is not the same outcome as lower
+              recidivism.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Safety outcome",
+                title: "Repeat offending",
+                icon: "📉",
+                tone: "research",
+                description:
+                  "Does registration or notification reduce sexual or overall recidivism?",
+              },
+              {
+                eyebrow: "Safety outcome",
+                title: "First-time offending",
+                icon: "🧭",
+                tone: "research",
+                description:
+                  "Does the policy deter sexual offending by people who are not already registered?",
+              },
+              {
+                eyebrow: "Mechanism",
+                title: "Protective action",
+                icon: "👥",
+                tone: "info",
+                description:
+                  "Do people access the information and change behavior in ways that plausibly improve safety?",
+              },
+              {
+                eyebrow: "System quality",
+                title: "Accuracy and utility",
+                icon: "✅",
+                tone: "neutral",
+                description:
+                  "Is the information accurate, usable, current, and interpretable by the people expected to rely on it?",
+              },
+              {
+                eyebrow: "Burden",
+                title: "Cost and administration",
+                icon: "💵",
+                tone: "warning",
+                description:
+                  "What money, staff time, enforcement effort, and operational complexity does the system require?",
+              },
+              {
+                eyebrow: "Burden",
+                title: "Reintegration effects",
+                icon: "🏘️",
+                tone: "reentry",
+                description:
+                  "What happens to housing, work, relationships, stability, privacy, and ordinary community life?",
+              },
+            ]}
+          />
+
+          <GuideCallout tone="research" icon="🔎" title="The measurement rule">
+            <p>
+              Precaution is not the same thing as demonstrated effectiveness.
+              Visibility is not itself a public-safety outcome. A policy that
+              imposes large and durable burdens should be evaluated against the
+              measurable benefits it actually produces.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="definitions"
-          number="2"
-          title="What Does “Recidivism” Mean?"
-          subtitle="Different measures answer different questions. They should not be collapsed into one generic rate."
+          id="policy-components"
+          number="3"
+          title="Registration Is Not the Same as Public Notification"
+          subtitle="The evidence becomes clearer when the intervention is identified before the result is interpreted."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              “Recidivism” can mean several different things. Some measures are
-              easier to count but less precise. Others are narrower but miss
-              conduct that was never detected or never prosecuted.
+              The SOLAR Evidence Matrix separates registry-related policies
+              because studies do not all evaluate the same intervention. This is
+              essential to reading the evidence accurately.
             </p>
           </GuideProse>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            {[
+          <OverviewCards
+            columns={3}
+            cards={[
               {
-                term: "Rearrest",
-                meaning:
-                  "A new arrest was recorded. This is commonly used in large official datasets, including BJS and USSC reports.",
-                caution:
-                  "Rearrest is not the same as proof, conviction, or all offending.",
+                eyebrow: "A",
+                title: "Registration database",
+                icon: "🗃️",
+                tone: "info",
+                description:
+                  "Identity, address, and related information maintained for official or law-enforcement use.",
               },
               {
-                term: "Charge",
-                meaning:
-                  "A formal charge was filed after an accusation or arrest.",
-                caution:
-                  "Charging practices vary by jurisdiction and case type.",
+                eyebrow: "B",
+                title: "Public notification",
+                icon: "📢",
+                tone: "warning",
+                description:
+                  "Disclosure through websites, notices, meetings, or other public-facing methods.",
               },
               {
-                term: "Reconviction",
-                meaning:
-                  "A new conviction occurred after plea or trial.",
-                caution:
-                  "This is narrower than rearrest and depends on prosecution and court outcomes.",
+                eyebrow: "C",
+                title: "Targeted high-risk notification",
+                icon: "🎯",
+                tone: "research",
+                description:
+                  "Notification focused on a selected higher-risk group, such as Minnesota Level 3 cases.",
               },
               {
-                term: "Reincarceration",
-                meaning:
-                  "A person returned to custody after a new sentence or a violation.",
-                caution:
-                  "This can mix new crimes with supervision or release-condition violations.",
+                eyebrow: "D",
+                title: "Broad Internet disclosure",
+                icon: "🌐",
+                tone: "legal",
+                description:
+                  "Large-scale public access that may include far more people than a selected high-risk group.",
               },
               {
-                term: "Official detected offending",
-                meaning:
-                  "Behavior captured through official systems such as arrests, charges, convictions, or corrections records.",
-                caution:
-                  "It undercounts undetected conduct and should not be treated as a full measure of all behavior.",
+                eyebrow: "E",
+                title: "Broad SORN packages",
+                icon: "🧩",
+                tone: "neutral",
+                description:
+                  "Studies where registration and notification changed together or cannot be cleanly separated.",
               },
               {
-                term: "Self-report",
-                meaning:
-                  "A person reports past conduct, often in treatment, research, or clinical settings.",
-                caution:
-                  "It may reveal behavior official records missed, but it is not the same as prospective future recidivism.",
+                eyebrow: "F",
+                title: "Verification and reporting",
+                icon: "📝",
+                tone: "reminder",
+                description:
+                  "Address updates, periodic verification, change reporting, and compliance administration.",
               },
-            ].map((item) => (
-              <div
-                key={item.term}
-                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
+            ]}
+          />
+
+          <GuideCallout tone="legal" icon="⚖️" title="Keep adjacent policies separate">
+            <p>
+              Residence restrictions and similar exclusion rules may use
+              registry status as a trigger, but they are separate policies.
+              Evidence about residence restrictions should not be presented as
+              evidence that registration itself reduces—or increases—sexual
+              offending.
+            </p>
+          </GuideCallout>
+
+          <GuideProse>
+            <p>
+              A useful example comes from{" "}
+              <a
+                href={sourceLinks.prescottRockoff}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
               >
-                <h3 className="text-base font-bold text-slate-900">
-                  {item.term}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                  {item.meaning}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  <strong>Watch for:</strong> {item.caution}
-                </p>
+                Prescott and Rockoff
+              </a>
+              . Their study estimated different effects for registration and
+              public notification. Registration was associated with reductions
+              in some reported sex offenses against local victims, while public
+              notification appeared to operate through a different mechanism
+              and may have increased recidivism among people already registered.
+            </p>
+            <p>
+              The lesson is not that one study settles the whole debate. The
+              lesson is that “registration” and “public notification” are not
+              interchangeable concepts.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="best-broad-evidence"
+          number="4"
+          title="The Best Broad Evidence"
+          subtitle="The strongest pooled evidence in the SOLAR matrix has not demonstrated an overall recidivism-reduction effect."
+        />
+
+        <GuideSectionCard>
+          <GuideCallout tone="research" icon="📊" title="The major empirical anchor">
+            <p>
+              Across 25 years of evaluated SORN policies, the strongest broad
+              quantitative synthesis in the SOLAR Evidence Matrix did not find a
+              statistically significant overall reduction in recidivism.
+            </p>
+          </GuideCallout>
+
+          <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Worked example
+            </div>
+            <h3 className="mt-2 text-xl font-bold text-slate-900">
+              What does the broadest quantitative synthesis say?
+            </h3>
+
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-xl bg-slate-50 p-4">
+                <div className="text-sm font-semibold text-slate-500">
+                  Research articles
+                </div>
+                <div className="mt-1 text-2xl font-bold text-slate-900">18</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-4">
+                <div className="text-sm font-semibold text-slate-500">
+                  Individuals
+                </div>
+                <div className="mt-1 text-2xl font-bold text-slate-900">
+                  474,640
+                </div>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-4">
+                <div className="text-sm font-semibold text-slate-500">
+                  Effect sizes
+                </div>
+                <div className="mt-1 text-2xl font-bold text-slate-900">42</div>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-4">
+                <div className="text-sm font-semibold text-slate-500">
+                  Overall result
+                </div>
+                <div className="mt-1 text-lg font-bold text-slate-900">
+                  No significant pooled effect
+                </div>
+              </div>
+            </div>
+
+            <GuideProse>
+              <p>
+                In{" "}
+                <a
+                  href={sourceLinks.zgobaMitchell}
+                  className={linkCls}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Zgoba and Mitchell’s meta-analysis
+                </a>
+                , the random-effects pooled analysis found no statistically
+                significant overall SORN effect on recidivism. The null also
+                persisted when outcomes were separated into sexual versus
+                nonsexual recidivism and arrest versus conviction.
+              </p>
+              <p>
+                <strong>Interpretation:</strong> the best broad pooled evidence
+                in the matrix has not demonstrated the overall
+                recidivism-reduction effect commonly assumed in public debate.
+              </p>
+              <p>
+                <strong>Boundary:</strong> SORN studies combine different
+                policy designs, populations, and eras. A pooled null does not
+                prove that every specific registry component has exactly zero
+                effect. It does mean that narrower favorable findings should not
+                be generalized into a claim that broad SORN has demonstrated an
+                overall recidivism benefit.
+              </p>
+            </GuideProse>
+          </div>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="repeat-offending"
+          number="5"
+          title="Does SORN Reduce Repeat Sexual Offending?"
+          subtitle="Several major evaluations found no detectable recidivism benefit, while component-specific studies complicate blanket claims."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              The pooled result is supported by several influential individual
+              evaluations.{" "}
+              <a
+                href={sourceLinks.agan}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Agan
+              </a>{" "}
+              analyzed three different datasets and found no detectable
+              public-safety benefit across the designs examined.{" "}
+              <a
+                href={sourceLinks.letourneauRecidivism}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Letourneau and colleagues’ South Carolina analysis
+              </a>{" "}
+              found that registration status did not significantly predict
+              sexual recidivism in the modeled analyses.
+            </p>
+            <p>
+              A{" "}
+              <a
+                href={sourceLinks.sandlerFreemanSocia}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                New York time-series study by Sandler, Freeman, and Socia
+              </a>{" "}
+              found no support for SORN reducing the studied categories of
+              sexual offending, including sexual recidivists and first-time
+              offenders. Because it is a time-series study, it cannot perfectly
+              isolate registration from notification or broader secular trends.
+            </p>
+            <p>
+              A large{" "}
+              <a
+                href={sourceLinks.freeman}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Freeman notified-versus-non-notified comparison
+              </a>{" "}
+              also sits uneasily with a simple claim that notification lowers
+              recidivism. Notified people were rearrested about twice as quickly
+              for a sexual offense and 47% more quickly for a nonsexual offense.
+              That result should <strong>not</strong> be read as proof that
+              notification caused faster rearrest: notification assignment,
+              baseline risk, surveillance intensity, and detection can all
+              confound the comparison.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="research" icon="🧠" title="What this section supports">
+            <p>
+              It is accurate to say that the strongest broad pooled evidence has
+              not demonstrated an overall SORN recidivism-reduction effect and
+              that several major evaluations found no detectable benefit. It is
+              not accurate to say that every study proves every registry
+              component does nothing.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="first-time-and-public-use"
+          number="6"
+          title="Does Public Notification Prevent First-Time Offending?"
+          subtitle="Some evidence points to deterrence, but public availability still has to travel through a real behavioral chain."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Public notification is sometimes defended as a general deterrent,
+              not only as a recidivism intervention. In{" "}
+              <a
+                href={sourceLinks.prescottRockoff}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Prescott and Rockoff
+              </a>
+              , notification appeared to reduce offending by people who were not
+              already registered. That finding matters because it identifies a
+              possible benefit operating through a mechanism different from
+              reducing recidivism among registered people.
+            </p>
+            <p>
+              But the public-notification theory still contains a chain of
+              assumptions: information must be available, people must find and
+              understand it, they must change behavior, and those changes must
+              prevent victimization. Each step can fail even if the website
+              itself functions exactly as designed.
+            </p>
+          </GuideProse>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["1", "Information is public", "The website or notice exists."],
+              ["2", "People use it", "Residents actually access the information."],
+              ["3", "Behavior changes", "Users take a protective action."],
+              ["4", "Victimization falls", "The action produces a measurable safety gain."],
+            ].map(([step, title, description]) => (
+              <div
+                key={step}
+                className="rounded-xl border border-slate-200 bg-slate-50 p-4"
+              >
+                <div className="text-xs font-bold uppercase tracking-wide text-slate-500">
+                  Step {step}
+                </div>
+                <div className="mt-1 font-semibold text-slate-900">{title}</div>
+                <div className="mt-1 text-sm leading-relaxed text-slate-600">
+                  {description}
+                </div>
               </div>
             ))}
           </div>
 
-          <GuideCallout tone="warning" icon="⚠️" title="Do not swap measures mid-argument">
+          <GuideProse>
             <p>
-              A person can quote a rearrest study, call it “reoffending,” and
-              then talk as if it proved all future conduct. That move is
-              misleading. Keep the measurement basis attached to the claim.
+              The{" "}
+              <a
+                href={sourceLinks.andersonSample}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Anderson and Sample Nebraska survey
+              </a>{" "}
+              directly tested part of that chain. Among respondents with valid
+              access data, 34.8% had accessed the registry and 65.2% had not.
+              Among registry users with action data, 37.6% reported taking a
+              preventative action and 62.4% did not.
+            </p>
+            <p>
+              That does not mean nobody uses registries. It means public
+              availability does not automatically produce public use, and public
+              use does not by itself establish a measurable crime-prevention
+              effect.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="targeted-versus-universal"
+          number="7"
+          title="Targeted Notification Is Not Universal Public Disclosure"
+          subtitle="A narrower policy can show benefit without proving that broad Internet disclosure works the same way."
+        />
+
+        <GuideSectionCard>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Worked example
+            </div>
+            <h3 className="mt-2 text-xl font-bold text-slate-900">
+              Can a narrower notification policy show benefit even when broad
+              SORN evidence is weak?
+            </h3>
+
+            <GuideProse>
+              <p>
+                Yes.{" "}
+                <a
+                  href={sourceLinks.duweDonnay}
+                  className={linkCls}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Duwe and Donnay’s Minnesota study
+                </a>{" "}
+                examined broad community notification for selected high-risk
+                Level 3 individuals. The study found significant reductions or
+                delays in sexual rearrest, reconviction, and reincarceration
+                relative to comparison groups.
+              </p>
+              <p>
+                <strong>What it supports:</strong> at least one strong
+                quasi-experimental study found benefit for targeted notification
+                of a selected high-risk group.
+              </p>
+              <p>
+                <strong>What it does not support:</strong> the conclusion that
+                universal public Internet disclosure produces the same effect
+                across a far broader registry population.
+              </p>
+            </GuideProse>
+          </div>
+
+          <GuideCallout tone="info" icon="🎯" title="Why policy specificity matters">
+            <p>
+              Targeting changes the population, the intensity of the
+              intervention, the information available to the public, and the
+              resources required to administer the policy. Evidence for a
+              selected Level 3 notification system should not be silently
+              transferred to a universal website.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="five-checks"
-          number="3"
-          title="Five Things to Check Before Believing a Recidivism Statistic"
-          subtitle="Most misuse becomes visible once you ask five simple questions."
+          id="state-evaluations"
+          number="8"
+          title="What State Evaluations Found"
+          subtitle="State studies help show what broad policy looks like when benefits and implementation are measured in the real world."
+        />
+
+        <GuideSectionCard>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              Worked example
+            </div>
+            <h3 className="mt-2 text-xl font-bold text-slate-900">
+              New Jersey: what happens when benefits and costs are measured
+              together?
+            </h3>
+
+            <GuideProse>
+              <p>
+                The{" "}
+                <a
+                  href={sourceLinks.newJersey}
+                  className={linkCls}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  National Institute of Justice evaluation of New Jersey
+                  Megan’s Law
+                </a>{" "}
+                reported no demonstrated effect on overall sexual offenses, time
+                to first rearrest, sexual reoffending, type of sexual reoffense,
+                first-time sexual offending, or number of victims.
+              </p>
+              <p>
+                The same evaluation documented implementation costs:
+                approximately <strong>$555,565 in start-up costs</strong> and
+                approximately <strong>$3.9 million in reported 2007 current
+                county costs</strong> among responding counties.
+              </p>
+              <p>
+                Those figures are historical New Jersey costs—not a nationwide
+                estimate. Their importance is conceptual: when an evaluation
+                measures both burden and outcome, the question becomes,
+                “What measurable benefit was purchased for the cost?”
+              </p>
+            </GuideProse>
+          </div>
+
+          <GuideProse>
+            <h3>New York</h3>
+            <p>
+              The New York time-series study found no support for SORN reducing
+              the studied categories of sexual offending. Its design cannot
+              fully separate registration from notification or eliminate every
+              broader time trend, but it remains an important major-state
+              evaluation showing no detectable policy effect.
+            </p>
+
+            <h3>South Carolina</h3>
+            <p>
+              In the South Carolina recidivism analysis, registration status did
+              not significantly predict sexual recidivism. A separate{" "}
+              <a
+                href={sourceLinks.letourneauJudicial}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                South Carolina study of judicial decisions
+              </a>{" "}
+              found changes in charging and disposition patterns across policy
+              periods. That is a reminder that registry policy can affect the
+              justice system in ways that do not appear as a straightforward
+              recidivism change.
+            </p>
+          </GuideProse>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="costs-and-collateral"
+          number="9"
+          title="What the Registry Costs—and Why Collateral Effects Belong in Safety Analysis"
+          subtitle="Housing, work, stability, privacy, and administrative burden are not side issues when a policy is justified in the name of safety."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Collateral consequences matter for two separate reasons. First,
+              they are human and fairness costs borne by people on registries
+              and their families. Second, they can affect the stability that
+              public-safety systems ordinarily try to build: housing, work,
+              relationships, treatment engagement, and successful reintegration.
+            </p>
+            <p>
+              The matrix does not support saying that notification simply
+              “causes people to reoffend.” It does support saying that recurring
+              reintegration burdens are well documented and that more intrusive
+              notification has been associated with more socially destabilizing
+              consequences.
+            </p>
+          </GuideProse>
+
+          <OverviewCards
+            columns={3}
+            cards={[
+              {
+                eyebrow: "Reintegration",
+                title: "Housing",
+                icon: "🏠",
+                tone: "reentry",
+                description:
+                  "Residence exclusion, relocation pressure, and reduced housing stability recur across studies.",
+              },
+              {
+                eyebrow: "Reintegration",
+                title: "Employment",
+                icon: "💼",
+                tone: "reentry",
+                description:
+                  "Job loss and employment barriers appear repeatedly in notification research.",
+              },
+              {
+                eyebrow: "Personal safety",
+                title: "Threats and harassment",
+                icon: "⚠️",
+                tone: "warning",
+                description:
+                  "Surveys report threats, harassment, property damage, and other public-exposure consequences.",
+              },
+              {
+                eyebrow: "Well-being",
+                title: "Social and psychological effects",
+                icon: "🧠",
+                tone: "family",
+                description:
+                  "Negative psychological effects and social isolation are recurring findings in reintegration studies.",
+              },
+              {
+                eyebrow: "System quality",
+                title: "Inaccurate information",
+                icon: "🧾",
+                tone: "neutral",
+                description:
+                  "Some studies report inaccurate registry information, which can weaken both fairness and practical utility.",
+              },
+              {
+                eyebrow: "Administration",
+                title: "Staff and fiscal burden",
+                icon: "🏛️",
+                tone: "legal",
+                description:
+                  "Verification, updates, public disclosure, enforcement, and inter-agency communication all require resources.",
+              },
+            ]}
+          />
+
+          <GuideProse>
+            <p>
+              The{" "}
+              <a
+                href={sourceLinks.lasherMcGrath}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Lasher and McGrath quantitative review
+              </a>{" "}
+              synthesized eight studies involving 1,503 people and found
+              recurring housing, employment, social, and psychological burdens.
+              The review also found that more intrusive notification strategies
+              were associated with more socially destabilizing consequences.
+            </p>
+            <p>
+              Earlier work by{" "}
+              <a
+                href={sourceLinks.levensonCotter}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Levenson and Cotter
+              </a>{" "}
+              likewise documented job and housing loss, threats or harassment,
+              psychological effects, and reports of inaccurate Internet-registry
+              information among surveyed respondents.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="research" icon="⚖️" title="The proportionality question">
+            <p>
+              Where demonstrated public-safety gains are null, narrow,
+              inconsistent, or limited to particular policy designs, financial,
+              administrative, and reintegration burdens become central to
+              judging whether the policy is proportionate.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="operational-reality"
+          number="10"
+          title="Does the System Work the Way Its Theory Assumes?"
+          subtitle="A registry’s safety mechanism depends on information quality, implementation, public understanding, and usable scale."
+        />
+
+        <GuideSectionCard>
+          <GuideProse>
+            <p>
+              Even if a registry has some informational value, the safety theory
+              still depends on implementation. Information must be accurate.
+              Systems must communicate. Homelessness and transience must be
+              handled in ways that do not make location data meaningless.
+              Public-facing information must be understandable. Agencies must
+              have enough capacity to maintain the system they are asked to
+              operate.
+            </p>
+            <p>
+              National law-enforcement research by{" "}
+              <a
+                href={sourceLinks.harrisLawEnforcement}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Harris and colleagues
+              </a>{" "}
+              identified concerns involving information reliability and utility,
+              inter-system communication, homelessness and transience, and the
+              public’s ability to interpret registry information.
+            </p>
+            <p>
+              A separate study by{" "}
+              <a
+                href={sourceLinks.cubellis}
+                className={linkCls}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Cubellis, Walfield, and Harris
+              </a>{" "}
+              found mixed law-enforcement views. Respondents in states with
+              larger registries expressed greater concern about collateral
+              consequences and less belief in SORN public-safety efficacy, while
+              personnel more engaged in SORN work also sometimes reported more
+              belief in its effectiveness.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="neutral" icon="🛠️" title="What the practitioner evidence supports">
+            <p>
+              The people responsible for administering registry systems describe
+              real limitations in information quality, implementation, scale,
+              and public interpretation. That is different from saying law
+              enforcement uniformly thinks registries are useless.
+            </p>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="what-evidence-supports"
+          number="11"
+          title="What the Evidence Supports Saying"
+          subtitle="Strong public claims do not need to be absolute to be consequential."
+        />
+
+        <GuideSectionCard>
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              "The best broad pooled recidivism evidence has not demonstrated a statistically significant overall SORN recidivism-reduction effect.",
+              "Registration and public notification are different interventions and should be evaluated separately.",
+              "Some narrower or targeted notification systems have shown favorable effects.",
+              "Targeted high-risk findings do not establish that universal public Internet disclosure is effective.",
+              "Several major state evaluations found no detectable reduction in sexual offending or sexual recidivism.",
+              "Public availability does not automatically translate into public use or measurable prevention.",
+              "Registry systems impose real administrative, fiscal, housing, employment, social, and psychological burdens.",
+              "Those burdens belong inside public-safety analysis because a policy’s burden should be proportionate to its demonstrated benefit.",
+            ].map((claim) => (
+              <div
+                key={claim}
+                className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
+              >
+                <div className="flex gap-3">
+                  <span aria-hidden="true" className="mt-0.5">
+                    ✓
+                  </span>
+                  <p className="m-0 leading-relaxed text-slate-700">{claim}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <GuideCallout tone="warning" icon="🚫" title="Claims this evidence does not justify">
+            <GuideProse>
+              <ul>
+                <li>“Registries do nothing.”</li>
+                <li>“No registry has ever prevented a crime.”</li>
+                <li>“All registry research proves failure.”</li>
+                <li>“Nobody uses the registry.”</li>
+                <li>“Notification causes recidivism.”</li>
+                <li>“Every person on a registry is low risk.”</li>
+              </ul>
+            </GuideProse>
+          </GuideCallout>
+        </GuideSectionCard>
+
+        <GuideSectionHeader
+          id="questions-to-ask"
+          number="12"
+          title="Questions to Ask About Any Registry Policy"
+          subtitle="A disciplined policy discussion starts by identifying the intervention, outcome, population, and tradeoffs."
         />
 
         <GuideSectionCard>
           <GuideChecklist
-            id="five-checks-before-believing"
-            title="The five checks"
-            columns={1}
+            id="registry-policy-questions"
+            title="Use these questions to test an effectiveness claim"
+            columns={2}
             items={[
               {
-                id: "population",
+                id: "component",
                 label:
-                  "Population: Who was studied — state prison releases, federal supervision cases, CSEM-only cases, contact offenses, adults, youth, or another group?",
+                  "Which component is being evaluated: registration, notification, Internet disclosure, targeted notification, verification, or something else?",
               },
               {
                 id: "outcome",
                 label:
-                  "Outcome: What counted — any rearrest, sexual rearrest, same-type rearrest, reconviction, reincarceration, self-report, or something else?",
+                  "What measurable outcome improved: sexual recidivism, first-time offending, victimization, apprehension, public behavior, or only an administrative function?",
               },
               {
-                id: "follow-up",
+                id: "population",
                 label:
-                  "Follow-up length: How long were people followed — three years, five years, nine years, fifteen years, or another period?",
-              },
-              {
-                id: "starting-point",
-                label:
-                  "Starting point: When did the clock begin — prison release, supervision start, assessment date, treatment completion, or another milestone?",
+                  "Which population was studied, and can the result fairly be generalized beyond that group?",
               },
               {
                 id: "comparison",
                 label:
-                  "Comparison group: Compared with whom — and was it the same study, same clock, same outcome, and same jurisdictional setting?",
+                  "What was the comparison group or pre-policy baseline?",
+              },
+              {
+                id: "magnitude",
+                label:
+                  "How large was the measured benefit, and was it statistically distinguishable from no effect?",
+              },
+              {
+                id: "burden",
+                label:
+                  "What financial, administrative, housing, employment, privacy, family, and reintegration burdens came with the policy?",
+              },
+              {
+                id: "mechanism",
+                label:
+                  "Did the proposed safety mechanism actually occur—for example, public use followed by protective behavior?",
+              },
+              {
+                id: "alternatives",
+                label:
+                  "Could the same resources be directed toward interventions whose safety benefits are more directly demonstrated?",
               },
             ]}
           />
 
-          <ScriptBox
-            title="A simple way to ask for clarification"
-            tone="neutral"
-            context="Use this when someone quotes a recidivism number in a meeting, article, hearing, family conversation, or policy discussion."
-            script={`When you say that recidivism rate, what population was studied, what counted as recidivism, how long were people followed, when did the follow-up clock start, and what comparison group are you using?`}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="overall-sexual"
-          number="4"
-          title="Overall Recidivism and Sexual Recidivism Are Different Questions"
-          subtitle="Broad claims about being uniquely high-recidivism should not be built from a narrower sexual-specific outcome."
-        />
-
-        <GuideSectionCard>
           <GuideProse>
             <p>
-              The phrase “recidivism rate” often hides two different questions.
-              <strong> Overall recidivism</strong> asks whether a person had any
-              new detected justice-system event, such as any rearrest.
-              <strong> Sexual-specific recidivism</strong> asks whether the new
-              detected event was another sexual offense.
-            </p>
-
-            <p>
-              This distinction matters because the public myth usually makes a
-              broad claim: that people convicted of sexual offenses are uniquely
-              high-recidivism in general. A narrow sexual-specific outcome does
-              not answer that broad question.
-            </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.bjsSex2005.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                BJS 2005 rape/sexual-assault 9-year follow-up
-              </a>{" "}
-              illustrates why precision matters. It reported lower overall
-              arrest for people released after rape or sexual assault than for
-              other released prisoners, while also separately reporting
-              rape/sexual-assault arrest as a narrower outcome.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <h3 className="text-lg font-bold text-slate-900">
-                Overall recidivism
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                Asks: “Was there any new detected justice-system event?”
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                This is the measure to check before accepting broad claims about
-                whether an offense group is “high recidivism” in general.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <h3 className="text-lg font-bold text-slate-900">
-                Sexual-specific recidivism
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                Asks: “Was there another detected sexual offense?”
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                This is a narrower outcome. It should be named clearly and not
-                used as shorthand for overall recidivism.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="info" icon="🧠" title="Keep the outcome attached to the claim">
-            <p>
-              A precise statement can acknowledge sexual-specific rearrest as a
-              distinct outcome without turning it into a broad claim that
-              sexual-offense populations are uniquely high-recidivism overall.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="absolute-relative"
-          number="5"
-          title="Relative Risk and Absolute Risk Can Sound Very Different"
-          subtitle="A statement can be mathematically true and still rhetorically misleading if the absolute rates are hidden."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Relative-risk language compares one group to another. Absolute
-              risk tells you the actual percentage. Both can be useful, but they
-              answer different questions.
-            </p>
-
-            <p>
-              In the{" "}
-              <a
-                href={sourceLinks.bjsSex1994.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                BJS 1994 sex-offender prison-release study
-              </a>
-              , people released after sex offenses were more likely than
-              non-sex-offense releases to be rearrested for a sex crime. The
-              absolute rates were 5.3% versus 1.3% over three years.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-              <h3 className="text-lg font-bold text-amber-950">
-                Relative framing
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-amber-900">
-                “More than four times as likely to be rearrested for a sex
-                crime.”
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-amber-900">
-                This sounds dramatic because it compares one rate to another.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
-              <h3 className="text-lg font-bold text-emerald-950">
-                Absolute framing
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-emerald-900">
-                “5.3% versus 1.3% over three years.”
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-emerald-900">
-                This shows the actual observed detected rates.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="research" icon="📌" title="The practical question">
-            <p>
-              When a statistic sounds shocking, ask: “What are the actual
-              absolute rates?” That question does not deny relative elevation. It
-              keeps the number from being turned into a myth of inevitable repeat
-              offending.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="comparators"
-          number="6"
-          title="Are Sexual-Offense Populations Uniquely High-Recidivism?"
-          subtitle="Large official datasets do not support that broad claim when the outcome is overall rearrest."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The strongest way to compare offense groups is to use the same
-              dataset, same follow-up clock, and same outcome. Same-study
-              comparisons avoid mixing unrelated percentages from different
-              populations.
-            </p>
-
-            <p>
-              Two Bureau of Justice Statistics reports are especially useful for
-              this guide: the{" "}
-              <a
-                href={sourceLinks.bjsSex1994.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                1994 sex-offender prison-release report
-              </a>{" "}
-              and the{" "}
-              <a
-                href={sourceLinks.bjsSex2005.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                2005 rape/sexual-assault 9-year follow-up
-              </a>
-              . Both undermine the simple claim that people released after sexual
-              offenses are the highest-recidivating offense group overall.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white">
-            <div className="bg-slate-100 px-4 py-3">
-              <h3 className="text-base font-bold text-slate-900">
-                Same-study comparator examples
-              </h3>
-            </div>
-
-            <div className="divide-y divide-slate-200">
-              <div className="grid gap-3 p-4 md:grid-cols-[1fr_1fr_1.2fr]">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    Study
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-slate-900">
-                    BJS 1994 state-prison release cohort
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    Outcome and clock
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">
-                    Any rearrest within three years of prison release.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    What it showed
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">
-                    43% of released sex-offense prisoners were rearrested for
-                    any offense, compared with 68% of released non-sex-offense
-                    prisoners.
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-3 p-4 md:grid-cols-[1fr_1fr_1.2fr]">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    Study
-                  </p>
-                  <p className="mt-1 text-sm font-semibold text-slate-900">
-                    BJS 2005 rape/sexual-assault release cohort
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    Outcome and clock
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">
-                    Any arrest within nine years of prison release.
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                    What it showed
-                  </p>
-                  <p className="mt-1 text-sm text-slate-700">
-                    67% of rape/sexual-assault releases were arrested for any
-                    crime, compared with 84% of other released prisoners.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <GuideCallout tone="success" icon="✅" title="Strong public takeaway">
-            <p>
-              People convicted of sexual offenses are not uniquely or uniformly
-              high-recidivism compared with other major offense groups. The
-              answer changes when the outcome changes, which is exactly why
-              “recidivism” must be defined before it is cited.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="specialization"
-          number="7"
-          title="Same-Type Recidivism and Offense Specialization"
-          subtitle="Elevated same-type rearrest is a broader criminal-recidivism pattern, not something unique to sexual offending."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              People released after many kinds of offenses are
-              disproportionately likely to be rearrested for the same type of
-              offense. Researchers often call this <strong>offense specialization</strong>.
-              It matters because sexual-specific rearrest is sometimes treated
-              as if it proves sexual offending is uniquely persistent. The data
-              show a broader pattern.
-            </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.bjsAll1994.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                BJS 1994 all-prisoner recidivism report
-              </a>{" "}
-              included a same-offense relative-likelihood table across many
-              release-offense categories.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              ["Homicide", "1.4×"],
-              ["Rape", "4.2×"],
-              ["Other sexual assault", "5.9×"],
-              ["Robbery", "2.7×"],
-              ["Assault", "1.9×"],
-              ["Burglary", "3.7×"],
-              ["Theft", "3.0×"],
-              ["Motor-vehicle theft", "2.9×"],
-              ["Fraud", "5.3×"],
-              ["Stolen property", "3.4×"],
-              ["Drug offenses", "2.1×"],
-              ["Public-order offenses", "1.2×"],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
-              >
-                <p className="text-sm font-semibold text-slate-600">{label}</p>
-                <p className="mt-1 text-2xl font-bold text-slate-950">
-                  {value}
-                </p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-600">
-                  Relative likelihood of rearrest for the same offense type.
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <GuideCallout tone="research" icon="🧭" title="What this does — and does not — show">
-            <p>
-              The magnitude of specialization differs across offense categories.
-              Category definitions and base rates also differ. But the pattern
-              itself is not unique to sexual offending. Elevated
-              sexual-specific rearrest should be understood partly as offense
-              specialization, not as proof that sexual offending alone is
-              uniquely persistent.
-            </p>
-          </GuideCallout>
-
-          <SoftDivider />
-
-          <GuideProse>
-            <h3>Same-type rates are not uniquely high either</h3>
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.bjsAll2012.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                BJS 2012 prisoner recidivism 5-year follow-up
-              </a>{" "}
-              reported that 4% of prisoners released after rape or sexual
-              assault were arrested for rape or sexual assault within five
-              years. In the same report, same-type rearrest was much higher for
-              broader categories such as assault, property, drug, and
-              public-order releases.
-            </p>
-
-            <p>
-              The point is not to force a perfect ranking across differently
-              sized categories. The point is simpler: raw same-type recidivism
-              data do not support the claim that sexual offenses are uniquely
-              characterized by repetition of the same offense type.
+              These questions also connect back to SOLAR’s earlier evidence
+              guides. If risk is heterogeneous, then a finding about a selected
+              high-risk group should not automatically be generalized to
+              everyone with a registry label. If recidivism varies by
+              population, outcome, subgroup, and time, then policy evaluation
+              should be at least as specific.
             </p>
           </GuideProse>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="offense-categories"
-          number="8"
-          title="Why Offense Categories Matter"
-          subtitle="Broad sexual-offense statistics should not be casually applied to every subgroup."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              “Sex offense” is a broad legal and social category. It can include
-              contact offenses, non-contact offenses, CSEM-only offenses,
-              solicitation-related cases, registration-status offenses, and
-              mixed-history cases. Those groups should not be treated as if they
-              are empirically identical.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900">
-                Contact-offense groups
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                May include people whose index offense involved physical contact
-                or attempted contact. Comparator reports often use categories
-                such as rape or sexual assault.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900">
-                CSEM-only groups
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                Should be read through CSEM-specific evidence when available,
-                not automatically replaced with broader contact-offense
-                statistics.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900">
-                Broader mixed groups
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                May combine different offense histories, ages, jurisdictions,
-                supervision settings, and measurement rules.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="reminder" icon="📍" title="Use the closest population you can defend">
-            <p>
-              A broad prison-release sexual-offense statistic may be useful for
-              a broad public claim. It is usually not the best evidence for a
-              narrow person-specific or subgroup-specific claim.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="csem"
-          number="9"
-          title="CSEM-Specific Evidence Is Its Own Empirical Lane"
-          subtitle="CSEM-only populations should not be treated as interchangeable with broader sexual-offense populations."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              CSEM stands for child sexual exploitation material. CSEM cases are
-              serious. They also require careful evidence use. Broad
-              contact-offense statistics should not be casually applied to
-              CSEM-only populations when CSEM-specific recidivism evidence is
-              available.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                Federal supervision cohort
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-slate-900">
-                5,768 federal male CSEM supervisees
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                The{" "}
-                <a
-                  href={sourceLinks.federalCsem.href}
-                  className={linkClass}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Federal Probation CSEM supervision study
-                </a>{" "}
-                reported a fixed 60-month follow-up. In that cohort, 4.5% were
-                rearrested for any sexual offense, and fewer than 1% were
-                rearrested for a contact sex crime.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                <strong>Scope:</strong> rearrest, five years, federal male CSEM
-                supervision cohort — not lifetime risk and not all undetected
-                conduct.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                Pooled online/CSEM literature
-              </p>
-              <h3 className="mt-2 text-lg font-bold text-slate-900">
-                Prospective online-offense follow-up studies
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">
-                The{" "}
-                <a
-                  href={sourceLinks.onlineOffenders.href}
-                  className={linkClass}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Seto, Hanson, and Babchishin online-offense meta-analyses
-                </a>{" "}
-                reported 4.6% new sexual offending, 2.0% new contact sexual
-                offending, and 3.4% new CSEM offending over follow-up periods of
-                roughly 1.5 to 6 years.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                <strong>Scope:</strong> pooled online-offense studies,
-                prospective follow-up, fixed study windows — not lifetime risk.
-              </p>
-            </div>
-          </div>
-
-          <GuideCallout tone="research" icon="🧾" title="Past hidden conduct is a different question">
-            <p>
-              Some self-report studies of online-offense populations found more
-              prior undisclosed contact behavior than official records captured.
-              That is a history or prevalence finding. It is not the same as a
-              prospective recidivism rate. A study finding previously
-              undisclosed behavior does not establish that the same percentage
-              will commit a future offense.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="individual-variation"
-          number="10"
-          title="Age, Criminal History, and Individual Variation"
-          subtitle="Offense label alone is a poor shorthand for individual recidivism risk."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Group statistics are useful, but they are not individual certainty.
-              Age, prior record, supervision history, offense history, and other
-              empirically relevant factors can materially change observed
-              recidivism likelihood.
-            </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.ussc2010.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                USSC federal offenders released in 2010 report
-              </a>{" "}
-              illustrates why offense labels are incomplete. In that federal
-              cohort, age and Criminal History Category were strongly associated
-              with rearrest differences. The matrix-supported takeaway is not
-              that any one factor explains everything; it is that category labels
-              alone are too blunt for individual or policy decisions.
-            </p>
-          </GuideProse>
-
-          <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h3 className="text-lg font-bold text-slate-900">
-              A better way to think about individual variation
-            </h3>
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              {[
-                {
-                  label: "Offense category",
-                  text: "A starting point, not the whole risk picture.",
-                },
-                {
-                  label: "Age",
-                  text: "Risk patterns change across the life course.",
-                },
-                {
-                  label: "Criminal history",
-                  text: "Prior record can separate risk levels within the same broad category.",
-                },
-                {
-                  label: "Change over time",
-                  text: "Treatment, supervision, stability, and offense-free time can matter.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-                >
-                  <p className="text-sm font-bold text-slate-900">
-                    {item.label}
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-700">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <GuideCallout tone="legal" icon="⚖️" title="Connect this to risk assessment">
-            <p>
-              Recidivism evidence shows what happened in studied groups. Risk
-              assessment asks how risk is estimated for a person or subgroup.
-              For score interpretation, calibration, and tool limits, use
-              SOLAR’s companion{" "}
-              <Link to="/resources/risk-assessment-guide" className={linkClass}>
-                Understanding Sex-Offense Risk Assessment
-              </Link>{" "}
-              guide.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="treatment-change"
-          number="11"
-          title="Treatment, Change, and Desistance"
-          subtitle="Risk is not fixed destiny. Structured intervention can change outcomes on average."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Recidivism evidence should not be read as permanent fate.
-              Structured intervention, age, offense-free time, and
-              empirically relevant individual differences can all matter. The
-              public-safety question is not only “What was the original label?”
-              It is also “What has changed, and what does the best available
-              evidence show now?”
-            </p>
-
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.treatmentMetaAnalysis.href}
-                className={linkClass}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Schmucker and Lösel treatment-effectiveness meta-analysis
-              </a>{" "}
-              found lower average sexual recidivism among treated groups than
-              comparison groups across eligible studies. The supported claim is
-              restrained but important: treatment can reduce risk on average. It
-              is not a guarantee for any one person.
-            </p>
-          </GuideProse>
-
-          <PullQuoteBlock
-            quote="Risk is not fixed destiny. The evidence supports individualized, change-aware thinking rather than permanent categorical assumptions."
-            attribution="SOLAR evidence-literacy principle"
-          />
-
-          <GuideCallout tone="success" icon="🌱" title="The practical public-safety point">
-            <p>
-              Serious public-safety thinking should be individualized and
-              change-aware. Treatment evidence, age patterns, offense-free time,
-              and criminal-history differences all point away from permanent
-              categorical assumptions.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="worked-examples"
-          number="12"
-          title="Worked Examples"
-          subtitle="Apply the evidence-literacy questions to real datasets before accepting the headline version."
-        />
-
-        <GuideSectionCard>
-          <div className="grid gap-5 lg:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                Example 1
-              </p>
-              <h3 className="mt-2 text-xl font-bold text-slate-900">
-                BJS comparator evidence
-              </h3>
-
-              <GuideProse>
-                <p>
-                  A common claim says people convicted of sexual offenses are
-                  uniquely high-recidivism. The{" "}
-                  <a
-                    href={sourceLinks.bjsSex2005.href}
-                    className={linkClass}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    BJS 2005 rape/sexual-assault follow-up
-                  </a>{" "}
-                  shows why that claim is too broad.
-                </p>
-
-                <ul>
-                  <li>
-                    <strong>Population:</strong> people released from state
-                    prison in 2005 after rape or sexual assault, compared with
-                    other released prisoners.
-                  </li>
-                  <li>
-                    <strong>Outcome:</strong> any arrest and rape/sexual-assault
-                    arrest.
-                  </li>
-                  <li>
-                    <strong>Follow-up:</strong> nine years after prison release.
-                  </li>
-                  <li>
-                    <strong>What it showed:</strong> lower overall arrest than
-                    other released prisoners, with rape/sexual-assault arrest
-                    reported as a separate narrower outcome.
-                  </li>
-                </ul>
-
-                <p>
-                  The accurate interpretation is not “no risk” and not “unique
-                  inevitable recidivism.” It is: the answer depends on the
-                  outcome being measured.
-                </p>
-              </GuideProse>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                Example 2
-              </p>
-              <h3 className="mt-2 text-xl font-bold text-slate-900">
-                Federal CSEM cohort
-              </h3>
-
-              <GuideProse>
-                <p>
-                  A broad sexual-offense statistic should not automatically be
-                  applied to CSEM-only cases. The{" "}
-                  <a
-                    href={sourceLinks.federalCsem.href}
-                    className={linkClass}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    federal CSEM supervision study
-                  </a>{" "}
-                  gives a more specific lane.
-                </p>
-
-                <ul>
-                  <li>
-                    <strong>Population:</strong> 5,768 federal male CSEM
-                    supervisees.
-                  </li>
-                  <li>
-                    <strong>Outcome:</strong> rearrest for any sexual offense
-                    and rearrest for a contact sex crime.
-                  </li>
-                  <li>
-                    <strong>Follow-up:</strong> fixed 60-month period.
-                  </li>
-                  <li>
-                    <strong>What it showed:</strong> 4.5% rearrest for any
-                    sexual offense and fewer than 1% rearrest for a contact sex
-                    crime.
-                  </li>
-                </ul>
-
-                <p>
-                  The accurate interpretation is not a lifetime safety claim. It
-                  is a fixed-period, official-detection finding showing why
-                  CSEM-only populations need subgroup-specific evidence.
-                </p>
-              </GuideProse>
-            </div>
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="final-checklist"
+          id="bottom-line"
           number="13"
-          title="Questions to Ask Before Accepting a Recidivism Statistic"
-          subtitle="Use this as a practical guardrail when reading articles, policy testimony, court filings, supervision claims, or advocacy materials."
+          title="The Bottom Line: What Measurable Safety Benefit Are We Buying?"
+          subtitle="The strongest conclusion is a proportionality argument, not a claim that every conceivable registry function equals zero."
         />
 
         <GuideSectionCard>
-          <GuideChecklist
-            id="recidivism-statistic-checklist"
-            title="Before accepting the number, ask"
-            columns={1}
-            items={[
-              { id: "who", label: "Who was studied?" },
-              { id: "population", label: "What offense population was studied?" },
-              {
-                id: "counted",
-                label: "What counted as recidivism?",
-              },
-              {
-                id: "basis",
-                label:
-                  "Was it rearrest, charge, reconviction, reincarceration, self-report, or something else?",
-              },
-              {
-                id: "length",
-                label: "How long were people followed?",
-              },
-              {
-                id: "start",
-                label: "When did follow-up begin?",
-              },
-              {
-                id: "overall-same-type",
-                label:
-                  "Is this overall recidivism, sexual-specific recidivism, or same-type recidivism?",
-              },
-              {
-                id: "absolute-relative",
-                label:
-                  "Is the statement using absolute rates, relative comparisons, or both?",
-              },
-              {
-                id: "comparison",
-                label: "What is the comparison group?",
-              },
-              {
-                id: "comparable",
-                label:
-                  "Is the population comparable to the person, subgroup, or policy being discussed?",
-              },
-              {
-                id: "history-future",
-                label:
-                  "Is historical undisclosed conduct being confused with future offending?",
-              },
-              {
-                id: "individual-certainty",
-                label:
-                  "Is a group statistic being treated as an individual prediction?",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="warning" icon="🚫" title="What recidivism statistics do not mean">
+          <GuideProse>
             <p>
-              A group-level rate does not tell you with certainty what one
-              person will do. A fixed-period follow-up rate is not a lifetime
-              rate. A rearrest rate is not all offending. A CSEM-only finding is
-              not automatically interchangeable with a broad contact-offense
-              finding. A relative-risk statement is not complete until the
-              absolute rates are visible.
+              The component-level literature is heterogeneous, but the center of
+              the evidence is not neutral. The strongest broad pooled evidence
+              in the SOLAR matrix has not demonstrated an overall
+              recidivism-reduction effect. Several major evaluations found no
+              detectable benefit. Public-notification systems impose measurable
+              burdens. And narrower favorable findings—especially for selected
+              high-risk notification—do not establish that universal public
+              disclosure produces the same result.
+            </p>
+            <p>
+              That leaves a legitimate public-safety question:{" "}
+              <strong>what measurable safety benefit are we buying with all of
+              this?</strong>
+            </p>
+            <p>
+              A policy can have some administrative or informational utility and
+              still fail to justify its scale, publicity, duration, collateral
+              consequences, or categorical design. Evidence-based public safety
+              should be willing to distinguish individualized risk, targeted
+              intervention, focused supervision where warranted, effective
+              treatment, and prevention aimed at actual pathways to harm from a
+              broad system whose benefits are too often assumed rather than
+              demonstrated.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="success" icon="🌱" title="The evidence standard">
+            <p>
+              Burdens should not be presumed justified simply because the policy
+              concerns sexual offending. Effectiveness must be measured, not
+              assumed.
             </p>
           </GuideCallout>
-
-          <ScriptBox
-            title="A calm way to correct an overbroad claim"
-            tone="neutral"
-            context="Use this when someone treats one number as if it settles the entire question."
-            script={`That statistic may be important, but it only answers the question it actually measured. We need to know the population, outcome definition, follow-up length, starting point, and comparison group before using it as a public claim.`}
-          />
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="resources"
+          id="sources"
           number="14"
-          title="Resources and Next Steps"
-          subtitle="Use these sources to verify claims, compare datasets, and keep moving through SOLAR’s evidence guides."
+          title="Sources and Further Reading"
+          subtitle="Primary studies, government evaluations, and evidence syntheses used in this guide."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Key public evidence sources"
+            title="Start with these evidence anchors"
             resources={[
               {
-                label: "BJS 2005 rape/sexual-assault 9-year follow-up",
+                label: "Zgoba & Mitchell — SORN meta-analysis",
                 description:
-                  "Official same-cohort comparator evidence for overall arrest and rape/sexual-assault arrest after prison release.",
-                href: sourceLinks.bjsSex2005.href,
-                badge: "Official",
+                  "The strongest broad quantitative synthesis in the SOLAR Evidence Matrix.",
+                href: sourceLinks.zgobaMitchell,
+                badge: "Meta-analysis",
               },
               {
-                label: "BJS 1994 sex-offender prison-release report",
+                label: "National Institute of Justice — New Jersey Megan’s Law evaluation",
                 description:
-                  "Official three-year comparator evidence often cited for the 5.3% versus 1.3% sexual rearrest example.",
-                href: sourceLinks.bjsSex1994.href,
-                badge: "Official",
+                  "State evaluation combining public-safety outcomes with implementation-cost analysis.",
+                href: sourceLinks.newJersey,
+                badge: "Government",
               },
               {
-                label: "BJS 1994 all-prisoner recidivism report",
+                label: "Prescott & Rockoff — registration vs. notification",
                 description:
-                  "Official same-offense specialization table across multiple offense categories.",
-                href: sourceLinks.bjsAll1994.href,
-                badge: "Official PDF",
+                  "Important component-specific study separating possible registration and notification mechanisms.",
+                href: sourceLinks.prescottRockoff,
+                badge: "Research",
               },
               {
-                label: "BJS 2012 prisoner recidivism 5-year follow-up",
+                label: "Duwe & Donnay — Minnesota Level 3 notification",
                 description:
-                  "Official same-type rearrest comparator data across broad offense categories.",
-                href: sourceLinks.bjsAll2012.href,
-                badge: "Official PDF",
-              },
-              {
-                label: "USSC federal offenders released in 2010",
-                description:
-                  "Federal recidivism data showing variation by offense type, age, and criminal history.",
-                href: sourceLinks.ussc2010.href,
-                badge: "Official PDF",
-              },
-              {
-                label: "Federal Probation CSEM supervision study",
-                description:
-                  "Large federal CSEM-specific cohort with fixed 60-month follow-up.",
-                href: sourceLinks.federalCsem.href,
-                badge: "Government journal",
+                  "Key quasi-experimental evidence of benefit for targeted notification of a selected high-risk group.",
+                href: sourceLinks.duweDonnay,
+                badge: "Research",
               },
             ]}
           />
@@ -1387,92 +1177,125 @@ export default function ResourceGuideSandbox(): JSX.Element {
               {
                 title: "Understanding Sex-Offense Risk Assessment",
                 description:
-                  "Use this companion guide when the question is how risk tools, scores, AUC, calibration, and structured assessment should be interpreted.",
-                to: "/resources/risk-assessment-guide",
+                  "How individualized risk assessment differs from categorical assumptions about people with sex-offense histories.",
+                to: relatedGuideRoutes.risk,
               },
               {
-                title: "Reentry Planning Guide",
+                title: "Understanding Recidivism Evidence",
                 description:
-                  "Use this when the practical question is how to build stability after incarceration, supervision, or registry-related disruption.",
-                to: "/resources/reentry-checklist",
-              },
-              {
-                title: "Family Support Guide",
-                description:
-                  "Use this when loved ones need plain-language help understanding evidence, fear, boundaries, and support.",
-                to: "/resources/family-support-guide",
+                  "How population, outcome, subgroup, follow-up, and comparison shape what recidivism statistics actually mean.",
+                to: relatedGuideRoutes.recidivism,
               },
             ]}
           />
 
           <SourceList
-            note="Sources below were selected from the canonical SOLAR Evidence Matrix and public URLs were live-checked during this sandbox drafting pass where browsing access allowed."
+            note="Source scope and wording are controlled by the SOLAR Evidence Matrix. Canonical URLs are retained here so readers can follow the evidence path."
             sources={[
               {
-                label: "Alper & Durose, BJS — Recidivism of Sex Offenders Released from State Prison: A 9-Year Follow-Up (2005–14)",
-                href: sourceLinks.bjsSex2005.href,
+                label:
+                  "Zgoba, K. M., & Mitchell, M. M. (2023). The effectiveness of Sex Offender Registration and Notification: A meta-analysis of 25 years of findings.",
+                href: sourceLinks.zgobaMitchell,
                 description:
-                  "Supports same-cohort comparison of overall arrest and rape/sexual-assault arrest among 2005 rape/sexual-assault releases and other released prisoners.",
+                  "Meta-analysis of 18 research articles, 474,640 individuals, and 42 effect sizes; no statistically significant overall pooled SORN recidivism effect.",
               },
               {
-                label: "Langan, Schmitt & Durose, BJS — Recidivism of Sex Offenders Released from Prison in 1994",
-                href: sourceLinks.bjsSex1994.href,
+                label:
+                  "Prescott, J. J., & Rockoff, J. E. (2011). Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
+                href: sourceLinks.prescottRockoff,
                 description:
-                  "Supports the 43% versus 68% overall rearrest comparison and the 5.3% versus 1.3% sex-crime rearrest example.",
+                  "Separates registration from notification and reports different estimated mechanisms and effects.",
               },
               {
-                label: "Langan & Levin, BJS — Recidivism of Prisoners Released in 1994",
-                href: sourceLinks.bjsAll1994.href,
+                label:
+                  "Agan, A. Y. (2011). Sex Offender Registries: Fear without Function?",
+                href: sourceLinks.agan,
                 description:
-                  "Supports offense-specialization relative-likelihood comparisons across homicide, rape, sexual assault, robbery, assault, property, fraud, drug, and public-order categories.",
+                  "Multiple empirical designs that did not support the hypothesis that registries increased public safety.",
               },
               {
-                label: "Antenangeli & Durose, BJS — Recidivism of Prisoners Released in 34 States in 2012",
-                href: sourceLinks.bjsAll2012.href,
+                label:
+                  "Sandler, J. C., Freeman, N. J., & Socia, K. M. (2008). Does a Watched Pot Boil?",
+                href: sourceLinks.sandlerFreemanSocia,
                 description:
-                  "Supports same-type rearrest comparisons across broad offense categories, including rape/sexual assault, assault, property, drug, and public-order releases.",
+                  "New York time-series analysis finding no support for SORN reducing the studied categories of sexual offending.",
               },
               {
-                label: "United States Sentencing Commission — Recidivism of Federal Offenders Released in 2010",
-                href: sourceLinks.ussc2010.href,
+                label:
+                  "Duwe, G., & Donnay, W. (2008). The Impact of Megan’s Law on Sex Offender Recidivism: The Minnesota Experience.",
+                href: sourceLinks.duweDonnay,
                 description:
-                  "Supports federal offense-type, age, and criminal-history heterogeneity claims.",
+                  "Quasi-experimental study reporting benefit for targeted Level 3 community notification.",
               },
               {
-                label: "United States Sentencing Commission — Federal Sentencing of Child Pornography: Non-Production Offenses",
-                href: sourceLinks.usscCsem.href,
+                label:
+                  "Letourneau, E. J., et al. (2010). Effects of South Carolina’s Sex Offender Registration and Notification Policy on Adult Recidivism.",
+                href: sourceLinks.letourneauRecidivism,
                 description:
-                  "Supports CSEM-specific federal non-production child-pornography recidivism context.",
+                  "Registration status did not significantly predict sexual recidivism in the modeled analyses.",
               },
               {
-                label: "Cohen, Federal Probation — Building a Risk Tool for Federal CSEM Supervisees",
-                href: sourceLinks.federalCsem.href,
+                label:
+                  "Letourneau, E. J., et al. (2010). The Effects of Sex Offender Registration and Notification on Judicial Decisions.",
+                href: sourceLinks.letourneauJudicial,
                 description:
-                  "Supports the 5,768-person federal male CSEM supervision cohort, 60-month follow-up, 4.5% sexual rearrest, and fewer-than-1% contact-sex-crime rearrest findings.",
+                  "South Carolina analysis of justice-system charging and disposition effects across policy periods.",
               },
               {
-                label: "Harris & Hanson — Sex Offender Recidivism: A Simple Question",
-                href: sourceLinks.simpleQuestion.href,
+                label:
+                  "Zgoba, K. M., Witt, P. H., Dalessandro, M., & Veysey, B. M. (2008). Megan’s Law: Assessing the Practical and Monetary Efficacy.",
+                href: sourceLinks.newJersey,
                 description:
-                  "Supports long-follow-up sexual recidivism benchmarks and the principle that rates vary by follow-up length and subgroup.",
+                  "NIJ/New Jersey evaluation reporting no demonstrated sexual-offense benefit across several outcomes and documenting implementation costs.",
               },
               {
-                label: "Hanson & Morton-Bourgon — Predictors of Sexual Recidivism: An Updated Meta-Analysis",
-                href: sourceLinks.updatedMetaAnalysis.href,
+                label:
+                  "Anderson, A. L., & Sample, L. L. (2008). Public Awareness and Action Resulting from Sex Offender Community Notification Laws.",
+                href: sourceLinks.andersonSample,
                 description:
-                  "Supports outcome-measurement and general sexual-recidivism evidence used as background in the matrix.",
+                  "Community survey examining registry access and self-reported preventative action.",
               },
               {
-                label: "Seto, Hanson & Babchishin — Contact Sexual Offending by Men With Online Sexual Offenses",
-                href: sourceLinks.onlineOffenders.href,
+                label:
+                  "Freeman, N. J. (2012). The Public Safety Impact of Community Notification Laws: Rearrest of Convicted Sex Offenders.",
+                href: sourceLinks.freeman,
                 description:
-                  "Supports pooled online/CSEM prospective findings and the distinction between prior hidden conduct and future recidivism.",
+                  "Large notified-versus-non-notified comparison; causal interpretation is limited by assignment, risk, surveillance, and detection confounding.",
               },
               {
-                label: "Schmucker & Lösel — The Effects of Sexual Offender Treatment on Recidivism",
-                href: sourceLinks.treatmentMetaAnalysis.href,
+                label:
+                  "Lasher, M. P., & McGrath, R. J. (2012). The Impact of Community Notification on Sex Offender Reintegration: A Quantitative Review of the Research Literature.",
+                href: sourceLinks.lasherMcGrath,
                 description:
-                  "Supports the restrained treatment-and-change claim that structured intervention can reduce sexual recidivism on average.",
+                  "Quantitative review documenting recurring housing, employment, social, and psychological burdens.",
+              },
+              {
+                label:
+                  "Levenson, J. S., & Cotter, L. P. (2005). The Effect of Megan’s Law on Sex Offender Reintegration.",
+                href: sourceLinks.levensonCotter,
+                description:
+                  "Survey evidence on housing, employment, harassment, psychosocial effects, and registry-information accuracy.",
+              },
+              {
+                label:
+                  "Cubellis, M. A., Walfield, S. M., & Harris, A. J. (2018). Collateral Consequences and Effectiveness of Sex Offender Registration and Notification: Law Enforcement Perspectives.",
+                href: sourceLinks.cubellis,
+                description:
+                  "Law-enforcement perspectives on SORN effectiveness, collateral consequences, and registry scale.",
+              },
+              {
+                label:
+                  "Harris, A. J., Levenson, J. S., Lobanov-Rostovsky, C., & Walfield, S. M. (2018). Law Enforcement Perspectives on Sex Offender Registration and Notification: Effectiveness, Challenges, and Policy Priorities.",
+                href: sourceLinks.harrisLawEnforcement,
+                description:
+                  "National practitioner research on information quality, communication, homelessness/transience, public interpretation, and operational challenges.",
+              },
+              {
+                label:
+                  "Bonnar-Kidd, K. K. (2010). Sexual Offender Laws and Prevention of Sexual Violence or Recidivism.",
+                href: sourceLinks.bonnarKidd,
+                description:
+                  "Peer-reviewed policy review used as synthesis/context for heterogeneous registry-related policies and collateral effects.",
               },
             ]}
           />
