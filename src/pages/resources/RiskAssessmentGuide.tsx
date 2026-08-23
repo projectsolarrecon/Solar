@@ -39,7 +39,10 @@ const sourceLinks = {
   vrsUpdated: "https://pubmed.ncbi.nlm.nih.gov/29708372/",
 };
 
-export default function ResourceGuideSandbox(): JSX.Element {
+const inlineLinkCls =
+  "font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900";
+
+export default function RiskAssessmentGuide(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
@@ -206,7 +209,7 @@ export default function ResourceGuideSandbox(): JSX.Element {
               href="#baseline-static"
               className="rounded-xl border border-slate-200 bg-white p-4 text-sm font-semibold text-slate-800 hover:border-slate-300 hover:bg-slate-50 transition-colors"
             >
-              5–10. Look up a tool
+              Look up a tool
             </a>
 
             <a
@@ -256,6 +259,15 @@ export default function ResourceGuideSandbox(): JSX.Element {
               decision. The purpose matters because a tool designed for one
               question should not automatically be treated as answering every
               other one.
+            </p>
+
+            <p>
+              If the assessment is part of a federal criminal case, the{" "}
+              <Link to="/resources/federal-process-guide" className={inlineLinkCls}>
+                Federal Sex-Crime Process Guide
+              </Link>{" "}
+              explains where sentencing and related evaluations fit in the larger
+              federal process.
             </p>
 
             <p>You might see all of the following in one document:</p>
@@ -713,6 +725,14 @@ export default function ResourceGuideSandbox(): JSX.Element {
               developer expectations, illustrating why population-specific norms
               and reference groups matter.
             </p>
+            <p>
+              Readers who want to go deeper into SOLAR&apos;s research sources,
+              definitions, and evidence base can continue to{" "}
+              <Link to="/resources/research-data-resources" className={inlineLinkCls}>
+                Research &amp; Data Resources
+              </Link>
+              .
+            </p>
           </GuideProse>
         </GuideSectionCard>
 
@@ -802,8 +822,25 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 What should be checked before use?
               </h4>
               <p className="mt-1 text-slate-700">
-                Eligibility, current coding rules, the version used, the norm or
-                reference group, and whether the case type fits the instrument.
+                Eligibility, the{" "}
+                <a
+                  href={sourceLinks.staticCoding}
+                  className={inlineLinkCls}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  current coding rules
+                </a>
+                , the version used, the{" "}
+                <a
+                  href={sourceLinks.staticWorkbook}
+                  className={inlineLinkCls}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  norm or reference group
+                </a>
+                , and whether the case type fits the instrument.
               </p>
             </div>
 
@@ -1047,11 +1084,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
                 What does the broader validation evidence say?
               </h4>
               <p className="mt-1 text-slate-700">
-                The workbook includes development and validation studies showing
-                meaningful predictive discrimination, including an independent
-                validation AUC of .70 in a small 80-person cohort and combined
-                sample AUCs of .72 for any sexual recidivism and .74 for a new
-                CSEM offense.
+                The workbook includes development and{" "}
+                <a
+                  href={sourceLinks.cportValidation}
+                  className={inlineLinkCls}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  independent validation evidence
+                </a>{" "}
+                showing meaningful predictive discrimination, including an
+                independent validation AUC of .70 in a small 80-person cohort and
+                combined sample AUCs of .72 for any sexual recidivism and .74 for a
+                new CSEM offense.
               </p>
             </div>
 
@@ -1148,10 +1193,18 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <GuideProse>
             <h3>PCRA and PCRA-R</h3>
             <p>
-              The federal Post Conviction Risk Assessment family is used for
-              general recidivism risk, criminogenic needs, supervision planning,
-              and allocation of intervention resources in federal post-conviction
-              supervision.
+              The federal{" "}
+              <a
+                href={sourceLinks.pcra}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Post Conviction Risk Assessment
+              </a>{" "}
+              family is used for general recidivism risk, criminogenic needs,
+              supervision planning, and allocation of intervention resources in
+              federal post-conviction supervision.
             </p>
             <p>
               It combines criminal-history information with dynamic needs and
@@ -1160,7 +1213,15 @@ export default function ResourceGuideSandbox(): JSX.Element {
             <p>
               <strong>Where might you encounter it?</strong> In federal
               post-conviction supervision, where probation officers use a general
-              risk-and-needs framework to support supervision planning.
+              risk-and-needs framework to support supervision planning. For the
+              practical rules and decisions that may follow, see SOLAR&apos;s{" "}
+              <Link
+                to="/resources/supervision-conditions-guide"
+                className={inlineLinkCls}
+              >
+                Supervision Conditions Survival Guide
+              </Link>
+              .
             </p>
             <p>
               That scope distinction matters. PCRA can include factors that
@@ -1335,7 +1396,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
         <GuideSectionCard>
           <GuideProse>
             <p>
-              The federal study in the workbook examined a validation cohort of
+              The{" "}
+              <a
+                href={sourceLinks.federalCsem}
+                className={inlineLinkCls}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                federal CSEM risk-tool study
+              </a>{" "}
+              examined a validation cohort of
               <strong> 5,768 male federal CSEM supervisees</strong> using a fixed
               <strong> 60-month follow-up</strong> beginning at supervision start
               or initial PCRA assessment.
@@ -1497,6 +1567,19 @@ export default function ResourceGuideSandbox(): JSX.Element {
             whatToAsk="Ask for the instrument name, version, eligibility basis, coding rules, outcome, follow-up period, reference group, and any override rationale."
             whatToSave="Save the written report, score sheet if disclosure is permitted, cited norms, evaluator explanation, corrections, and any written response to a disputed coding item."
           />
+
+          <GuideProse>
+            <p>
+              If the disagreement involves a government action or legal process,
+              SOLAR&apos;s{" "}
+              <Link to="/resources/know-your-rights" className={inlineLinkCls}>
+                Your Rights at Every Stage
+              </Link>{" "}
+              guide can help identify the separate legal questions. A disagreement
+              about scoring or interpretation, by itself, does not establish a
+              rights violation.
+            </p>
+          </GuideProse>
 
           <GuideCallout
             tone="legal"
