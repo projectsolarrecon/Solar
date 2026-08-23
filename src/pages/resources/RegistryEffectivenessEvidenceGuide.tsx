@@ -348,7 +348,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
             columns={3}
             cards={[
               {
-                eyebrow: "A",
                 title: "Registration database",
                 icon: "🗃️",
                 tone: "info",
@@ -356,7 +355,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
                   "Identity, address, and related information maintained for official or law-enforcement use.",
               },
               {
-                eyebrow: "B",
                 title: "Public notification",
                 icon: "📢",
                 tone: "warning",
@@ -364,7 +362,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
                   "Disclosure through websites, notices, meetings, or other public-facing methods.",
               },
               {
-                eyebrow: "C",
                 title: "Targeted high-risk notification",
                 icon: "🎯",
                 tone: "research",
@@ -372,7 +369,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
                   "Notification focused on a selected higher-risk group, such as Minnesota Level 3 cases.",
               },
               {
-                eyebrow: "D",
                 title: "Broad Internet disclosure",
                 icon: "🌐",
                 tone: "legal",
@@ -380,7 +376,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
                   "Large-scale public access that may include far more people than a selected high-risk group.",
               },
               {
-                eyebrow: "E",
                 title: "Broad SORN packages",
                 icon: "🧩",
                 tone: "neutral",
@@ -388,7 +383,6 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
                   "Studies where registration and notification changed together or cannot be cleanly separated.",
               },
               {
-                eyebrow: "F",
                 title: "Verification and reporting",
                 icon: "📝",
                 tone: "reminder",
@@ -718,29 +712,39 @@ export default function RegistryEffectivenessEvidenceGuide(): JSX.Element {
             </GuideProse>
           </div>
 
-          <GuideProse>
-            <h3>New York</h3>
-            <p>
-              The New York time-series study found no support for SORN reducing
-              the studied categories of sexual offending. Its design cannot
-              fully separate registration from notification or eliminate every
-              broader time trend, but it remains an important major-state
-              evaluation showing no detectable policy effect.
-            </p>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Additional state evaluation</div>
+              <h3 className="mt-2 text-lg font-bold text-slate-900">New York</h3>
+              <GuideProse>
+                <p>
+                  The New York time-series study found no support for SORN reducing
+                  the studied categories of sexual offending. Its design cannot
+                  fully separate registration from notification or eliminate every
+                  broader time trend, but it remains an important major-state
+                  evaluation showing no detectable policy effect.
+                </p>
+              </GuideProse>
+            </div>
 
-            <h3>South Carolina</h3>
-            <p>
-              In the South Carolina recidivism analysis, registration status did
-              not significantly predict sexual recidivism. A separate{" "}
-              <a href={sourceLinks.letourneauJudicial} className={linkCls} target="_blank" rel="noreferrer">
-                South Carolina study of judicial decisions
-              </a>{" "}
-              found changes in charging and disposition patterns across policy
-              periods. That is a reminder that registry policy can affect the
-              justice system in ways that do not appear as a straightforward
-              recidivism change.
-            </p>
-          </GuideProse>
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 sm:p-6">
+              <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Additional state evaluation</div>
+              <h3 className="mt-2 text-lg font-bold text-slate-900">South Carolina</h3>
+              <GuideProse>
+                <p>
+                  In the South Carolina recidivism analysis, registration status did
+                  not significantly predict sexual recidivism. A separate{" "}
+                  <a href={sourceLinks.letourneauJudicial} className={linkCls} target="_blank" rel="noreferrer">
+                    South Carolina study of judicial decisions
+                  </a>{" "}
+                  found changes in charging and disposition patterns across policy
+                  periods. That is a reminder that registry policy can affect the
+                  justice system in ways that do not appear as a straightforward
+                  recidivism change.
+                </p>
+              </GuideProse>
+            </div>
+          </div>
         </GuideSectionCard>
 
         <GuideSectionHeader
