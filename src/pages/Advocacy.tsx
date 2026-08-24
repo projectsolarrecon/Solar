@@ -15,9 +15,10 @@ const positions = [
       "Rather than increasing safety, registries foster fear, isolation, discrimination, and vigilante violence. Children and families often suffer consequences through no fault of their own.",
   },
   {
-    title: "The real risk to children often lies closer to home.",
+    title:
+      "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
     body:
-      "Authority figures—including family members, teachers, coaches, clergy, and community leaders—are more likely to perpetrate sexual harm than strangers. Public registry systems misdirect attention toward the stranger-danger myth.",
+      "Most reported child sexual abuse is committed by someone the child knows. Prevention therefore requires attention to family and trusted-access relationships—including teachers, coaches, clergy, and community leaders—not just the locations of people already on a public registry.",
   },
   {
     title:
@@ -39,6 +40,12 @@ const positions = [
     title: "Registries create a permanent underclass.",
     body:
       "They block access to housing, employment, education, financial services, and community participation, stripping people of the tools necessary to rebuild their lives and reintegrate safely.",
+  },
+  {
+    title:
+      "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
+    body:
+      "The seriousness of sexual harm does not make every intervention imposed in its name effective. Registration, public notification, supervision, treatment, and other interventions should be evaluated according to what they actually accomplish, whom they affect, and whether their demonstrated benefits justify their burdens.",
   },
 ];
 
@@ -129,7 +136,7 @@ function Advocacy() {
               Our Position Statement
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-600">
-              These seven principles guide SOLAR’s public education, policy analysis,
+              These eight principles guide SOLAR’s public education, policy analysis,
               advocacy tools, and reform priorities.
             </p>
           </div>
