@@ -252,7 +252,6 @@ const sourceLinks: Record<string, SourceLink> = {
       "Professional guidance on coding eligibility and proper Static-99R use.",
     type: "Professional guidance",
   },
-
   static99Workbook: {
     label: "Static-99R evaluators workbook",
     href: "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
@@ -346,7 +345,7 @@ const positions: PositionSection[] = [
         id: "p1-c1",
         type: "Evidence synthesis",
         claim:
-          "Across 25 years of evaluated U.S. SORN policies, the strongest broad quantitative synthesis in the matrix has not demonstrated an overall recidivism-reduction effect.",
+          "Across 25 years of evaluated U.S. SORN policies, the strongest broad quantitative synthesis has not demonstrated an overall recidivism-reduction effect.",
         meaning:
           "After decades of registry laws, the best broad pooled evidence still has not shown that SORN as a system reduces reoffending overall.",
         evidence:
@@ -374,7 +373,7 @@ const positions: PositionSection[] = [
         meaning:
           "A study about one part of the system does not automatically prove something about every other part.",
         evidence:
-          "The matrix separates law-enforcement registration from public notification and broader SORN packages. Prescott and Rockoff’s work is especially important because it analyzes registration and notification as distinct mechanisms rather than one undifferentiated policy.",
+          "The evidence separates law-enforcement registration from public notification and broader SORN packages. Prescott and Rockoff’s work is especially important because it analyzes registration and notification as distinct mechanisms rather than one undifferentiated policy.",
         sourceIds: ["prescottRockoff", "zgobaMitchell"],
       },
       {
@@ -385,7 +384,7 @@ const positions: PositionSection[] = [
         meaning:
           "A registry website can exist and still fail to produce the behavior change people imagine.",
         evidence:
-          "Anderson and Sample’s Nebraska survey found that a minority of respondents with valid access data had accessed the registry, and protective action was self-reported and conditional on registry use. The matrix treats this as evidence about the gap between availability, use, and prevention—not as a crime-rate experiment.",
+          "Anderson and Sample’s Nebraska survey found that a minority of respondents with valid access data had accessed the registry, and protective action was self-reported and conditional on registry use. This supports the distinction between availability, use, and prevention; it is not a crime-rate experiment.",
         sourceIds: ["andersonSample"],
       },
       {
@@ -438,7 +437,7 @@ const positions: PositionSection[] = [
         meaning:
           "Housing loss, job loss, isolation, harassment, and instability matter because stability is part of public safety.",
         evidence:
-          "The matrix links notification and registry burdens to reintegration outcomes and public-safety goals, while distinguishing documented burdens from harder causal claims about whether those burdens directly produce reoffending.",
+          "Research on notification and registry burdens connects housing, employment, social, and psychological instability to reintegration and public-safety concerns, while the direct causal path from any single burden to new offending is harder to establish.",
         sourceIds: ["levensonCotter", "lasherMcGrath", "bonnarKidd"],
         boundary:
           "Collateral burdens are strongly documented; causal links from each burden to new offending are harder to establish and should not be overstated.",
@@ -495,7 +494,6 @@ const positions: PositionSection[] = [
       },
     ],
   },
-
   {
     id: "position-3",
     number: "3",
@@ -537,7 +535,7 @@ const positions: PositionSection[] = [
         meaning:
           "Children are better protected by prevention systems that address access, reporting, institutional response, supervision, and trusted authority—not by assuming a public map solves the problem.",
         evidence:
-          "This claim rests on the official known-offender evidence, the documented gap between registry availability and protective behavior, and the matrix’s separation of policy mechanisms from measured outcomes.",
+          "This claim rests on the official known-offender evidence, the documented gap between registry availability and protective behavior, and the distinction between policy mechanisms and measured outcomes.",
         sourceIds: ["bjsChildKnown", "andersonSample", "zgobaMitchell"],
       },
     ],
@@ -657,7 +655,7 @@ const positions: PositionSection[] = [
         meaning:
           "The state should not get to impose lifelong practical punishment merely by calling it administration.",
         evidence:
-          "The matrix links pooled null or inconsistent recidivism effects with documented financial, administrative, housing, employment, and reintegration burdens. That makes benefit-versus-burden an empirical proportionality question.",
+          "Pooled null or inconsistent recidivism effects coexist with documented financial, administrative, housing, employment, and reintegration burdens. That makes benefit-versus-burden an empirical proportionality question.",
         sourceIds: [
           "zgobaMitchell",
           "njMeganLaw",
@@ -683,7 +681,7 @@ const positions: PositionSection[] = [
         meaning:
           "Knowing what someone was convicted of does not tell you, by itself, how likely that person is to offend again.",
         evidence:
-          "The matrix repeatedly documents heterogeneity by prior offense history, age, time offense-free, criminal history, CSEM versus contact offense profile, and tool population fit. Major comparator datasets show wide variation inside and across offense categories.",
+          "Research documents substantial heterogeneity by prior offense history, age, time offense-free, criminal history, CSEM versus contact offense profile, and tool population fit. Major comparator datasets show wide variation inside and across offense categories.",
         sourceIds: [
           "bjs2019NineYear",
           "ussc2010Recidivism",
@@ -699,7 +697,7 @@ const positions: PositionSection[] = [
         meaning:
           "Risk is not frozen forever at the moment of conviction.",
         evidence:
-          "The matrix uses age, desistance, Static-99R age revisions, and long-term follow-up evidence to support the claim that risk changes over time and should not be treated as a permanent category label.",
+          "Age, desistance, Static-99R age revisions, and long-term follow-up evidence support the conclusion that risk changes over time and should not be treated as a permanent category label.",
         sourceIds: [
           "hansonSimpleQuestion",
           "ussc2010Recidivism",
@@ -743,7 +741,7 @@ const positions: PositionSection[] = [
         meaning:
           "A tool can be better than guessing and still not tell you that a particular person has a precise percent chance of reoffending.",
         evidence:
-          "The matrix treats AUC as a discrimination statistic: it ranks relative ordering but does not by itself establish calibration, absolute probability, causation, or certainty for a particular person.",
+          "AUC is a discrimination statistic: it ranks relative ordering but does not by itself establish calibration, absolute probability, causation, or certainty for a particular person.",
         sourceIds: ["cohenCsem", "cportDevelopment", "cportValidation"],
       },
       {
@@ -754,7 +752,7 @@ const positions: PositionSection[] = [
         meaning:
           "A number developed in one sample may not give the right absolute-risk estimate in another setting.",
         evidence:
-          "The matrix uses Static-99R norms and CPORT validation concerns to separate discrimination from calibration. Reference-group choice and population fit must be explicit.",
+          "Static-99R norms and CPORT validation concerns illustrate why discrimination and calibration must be kept separate. Reference-group choice and population fit must be explicit.",
         sourceIds: ["static99Workbook", "cportValidation", "cportCritical"],
       },
       {
@@ -772,7 +770,6 @@ const positions: PositionSection[] = [
       },
     ],
   },
-
   {
     id: "position-7",
     number: "7",
@@ -824,7 +821,7 @@ const positions: PositionSection[] = [
         meaning:
           "Public safety is not served by making lawful life harder than it needs to be.",
         evidence:
-          "The matrix supports this as a policy inference from documented collateral burdens and the lack of demonstrated broad SORN recidivism reduction. It does not require overstating a direct causal recidivism pathway from every burden.",
+          "Documented collateral burdens and the lack of demonstrated broad SORN recidivism reduction support this stability-and-proportionality inference without requiring a claim that every individual burden directly causes reoffending.",
         sourceIds: ["zgobaMitchell", "lasherMcGrath", "levensonCotter"],
         boundary:
           "This is a stability-and-proportionality claim, not a claim that every collateral burden has a proven direct causal effect on reoffending.",
@@ -848,7 +845,7 @@ const positions: PositionSection[] = [
         meaning:
           "A problem can be grave and a proposed intervention can still fail.",
         evidence:
-          "The matrix separates the moral seriousness of sexual harm from evidence of policy effectiveness. Broad SORN evidence has not demonstrated an overall recidivism-reduction effect, and individual policy components show different mechanisms and evidence profiles.",
+          "The moral seriousness of sexual harm and the measurable effectiveness of a policy are separate questions. Broad SORN evidence has not demonstrated an overall recidivism-reduction effect, and individual policy components show different mechanisms and evidence profiles.",
         sourceIds: ["zgobaMitchell", "prescottRockoff"],
       },
       {
@@ -870,7 +867,7 @@ const positions: PositionSection[] = [
         meaning:
           "Survey answers can tell us what administrators think. They cannot, by themselves, prove crime prevention.",
         evidence:
-          "Cubellis and Harris-related law-enforcement studies document mixed practitioner views and operational concerns. The matrix uses those studies for implementation and perception claims, not as direct crime-rate evidence.",
+          "Cubellis and Harris-related law-enforcement studies document mixed practitioner views and operational concerns. Those studies support implementation and perception claims, not direct crime-rate claims.",
         sourceIds: ["cubellis", "harrisLawEnforcement"],
       },
       {
@@ -881,7 +878,7 @@ const positions: PositionSection[] = [
         meaning:
           "Registration, public notification, verification, residence restrictions, and supervision can have different evidence, mechanisms, and burdens.",
         evidence:
-          "The matrix architecture separates Sources, Study Units, Findings, and Claims, and treats registration, notification, broad SORN, and adjacent restrictions as distinct policy exposures wherever the evidence permits.",
+          "The evidence base treats registration, notification, broad SORN, and adjacent restrictions as distinct policy exposures wherever the underlying studies permit, because different components can operate through different mechanisms.",
         sourceIds: ["prescottRockoff", "zgobaMitchell", "minnesotaNotification"],
       },
       {
@@ -892,7 +889,7 @@ const positions: PositionSection[] = [
         meaning:
           "Costs and harms matter most when the promised benefit is weak or unproven.",
         evidence:
-          "The matrix links Zgoba and Mitchell’s pooled null finding, New Jersey cost evidence, reintegration burdens, residence-restriction housing effects, and law-enforcement implementation concerns into a benefit-versus-burden framework.",
+          "Zgoba and Mitchell’s pooled null finding, New Jersey cost evidence, reintegration burdens, residence-restriction housing effects, and law-enforcement implementation concerns together support a benefit-versus-burden framework.",
         sourceIds: [
           "zgobaMitchell",
           "njMeganLaw",
@@ -911,7 +908,7 @@ const positions: PositionSection[] = [
         meaning:
           "Rearrest, charge, conviction, reincarceration, self-report, and actual offending are not interchangeable.",
         evidence:
-          "The matrix treats outcome measurement as a foundational methodological point. The same population can produce different rates depending on the endpoint, follow-up period, source of data, and subgroup definition.",
+          "Outcome measurement is foundational. The same population can produce different rates depending on the endpoint, follow-up period, source of data, and subgroup definition.",
         sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear", "cohenCsem"],
       },
     ],
@@ -923,6 +920,32 @@ const sourceListItems = Object.values(sourceLinks).map((source) => ({
   href: source.href,
   description: `${source.type}. ${source.description}`,
 }));
+
+const inlineSourcePhrases: Partial<Record<string, string[]>> = {
+  zgobaMitchell: ["Zgoba and Mitchell", "Zgoba and Mitchell’s"],
+  prescottRockoff: ["Prescott and Rockoff", "Prescott and Rockoff’s"],
+  andersonSample: ["Anderson and Sample", "Anderson and Sample’s"],
+  harrisLawEnforcement: ["Harris and colleagues"],
+  cubellis: ["Cubellis, Walfield, and Harris", "Cubellis and colleagues"],
+  levensonCotter: ["Levenson and Cotter"],
+  lasherMcGrath: ["Lasher and McGrath", "Lasher and McGrath’s"],
+  zandbergenHart: ["Zandbergen and Hart", "Zandbergen and Hart’s"],
+  njMeganLaw: ["NIJ-funded New Jersey evaluation", "New Jersey NIJ evaluation"],
+  bjsChildKnown: [
+    "BJS’s report on sexual assault of young children reported to law enforcement",
+  ],
+  bjs2019NineYear: ["2019 BJS report"],
+  bjs1994Specialization: ["BJS’s same-offense specialization table"],
+  pcrA: ["PCRA"],
+  static99Workbook: ["Static-99R norms"],
+  cportValidation: ["CPORT validation"],
+  stable2007: ["STABLE-2007"],
+  sotips: ["SOTIPS"],
+  vrsSo: ["VRS-SO"],
+  treatmentMeta: ["treatment meta-analysis"],
+  smithDoe: ["Smith v. Doe"],
+  doesSnyder: ["Does #1–5 v. Snyder"],
+};
 
 function claimTypeClasses(type: ClaimType): string {
   switch (type) {
@@ -965,6 +988,70 @@ function renderSourceTrail(sourceIds: string[]): JSX.Element {
               {source.label}
             </a>
           </React.Fragment>
+        );
+      })}
+    </>
+  );
+}
+
+function renderEvidence(evidence: string, sourceIds: string[]): React.ReactNode {
+  let parts: Array<{ text: string; sourceId?: string }> = [{ text: evidence }];
+
+  sourceIds.forEach((sourceId) => {
+    const phrases = inlineSourcePhrases[sourceId] ?? [];
+
+    for (const phrase of phrases) {
+      let linked = false;
+
+      parts = parts.flatMap((part) => {
+        if (linked || part.sourceId) {
+          return [part];
+        }
+
+        const index = part.text.indexOf(phrase);
+        if (index === -1) {
+          return [part];
+        }
+
+        linked = true;
+        const before = part.text.slice(0, index);
+        const after = part.text.slice(index + phrase.length);
+
+        return [
+          ...(before ? [{ text: before }] : []),
+          { text: phrase, sourceId },
+          ...(after ? [{ text: after }] : []),
+        ];
+      });
+
+      if (linked) {
+        break;
+      }
+    }
+  });
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (!part.sourceId) {
+          return <React.Fragment key={`text-${index}`}>{part.text}</React.Fragment>;
+        }
+
+        const source = sourceLinks[part.sourceId];
+        if (!source) {
+          return <React.Fragment key={`text-${index}`}>{part.text}</React.Fragment>;
+        }
+
+        return (
+          <a
+            key={`${part.sourceId}-${index}`}
+            href={source.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-blue-700 underline decoration-blue-200 underline-offset-2 hover:text-blue-900 hover:decoration-blue-500"
+          >
+            {part.text}
+          </a>
         );
       })}
     </>
@@ -1030,11 +1117,10 @@ export default function SupportedClaimsGuide(): JSX.Element {
 
         <GuideIntro title="Start Here" icon="📚">
           <p>
-            This library is the public-facing companion to SOLAR’s internal
-            Evidence Matrix. It does not try to reproduce every study note,
-            extraction field, or internal challenge. It gives outside writers
-            the strongest claims SOLAR believes can be responsibly published,
-            with plain-language meaning and source trails.
+            This library turns SOLAR’s research base into a public reference for
+            outside writers. It does not reproduce every study note or internal
+            research step. It gives the strongest claims SOLAR believes can be
+            responsibly published, with plain-language meaning and source trails.
           </p>
           <p>
             This is a curated research resource rather than an exhaustive
@@ -1048,7 +1134,6 @@ export default function SupportedClaimsGuide(): JSX.Element {
           columns={4}
           cards={[
             {
-              eyebrow: "Field A",
               title: "Publication-safe claim",
               icon: "✍️",
               tone: "research",
@@ -1056,7 +1141,6 @@ export default function SupportedClaimsGuide(): JSX.Element {
                 "The strongest wording SOLAR believes should survive competent journalistic, editorial, academic, legislative, or fact-checking scrutiny.",
             },
             {
-              eyebrow: "Field B",
               title: "What it means",
               icon: "💬",
               tone: "info",
@@ -1064,7 +1148,6 @@ export default function SupportedClaimsGuide(): JSX.Element {
                 "A conversational version that keeps the same meaning without changing the substance.",
             },
             {
-              eyebrow: "Field C",
               title: "Evidence",
               icon: "🔎",
               tone: "legal",
@@ -1072,7 +1155,6 @@ export default function SupportedClaimsGuide(): JSX.Element {
                 "A concise explanation of why SOLAR can say the claim and what evidence supports it.",
             },
             {
-              eyebrow: "Field D",
               title: "Source trail",
               icon: "🔗",
               tone: "neutral",
@@ -1158,16 +1240,23 @@ export default function SupportedClaimsGuide(): JSX.Element {
             />
 
             <GuideSectionCard>
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  Controlling SOLAR position
+              <div className="rounded-2xl border border-teal-200 border-l-4 border-l-teal-600 bg-teal-50 p-5 shadow-sm sm:p-6">
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-teal-700">
+                  SOLAR’s position
                 </div>
-                <p className="mt-2 text-lg font-semibold leading-snug text-slate-950">
+                <p className="mt-2 text-lg font-semibold leading-snug text-slate-950 sm:text-xl">
                   {section.position}
                 </p>
               </div>
 
-              <div className="mt-6 space-y-5">
+              <div className="mt-7 mb-3 flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Supported claims
+                </span>
+                <div className="h-px flex-1 bg-slate-200" />
+              </div>
+
+              <div className="space-y-5">
                 {section.claims.map((claim, index) => (
                   <article
                     key={claim.id}
@@ -1210,7 +1299,7 @@ export default function SupportedClaimsGuide(): JSX.Element {
                           Why we can say it / evidence
                         </h4>
                         <p className="mt-2 text-base leading-relaxed text-slate-700">
-                          {claim.evidence}
+                          {renderEvidence(claim.evidence, claim.sourceIds)}
                         </p>
                       </div>
 
@@ -1245,18 +1334,16 @@ export default function SupportedClaimsGuide(): JSX.Element {
           id="methodology"
           number="9"
           title="Sources and methodology note"
-          subtitle="How this public library relates to SOLAR’s internal Evidence Matrix."
+          subtitle="How claims and sources are selected and presented."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              This page follows the Evidence Matrix architecture: sources,
-              study units, findings, and claims. It does not create a competing
-              evidence framework. The source trail prioritizes primary studies,
-              government reports, court opinions, and other authoritative
-              original sources. SOLAR evidence guides are listed below as
-              synthesis gateways.
+              This page organizes primary studies, government reports, court
+              opinions, and other authoritative sources into evidence-supported
+              public claims. Source trails prioritize original sources, while
+              SOLAR evidence guides are listed below as synthesis gateways.
             </p>
 
             <p>
