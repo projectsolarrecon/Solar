@@ -320,6 +320,12 @@ function Resources() {
       icon: "📊",
       resources: [
         {
+          name: "Supported Claims Library",
+          type: "Evidence Library",
+          description: "Publication-safe, source-backed claims organized around SOLAR’s advocacy positions, with plain-language explanations and direct links to the supporting evidence.",
+          link: "/resources/supported-claims-guide"
+        },
+        {
           name: "Understanding Sex-Offense Risk Assessment",
           type: "Guide",
           description: "Plain-language guide to reading risk-assessment reports, decoding scores and categories, understanding major tools, and separating group-based evidence from individualized certainty.",
