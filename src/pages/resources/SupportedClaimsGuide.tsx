@@ -408,7 +408,7 @@ const positions: PositionSection[] = [
         meaning:
           "The evidence does not support the common assumption that people convicted of sex offenses almost always offend again.",
         evidence:
-          "BJS and long-term recidivism research show that detected sexual recidivism remains a minority outcome even when follow-up periods are substantial. Rates vary by subgroup, prior offense history, age, follow-up period, and measurement basis.",
+          "BJS’s 1994 release study and its nine-year 2005 release study both show detected sexual recidivism as a minority outcome, while longer-term research shows rates vary by subgroup, prior offense history, age, follow-up period, and measurement basis.",
         sourceIds: [
           "bjs1994SexOffenders",
           "bjs2019NineYear",
@@ -437,7 +437,7 @@ const positions: PositionSection[] = [
         meaning:
           "Housing loss, job loss, isolation, harassment, and instability matter because stability is part of public safety.",
         evidence:
-          "Research on notification and registry burdens connects housing, employment, social, and psychological instability to reintegration and public-safety concerns, while the direct causal path from any single burden to new offending is harder to establish.",
+          "Levenson and Cotter, Lasher and McGrath, and Bonnar-Kidd document housing, employment, social, and psychological instability associated with registry and notification systems. Those burdens are relevant to reintegration and public-safety goals, while the direct causal path from any single burden to new offending is harder to establish.",
         sourceIds: ["levensonCotter", "lasherMcGrath", "bonnarKidd"],
         boundary:
           "Collateral burdens are strongly documented; causal links from each burden to new offending are harder to establish and should not be overstated.",
@@ -524,7 +524,7 @@ const positions: PositionSection[] = [
         meaning:
           "Looking up nearby addresses does not answer the deeper safety questions: who has private access, authority, secrecy, and trust?",
         evidence:
-          "The known-perpetrator evidence, the public-use evidence, and the registry-implementation evidence point in the same direction: public maps do not automatically identify the contexts where many child sexual harms occur.",
+          "BJS’s known-perpetrator data show that child sexual harm is predominantly a known-person problem; Anderson and Sample’s public-use study shows that registry availability does not automatically become protective action; and Harris and colleagues document implementation and public-interpretation limits. Together, those findings show why a public map is an incomplete child-safety model.",
         sourceIds: ["bjsChildKnown", "andersonSample", "harrisLawEnforcement"],
       },
       {
@@ -535,7 +535,7 @@ const positions: PositionSection[] = [
         meaning:
           "Children are better protected by prevention systems that address access, reporting, institutional response, supervision, and trusted authority—not by assuming a public map solves the problem.",
         evidence:
-          "This claim rests on the official known-offender evidence, the documented gap between registry availability and protective behavior, and the distinction between policy mechanisms and measured outcomes.",
+          "BJS’s known-perpetrator data place relationship and access at the center of the threat model. Anderson and Sample’s findings show the gap between registry availability and protective behavior, while Zgoba and Mitchell’s broad synthesis finds no overall recidivism-reduction effect for SORN. That combination supports prevention strategies that reach beyond location visibility.",
         sourceIds: ["bjsChildKnown", "andersonSample", "zgobaMitchell"],
       },
     ],
@@ -581,7 +581,7 @@ const positions: PositionSection[] = [
         meaning:
           "A group can have higher relative risk and still have a minority absolute rate. Both facts matter.",
         evidence:
-          "BJS reported that released sex offenders were more likely than other released prisoners to be arrested for rape or sexual assault, while the absolute sexual rearrest rate was 7.7% over nine years in the 2005 cohort.",
+          "The BJS nine-year follow-up reported that released sex offenders were more likely than other released prisoners to be arrested for rape or sexual assault, while the absolute sexual rearrest rate was 7.7% over nine years in the 2005 cohort.",
         sourceIds: ["bjs2019NineYear", "bjs1994SexOffenders"],
         boundary:
           "Relative elevation and absolute prevalence answer different questions; rearrest is detected official-system behavior, not all offending.",
@@ -715,7 +715,7 @@ const positions: PositionSection[] = [
         meaning:
           "Risk decisions should not be based only on fear, offense title, or a professional gut feeling.",
         evidence:
-          "Risk-assessment meta-analysis evidence supports empirically derived actuarial approaches over unstructured professional judgment, while structured professional judgment tends to fall in between and case-specific information still matters.",
+          "Babchishin, Hanson, and Helmus’s meta-analysis found stronger predictive performance for actuarial approaches than for unstructured professional judgment. Hanson and Morton-Bourgon’s updated predictor work likewise supports structured, empirically grounded assessment rather than intuition alone.",
         sourceIds: ["babchishinHanson", "hansonMortonBourgon"],
         boundary:
           "Structured methods are not perfect prediction; usefulness depends on the population, tool purpose, and decision being made.",
@@ -797,7 +797,7 @@ const positions: PositionSection[] = [
         meaning:
           "Housing is not a side issue. Without a lawful, stable place to live, nearly every other part of reentry becomes harder.",
         evidence:
-          "Residence-restriction GIS evidence shows how exclusion zones can sharply reduce lawful housing supply, while notification and reintegration studies document housing exclusion and residential disruption.",
+          "Zandbergen and Hart’s GIS study shows how exclusion zones can sharply reduce lawful housing supply. Levenson and Cotter and Lasher and McGrath document housing exclusion and residential disruption associated with notification and registry exposure.",
         sourceIds: ["zandbergenHart", "levensonCotter", "lasherMcGrath"],
         boundary:
           "Housing effects vary by local law, geography, landlord practice, supervision rules, and family resources.",
@@ -856,7 +856,7 @@ const positions: PositionSection[] = [
         meaning:
           "A public list only matters if it is accurate, understood, used, and connected to behavior that actually reduces harm.",
         evidence:
-          "Public-awareness research, law-enforcement implementation studies, and SORN meta-analysis all support separating availability, use, protective behavior, and crime reduction.",
+          "Anderson and Sample’s public-use study, Harris and colleagues’ implementation research, and Zgoba and Mitchell’s broad SORN synthesis all support separating availability, use, protective behavior, and crime reduction.",
         sourceIds: ["andersonSample", "harrisLawEnforcement", "zgobaMitchell"],
       },
       {
@@ -867,7 +867,7 @@ const positions: PositionSection[] = [
         meaning:
           "Survey answers can tell us what administrators think. They cannot, by themselves, prove crime prevention.",
         evidence:
-          "Cubellis and Harris-related law-enforcement studies document mixed practitioner views and operational concerns. Those studies support implementation and perception claims, not direct crime-rate claims.",
+          "Cubellis, Walfield, and Harris document mixed law-enforcement views of SORN, while Harris and colleagues identify operational and implementation concerns. Those studies support claims about practitioner perception and administration, not direct crime-rate effects.",
         sourceIds: ["cubellis", "harrisLawEnforcement"],
       },
       {
@@ -878,7 +878,7 @@ const positions: PositionSection[] = [
         meaning:
           "Registration, public notification, verification, residence restrictions, and supervision can have different evidence, mechanisms, and burdens.",
         evidence:
-          "The evidence base treats registration, notification, broad SORN, and adjacent restrictions as distinct policy exposures wherever the underlying studies permit, because different components can operate through different mechanisms.",
+          "Prescott and Rockoff explicitly separate registration from notification, Zgoba and Mitchell synthesize broader SORN evidence, and Duwe and Donnay evaluate Minnesota’s selected Level 3 community-notification program. Those studies illustrate why evidence about one component should not be generalized across the whole policy package.",
         sourceIds: ["prescottRockoff", "zgobaMitchell", "minnesotaNotification"],
       },
       {
@@ -925,17 +925,25 @@ const inlineSourcePhrases: Partial<Record<string, string[]>> = {
   zgobaMitchell: ["Zgoba and Mitchell", "Zgoba and Mitchell’s"],
   prescottRockoff: ["Prescott and Rockoff", "Prescott and Rockoff’s"],
   andersonSample: ["Anderson and Sample", "Anderson and Sample’s"],
-  harrisLawEnforcement: ["Harris and colleagues"],
+  harrisLawEnforcement: ["Harris and colleagues", "Harris and colleagues’"],
   cubellis: ["Cubellis, Walfield, and Harris", "Cubellis and colleagues"],
   levensonCotter: ["Levenson and Cotter"],
   lasherMcGrath: ["Lasher and McGrath", "Lasher and McGrath’s"],
   zandbergenHart: ["Zandbergen and Hart", "Zandbergen and Hart’s"],
+  bonnarKidd: ["Bonnar-Kidd"],
+  sandlerFreemanSocia: ["New York time-series study"],
+  letourneauAdult: ["South Carolina adult-recidivism research"],
   njMeganLaw: ["NIJ-funded New Jersey evaluation", "New Jersey NIJ evaluation"],
   bjsChildKnown: [
     "BJS’s report on sexual assault of young children reported to law enforcement",
+    "BJS’s known-perpetrator data",
   ],
-  bjs2019NineYear: ["2019 BJS report"],
+  bjs1994SexOffenders: ["1994", "BJS’s 1994 release study"],
+  bjs2019NineYear: ["2019 BJS report", "2005", "BJS nine-year follow-up", "BJS nine-year 2005 release study"],
   bjs1994Specialization: ["BJS’s same-offense specialization table"],
+  hansonBussiere: ["longer-term research"],
+  babchishinHanson: ["Babchishin, Hanson, and Helmus’s meta-analysis"],
+  hansonMortonBourgon: ["Hanson and Morton-Bourgon’s updated predictor work"],
   pcrA: ["PCRA"],
   static99Workbook: ["Static-99R norms"],
   cportValidation: ["CPORT validation"],
@@ -943,6 +951,7 @@ const inlineSourcePhrases: Partial<Record<string, string[]>> = {
   sotips: ["SOTIPS"],
   vrsSo: ["VRS-SO"],
   treatmentMeta: ["treatment meta-analysis"],
+  minnesotaNotification: ["Duwe and Donnay"],
   smithDoe: ["Smith v. Doe"],
   doesSnyder: ["Does #1–5 v. Snyder"],
 };
