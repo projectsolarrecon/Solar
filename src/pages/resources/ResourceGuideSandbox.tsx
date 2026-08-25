@@ -9,51 +9,977 @@ import {
   GuideCallout,
   GuideIntro,
   OverviewCards,
-  GuideChecklist,
   ResourceLinkGrid,
   RelatedGuides,
   SourceList,
 } from "../../components/solar";
 
-const sourceLinks = {
-  zgobaMitchell: "https://doi.org/10.1007/s11292-021-09480-z",
-  prescottRockoff: "https://www.journals.uchicago.edu/doi/10.1086/658485",
-  agan: "https://www.journals.uchicago.edu/doi/10.1086/658483",
-  sandlerFreemanSocia: "https://doi.org/10.1037/a0013881",
-  duweDonnay: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
-  letourneauRecidivism: "https://doi.org/10.1177/0887403409353148",
-  letourneauJudicial: "https://doi.org/10.1177/0734016809360330",
-  newJersey:
-    "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
-  levensonCotter:
-    "https://scholars.lynn.edu/en/publications/the-effect-of-megans-law-on-sex-offender-reintegration/",
-  andersonSample: "https://journals.sagepub.com/doi/10.1177/0887403408316705",
-  bonnarKidd: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2820068/",
-  freeman: "https://doi.org/10.1177/0011128708330852",
-  lasherMcGrath: "https://doi.org/10.1177/0306624X10387524",
-  cubellis: "https://doi.org/10.1177/0306624X16667574",
-  harrisLawEnforcement: "https://doi.org/10.1177/0887403416651671",
-} as const;
+type SourceLink = {
+  label: string;
+  href: string;
+  description: string;
+  type: string;
+};
 
-// These point to the existing evidence-guide destinations used for the trilogy.
-// If the production repo uses different slugs, adjust only these two constants.
-const relatedGuideRoutes = {
-  risk: "/resources/understanding-sex-offense-risk-assessment",
-  recidivism: "/resources/understanding-recidivism-evidence",
-} as const;
+type ClaimType =
+  | "Empirical finding"
+  | "Evidence synthesis"
+  | "Comparative finding"
+  | "Legal fact"
+  | "Policy inference"
+  | "SOLAR conclusion";
 
-const linkCls =
-  "font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900";
+type Claim = {
+  id: string;
+  type: ClaimType;
+  claim: string;
+  meaning: string;
+  evidence: string;
+  sourceIds: string[];
+  boundary?: string;
+};
 
-export default function ResourceGuideSandbox(): JSX.Element {
+type PositionSection = {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  position: string;
+  claims: Claim[];
+};
+
+const sourceLinks: Record<string, SourceLink> = {
+  zgobaMitchell: {
+    label: "Zgoba & Mitchell SORN meta-analysis",
+    href: "https://doi.org/10.1007/s11292-021-09480-z",
+    description:
+      "Broad quantitative synthesis of evaluated SORN policies and recidivism outcomes.",
+    type: "Peer-reviewed meta-analysis",
+  },
+  cohenCsem: {
+    label: "Cohen federal CSEM supervision study",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
+    description:
+      "Federal Probation article on CSEM rearrest, PCRA, CPORT, and federal override practice.",
+    type: "Government journal article",
+  },
+  bjs1994SexOffenders: {
+    label: "BJS sex-offender recidivism, 1994 releases",
+    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-prison-1994",
+    description:
+      "Large state-prison release cohort with three-year rearrest and reconviction measures.",
+    type: "Government statistical report",
+  },
+  bjs2019NineYear: {
+    label: "BJS sex-offender recidivism, 9-year follow-up",
+    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
+    description:
+      "BJS comparison of rape/sexual-assault releases and other released prisoners over nine years.",
+    type: "Government statistical report",
+  },
+  bjs2012Releases: {
+    label: "BJS prisoner recidivism, 2012 releases",
+    href: "https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/rpr34s125yfup1217.pdf",
+    description:
+      "Five-year same-type rearrest comparisons across release-offense categories.",
+    type: "Government statistical report",
+  },
+  bjs1994Specialization: {
+    label: "BJS prisoner recidivism, 1994 same-offense specialization",
+    href: "https://bjs.ojp.gov/content/pub/pdf/rpr94.pdf",
+    description:
+      "BJS same-offense rearrest table across multiple crime categories.",
+    type: "Government statistical report",
+  },
+  ussc2010Recidivism: {
+    label: "USSC federal offenders released in 2010",
+    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
+    description:
+      "Federal same-cohort recidivism report with offense type, age, and criminal-history comparisons.",
+    type: "Federal government research report",
+  },
+  usscCsem: {
+    label: "USSC non-production child-pornography recidivism report",
+    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
+    description:
+      "Specialized federal CSEM recidivism benchmark for non-production child-pornography offenses.",
+    type: "Federal government research report",
+  },
+  prescottRockoff: {
+    label: "Prescott & Rockoff SORN study",
+    href: "https://www.journals.uchicago.edu/doi/10.1086/658485",
+    description:
+      "Peer-reviewed analysis separating registration and notification mechanisms.",
+    type: "Peer-reviewed article",
+  },
+  agan: {
+    label: "Agan, “Sex Offender Registries: Fear without Function?”",
+    href: "https://www.journals.uchicago.edu/doi/10.1086/658483",
+    description:
+      "Peer-reviewed study testing registry effects across multiple empirical designs.",
+    type: "Peer-reviewed article",
+  },
+  sandlerFreemanSocia: {
+    label: "Sandler, Freeman & Socia New York SORN time series",
+    href: "https://doi.org/10.1037/a0013881",
+    description:
+      "New York SORN time-series evaluation of sexual-offense outcomes.",
+    type: "Peer-reviewed article",
+  },
+  letourneauAdult: {
+    label: "Letourneau et al. South Carolina SORN and adult recidivism",
+    href: "https://doi.org/10.1177/0887403409353148",
+    description:
+      "South Carolina study examining whether registration status predicted adult sexual recidivism.",
+    type: "Peer-reviewed article",
+  },
+  letourneauJudicial: {
+    label: "Letourneau et al. South Carolina SORN and judicial decisions",
+    href: "https://doi.org/10.1177/0734016809360330",
+    description:
+      "Study of SORN’s possible effects on charging, plea, and judicial decision pathways.",
+    type: "Peer-reviewed article",
+  },
+  njMeganLaw: {
+    label: "New Jersey Megan’s Law evaluation",
+    href: "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
+    description:
+      "NIJ-funded state evaluation of practical, monetary, and public-safety outcomes.",
+    type: "Government report",
+  },
+  minnesotaNotification: {
+    label: "Duwe & Donnay Minnesota Level 3 notification study",
+    href: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
+    description:
+      "Minnesota study of broad community notification among selected Level 3 individuals.",
+    type: "Peer-reviewed article",
+  },
+  freemanNotification: {
+    label: "Freeman community-notification rearrest study",
+    href: "https://doi.org/10.1177/0011128708330852",
+    description:
+      "Large notified versus non-notified community-notification rearrest comparison.",
+    type: "Peer-reviewed article",
+  },
+  levensonCotter: {
+    label: "Levenson & Cotter, Megan’s Law and reintegration",
+    href: "https://scholars.lynn.edu/en/publications/the-effect-of-megans-law-on-sex-offender-reintegration/",
+    description:
+      "Florida survey evidence on housing, employment, threats, and reintegration burdens.",
+    type: "Peer-reviewed article",
+  },
+  lasherMcGrath: {
+    label: "Lasher & McGrath reintegration review",
+    href: "https://doi.org/10.1177/0306624X10387524",
+    description:
+      "Review of community notification, reintegration, housing, employment, and psychological effects.",
+    type: "Peer-reviewed article",
+  },
+  zandbergenHart: {
+    label: "Zandbergen & Hart residence-restriction GIS study",
+    href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/reducing-housing-options-convicted-sex-offenders-investigating",
+    description:
+      "GIS study of how residence restrictions can reduce lawful housing availability.",
+    type: "Peer-reviewed article",
+  },
+  andersonSample: {
+    label: "Anderson & Sample public awareness and protective action",
+    href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/public-awareness-and-action-resulting-sex-offender-community",
+    description:
+      "Nebraska survey on public registry awareness, use, and self-reported protective behavior.",
+    type: "Peer-reviewed article",
+  },
+  bonnarKidd: {
+    label: "Bonnar-Kidd SORN public-health review",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2820068/",
+    description:
+      "Open-access peer-reviewed review of SORN, prevention claims, and public-health concerns.",
+    type: "Peer-reviewed review",
+  },
+  cubellis: {
+    label: "Cubellis, Walfield & Harris law-enforcement perspectives",
+    href: "https://doi.org/10.1177/0306624X16667574",
+    description:
+      "Law-enforcement survey documenting mixed views and registry-size effects.",
+    type: "Peer-reviewed article",
+  },
+  harrisLawEnforcement: {
+    label: "Harris et al. law-enforcement effectiveness and challenges",
+    href: "https://doi.org/10.1177/0887403416651671",
+    description:
+      "National law-enforcement research on registry reliability, public utility, and implementation limits.",
+    type: "Peer-reviewed article",
+  },
+  bjsChildKnown: {
+    label: "BJS sexual assault of young children reported to law enforcement",
+    href: "https://bjs.ojp.gov/library/publications/sexual-assault-young-children-reported-law-enforcement-victim-incident-and",
+    description:
+      "Official BJS report on juvenile victim-offender relationships in reported sexual assault cases.",
+    type: "Government statistical report",
+  },
+  hansonBussiere: {
+    label: "Hanson & Bussière predictor meta-analysis",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/prdctrs-sxl-ffnd/index-en.aspx",
+    description:
+      "Foundational meta-analysis of predictors of sexual-offense recidivism.",
+    type: "Research / government-hosted publication",
+  },
+  hansonMortonBourgon: {
+    label: "Hanson & Morton-Bourgon updated predictor meta-analysis",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/2004-02-prdctrs-sxl-rcdvsm-pdtd/index-en.aspx",
+    description:
+      "Updated meta-analysis on characteristics associated with persistent sexual offending.",
+    type: "Research / government-hosted publication",
+  },
+  hansonSimpleQuestion: {
+    label: "Hanson, “Sex Offender Recidivism: A Simple Question”",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
+    description:
+      "Plain-language research summary on why recidivism rates vary by subgroup and follow-up.",
+    type: "Government-hosted research summary",
+  },
+  babchishinHanson: {
+    label: "Babchishin, Hanson & Helmus risk-assessment accuracy meta-analysis",
+    href: "https://pubmed.ncbi.nlm.nih.gov/19290762/",
+    description:
+      "Meta-analysis comparing actuarial, structured, and unstructured risk-assessment approaches.",
+    type: "Peer-reviewed article",
+  },
+  static99Coding: {
+    label: "Static-99R coding rules",
+    href: "https://www.waspc.org/assets/Static%2099%20Coding_manual_2016_v2.pdf",
+    description:
+      "Professional guidance on coding eligibility and proper Static-99R use.",
+    type: "Professional guidance",
+  },
+
+  static99Workbook: {
+    label: "Static-99R evaluators workbook",
+    href: "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
+    description:
+      "Evaluator workbook explaining group norms, relative risk, and interpretation.",
+    type: "Professional guidance",
+  },
+  pcrA: {
+    label: "PCRA construction and validation",
+    href: "https://www.uscourts.gov/file/22846/download",
+    description:
+      "Federal Probation article on the Post Conviction Risk Assessment as a general risk/needs tool.",
+    type: "Government journal article",
+  },
+  cportDevelopment: {
+    label: "CPORT development study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/25844514/",
+    description:
+      "Development study for a CSEM-specific empirical risk tool.",
+    type: "Peer-reviewed article",
+  },
+  cportValidation: {
+    label: "CPORT validation study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29592774/",
+    description:
+      "Validation evidence for CPORT in adult male CSEM populations.",
+    type: "Peer-reviewed article",
+  },
+  cportCritical: {
+    label: "CPORT critical review for CSEM-exclusive forensic use",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37471014/",
+    description:
+      "Critical review identifying limits in CPORT evidence for U.S. CSEM-exclusive forensic use.",
+    type: "Peer-reviewed article",
+  },
+  stable2007: {
+    label: "STABLE-2007 prospective study",
+    href: "https://doi.org/10.1177/0093854815602094",
+    description:
+      "Prospective evidence on structured dynamic risk factors and recidivism.",
+    type: "Peer-reviewed article",
+  },
+  sotips: {
+    label: "SOTIPS validation study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/22368161/",
+    description:
+      "Dynamic risk and treatment-progress instrument validation evidence.",
+    type: "Peer-reviewed article",
+  },
+  vrsSo: {
+    label: "VRS-SO validity and reliability",
+    href: "https://pubmed.ncbi.nlm.nih.gov/17845123/",
+    description:
+      "Evidence on structured assessment of risk and therapeutic change.",
+    type: "Peer-reviewed article",
+  },
+  treatmentMeta: {
+    label: "Schmucker & Lösel treatment meta-analysis",
+    href: "https://doi.org/10.1007/s11292-015-9241-z",
+    description:
+      "Meta-analysis of specialized treatment and sexual recidivism outcomes.",
+    type: "Peer-reviewed meta-analysis",
+  },
+  smithDoe: {
+    label: "Smith v. Doe",
+    href: "https://supreme.justia.com/cases/federal/us/538/84/",
+    description:
+      "U.S. Supreme Court decision holding Alaska’s then-existing registry nonpunitive for ex post facto purposes.",
+    type: "Court opinion",
+  },
+  doesSnyder: {
+    label: "Does #1–5 v. Snyder",
+    href: "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
+    description:
+      "Sixth Circuit decision holding Michigan’s amended registry punitive in effect for ex post facto purposes.",
+    type: "Court opinion",
+  },
+};
+
+const positions: PositionSection[] = [
+  {
+    id: "position-1",
+    number: "1",
+    title: "Ineffective, harmful, and rooted in misinformation",
+    subtitle:
+      "Publication-safe claims about broad SORN effectiveness, registry mechanisms, public use, and recidivism mythology.",
+    position:
+      "The sex offender registry system is ineffective, harmful, and rooted in misinformation.",
+    claims: [
+      {
+        id: "p1-c1",
+        type: "Evidence synthesis",
+        claim:
+          "Across 25 years of evaluated U.S. SORN policies, the strongest broad quantitative synthesis in the matrix has not demonstrated an overall recidivism-reduction effect.",
+        meaning:
+          "After decades of registry laws, the best broad pooled evidence still has not shown that SORN as a system reduces reoffending overall.",
+        evidence:
+          "Zgoba and Mitchell synthesized 18 research articles, 474,640 individuals, and 42 effect sizes. The pooled effect was not statistically significant, including subgroup checks by sexual versus nonsexual recidivism and arrest versus conviction.",
+        sourceIds: ["zgobaMitchell"],
+        boundary:
+          "Minnesota’s Level 3 community-notification study found favorable outcomes among selected higher-risk individuals; that finding should not be generalized into proof that broad public web registries work.",
+      },
+      {
+        id: "p1-c2",
+        type: "Empirical finding",
+        claim:
+          "Major state-level evaluations have repeatedly failed to show that broad registry-and-notification systems reduce sexual offending or sexual recidivism.",
+        meaning:
+          "Large evaluations in places such as New York, New Jersey, and South Carolina did not deliver the prevention results the public is often told to assume.",
+        evidence:
+          "The New York time-series study reported no support for SORN reducing several sexual-offense outcomes. The New Jersey NIJ evaluation found no demonstrated effect on overall sexual offenses, time to first rearrest, sexual reoffending, or first-time sex offenses. South Carolina adult-recidivism research found registration status did not predict sexual recidivism in modeled analyses.",
+        sourceIds: ["sandlerFreemanSocia", "njMeganLaw", "letourneauAdult"],
+      },
+      {
+        id: "p1-c3",
+        type: "Policy inference",
+        claim:
+          "Registration, public Internet disclosure, targeted community notification, verification, residence restrictions, supervision, and treatment are different policy components and should not be treated as interchangeable evidence.",
+        meaning:
+          "A study about one part of the system does not automatically prove something about every other part.",
+        evidence:
+          "The matrix separates law-enforcement registration from public notification and broader SORN packages. Prescott and Rockoff’s work is especially important because it analyzes registration and notification as distinct mechanisms rather than one undifferentiated policy.",
+        sourceIds: ["prescottRockoff", "zgobaMitchell"],
+      },
+      {
+        id: "p1-c4",
+        type: "Empirical finding",
+        claim:
+          "Public availability of registry information is not the same thing as public use, protective action, or crime reduction.",
+        meaning:
+          "A registry website can exist and still fail to produce the behavior change people imagine.",
+        evidence:
+          "Anderson and Sample’s Nebraska survey found that a minority of respondents with valid access data had accessed the registry, and protective action was self-reported and conditional on registry use. The matrix treats this as evidence about the gap between availability, use, and prevention—not as a crime-rate experiment.",
+        sourceIds: ["andersonSample"],
+      },
+      {
+        id: "p1-c5",
+        type: "Empirical finding",
+        claim:
+          "Law-enforcement research documents implementation limits that constrain the registry’s claimed safety mechanism.",
+        meaning:
+          "Even when a registry has informational value, its usefulness depends on accuracy, interagency communication, public understanding, and real-world implementation.",
+        evidence:
+          "Harris and colleagues identified concerns about registry information reliability and utility, inter-system communication, public interpretation, and operational workload. Cubellis and colleagues also found mixed law-enforcement views and lower confidence in public-safety efficacy in states with larger registries.",
+        sourceIds: ["harrisLawEnforcement", "cubellis"],
+        boundary:
+          "Practitioner perception is evidence about implementation and belief; it is not direct evidence that SORN reduces offending.",
+      },
+      {
+        id: "p1-c6",
+        type: "Empirical finding",
+        claim:
+          "The empirical literature does not support the idea that sexual reoffending is nearly universal.",
+        meaning:
+          "The common public assumption that people convicted of sex offenses almost always do it again is not supported by major official and longitudinal evidence.",
+        evidence:
+          "BJS and long-term recidivism research show that detected sexual recidivism remains a minority outcome even when follow-up periods are substantial. Rates vary by subgroup, prior offense history, age, follow-up period, and measurement basis.",
+        sourceIds: [
+          "bjs1994SexOffenders",
+          "bjs2019NineYear",
+          "hansonBussiere",
+          "hansonSimpleQuestion",
+        ],
+        boundary:
+          "Official rearrest, charge, conviction, and reincarceration measures undercount undetected conduct and should not be described as lifetime offending rates.",
+      },
+    ],
+  },
+  {
+    id: "position-2",
+    number: "2",
+    title: "Lasting harm to individuals, families, and communities",
+    subtitle:
+      "Publication-safe claims about housing, employment, psychological, social, administrative, and public-safety-relevant burdens.",
+    position:
+      "Registry systems cause lasting harm to individuals, families, and communities.",
+    claims: [
+      {
+        id: "p2-c1",
+        type: "Evidence synthesis",
+        claim:
+          "Documented registry burdens are not merely fairness concerns; they are relevant to the policy’s own public-safety goals.",
+        meaning:
+          "Housing loss, job loss, isolation, harassment, and instability matter because stability is part of public safety.",
+        evidence:
+          "The matrix links notification and registry burdens to reintegration outcomes and public-safety goals, while distinguishing documented burdens from harder causal claims about whether those burdens directly produce reoffending.",
+        sourceIds: ["levensonCotter", "lasherMcGrath", "bonnarKidd"],
+        boundary:
+          "Collateral burdens are strongly documented; causal links from each burden to new offending are harder to establish and should not be overstated.",
+      },
+      {
+        id: "p2-c2",
+        type: "Empirical finding",
+        claim:
+          "Community notification and public registry exposure have been repeatedly associated with housing, employment, psychological, and social reintegration burdens.",
+        meaning:
+          "For many people and families, registry exposure is not just paperwork; it changes where they can live, work, and belong.",
+        evidence:
+          "Levenson and Cotter reported reintegration effects among Florida registrants. Lasher and McGrath’s review found recurring housing and job exclusion and negative psychological effects across quantitative studies, with more intrusive notification linked to greater burden.",
+        sourceIds: ["levensonCotter", "lasherMcGrath"],
+      },
+      {
+        id: "p2-c3",
+        type: "Empirical finding",
+        claim:
+          "Residence restrictions can dramatically shrink lawful housing options in the places where they are imposed.",
+        meaning:
+          "A rule that sounds simple on paper can make ordinary housing nearly impossible in a real neighborhood.",
+        evidence:
+          "Zandbergen and Hart’s Orange County, Florida GIS study found that only about 5% of potentially available urban residential parcels remained available under the studied 1,000-foot exclusion zones.",
+        sourceIds: ["zandbergenHart"],
+        boundary:
+          "This is a jurisdiction-specific GIS case study; zoning, local geography, bus-stop placement, and exclusion rules can materially change the result.",
+      },
+      {
+        id: "p2-c4",
+        type: "Empirical finding",
+        claim:
+          "Registry systems can impose substantial public costs even where a major evaluation finds no demonstrated public-safety benefit.",
+        meaning:
+          "The burden is not only private. Government agencies and taxpayers also pay for systems that may not deliver measurable prevention gains.",
+        evidence:
+          "The NIJ-funded New Jersey evaluation reported no demonstrated public-safety effect across several outcomes and documented start-up and annual county costs, including approximately $3.9 million in responding-county costs for 2007.",
+        sourceIds: ["njMeganLaw"],
+        boundary:
+          "The New Jersey cost figures are historical, jurisdiction-specific, and not a national estimate.",
+      },
+      {
+        id: "p2-c5",
+        type: "Empirical finding",
+        claim:
+          "Law-enforcement respondents in larger-registry states reported greater concern about collateral consequences and less belief in SORN’s public-safety efficacy.",
+        meaning:
+          "Even among people who administer these systems, bigger registries do not necessarily produce greater confidence.",
+        evidence:
+          "Cubellis, Walfield, and Harris found mixed law-enforcement views of SORN and reported that respondents in states with larger registries expressed more concern about collateral consequences and less confidence in public-safety efficacy.",
+        sourceIds: ["cubellis"],
+        boundary:
+          "This is practitioner-perception evidence, not direct proof of crime reduction or crime increase.",
+      },
+    ],
+  },
+
+  {
+    id: "position-3",
+    number: "3",
+    title: "Relationship, access, and trust—not stranger-location mapping",
+    subtitle:
+      "Publication-safe claims about child-safety threat models and the limits of registry-centered prevention.",
+    position:
+      "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
+    claims: [
+      {
+        id: "p3-c1",
+        type: "Empirical finding",
+        claim:
+          "Reported child sexual abuse is predominantly committed by people known to the child rather than strangers.",
+        meaning:
+          "The biggest child-safety problem is usually access and trust, not an unknown person living nearby.",
+        evidence:
+          "BJS’s report on sexual assault of young children reported to law enforcement is the official source trail for the victim-offender relationship point. It supports SOLAR’s use of relationship-and-access framing instead of stranger-danger framing.",
+        sourceIds: ["bjsChildKnown"],
+        boundary:
+          "The BJS source is about cases reported to law enforcement; unreported abuse may have different measurement limits.",
+      },
+      {
+        id: "p3-c2",
+        type: "Policy inference",
+        claim:
+          "A registry website is a poor standalone child-safety model because known-access offending is not the same prevention target as stranger-location warning.",
+        meaning:
+          "Looking up nearby addresses does not answer the deeper safety questions: who has private access, authority, secrecy, and trust?",
+        evidence:
+          "The known-perpetrator evidence, the public-use evidence, and the registry-implementation evidence point in the same direction: public maps do not automatically identify the contexts where many child sexual harms occur.",
+        sourceIds: ["bjsChildKnown", "andersonSample", "harrisLawEnforcement"],
+      },
+      {
+        id: "p3-c3",
+        type: "Policy inference",
+        claim:
+          "Registry-centered prevention can misdirect attention when it encourages the public to treat location visibility as the main child-safety strategy.",
+        meaning:
+          "Children are better protected by prevention systems that address access, reporting, institutional response, supervision, and trusted authority—not by assuming a public map solves the problem.",
+        evidence:
+          "This claim rests on the official known-offender evidence, the documented gap between registry availability and protective behavior, and the matrix’s separation of policy mechanisms from measured outcomes.",
+        sourceIds: ["bjsChildKnown", "andersonSample", "zgobaMitchell"],
+      },
+    ],
+  },
+  {
+    id: "position-4",
+    number: "4",
+    title: "Comparative public safety",
+    subtitle:
+      "Publication-safe claims that compare recidivism measures without collapsing overall rearrest, sexual rearrest, reconviction, and specialization.",
+    position:
+      "Other types of crime present a greater and more consistent danger to public safety.",
+    claims: [
+      {
+        id: "p4-c1",
+        type: "Comparative finding",
+        claim:
+          "The comparative recidivism picture is outcome-dependent: sex-offense release groups are not uniformly high on overall recidivism, but they are relatively elevated when the outcome is specifically another detected sexual offense.",
+        meaning:
+          "The answer changes depending on what you are measuring. Overall rearrest and sexual rearrest are not the same question.",
+        evidence:
+          "BJS’s 1994 and 2005 release cohorts both show lower overall rearrest for sex-offense groups than for other released prisoners, while also showing higher sexual-offense rearrest when the outcome is another rape or sexual assault.",
+        sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear"],
+      },
+      {
+        id: "p4-c2",
+        type: "Comparative finding",
+        claim:
+          "Across major same-cohort official comparisons, several non-sex offense groups have materially higher overall rearrest rates than sex-offense groups.",
+        meaning:
+          "People released after sex offenses are not the highest-rearresting category when the measure is any new arrest.",
+        evidence:
+          "The 2019 BJS report found that 67% of rape/sexual-assault releases were arrested for any crime within nine years, compared with 84% of other released prisoners. BJS category comparisons and USSC federal data also show substantial variation across offense groups.",
+        sourceIds: ["bjs2019NineYear", "bjs2012Releases", "ussc2010Recidivism"],
+        boundary:
+          "Use same-study comparisons where possible; offense groups differ by age, history, sentence, cohort, and release context.",
+      },
+      {
+        id: "p4-c3",
+        type: "Comparative finding",
+        claim:
+          "Sexual-offense history is associated with elevated relative risk of later detected sexual offending, while most released sex-offense groups in these official cohorts were not rearrested for another sexual offense.",
+        meaning:
+          "A group can have higher relative risk and still have a minority absolute rate. Both facts matter.",
+        evidence:
+          "BJS reported that released sex offenders were more likely than other released prisoners to be arrested for rape or sexual assault, while the absolute sexual rearrest rate was 7.7% over nine years in the 2005 cohort.",
+        sourceIds: ["bjs2019NineYear", "bjs1994SexOffenders"],
+        boundary:
+          "Relative elevation and absolute prevalence answer different questions; rearrest is detected official-system behavior, not all offending.",
+      },
+      {
+        id: "p4-c4",
+        type: "Comparative finding",
+        claim:
+          "Elevated same-type rearrest among people with prior sexual offenses should be understood partly as offense specialization, a broader criminal-recidivism pattern found across many offense categories.",
+        meaning:
+          "Repeat-offense concentration is not unique to sexual offending, even though sexual-offense specialization can be pronounced.",
+        evidence:
+          "BJS’s same-offense specialization table found elevated same-type rearrest likelihood across many offense categories, including homicide, rape, other sexual assault, robbery, assault, burglary, theft, fraud, drug, and public-order offenses.",
+        sourceIds: ["bjs1994Specialization", "bjs2012Releases"],
+        boundary:
+          "The magnitude of specialization differs by offense, category definitions, and base rates; same-type relative likelihood is not the same as absolute recidivism probability.",
+      },
+    ],
+  },
+  {
+    id: "position-5",
+    number: "5",
+    title: "Punitive in practice",
+    subtitle:
+      "Publication-safe claims distinguishing legal classification from empirical and lived effects.",
+    position: "Registries are punitive in practice, not administrative in nature.",
+    claims: [
+      {
+        id: "p5-c1",
+        type: "Legal fact",
+        claim:
+          "A court’s civil label for a registry scheme does not end the empirical or policy question whether modern registry systems operate punitively in practice.",
+        meaning:
+          "Legal doctrine and lived effect are related, but they are not the same thing.",
+        evidence:
+          "Smith v. Doe held Alaska’s then-existing registry nonpunitive for federal ex post facto purposes. Later decisions, including Does #1–5 v. Snyder, show that materially different modern schemes can be judged punitive in effect.",
+        sourceIds: ["smithDoe", "doesSnyder"],
+      },
+      {
+        id: "p5-c2",
+        type: "SOLAR conclusion",
+        claim:
+          "Public exposure, recurring reporting duties, movement and housing limits, employment barriers, and long-duration public status make registry systems function as punishment for many people after sentence completion.",
+        meaning:
+          "For the person living under the system, the punishment does not necessarily end when the sentence ends.",
+        evidence:
+          "The claim is a SOLAR synthesis grounded in documented reintegration burdens, residence-restriction housing effects, administrative demands, public-notification consequences, and modern constitutional litigation over punitive effects.",
+        sourceIds: [
+          "levensonCotter",
+          "lasherMcGrath",
+          "zandbergenHart",
+          "doesSnyder",
+        ],
+      },
+      {
+        id: "p5-c3",
+        type: "Legal fact",
+        claim:
+          "Modern registry challenges are fact-sensitive because courts assess the specific law’s effects, not the word “registry” in the abstract.",
+        meaning:
+          "The legal answer can change when a registry adds exclusion zones, in-person reporting, public branding, internet disclosure, or other heavy burdens.",
+        evidence:
+          "Smith v. Doe applied an intent-effects framework to Alaska’s law as it existed then. Does #1–5 v. Snyder applied that framework to Michigan’s amended scheme and found punitive effects.",
+        sourceIds: ["smithDoe", "doesSnyder"],
+      },
+      {
+        id: "p5-c4",
+        type: "Policy inference",
+        claim:
+          "When a system produces punishment-like burdens without demonstrating broad public-safety gains, proportionality becomes a central policy question.",
+        meaning:
+          "The state should not get to impose lifelong practical punishment merely by calling it administration.",
+        evidence:
+          "The matrix links pooled null or inconsistent recidivism effects with documented financial, administrative, housing, employment, and reintegration burdens. That makes benefit-versus-burden an empirical proportionality question.",
+        sourceIds: [
+          "zgobaMitchell",
+          "njMeganLaw",
+          "levensonCotter",
+          "lasherMcGrath",
+        ],
+      },
+    ],
+  },
+  {
+    id: "position-6",
+    number: "6",
+    title: "One-size-fits-all registry laws are flawed",
+    subtitle:
+      "Publication-safe claims about heterogeneity, offense labels, age, time offense-free, assessment tools, treatment, and calibration.",
+    position: "One-size-fits-all registry laws are fundamentally flawed.",
+    claims: [
+      {
+        id: "p6-c1",
+        type: "Empirical finding",
+        claim:
+          "An offense label is not a validated measure of an individual’s current risk.",
+        meaning:
+          "Knowing what someone was convicted of does not tell you, by itself, how likely that person is to offend again.",
+        evidence:
+          "The matrix repeatedly documents heterogeneity by prior offense history, age, time offense-free, criminal history, CSEM versus contact offense profile, and tool population fit. Major comparator datasets show wide variation inside and across offense categories.",
+        sourceIds: [
+          "bjs2019NineYear",
+          "ussc2010Recidivism",
+          "usscCsem",
+          "hansonSimpleQuestion",
+        ],
+      },
+      {
+        id: "p6-c2",
+        type: "Empirical finding",
+        claim:
+          "Risk is dynamic across the life course: age and time offense-free materially change empirically observed risk.",
+        meaning:
+          "Risk is not frozen forever at the moment of conviction.",
+        evidence:
+          "The matrix uses age, desistance, Static-99R age revisions, and long-term follow-up evidence to support the claim that risk changes over time and should not be treated as a permanent category label.",
+        sourceIds: [
+          "hansonSimpleQuestion",
+          "ussc2010Recidivism",
+          "static99Coding",
+          "static99Workbook",
+        ],
+        boundary:
+          "Age lowers average risk; it does not eliminate risk for every individual.",
+      },
+      {
+        id: "p6-c3",
+        type: "Empirical finding",
+        claim:
+          "Evidence supports using validated structured methods as an expected input rather than relying on intuition alone.",
+        meaning:
+          "Risk decisions should not be based only on fear, offense title, or a professional gut feeling.",
+        evidence:
+          "Risk-assessment meta-analysis evidence supports empirically derived actuarial approaches over unstructured professional judgment, while structured professional judgment tends to fall in between and case-specific information still matters.",
+        sourceIds: ["babchishinHanson", "hansonMortonBourgon"],
+        boundary:
+          "Structured methods are not perfect prediction; usefulness depends on the population, tool purpose, and decision being made.",
+      },
+      {
+        id: "p6-c4",
+        type: "Empirical finding",
+        claim:
+          "PCRA results should not be treated as if they directly answer a specialized sexual-recidivism question.",
+        meaning:
+          "A general federal risk/needs score is not automatically a sex-offense risk score.",
+        evidence:
+          "PCRA was built for general federal post-conviction risk and intervention needs. In the federal CSEM validation work, PCRA showed only modest discrimination for five-year sexual rearrest.",
+        sourceIds: ["pcrA", "cohenCsem"],
+        boundary:
+          "General-risk tools can correlate with specialized outcomes; correlation does not transform their validated primary purpose.",
+      },
+      {
+        id: "p6-c5",
+        type: "Empirical finding",
+        claim:
+          "Moderate AUCs can contain useful ranking information while still being inadequate for precise individual probability claims.",
+        meaning:
+          "A tool can be better than guessing and still not tell you that a particular person has a precise percent chance of reoffending.",
+        evidence:
+          "The matrix treats AUC as a discrimination statistic: it ranks relative ordering but does not by itself establish calibration, absolute probability, causation, or certainty for a particular person.",
+        sourceIds: ["cohenCsem", "cportDevelopment", "cportValidation"],
+      },
+      {
+        id: "p6-c6",
+        type: "Empirical finding",
+        claim:
+          "Transporting a score-to-percentage table across populations requires calibration evidence, not just a respectable AUC.",
+        meaning:
+          "A number developed in one sample may not give the right absolute-risk estimate in another setting.",
+        evidence:
+          "The matrix uses Static-99R norms and CPORT validation concerns to separate discrimination from calibration. Reference-group choice and population fit must be explicit.",
+        sourceIds: ["static99Workbook", "cportValidation", "cportCritical"],
+      },
+      {
+        id: "p6-c7",
+        type: "Empirical finding",
+        claim:
+          "Risk assessment should distinguish historical baseline risk from changeable treatment and supervision needs rather than treating risk as permanently fixed.",
+        meaning:
+          "Some risk-relevant facts are historical. Others can change with time, treatment, stability, supervision, and behavior.",
+        evidence:
+          "STABLE-2007, SOTIPS, VRS-SO, and treatment meta-analysis evidence support the existence of structured dynamic risk and change-related information.",
+        sourceIds: ["stable2007", "sotips", "vrsSo", "treatmentMeta"],
+        boundary:
+          "Dynamic ratings require training, appropriate data, and good longitudinal information.",
+      },
+    ],
+  },
+
+  {
+    id: "position-7",
+    number: "7",
+    title: "Permanent underclass",
+    subtitle:
+      "Publication-safe SOLAR synthesis claims about cumulative reintegration barriers and long-duration public status.",
+    position: "Registries create a permanent underclass.",
+    claims: [
+      {
+        id: "p7-c1",
+        type: "SOLAR conclusion",
+        claim:
+          "Registry systems create a permanent underclass when public status, legal restrictions, private exclusion, and administrative demands combine to block ordinary reintegration.",
+        meaning:
+          "The registry can follow a person into housing, work, family life, public identity, and civic participation long after the court sentence is over.",
+        evidence:
+          "This is a SOLAR synthesis grounded in documented housing loss, employment exclusion, psychological burden, community-notification effects, residence restrictions, and recurring administrative demands.",
+        sourceIds: ["levensonCotter", "lasherMcGrath", "zandbergenHart"],
+      },
+      {
+        id: "p7-c2",
+        type: "Empirical finding",
+        claim:
+          "Housing barriers are a central mechanism through which registry systems destabilize people and families.",
+        meaning:
+          "Housing is not a side issue. Without a lawful, stable place to live, nearly every other part of reentry becomes harder.",
+        evidence:
+          "Residence-restriction GIS evidence shows how exclusion zones can sharply reduce lawful housing supply, while notification and reintegration studies document housing exclusion and residential disruption.",
+        sourceIds: ["zandbergenHart", "levensonCotter", "lasherMcGrath"],
+        boundary:
+          "Housing effects vary by local law, geography, landlord practice, supervision rules, and family resources.",
+      },
+      {
+        id: "p7-c3",
+        type: "Empirical finding",
+        claim:
+          "Employment and social exclusion are documented registry consequences, not speculative complaints.",
+        meaning:
+          "People on registries often face work and community barriers because their public status invites exclusion.",
+        evidence:
+          "The reintegration evidence includes job loss, job exclusion, social isolation, threats, and psychological effects associated with public registry and notification exposure.",
+        sourceIds: ["levensonCotter", "lasherMcGrath"],
+      },
+      {
+        id: "p7-c4",
+        type: "Policy inference",
+        claim:
+          "A system that undermines housing, work, family stability, and community reintegration can weaken the same stability infrastructure public safety depends on.",
+        meaning:
+          "Public safety is not served by making lawful life harder than it needs to be.",
+        evidence:
+          "The matrix supports this as a policy inference from documented collateral burdens and the lack of demonstrated broad SORN recidivism reduction. It does not require overstating a direct causal recidivism pathway from every burden.",
+        sourceIds: ["zgobaMitchell", "lasherMcGrath", "levensonCotter"],
+        boundary:
+          "This is a stability-and-proportionality claim, not a claim that every collateral burden has a proven direct causal effect on reoffending.",
+      },
+    ],
+  },
+  {
+    id: "position-8",
+    number: "8",
+    title: "Measurable outcomes, not presumed benefits",
+    subtitle:
+      "Publication-safe methodological claims that keep policy claims tied to evidence, mechanisms, and actual outcomes.",
+    position:
+      "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
+    claims: [
+      {
+        id: "p8-c1",
+        type: "Policy inference",
+        claim:
+          "The seriousness of sexual harm does not prove that a registry policy prevents it.",
+        meaning:
+          "A problem can be grave and a proposed intervention can still fail.",
+        evidence:
+          "The matrix separates the moral seriousness of sexual harm from evidence of policy effectiveness. Broad SORN evidence has not demonstrated an overall recidivism-reduction effect, and individual policy components show different mechanisms and evidence profiles.",
+        sourceIds: ["zgobaMitchell", "prescottRockoff"],
+      },
+      {
+        id: "p8-c2",
+        type: "Policy inference",
+        claim:
+          "Visibility is not prevention, and the existence of a database is not proof of protective action.",
+        meaning:
+          "A public list only matters if it is accurate, understood, used, and connected to behavior that actually reduces harm.",
+        evidence:
+          "Public-awareness research, law-enforcement implementation studies, and SORN meta-analysis all support separating availability, use, protective behavior, and crime reduction.",
+        sourceIds: ["andersonSample", "harrisLawEnforcement", "zgobaMitchell"],
+      },
+      {
+        id: "p8-c3",
+        type: "Policy inference",
+        claim:
+          "Practitioner belief that SORN is useful is evidence about practitioner perception, not direct evidence that SORN reduces offending.",
+        meaning:
+          "Survey answers can tell us what administrators think. They cannot, by themselves, prove crime prevention.",
+        evidence:
+          "Cubellis and Harris-related law-enforcement studies document mixed practitioner views and operational concerns. The matrix uses those studies for implementation and perception claims, not as direct crime-rate evidence.",
+        sourceIds: ["cubellis", "harrisLawEnforcement"],
+      },
+      {
+        id: "p8-c4",
+        type: "Policy inference",
+        claim:
+          "Registry policy should be evaluated component by component rather than as one indivisible package.",
+        meaning:
+          "Registration, public notification, verification, residence restrictions, and supervision can have different evidence, mechanisms, and burdens.",
+        evidence:
+          "The matrix architecture separates Sources, Study Units, Findings, and Claims, and treats registration, notification, broad SORN, and adjacent restrictions as distinct policy exposures wherever the evidence permits.",
+        sourceIds: ["prescottRockoff", "zgobaMitchell", "minnesotaNotification"],
+      },
+      {
+        id: "p8-c5",
+        type: "Policy inference",
+        claim:
+          "Where demonstrated public-safety gains are null, narrow, or inconsistent, financial, administrative, and reintegration burdens become central to whether a registry policy is proportionate.",
+        meaning:
+          "Costs and harms matter most when the promised benefit is weak or unproven.",
+        evidence:
+          "The matrix links Zgoba and Mitchell’s pooled null finding, New Jersey cost evidence, reintegration burdens, residence-restriction housing effects, and law-enforcement implementation concerns into a benefit-versus-burden framework.",
+        sourceIds: [
+          "zgobaMitchell",
+          "njMeganLaw",
+          "zandbergenHart",
+          "lasherMcGrath",
+          "harrisLawEnforcement",
+        ],
+        boundary:
+          "Some targeted or component-specific policies may show narrower benefits; that does not establish a broad benefit for every registry practice.",
+      },
+      {
+        id: "p8-c6",
+        type: "Empirical finding",
+        claim:
+          "Any recidivism claim that omits its measurement basis is incomplete.",
+        meaning:
+          "Rearrest, charge, conviction, reincarceration, self-report, and actual offending are not interchangeable.",
+        evidence:
+          "The matrix treats outcome measurement as a foundational methodological point. The same population can produce different rates depending on the endpoint, follow-up period, source of data, and subgroup definition.",
+        sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear", "cohenCsem"],
+      },
+    ],
+  },
+];
+
+const sourceListItems = Object.values(sourceLinks).map((source) => ({
+  label: source.label,
+  href: source.href,
+  description: `${source.type}. ${source.description}`,
+}));
+
+function claimTypeClasses(type: ClaimType): string {
+  switch (type) {
+    case "Empirical finding":
+      return "bg-sky-50 text-sky-800 ring-sky-200";
+    case "Evidence synthesis":
+      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
+    case "Comparative finding":
+      return "bg-emerald-50 text-emerald-800 ring-emerald-200";
+    case "Legal fact":
+      return "bg-amber-50 text-amber-900 ring-amber-200";
+    case "Policy inference":
+      return "bg-violet-50 text-violet-800 ring-violet-200";
+    case "SOLAR conclusion":
+      return "bg-slate-100 text-slate-800 ring-slate-200";
+    default:
+      return "bg-slate-100 text-slate-800 ring-slate-200";
+  }
+}
+
+function renderSourceTrail(sourceIds: string[]): JSX.Element {
+  return (
+    <>
+      {sourceIds.map((sourceId, index) => {
+        const source = sourceLinks[sourceId];
+
+        if (!source) {
+          return null;
+        }
+
+        return (
+          <React.Fragment key={sourceId}>
+            {index > 0 ? <span className="text-slate-400"> · </span> : null}
+            <a
+              href={source.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-slate-700 underline decoration-slate-300 underline-offset-4 hover:text-slate-950 hover:decoration-slate-700"
+            >
+              {source.label}
+            </a>
+          </React.Fragment>
+        );
+      })}
+    </>
+  );
+}
+
+export default function SupportedClaimsGuide(): JSX.Element {
   const handlePrint = () => window.print();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
       <SEO
-        title="Registry Effectiveness: What Does the Evidence Show? | The SOLAR Project"
-        description="A plain-language SOLAR evidence guide examining whether sex-offense registration and public notification produce measurable public-safety benefits, what narrower findings show, and how costs and collateral effects belong in the analysis."
-        keywords="sex offense registry effectiveness, SORN evidence, sex offender registration research, public notification effectiveness, recidivism, registry policy, Megan's Law, SOLAR Project"
+        title="Supported Claims Library | The SOLAR Project"
+        description="A source-backed collection of the strongest claims SOLAR believes the evidence supports about registries, recidivism, risk, and public safety."
+        keywords="SOLAR Project, supported claims, sex offender registry evidence, recidivism research, registry effectiveness, risk assessment, public safety policy"
       />
 
       <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
@@ -66,17 +992,16 @@ export default function ResourceGuideSandbox(): JSX.Element {
           </Link>
 
           <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
-            SOLAR Evidence Guide
+            SOLAR Resource Guide
           </div>
 
           <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-            Registry Effectiveness: What Does the Evidence Show?
+            Supported Claims Library
           </h1>
 
           <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
-            Registration and public notification are often treated as obviously
-            protective. This guide asks the harder question: what measurable
-            public-safety benefit do they actually produce?
+            A source-backed collection of the strongest claims SOLAR believes
+            the evidence supports.
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
@@ -103,1071 +1028,313 @@ export default function ResourceGuideSandbox(): JSX.Element {
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
-        <GuideIntro title="Start Here" icon="🧭">
+        <GuideIntro title="Start Here" icon="📚">
           <p>
-            Sex-offense registration and notification laws are usually defended
-            as public-safety measures. But a policy is not proven effective
-            simply because it collects information, makes people visible, or
-            feels precautionary. Effectiveness has to be measured against an
-            outcome that matters: fewer offenses, fewer victims, lower
-            recidivism, better protective behavior, or some other demonstrated
-            safety gain.
+            This library is the public-facing companion to SOLAR’s internal
+            Evidence Matrix. It does not try to reproduce every study note,
+            extraction field, or internal challenge. It gives outside writers
+            the strongest claims SOLAR believes can be responsibly published,
+            with plain-language meaning and source trails.
           </p>
           <p>
-            This guide uses the SOLAR Evidence Matrix to separate the major
-            registry components, examine the strongest broad evidence, and show
-            where narrower findings do—and do not—support claims of benefit.
+            This is a curated advocacy research resource, not a neutral
+            literature encyclopedia. Claims are included because they support
+            SOLAR’s public positions and survive evidence review. Boundaries
+            appear only when they are needed for truth, durability, or
+            credibility.
           </p>
         </GuideIntro>
 
-        <GuideCallout tone="family" icon="🏠" title="For people living with the system">
-          <p>
-            If registration has reshaped where you can live, where you can work,
-            how your family is treated, or whether your address is publicly
-            searchable, it is reasonable to ask what measurable public-safety
-            benefit those burdens produce. This guide takes that question
-            seriously.
-          </p>
-        </GuideCallout>
-
-        <GuideSectionCard>
-          <GuideProse>
-            <h2>The third guide in SOLAR’s evidence sequence</h2>
-            <p>
-              The{" "}
-              <Link to={relatedGuideRoutes.risk} className={linkCls}>
-                Understanding Sex-Offense Risk Assessment
-              </Link>{" "}
-              guide explains why risk is heterogeneous and why individualized
-              assessment matters. The{" "}
-              <Link to={relatedGuideRoutes.recidivism} className={linkCls}>
-                Understanding Recidivism Evidence
-              </Link>{" "}
-              guide explains why recidivism depends on population, outcome,
-              follow-up, subgroup, and comparison.
-            </p>
-            <p>
-              This guide takes the next step: given what we know about risk and
-              recidivism, does categorical registration or public notification
-              produce enough measurable safety benefit to justify the system
-              built around it?
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
+        <OverviewCards
+          columns={4}
+          cards={[
+            {
+              eyebrow: "Field A",
+              title: "Publication-safe claim",
+              icon: "✍️",
+              tone: "research",
+              description:
+                "The strongest wording SOLAR believes should survive competent journalistic, editorial, academic, legislative, or fact-checking scrutiny.",
+            },
+            {
+              eyebrow: "Field B",
+              title: "What it means",
+              icon: "💬",
+              tone: "info",
+              description:
+                "A conversational version that keeps the same meaning without changing the substance.",
+            },
+            {
+              eyebrow: "Field C",
+              title: "Evidence",
+              icon: "🔎",
+              tone: "legal",
+              description:
+                "A concise explanation of why SOLAR can say the claim and what evidence supports it.",
+            },
+            {
+              eyebrow: "Field D",
+              title: "Source trail",
+              icon: "🔗",
+              tone: "neutral",
+              description:
+                "Direct links to primary studies, government reports, court opinions, or authoritative sources.",
+            },
+          ]}
+        />
 
         <GuideSectionHeader
-          id="supposed-to-accomplish"
-          number="1"
-          title="What Is the Registry Supposed to Accomplish?"
-          subtitle="The theory contains several different mechanisms, and they should not be collapsed into one."
+          id="quick-navigation"
+          number="0"
+          title="Quick navigation"
+          subtitle="Jump directly to the SOLAR position you need."
         />
 
         <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Registry laws can serve several claimed functions at once. A
-              law-enforcement database may be intended to help police identify
-              or locate people. Public notification may be intended to help
-              residents change their behavior. Verification rules may be
-              intended to keep records current. Some policies are also defended
-              as deterrence: the prospect of registration or public exposure is
-              supposed to discourage offending.
-            </p>
-            <p>
-              Those are different mechanisms. A database can have investigative
-              utility without proving that public Internet disclosure reduces
-              sexual offending. A website can be widely available without
-              proving that people use it, act on it, or prevent victimization.
-            </p>
-          </GuideProse>
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Mechanism 1",
-                title: "Information",
-                icon: "🗂️",
-                tone: "info",
-                description:
-                  "Keep identifying and location information available to law enforcement.",
-              },
-              {
-                eyebrow: "Mechanism 2",
-                title: "Public warning",
-                icon: "📣",
-                tone: "warning",
-                description:
-                  "Give the public information that might change protective behavior or increase surveillance.",
-              },
-              {
-                eyebrow: "Mechanism 3",
-                title: "Deterrence",
-                icon: "🛑",
-                tone: "legal",
-                description:
-                  "Create consequences or visibility that are expected to discourage future offending.",
-              },
-            ]}
-          />
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="effectiveness"
-          number="2"
-          title="What Does “Effectiveness” Mean?"
-          subtitle="Administrative activity is not the same thing as a public-safety outcome."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              A fair evaluation begins by naming the outcome. Researchers can
-              ask whether a policy changes sexual recidivism, overall
-              recidivism, first-time sexual offending, victimization,
-              deterrence, apprehension, public protective behavior, information
-              accuracy, administrative workload, cost, or collateral effects.
-            </p>
-            <p>
-              Calling a registry “effective” without specifying which outcome
-              improved can hide the central question. People looking at a
-              website is not the same outcome as fewer victims. Police having
-              access to a database is not the same outcome as lower
-              recidivism.
-            </p>
-          </GuideProse>
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Safety outcome",
-                title: "Repeat offending",
-                icon: "📉",
-                tone: "research",
-                description:
-                  "Does registration or notification reduce sexual or overall recidivism?",
-              },
-              {
-                eyebrow: "Safety outcome",
-                title: "First-time offending",
-                icon: "🧭",
-                tone: "research",
-                description:
-                  "Does the policy deter sexual offending by people who are not already registered?",
-              },
-              {
-                eyebrow: "Mechanism",
-                title: "Protective action",
-                icon: "👥",
-                tone: "info",
-                description:
-                  "Do people access the information and change behavior in ways that plausibly improve safety?",
-              },
-              {
-                eyebrow: "System quality",
-                title: "Accuracy and utility",
-                icon: "✅",
-                tone: "neutral",
-                description:
-                  "Is the information accurate, usable, current, and interpretable by the people expected to rely on it?",
-              },
-              {
-                eyebrow: "Burden",
-                title: "Cost and administration",
-                icon: "💵",
-                tone: "warning",
-                description:
-                  "What money, staff time, enforcement effort, and operational complexity does the system require?",
-              },
-              {
-                eyebrow: "Burden",
-                title: "Reintegration effects",
-                icon: "🏘️",
-                tone: "reentry",
-                description:
-                  "What happens to housing, work, relationships, stability, privacy, and ordinary community life?",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="research" icon="🔎" title="The measurement rule">
-            <p>
-              Precaution is not the same thing as demonstrated effectiveness.
-              Visibility is not itself a public-safety outcome. A policy that
-              imposes large and durable burdens should be evaluated against the
-              measurable benefits it actually produces.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="policy-components"
-          number="3"
-          title="Registration Is Not the Same as Public Notification"
-          subtitle="The evidence becomes clearer when the intervention is identified before the result is interpreted."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The SOLAR Evidence Matrix separates registry-related policies
-              because studies do not all evaluate the same intervention. This is
-              essential to reading the evidence accurately.
-            </p>
-          </GuideProse>
-
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "A",
-                title: "Registration database",
-                icon: "🗃️",
-                tone: "info",
-                description:
-                  "Identity, address, and related information maintained for official or law-enforcement use.",
-              },
-              {
-                eyebrow: "B",
-                title: "Public notification",
-                icon: "📢",
-                tone: "warning",
-                description:
-                  "Disclosure through websites, notices, meetings, or other public-facing methods.",
-              },
-              {
-                eyebrow: "C",
-                title: "Targeted high-risk notification",
-                icon: "🎯",
-                tone: "research",
-                description:
-                  "Notification focused on a selected higher-risk group, such as Minnesota Level 3 cases.",
-              },
-              {
-                eyebrow: "D",
-                title: "Broad Internet disclosure",
-                icon: "🌐",
-                tone: "legal",
-                description:
-                  "Large-scale public access that may include far more people than a selected high-risk group.",
-              },
-              {
-                eyebrow: "E",
-                title: "Broad SORN packages",
-                icon: "🧩",
-                tone: "neutral",
-                description:
-                  "Studies where registration and notification changed together or cannot be cleanly separated.",
-              },
-              {
-                eyebrow: "F",
-                title: "Verification and reporting",
-                icon: "📝",
-                tone: "reminder",
-                description:
-                  "Address updates, periodic verification, change reporting, and compliance administration.",
-              },
-            ]}
-          />
-
-          <GuideCallout tone="legal" icon="⚖️" title="Keep adjacent policies separate">
-            <p>
-              Residence restrictions and similar exclusion rules may use
-              registry status as a trigger, but they are separate policies.
-              Evidence about residence restrictions should not be presented as
-              evidence that registration itself reduces—or increases—sexual
-              offending.
-            </p>
-          </GuideCallout>
-
-          <GuideProse>
-            <p>
-              A useful example comes from{" "}
+          <nav
+            aria-label="Supported claims position navigation"
+            className="grid gap-3 sm:grid-cols-2"
+          >
+            {positions.map((section) => (
               <a
-                href={sourceLinks.prescottRockoff}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
+                key={section.id}
+                href={`#${section.id}`}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
               >
-                Prescott and Rockoff
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Position {section.number}
+                </div>
+                <div className="mt-1 text-sm font-semibold text-slate-900">
+                  {section.position}
+                </div>
               </a>
-              . Their study estimated different effects for registration and
-              public notification. Registration was associated with reductions
-              in some reported sex offenses against local victims, while public
-              notification appeared to operate through a different mechanism
-              and may have increased recidivism among people already registered.
-            </p>
-            <p>
-              The lesson is not that one study settles the whole debate. The
-              lesson is that “registration” and “public notification” are not
-              interchangeable concepts.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="best-broad-evidence"
-          number="4"
-          title="The Best Broad Evidence"
-          subtitle="The strongest pooled evidence in the SOLAR matrix has not demonstrated an overall recidivism-reduction effect."
-        />
-
-        <GuideSectionCard>
-          <GuideCallout tone="research" icon="📊" title="The major empirical anchor">
-            <p>
-              Across 25 years of evaluated SORN policies, the strongest broad
-              quantitative synthesis in the SOLAR Evidence Matrix did not find a
-              statistically significant overall reduction in recidivism.
-            </p>
-          </GuideCallout>
-
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Worked example
-            </div>
-            <h3 className="mt-2 text-xl font-bold text-slate-900">
-              What does the broadest quantitative synthesis say?
-            </h3>
-
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-xl bg-slate-50 p-4">
-                <div className="text-sm font-semibold text-slate-500">
-                  Research articles
-                </div>
-                <div className="mt-1 text-2xl font-bold text-slate-900">18</div>
-              </div>
-              <div className="rounded-xl bg-slate-50 p-4">
-                <div className="text-sm font-semibold text-slate-500">
-                  Individuals
-                </div>
-                <div className="mt-1 text-2xl font-bold text-slate-900">
-                  474,640
-                </div>
-              </div>
-              <div className="rounded-xl bg-slate-50 p-4">
-                <div className="text-sm font-semibold text-slate-500">
-                  Effect sizes
-                </div>
-                <div className="mt-1 text-2xl font-bold text-slate-900">42</div>
-              </div>
-              <div className="rounded-xl bg-slate-50 p-4">
-                <div className="text-sm font-semibold text-slate-500">
-                  Overall result
-                </div>
-                <div className="mt-1 text-lg font-bold text-slate-900">
-                  No significant pooled effect
-                </div>
-              </div>
-            </div>
-
-            <GuideProse>
-              <p>
-                In{" "}
-                <a
-                  href={sourceLinks.zgobaMitchell}
-                  className={linkCls}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Zgoba and Mitchell’s meta-analysis
-                </a>
-                , the random-effects pooled analysis found no statistically
-                significant overall SORN effect on recidivism. The null also
-                persisted when outcomes were separated into sexual versus
-                nonsexual recidivism and arrest versus conviction.
-              </p>
-              <p>
-                <strong>Interpretation:</strong> the best broad pooled evidence
-                in the matrix has not demonstrated the overall
-                recidivism-reduction effect commonly assumed in public debate.
-              </p>
-              <p>
-                <strong>Boundary:</strong> SORN studies combine different
-                policy designs, populations, and eras. A pooled null does not
-                prove that every specific registry component has exactly zero
-                effect. It does mean that narrower favorable findings should not
-                be generalized into a claim that broad SORN has demonstrated an
-                overall recidivism benefit.
-              </p>
-            </GuideProse>
-          </div>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="repeat-offending"
-          number="5"
-          title="Does SORN Reduce Repeat Sexual Offending?"
-          subtitle="Several major evaluations found no detectable recidivism benefit, while component-specific studies complicate blanket claims."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The pooled result is supported by several influential individual
-              evaluations.{" "}
-              <a
-                href={sourceLinks.agan}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Agan
-              </a>{" "}
-              analyzed three different datasets and found no detectable
-              public-safety benefit across the designs examined.{" "}
-              <a
-                href={sourceLinks.letourneauRecidivism}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Letourneau and colleagues’ South Carolina analysis
-              </a>{" "}
-              found that registration status did not significantly predict
-              sexual recidivism in the modeled analyses.
-            </p>
-            <p>
-              A{" "}
-              <a
-                href={sourceLinks.sandlerFreemanSocia}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                New York time-series study by Sandler, Freeman, and Socia
-              </a>{" "}
-              found no support for SORN reducing the studied categories of
-              sexual offending, including sexual recidivists and first-time
-              offenders. Because it is a time-series study, it cannot perfectly
-              isolate registration from notification or broader secular trends.
-            </p>
-            <p>
-              A large{" "}
-              <a
-                href={sourceLinks.freeman}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Freeman notified-versus-non-notified comparison
-              </a>{" "}
-              also sits uneasily with a simple claim that notification lowers
-              recidivism. Notified people were rearrested about twice as quickly
-              for a sexual offense and 47% more quickly for a nonsexual offense.
-              That result should <strong>not</strong> be read as proof that
-              notification caused faster rearrest: notification assignment,
-              baseline risk, surveillance intensity, and detection can all
-              confound the comparison.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="research" icon="🧠" title="What this section supports">
-            <p>
-              It is accurate to say that the strongest broad pooled evidence has
-              not demonstrated an overall SORN recidivism-reduction effect and
-              that several major evaluations found no detectable benefit. It is
-              not accurate to say that every study proves every registry
-              component does nothing.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="first-time-and-public-use"
-          number="6"
-          title="Does Public Notification Prevent First-Time Offending?"
-          subtitle="Some evidence points to deterrence, but public availability still has to travel through a real behavioral chain."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Public notification is sometimes defended as a general deterrent,
-              not only as a recidivism intervention. In{" "}
-              <a
-                href={sourceLinks.prescottRockoff}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Prescott and Rockoff
-              </a>
-              , notification appeared to reduce offending by people who were not
-              already registered. That finding matters because it identifies a
-              possible benefit operating through a mechanism different from
-              reducing recidivism among registered people.
-            </p>
-            <p>
-              But the public-notification theory still contains a chain of
-              assumptions: information must be available, people must find and
-              understand it, they must change behavior, and those changes must
-              prevent victimization. Each step can fail even if the website
-              itself functions exactly as designed.
-            </p>
-          </GuideProse>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              ["1", "Information is public", "The website or notice exists."],
-              ["2", "People use it", "Residents actually access the information."],
-              ["3", "Behavior changes", "Users take a protective action."],
-              ["4", "Victimization falls", "The action produces a measurable safety gain."],
-            ].map(([step, title, description]) => (
-              <div
-                key={step}
-                className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-              >
-                <div className="text-xs font-bold uppercase tracking-wide text-slate-500">
-                  Step {step}
-                </div>
-                <div className="mt-1 font-semibold text-slate-900">{title}</div>
-                <div className="mt-1 text-sm leading-relaxed text-slate-600">
-                  {description}
-                </div>
-              </div>
             ))}
-          </div>
-
-          <GuideProse>
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.andersonSample}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Anderson and Sample Nebraska survey
-              </a>{" "}
-              directly tested part of that chain. Among respondents with valid
-              access data, 34.8% had accessed the registry and 65.2% had not.
-              Among registry users with action data, 37.6% reported taking a
-              preventative action and 62.4% did not.
-            </p>
-            <p>
-              That does not mean nobody uses registries. It means public
-              availability does not automatically produce public use, and public
-              use does not by itself establish a measurable crime-prevention
-              effect.
-            </p>
-          </GuideProse>
+          </nav>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="targeted-versus-universal"
-          number="7"
-          title="Targeted Notification Is Not Universal Public Disclosure"
-          subtitle="A narrower policy can show benefit without proving that broad Internet disclosure works the same way."
+          id="how-to-use"
+          number="00"
+          title="How to use this library"
+          subtitle="Use the claim sentence when you need a concise published formulation; use the evidence paragraph when you need to explain why it is supportable."
         />
 
         <GuideSectionCard>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Worked example
-            </div>
-            <h3 className="mt-2 text-xl font-bold text-slate-900">
-              Can a narrower notification policy show benefit even when broad
-              SORN evidence is weak?
-            </h3>
-
-            <GuideProse>
-              <p>
-                Yes.{" "}
-                <a
-                  href={sourceLinks.duweDonnay}
-                  className={linkCls}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Duwe and Donnay’s Minnesota study
-                </a>{" "}
-                examined broad community notification for selected high-risk
-                Level 3 individuals. The study found significant reductions or
-                delays in sexual rearrest, reconviction, and reincarceration
-                relative to comparison groups.
-              </p>
-              <p>
-                <strong>What it supports:</strong> at least one strong
-                quasi-experimental study found benefit for targeted notification
-                of a selected high-risk group.
-              </p>
-              <p>
-                <strong>What it does not support:</strong> the conclusion that
-                universal public Internet disclosure produces the same effect
-                across a far broader registry population.
-              </p>
-            </GuideProse>
-          </div>
-
-          <GuideCallout tone="info" icon="🎯" title="Why policy specificity matters">
+          <GuideProse>
             <p>
-              Targeting changes the population, the intensity of the
-              intervention, the information available to the public, and the
-              resources required to administer the policy. Evidence for a
-              selected Level 3 notification system should not be silently
-              transferred to a universal website.
+              Start with the SOLAR position closest to your topic. Each claim
+              card then moves from the polished sentence to ordinary language
+              to the evidence trail. A journalist should be able to scan from
+              position to claim to evidence without reading a long literature
+              review.
+            </p>
+
+            <p>
+              The claim labels distinguish empirical findings, evidence
+              syntheses, comparative findings, legal facts, policy inferences,
+              and SOLAR conclusions. That distinction matters: SOLAR can reach
+              policy conclusions, but a normative conclusion should not be
+              presented as if it were a single statistical result.
+            </p>
+          </GuideProse>
+
+          <GuideCallout tone="research" icon="🧭" title="Boundary rule">
+            <p>
+              Boundaries are not included for balance. They appear only when
+              leaving them out would make the claim materially misleading, when
+              a specific exception would make the sentence vulnerable to
+              competent review, or when naming a narrow exception strengthens
+              the durability of the claim.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
+        {positions.map((section) => (
+          <React.Fragment key={section.id}>
+            <GuideSectionHeader
+              id={section.id}
+              number={section.number}
+              title={section.title}
+              subtitle={section.subtitle}
+            />
+
+            <GuideSectionCard>
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-5">
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Controlling SOLAR position
+                </div>
+                <p className="mt-2 text-lg font-semibold leading-snug text-slate-950">
+                  {section.position}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-5">
+                {section.claims.map((claim, index) => (
+                  <article
+                    key={claim.id}
+                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+                  >
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                        Claim {section.number}.{index + 1}
+                      </div>
+                      <span
+                        className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold ring-1 ${claimTypeClasses(
+                          claim.type,
+                        )}`}
+                      >
+                        {claim.type}
+                      </span>
+                    </div>
+
+                    <div className="mt-4 space-y-4">
+                      <div>
+                        <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Publication-safe claim
+                        </h3>
+                        <p className="mt-2 text-lg font-semibold leading-relaxed text-slate-950">
+                          {claim.claim}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          What it means
+                        </h4>
+                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                          {claim.meaning}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Why we can say it / evidence
+                        </h4>
+                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                          {claim.evidence}
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Source trail
+                        </h4>
+                        <p className="mt-2 text-sm leading-relaxed">
+                          {renderSourceTrail(claim.sourceIds)}
+                        </p>
+                      </div>
+
+                      {claim.boundary ? (
+                        <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
+                          <h4 className="text-xs font-bold uppercase tracking-wide text-amber-900">
+                            Boundary
+                          </h4>
+                          <p className="mt-1 text-sm leading-relaxed text-amber-950">
+                            {claim.boundary}
+                          </p>
+                        </div>
+                      ) : null}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </GuideSectionCard>
+          </React.Fragment>
+        ))}
+
         <GuideSectionHeader
-          id="state-evaluations"
-          number="8"
-          title="What State Evaluations Found"
-          subtitle="State studies help show what broad policy looks like when benefits and implementation are measured in the real world."
-        />
-
-        <GuideSectionCard>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-              Worked example
-            </div>
-            <h3 className="mt-2 text-xl font-bold text-slate-900">
-              New Jersey: what happens when benefits and costs are measured
-              together?
-            </h3>
-
-            <GuideProse>
-              <p>
-                The{" "}
-                <a
-                  href={sourceLinks.newJersey}
-                  className={linkCls}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  National Institute of Justice evaluation of New Jersey
-                  Megan’s Law
-                </a>{" "}
-                reported no demonstrated effect on overall sexual offenses, time
-                to first rearrest, sexual reoffending, type of sexual reoffense,
-                first-time sexual offending, or number of victims.
-              </p>
-              <p>
-                The same evaluation documented implementation costs:
-                approximately <strong>$555,565 in start-up costs</strong> and
-                approximately <strong>$3.9 million in reported 2007 current
-                county costs</strong> among responding counties.
-              </p>
-              <p>
-                Those figures are historical New Jersey costs—not a nationwide
-                estimate. Their importance is conceptual: when an evaluation
-                measures both burden and outcome, the question becomes,
-                “What measurable benefit was purchased for the cost?”
-              </p>
-            </GuideProse>
-          </div>
-
-          <GuideProse>
-            <h3>New York</h3>
-            <p>
-              The New York time-series study found no support for SORN reducing
-              the studied categories of sexual offending. Its design cannot
-              fully separate registration from notification or eliminate every
-              broader time trend, but it remains an important major-state
-              evaluation showing no detectable policy effect.
-            </p>
-
-            <h3>South Carolina</h3>
-            <p>
-              In the South Carolina recidivism analysis, registration status did
-              not significantly predict sexual recidivism. A separate{" "}
-              <a
-                href={sourceLinks.letourneauJudicial}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                South Carolina study of judicial decisions
-              </a>{" "}
-              found changes in charging and disposition patterns across policy
-              periods. That is a reminder that registry policy can affect the
-              justice system in ways that do not appear as a straightforward
-              recidivism change.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="costs-and-collateral"
+          id="methodology"
           number="9"
-          title="What the Registry Costs—and Why Collateral Effects Belong in Safety Analysis"
-          subtitle="Housing, work, stability, privacy, and administrative burden are not side issues when a policy is justified in the name of safety."
+          title="Sources and methodology note"
+          subtitle="How this public library relates to SOLAR’s internal Evidence Matrix."
         />
 
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Collateral consequences matter for two separate reasons. First,
-              they are human and fairness costs borne by people on registries
-              and their families. Second, they can affect the stability that
-              public-safety systems ordinarily try to build: housing, work,
-              relationships, treatment engagement, and successful reintegration.
+              This page follows the Evidence Matrix architecture: sources,
+              study units, findings, and claims. It does not create a competing
+              evidence framework. The source trail prioritizes primary studies,
+              government reports, court opinions, and other authoritative
+              original sources. SOLAR evidence guides are listed below as
+              synthesis gateways.
             </p>
+
             <p>
-              The matrix does not support saying that notification simply
-              “causes people to reoffend.” It does support saying that recurring
-              reintegration burdens are well documented and that more intrusive
-              notification has been associated with more socially destabilizing
-              consequences.
+              Claims are intentionally curated. Contrary or complicating
+              evidence is used internally to narrow, reject, or qualify claims.
+              It is surfaced publicly only when it changes whether the sentence
+              is true, changes the scope, or strengthens the sentence’s
+              credibility by identifying a concrete boundary.
             </p>
           </GuideProse>
 
-          <OverviewCards
-            columns={3}
-            cards={[
-              {
-                eyebrow: "Reintegration",
-                title: "Housing",
-                icon: "🏠",
-                tone: "reentry",
-                description:
-                  "Residence exclusion, relocation pressure, and reduced housing stability recur across studies.",
-              },
-              {
-                eyebrow: "Reintegration",
-                title: "Employment",
-                icon: "💼",
-                tone: "reentry",
-                description:
-                  "Job loss and employment barriers appear repeatedly in notification research.",
-              },
-              {
-                eyebrow: "Personal safety",
-                title: "Threats and harassment",
-                icon: "⚠️",
-                tone: "warning",
-                description:
-                  "Surveys report threats, harassment, property damage, and other public-exposure consequences.",
-              },
-              {
-                eyebrow: "Well-being",
-                title: "Social and psychological effects",
-                icon: "🧠",
-                tone: "family",
-                description:
-                  "Negative psychological effects and social isolation are recurring findings in reintegration studies.",
-              },
-              {
-                eyebrow: "System quality",
-                title: "Inaccurate information",
-                icon: "🧾",
-                tone: "neutral",
-                description:
-                  "Some studies report inaccurate registry information, which can weaken both fairness and practical utility.",
-              },
-              {
-                eyebrow: "Administration",
-                title: "Staff and fiscal burden",
-                icon: "🏛️",
-                tone: "legal",
-                description:
-                  "Verification, updates, public disclosure, enforcement, and inter-agency communication all require resources.",
-              },
-            ]}
-          />
-
-          <GuideProse>
-            <p>
-              The{" "}
-              <a
-                href={sourceLinks.lasherMcGrath}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Lasher and McGrath quantitative review
-              </a>{" "}
-              synthesized eight studies involving 1,503 people and found
-              recurring housing, employment, social, and psychological burdens.
-              The review also found that more intrusive notification strategies
-              were associated with more socially destabilizing consequences.
-            </p>
-            <p>
-              Earlier work by{" "}
-              <a
-                href={sourceLinks.levensonCotter}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Levenson and Cotter
-              </a>{" "}
-              likewise documented job and housing loss, threats or harassment,
-              psychological effects, and reports of inaccurate Internet-registry
-              information among surveyed respondents.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="research" icon="⚖️" title="The proportionality question">
-            <p>
-              Where demonstrated public-safety gains are null, narrow,
-              inconsistent, or limited to particular policy designs, financial,
-              administrative, and reintegration burdens become central to
-              judging whether the policy is proportionate.
-            </p>
+          <GuideCallout
+            tone="reminder"
+            icon="📝"
+            title="Common reporting mistakes to avoid"
+          >
+            <ul className="mt-2 space-y-2 text-sm leading-relaxed text-slate-700">
+              <li>Rearrest is not reconviction.</li>
+              <li>Public availability is not prevention.</li>
+              <li>Practitioner perception is not measured efficacy.</li>
+              <li>
+                General-risk tools are not automatically specialized sexual-risk
+                instruments.
+              </li>
+              <li>
+                Registration, notification, residence restrictions, supervision,
+                treatment, and verification are not interchangeable policies.
+              </li>
+            </ul>
           </GuideCallout>
         </GuideSectionCard>
 
         <GuideSectionHeader
-          id="operational-reality"
+          id="related-resources"
           number="10"
-          title="Does the System Work the Way Its Theory Assumes?"
-          subtitle="A registry’s safety mechanism depends on information quality, implementation, public understanding, and usable scale."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              Even if a registry has some informational value, the safety theory
-              still depends on implementation. Information must be accurate.
-              Systems must communicate. Homelessness and transience must be
-              handled in ways that do not make location data meaningless.
-              Public-facing information must be understandable. Agencies must
-              have enough capacity to maintain the system they are asked to
-              operate.
-            </p>
-            <p>
-              National law-enforcement research by{" "}
-              <a
-                href={sourceLinks.harrisLawEnforcement}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Harris and colleagues
-              </a>{" "}
-              identified concerns involving information reliability and utility,
-              inter-system communication, homelessness and transience, and the
-              public’s ability to interpret registry information.
-            </p>
-            <p>
-              A separate study by{" "}
-              <a
-                href={sourceLinks.cubellis}
-                className={linkCls}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Cubellis, Walfield, and Harris
-              </a>{" "}
-              found mixed law-enforcement views. Respondents in states with
-              larger registries expressed greater concern about collateral
-              consequences and less belief in SORN public-safety efficacy, while
-              personnel more engaged in SORN work also sometimes reported more
-              belief in its effectiveness.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="neutral" icon="🛠️" title="What the practitioner evidence supports">
-            <p>
-              The people responsible for administering registry systems describe
-              real limitations in information quality, implementation, scale,
-              and public interpretation. That is different from saying law
-              enforcement uniformly thinks registries are useless.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="what-evidence-supports"
-          number="11"
-          title="What the Evidence Supports Saying"
-          subtitle="Strong public claims do not need to be absolute to be consequential."
-        />
-
-        <GuideSectionCard>
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              "The best broad pooled recidivism evidence has not demonstrated a statistically significant overall SORN recidivism-reduction effect.",
-              "Registration and public notification are different interventions and should be evaluated separately.",
-              "Some narrower or targeted notification systems have shown favorable effects.",
-              "Targeted high-risk findings do not establish that universal public Internet disclosure is effective.",
-              "Several major state evaluations found no detectable reduction in sexual offending or sexual recidivism.",
-              "Public availability does not automatically translate into public use or measurable prevention.",
-              "Registry systems impose real administrative, fiscal, housing, employment, social, and psychological burdens.",
-              "Those burdens belong inside public-safety analysis because a policy’s burden should be proportionate to its demonstrated benefit.",
-            ].map((claim) => (
-              <div
-                key={claim}
-                className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
-              >
-                <div className="flex gap-3">
-                  <span aria-hidden="true" className="mt-0.5">
-                    ✓
-                  </span>
-                  <p className="m-0 leading-relaxed text-slate-700">{claim}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <GuideCallout tone="warning" icon="🚫" title="Claims this evidence does not justify">
-            <GuideProse>
-              <ul>
-                <li>“Registries do nothing.”</li>
-                <li>“No registry has ever prevented a crime.”</li>
-                <li>“All registry research proves failure.”</li>
-                <li>“Nobody uses the registry.”</li>
-                <li>“Notification causes recidivism.”</li>
-                <li>“Every person on a registry is low risk.”</li>
-              </ul>
-            </GuideProse>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="questions-to-ask"
-          number="12"
-          title="Questions to Ask About Any Registry Policy"
-          subtitle="A disciplined policy discussion starts by identifying the intervention, outcome, population, and tradeoffs."
-        />
-
-        <GuideSectionCard>
-          <GuideChecklist
-            id="registry-policy-questions"
-            title="Use these questions to test an effectiveness claim"
-            columns={2}
-            items={[
-              {
-                id: "component",
-                label:
-                  "Which component is being evaluated: registration, notification, Internet disclosure, targeted notification, verification, or something else?",
-              },
-              {
-                id: "outcome",
-                label:
-                  "What measurable outcome improved: sexual recidivism, first-time offending, victimization, apprehension, public behavior, or only an administrative function?",
-              },
-              {
-                id: "population",
-                label:
-                  "Which population was studied, and can the result fairly be generalized beyond that group?",
-              },
-              {
-                id: "comparison",
-                label:
-                  "What was the comparison group or pre-policy baseline?",
-              },
-              {
-                id: "magnitude",
-                label:
-                  "How large was the measured benefit, and was it statistically distinguishable from no effect?",
-              },
-              {
-                id: "burden",
-                label:
-                  "What financial, administrative, housing, employment, privacy, family, and reintegration burdens came with the policy?",
-              },
-              {
-                id: "mechanism",
-                label:
-                  "Did the proposed safety mechanism actually occur—for example, public use followed by protective behavior?",
-              },
-              {
-                id: "alternatives",
-                label:
-                  "Could the same resources be directed toward interventions whose safety benefits are more directly demonstrated?",
-              },
-            ]}
-          />
-
-          <GuideProse>
-            <p>
-              These questions also connect back to SOLAR’s earlier evidence
-              guides. If risk is heterogeneous, then a finding about a selected
-              high-risk group should not automatically be generalized to
-              everyone with a registry label. If recidivism varies by
-              population, outcome, subgroup, and time, then policy evaluation
-              should be at least as specific.
-            </p>
-          </GuideProse>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="bottom-line"
-          number="13"
-          title="The Bottom Line: What Measurable Safety Benefit Are We Buying?"
-          subtitle="The strongest conclusion is a proportionality argument, not a claim that every conceivable registry function equals zero."
-        />
-
-        <GuideSectionCard>
-          <GuideProse>
-            <p>
-              The component-level literature is heterogeneous, but the center of
-              the evidence is not neutral. The strongest broad pooled evidence
-              in the SOLAR matrix has not demonstrated an overall
-              recidivism-reduction effect. Several major evaluations found no
-              detectable benefit. Public-notification systems impose measurable
-              burdens. And narrower favorable findings—especially for selected
-              high-risk notification—do not establish that universal public
-              disclosure produces the same result.
-            </p>
-            <p>
-              That leaves a legitimate public-safety question:{" "}
-              <strong>what measurable safety benefit are we buying with all of
-              this?</strong>
-            </p>
-            <p>
-              A policy can have some administrative or informational utility and
-              still fail to justify its scale, publicity, duration, collateral
-              consequences, or categorical design. Evidence-based public safety
-              should be willing to distinguish individualized risk, targeted
-              intervention, focused supervision where warranted, effective
-              treatment, and prevention aimed at actual pathways to harm from a
-              broad system whose benefits are too often assumed rather than
-              demonstrated.
-            </p>
-          </GuideProse>
-
-          <GuideCallout tone="success" icon="🌱" title="The evidence standard">
-            <p>
-              Burdens should not be presumed justified simply because the policy
-              concerns sexual offending. Effectiveness must be measured, not
-              assumed.
-            </p>
-          </GuideCallout>
-        </GuideSectionCard>
-
-        <GuideSectionHeader
-          id="sources"
-          number="14"
-          title="Sources and Further Reading"
-          subtitle="Primary studies, government evaluations, and evidence syntheses used in this guide."
+          title="Related SOLAR resources"
+          subtitle="Use these when you need deeper context or a synthesis gateway."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Start with these evidence anchors"
+            title="Primary SOLAR evidence gateways"
             resources={[
               {
-                label: "Zgoba & Mitchell — SORN meta-analysis",
+                label: "Registry Effectiveness Evidence Guide",
                 description:
-                  "The strongest broad quantitative synthesis in the SOLAR Evidence Matrix.",
-                href: sourceLinks.zgobaMitchell,
-                badge: "Meta-analysis",
+                  "Deeper synthesis on registration, notification, public use, and measurable public-safety outcomes.",
+                href: "/resources/registry-effectiveness-evidence-guide",
+                badge: "SOLAR Guide",
               },
               {
-                label: "National Institute of Justice — New Jersey Megan’s Law evaluation",
+                label: "Recidivism Evidence Guide",
                 description:
-                  "State evaluation combining public-safety outcomes with implementation-cost analysis.",
-                href: sourceLinks.newJersey,
-                badge: "Government",
+                  "Deeper synthesis on rearrest, reconviction, follow-up periods, absolute rates, and comparator evidence.",
+                href: "/resources/recidivism-evidence-guide",
+                badge: "SOLAR Guide",
               },
               {
-                label: "Prescott & Rockoff — registration vs. notification",
+                label: "Risk Assessment Guide",
                 description:
-                  "Important component-specific study separating possible registration and notification mechanisms.",
-                href: sourceLinks.prescottRockoff,
-                badge: "Research",
+                  "Deeper synthesis on offense labels, actuarial tools, dynamic risk, calibration, and individualized assessment.",
+                href: "/resources/risk-assessment-guide",
+                badge: "SOLAR Guide",
               },
               {
-                label: "Duwe & Donnay — Minnesota Level 3 notification",
+                label: "Research & Data Resources",
                 description:
-                  "Key quasi-experimental evidence of benefit for targeted notification of a selected high-risk group.",
-                href: sourceLinks.duweDonnay,
-                badge: "Research",
+                  "Research-oriented starting point for source trails, data resources, and evidence navigation.",
+                href: "/resources/research-and-data",
+                badge: "SOLAR Resource",
+              },
+              {
+                label: "Advocacy Positions",
+                description:
+                  "The public SOLAR positions this claims library is organized around.",
+                href: "/advocacy",
+                badge: "SOLAR Page",
               },
             ]}
           />
@@ -1175,129 +1342,38 @@ export default function ResourceGuideSandbox(): JSX.Element {
           <RelatedGuides
             guides={[
               {
-                title: "Understanding Sex-Offense Risk Assessment",
+                title: "Registry Effectiveness Evidence Guide",
                 description:
-                  "How individualized risk assessment differs from categorical assumptions about people with sex-offense histories.",
-                to: relatedGuideRoutes.risk,
+                  "Use this for broader support on whether registries reduce offending.",
+                to: "/resources/registry-effectiveness-evidence-guide",
               },
               {
-                title: "Understanding Recidivism Evidence",
+                title: "Recidivism Evidence Guide",
                 description:
-                  "How population, outcome, subgroup, follow-up, and comparison shape what recidivism statistics actually mean.",
-                to: relatedGuideRoutes.recidivism,
+                  "Use this for careful distinctions among rearrest, reconviction, absolute rates, and comparator groups.",
+                to: "/resources/recidivism-evidence-guide",
+              },
+              {
+                title: "Risk Assessment Guide",
+                description:
+                  "Use this for individualized-risk, tool-purpose, AUC, calibration, and dynamic-risk issues.",
+                to: "/resources/risk-assessment-guide",
               },
             ]}
           />
+        </GuideSectionCard>
 
+        <GuideSectionHeader
+          id="sources"
+          number="11"
+          title="Source list"
+          subtitle="Direct source trail for the claims above."
+        />
+
+        <GuideSectionCard>
           <SourceList
-            note="Source scope and wording are controlled by the SOLAR Evidence Matrix. Canonical URLs are retained here so readers can follow the evidence path."
-            sources={[
-              {
-                label:
-                  "Zgoba, K. M., & Mitchell, M. M. (2023). The effectiveness of Sex Offender Registration and Notification: A meta-analysis of 25 years of findings.",
-                href: sourceLinks.zgobaMitchell,
-                description:
-                  "Meta-analysis of 18 research articles, 474,640 individuals, and 42 effect sizes; no statistically significant overall pooled SORN recidivism effect.",
-              },
-              {
-                label:
-                  "Prescott, J. J., & Rockoff, J. E. (2011). Do Sex Offender Registration and Notification Laws Affect Criminal Behavior?",
-                href: sourceLinks.prescottRockoff,
-                description:
-                  "Separates registration from notification and reports different estimated mechanisms and effects.",
-              },
-              {
-                label:
-                  "Agan, A. Y. (2011). Sex Offender Registries: Fear without Function?",
-                href: sourceLinks.agan,
-                description:
-                  "Multiple empirical designs that did not support the hypothesis that registries increased public safety.",
-              },
-              {
-                label:
-                  "Sandler, J. C., Freeman, N. J., & Socia, K. M. (2008). Does a Watched Pot Boil?",
-                href: sourceLinks.sandlerFreemanSocia,
-                description:
-                  "New York time-series analysis finding no support for SORN reducing the studied categories of sexual offending.",
-              },
-              {
-                label:
-                  "Duwe, G., & Donnay, W. (2008). The Impact of Megan’s Law on Sex Offender Recidivism: The Minnesota Experience.",
-                href: sourceLinks.duweDonnay,
-                description:
-                  "Quasi-experimental study reporting benefit for targeted Level 3 community notification.",
-              },
-              {
-                label:
-                  "Letourneau, E. J., et al. (2010). Effects of South Carolina’s Sex Offender Registration and Notification Policy on Adult Recidivism.",
-                href: sourceLinks.letourneauRecidivism,
-                description:
-                  "Registration status did not significantly predict sexual recidivism in the modeled analyses.",
-              },
-              {
-                label:
-                  "Letourneau, E. J., et al. (2010). The Effects of Sex Offender Registration and Notification on Judicial Decisions.",
-                href: sourceLinks.letourneauJudicial,
-                description:
-                  "South Carolina analysis of justice-system charging and disposition effects across policy periods.",
-              },
-              {
-                label:
-                  "Zgoba, K. M., Witt, P. H., Dalessandro, M., & Veysey, B. M. (2008). Megan’s Law: Assessing the Practical and Monetary Efficacy.",
-                href: sourceLinks.newJersey,
-                description:
-                  "NIJ/New Jersey evaluation reporting no demonstrated sexual-offense benefit across several outcomes and documenting implementation costs.",
-              },
-              {
-                label:
-                  "Anderson, A. L., & Sample, L. L. (2008). Public Awareness and Action Resulting from Sex Offender Community Notification Laws.",
-                href: sourceLinks.andersonSample,
-                description:
-                  "Community survey examining registry access and self-reported preventative action.",
-              },
-              {
-                label:
-                  "Freeman, N. J. (2012). The Public Safety Impact of Community Notification Laws: Rearrest of Convicted Sex Offenders.",
-                href: sourceLinks.freeman,
-                description:
-                  "Large notified-versus-non-notified comparison; causal interpretation is limited by assignment, risk, surveillance, and detection confounding.",
-              },
-              {
-                label:
-                  "Lasher, M. P., & McGrath, R. J. (2012). The Impact of Community Notification on Sex Offender Reintegration: A Quantitative Review of the Research Literature.",
-                href: sourceLinks.lasherMcGrath,
-                description:
-                  "Quantitative review documenting recurring housing, employment, social, and psychological burdens.",
-              },
-              {
-                label:
-                  "Levenson, J. S., & Cotter, L. P. (2005). The Effect of Megan’s Law on Sex Offender Reintegration.",
-                href: sourceLinks.levensonCotter,
-                description:
-                  "Survey evidence on housing, employment, harassment, psychosocial effects, and registry-information accuracy.",
-              },
-              {
-                label:
-                  "Cubellis, M. A., Walfield, S. M., & Harris, A. J. (2018). Collateral Consequences and Effectiveness of Sex Offender Registration and Notification: Law Enforcement Perspectives.",
-                href: sourceLinks.cubellis,
-                description:
-                  "Law-enforcement perspectives on SORN effectiveness, collateral consequences, and registry scale.",
-              },
-              {
-                label:
-                  "Harris, A. J., Levenson, J. S., Lobanov-Rostovsky, C., & Walfield, S. M. (2018). Law Enforcement Perspectives on Sex Offender Registration and Notification: Effectiveness, Challenges, and Policy Priorities.",
-                href: sourceLinks.harrisLawEnforcement,
-                description:
-                  "National practitioner research on information quality, communication, homelessness/transience, public interpretation, and operational challenges.",
-              },
-              {
-                label:
-                  "Bonnar-Kidd, K. K. (2010). Sexual Offender Laws and Prevention of Sexual Violence or Recidivism.",
-                href: sourceLinks.bonnarKidd,
-                description:
-                  "Peer-reviewed policy review used as synthesis/context for heterogeneous registry-related policies and collateral effects.",
-              },
-            ]}
+            note="Current through August 25, 2026. Central links from the matrix were reviewed during drafting where browsing permitted; DOI and paywalled publisher pages should still be checked during final editorial QA."
+            sources={sourceListItems}
           />
         </GuideSectionCard>
       </main>
