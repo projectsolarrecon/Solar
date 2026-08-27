@@ -185,33 +185,6 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         </p>
         <p>That is the relevant contrast.</p>
 
-        <div className="not-prose my-10 grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-red-200 bg-red-50 p-5 shadow-sm">
-            <div className="text-xs font-bold uppercase tracking-[0.14em] text-red-700">
-              The person on the map
-            </div>
-            <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-800">
-              <li>• Registered sex offender</li>
-              <li>• Address-reporting requirements</li>
-              <li>• Registry violation discovered</li>
-              <li>• Arrested for noncompliance</li>
-              <li>• Not implicated by law enforcement in this criminal torture case</li>
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
-              The child in the house
-            </div>
-            <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-800">
-              <li>• Allegedly abused for years</li>
-              <li>• Multiple relatives implicated</li>
-              <li>• Child-protection knowledge allegedly present in the family</li>
-              <li>• Abuse not uncovered by registry monitoring</li>
-              <li>• Rescue began with disclosure to an online instructor</li>
-            </ul>
-          </div>
-        </div>
-
         <BandHeader title="The House the Map Did Not Explain" icon="🗺️" />
 
         <p>
@@ -249,22 +222,11 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           for help.
         </p>
         <p>That is not a small distinction.</p>
-
-        <div className="not-prose my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm md:p-8">
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">One system asked</div>
-              <div className="mt-2 text-xl font-bold text-slate-900">Where is the registered sex offender?</div>
-            </div>
-            <div className="border-t border-slate-200 pt-6 md:border-l md:border-t-0 md:pl-6 md:pt-0">
-              <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">The other asked</div>
-              <div className="mt-2 text-xl font-bold text-slate-900">What is happening to this child?</div>
-            </div>
-          </div>
-          <div className="mt-6 border-t border-slate-200 pt-5 text-center text-base font-semibold text-slate-900">
-            Only one of those questions led to her rescue.
-          </div>
-        </div>
+        <p>One system asked:</p>
+        <p><strong>Where is the registered sex offender?</strong></p>
+        <p>The other asked:</p>
+        <p><strong>What is happening to this child?</strong></p>
+        <p>Only one of those questions led to her rescue.</p>
 
         <Divider />
         <BandHeader title="The Red Dot Worked" icon="🔴" />
@@ -454,7 +416,7 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
             <div className="text-xs font-bold uppercase tracking-[0.16em] text-amber-300">The consistency test</div>
             <h2 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">And Then They Come Home</h2>
           </div>
-          <div className="prose prose-slate max-w-none px-6 py-6 md:px-8 md:py-8">
+          <div className="space-y-5 px-6 py-6 text-base leading-7 text-slate-800 md:px-8 md:py-8">
             <p>There is another contradiction waiting at the end of this case.</p>
             <p>It should be stated carefully.</p>
             <p>
@@ -522,7 +484,7 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
               The people convicted of actually torturing this particular child may
               not.
             </p>
-            <div className="not-prose my-8 rounded-2xl border border-amber-300 bg-white p-6 shadow-sm md:p-7">
+            <div className="rounded-2xl border border-amber-300 bg-white p-6 shadow-sm md:p-7">
               <div className="text-xs font-black uppercase tracking-[0.16em] text-amber-700">If maps are how Florida protects children</div>
               <p className="mt-3 text-xl font-black leading-snug text-slate-900 md:text-2xl">
                 If these relatives are convicted of what police say they did to this child, why would they not belong on one?
