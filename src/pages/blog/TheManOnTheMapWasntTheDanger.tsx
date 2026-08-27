@@ -71,13 +71,16 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           argument the public has been trained to expect.
         </p>
 
-        <p>
-          Open the map.
-          <br />
-          Find the dot.
-          <br />
-          See the danger.
-        </p>
+        <div className="not-prose my-8 overflow-hidden rounded-2xl bg-slate-900 px-6 py-8 text-center shadow-lg md:px-10 md:py-10">
+          <div className="space-y-1 text-2xl font-black uppercase tracking-[0.14em] text-white sm:text-3xl">
+            <div>Open the map.</div>
+            <div className="text-red-300">Find the dot.</div>
+            <div>See the danger.</div>
+          </div>
+          <p className="mt-5 text-sm font-medium uppercase tracking-[0.16em] text-slate-300">
+            Except the story went the other way.
+          </p>
+        </div>
 
         <p>
           But according to the criminal reporting in this case, the story bends
@@ -103,18 +106,13 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         </p>
 
         <p>The child was not rescued because a registry map identified danger.</p>
-
         <p>She was rescued because she told an online instructor.</p>
-
         <p>The instructor contacted authorities.</p>
-
         <p>That is the fulcrum of the case.</p>
-
         <p>
           The registry told the public which adult in that house society was
           supposed to worry about.
         </p>
-
         <p>It did not tell anyone that a child in that house needed saving.</p>
 
         <BandHeader
@@ -126,16 +124,12 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           The sex-offense registry is not defended to the public as a paperwork
           system.
         </p>
-
         <p>It is defended as child safety.</p>
-
         <p>
           The public justification is not merely: “The state should know where
           people with sex-offense convictions live.”
         </p>
-
         <p>The larger political claim is: “This helps keep children safe.”</p>
-
         <p>That is the claim this case tests.</p>
 
         <p>
@@ -159,37 +153,64 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           He lived in the same house where police say a child had been tortured
           for years.
         </p>
-
         <p>
           And according to the criminal reporting, he was not the relative law
           enforcement identified as having harmed her.
         </p>
 
-        <p>
-          A later{" "}
-          <a
-            className={linkCls}
-            href="https://broward.us/2026/01/10/girl-files-lawsuit-accusing-childnet-and-others-of-placing-her-in-abusive-settings/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            civil lawsuit filed on the victim’s behalf
-          </a>{" "}
-          reportedly alleges that Crawley sexually abused her. He has not been
-          criminally charged in connection with that allegation, and law
-          enforcement has not implicated him in the criminal abuse case
-          described here. That distinction matters: this article is about what
-          the registry and the criminal child-protection system identified,
-          what they did not identify, and whom police actually accused of
-          harming this child.
-        </p>
+        <Callout variant="legal" title="Important distinction" icon="⚖️">
+          <p>
+            A later{" "}
+            <a
+              className={linkCls}
+              href="https://broward.us/2026/01/10/girl-files-lawsuit-accusing-childnet-and-others-of-placing-her-in-abusive-settings/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              civil lawsuit filed on the victim’s behalf
+            </a>{" "}
+            reportedly alleges that Crawley sexually abused her. He has not been
+            criminally charged in connection with that allegation, and law
+            enforcement has not implicated him in the criminal abuse case
+            described here. That distinction matters: this article is about what
+            the registry and the criminal child-protection system identified,
+            what they did not identify, and whom police actually accused of
+            harming this child.
+          </p>
+        </Callout>
 
         <p>
           Crawley was the only arrested adult in the house whom law enforcement
           did not identify as having harmed a child in this criminal case.
         </p>
-
         <p>That is the relevant contrast.</p>
+
+        <div className="not-prose my-10 grid gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-red-200 bg-red-50 p-5 shadow-sm">
+            <div className="text-xs font-bold uppercase tracking-[0.14em] text-red-700">
+              The person on the map
+            </div>
+            <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-800">
+              <li>• Registered sex offender</li>
+              <li>• Address-reporting requirements</li>
+              <li>• Registry violation discovered</li>
+              <li>• Arrested for noncompliance</li>
+              <li>• Not implicated by law enforcement in this criminal torture case</li>
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-600">
+              The child in the house
+            </div>
+            <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-800">
+              <li>• Allegedly abused for years</li>
+              <li>• Multiple relatives implicated</li>
+              <li>• Child-protection knowledge allegedly present in the family</li>
+              <li>• Abuse not uncovered by registry monitoring</li>
+              <li>• Rescue began with disclosure to an online instructor</li>
+            </ul>
+          </div>
+        </div>
 
         <BandHeader title="The House the Map Did Not Explain" icon="🗺️" />
 
@@ -197,7 +218,6 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           The public is encouraged to treat registry maps as child-safety
           knowledge.
         </p>
-
         <p>
           Open a website.
           <br />
@@ -210,7 +230,6 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           Infer that this is meaningful information about where children are
           unsafe.
         </p>
-
         <p>
           Sometimes criminal history is relevant. Nothing in this argument
           requires pretending otherwise. People convicted of sex offenses can
@@ -218,63 +237,62 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           Supervision can matter. No serious prevention framework should require
           amnesia.
         </p>
-
         <p>
           But a map of one category of people can become a psychologically
           powerful proxy for knowing where children are in danger.
         </p>
-
         <p>And that proxy can be dangerously incomplete.</p>
-
         <p>
           According to police and reporting, the danger in this house was not
           discovered because the public knew where a registrant lived. It was
           discovered because a child reached beyond the house and asked someone
           for help.
         </p>
-
         <p>That is not a small distinction.</p>
 
-        <p>One system asked:</p>
+        <div className="not-prose my-8 rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-sm md:p-8">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">One system asked</div>
+              <div className="mt-2 text-xl font-bold text-slate-900">Where is the registered sex offender?</div>
+            </div>
+            <div className="border-t border-slate-200 pt-6 md:border-l md:border-t-0 md:pl-6 md:pt-0">
+              <div className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">The other asked</div>
+              <div className="mt-2 text-xl font-bold text-slate-900">What is happening to this child?</div>
+            </div>
+          </div>
+          <div className="mt-6 border-t border-slate-200 pt-5 text-center text-base font-semibold text-slate-900">
+            Only one of those questions led to her rescue.
+          </div>
+        </div>
 
-        <p>
-          <strong>Where is the registered sex offender?</strong>
-        </p>
-
-        <p>The other asked:</p>
-
-        <p>
-          <strong>What is happening to this child?</strong>
-        </p>
-
-        <p>Only one of those questions led to her rescue.</p>
-
+        <Divider />
         <BandHeader title="The Red Dot Worked" icon="🔴" />
 
         <p>This is the uncomfortable part.</p>
-
         <p>The registry did not necessarily malfunction on its own terms.</p>
-
         <p>It did what registry systems do.</p>
 
-        <p>
-          It designated a person.
-          <br />
-          It required continual reporting.
-          <br />
-          It tracked compliance.
-          <br />
-          It detected a violation.
-          <br />
-          It generated an arrest and prosecution.
-        </p>
+        <div className="not-prose my-8 overflow-hidden rounded-2xl border border-red-200 bg-gradient-to-br from-red-50 to-white shadow-sm">
+          <div className="border-b border-red-100 bg-red-100/70 px-6 py-4">
+            <div className="text-xs font-black uppercase tracking-[0.16em] text-red-800">The registry did its job</div>
+          </div>
+          <div className="grid gap-3 px-6 py-6 text-base font-semibold text-slate-800 sm:grid-cols-2 md:px-8">
+            <div>Marked him.</div>
+            <div>Required reporting.</div>
+            <div>Tracked compliance.</div>
+            <div>Found the violation.</div>
+            <div>Generated the arrest.</div>
+            <div>Produced consequences.</div>
+          </div>
+          <div className="border-t border-red-100 bg-slate-900 px-6 py-6 text-center text-2xl font-black text-white md:px-8">
+            It did not find her.
+          </div>
+        </div>
 
         <p>The machinery turned.</p>
-
         <p>The paperwork mattered.</p>
-
         <p>The red dot was serviced.</p>
-
         <p>
           And none of that appears to have identified or stopped what police say
           was happening to the child.
@@ -286,21 +304,14 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         </PullQuote>
 
         <p>That is the sentence the case forces us to sit with.</p>
-
         <p>Enforcement activity is not the same thing as child protection.</p>
-
         <p>
           A registration arrest is an enforcement outcome. It is not
           automatically an offense prevented. It is not automatically a child
           saved. It is not automatically proof of improved public safety.
         </p>
-
-        <p>
-          In this case, the registry may have functioned exactly as designed.
-        </p>
-
+        <p>In this case, the registry may have functioned exactly as designed.</p>
         <p>That is the more disturbing point.</p>
-
         <p>
           <strong>
             It marked, tracked, and punished the man the state already knew how
@@ -318,7 +329,6 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           There is another detail in the reporting that makes the case even
           harder to dismiss as a simple registry failure.
         </p>
-
         <p>
           One relative, Treaunshae Gibbons, reportedly worked for a child-abuse
           nonprofit or family-support organization. According to{" "}
@@ -334,55 +344,40 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           familiarity with the child-protection system to help one of the
           accused adults deal with investigators rather than helping the child.
         </p>
-
         <p>That detail matters.</p>
-
         <p>
           It means the case is not only about a public registry missing what was
           happening inside a private home.
         </p>
-
         <p>
           It is also about child-protection knowledge allegedly existing inside
           the family network and still not becoming protection.
         </p>
-
         <p>
           If the reporting is accurate, the person with system knowledge did
           not save the child either.
         </p>
-
         <p>
           That is the{" "}
-          <Link
-            className={linkCls}
-            to="/resources/accountability-watch"
-          >
+          <Link className={linkCls} to="/resources/accountability-watch">
             institutional damage
           </Link>{" "}
           beneath the headline.
         </p>
 
-        <p>
-          A public map did not see her.
-          <br />
-          A household did not protect her.
-          <br />
-          A person with child-abuse-system knowledge allegedly did not protect
-          her.
-          <br />
-          The child had to find someone outside the house and outside the
-          familiar system.
-        </p>
+        <Callout variant="warning" title="What protection looked like in this case" icon="🧭">
+          <p>
+            A public map did not see her.<br />
+            A household did not protect her.<br />
+            A person with child-abuse-system knowledge allegedly did not protect her.<br />
+            The child had to find someone outside the house and outside the familiar system.
+          </p>
+        </Callout>
 
         <p>That is not what prevention is supposed to look like.</p>
 
         <BandHeader title="The Map Made One Person Legible" icon="📍" />
-
-        <p>
-          Registry politics teaches the public to look for the legible person.
-        </p>
-
+        <p>Registry politics teaches the public to look for the legible person.</p>
         <p>
           The person with the label.
           <br />
@@ -392,235 +387,193 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           <br />
           The person whose presence can be turned into a warning.
         </p>
-
         <p>In this case, that person was there.</p>
-
         <p>
           He was visible to the state in the way the registry is designed to
           make people visible.
         </p>
-
         <p>But visibility is not the same as understanding.</p>
-
         <p>
           The state could know where Crawley was and still not know what was
           happening to the girl. The public could look up the dot and still not
           know who was allegedly starving, beating, binding, caging, or
           tormenting her.
         </p>
-
         <p>
           That is the danger of{" "}
-          <Link
-            className={linkCls}
-            to="/blog/the-registry-is-not-a-prevention-plan"
-          >
+          <Link className={linkCls} to="/blog/the-registry-is-not-a-prevention-plan">
             mistaking a registry for a prevention plan
           </Link>
           .
         </p>
 
-        <p>The map can make one person legible while leaving the child invisible.</p>
+        <PullQuote>
+          The map can make one person legible while leaving the child invisible.
+        </PullQuote>
 
         <BandHeader title="The Myth of Knowing Where Danger Lives" icon="⚠️" />
-
         <p>
           The registry offers the public a seductive feeling: that danger has an
           address.
         </p>
-
         <p>It says: here is where the marked person lives.</p>
-
         <p>That is not the same as saying: here is where a child is unsafe.</p>
-
         <p>
           The difference matters because abuse often depends on access, secrecy,
           control, dependency, family power, institutional failure, and the
           inability of a child to safely disclose what is happening.
         </p>
-
         <p>A registry map does not show those things.</p>
 
-        <p>
-          It does not show whether a child is being isolated.
-          <br />
-          It does not show whether a caregiver is violent.
-          <br />
-          It does not show whether a relative is afraid to report.
-          <br />
-          It does not show whether a household is hiding abuse.
-          <br />
-          It does not show whether agencies missed prior warnings.
-          <br />
-          It does not show whether a child has any trusted adult to tell.
-        </p>
+        <Callout variant="neutral" title="What the map doesn’t show" icon="🗺️">
+          <ul className="!my-2 space-y-1">
+            <li>whether a child is being isolated;</li>
+            <li>whether a caregiver is violent;</li>
+            <li>whether a relative is afraid to report;</li>
+            <li>whether a household is hiding abuse;</li>
+            <li>whether agencies missed prior warnings;</li>
+            <li>whether a child has any trusted adult to tell.</li>
+          </ul>
+        </Callout>
 
         <p>It shows the legally marked person.</p>
-
         <p>Sometimes that information matters.</p>
-
         <p>
           But sometimes the person on the map is not the person hurting the
           child.
         </p>
-
         <p>
           And sometimes the map’s power is precisely that it convinces the
           public it has seen danger when it has only seen a label.
         </p>
 
-        <BandHeader title="And Then They Come Home" icon="🏠" />
+        <Divider />
 
-        <p>There is another contradiction waiting at the end of this case.</p>
-
-        <p>It should be stated carefully.</p>
-
-        <p>
-          Final charges and convictions matter. If a sexual offense, a
-          qualifying kidnapping offense, or another registration-triggering
-          offense is added or proved, the legal analysis changes. Florida’s{" "}
-          <a
-            className={linkCls}
-            href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/Sections/0943.0435.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            registry
-          </a>{" "}
-          and{" "}
-          <a
-            className={linkCls}
-            href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            residency rules
-          </a>{" "}
-          depend on specific statutory predicates, conviction categories,
-          dates, and registration status.
-        </p>
-
-        <p>
-          But if the allegations are proved, and if the accused relatives are
-          convicted only of nonsexual offenses such as child abuse, neglect,
-          false imprisonment, aggravated battery, or comparable crimes, those
-          convictions do not necessarily place them on Florida’s sex-offender
-          registry.
-        </p>
-
-        <p>That is the legal architecture.</p>
-
-        <p>Now let the comparison land.</p>
-
-        <p>Assume the allegations are proved.</p>
-
-        <p>
-          Assume members of this family are convicted of imprisoning, starving,
-          beating, confining, and torturing a child.
-        </p>
-
-        <p>They may serve serious prison sentences.</p>
-
-        <p>They should be held accountable.</p>
-
-        <p>
-          But unless their convictions independently trigger registration, they
-          may eventually return to communities without being placed on the
-          sex-offender map.
-        </p>
-
-        <p>Crawley may remain the person society is told to locate.</p>
-
-        <p>That deserves contemplation.</p>
-
-        <p>
-          People in Crawley’s legal category can face special geographic
-          restrictions in the name of protecting children, while people
-          convicted only of brutal nonsexual child abuse may face no comparable{" "}
-          <Link
-            className={linkCls}
-            to="/blog/safety-zones-are-not-safety-systems"
-          >
-            registry-based geography
-          </Link>{" "}
-          after release.
-        </p>
-
-        <p>
-          The man police did not implicate in this child’s torture may continue
-          to carry the public geographic designation associated with child
-          safety.
-        </p>
-
-        <p>
-          The people convicted of actually torturing this particular child may
-          not.
-        </p>
-
-        <p>
-          If Florida believes maps are how we protect children, then the logic
-          of the system presents an uncomfortable question.
-        </p>
-
-        <p>
-          If these relatives are convicted of what police say they did to this
-          child, why would they not belong on one?
-        </p>
-
-        <p>
-          If the answer is that a lifetime public map would be excessive,
-          stigmatizing, poorly tailored to individual risk, disconnected from
-          rehabilitation, destabilizing, or a crude predictor of future danger,
-          then we have arrived somewhere important.
-        </p>
-
-        <p>
-          Those objections do not suddenly become irrational because the words
-          “sex offender” appear at the top of the page.
-        </p>
-
-        <p>
-          Either mapping dangerous people is a principle, or it is a ritual we
-          reserve for one despised category of offender.
-        </p>
-
-        <p>If maps are how Florida keeps children safe, why stop here?</p>
-
-        <p>
-          And if the answer is that we should stop here, then the public
-          deserves an honest explanation of what the map is really doing.
-        </p>
+        <div className="not-prose my-10 overflow-hidden rounded-3xl border border-amber-200 bg-amber-50 shadow-md">
+          <div className="bg-slate-900 px-6 py-5 text-white md:px-8">
+            <div className="text-xs font-bold uppercase tracking-[0.16em] text-amber-300">The consistency test</div>
+            <h2 className="mt-1 text-2xl font-black tracking-tight sm:text-3xl">And Then They Come Home</h2>
+          </div>
+          <div className="prose prose-slate max-w-none px-6 py-6 md:px-8 md:py-8">
+            <p>There is another contradiction waiting at the end of this case.</p>
+            <p>It should be stated carefully.</p>
+            <p>
+              Final charges and convictions matter. If a sexual offense, a
+              qualifying kidnapping offense, or another registration-triggering
+              offense is added or proved, the legal analysis changes. Florida’s{" "}
+              <a
+                className={linkCls}
+                href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0900-0999/0943/Sections/0943.0435.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                registry
+              </a>{" "}
+              and{" "}
+              <a
+                className={linkCls}
+                href="https://www.leg.state.fl.us/Statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0775/Sections/0775.215.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                residency rules
+              </a>{" "}
+              depend on specific statutory predicates, conviction categories,
+              dates, and registration status.
+            </p>
+            <p>
+              But if the allegations are proved, and if the accused relatives are
+              convicted only of nonsexual offenses such as child abuse, neglect,
+              false imprisonment, aggravated battery, or comparable crimes, those
+              convictions do not necessarily place them on Florida’s sex-offender
+              registry.
+            </p>
+            <p>That is the legal architecture.</p>
+            <p>Now let the comparison land.</p>
+            <p>Assume the allegations are proved.</p>
+            <p>
+              Assume members of this family are convicted of imprisoning, starving,
+              beating, confining, and torturing a child.
+            </p>
+            <p>They may serve serious prison sentences.</p>
+            <p>They should be held accountable.</p>
+            <p>
+              But unless their convictions independently trigger registration, they
+              may eventually return to communities without being placed on the
+              sex-offender map.
+            </p>
+            <p>Crawley may remain the person society is told to locate.</p>
+            <p>That deserves contemplation.</p>
+            <p>
+              People in Crawley’s legal category can face special geographic
+              restrictions in the name of protecting children, while people
+              convicted only of brutal nonsexual child abuse may face no comparable{" "}
+              <Link className={linkCls} to="/blog/safety-zones-are-not-safety-systems">
+                registry-based geography
+              </Link>{" "}
+              after release.
+            </p>
+            <p>
+              The man police did not implicate in this child’s torture may continue
+              to carry the public geographic designation associated with child
+              safety.
+            </p>
+            <p>
+              The people convicted of actually torturing this particular child may
+              not.
+            </p>
+            <div className="not-prose my-8 rounded-2xl border border-amber-300 bg-white p-6 shadow-sm md:p-7">
+              <div className="text-xs font-black uppercase tracking-[0.16em] text-amber-700">If maps are how Florida protects children</div>
+              <p className="mt-3 text-xl font-black leading-snug text-slate-900 md:text-2xl">
+                If these relatives are convicted of what police say they did to this child, why would they not belong on one?
+              </p>
+            </div>
+            <p>
+              If the answer is that a lifetime public map would be excessive,
+              stigmatizing, poorly tailored to individual risk, disconnected from
+              rehabilitation, destabilizing, or a crude predictor of future danger,
+              then we have arrived somewhere important.
+            </p>
+            <p>
+              <strong>
+                Those objections do not suddenly become irrational because the words
+                “sex offender” appear at the top of the page.
+              </strong>
+            </p>
+            <p>
+              Either mapping dangerous people is a principle, or it is a ritual we
+              reserve for one despised category of offender.
+            </p>
+            <p>If maps are how Florida keeps children safe, why stop here?</p>
+            <p>
+              And if the answer is that we should stop here, then the public
+              deserves an honest explanation of what the map is really doing.
+            </p>
+          </div>
+        </div>
 
         <BandHeader title="Enforcement Is Easier Than Protection" icon="⚙️" />
-
         <p>
           It is easier to check whether a registrant reported an address than to
           know whether a child is being abused behind a closet door.
         </p>
-
         <p>
           It is easier to prosecute a paperwork violation than to build systems
           children can actually reach.
         </p>
-
         <p>
           It is easier to tell the public to search a map than to confront the
           fact that danger often lives inside families, institutions, and
           trusted relationships.
         </p>
-
         <p>That does not make registration compliance meaningless.</p>
-
         <p>It means compliance is not prevention.</p>
-
         <p>
           A system can be excellent at marking, tracking, and punishing a
           designated population while still being bad at finding children who
           need help.
         </p>
-
         <p>That is what the Margate case makes visible.</p>
-
         <p>
           Not because every fact is simple.
           <br />
@@ -628,32 +581,24 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           <br />
           Not because the registry failed to do anything.
         </p>
-
         <p>Because the registry did something.</p>
-
         <p>It found a violation.</p>
-
         <p>It produced an arrest.</p>
-
         <p>It generated consequences.</p>
-
         <p>And the child still had to find another way out.</p>
 
         <BandHeader
           title="What This Case Should Make Impossible to Ignore"
           icon="🧭"
         />
-
         <p>
           The public conversation around registries often treats child safety as
           if it were a matter of locating the right people on a map.
         </p>
-
         <p>
           But children are not protected by the feeling that danger has been
           labeled.
         </p>
-
         <p>
           They are protected by adults who listen.
           <br />
@@ -671,99 +616,75 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
           By policies that measure whether children are safer, not whether
           punishment has been made more visible.
         </p>
-
         <p>
           The Margate case is devastating because the registry’s premise was
           present in its most literal form.
         </p>
-
         <p>There was a registered sex offender in the house.</p>
-
         <p>The state knew how to find him.</p>
-
         <p>The state had marked him in the name of public safety.</p>
-
         <p>
           And according to the criminal reporting, he was the one arrested
           relative not accused of torturing the child.
         </p>
-
         <p>
           That does not make the civil allegation against him irrelevant. It
           does not make his prior conviction irrelevant. It does not prove that
           no risk existed.
         </p>
-
         <p>It means the criminal child-protection contrast remains what it is.</p>
-
         <p>
           The system designed to make Crawley visible did not make the child
           visible.
         </p>
-
         <p>The child’s disclosure did.</p>
 
+        <Divider />
         <BandHeader title="The Question We Keep Avoiding" icon="❗" />
-
         <p>Sometimes the child is behind a closet door.</p>
-
         <p>Sometimes the people hurting her are her family.</p>
-
         <p>Sometimes someone trained in child-abuse prevention allegedly knows.</p>
-
         <p>
           Sometimes the person carrying the government’s scarlet letter is
           sitting in the same house.
         </p>
-
         <p>
           And sometimes he is the one person the police do <strong>not</strong>{" "}
           accuse of hurting her in the criminal abuse case.
         </p>
-
         <p>We can keep staring at the map if we want.</p>
-
         <p>We can keep adding information to it.</p>
-
         <p>
           We can keep expanding reporting requirements, conducting compliance
           sweeps, and congratulating ourselves every time someone is arrested
           because an address, vehicle, phone number, or internet identifier was
           not properly reported.
         </p>
-
         <p>Or we can finally ask the harder question:</p>
 
-        <p>
-          <strong>
-            Are we actually protecting children—or have we confused knowing
-            where a stigmatized group of people lives with knowing whether
-            children are safe?
-          </strong>
-        </p>
+        <PullQuote>
+          Are we actually protecting children—or have we confused knowing where
+          a stigmatized group of people lives with knowing whether children are safe?
+        </PullQuote>
 
         <p>
           A girl in Margate was allegedly tortured for years in a house
           containing a registered sex offender.
         </p>
-
         <p>
           The registered sex offender was not the one police accused of
           torturing her in this criminal case.
         </p>
-
         <p>The registry found him anyway.</p>
 
-        <p>
-          <strong>It did not find her.</strong>
-        </p>
-
-        <p>But watch out for those strangers on the map.</p>
+        <div className="not-prose my-8 rounded-2xl bg-slate-900 px-6 py-8 text-center shadow-lg md:px-10">
+          <div className="text-3xl font-black tracking-tight text-white md:text-4xl">It did not find her.</div>
+          <div className="mt-5 text-lg font-semibold text-red-300">But watch out for those strangers on the map.</div>
+        </div>
 
         <ContextualActionCard config={contextualAction} />
 
         <Divider label="Sources and related reading" />
-
         <BandHeader title="Data Sources" icon="📚" />
 
         <ul className="list-disc pl-6">
@@ -875,29 +796,19 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         </ul>
 
         <BandHeader title="Related Reading" icon="🔗" />
-
         <ul className="list-disc pl-6">
           <li>
-            <Link
-              className={linkCls}
-              to="/blog/the-registry-is-not-a-prevention-plan"
-            >
+            <Link className={linkCls} to="/blog/the-registry-is-not-a-prevention-plan">
               The Registry Is Not a Prevention Plan
             </Link>
           </li>
           <li>
-            <Link
-              className={linkCls}
-              to="/blog/register-every-crime-or-none"
-            >
+            <Link className={linkCls} to="/blog/register-every-crime-or-none">
               Register Every Crime or None: The RECON Test for Public Registries
             </Link>
           </li>
           <li>
-            <Link
-              className={linkCls}
-              to="/blog/sixteen-children-no-registry"
-            >
+            <Link className={linkCls} to="/blog/sixteen-children-no-registry">
               Sixteen Children, No Registry: The Contradiction America Refuses
               to Face
             </Link>
