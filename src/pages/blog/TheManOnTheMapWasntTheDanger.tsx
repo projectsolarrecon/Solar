@@ -108,6 +108,15 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         <p>The child was not rescued because a registry map identified danger.</p>
         <p>She was rescued because she told an online instructor.</p>
         <p>The instructor contacted authorities.</p>
+        <p>
+          <strong>
+            Among the adults living in that house when police uncovered the
+            abuse, the one on the sex offender registry was the only one law
+            enforcement did not identify as having harmed her. But he was the
+            one on the map.
+          </strong>
+        </p>
+        <p>That is the part that turns the whole story inside out.</p>
         <p>That is the fulcrum of the case.</p>
         <p>
           The registry told the public which adult in that house society was
@@ -180,8 +189,9 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         </Callout>
 
         <p>
-          Crawley was the only arrested adult in the house whom law enforcement
-          did not identify as having harmed a child in this criminal case.
+          Among the adults living in that house when police uncovered the abuse,
+          Crawley was the only one law enforcement did not identify as having
+          harmed her.
         </p>
         <p>That is the relevant contrast.</p>
 
@@ -234,6 +244,11 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         <p>This is the uncomfortable part.</p>
         <p>The registry did not necessarily malfunction on its own terms.</p>
         <p>It did what registry systems do.</p>
+        <p>
+          The system had already chosen one adult in the house to mark for
+          child-safety purposes. He was the only adult living there whom law
+          enforcement did not identify as having harmed her.
+        </p>
 
         <div className="not-prose my-8 overflow-hidden rounded-2xl border border-red-200 bg-gradient-to-br from-red-50 to-white shadow-sm">
           <div className="border-b border-red-100 bg-red-100/70 px-6 py-4">
@@ -586,8 +601,13 @@ export default function TheManOnTheMapWasntTheDanger(): JSX.Element {
         <p>The state knew how to find him.</p>
         <p>The state had marked him in the name of public safety.</p>
         <p>
-          And according to the criminal reporting, he was the one arrested
-          relative not accused of torturing the child.
+          Among the adults living in that house when police uncovered the abuse,
+          Crawley was the only one law enforcement did not identify as having
+          harmed her.
+        </p>
+        <p>
+          He was also the one the state had already put on a public child-safety
+          map.
         </p>
         <p>
           That does not make the civil allegation against him irrelevant. It
