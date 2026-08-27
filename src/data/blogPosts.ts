@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "the-man-on-the-map-wasnt-the-danger",
+  title: "The Man on the Map Wasn’t the Danger",
+  excerpt:
+    "A Margate child torture case shows the disturbing gap between registry enforcement and child safety: the registry found a violation, but it did not find the child.",
+  author: "The SOLAR Project",
+  date: "Aug 27, 2026",
+  readTime: "11 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "child safety",
+    "Florida registry",
+    "public notification",
+    "registry enforcement",
+    "family violence",
+    "trusted access",
+    "child protection",
+    "RECON",
+    "unequal accountability",
+    "child safety theater",
+    "Margate",
+  ],
+  path: "/blog/the-man-on-the-map-wasnt-the-danger",
+},
+{
   id: "what-good-is-the-registry",
   title: "What Good Is the Registry?",
   excerpt:
