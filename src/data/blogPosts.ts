@@ -13,6 +13,33 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "chris-hansen-doesnt-like-feeling-exploited",
+  title: "Chris Hansen Doesn’t Like Feeling Exploited",
+  excerpt:
+    "Chris Hansen objects to someone else deciding which version of him the public will remember. That discomfort is legitimate—and remarkably familiar.",
+  author: "The SOLAR Project",
+  date: "Aug 28, 2026",
+  readTime: "7–8 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "Chris Hansen",
+    "Primetime",
+    "To Catch a Predator",
+    "A24",
+    "Robert Pattinson",
+    "public identity",
+    "narrative control",
+    "public notification",
+    "registry permanence",
+    "stigma",
+    "media spectacle",
+    "TruBlu",
+    "reintegration",
+    "cultural criticism",
+  ],
+  path: "/blog/chris-hansen-doesnt-like-feeling-exploited",
+},
+{
   id: "the-man-on-the-map-wasnt-the-danger",
   title: "The Man on the Map Wasn’t the Danger",
   excerpt:
