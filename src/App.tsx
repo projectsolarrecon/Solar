@@ -140,6 +140,7 @@ import WhoElseShouldKathleenParkerForgiveBehindBars from "./pages/blog/WhoElseSh
 import WhatDoesASexOffenderLookLike from "./pages/blog/WhatDoesASexOffenderLookLike";
 import NotYouDOJIndividualizedJustice from "./pages/blog/NotYouDOJIndividualizedJustice";
 import TheManOnTheMapWasntTheDanger from "./pages/blog/TheManOnTheMapWasntTheDanger";
+import ChrisHansenDoesntLikeFeelingExploited from "./pages/blog/ChrisHansenDoesntLikeFeelingExploited";
 
 function App() {
   return (
@@ -314,6 +315,9 @@ element={<TheRegistryTheCourtReviewedNoLongerExists />} />
 <Route
   path="/blog/the-man-on-the-map-wasnt-the-danger"
   element={<TheManOnTheMapWasntTheDanger />} />
+<Route
+  path="/blog/chris-hansen-doesnt-like-feeling-exploited"
+  element={<ChrisHansenDoesntLikeFeelingExploited />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
