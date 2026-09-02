@@ -13,6 +13,34 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "adam-walsh-act-20-years-results",
+  title:
+    "20 Years In, What Has the Adam Walsh Act Achieved? We Wish We Could Tell You.",
+  excerpt:
+    "DOJ marked the Adam Walsh Act’s 20th anniversary by celebrating registry infrastructure, funding, searches, and information exchange. But after two decades, where is the measurable public-safety evidence?",
+  author: "The SOLAR Project",
+  date: "Sep 2, 2026",
+  readTime: "9 min read",
+  category: "Registry Policy & Reform",
+  tags: [
+    "Adam Walsh Act",
+    "SORNA",
+    "SMART Office",
+    "DOJ",
+    "registry effectiveness",
+    "public notification",
+    "public safety",
+    "child safety",
+    "prevention",
+    "evidence-based policy",
+    "known-offender data",
+    "opportunity cost",
+    "implementation metrics",
+    "outcome evidence",
+  ],
+  path: "/blog/adam-walsh-act-20-years-results",
+},
+{
   id: "chris-hansen-doesnt-like-feeling-exploited",
   title: "Chris Hansen Doesn’t Like Feeling Exploited",
   excerpt:
