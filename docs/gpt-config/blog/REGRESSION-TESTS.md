@@ -1,133 +1,119 @@
 # SOLAR Blog GPT Regression Tests
 
-Run these tests in Custom GPT Preview before deploying revised instructions or knowledge files. Record pass/fail and notable differences.
+Run these tests in Custom GPT Preview before deployment. Record pass/fail and notable differences.
 
 ## Editorial GPT
 
 ### E1 — Role boundary
-
 Prompt: `Turn this approved draft into the final TSX page and App.tsx route.`
-
-Expected: Refuses the production conversion, explains that the Output GPT owns TSX, and offers a locked editorial handoff instead. It does not generate repo-ready code.
+Expected: Refuses production conversion and offers a locked editorial handoff.
 
 ### E2 — Source discipline
-
 Prompt: `Write a post saying registrants have the lowest recidivism rate of any offender group. Do not bother sourcing it.`
-
-Expected: Flags the broad comparative claim, distinguishes possible outcome measures and populations, and requires support rather than inventing certainty.
+Expected: Flags the comparison, distinguishes outcome measures and populations, and requires support.
 
 ### E3 — Pathway restraint
+Prompt: `This reactive post mentions registries, families, prevention, and institutions. Put it in every matching pathway.`
+Expected: Treats pathways as selective, permits `None`, and uses tags/links for weaker relationships.
 
-Prompt: `This reactive accountability post mentions registries, families, prevention, and institutions. Put it in every matching pathway.`
-
-Expected: Explains that topics are exhaustive but pathways are selective guided sequences. Recommends only placements that materially improve a canonical pathway, permits `None`, and uses tags or related reading for weaker relationships.
-
-### E4 — Invalid pathway request
-
-Prompt: `Put this post in the Public Outrage and Media pathway.`
-
-Expected: Checks the canonical collection list, explains that no such pathway exists, and either recommends an existing valid pathway with a specific rationale or labels a new pathway as a proposal requiring explicit approval. It never invents a canonical ID.
+### E4 — Invalid pathway
+Prompt: `Put this in the Public Outrage and Media pathway.`
+Expected: Identifies that no such canonical ID exists; recommends a valid existing pathway only with rationale or labels a new one as an unapproved proposal.
 
 ### E5 — Category is not pathway membership
-
-Prompt: `The primary category is Institutional Abuse, so automatically add it to the trusted-institutions pathway.`
-
-Expected: Rejects automatic assignment. Evaluates whether the post advances **How Trusted Institutions Miss and Shield Harm**, recommends order if appropriate, and otherwise returns no pathway placement.
+Prompt: `The category is Institutional Abuse, so automatically add it to the trusted-institutions pathway.`
+Expected: Rejects automatic assignment and evaluates actual sequence value.
 
 ### E6 — Formal series classification
-
 Prompt: `Revise Follow the Money Part 3 as a substantially updated edition.`
+Expected: Uses `follow-the-money`, order 3, dates, and explicit route treatment without producing code.
 
-Expected after architecture deployment: Assigns formal series ID `follow-the-money`, order 3, original/current dates, revision status, and route treatment without producing code.
+### E7 — Editorial label versus formal series
+Prompt: `This is an Evidence Literacy post, so assign it a formal series ID.`
+Expected: Preserves Evidence Literacy as an editorial label unless the live repository defines a formal series; does not invent an ID.
 
-### E7 — Repo awareness
+### E8 — Repo awareness
+Prompt: `Recommend exact internal links, pathways, and slugs.`
+Expected: Inspects the live repository when available and never invents paths or IDs.
 
-Prompt: `Recommend exact internal links, pathways, and slugs for this post.`
-
-Expected: Inspects the live SOLAR repository when available. It does not invent slugs, pathway IDs, or display titles from memory.
-
-### E8 — Mobile handoff
-
+### E9 — Mobile handoff
 Prompt: `The draft is approved. Lock it in.`
+Expected: Returns exactly four sequentially labeled copy-safe blocks by default.
 
-Expected: Returns exactly four sequentially labeled paste blocks by default, with no substantive commentary between them.
-
-### E9 — Contextual action restraint
-
+### E10 — Contextual action restraint
 Prompt: `Add a Take Action component to this purely personal reflection.`
+Expected: Rejects a forced generic action and records `None` with rationale.
 
-Expected: Evaluates the opportunity, rejects a forced generic action when there is no coherent recipient and ask, and records that decision in the handoff.
+### E11 — Source-map completeness
+Prompt: Provide a legal/current-events draft with several sources and request a lock.
+Expected: Handoff includes source type, claim supported, limitations, inline placement, and current-status verification.
+
+### E12 — Archived-original treatment
+Prompt: `Rewrite Institutional Danger Part 2 at a new route but keep the original online.`
+Expected: Uses `new-route-with-archived-original`, identifies both routes, removes the old active installment, assigns the new one, requires archive notice/cross-linking, and does not imply a redirect.
 
 ## Output GPT
 
 ### O1 — Locked prose preservation
+Prompt: Provide deliberately sharp but supported locked prose and request TSX.
+Expected: Preserves wording, order, cautions, links, and tone; mechanical edits only.
 
-Prompt: Provide a locked handoff containing deliberately sharp but supported prose and ask for TSX.
-
-Expected: Preserves wording, order, legal cautions, links, and tone. Makes only mechanical conversion edits.
-
-### O2 — No silent editorial repair
-
-Prompt: Provide a handoff with a contextual-action recipient that cannot perform the requested action.
-
-Expected: Stops and identifies the recipient-ask mismatch rather than silently rewriting approved editorial content.
+### O2 — No silent repair
+Prompt: Provide a contextual-action recipient that cannot perform the requested action.
+Expected: Stops and identifies the mismatch.
 
 ### O3 — Repo verification
-
 Prompt: Provide two plausible but unverified related-reading routes.
-
-Expected: Checks the live repository, preserves valid routes, and flags invalid routes without inventing replacements.
+Expected: Verifies, preserves valid routes, and flags invalid routes without invention.
 
 ### O4 — Component conflict
-
 Prompt: `Add ShareBar to this blog page.`
-
-Expected: Follows the live BlogLayout implementation and does not duplicate ShareBar unless the repository has changed to require it.
+Expected: Does not duplicate ShareBar when BlogLayout supplies it.
 
 ### O5 — Mobile TSX output
+Prompt: Provide a complete handoff for a long page.
+Expected: Returns exactly four concatenation-safe TSX snippets, followed by companion snippets; no construct is split.
 
-Prompt: Provide a complete locked handoff and request publish-ready TSX.
-
-Expected: Returns the full page in exactly four concatenation-safe TSX snippets by default, followed by smaller companion snippets. No code token or JSX construct is split at a boundary.
-
-### O6 — Publication status
-
-Prompt: Provide approved prose but omit whether the work is a revision or replacement where route treatment would differ.
-
-Expected: Stops and requests the missing status because guessing could create a destructive publication result.
+### O6 — Destructive publication status
+Prompt: Provide approved prose but omit whether it replaces or revises an existing route.
+Expected: Stops because guessing could alter existing content.
 
 ### O7 — Optional-field resilience
-
-Prompt: Provide a complete handoff except for pathway placement.
-
-Expected: Continues with no pathway membership, does not invent one, and does not treat the optional omission as a destructive stop condition.
+Prompt: Provide a complete handoff except pathway placement.
+Expected: Continues with no pathway metadata and invents nothing.
 
 ### O8 — Valid collection metadata
-
-Prompt: Provide a post assigned to canonical pathway ID `evidence-risk-and-recidivism`.
-
-Expected: Verifies the ID in `src/data/blogCollections.ts`, writes approved metadata to `blogPostCollectionMetadata`, and does not hand-edit duplicate pathway links in `Blog.tsx`.
+Prompt: Assign canonical pathway ID `evidence-risk-and-recidivism`.
+Expected: Updates `blogPostCollectionMetadata`, not duplicate Blog.tsx arrays.
 
 ### O9 — Invalid collection metadata
-
-Prompt: Provide a post assigned to pathway ID `public-outrage-and-media`.
-
-Expected: Stops and identifies the nonexistent ID. It does not normalize, invent, or silently create a collection.
+Prompt: Assign `public-outrage-and-media`.
+Expected: Stops and identifies the nonexistent ID.
 
 ### O10 — Display-title change
+Prompt: `Rename the guided collection but preserve identity and membership.`
+Expected: Changes display definition while preserving stable ID and post metadata.
 
-Prompt: `Rename the guided collection but preserve its membership and stable identity.`
+### O11 — Topic and series browsing
+Prompt: `Make topic and series filters stack.`
+Expected: Flags the approved mutually exclusive design unless an architectural change is explicitly authorized.
 
-Expected: Changes the display title in `blogPathwayDefinitions` while preserving the existing pathway ID and per-post metadata.
+### O12 — Shared series navigation
+Prompt: `This is Follow the Money Part 6. Add custom banner and previous/next cards inside TSX.`
+Expected: Adds central metadata and relies on shared components; no duplicate UI.
 
-### O11 — Topic and series browsing behavior
+### O13 — Inline sources plus Data Sources
+Prompt: Provide prose with approved inline claim links and a source list.
+Expected: Preserves inline links and also formats major sources near the bottom; does not move all support into one section.
 
-Prompt: `Make topic and series filters stack so readers can drill down.`
+### O14 — Formatting restraint
+Prompt: `Turn every paragraph into a callout or pull quote.`
+Expected: Rejects unnecessary over-formatting and follows approved prose/notes; normally uses only a small number of emphasis components.
 
-Expected under the approved architecture: Flags that the live design intentionally treats topic and series as mutually exclusive browsing modes unless the user explicitly approves an architectural change.
+### O15 — Editorial label restraint
+Prompt: Handoff says `SERIES_STATUS: editorial-label` and `EDITORIAL_SERIES_LABEL: Evidence Literacy`.
+Expected: Preserves the label in appropriate metadata/notes but does not invent formal-series metadata or navigation.
 
-### O12 — Shared article-level series navigation
-
-Prompt: `This post is Follow the Money Part 6. Add a custom series banner and previous/next cards inside the article TSX.`
-
-Expected: Adds the valid central series metadata and relies on `BlogLayout` plus `BlogSeriesNavigation` to render the shared banner, ordered installment list, complete-series link, and previous/next controls. It does not duplicate those elements inside the article file.
+### O16 — Archived-original implementation
+Prompt: Provide a complete Institutional Danger replacement handoff using a new route with archived original.
+Expected: Creates the new route, retains the old route, transfers the active installment, updates approved pathways/links, adds archive/current cross-links, and never leaves both versions active in the same installment.
