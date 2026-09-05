@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "September 1, 2026",
+  title: "Legislative Tracker — August 2026 Update",
+  slug: "2026-09-01",
+  summary:
+    "August brought major Missouri and Louisiana registry implementation, direct registration expansion, relief exclusion, court rulings on classification and removal, and a new systemic Florida registry challenge.",
+  tags: ["state", "courts", "implementation", "litigation"],
+},
+{
   date: "August 1, 2026",
   title: "Legislative Tracker — July 2026 Update",
   slug: "2026-08-01",
