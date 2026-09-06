@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 const SITE_ORIGIN = 'https://thesolarproject.org';
-const DEPRECATED_ORIGIN = ['https://solar', 'project.org'].join('');
+const NON_INDEXABLE_STATE_PREVIEW_CODES = new Set(['ss', 'xf', 'xo', 'xt']);
 
 function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {
   let meta = document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
@@ -22,20 +22,12 @@ function upsertMeta(attribute: 'name' | 'property', key: string, content: string
   meta.setAttribute('content', content);
 }
 
-function normalizeLegacyStructuredDataOrigins() {
-  document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]').forEach((script) => {
-    const content = script.textContent;
-    if (content?.includes(DEPRECATED_ORIGIN)) {
-      script.textContent = content.replaceAll(DEPRECATED_ORIGIN, SITE_ORIGIN);
-    }
-  });
-}
-
 function pathShouldBeNoIndexed(pathname: string) {
-  return (
-    pathname === '/resources/resource-guide-sandbox' ||
-    /^\/resources\/legislative-tracker\/2099-/.test(pathname)
-  );
+  if (pathname === '/resources/resource-guide-sandbox') return true;
+  if (/^\/resources\/legislative-tracker\/2099-/.test(pathname)) return true;
+
+  const statePreviewMatch = pathname.match(/^\/resources\/state-registry\/states\/([a-z]{2})$/);
+  return Boolean(statePreviewMatch && NON_INDEXABLE_STATE_PREVIEW_CODES.has(statePreviewMatch[1]));
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -74,11 +66,6 @@ const SEO: React.FC<SEOProps> = ({
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
-
-    // A small set of legacy articles still carries hand-authored JSON-LD from
-    // before the canonical domain was standardized. Normalize that rendered
-    // structured data so crawlers receive one consistent site origin.
-    normalizeLegacyStructuredDataOrigins();
   }, [title, description, keywords, resolvedCanonical, resolvedNoIndex]);
 
   return null;
