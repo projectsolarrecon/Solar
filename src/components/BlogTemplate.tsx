@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SEO from "./SEO";
 
 interface BlogTemplateProps {
@@ -22,7 +22,8 @@ function BlogTemplate({
   tags = [],
   children
 }: BlogTemplateProps) {
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const { pathname } = useLocation();
+  const canonicalUrl = `https://thesolarproject.org${pathname}`;
   
   return (
     <div className="bg-white min-h-screen">
@@ -30,6 +31,7 @@ function BlogTemplate({
         title={`${title} | The SOLAR Project`}
         description={description}
         keywords={keywords}
+        canonical={canonicalUrl}
       />
 
       {/* Add JSON-LD structured data */}
@@ -47,7 +49,7 @@ function BlogTemplate({
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": publishDate,
@@ -55,7 +57,7 @@ function BlogTemplate({
           "description": description,
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://solarproject.org/blog/${slug}`
+            "@id": canonicalUrl
           }
         })}
       </script>
