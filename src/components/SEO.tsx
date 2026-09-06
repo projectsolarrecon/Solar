@@ -10,6 +10,7 @@ interface SEOProps {
 }
 
 const SITE_ORIGIN = 'https://thesolarproject.org';
+const DEPRECATED_ORIGIN = ['https://solar', 'project.org'].join('');
 
 function upsertMeta(attribute: 'name' | 'property', key: string, content: string) {
   let meta = document.querySelector<HTMLMetaElement>(`meta[${attribute}="${key}"]`);
@@ -21,6 +22,22 @@ function upsertMeta(attribute: 'name' | 'property', key: string, content: string
   meta.setAttribute('content', content);
 }
 
+function normalizeLegacyStructuredDataOrigins() {
+  document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]').forEach((script) => {
+    const content = script.textContent;
+    if (content?.includes(DEPRECATED_ORIGIN)) {
+      script.textContent = content.replaceAll(DEPRECATED_ORIGIN, SITE_ORIGIN);
+    }
+  });
+}
+
+function pathShouldBeNoIndexed(pathname: string) {
+  return (
+    pathname === '/resources/resource-guide-sandbox' ||
+    /^\/resources\/legislative-tracker\/2099-/.test(pathname)
+  );
+}
+
 const SEO: React.FC<SEOProps> = ({
   title = 'The SOLAR Project - Sex Offender Legal Advocacy & Reform',
   description = 'The SOLAR Project provides legal advocacy, resources, and support for individuals affected by sex offense laws. Find qualified attorneys, advocacy resources, and information about registry reform.',
@@ -30,6 +47,7 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const location = useLocation();
   const resolvedCanonical = canonical || `${SITE_ORIGIN}${location.pathname}`;
+  const resolvedNoIndex = noIndex || pathShouldBeNoIndexed(location.pathname);
 
   useEffect(() => {
     document.title = title;
@@ -38,7 +56,7 @@ const SEO: React.FC<SEOProps> = ({
     // Netlify prerendering can then persist these values in crawler-facing HTML.
     upsertMeta('name', 'description', description);
     upsertMeta('name', 'keywords', keywords);
-    upsertMeta('name', 'robots', noIndex ? 'noindex, follow' : 'index, follow');
+    upsertMeta('name', 'robots', resolvedNoIndex ? 'noindex, follow' : 'index, follow');
 
     let canonicalLink = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
     if (!canonicalLink) {
@@ -56,7 +74,12 @@ const SEO: React.FC<SEOProps> = ({
     upsertMeta('name', 'twitter:card', 'summary_large_image');
     upsertMeta('name', 'twitter:title', title);
     upsertMeta('name', 'twitter:description', description);
-  }, [title, description, keywords, resolvedCanonical, noIndex]);
+
+    // A small set of legacy articles still carries hand-authored JSON-LD from
+    // before the canonical domain was standardized. Normalize that rendered
+    // structured data so crawlers receive one consistent site origin.
+    normalizeLegacyStructuredDataOrigins();
+  }, [title, description, keywords, resolvedCanonical, resolvedNoIndex]);
 
   return null;
 };
