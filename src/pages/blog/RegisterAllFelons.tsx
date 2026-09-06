@@ -25,7 +25,7 @@ function RegisterAllFelons() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-07-05",
@@ -33,7 +33,7 @@ function RegisterAllFelons() {
           "description": "A satirical yet data-driven argument exposing the logical inconsistency of sex offender registries by comparing recidivism rates across crime types.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/register-all-felons"
+            "@id": "https://thesolarproject.org/blog/register-all-felons"
           },
           "keywords": ["registry criticism", "recidivism comparison", "criminal justice reform", "evidence-based policy"],
           "articleSection": "Policy Critique",

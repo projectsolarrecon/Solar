@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://solarproject.org/sitemap.xml
+# Canonical sitemap
+Sitemap: https://thesolarproject.org/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

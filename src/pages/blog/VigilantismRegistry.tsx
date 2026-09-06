@@ -25,7 +25,7 @@ function VigilantismRegistry() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-11",
@@ -33,7 +33,7 @@ function VigilantismRegistry() {
           "description": "Understanding the documented risks of registry-linked vigilantism, including mistaken identity cases, and practical safety strategies for registrants and their families.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/vigilantism-registry"
+            "@id": "https://thesolarproject.org/blog/vigilantism-registry"
           }
         })}
       </script>

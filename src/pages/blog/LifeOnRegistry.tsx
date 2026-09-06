@@ -25,7 +25,7 @@ function LifeOnRegistry() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-07-26",
@@ -33,7 +33,7 @@ function LifeOnRegistry() {
           "description": "A supportive, accurate guide for people living on the sex offender registry and their families. Practical steps, programs, and reasons for hope.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/life-on-registry"
+            "@id": "https://thesolarproject.org/blog/life-on-registry"
           },
           "keywords": ["registry life", "registrant support", "family support", "reentry", "CoSA", "registry adjustment"],
           "articleSection": "Personal Stories",

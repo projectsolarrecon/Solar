@@ -27,7 +27,7 @@ export default function WhenSomeoneYouLoveIsAccused(): JSX.Element {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-14",
@@ -35,7 +35,7 @@ export default function WhenSomeoneYouLoveIsAccused(): JSX.Element {
           "description": "A comprehensive guide for partners, parents, siblings, friends, and chosen family supporting a loved one through a sex-offense case—while protecting your own wellbeing.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/when-someone-you-love-is-accused"
+            "@id": "https://thesolarproject.org/blog/when-someone-you-love-is-accused"
           },
           "keywords": ["family support", "accused loved one", "family guide", "incarceration support", "family resilience"],
           "articleSection": "Family Support",

@@ -25,7 +25,7 @@ function DangerousMyth() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-07-12",
@@ -33,7 +33,7 @@ function DangerousMyth() {
           "description": "A deep-dive rebuttal to the myth that sex offenders are incurable. Evidence-based analysis of recidivism, treatment outcomes, and policy effectiveness.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/dangerous-myth"
+            "@id": "https://thesolarproject.org/blog/dangerous-myth"
           },
           "keywords": ["sex offender myths", "recidivism evidence", "treatment effectiveness", "evidence-based policy", "pedophilia misconceptions"],
           "articleSection": "Research Analysis",

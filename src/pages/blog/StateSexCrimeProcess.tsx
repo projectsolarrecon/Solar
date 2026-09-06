@@ -26,7 +26,7 @@ export default function StateSexCrimeProcess(): JSX.Element {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-17",
@@ -34,7 +34,7 @@ export default function StateSexCrimeProcess(): JSX.Element {
           "description": "Comprehensive guide to state-level sex crime prosecutions from investigation through registration, with practical tips for defendants and families navigating the state court system.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/state-sex-crime-process"
+            "@id": "https://thesolarproject.org/blog/state-sex-crime-process"
           },
           "keywords": ["state sex crimes", "state criminal process", "arraignment", "presentence investigation", "sex offender registration", "probation and parole"],
           "articleSection": "Legal Guide",

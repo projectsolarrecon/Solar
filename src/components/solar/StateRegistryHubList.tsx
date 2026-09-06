@@ -16,6 +16,14 @@ const ALL_STATES = [
   "Wisconsin","Wyoming"
 ];
 
+const LIVE_STATE_CODES = new Set([
+  "al","ak","az","ar","ca","co","ct","de","fl","ga",
+  "hi","id","il","in","ia","ks","ky","la","me","md",
+  "ma","mi","mn","ms","mo","mt","ne","nv","nh","nj",
+  "nm","ny","nc","nd","oh","ok","or","pa","ri","sc",
+  "sd","tn","tx","ut","vt","va","wa","wv","wi","wy"
+]);
+
 // Keep URL slugs consistent with your dynamic state page route
 function toSlug(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-");
@@ -24,7 +32,8 @@ function toSlug(name: string) {
 export default function StateRegistryHubList(): JSX.Element {
   const [search, setSearch] = useState("");
 
-  // ✅ Only load files named like "fl.ts" or "fl.json" (two lowercase letters)
+  // The data directory also contains two-letter preview/scaffold files. Load the
+  // existing pattern, then admit only real 50-state codes into the public hub.
   const files = import.meta.glob<StateFile>("../../data/state-registry/[a-z][a-z].{ts,json}", { eager: true });
 
   const liveMap = useMemo(() => {
@@ -34,6 +43,7 @@ export default function StateRegistryHubList(): JSX.Element {
       const data = (raw?.default ?? raw) as StateFile; // TS default export or raw JSON
       if (!data?.state) continue;
       const code = path.split("/").pop()!.replace(/\.(ts|json)$/i, ""); // "fl"
+      if (!LIVE_STATE_CODES.has(code)) continue;
       map.set(data.state, { lastReviewedUTC: data.lastReviewedUTC, code });
     }
     return map;

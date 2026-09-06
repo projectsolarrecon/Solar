@@ -25,7 +25,7 @@ function LegalRights() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-07-19",
@@ -33,7 +33,7 @@ function LegalRights() {
           "description": "A comprehensive guide to constitutional rights for individuals accused or convicted of sex offenses, from investigation through reentry.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/legal-rights"
+            "@id": "https://thesolarproject.org/blog/legal-rights"
           },
           "keywords": ["legal rights", "constitutional rights", "sex offense defense", "criminal law", "due process", "SORNA"],
           "articleSection": "Legal Guide",
