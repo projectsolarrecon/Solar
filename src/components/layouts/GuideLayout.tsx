@@ -11,6 +11,7 @@ export default function GuideLayout({
   badge = "📘 RESOURCE GUIDE",
   lede,
   showTOC = true,
+  noIndex = false,
   children,
 }: {
   title: string;
@@ -21,11 +22,12 @@ export default function GuideLayout({
   badge?: string;
   lede?: string;
   showTOC?: boolean;
+  noIndex?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div className="bg-white">
-      <SEO title={title} description={description} keywords={keywords} />
+      <SEO title={title} description={description} keywords={keywords} noIndex={noIndex} />
 
       {/* Slim hero */}
       <section className="bg-gradient-to-r from-slate-800/90 to-slate-700/90 text-white py-14">
