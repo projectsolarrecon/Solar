@@ -19,8 +19,8 @@ function Layout({ children }: LayoutProps) {
           "name": "The SOLAR Project",
           "alternateName": "SOLAR Project",
           "description": "Supporting, Organizing, Learning, Advocating, and Reforming. Providing legal advocacy, resources, and support for individuals affected by sex offense laws.",
-          "url": "https://solarproject.org",
-          "logo": "https://solarproject.org/solar-project-logo.png",
+          "url": "https://thesolarproject.org",
+          "logo": "https://thesolarproject.org/solar-project-logo.png",
           "contactPoint": {
             "@type": "ContactPoint",
             "email": "projectsolarrecon@gmail.com",
