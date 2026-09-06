@@ -9,6 +9,14 @@ const EXCLUDED_STATIC_ROUTES = new Set([
   '/resources/resource-guide-sandbox',
 ]);
 
+const US_STATE_CODES = new Set([
+  'al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'fl', 'ga',
+  'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'md',
+  'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj',
+  'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc',
+  'sd', 'tn', 'tx', 'ut', 'vt', 'va', 'wa', 'wv', 'wi', 'wy',
+]);
+
 function isIndexableStaticRoute(route) {
   return (
     route.startsWith('/') &&
@@ -43,11 +51,16 @@ async function collectStaticAppRoutes() {
 async function collectStateRegistryRoutes() {
   const dir = path.join(ROOT, 'src', 'data', 'state-registry');
   const entries = await readdir(dir, { withFileTypes: true });
-  return new Set(
-    entries
-      .filter((entry) => entry.isFile() && /^[a-z]{2}\.(?:ts|json)$/.test(entry.name))
-      .map((entry) => `/resources/state-registry/states/${entry.name.slice(0, 2)}`),
-  );
+  const routes = new Set();
+
+  for (const entry of entries) {
+    if (!entry.isFile() || !/^[a-z]{2}\.(?:ts|json)$/.test(entry.name)) continue;
+    const code = entry.name.slice(0, 2);
+    if (!US_STATE_CODES.has(code)) continue;
+    routes.add(`/resources/state-registry/states/${code}`);
+  }
+
+  return routes;
 }
 
 async function collectAccountabilityWatchRoutes() {
