@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import SEO from "../components/SEO";
 
 /**
  * Default 404 page, displayed when a user attempts to access a non-existent route.
@@ -16,6 +17,11 @@ const NotFound = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-4">
+      <SEO
+        title="Page Not Found | The SOLAR Project"
+        description="The requested SOLAR Project page could not be found."
+        noIndex
+      />
       <h1 className="text-4xl font-bold">404</h1>
       <p className="text-xl text-gray-600">Page not found</p>
       <button
