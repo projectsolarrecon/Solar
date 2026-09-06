@@ -30,6 +30,7 @@ function NotFound({ message }: { message: string }) {
       badge="⏳ COMING SOON"
       lede="We’re working on this state guide. Check back shortly."
       showTOC={false}
+      noIndex
     >
       <div className="text-slate-700 space-y-3">
         <p>{message}</p>
@@ -86,6 +87,7 @@ export default function StateRegistryStatePage(): JSX.Element {
       badge={isV2Preview ? "🧪 V2 PREVIEW" : "📍 STATE GUIDE"}
       lede={isV2Preview ? `Preview of the new reader-first scaffold using ${data.state} data.` : `Official-source summary for ${data.state}.`}
       showTOC={!isV2Preview}
+      noIndex={isV2Preview}
     >
       {isV2Preview ? (
         <StateRegistryTemplateV2Preview data={data as StateRegistryData} />
