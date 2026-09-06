@@ -25,7 +25,7 @@ function RethinkingRegistry() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-08",
@@ -33,7 +33,7 @@ function RethinkingRegistry() {
           "description": "Examining how America's sex offender registry system, built on moral panic rather than evidence, makes us outliers among peer nations while failing to improve public safety.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/rethinking-registry"
+            "@id": "https://thesolarproject.org/blog/rethinking-registry"
           },
           "keywords": ["sex offender registry", "criminal justice reform", "recidivism", "public safety", "evidence-based policy"],
           "articleSection": "Policy Analysis",

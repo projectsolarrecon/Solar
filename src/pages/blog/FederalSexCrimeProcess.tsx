@@ -26,7 +26,7 @@ export default function FederalSexCrimeProcess(): JSX.Element {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-17",
@@ -34,7 +34,7 @@ export default function FederalSexCrimeProcess(): JSX.Element {
           "description": "Authoritative, step-by-step guide to the federal criminal process for sex offenses—investigation, arrest, detention, plea/trial, sentencing, BOP designation, SOTP/SOMP, SORNA registration, and supervised release—plus practical tips for families.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/federal-sex-crime-process"
+            "@id": "https://thesolarproject.org/blog/federal-sex-crime-process"
           },
           "keywords": ["federal sex crimes", "pretrial detention", "US Sentencing Guidelines", "SORNA", "BOP SOTP SOMP"],
           "articleSection": "Legal Guide",

@@ -25,7 +25,7 @@ function PrivateVsPublicDefender() {
             "name": "The SOLAR Project",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://solarproject.org/solar-project-logo.png"
+              "url": "https://thesolarproject.org/solar-project-logo.png"
             }
           },
           "datePublished": "2025-08-09",
@@ -33,7 +33,7 @@ function PrivateVsPublicDefender() {
           "description": "Evidence-based guide to choosing between private defense attorneys and public defenders in sex offense cases, with state vs. federal considerations.",
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://solarproject.org/blog/private-vs-public-defender"
+            "@id": "https://thesolarproject.org/blog/private-vs-public-defender"
           },
           "keywords": ["legal defense", "criminal attorney", "public defender", "sex offense defense", "federal court", "state court"],
           "articleSection": "Legal Guide",
