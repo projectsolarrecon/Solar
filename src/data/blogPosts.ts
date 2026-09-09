@@ -13,6 +13,30 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "results-dont-speak-for-themselves",
+  title: "The Results Don’t Speak for Themselves",
+  excerpt:
+    "Jacksonville says 535 compliance checks and 59 arrests speak for themselves. They don’t. Arrests measure enforcement. Public safety requires a different question.",
+  author: "The SOLAR Project",
+  date: "Sep 8, 2026",
+  readTime: "10–12 min read",
+  category: "Research & Evidence Literacy",
+  tags: [
+    "Operation Riverwatch",
+    "Jacksonville Sheriff’s Office",
+    "sex offender compliance checks",
+    "registry enforcement",
+    "public safety",
+    "registry effectiveness",
+    "law enforcement",
+    "Florida",
+    "evidence literacy",
+    "Adam Walsh Act",
+    "outcome evidence",
+  ],
+  path: "/blog/results-dont-speak-for-themselves",
+},
+{
   id: "adam-walsh-act-20-years-results",
   title:
     "20 Years In, What Has the Adam Walsh Act Achieved? We Wish We Could Tell You.",
