@@ -142,6 +142,7 @@ import NotYouDOJIndividualizedJustice from "./pages/blog/NotYouDOJIndividualized
 import TheManOnTheMapWasntTheDanger from "./pages/blog/TheManOnTheMapWasntTheDanger";
 import ChrisHansenDoesntLikeFeelingExploited from "./pages/blog/ChrisHansenDoesntLikeFeelingExploited";
 import AdamWalshAct20YearsResults from "./pages/blog/AdamWalshAct20YearsResults";
+import ResultsDontSpeakForThemselves from "./pages/blog/ResultsDontSpeakForThemselves";
 
 function App() {
   return (
@@ -322,6 +323,9 @@ element={<TheRegistryTheCourtReviewedNoLongerExists />} />
 <Route
   path="/blog/adam-walsh-act-20-years-results"
   element={<AdamWalshAct20YearsResults />} />
+<Route
+  path="/blog/results-dont-speak-for-themselves"
+  element={<ResultsDontSpeakForThemselves />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
