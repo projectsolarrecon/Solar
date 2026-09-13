@@ -147,65 +147,118 @@ function Advocacy() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-950 shadow-2xl shadow-slate-900/10">
-            <div className="border-b border-white/10 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12">
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-900/5">
+            <div className="bg-slate-900 px-6 py-6 sm:px-8 md:px-10">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
                 The SOLAR framework
               </p>
-              <p className="mt-4 max-w-4xl text-lg font-medium leading-relaxed text-slate-200 md:text-xl">
-                At SOLAR, we exist to <strong className="text-white">Support, Organize, Lead, Advance, and Reform</strong>—providing{" "}
-                <strong className="text-white">Sex Offense Learning, Advocacy, and Resources</strong>—to realize a future of{" "}
-                <strong className="text-white">Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
-              </p>
             </div>
 
-            <ol className="divide-y divide-white/10">
-              {positions.map((position, index) => (
+            <div className="divide-y divide-slate-200">
+              <div className="px-6 py-6 sm:px-8 md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                  How we work
+                </p>
+                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
+                  <span><strong className="text-amber-600">S</strong>upport</span>
+                  <span><strong className="text-amber-600">O</strong>rganize</span>
+                  <span><strong className="text-amber-600">L</strong>ead</span>
+                  <span><strong className="text-amber-600">A</strong>dvance</span>
+                  <span><strong className="text-amber-600">R</strong>eform</span>
+                </p>
+              </div>
+
+              <div className="bg-slate-50 px-6 py-6 sm:px-8 md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                  What we provide
+                </p>
+                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
+                  <span><strong className="text-amber-600">S</strong>ex</span>
+                  <span><strong className="text-amber-600">O</strong>ffense</span>
+                  <span><strong className="text-amber-600">L</strong>earning</span>
+                  <span><strong className="text-amber-600">A</strong>dvocacy</span>
+                  <span><strong className="text-amber-600">R</strong>esources</span>
+                </p>
+              </div>
+
+              <div className="bg-amber-50/70 px-6 py-6 sm:px-8 md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                  What we seek
+                </p>
+                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
+                  <span><strong className="text-amber-600">S</strong>afety</span>
+                  <span><strong className="text-amber-600">O</strong>pportunity</span>
+                  <span><strong className="text-amber-600">L</strong>iberty</span>
+                  <span><strong className="text-amber-600">A</strong>ccountability</span>
+                  <span><strong className="text-amber-600">R</strong>edemption</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <ol className="mx-auto mt-8 max-w-6xl space-y-4">
+            {positions.map((position, index) => {
+              const isAnchor = index === 0 || index === 4 || index === 8;
+              const lightSurface = index % 2 === 0 ? "bg-white" : "bg-slate-50";
+
+              return (
                 <li
                   key={position.title}
-                  className={`group relative overflow-hidden px-6 py-8 transition-colors duration-200 md:px-10 md:py-10 ${
-                    index === positions.length - 1
-                      ? "bg-amber-400/[0.08] hover:bg-amber-400/[0.12]"
-                      : index % 2 === 0
-                        ? "bg-white/[0.02] hover:bg-white/[0.06]"
-                        : "bg-slate-900/50 hover:bg-white/[0.06]"
+                  className={`overflow-hidden rounded-2xl border shadow-sm transition-shadow hover:shadow-md ${
+                    isAnchor
+                      ? "border-slate-800 bg-slate-900"
+                      : `border-slate-200 ${lightSurface}`
                   }`}
                 >
-                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-300 via-amber-400 to-amber-500 opacity-70 transition-opacity duration-200 group-hover:opacity-100" />
-                  <article className="grid gap-5 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-8">
+                  <article className="grid gap-5 px-6 py-8 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-8 md:px-10 md:py-10">
                     <div>
-                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-amber-300/40 bg-amber-300/10 text-sm font-black tracking-[0.12em] text-amber-300">
+                      <span
+                        className={`inline-flex h-12 w-12 items-center justify-center rounded-full border text-sm font-black tracking-[0.12em] ${
+                          isAnchor
+                            ? "border-amber-300/40 bg-amber-300/10 text-amber-300"
+                            : "border-amber-300 bg-amber-50 text-amber-700"
+                        }`}
+                      >
                         {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold leading-snug text-white md:text-2xl">
+                      <div className="mb-4 h-1 w-12 rounded-full bg-amber-400" />
+                      <h3
+                        className={`text-xl font-bold leading-snug md:text-2xl ${
+                          isAnchor ? "text-white" : "text-slate-900"
+                        }`}
+                      >
                         {position.title}
                       </h3>
-                      <p className="mt-3 max-w-4xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+                      <p
+                        className={`mt-3 max-w-4xl text-base leading-7 md:text-lg md:leading-8 ${
+                          isAnchor ? "text-slate-300" : "text-slate-600"
+                        }`}
+                      >
                         {position.body}
                       </p>
                     </div>
                   </article>
                 </li>
-              ))}
-            </ol>
+              );
+            })}
+          </ol>
 
-            <div className="border-t border-white/10 bg-gradient-to-r from-amber-400/10 via-white/[0.04] to-amber-400/10 p-8 text-center md:p-10">
-              <h3 className="text-2xl font-bold text-white">
-                Put these principles into action
-              </h3>
-              <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-300">
-                The Advocacy Action Hub turns these positions into a personalized
-                phone script, email, letter, public testimony, or letter to the editor.
-              </p>
-              <Link
-                to="/advocacy/action-hub"
-                className="mt-6 inline-flex rounded-lg bg-amber-400 px-6 py-3 font-semibold text-slate-950 shadow-md transition-colors hover:bg-amber-300"
-              >
-                Open the Advocacy Action Hub
-              </Link>
-            </div>
+          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-amber-50 p-8 text-center shadow-sm md:p-10">
+            <h3 className="text-2xl font-bold text-slate-900">
+              Put these principles into action
+            </h3>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-600">
+              The Advocacy Action Hub turns these positions into a personalized
+              phone script, email, letter, public testimony, or letter to the editor.
+            </p>
+            <Link
+              to="/advocacy/action-hub"
+              className="mt-6 inline-flex rounded-lg bg-slate-800 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-slate-700"
+            >
+              Open the Advocacy Action Hub
+            </Link>
           </div>
         </div>
       </section>
