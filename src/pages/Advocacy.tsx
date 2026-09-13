@@ -147,54 +147,7 @@ function Advocacy() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-6xl">
-            <p className="mb-3 text-center text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
-              The SOLAR framework
-            </p>
-
-            <div className="grid gap-3 md:grid-cols-3">
-              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
-                  How we work
-                </p>
-                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="font-black text-amber-600">S</strong>upport</p>
-                  <p><strong className="font-black text-amber-600">O</strong>rganize</p>
-                  <p><strong className="font-black text-amber-600">L</strong>ead</p>
-                  <p><strong className="font-black text-amber-600">A</strong>dvance</p>
-                  <p><strong className="font-black text-amber-600">R</strong>eform</p>
-                </div>
-              </article>
-
-              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
-                  What we provide
-                </p>
-                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="font-black text-amber-600">S</strong>ex</p>
-                  <p><strong className="font-black text-amber-600">O</strong>ffense</p>
-                  <p><strong className="font-black text-amber-600">L</strong>earning</p>
-                  <p><strong className="font-black text-amber-600">A</strong>dvocacy</p>
-                  <p><strong className="font-black text-amber-600">R</strong>esources</p>
-                </div>
-              </article>
-
-              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
-                  What we seek
-                </p>
-                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="font-black text-amber-600">S</strong>afety</p>
-                  <p><strong className="font-black text-amber-600">O</strong>pportunity</p>
-                  <p><strong className="font-black text-amber-600">L</strong>iberty</p>
-                  <p><strong className="font-black text-amber-600">A</strong>ccountability</p>
-                  <p><strong className="font-black text-amber-600">R</strong>edemption</p>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <ol className="mx-auto mt-8 max-w-6xl space-y-4">
+          <ol className="mx-auto max-w-6xl space-y-4">
             {positions.map((position, index) => (
               <li
                 key={position.title}
@@ -264,6 +217,60 @@ function Advocacy() {
             <span className="mt-6 inline-flex rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white">
               Campaign development underway
             </span>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-amber-100 bg-amber-50/40 py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
+              The SOLAR Framework
+            </p>
+            <p className="mx-auto mt-3 max-w-3xl text-lg text-slate-600">
+              Our name reflects how we work, what we provide, and the future we’re working toward.
+            </p>
+          </div>
+
+          <div className="mx-auto grid max-w-6xl gap-3 md:grid-cols-3">
+            <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                How we work
+              </p>
+              <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                <p><strong className="font-black text-amber-600">S</strong>upport</p>
+                <p><strong className="font-black text-amber-600">O</strong>rganize</p>
+                <p><strong className="font-black text-amber-600">L</strong>ead</p>
+                <p><strong className="font-black text-amber-600">A</strong>dvance</p>
+                <p><strong className="font-black text-amber-600">R</strong>eform</p>
+              </div>
+            </article>
+
+            <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                What we provide
+              </p>
+              <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                <p><strong className="font-black text-amber-600">S</strong>ex</p>
+                <p><strong className="font-black text-amber-600">O</strong>ffense</p>
+                <p><strong className="font-black text-amber-600">L</strong>earning</p>
+                <p><strong className="font-black text-amber-600">A</strong>dvocacy</p>
+                <p><strong className="font-black text-amber-600">R</strong>esources</p>
+              </div>
+            </article>
+
+            <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
+                What we seek
+              </p>
+              <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                <p><strong className="font-black text-amber-600">S</strong>afety</p>
+                <p><strong className="font-black text-amber-600">O</strong>pportunity</p>
+                <p><strong className="font-black text-amber-600">L</strong>iberty</p>
+                <p><strong className="font-black text-amber-600">A</strong>ccountability</p>
+                <p><strong className="font-black text-amber-600">R</strong>edemption</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
