@@ -148,47 +148,47 @@ function Advocacy() {
           </div>
 
           <div className="mx-auto max-w-6xl">
-            <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
+            <p className="mb-3 text-center text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
               The SOLAR framework
             </p>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="grid gap-3 md:grid-cols-3">
+              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   How we work
                 </p>
-                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>upport</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>rganize</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>ead</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>dvance</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>eform</p>
+                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="font-black text-amber-600">S</strong>upport</p>
+                  <p><strong className="font-black text-amber-600">O</strong>rganize</p>
+                  <p><strong className="font-black text-amber-600">L</strong>ead</p>
+                  <p><strong className="font-black text-amber-600">A</strong>dvance</p>
+                  <p><strong className="font-black text-amber-600">R</strong>eform</p>
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we provide
                 </p>
-                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>ex</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>ffense</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>earning</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>dvocacy</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>esources</p>
+                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="font-black text-amber-600">S</strong>ex</p>
+                  <p><strong className="font-black text-amber-600">O</strong>ffense</p>
+                  <p><strong className="font-black text-amber-600">L</strong>earning</p>
+                  <p><strong className="font-black text-amber-600">A</strong>dvocacy</p>
+                  <p><strong className="font-black text-amber-600">R</strong>esources</p>
                 </div>
               </article>
 
-              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <article className="rounded-xl border border-slate-200 border-t-2 border-t-amber-300 bg-white px-5 py-4 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we seek
                 </p>
-                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
-                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>afety</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>pportunity</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>iberty</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>ccountability</p>
-                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>edemption</p>
+                <div className="mt-3 space-y-0.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="font-black text-amber-600">S</strong>afety</p>
+                  <p><strong className="font-black text-amber-600">O</strong>pportunity</p>
+                  <p><strong className="font-black text-amber-600">L</strong>iberty</p>
+                  <p><strong className="font-black text-amber-600">A</strong>ccountability</p>
+                  <p><strong className="font-black text-amber-600">R</strong>edemption</p>
                 </div>
               </article>
             </div>
