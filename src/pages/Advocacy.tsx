@@ -148,101 +148,88 @@ function Advocacy() {
           </div>
 
           <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-900/5">
-            <div className="bg-slate-900 px-6 py-6 sm:px-8 md:px-10">
+            <div className="bg-slate-900 px-6 py-5 sm:px-8 md:px-10">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
                 The SOLAR framework
               </p>
             </div>
 
             <div className="divide-y divide-slate-200">
-              <div className="px-6 py-6 sm:px-8 md:px-10">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   How we work
                 </p>
-                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
-                  <span><strong className="text-amber-600">S</strong>upport</span>
-                  <span><strong className="text-amber-600">O</strong>rganize</span>
-                  <span><strong className="text-amber-600">L</strong>ead</span>
-                  <span><strong className="text-amber-600">A</strong>dvance</span>
-                  <span><strong className="text-amber-600">R</strong>eform</span>
+                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>upport</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>rganize</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>ead</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>dvance</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>eform</span>
                 </p>
               </div>
 
-              <div className="bg-slate-50 px-6 py-6 sm:px-8 md:px-10">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we provide
                 </p>
-                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
-                  <span><strong className="text-amber-600">S</strong>ex</span>
-                  <span><strong className="text-amber-600">O</strong>ffense</span>
-                  <span><strong className="text-amber-600">L</strong>earning</span>
-                  <span><strong className="text-amber-600">A</strong>dvocacy</span>
-                  <span><strong className="text-amber-600">R</strong>esources</span>
+                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>ex</span>{" "}
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>ffense</span>{" "}
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>earning</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>dvocacy</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>esources</span>
                 </p>
               </div>
 
-              <div className="bg-amber-50/70 px-6 py-6 sm:px-8 md:px-10">
-                <p className="text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we seek
                 </p>
-                <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-lg font-semibold leading-relaxed text-slate-900">
-                  <span><strong className="text-amber-600">S</strong>afety</span>
-                  <span><strong className="text-amber-600">O</strong>pportunity</span>
-                  <span><strong className="text-amber-600">L</strong>iberty</span>
-                  <span><strong className="text-amber-600">A</strong>ccountability</span>
-                  <span><strong className="text-amber-600">R</strong>edemption</span>
+                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>afety</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>pportunity</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>iberty</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>ccountability</span>
+                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
+                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>edemption</span>
                 </p>
               </div>
             </div>
           </div>
 
           <ol className="mx-auto mt-8 max-w-6xl space-y-4">
-            {positions.map((position, index) => {
-              const isAnchor = index === 0 || index === 4 || index === 8;
-              const lightSurface = index % 2 === 0 ? "bg-white" : "bg-slate-50";
-
-              return (
-                <li
-                  key={position.title}
-                  className={`overflow-hidden rounded-2xl border shadow-sm transition-shadow hover:shadow-md ${
-                    isAnchor
-                      ? "border-slate-800 bg-slate-900"
-                      : `border-slate-200 ${lightSurface}`
-                  }`}
-                >
-                  <article className="grid gap-5 px-6 py-8 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-8 md:px-10 md:py-10">
-                    <div>
-                      <span
-                        className={`inline-flex h-12 w-12 items-center justify-center rounded-full border text-sm font-black tracking-[0.12em] ${
-                          isAnchor
-                            ? "border-amber-300/40 bg-amber-300/10 text-amber-300"
-                            : "border-amber-300 bg-amber-50 text-amber-700"
-                        }`}
-                      >
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                    <div>
-                      <div className="mb-4 h-1 w-12 rounded-full bg-amber-400" />
-                      <h3
-                        className={`text-xl font-bold leading-snug md:text-2xl ${
-                          isAnchor ? "text-white" : "text-slate-900"
-                        }`}
-                      >
-                        {position.title}
-                      </h3>
-                      <p
-                        className={`mt-3 max-w-4xl text-base leading-7 md:text-lg md:leading-8 ${
-                          isAnchor ? "text-slate-300" : "text-slate-600"
-                        }`}
-                      >
-                        {position.body}
-                      </p>
-                    </div>
-                  </article>
-                </li>
-              );
-            })}
+            {positions.map((position, index) => (
+              <li
+                key={position.title}
+                className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <article className="grid gap-5 px-6 py-8 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-8 md:px-10 md:py-10">
+                  <div>
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-amber-300/40 bg-amber-300/10 text-sm font-black tracking-[0.12em] text-amber-300">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div>
+                    <div className="mb-4 h-1 w-12 rounded-full bg-amber-400" />
+                    <h3 className="text-xl font-bold leading-snug text-white md:text-2xl">
+                      {position.title}
+                    </h3>
+                    <p className="mt-3 max-w-4xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+                      {position.body}
+                    </p>
+                  </div>
+                </article>
+              </li>
+            ))}
           </ol>
 
           <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-amber-50 p-8 text-center shadow-sm md:p-10">
