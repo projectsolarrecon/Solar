@@ -147,62 +147,50 @@ function Advocacy() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg shadow-slate-900/5">
-            <div className="bg-slate-900 px-6 py-5 sm:px-8 md:px-10">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
-                The SOLAR framework
-              </p>
-            </div>
+          <div className="mx-auto max-w-6xl">
+            <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-slate-500">
+              The SOLAR framework
+            </p>
 
-            <div className="divide-y divide-slate-200">
-              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+            <div className="grid gap-4 md:grid-cols-3">
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   How we work
                 </p>
-                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>upport</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>rganize</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>ead</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>dvance</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>eform</span>
-                </p>
-              </div>
+                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>upport</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>rganize</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>ead</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>dvance</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>eform</p>
+                </div>
+              </article>
 
-              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we provide
                 </p>
-                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>ex</span>{" "}
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>ffense</span>{" "}
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>earning</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>dvocacy</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>esources</span>
-                </p>
-              </div>
+                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>ex</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>ffense</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>earning</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>dvocacy</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>esources</p>
+                </div>
+              </article>
 
-              <div className="grid gap-2 px-6 py-5 sm:px-8 md:grid-cols-[9rem_minmax(0,1fr)] md:items-baseline md:px-10">
+              <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
                   What we seek
                 </p>
-                <p className="text-base font-semibold leading-7 text-slate-900 md:text-lg">
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">S</strong>afety</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">O</strong>pportunity</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">L</strong>iberty</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">A</strong>ccountability</span>
-                  <span className="mx-2 text-slate-300" aria-hidden="true">·</span>
-                  <span className="whitespace-nowrap"><strong className="text-amber-600">R</strong>edemption</span>
-                </p>
-              </div>
+                <div className="mt-4 space-y-1.5 text-base font-semibold leading-6 text-slate-900">
+                  <p><strong className="inline-block w-5 font-black text-amber-600">S</strong>afety</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">O</strong>pportunity</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">L</strong>iberty</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">A</strong>ccountability</p>
+                  <p><strong className="inline-block w-5 font-black text-amber-600">R</strong>edemption</p>
+                </div>
+              </article>
             </div>
           </div>
 
