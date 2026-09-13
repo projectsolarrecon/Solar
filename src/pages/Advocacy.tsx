@@ -4,15 +4,14 @@ import SEO from "../components/SEO";
 const positions = [
   {
     title:
-      "The sex offender registry system is ineffective, harmful, and rooted in misinformation.",
+      "The sex offender registry system is ineffective and rooted in misinformation.",
     body:
-      "It does not prevent crime. The vast majority of sex offenses are committed by individuals not on any registry, and empirical evidence consistently shows lower recidivism rates for people convicted of sex offenses than commonly assumed.",
+      "Decades of research have not shown that broad registry systems reduce sexual offending. The vast majority of sexual offenses are committed by people not on a registry, and recidivism among people convicted of sex offenses is substantially lower than public rhetoric often suggests.",
   },
   {
-    title:
-      "Registry systems cause lasting harm to individuals, families, and communities.",
+    title: "Registry policies can make communities less safe.",
     body:
-      "Rather than increasing safety, registries foster fear, isolation, discrimination, and vigilante violence. Children and families often suffer consequences through no fault of their own.",
+      "Policies that destabilize housing, employment, treatment, and family support can undermine the conditions that support successful reentry. Research also suggests that broad public notification can increase recidivism, challenging the assumption that more exposure necessarily means more safety.",
   },
   {
     title:
@@ -21,25 +20,29 @@ const positions = [
       "Most reported child sexual abuse is committed by someone the child knows. Prevention therefore requires attention to family and trusted-access relationships—including teachers, coaches, clergy, and community leaders—not just the locations of people already on a public registry.",
   },
   {
-    title:
-      "Other types of crime present a greater and more consistent danger to public safety.",
+    title: "Other serious harms are addressed without lifelong public branding.",
     body:
-      "Many serious harms to children and communities are addressed through prevention, regulation, treatment, and sentence-bound accountability rather than lifelong public branding.",
+      "Nearly every other serious harm to children is addressed through prevention, regulation, treatment, and ordinary sentence-bound accountability—not lifelong public branding.",
   },
   {
-    title: "Registries are punitive in practice, not administrative in nature.",
+    title: "Registries are punitive in practice, not merely administrative.",
     body:
-      "Public exposure, recurring reporting, restrictions, and collateral consequences operate as continuing punishment after a sentence has been served and stand in tension with due process, proportionality, and fairness.",
+      "Public exposure, recurring reporting, residence, proximity, employment, and other restrictions can persist long beyond the original sentence, functioning as continuing punishment in everyday life and raising serious questions of due process, proportionality, and fairness.",
+  },
+  {
+    title: "Registry systems punish families and children too.",
+    body:
+      "Public identification, housing and employment barriers, and other restrictions can destabilize entire households. Spouses and children who committed no offense can face financial strain, forced moves, stigma, harassment, isolation, and lost opportunities of their own.",
   },
   {
     title: "One-size-fits-all registry laws are fundamentally flawed.",
     body:
-      "Blanket restrictions ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
+      "Universal requirements, restrictions, and labels ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
   },
   {
     title: "Registries create a permanent underclass.",
     body:
-      "They block access to housing, employment, education, financial services, and community participation, stripping people of the tools necessary to rebuild their lives and reintegrate safely.",
+      "They erect formidable barriers to housing, employment, education, financial services, and community participation, stripping many people of the basic tools needed to rebuild their lives and reintegrate safely.",
   },
   {
     title:
@@ -129,52 +132,76 @@ function Advocacy() {
 
       <div className="h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300" />
 
-      <section id="position-statement" className="bg-gradient-to-b from-gray-50 to-white py-16">
+      <section
+        id="position-statement"
+        className="bg-gradient-to-b from-gray-50 via-white to-amber-50/40 py-16"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold text-gray-900 md:text-4xl">
               Our Position Statement
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-600">
-              These eight principles guide SOLAR’s public education, policy analysis,
+              These nine principles guide SOLAR’s public education, policy analysis,
               advocacy tools, and reform priorities.
             </p>
           </div>
 
-          <div className="mx-auto max-w-5xl rounded-xl border border-gray-200 bg-white p-8 shadow-lg md:p-12">
-            <p className="mb-8 text-center text-lg font-medium text-gray-700">
-              At SOLAR, we exist to <strong>Support, Organize, Lead, Advance, and Reform</strong>—providing{" "}
-              <strong>Sex Offense Learning, Advocacy, and Resources</strong>—to realize a future of{" "}
-              <strong>Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
-            </p>
-
-            <div className="space-y-6">
-              {positions.map((position) => (
-                <article
-                  key={position.title}
-                  className="rounded-r-lg border-l-4 border-yellow-400 bg-yellow-50 p-6"
-                >
-                  <h3 className="text-xl font-bold text-yellow-900">
-                    {position.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-yellow-800">
-                    {position.body}
-                  </p>
-                </article>
-              ))}
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-slate-700 bg-slate-950 shadow-2xl shadow-slate-900/10">
+            <div className="border-b border-white/10 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-8 md:p-12">
+              <p className="text-sm font-bold uppercase tracking-[0.18em] text-amber-300">
+                The SOLAR framework
+              </p>
+              <p className="mt-4 max-w-4xl text-lg font-medium leading-relaxed text-slate-200 md:text-xl">
+                At SOLAR, we exist to <strong className="text-white">Support, Organize, Lead, Advance, and Reform</strong>—providing{" "}
+                <strong className="text-white">Sex Offense Learning, Advocacy, and Resources</strong>—to realize a future of{" "}
+                <strong className="text-white">Safety, Opportunity, Liberty, Accountability, and Redemption</strong>.
+              </p>
             </div>
 
-            <div className="mt-12 rounded-xl border border-amber-200 bg-gradient-to-r from-yellow-50 to-amber-50 p-8 text-center">
-              <h3 className="text-2xl font-bold text-gray-900">
+            <ol className="divide-y divide-white/10">
+              {positions.map((position, index) => (
+                <li
+                  key={position.title}
+                  className={`group relative overflow-hidden px-6 py-8 transition-colors duration-200 md:px-10 md:py-10 ${
+                    index === positions.length - 1
+                      ? "bg-amber-400/[0.08] hover:bg-amber-400/[0.12]"
+                      : index % 2 === 0
+                        ? "bg-white/[0.02] hover:bg-white/[0.06]"
+                        : "bg-slate-900/50 hover:bg-white/[0.06]"
+                  }`}
+                >
+                  <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-amber-300 via-amber-400 to-amber-500 opacity-70 transition-opacity duration-200 group-hover:opacity-100" />
+                  <article className="grid gap-5 md:grid-cols-[4.5rem_minmax(0,1fr)] md:gap-8">
+                    <div>
+                      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-amber-300/40 bg-amber-300/10 text-sm font-black tracking-[0.12em] text-amber-300">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold leading-snug text-white md:text-2xl">
+                        {position.title}
+                      </h3>
+                      <p className="mt-3 max-w-4xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
+                        {position.body}
+                      </p>
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ol>
+
+            <div className="border-t border-white/10 bg-gradient-to-r from-amber-400/10 via-white/[0.04] to-amber-400/10 p-8 text-center md:p-10">
+              <h3 className="text-2xl font-bold text-white">
                 Put these principles into action
               </h3>
-              <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-700">
+              <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-300">
                 The Advocacy Action Hub turns these positions into a personalized
                 phone script, email, letter, public testimony, or letter to the editor.
               </p>
               <Link
                 to="/advocacy/action-hub"
-                className="mt-6 inline-flex rounded-lg bg-slate-800 px-6 py-3 font-semibold text-white shadow-md transition-colors hover:bg-slate-700"
+                className="mt-6 inline-flex rounded-lg bg-amber-400 px-6 py-3 font-semibold text-slate-950 shadow-md transition-colors hover:bg-amber-300"
               >
                 Open the Advocacy Action Hub
               </Link>
