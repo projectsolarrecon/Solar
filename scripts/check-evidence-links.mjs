@@ -13,6 +13,7 @@ const REPORT_JSON = "evidence-link-report.json";
 const REPORT_MD = "evidence-link-report.md";
 const BASELINE_VERIFIED_AT = "2026-09-13";
 const TIMEOUT_MS = 20_000;
+const CONCURRENCY = 8;
 const strict = process.argv.includes("--strict");
 
 const normalizeUrl = (value) => value.replace(/&amp;/g, "&");
@@ -142,6 +143,22 @@ async function checkUrl(url) {
   }
 }
 
+async function mapWithConcurrency(items, limit, mapper) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (true) {
+      const index = nextIndex++;
+      if (index >= items.length) return;
+      results[index] = await mapper(items[index], index);
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => worker()));
+  return results;
+}
+
 const targets = await extractTargets();
 const unique = new Map();
 for (const target of targets) {
@@ -150,16 +167,15 @@ for (const target of targets) {
   else unique.set(target.url, { url: target.url, refs: [target] });
 }
 
-const results = [];
-for (const [index, item] of [...unique.values()].entries()) {
-  process.stdout.write(`[${index + 1}/${unique.size}] ${item.url}\n`);
+const uniqueItems = [...unique.values()];
+const results = await mapWithConcurrency(uniqueItems, CONCURRENCY, async (item, index) => {
+  process.stdout.write(`[${index + 1}/${uniqueItems.length}] ${item.url}\n`);
   const check = await checkUrl(item.url);
-  results.push({ ...item, ...check });
   if (check.state !== "ok") {
-    const annotation = check.state === "warning" ? "warning" : "warning";
-    console.log(`::${annotation} title=Evidence link ${check.state}::${item.url} — ${check.reason}`);
+    console.log(`::warning title=Evidence link ${check.state}::${item.url} — ${check.reason}`);
   }
-}
+  return { ...item, ...check };
+});
 
 const hardFailures = results.filter((item) => item.state === "hard-failure");
 const semanticDrift = results.filter((item) => item.state === "semantic-drift");
