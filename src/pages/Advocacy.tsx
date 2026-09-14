@@ -7,48 +7,57 @@ const positions = [
       "The sex offender registry system is ineffective and rooted in misinformation.",
     body:
       "Decades of research have not shown that broad registry systems reduce sexual offending. The vast majority of sexual offenses are committed by people not on a registry, and recidivism among people convicted of sex offenses is substantially lower than public rhetoric often suggests.",
+    evidencePath: "/resources/supported-claims-guide#registry-effectiveness",
   },
   {
     title: "Registry policies can make communities less safe.",
     body:
       "Policies that destabilize housing, employment, treatment, and family support can undermine the conditions that support successful reentry. Research also suggests that broad public notification can increase recidivism, challenging the assumption that more exposure necessarily means more safety.",
+    evidencePath: "/resources/supported-claims-guide#community-safety",
   },
   {
     title:
       "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
     body:
       "Most reported child sexual abuse is committed by someone the child knows. Prevention therefore requires attention to family and trusted-access relationships—including teachers, coaches, clergy, and community leaders—not just the locations of people already on a public registry.",
+    evidencePath: "/resources/supported-claims-guide#relationship-access",
   },
   {
     title: "Other serious harms are addressed without lifelong public branding.",
     body:
       "Nearly every other serious harm to children is addressed through prevention, regulation, treatment, and ordinary sentence-bound accountability—not lifelong public branding.",
+    evidencePath: "/resources/supported-claims-guide#lifelong-branding",
   },
   {
     title: "Registries are punitive in practice, not merely administrative.",
     body:
       "Public exposure, recurring reporting, residence, proximity, employment, and other restrictions can persist long beyond the original sentence, functioning as continuing punishment in everyday life and raising serious questions of due process, proportionality, and fairness.",
+    evidencePath: "/resources/supported-claims-guide#punitive-practice",
   },
   {
     title: "Registry systems punish families and children too.",
     body:
       "Public identification, housing and employment barriers, and other restrictions can destabilize entire households. Spouses and children who committed no offense can face financial strain, forced moves, stigma, harassment, isolation, and lost opportunities of their own.",
+    evidencePath: "/resources/supported-claims-guide#family-children",
   },
   {
     title: "One-size-fits-all registry laws are fundamentally flawed.",
     body:
       "Universal requirements, restrictions, and labels ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
+    evidencePath: "/resources/supported-claims-guide#individualized-risk",
   },
   {
     title: "Registries create a permanent underclass.",
     body:
       "They erect formidable barriers to housing, employment, education, financial services, and community participation, stripping many people of the basic tools needed to rebuild their lives and reintegrate safely.",
+    evidencePath: "/resources/supported-claims-guide#permanent-underclass",
   },
   {
     title:
       "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
     body:
       "The seriousness of sexual harm does not make every intervention imposed in its name effective. Registration, public notification, supervision, treatment, and other interventions should be evaluated according to what they actually accomplish, whom they affect, and whether their demonstrated benefits justify their burdens.",
+    evidencePath: "/resources/supported-claims-guide#measurable-outcomes",
   },
 ];
 
@@ -167,6 +176,12 @@ function Advocacy() {
                     <p className="mt-3 max-w-4xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
                       {position.body}
                     </p>
+                    <Link
+                      to={position.evidencePath}
+                      className="mt-5 inline-flex border-t border-slate-700 pt-4 text-sm font-semibold text-amber-300 transition-colors hover:text-amber-200"
+                    >
+                      See the evidence →
+                    </Link>
                   </div>
                 </article>
               </li>
