@@ -107,10 +107,10 @@ const sourceLinks: Record<string, SourceLink> = {
   },
   prescottRockoff: {
     label: "Prescott & Rockoff SORN study",
-    href: "https://www.nber.org/papers/w13803",
+    href: "https://doi.org/10.1086/658485",
     description:
       "Peer-reviewed analysis separating registration and notification mechanisms, including countervailing notification effects.",
-    type: "Peer-reviewed article / NBER working paper",
+    type: "Peer-reviewed article",
   },
   agan: {
     label: "Agan, “Sex Offender Registries: Fear without Function?”",
@@ -156,7 +156,7 @@ const sourceLinks: Record<string, SourceLink> = {
   },
   levensonCotter: {
     label: "Levenson & Cotter, Megan’s Law and reintegration",
-    href: "https://scholars.lynn.edu/en/publications/the-effect-of-megans-law-on-sex-offender-reintegration/",
+    href: "https://doi.org/10.1177/1043986204271676",
     description:
       "Florida survey evidence on housing, employment, threats, and reintegration burdens.",
     type: "Peer-reviewed article",
@@ -170,14 +170,14 @@ const sourceLinks: Record<string, SourceLink> = {
   },
   zandbergenHart: {
     label: "Zandbergen & Hart residence-restriction GIS study",
-    href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/reducing-housing-options-convicted-sex-offenders-investigating",
+    href: "https://doi.org/10.3818/JRP.8.2.2006.1",
     description:
       "GIS study of how residence restrictions can reduce lawful housing availability.",
     type: "Peer-reviewed article",
   },
   residenceTransience: {
     label: "Residence restrictions and transience study",
-    href: "https://www.fl-counties.com/wp-content/uploads/2022/09/WhereforartThouCJPR2013.pdf",
+    href: "https://doi.org/10.1177/0887403413512326",
     description:
       "Peer-reviewed study examining residence restrictions, housing availability, transience, and community stability.",
     type: "Peer-reviewed article",
@@ -198,14 +198,14 @@ const sourceLinks: Record<string, SourceLink> = {
   },
   levensonFamily: {
     label: "Levenson & Tewksbury family collateral-damage study",
-    href: "https://safervirginia.org/documents/Collateral%20Damage%20-%20Family%20Members%20of%20Registered%20Sex%20Offenders%20Levenson.pdf",
+    href: "https://doi.org/10.1007/s12103-008-9055-x",
     description:
       "Peer-reviewed study of collateral consequences reported by family members of people required to register.",
     type: "Peer-reviewed article",
   },
   andersonSample: {
     label: "Anderson & Sample public awareness and protective action",
-    href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/public-awareness-and-action-resulting-sex-offender-community",
+    href: "https://doi.org/10.1177/0887403408316705",
     description:
       "Nebraska survey on public registry awareness, use, and self-reported protective behavior.",
     type: "Peer-reviewed article",
@@ -310,7 +310,7 @@ const sourceLinks: Record<string, SourceLink> = {
   },
   pcrA: {
     label: "PCRA construction and validation",
-    href: "https://www.uscourts.gov/file/22846/download",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2011/09/construction-and-validation-federal-post-conviction-risk-assessment-pcra",
     description:
       "Federal Probation article on the Post Conviction Risk Assessment as a general risk/needs tool.",
     type: "Government journal article",
