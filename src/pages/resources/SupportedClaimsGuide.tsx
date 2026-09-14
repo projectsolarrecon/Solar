@@ -30,6 +30,7 @@ type ClaimType =
   | "SOLAR conclusion";
 
 type Claim = {
+  id: string;
   type: ClaimType;
   claim: string;
   meaning: string;
@@ -51,194 +52,331 @@ const sourceLinks: Record<string, SourceLink> = {
   zgobaMitchell: {
     label: "Zgoba & Mitchell SORN meta-analysis",
     href: "https://doi.org/10.1007/s11292-021-09480-z",
-    description: "Broad quantitative synthesis of 25 years of evaluated SORN policies and recidivism outcomes.",
+    description:
+      "Broad quantitative synthesis of evaluated SORN policies and recidivism outcomes.",
     type: "Peer-reviewed meta-analysis",
   },
-  prescottRockoff: {
-    label: "Prescott & Rockoff SORN study",
-    href: "https://www.nber.org/papers/w13803",
-    description: "Study separating registration and public-notification mechanisms, including countervailing notification effects.",
-    type: "Peer-reviewed article / NBER working paper",
-  },
-  agan: {
-    label: "Agan, ‘Sex Offender Registries: Fear without Function?’",
-    href: "https://www.journals.uchicago.edu/doi/10.1086/658483",
-    description: "Study testing registry effects across several empirical designs.",
-    type: "Peer-reviewed article",
-  },
-  njMeganLaw: {
-    label: "New Jersey Megan’s Law evaluation",
-    href: "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
-    description: "NIJ-funded state evaluation of practical, monetary, and public-safety outcomes.",
-    type: "Government report",
+  cohenCsem: {
+    label: "Cohen federal CSEM supervision study",
+    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
+    description:
+      "Federal Probation article on CSEM rearrest, PCRA, CPORT, and federal override practice.",
+    type: "Government journal article",
   },
   bjs1994SexOffenders: {
     label: "BJS sex-offender recidivism, 1994 releases",
     href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-prison-1994",
-    description: "Large state-prison release cohort with rearrest and reconviction measures.",
+    description:
+      "Large state-prison release cohort with three-year rearrest and reconviction measures.",
     type: "Government statistical report",
   },
   bjs2019NineYear: {
     label: "BJS sex-offender recidivism, 9-year follow-up",
     href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
-    description: "BJS comparison of rape/sexual-assault releases and other released prisoners over nine years.",
+    description:
+      "BJS comparison of rape/sexual-assault releases and other released prisoners over nine years.",
     type: "Government statistical report",
   },
   bjs2012Releases: {
     label: "BJS prisoner recidivism, 2012 releases",
     href: "https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/rpr34s125yfup1217.pdf",
-    description: "Same-cohort rearrest comparisons across release-offense categories.",
+    description:
+      "Five-year same-type rearrest comparisons across release-offense categories.",
     type: "Government statistical report",
   },
   bjs1994Specialization: {
-    label: "BJS same-offense specialization table",
+    label: "BJS prisoner recidivism, 1994 same-offense specialization",
     href: "https://bjs.ojp.gov/content/pub/pdf/rpr94.pdf",
-    description: "BJS same-offense rearrest comparisons across many offense categories.",
+    description:
+      "BJS same-offense rearrest table across multiple crime categories.",
     type: "Government statistical report",
   },
-  bjsChildKnown: {
-    label: "BJS sexual assault of young children",
-    href: "https://bjs.ojp.gov/library/publications/sexual-assault-young-children-reported-law-enforcement-victim-incident-and",
-    description: "Official report on victim-offender relationships in sexual assaults of young children reported to law enforcement.",
-    type: "Government statistical report",
+  ussc2010Recidivism: {
+    label: "USSC federal offenders released in 2010",
+    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
+    description:
+      "Federal same-cohort recidivism report with offense type, age, and criminal-history comparisons.",
+    type: "Federal government research report",
+  },
+  usscCsem: {
+    label: "USSC non-production child-pornography recidivism report",
+    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
+    description:
+      "Specialized federal CSEM recidivism benchmark for non-production child-pornography offenses.",
+    type: "Federal government research report",
+  },
+  prescottRockoff: {
+    label: "Prescott & Rockoff SORN study",
+    href: "https://www.nber.org/papers/w13803",
+    description:
+      "Peer-reviewed analysis separating registration and notification mechanisms, including countervailing notification effects.",
+    type: "Peer-reviewed article / NBER working paper",
+  },
+  agan: {
+    label: "Agan, “Sex Offender Registries: Fear without Function?”",
+    href: "https://www.journals.uchicago.edu/doi/10.1086/658483",
+    description:
+      "Peer-reviewed study testing registry effects across multiple empirical designs.",
+    type: "Peer-reviewed article",
+  },
+  sandlerFreemanSocia: {
+    label: "Sandler, Freeman & Socia New York SORN time series",
+    href: "https://doi.org/10.1037/a0013881",
+    description:
+      "New York SORN time-series evaluation of sexual-offense outcomes.",
+    type: "Peer-reviewed article",
+  },
+  levensonZgobaFlorida: {
+    label: "Levenson & Zgoba Florida repeat-arrest study",
+    href: "https://doi.org/10.1177/0306624X15573946",
+    description:
+      "Florida 1990–2010 analysis finding that an average 6.5% of sex-crime arrests involved a person with a prior felony sex-crime conviction.",
+    type: "Peer-reviewed article",
+  },
+  letourneauAdult: {
+    label: "Letourneau et al. South Carolina SORN and adult recidivism",
+    href: "https://doi.org/10.1177/0887403409353148",
+    description:
+      "South Carolina study examining whether registration status predicted adult sexual recidivism.",
+    type: "Peer-reviewed article",
+  },
+  njMeganLaw: {
+    label: "New Jersey Megan’s Law evaluation",
+    href: "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
+    description:
+      "NIJ-funded state evaluation of practical, monetary, and public-safety outcomes.",
+    type: "Government report",
+  },
+  minnesotaNotification: {
+    label: "Duwe & Donnay Minnesota Level 3 notification study",
+    href: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
+    description:
+      "Minnesota study of broad community notification among selected Level 3 individuals.",
+    type: "Peer-reviewed article",
   },
   levensonCotter: {
     label: "Levenson & Cotter, Megan’s Law and reintegration",
     href: "https://scholars.lynn.edu/en/publications/the-effect-of-megans-law-on-sex-offender-reintegration/",
-    description: "Florida survey evidence on housing, employment, threats, and reintegration burdens.",
+    description:
+      "Florida survey evidence on housing, employment, threats, and reintegration burdens.",
     type: "Peer-reviewed article",
   },
   lasherMcGrath: {
     label: "Lasher & McGrath reintegration review",
     href: "https://doi.org/10.1177/0306624X10387524",
-    description: "Review of notification, housing, employment, psychological, and reintegration effects.",
-    type: "Peer-reviewed review",
+    description:
+      "Review of community notification, reintegration, housing, employment, and psychological effects.",
+    type: "Peer-reviewed article",
   },
   zandbergenHart: {
     label: "Zandbergen & Hart residence-restriction GIS study",
     href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/reducing-housing-options-convicted-sex-offenders-investigating",
-    description: "GIS study of how residence restrictions can reduce lawful housing availability.",
+    description:
+      "GIS study of how residence restrictions can reduce lawful housing availability.",
     type: "Peer-reviewed article",
   },
   residenceTransience: {
     label: "Residence restrictions and transience study",
     href: "https://www.fl-counties.com/wp-content/uploads/2022/09/WhereforartThouCJPR2013.pdf",
-    description: "Study examining residence restrictions, housing availability, transience, and community stability.",
+    description:
+      "Peer-reviewed study examining residence restrictions, housing availability, transience, and community stability.",
     type: "Peer-reviewed article",
   },
   smartManagement: {
     label: "DOJ SMART SOMAPI management-strategies synthesis",
-    href: "https://smart.ojp.gov/somapi/chapter-8-sex-offender-management-strategies",
-    description: "Federal synthesis on management strategies, residence restrictions, and unintended consequences.",
+    href: "https://www.smart.ojp.gov/somapi/chapter-8-sex-offender-management-strategies",
+    description:
+      "Federal research synthesis on SORN, residence restrictions, management strategies, and unintended consequences.",
     type: "Government evidence synthesis",
   },
   smartCollateralReview: {
     label: "SMART/Library of Congress collateral-effects review",
     href: "https://smart.ojp.gov/media/document/6346",
-    description: "Government review of housing, employment, wellbeing, family, and reintegration effects.",
+    description:
+      "Government evidence review of claimed effects on housing, employment, wellbeing, family relationships, and reintegration.",
     type: "Government evidence review",
   },
   levensonFamily: {
     label: "Levenson & Tewksbury family collateral-damage study",
     href: "https://safervirginia.org/documents/Collateral%20Damage%20-%20Family%20Members%20of%20Registered%20Sex%20Offenders%20Levenson.pdf",
-    description: "Study of collateral consequences reported by family members of people required to register.",
+    description:
+      "Peer-reviewed study of collateral consequences reported by family members of people required to register.",
     type: "Peer-reviewed article",
-  },
-  cdcFirearm: {
-    label: "CDC firearm injury and death facts",
-    href: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
-    description: "Official public-health information on firearm injury, death, and prevention.",
-    type: "Government public-health resource",
-  },
-  nhtsaImpaired: {
-    label: "NHTSA impaired-driving prevention report",
-    href: "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
-    description: "Federal report on prevention technology and regulation for a recurring public-safety harm.",
-    type: "Government report",
-  },
-  bjsDomestic: {
-    label: "BJS nonfatal domestic violence report",
-    href: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
-    description: "Official victimization data on another serious form of interpersonal harm.",
-    type: "Government statistical report",
-  },
-  smithDoe: {
-    label: "Smith v. Doe",
-    href: "https://supreme.justia.com/cases/federal/us/538/84/",
-    description: "Supreme Court decision holding Alaska’s then-existing registry nonpunitive for federal ex post facto purposes.",
-    type: "Court opinion",
-  },
-  doesSnyder: {
-    label: "Does #1–5 v. Snyder",
-    href: "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
-    description: "Sixth Circuit decision finding Michigan’s materially different amended registry punitive in effect.",
-    type: "Court opinion",
-  },
-  ussc2010Recidivism: {
-    label: "USSC federal offenders released in 2010",
-    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
-    description: "Federal same-cohort recidivism report with offense type, age, and criminal-history comparisons.",
-    type: "Federal government research report",
-  },
-  usscCsem: {
-    label: "USSC non-production CSEM recidivism report",
-    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
-    description: "Specialized federal recidivism benchmark for non-production child sexual exploitation material offenses.",
-    type: "Federal government research report",
-  },
-  hansonSimpleQuestion: {
-    label: "Hanson, ‘Sex Offender Recidivism: A Simple Question’",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
-    description: "Research summary on why recidivism rates vary by subgroup and follow-up.",
-    type: "Government-hosted research summary",
-  },
-  babchishinHanson: {
-    label: "Babchishin, Hanson & Helmus risk-assessment meta-analysis",
-    href: "https://pubmed.ncbi.nlm.nih.gov/19290762/",
-    description: "Meta-analysis comparing actuarial, structured, and unstructured risk-assessment approaches.",
-    type: "Peer-reviewed meta-analysis",
-  },
-  static99Workbook: {
-    label: "Static-99R evaluators workbook",
-    href: "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
-    description: "Professional guidance on reference groups, relative risk, age, and interpretation.",
-    type: "Professional guidance",
-  },
-  treatmentMeta: {
-    label: "Schmucker & Lösel treatment meta-analysis",
-    href: "https://doi.org/10.1007/s11292-015-9241-z",
-    description: "Meta-analysis of specialized treatment and sexual recidivism outcomes.",
-    type: "Peer-reviewed meta-analysis",
   },
   andersonSample: {
     label: "Anderson & Sample public awareness and protective action",
     href: "https://www.ojp.gov/ncjrs/virtual-library/abstracts/public-awareness-and-action-resulting-sex-offender-community",
-    description: "Survey on registry awareness, use, and self-reported protective behavior.",
+    description:
+      "Nebraska survey on public registry awareness, use, and self-reported protective behavior.",
+    type: "Peer-reviewed article",
+  },
+  bonnarKidd: {
+    label: "Bonnar-Kidd SORN public-health review",
+    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2820068/",
+    description:
+      "Open-access peer-reviewed review of SORN, prevention claims, and public-health concerns.",
+    type: "Peer-reviewed review",
+  },
+  cubellis: {
+    label: "Cubellis, Walfield & Harris law-enforcement perspectives",
+    href: "https://doi.org/10.1177/0306624X16667574",
+    description:
+      "Law-enforcement survey documenting mixed views and registry-size effects.",
     type: "Peer-reviewed article",
   },
   harrisLawEnforcement: {
     label: "Harris et al. law-enforcement effectiveness and challenges",
     href: "https://doi.org/10.1177/0887403416651671",
-    description: "National law-enforcement research on registry reliability, public utility, and implementation limits.",
+    description:
+      "National law-enforcement research on registry reliability, public utility, and implementation limits.",
     type: "Peer-reviewed article",
   },
-  cubellis: {
-    label: "Cubellis, Walfield & Harris law-enforcement perspectives",
-    href: "https://doi.org/10.1177/0306624X16667574",
-    description: "Law-enforcement survey documenting mixed views and registry-size effects.",
-    type: "Peer-reviewed article",
+  bjsChildKnown: {
+    label: "BJS sexual assault of young children reported to law enforcement",
+    href: "https://bjs.ojp.gov/library/publications/sexual-assault-young-children-reported-law-enforcement-victim-incident-and",
+    description:
+      "Official BJS report on juvenile victim-offender relationships in reported sexual assault cases.",
+    type: "Government statistical report",
+  },
+  cdcFirearm: {
+    label: "CDC firearm injury and death facts",
+    href: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
+    description:
+      "Official public-health information on firearm injury, death, and prevention.",
+    type: "Government public-health resource",
+  },
+  nhtsaImpaired: {
+    label: "NHTSA impaired-driving prevention report",
+    href: "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
+    description:
+      "Government report illustrating prevention, technology, enforcement, and intervention approaches to a recurring public-safety harm.",
+    type: "Government report",
+  },
+  bjsDomestic: {
+    label: "BJS nonfatal domestic violence report",
+    href: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
+    description:
+      "Official victimization data on a serious and recurring form of interpersonal harm.",
+    type: "Government statistical report",
   },
   atsaReform: {
-    label: "ATSA evidence-based registry-reform recommendations",
+    label: "ATSA evidence-based registry reform recommendations",
     href: "https://members.atsa.com/learn/Details/report-registration-and-community-notification-of-adults-convicted-of-a-sexual-crime-recommendations-for-evidence-based-reform-194317",
-    description: "Expert recommendations emphasizing evidence, individualization, treatment, review, and targeted notification.",
+    description:
+      "Expert recommendations emphasizing individualized risk, treatment, review, reintegration, and targeted notification.",
     type: "Expert policy recommendations",
   },
-  minnesotaNotification: {
-    label: "Duwe & Donnay Minnesota Level 3 notification study",
-    href: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
-    description: "Evaluation finding favorable outcomes for Minnesota’s selected Level 3 notification program.",
+  hansonBussiere: {
+    label: "Hanson & Bussière predictor meta-analysis",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/prdctrs-sxl-ffnd/index-en.aspx",
+    description:
+      "Foundational meta-analysis of predictors of sexual-offense recidivism.",
+    type: "Research / government-hosted publication",
+  },
+  hansonMortonBourgon: {
+    label: "Hanson & Morton-Bourgon updated predictor meta-analysis",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/2004-02-prdctrs-sxl-rcdvsm-pdtd/index-en.aspx",
+    description:
+      "Updated meta-analysis on characteristics associated with persistent sexual offending.",
+    type: "Research / government-hosted publication",
+  },
+  hansonSimpleQuestion: {
+    label: "Hanson, “Sex Offender Recidivism: A Simple Question”",
+    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
+    description:
+      "Plain-language research summary on why recidivism rates vary by subgroup and follow-up.",
+    type: "Government-hosted research summary",
+  },
+  babchishinHanson: {
+    label: "Babchishin, Hanson & Helmus risk-assessment accuracy meta-analysis",
+    href: "https://pubmed.ncbi.nlm.nih.gov/19290762/",
+    description:
+      "Meta-analysis comparing actuarial, structured, and unstructured risk-assessment approaches.",
     type: "Peer-reviewed article",
+  },
+  static99Coding: {
+    label: "Static-99R coding rules",
+    href: "https://www.waspc.org/assets/Static%2099%20Coding_manual_2016_v2.pdf",
+    description:
+      "Professional guidance on coding eligibility and proper Static-99R use.",
+    type: "Professional guidance",
+  },
+  static99Workbook: {
+    label: "Static-99R evaluators workbook",
+    href: "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
+    description:
+      "Evaluator workbook explaining group norms, relative risk, and interpretation.",
+    type: "Professional guidance",
+  },
+  pcrA: {
+    label: "PCRA construction and validation",
+    href: "https://www.uscourts.gov/file/22846/download",
+    description:
+      "Federal Probation article on the Post Conviction Risk Assessment as a general risk/needs tool.",
+    type: "Government journal article",
+  },
+  cportDevelopment: {
+    label: "CPORT development study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/25844514/",
+    description:
+      "Development study for a CSEM-specific empirical risk tool.",
+    type: "Peer-reviewed article",
+  },
+  cportValidation: {
+    label: "CPORT validation study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/29592774/",
+    description:
+      "Validation evidence for CPORT in adult male CSEM populations.",
+    type: "Peer-reviewed article",
+  },
+  cportCritical: {
+    label: "CPORT critical review for CSEM-exclusive forensic use",
+    href: "https://pubmed.ncbi.nlm.nih.gov/37471014/",
+    description:
+      "Critical review identifying limits in CPORT evidence for U.S. CSEM-exclusive forensic use.",
+    type: "Peer-reviewed article",
+  },
+  stable2007: {
+    label: "STABLE-2007 prospective study",
+    href: "https://doi.org/10.1177/0093854815602094",
+    description:
+      "Prospective evidence on structured dynamic risk factors and recidivism.",
+    type: "Peer-reviewed article",
+  },
+  sotips: {
+    label: "SOTIPS validation study",
+    href: "https://pubmed.ncbi.nlm.nih.gov/22368161/",
+    description:
+      "Dynamic risk and treatment-progress instrument validation evidence.",
+    type: "Peer-reviewed article",
+  },
+  vrsSo: {
+    label: "VRS-SO validity and reliability",
+    href: "https://pubmed.ncbi.nlm.nih.gov/17845123/",
+    description:
+      "Evidence on structured assessment of risk and therapeutic change.",
+    type: "Peer-reviewed article",
+  },
+  treatmentMeta: {
+    label: "Schmucker & Lösel treatment meta-analysis",
+    href: "https://doi.org/10.1007/s11292-015-9241-z",
+    description:
+      "Meta-analysis of specialized treatment and sexual recidivism outcomes.",
+    type: "Peer-reviewed meta-analysis",
+  },
+  smithDoe: {
+    label: "Smith v. Doe",
+    href: "https://supreme.justia.com/cases/federal/us/538/84/",
+    description:
+      "U.S. Supreme Court decision holding Alaska’s then-existing registry nonpunitive for ex post facto purposes.",
+    type: "Court opinion",
+  },
+  doesSnyder: {
+    label: "Does #1–5 v. Snyder",
+    href: "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
+    description:
+      "Sixth Circuit decision holding Michigan’s amended registry punitive in effect for ex post facto purposes.",
+    type: "Court opinion",
   },
 };
 
@@ -247,108 +385,210 @@ const positions: PositionSection[] = [
     id: "registry-effectiveness",
     number: "1",
     title: "Ineffective and rooted in misinformation",
-    subtitle: "What broad SORN research says about effectiveness, recidivism, public use, and the limits of registry-centered prevention.",
-    position: "The sex offender registry system is ineffective and rooted in misinformation.",
+    subtitle:
+      "Publication-safe claims about broad SORN effectiveness, registry mechanisms, public use, and recidivism mythology.",
+    position:
+      "The sex offender registry system is ineffective and rooted in misinformation.",
     claims: [
       {
+        id: "p1-c1",
         type: "Evidence synthesis",
-        claim: "Across 25 years of evaluated U.S. SORN policies, the strongest broad quantitative synthesis has not demonstrated a recidivism-reduction effect.",
-        meaning: "After decades of registry laws, the best broad pooled evidence still has not shown that SORN as a system reduces reoffending.",
-        evidence: "Zgoba and Mitchell synthesized 18 research articles, 474,640 individuals, and 42 effect sizes. The pooled effect was not statistically significant, including subgroup checks by sexual versus nonsexual recidivism and arrest versus conviction.",
+        claim:
+          "Across 25 years of evaluated U.S. SORN policies, the strongest broad quantitative synthesis has not demonstrated an overall recidivism-reduction effect.",
+        meaning:
+          "After decades of registry laws, the best broad pooled evidence still has not shown that SORN as a system reduces reoffending overall.",
+        evidence:
+          "Zgoba and Mitchell synthesized 18 research articles, 474,640 individuals, and 42 effect sizes. The pooled effect was not statistically significant, including subgroup checks by sexual versus nonsexual recidivism and arrest versus conviction.",
         sourceIds: ["zgobaMitchell"],
-        boundary: "Targeted programs can produce different findings. Minnesota’s selected Level 3 notification study reported favorable outcomes and should not be erased by the broader pooled result.",
+        boundary:
+          "Minnesota’s Level 3 community-notification study found favorable outcomes among selected higher-risk individuals; that finding should not be generalized into proof that broad public web registries work.",
       },
       {
+        id: "p1-c2",
         type: "Empirical finding",
-        claim: "Major state evaluations have repeatedly failed to show that broad registry-and-notification systems reduce sexual offending or sexual recidivism.",
-        meaning: "Large evaluations in multiple jurisdictions have not delivered the prevention effect the public is often told to assume.",
-        evidence: "The New Jersey evaluation found no demonstrated effect on several sexual-offense and recidivism outcomes. Agan and other state-level evaluations likewise found little evidence of broad crime-reduction effects.",
-        sourceIds: ["njMeganLaw", "agan"],
+        claim:
+          "Major state-level evaluations have repeatedly failed to show that broad registry-and-notification systems reduce sexual offending or sexual recidivism.",
+        meaning:
+          "Large evaluations in several states did not deliver the prevention results the public is often told to assume.",
+        evidence:
+          "The New York time-series study reported no support for SORN reducing several sexual-offense outcomes. The New Jersey NIJ evaluation found no demonstrated effect on multiple sexual-offense or rearrest outcomes. South Carolina adult-recidivism research likewise found no simple registration-status effect on sexual recidivism in modeled analyses.",
+        sourceIds: ["sandlerFreemanSocia", "njMeganLaw", "letourneauAdult"],
       },
       {
+        id: "p1-c2-first-time",
         type: "Empirical finding",
-        claim: "Detected sexual recidivism is a minority outcome in major official cohorts and varies materially by population, prior history, age, follow-up, and measurement.",
-        meaning: "The evidence does not support the common assumption that people convicted of sex offenses almost inevitably offend again.",
-        evidence: "BJS release cohorts and specialized federal research show minority detected sexual-recidivism outcomes, with substantial variation across subgroups and measures.",
-        sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear", "usscCsem", "hansonSimpleQuestion"],
-        boundary: "Rearrest, conviction, and other official measures undercount undetected conduct and should not be described as lifetime offending rates.",
+        claim:
+          "Large state datasets have found that the vast majority of sex-crime arrests involve people without a prior sex-crime conviction.",
+        meaning:
+          "Most detected sexual offending in these studies was not committed by repeat sex offenders who could already have been identified through a prior sex-offense conviction.",
+        evidence:
+          "Sandler, Freeman, and Socia found that more than 95% of sexual-offense arrests in their New York data involved first-time sex offenders. Levenson and Zgoba found that, across Florida data from 1990–2010, an average 6.5% of sex-crime arrests involved a person with a prior felony sex-crime conviction—meaning roughly 93.5% did not.",
+        sourceIds: ["sandlerFreemanSocia", "levensonZgobaFlorida"],
+        boundary:
+          "These are arrest-based state studies from particular historical periods, not a fixed national estimate of all sexual offending. Prior sex-crime conviction is also not literally identical to registry status in every individual case. The studies nevertheless strongly support the conclusion that repeat known sex offenders account for a small minority of detected sex-crime arrests in those datasets.",
       },
       {
+        id: "p1-c3",
         type: "Policy inference",
-        claim: "Registration, public notification, residence restrictions, supervision, treatment, and verification should not be treated as interchangeable evidence.",
-        meaning: "A study about one component does not prove that every component of the registry system works the same way.",
-        evidence: "Prescott and Rockoff separate registration from notification, while the broader literature evaluates different policy packages and mechanisms.",
+        claim:
+          "Registration, public Internet disclosure, targeted community notification, verification, residence restrictions, supervision, and treatment are different policy components and should not be treated as interchangeable evidence.",
+        meaning:
+          "A study about one part of the system does not automatically prove something about every other part.",
+        evidence:
+          "The literature separates law-enforcement registration from public notification and broader SORN packages. Prescott and Rockoff are especially useful because they analyze registration and notification as distinct mechanisms.",
         sourceIds: ["prescottRockoff", "zgobaMitchell"],
+      },
+      {
+        id: "p1-c4",
+        type: "Empirical finding",
+        claim:
+          "Public availability of registry information is not the same thing as public use, protective action, or crime reduction.",
+        meaning:
+          "A registry website can exist and still fail to produce the behavior change people imagine.",
+        evidence:
+          "Anderson and Sample’s survey work supports the distinction between registry availability, actual use, self-reported protective behavior, and measured crime reduction.",
+        sourceIds: ["andersonSample"],
+      },
+      {
+        id: "p1-c5",
+        type: "Empirical finding",
+        claim:
+          "Law-enforcement research documents implementation limits that constrain the registry’s claimed safety mechanism.",
+        meaning:
+          "Even when a registry has informational value, usefulness depends on accuracy, communication, public understanding, and real-world implementation.",
+        evidence:
+          "Research with law-enforcement personnel has identified concerns about information reliability, inter-system communication, public interpretation, workload, and the utility of increasingly large registries.",
+        sourceIds: ["harrisLawEnforcement", "cubellis"],
+        boundary:
+          "Practitioner perception is evidence about implementation and belief; it is not direct evidence that SORN reduces offending.",
+      },
+      {
+        id: "p1-c6",
+        type: "Empirical finding",
+        claim:
+          "Major official and longitudinal studies consistently find that detected sexual recidivism is a minority outcome, with rates varying substantially by population, prior history, age, follow-up period, and outcome measure.",
+        meaning:
+          "The evidence does not support the common assumption that people convicted of sex offenses almost always offend again.",
+        evidence:
+          "BJS release studies and longer-term research show detected sexual recidivism as a minority outcome while also documenting substantial variation by subgroup, prior history, age, follow-up period, and measurement basis.",
+        sourceIds: [
+          "bjs1994SexOffenders",
+          "bjs2019NineYear",
+          "hansonBussiere",
+          "hansonSimpleQuestion",
+        ],
+        boundary:
+          "Official rearrest, charge, conviction, and reincarceration measures undercount undetected conduct and should not be described as lifetime offending rates.",
       },
     ],
   },
   {
     id: "community-safety",
     number: "2",
-    title: "Registry policies can make communities less safe",
-    subtitle: "Evidence and bounded inferences about destabilization, notification, residence restrictions, and counterproductive safety effects.",
+    title: "Registry policy and community safety",
+    subtitle:
+      "Publication-safe claims about counterproductive effects, destabilization, public notification, residence restrictions, and reintegration.",
     position: "Registry policies can make communities less safe.",
     claims: [
       {
-        type: "Empirical finding",
-        claim: "Public notification can create countervailing effects: one major study found evidence consistent with notification increasing recidivism among people already on registries.",
-        meaning: "More exposure is not automatically more safety. Publicity can impose social and financial costs that work against reintegration.",
-        evidence: "Prescott and Rockoff found patterns consistent with registration reducing offending through law-enforcement information while public notification had different effects, including evidence consistent with increased recidivism among registered people.",
-        sourceIds: ["prescottRockoff"],
-        boundary: "This does not establish that every notification regime or registry system produces a net increase in offending. It identifies a credible counterproductive mechanism and measured effect in an influential study.",
-      },
-      {
+        id: "p2-c1",
         type: "Evidence synthesis",
-        claim: "Policies that destabilize housing, work, treatment access, and family support can undermine conditions associated with successful reintegration.",
-        meaning: "A public-safety policy can work against itself when it makes stable lawful life harder to sustain.",
-        evidence: "Government and peer-reviewed reviews document housing, employment, social, and psychological burdens. DOJ’s SMART synthesis specifically warns that residence restrictions may increase risk by undermining housing, employment, and family support.",
-        sourceIds: ["smartManagement", "smartCollateralReview", "lasherMcGrath"],
-        boundary: "The complete burden-to-destabilization-to-new-victimization pathway has not been proven end to end for every registry burden.",
+        claim:
+          "Policies that destabilize housing, employment, treatment, and family support can undermine conditions associated with successful reentry and public safety.",
+        meaning:
+          "Housing, work, treatment, and family support are not side issues. They are part of the stability on which successful reintegration depends.",
+        evidence:
+          "Government and peer-reviewed reviews document housing, employment, social, and psychological burdens associated with registry and restriction regimes. DOJ’s SMART synthesis specifically warns that residence restrictions can undermine housing, work, and family support in ways that may aggravate rather than mitigate risk.",
+        sourceIds: [
+          "smartManagement",
+          "smartCollateralReview",
+          "levensonCotter",
+          "lasherMcGrath",
+        ],
+        boundary:
+          "The destabilizing burdens are documented more directly than the complete causal chain from a specific burden to a new sexual offense. The latter should not be overstated.",
       },
       {
+        id: "p2-c2",
         type: "Empirical finding",
-        claim: "Residence restrictions can sharply reduce lawful housing options and contribute to residential instability or transience.",
-        meaning: "Rules designed to create distance from perceived risk can make stable housing substantially harder to obtain.",
-        evidence: "GIS and residence-restriction studies document large reductions in lawful housing availability and links between restrictive geography, displacement, and transience.",
-        sourceIds: ["zandbergenHart", "residenceTransience"],
-        boundary: "Residence restrictions vary by jurisdiction and are not required by federal SORNA. Local geography and rule design materially affect the result.",
+        claim:
+          "One major study found evidence consistent with public notification increasing recidivism among registered people even while notification may deter some first-time offending.",
+        meaning:
+          "More public exposure does not have a uniformly protective effect.",
+        evidence:
+          "Prescott and Rockoff separated registration from notification and reported results consistent with community notification deterring some first-time offending while increasing recidivism among registered people because notification changes the relative costs of legal and illegal behavior.",
+        sourceIds: ["prescottRockoff"],
+        boundary:
+          "This is an important mechanism-specific study, not proof that every notification system in every jurisdiction increases recidivism.",
       },
       {
+        id: "p2-c3",
+        type: "Evidence synthesis",
+        claim:
+          "Residence restrictions have not demonstrated a general recidivism-reduction benefit and can produce destabilizing unintended consequences.",
+        meaning:
+          "A rule can sound protective while making lawful, stable reentry harder.",
+        evidence:
+          "The SMART SOMAPI synthesis reports no empirical support for residence restrictions as a general prevention strategy and identifies housing loss, support-system loss, financial hardship, displacement, and transience as important unintended consequences.",
+        sourceIds: ["smartManagement", "residenceTransience", "zandbergenHart"],
+        boundary:
+          "Residence restrictions are state and local policies rather than a required component of federal SORNA, and their design varies substantially by jurisdiction.",
+      },
+      {
+        id: "p2-c4",
         type: "Policy inference",
-        claim: "The evidence is sufficient to reject the assumption that greater exposure and restriction necessarily produce greater safety.",
-        meaning: "Registry policy should be tested for unintended safety effects rather than credited with benefits by intuition alone.",
-        evidence: "Countervailing notification findings, documented destabilization, and residence-restriction evidence together show that registry mechanisms can impose conditions that work against stated public-safety goals.",
-        sourceIds: ["prescottRockoff", "smartManagement", "zandbergenHart"],
+        claim:
+          "Public-safety policy should account for counterproductive effects as well as intended benefits.",
+        meaning:
+          "A policy does not become protective merely because protection is its stated purpose.",
+        evidence:
+          "The combination of broad null or mixed SORN findings, mechanism-specific notification results, and documented destabilizing consequences supports evaluating both intended and unintended effects rather than presuming net benefit.",
+        sourceIds: ["zgobaMitchell", "prescottRockoff", "smartManagement"],
       },
     ],
   },
   {
     id: "relationship-access",
     number: "3",
-    title: "Relationship and access, not stranger-location mapping",
-    subtitle: "What child-safety evidence says about known perpetrators, trusted access, and the limits of public maps as a prevention model.",
-    position: "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
+    title: "Relationship, access, and trust—not stranger-location mapping",
+    subtitle:
+      "Publication-safe claims about child-safety threat models and the limits of registry-centered prevention.",
+    position:
+      "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
     claims: [
       {
+        id: "p3-c1",
         type: "Empirical finding",
-        claim: "Reported child sexual abuse is predominantly committed by people known to the child rather than strangers.",
-        meaning: "The central child-safety problem is usually access and trust, not an unknown person living nearby.",
-        evidence: "BJS data on sexual assaults of young children reported to law enforcement show family members and acquaintances dominating the known victim-offender relationship categories, with strangers a small minority.",
+        claim:
+          "Reported child sexual abuse is predominantly committed by people known to the child rather than strangers.",
+        meaning:
+          "The biggest child-safety problem is usually access and trust, not an unknown person living nearby.",
+        evidence:
+          "BJS’s report on sexual assault of young children reported to law enforcement is a strong official source for victim-offender relationship patterns and supports relationship-and-access framing rather than a stranger-location model.",
         sourceIds: ["bjsChildKnown"],
-        boundary: "The BJS source covers incidents reported to law enforcement; unreported abuse has different measurement limits.",
+        boundary:
+          "The BJS source is about cases reported to law enforcement; unreported abuse may have different measurement limits.",
       },
       {
+        id: "p3-c2",
         type: "Policy inference",
-        claim: "A public registry is a poor standalone child-safety model because known-access offending is not the same prevention target as stranger-location warning.",
-        meaning: "Address lookups do not answer who has private access, authority, secrecy, trust, or institutional protection.",
-        evidence: "Known-perpetrator data and research on registry awareness and use support a prevention model that reaches beyond location visibility.",
-        sourceIds: ["bjsChildKnown", "andersonSample"],
+        claim:
+          "A registry website is a poor standalone child-safety model because known-access offending is not the same prevention target as stranger-location warning.",
+        meaning:
+          "Looking up nearby addresses does not answer the deeper safety questions: who has private access, authority, secrecy, and trust?",
+        evidence:
+          "Known-perpetrator data, public-use research, and registry-implementation studies together show why a public map is an incomplete child-safety model.",
+        sourceIds: ["bjsChildKnown", "andersonSample", "harrisLawEnforcement"],
       },
       {
+        id: "p3-c3",
         type: "Policy inference",
-        claim: "Registry-centered prevention can misdirect attention when it encourages the public to treat location visibility as the main child-safety strategy.",
-        meaning: "Effective prevention must also address relationships, access, disclosure, institutional response, and trusted authority.",
-        evidence: "The known-perpetrator pattern, limited public registry use, and weak broad SORN outcome evidence make a stranger-location model incomplete as a prevention strategy.",
+        claim:
+          "Registry-centered prevention can misdirect attention when it encourages the public to treat location visibility as the main child-safety strategy.",
+        meaning:
+          "Children are better protected by prevention systems that address access, reporting, institutional response, supervision, and trusted authority—not by assuming a public map solves the problem.",
+        evidence:
+          "Known-person victim-offender data, the gap between registry availability and protective behavior, and broad null SORN findings support prevention strategies that reach beyond location visibility.",
         sourceIds: ["bjsChildKnown", "andersonSample", "zgobaMitchell"],
       },
     ],
@@ -356,116 +596,187 @@ const positions: PositionSection[] = [
   {
     id: "lifelong-branding",
     number: "4",
-    title: "Other serious harms are addressed without lifelong public branding",
-    subtitle: "Comparative evidence and policy reasoning about why permanent public status is an exceptional intervention rather than an ordinary response to serious harm.",
+    title: "Lifelong public branding as an exceptional response",
+    subtitle:
+      "Publication-safe comparative claims about how other serious harms are managed and why exceptional burdens require exceptional justification.",
     position: "Other serious harms are addressed without lifelong public branding.",
     claims: [
       {
-        type: "Policy inference",
-        claim: "Public-safety systems routinely address serious recurring harms through prevention, regulation, treatment, enforcement, and sentence-bound accountability without creating a permanent public identity for every person convicted.",
-        meaning: "Permanent public branding is an exceptional policy tool, not the default response to serious danger.",
-        evidence: "Firearm injury, impaired driving, and domestic violence illustrate major public-safety problems addressed through combinations of prevention, regulation, enforcement, treatment, technology, and criminal sanctions rather than a universal lifelong public registry model.",
+        id: "p4-c1",
+        type: "Comparative finding",
+        claim:
+          "Many serious and recurring public-safety harms are addressed through prevention, regulation, enforcement, technology, treatment, and ordinary criminal accountability rather than permanent public identity branding.",
+        meaning:
+          "The registry is an unusually durable public-status intervention, not the default way the United States responds to every serious harm.",
+        evidence:
+          "Federal public-health, transportation-safety, and criminal-justice sources illustrate prevention and intervention systems for firearm injury, impaired driving, and domestic violence that do not depend on a universal lifelong public list of everyone previously convicted.",
         sourceIds: ["cdcFirearm", "nhtsaImpaired", "bjsDomestic"],
-        boundary: "These harms are not identical to sexual harm. The comparison concerns policy architecture, not moral equivalence between offenses or victims.",
+        boundary:
+          "These harms are not identical and do not require identical policy responses. The comparison is about the form and duration of public-safety intervention, not moral equivalence.",
       },
       {
+        id: "p4-c2",
         type: "Comparative finding",
-        claim: "Sex-offense release groups are not uniformly the highest-recidivism group when the outcome is any new arrest.",
-        meaning: "Exceptional permanent public status cannot be justified simply by assuming this population has the highest overall reoffending rate.",
-        evidence: "BJS same-cohort studies report lower overall rearrest for rape/sexual-assault release groups than for released prisoners overall, while also showing elevated relative risk for specifically detected sexual reoffending.",
-        sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear"],
-        boundary: "Overall rearrest and sexual rearrest are different outcomes. Relative elevation for a specific offense type can coexist with a minority absolute rate.",
-      },
-      {
-        type: "Comparative finding",
-        claim: "Same-type recidivism concentration is not unique to sexual offending.",
-        meaning: "People with prior offenses often show some specialization across many crime categories; repeat-offense concentration is not uniquely a sex-offense phenomenon.",
-        evidence: "BJS same-offense tables show elevated same-type rearrest likelihood across homicide, rape, sexual assault, robbery, assault, burglary, theft, fraud, drug, and public-order categories.",
+        claim:
+          "Repeat-offense concentration is not unique to sexual offending; same-type specialization appears across many offense categories.",
+        meaning:
+          "The existence of recurrence risk does not by itself explain why one class of convictions should trigger permanent public identity.",
+        evidence:
+          "BJS same-offense recidivism tables show elevated same-type rearrest patterns across multiple offense categories, including violent, property, drug, and public-order offenses.",
         sourceIds: ["bjs1994Specialization", "bjs2012Releases"],
+        boundary:
+          "The magnitude of specialization differs by offense and base rate; this is not a claim that all offense categories present equal risks.",
       },
       {
-        type: "SOLAR conclusion",
-        claim: "Because permanent public identification is an exceptional burden, it should require an exceptional evidence-based justification rather than an assumption that sexual offenses are categorically different in every risk dimension.",
-        meaning: "The policy burden should be justified by what it demonstrably accomplishes, not by the seriousness of the label alone.",
-        evidence: "Comparative recidivism evidence, broader SORN outcome research, and evidence-based reform recommendations support asking why this policy category receives permanent public status when many other serious harms do not.",
-        sourceIds: ["zgobaMitchell", "bjs2019NineYear", "atsaReform"],
+        id: "p4-c3",
+        type: "Comparative finding",
+        claim:
+          "Sex-offense release groups are not uniformly the highest-recidivating groups when the outcome is overall rearrest.",
+        meaning:
+          "Sexual-offense history can matter for sexual-reoffense risk without making the group uniquely highest-risk on every public-safety measure.",
+        evidence:
+          "Major BJS and federal same-cohort comparisons show lower overall rearrest for some sex-offense release groups than for other released-prisoner groups, while also showing relative elevation on specifically sexual rearrest.",
+        sourceIds: ["bjs2019NineYear", "ussc2010Recidivism"],
+        boundary:
+          "Overall rearrest and sexual rearrest answer different questions; both should be reported when relevant.",
+      },
+      {
+        id: "p4-c4",
+        type: "Policy inference",
+        claim:
+          "The more exceptional and durable a public burden is, the stronger the case should be that its demonstrated benefits justify it.",
+        meaning:
+          "Permanent public branding should not be treated as self-justifying simply because the underlying harm is serious.",
+        evidence:
+          "Broad SORN effectiveness findings, documented burdens, and expert reform recommendations support a benefit-versus-burden approach rather than assuming that exceptional status is warranted by offense category alone.",
+        sourceIds: ["zgobaMitchell", "njMeganLaw", "atsaReform"],
       },
     ],
   },
   {
     id: "punitive-practice",
     number: "5",
-    title: "Punitive in practice, not merely administrative",
-    subtitle: "Legal doctrine and lived-effects evidence distinguishing a civil label from the practical operation of modern registry systems.",
+    title: "Punitive in practice",
+    subtitle:
+      "Publication-safe claims distinguishing legal classification from empirical and lived effects.",
     position: "Registries are punitive in practice, not merely administrative.",
     claims: [
       {
+        id: "p5-c1",
         type: "Legal fact",
-        claim: "A court’s civil label for a registry scheme does not end the empirical or legal question whether a materially different modern scheme operates punitively in effect.",
-        meaning: "Legal classification and lived effect are related, but they are not the same thing.",
-        evidence: "Smith v. Doe held Alaska’s then-existing system nonpunitive for federal ex post facto purposes. Does #1–5 v. Snyder later found materially different Michigan provisions punitive in effect.",
+        claim:
+          "A court’s civil label for a registry scheme does not end the empirical or policy question whether modern registry systems operate punitively in practice.",
+        meaning:
+          "Legal doctrine and lived effect are related, but they are not the same thing.",
+        evidence:
+          "Smith v. Doe held Alaska’s then-existing registry nonpunitive for federal ex post facto purposes. Later decisions, including Does #1–5 v. Snyder, show that materially different modern schemes can be judged punitive in effect.",
         sourceIds: ["smithDoe", "doesSnyder"],
       },
       {
+        id: "p5-c2",
         type: "SOLAR conclusion",
-        claim: "Public exposure, recurring reporting, residence and proximity limits, employment barriers, and long-duration public status can function as continuing punishment in everyday life after sentence completion.",
-        meaning: "For many people, the practical burden of the conviction does not end when the formal sentence ends.",
-        evidence: "The conclusion synthesizes documented reintegration burdens, housing restrictions, public-notification consequences, and modern constitutional litigation over punitive effects.",
-        sourceIds: ["levensonCotter", "lasherMcGrath", "zandbergenHart", "doesSnyder"],
+        claim:
+          "Public exposure, recurring reporting duties, residence and proximity limits, employment barriers, and long-duration public status can function as continuing punishment after sentence completion.",
+        meaning:
+          "For the person living under the system, the burdens do not necessarily end when the sentence ends.",
+        evidence:
+          "This is a SOLAR synthesis grounded in documented reintegration burdens, residence-restriction effects, administrative demands, public-notification consequences, and constitutional litigation over punitive effects.",
+        sourceIds: [
+          "levensonCotter",
+          "lasherMcGrath",
+          "zandbergenHart",
+          "doesSnyder",
+        ],
       },
       {
+        id: "p5-c3",
         type: "Legal fact",
-        claim: "Modern registry constitutional analysis is fact-sensitive because courts assess the specific law and its effects, not the word ‘registry’ in the abstract.",
-        meaning: "A legal answer based on an older, less restrictive system does not automatically settle every later registry design.",
-        evidence: "The contrast between Smith and Snyder illustrates why added exclusion zones, reporting duties, public exposure, and other burdens can matter to legal analysis.",
+        claim:
+          "Modern registry challenges are fact-sensitive because courts assess the specific law’s effects, not the word “registry” in the abstract.",
+        meaning:
+          "The legal answer can change when a registry adds exclusion zones, in-person reporting, public branding, internet disclosure, or other heavy burdens.",
+        evidence:
+          "Smith v. Doe applied an intent-effects framework to Alaska’s law as it existed then. Does #1–5 v. Snyder applied that framework to Michigan’s amended scheme and found punitive effects.",
         sourceIds: ["smithDoe", "doesSnyder"],
       },
       {
+        id: "p5-c4",
         type: "Policy inference",
-        claim: "When punishment-like burdens persist without demonstrated broad safety gains, proportionality becomes a central policy question.",
-        meaning: "Calling a burden administrative does not answer whether it is justified.",
-        evidence: "Weak broad effectiveness evidence coexists with documented housing, employment, social, and administrative burdens.",
-        sourceIds: ["zgobaMitchell", "njMeganLaw", "lasherMcGrath"],
+        claim:
+          "When a system produces punishment-like burdens without demonstrating broad public-safety gains, proportionality becomes a central policy question.",
+        meaning:
+          "The state should not get to impose lifelong practical punishment merely by calling it administration.",
+        evidence:
+          "Pooled null or inconsistent recidivism effects coexist with documented financial, administrative, housing, employment, and reintegration burdens. That makes benefit-versus-burden an empirical proportionality question.",
+        sourceIds: [
+          "zgobaMitchell",
+          "njMeganLaw",
+          "levensonCotter",
+          "lasherMcGrath",
+        ],
       },
     ],
   },
   {
     id: "family-children",
     number: "6",
-    title: "Registry systems punish families and children too",
-    subtitle: "Evidence on household spillover, financial strain, forced moves, stigma, harassment, and consequences borne by people who committed no offense.",
+    title: "Families and children bear collateral punishment",
+    subtitle:
+      "Publication-safe claims about household spillover, children, stigma, housing disruption, financial strain, and collateral consequences.",
     position: "Registry systems punish families and children too.",
     claims: [
       {
+        id: "p6-c1",
         type: "Empirical finding",
-        claim: "Registry consequences can extend beyond the registered person to spouses, children, and other family members.",
-        meaning: "The household can bear financial, housing, social, and safety consequences even though the legal obligation attaches to one person.",
-        evidence: "Family-focused research reports financial hardship, housing disruption, stigma, threats, property damage, isolation, and other spillover consequences among family members of people on registries.",
+        claim:
+          "Registry-related burdens can extend beyond the person required to register and affect spouses, children, and other family members.",
+        meaning:
+          "The practical consequences of public registration can spread through an entire household.",
+        evidence:
+          "Family-focused research and government evidence reviews document financial strain, housing disruption, stigma, harassment, social isolation, and other spillover burdens reported by family members of people required to register.",
         sourceIds: ["levensonFamily", "smartCollateralReview"],
-        boundary: "Family studies often rely on volunteer or convenience samples and should not be used to claim a precise national prevalence for every consequence.",
+        boundary:
+          "Family studies often rely on volunteer or self-selected samples and should not be used to claim a precise national prevalence for every burden.",
       },
       {
+        id: "p6-c2",
         type: "Empirical finding",
-        claim: "Children in registered households can experience stigma, social exclusion, disruption, and other collateral effects tied to a parent or family member’s public status.",
-        meaning: "Registry policy can impose real costs on children who committed no offense.",
-        evidence: "Family collateral-damage research includes reported effects on children’s social lives, schooling, emotional wellbeing, housing stability, and exposure to stigma or harassment.",
-        sourceIds: ["levensonFamily", "smartCollateralReview"],
-        boundary: "Direct child-specific research is thinner than the broader adult and household collateral-consequences literature, so the page avoids claiming that every child experiences the same effects.",
+        claim:
+          "Children can experience stigma, harassment, social exclusion, and household disruption because of a parent or family member’s registry status.",
+        meaning:
+          "Children who committed no offense can still bear social and practical consequences of the registry.",
+        evidence:
+          "The family collateral-damage literature reports child-specific consequences alongside broader household effects, including stigma and disruption associated with public status and exclusion.",
+        sourceIds: ["levensonFamily"],
+        boundary:
+          "The evidence establishes documented child impacts; it does not establish that every child in a registrant household experiences the same consequences.",
       },
       {
-        type: "Empirical finding",
-        claim: "Housing and employment barriers can propagate through an entire household rather than remaining an individual consequence.",
-        meaning: "A lost home or job changes the material conditions of spouses and children too.",
-        evidence: "Reintegration research documents job and housing barriers, while residence-restriction studies show how lawful housing supply can be sharply constrained. Those burdens necessarily operate at the household level when family members share income and housing.",
-        sourceIds: ["levensonCotter", "lasherMcGrath", "zandbergenHart"],
+        id: "p6-c3",
+        type: "Evidence synthesis",
+        claim:
+          "Housing and employment barriers can become family burdens because lost housing, income, transportation, and community access are shared household conditions.",
+        meaning:
+          "A legal burden aimed at one person can change where an entire family lives and what resources it has.",
+        evidence:
+          "Research on collateral effects, housing restrictions, transience, and family impacts shows how registry-related exclusion can propagate through shared household finances, residence, and social support.",
+        sourceIds: [
+          "smartCollateralReview",
+          "levensonFamily",
+          "residenceTransience",
+          "levensonCotter",
+        ],
       },
       {
-        type: "SOLAR conclusion",
-        claim: "When registry rules predictably burden spouses and children who were never convicted or sentenced, describing those effects as collateral punishment is a defensible policy judgment.",
-        meaning: "The state’s formal target may be one person, but the practical burden can reach innocent family members.",
-        evidence: "The judgment rests on documented family spillover, housing and employment consequences, public exposure, and the duration of registry obligations.",
+        id: "p6-c4",
+        type: "Policy inference",
+        claim:
+          "Collateral consequences imposed on people who committed no offense should count in any assessment of a registry policy’s proportionality and public-safety value.",
+        meaning:
+          "Families and children should not disappear from the policy ledger simply because the legal duty is formally imposed on someone else.",
+        evidence:
+          "Documented family spillover, housing disruption, and reintegration burdens support treating collateral household effects as part of the policy’s real-world cost.",
         sourceIds: ["levensonFamily", "smartCollateralReview", "lasherMcGrath"],
-        boundary: "‘Punishment’ here is a SOLAR policy description of practical burden, not a claim that every collateral consequence is legally classified as criminal punishment.",
       },
     ],
   },
@@ -473,76 +784,172 @@ const positions: PositionSection[] = [
     id: "individualized-risk",
     number: "7",
     title: "One-size-fits-all registry laws are fundamentally flawed",
-    subtitle: "Evidence on heterogeneity, age, time offense-free, assessment methods, treatment, and why offense labels are poor substitutes for current individual risk.",
+    subtitle:
+      "Publication-safe claims about heterogeneity, offense labels, age, time offense-free, assessment tools, treatment, and calibration.",
     position: "One-size-fits-all registry laws are fundamentally flawed.",
     claims: [
       {
+        id: "p7-c1",
         type: "Empirical finding",
-        claim: "An offense label is not a validated measure of an individual’s current risk.",
-        meaning: "Knowing the conviction category alone does not tell you how likely a particular person is to offend again.",
-        evidence: "Official cohorts and specialized research show substantial variation by criminal history, age, prior offense history, offense type, and subgroup.",
-        sourceIds: ["bjs2019NineYear", "ussc2010Recidivism", "usscCsem", "hansonSimpleQuestion"],
+        claim:
+          "An offense label is not a validated measure of an individual’s current risk.",
+        meaning:
+          "Knowing what someone was convicted of does not tell you, by itself, how likely that person is to offend again.",
+        evidence:
+          "Research documents substantial heterogeneity by prior offense history, age, time offense-free, criminal history, CSEM versus contact offense profile, and tool population fit.",
+        sourceIds: [
+          "bjs2019NineYear",
+          "ussc2010Recidivism",
+          "usscCsem",
+          "hansonSimpleQuestion",
+        ],
       },
       {
+        id: "p7-c2",
         type: "Empirical finding",
-        claim: "Risk changes across the life course; age and sustained offense-free time materially affect observed risk.",
-        meaning: "Risk is not frozen forever at the moment of conviction.",
-        evidence: "Long-term recidivism research and actuarial guidance recognize declining average risk with age and offense-free time.",
-        sourceIds: ["hansonSimpleQuestion", "static99Workbook", "ussc2010Recidivism"],
-        boundary: "Age and offense-free time lower average risk; they do not eliminate risk for every individual.",
+        claim:
+          "Risk is dynamic across the life course: age and time offense-free materially change empirically observed risk.",
+        meaning:
+          "Risk is not frozen forever at the moment of conviction.",
+        evidence:
+          "Age, desistance, long-term follow-up evidence, and actuarial guidance support the conclusion that risk changes over time and should not be treated as a permanent category label.",
+        sourceIds: [
+          "hansonSimpleQuestion",
+          "ussc2010Recidivism",
+          "static99Coding",
+          "static99Workbook",
+        ],
+        boundary:
+          "Age and offense-free time lower average risk; they do not eliminate risk for every individual.",
       },
       {
+        id: "p7-c3",
         type: "Empirical finding",
-        claim: "Structured actuarial approaches generally outperform unstructured professional judgment in predicting sexual recidivism.",
-        meaning: "Risk decisions should not be based only on offense title, fear, or professional intuition.",
-        evidence: "Meta-analytic evidence finds stronger predictive performance for actuarial approaches than for unstructured judgment.",
-        sourceIds: ["babchishinHanson"],
-        boundary: "Structured methods are not perfect prediction; tool population, purpose, calibration, and decision context still matter.",
+        claim:
+          "Validated actuarial methods generally outperform unstructured professional judgment in predicting sexual recidivism.",
+        meaning:
+          "Risk decisions should not be based only on fear, offense title, or a professional gut feeling.",
+        evidence:
+          "Meta-analytic evidence supports structured, empirically grounded assessment over unstructured professional judgment.",
+        sourceIds: ["babchishinHanson", "hansonMortonBourgon"],
+        boundary:
+          "Structured methods are not perfect prediction; usefulness depends on the population, tool purpose, and decision being made.",
       },
       {
+        id: "p7-c4",
         type: "Empirical finding",
-        claim: "Treatment and other dynamic information can matter to risk and management decisions.",
-        meaning: "Some relevant factors are historical, while others can change with treatment, stability, supervision, and behavior.",
-        evidence: "Treatment meta-analysis and evidence-based reform guidance support policies that account for change rather than treating risk as permanently fixed.",
-        sourceIds: ["treatmentMeta", "atsaReform"],
+        claim:
+          "PCRA results should not be treated as if they directly answer a specialized sexual-recidivism question.",
+        meaning:
+          "A general federal risk/needs score is not automatically a sex-offense risk score.",
+        evidence:
+          "PCRA was built for general federal post-conviction risk and intervention needs. Federal CSEM validation work illustrates the importance of distinguishing general and specialized outcomes.",
+        sourceIds: ["pcrA", "cohenCsem"],
+        boundary:
+          "General-risk tools can correlate with specialized outcomes; correlation does not transform their validated primary purpose.",
+      },
+      {
+        id: "p7-c5",
+        type: "Empirical finding",
+        claim:
+          "Moderate AUCs can contain useful ranking information while still being inadequate for precise individual probability claims.",
+        meaning:
+          "A tool can be better than guessing and still not tell you that a particular person has a precise percent chance of reoffending.",
+        evidence:
+          "AUC is a discrimination statistic: it ranks relative ordering but does not by itself establish calibration, absolute probability, causation, or certainty for a particular person.",
+        sourceIds: ["cohenCsem", "cportDevelopment", "cportValidation"],
+      },
+      {
+        id: "p7-c6",
+        type: "Empirical finding",
+        claim:
+          "Transporting a score-to-percentage table across populations requires calibration evidence, not just a respectable AUC.",
+        meaning:
+          "A number developed in one sample may not give the right absolute-risk estimate in another setting.",
+        evidence:
+          "Static-99R norms and CPORT validation concerns illustrate why discrimination and calibration must be kept separate. Reference-group choice and population fit must be explicit.",
+        sourceIds: ["static99Workbook", "cportValidation", "cportCritical"],
+      },
+      {
+        id: "p7-c7",
+        type: "Empirical finding",
+        claim:
+          "Risk assessment should distinguish historical baseline risk from changeable treatment and supervision needs rather than treating risk as permanently fixed.",
+        meaning:
+          "Some risk-relevant facts are historical. Others can change with time, treatment, stability, supervision, and behavior.",
+        evidence:
+          "STABLE-2007, SOTIPS, VRS-SO, and treatment meta-analysis evidence support the existence of structured dynamic risk and change-related information.",
+        sourceIds: ["stable2007", "sotips", "vrsSo", "treatmentMeta"],
+        boundary:
+          "Dynamic ratings require training, appropriate data, and good longitudinal information.",
       },
     ],
   },
   {
     id: "permanent-underclass",
     number: "8",
-    title: "Registries create a permanent underclass",
-    subtitle: "Evidence and SOLAR synthesis on cumulative housing, employment, social, and administrative barriers that obstruct ordinary reintegration.",
+    title: "Permanent underclass",
+    subtitle:
+      "Publication-safe SOLAR synthesis claims about cumulative reintegration barriers and long-duration public status.",
     position: "Registries create a permanent underclass.",
     claims: [
       {
+        id: "p8-c1",
         type: "SOLAR conclusion",
-        claim: "Registry systems create a permanent underclass when public status, legal restrictions, private exclusion, and recurring administrative demands combine to obstruct ordinary reintegration.",
-        meaning: "The label can follow people into housing, work, family life, services, and community participation long after the sentence ends.",
-        evidence: "This synthesis rests on documented housing loss, employment exclusion, psychological burden, public-notification effects, residence restrictions, and long-duration public status.",
-        sourceIds: ["levensonCotter", "lasherMcGrath", "zandbergenHart", "smartCollateralReview"],
-        boundary: "The term describes the cumulative architecture and its recurring effects; it does not claim every registered person experiences every barrier in the same way.",
+        claim:
+          "Registry systems create a permanent underclass when public status, legal restrictions, private exclusion, and administrative demands combine to obstruct ordinary reintegration.",
+        meaning:
+          "The registry can follow a person into housing, work, family life, community participation, and public identity long after the court sentence is over.",
+        evidence:
+          "This is a SOLAR synthesis grounded in documented housing loss, employment exclusion, psychological burden, community-notification effects, residence restrictions, and recurring administrative demands.",
+        sourceIds: [
+          "levensonCotter",
+          "lasherMcGrath",
+          "zandbergenHart",
+          "smartCollateralReview",
+        ],
       },
       {
+        id: "p8-c2",
         type: "Empirical finding",
-        claim: "Housing barriers are a central mechanism through which registry systems destabilize people and households.",
-        meaning: "Without a lawful, stable place to live, nearly every other part of reentry becomes harder.",
-        evidence: "GIS, reintegration, and collateral-effects research documents reduced housing options, residential disruption, and instability associated with registry exposure and restrictions.",
-        sourceIds: ["zandbergenHart", "residenceTransience", "levensonCotter"],
+        claim:
+          "Housing barriers are a central mechanism through which registry systems destabilize people and families.",
+        meaning:
+          "Housing is not a side issue. Without a lawful, stable place to live, nearly every other part of reentry becomes harder.",
+        evidence:
+          "GIS, restriction, and reintegration research shows how exclusion zones and public status can reduce housing options and contribute to residential disruption.",
+        sourceIds: [
+          "zandbergenHart",
+          "residenceTransience",
+          "levensonCotter",
+          "lasherMcGrath",
+        ],
+        boundary:
+          "Housing effects vary by local law, geography, landlord practice, supervision rules, and family resources.",
       },
       {
+        id: "p8-c3",
         type: "Empirical finding",
-        claim: "Employment and social exclusion are documented registry consequences, not merely speculative complaints.",
-        meaning: "Public status can materially narrow access to ordinary work and community participation.",
-        evidence: "Reintegration reviews document job loss or exclusion, social isolation, threats, psychological effects, and other barriers associated with notification and public registry exposure.",
+        claim:
+          "Employment and social exclusion are documented registry consequences, not speculative complaints.",
+        meaning:
+          "People on registries can face work and community barriers because their public status invites exclusion.",
+        evidence:
+          "The reintegration literature includes job loss or exclusion, social isolation, threats, and psychological effects associated with public registry and notification exposure.",
         sourceIds: ["levensonCotter", "lasherMcGrath", "smartCollateralReview"],
       },
       {
+        id: "p8-c4",
         type: "Policy inference",
-        claim: "A system that erects durable barriers to housing, work, and community participation can deny people the stability infrastructure necessary for successful reintegration.",
-        meaning: "Reentry is harder when lawful life is structurally difficult to sustain.",
-        evidence: "The inference follows from documented housing, employment, social, and household burdens without requiring the stronger claim that each burden directly causes new offending.",
-        sourceIds: ["lasherMcGrath", "smartCollateralReview", "zandbergenHart"],
+        claim:
+          "A system that undermines housing, employment, and community reintegration can weaken the same stability infrastructure public safety depends on.",
+        meaning:
+          "Public safety is not served by making lawful life harder than it needs to be.",
+        evidence:
+          "Documented collateral burdens and the lack of demonstrated broad SORN recidivism reduction support this stability-and-proportionality inference without requiring a claim that every individual burden directly causes reoffending.",
+        sourceIds: ["zgobaMitchell", "lasherMcGrath", "levensonCotter"],
+        boundary:
+          "This is a stability-and-proportionality claim, not a claim that every collateral burden has a proven direct causal effect on reoffending.",
       },
     ],
   },
@@ -550,44 +957,84 @@ const positions: PositionSection[] = [
     id: "measurable-outcomes",
     number: "9",
     title: "Measurable outcomes, not presumed benefits",
-    subtitle: "Methodological claims that keep public-safety policy tied to measured outcomes, distinct mechanisms, and benefit-versus-burden analysis.",
-    position: "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
+    subtitle:
+      "Publication-safe methodological claims that keep policy claims tied to evidence, mechanisms, and actual outcomes.",
+    position:
+      "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
     claims: [
       {
+        id: "p9-c1",
         type: "Policy inference",
-        claim: "The seriousness of sexual harm does not prove that a registry policy prevents it.",
-        meaning: "A problem can be grave and an intervention imposed in its name can still fail.",
-        evidence: "The moral seriousness of sexual harm and the measured effectiveness of a policy are separate questions. Broad SORN evidence has not demonstrated a general recidivism-reduction effect.",
+        claim:
+          "The seriousness of sexual harm does not prove that a registry policy prevents it.",
+        meaning:
+          "A problem can be grave and a proposed intervention can still fail.",
+        evidence:
+          "The moral seriousness of sexual harm and the measurable effectiveness of a policy are separate questions. Broad SORN evidence has not demonstrated an overall recidivism-reduction effect, and individual policy components show different mechanisms and evidence profiles.",
         sourceIds: ["zgobaMitchell", "prescottRockoff"],
       },
       {
+        id: "p9-c2",
         type: "Policy inference",
-        claim: "Visibility is not prevention, and the existence of a database is not proof of protective action.",
-        meaning: "A public list only matters if it is accurate, understood, used, and connected to behavior that actually reduces harm.",
-        evidence: "Public-use research, implementation studies, and broad SORN outcome evidence support separating availability, use, protective behavior, and crime reduction.",
+        claim:
+          "Visibility is not prevention, and the existence of a database is not proof of protective action.",
+        meaning:
+          "A public list only matters if it is accurate, understood, used, and connected to behavior that actually reduces harm.",
+        evidence:
+          "Public-use research, implementation research, and broad SORN findings support separating availability, use, protective behavior, and crime reduction.",
         sourceIds: ["andersonSample", "harrisLawEnforcement", "zgobaMitchell"],
       },
       {
+        id: "p9-c3",
         type: "Policy inference",
-        claim: "Practitioner belief that a registry is useful is evidence about practitioner perception, not direct evidence that the registry reduces offending.",
-        meaning: "Survey answers can tell us what administrators think; they cannot by themselves establish a crime-prevention effect.",
-        evidence: "Law-enforcement studies document mixed perceptions and operational concerns, which are important implementation evidence but not substitutes for measured crime outcomes.",
+        claim:
+          "Practitioner belief that SORN is useful is evidence about practitioner perception, not direct evidence that SORN reduces offending.",
+        meaning:
+          "Survey answers can tell us what administrators think. They cannot, by themselves, prove crime prevention.",
+        evidence:
+          "Law-enforcement studies document mixed views and implementation concerns. Those findings support claims about practitioner perception and administration, not direct crime-rate effects.",
         sourceIds: ["cubellis", "harrisLawEnforcement"],
       },
       {
+        id: "p9-c4",
         type: "Policy inference",
-        claim: "Registry policy should be evaluated component by component rather than as one indivisible package.",
-        meaning: "Registration, public notification, residence restrictions, verification, supervision, and treatment can have different mechanisms, benefits, and burdens.",
-        evidence: "Prescott and Rockoff separate registration from notification; broader syntheses and targeted-notification research show why one component’s evidence should not automatically be generalized to another.",
+        claim:
+          "Registry policy should be evaluated component by component rather than as one indivisible package.",
+        meaning:
+          "Registration, public notification, verification, residence restrictions, supervision, and treatment can have different evidence, mechanisms, and burdens.",
+        evidence:
+          "Mechanism-specific and program-specific studies illustrate why evidence about one component should not be generalized across the whole policy package.",
         sourceIds: ["prescottRockoff", "zgobaMitchell", "minnesotaNotification"],
       },
       {
+        id: "p9-c5",
         type: "Policy inference",
-        claim: "When demonstrated benefits are null, narrow, or inconsistent, financial, administrative, family, and reintegration burdens become central to proportionality.",
-        meaning: "Costs and harms matter most when the promised public-safety benefit is weak or unproven.",
-        evidence: "Broad effectiveness research, public costs, collateral-effects literature, and implementation concerns together support explicit benefit-versus-burden evaluation.",
-        sourceIds: ["zgobaMitchell", "njMeganLaw", "smartCollateralReview", "harrisLawEnforcement"],
-        boundary: "Targeted notification among selected higher-risk people has produced favorable findings in some settings; that does not establish a broad benefit for every registry component or population.",
+        claim:
+          "Where demonstrated public-safety gains are null, narrow, or inconsistent, financial, administrative, and reintegration burdens become central to whether a registry policy is proportionate.",
+        meaning:
+          "Costs and harms matter most when the promised benefit is weak or unproven.",
+        evidence:
+          "Pooled effectiveness findings, cost evidence, reintegration burdens, residence-restriction effects, and implementation concerns together support a benefit-versus-burden framework.",
+        sourceIds: [
+          "zgobaMitchell",
+          "njMeganLaw",
+          "zandbergenHart",
+          "lasherMcGrath",
+          "harrisLawEnforcement",
+        ],
+        boundary:
+          "Minnesota’s selected Level 3 community-notification program produced favorable outcomes in one major evaluation; that finding does not establish a broad public-safety benefit for public registry systems generally.",
+      },
+      {
+        id: "p9-c6",
+        type: "Empirical finding",
+        claim:
+          "Any recidivism claim that omits its measurement basis is incomplete.",
+        meaning:
+          "Rearrest, charge, conviction, reincarceration, self-report, and actual offending are not interchangeable.",
+        evidence:
+          "The same population can produce different rates depending on the endpoint, follow-up period, source of data, and subgroup definition.",
+        sourceIds: ["bjs1994SexOffenders", "bjs2019NineYear", "cohenCsem"],
       },
     ],
   },
@@ -623,7 +1070,11 @@ function renderSourceTrail(sourceIds: string[]): JSX.Element {
     <>
       {sourceIds.map((sourceId, index) => {
         const source = sourceLinks[sourceId];
-        if (!source) return null;
+
+        if (!source) {
+          return null;
+        }
+
         return (
           <React.Fragment key={sourceId}>
             {index > 0 ? <span className="text-slate-400"> · </span> : null}
@@ -653,23 +1104,41 @@ export default function SupportedClaimsGuide(): JSX.Element {
         keywords="SOLAR Project, supported claims, sex offender registry evidence, recidivism research, registry effectiveness, risk assessment, public safety policy"
       />
 
-      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 py-12 text-white sm:py-16 no-print">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Link to="/resources" className="inline-flex items-center text-sm text-slate-200 transition-colors hover:text-white">
+      <section className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-700 text-white py-12 sm:py-16 no-print">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link
+            to="/resources"
+            className="inline-flex items-center text-sm text-slate-200 hover:text-white transition-colors"
+          >
             ← Back to Resources
           </Link>
-          <div className="mt-5 inline-flex rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100 ring-1 ring-white/20">
+
+          <div className="mt-5 inline-flex rounded-full bg-white/10 ring-1 ring-white/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-100">
             SOLAR Resource Guide
           </div>
-          <h1 className="mt-4 text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">Supported Claims Library</h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-100 sm:text-xl">
-            A source-backed collection of the strongest claims SOLAR believes the evidence supports.
+
+          <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
+            Supported Claims Library
+          </h1>
+
+          <p className="mt-4 max-w-3xl text-lg sm:text-xl text-slate-100 leading-relaxed">
+            A source-backed collection of the strongest claims SOLAR believes
+            the evidence supports.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <button type="button" onClick={handlePrint} className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow transition-colors hover:bg-slate-100">
+
+          <div className="mt-6 flex flex-col sm:flex-row gap-3">
+            <button
+              type="button"
+              onClick={handlePrint}
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow hover:bg-slate-100 transition-colors"
+            >
               🖨️ Print Guide
             </button>
-            <a href="#sources" className="rounded-xl border border-white/70 px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white hover:text-slate-900">
+
+            <a
+              href="#sources"
+              className="rounded-xl border border-white/70 px-5 py-3 text-sm font-semibold text-white hover:bg-white hover:text-slate-900 transition-colors text-center"
+            >
               Jump to Sources
             </a>
           </div>
@@ -678,97 +1147,213 @@ export default function SupportedClaimsGuide(): JSX.Element {
 
       <div className="h-1 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400" />
 
-      <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <ShareBar />
 
         <GuideIntro title="Start Here" icon="📚">
           <p>
-            This library turns SOLAR’s research base into a public reference for writers, advocates, journalists, lawmakers, and readers who want to inspect the evidence behind our positions.
+            This library turns SOLAR’s research base into a public reference for
+            outside writers. It does not reproduce every study note or internal
+            research step. It gives the strongest claims SOLAR believes can be
+            responsibly published, with plain-language meaning and source trails.
           </p>
           <p>
-            The nine sections below mirror the current SOLAR Advocacy Positions in the same order. Each uses a stable descriptive anchor so links remain durable even if the positions are reordered later.
+            The nine sections below now mirror SOLAR’s current advocacy positions
+            and order. The section anchors are semantic rather than numerical so
+            future reordering will not silently break direct evidence links.
           </p>
         </GuideIntro>
 
         <OverviewCards
           columns={4}
           cards={[
-            { title: "Publication-safe claim", icon: "✍️", tone: "research", description: "The strongest wording SOLAR believes should survive competent journalistic, academic, legislative, or fact-checking scrutiny." },
-            { title: "What it means", icon: "💬", tone: "info", description: "A plain-language explanation that keeps the substance intact." },
-            { title: "Evidence", icon: "🔎", tone: "legal", description: "Why SOLAR believes the claim is supportable and what kind of evidence underlies it." },
-            { title: "Source trail", icon: "🔗", tone: "neutral", description: "Direct links to studies, government reports, court opinions, and authoritative sources." },
+            {
+              title: "Publication-safe claim",
+              icon: "✍️",
+              tone: "research",
+              description:
+                "The strongest wording SOLAR believes should survive competent journalistic, editorial, academic, legislative, or fact-checking scrutiny.",
+            },
+            {
+              title: "What it means",
+              icon: "💬",
+              tone: "info",
+              description:
+                "A conversational version that keeps the same meaning without changing the substance.",
+            },
+            {
+              title: "Evidence",
+              icon: "🔎",
+              tone: "legal",
+              description:
+                "A concise explanation of why SOLAR can say the claim and what evidence supports it.",
+            },
+            {
+              title: "Source trail",
+              icon: "🔗",
+              tone: "neutral",
+              description:
+                "Direct links to primary studies, government reports, court opinions, or authoritative sources.",
+            },
           ]}
         />
 
-        <GuideSectionHeader id="quick-navigation" number="0" title="Quick navigation" subtitle="Jump directly to the SOLAR position you need." />
+        <GuideSectionHeader
+          id="quick-navigation"
+          number="0"
+          title="Quick navigation"
+          subtitle="Jump directly to the SOLAR position you need."
+        />
+
         <GuideSectionCard>
-          <nav aria-label="Supported claims position navigation" className="grid gap-3 sm:grid-cols-2">
+          <nav
+            aria-label="Supported claims position navigation"
+            className="grid gap-3 sm:grid-cols-2"
+          >
             {positions.map((section) => (
-              <a key={section.id} href={`#${section.id}`} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md">
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Position {section.number}</div>
-                <div className="mt-1 text-sm font-semibold text-slate-900">{section.position}</div>
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+              >
+                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  Position {section.number}
+                </div>
+                <div className="mt-1 text-sm font-semibold text-slate-900">
+                  {section.position}
+                </div>
               </a>
             ))}
           </nav>
         </GuideSectionCard>
 
-        <GuideSectionHeader id="how-to-use" number="00" title="How to use this library" subtitle="Separate measured findings from synthesis, inference, legal facts, and SOLAR conclusions." />
+        <GuideSectionHeader
+          id="how-to-use"
+          number="00"
+          title="How to use this library"
+          subtitle="Use the claim sentence when you need a concise published formulation; use the evidence paragraph when you need to explain why it is supportable."
+        />
+
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Start with the position closest to your topic. Each claim card moves from the polished sentence to ordinary language to the evidence trail. The claim label matters: a policy inference or SOLAR conclusion should not be presented as though it were a single statistical result.
+              Start with the SOLAR position closest to your topic. Each claim
+              card then moves from the polished sentence to ordinary language
+              to the evidence trail. A journalist should be able to scan from
+              position to claim to evidence without reading a long literature
+              review.
+            </p>
+
+            <p>
+              The claim labels distinguish empirical findings, evidence
+              syntheses, comparative findings, legal facts, policy inferences,
+              and SOLAR conclusions. That distinction matters: SOLAR can reach
+              policy conclusions, but a normative conclusion should not be
+              presented as if it were a single statistical result.
             </p>
           </GuideProse>
+
           <GuideCallout tone="research" icon="🧭" title="Boundary rule">
             <p>
-              Boundaries appear when leaving one out would materially mislead, when a meaningful exception would make a claim vulnerable, or when naming the limit makes the claim more durable. They are not inserted merely to manufacture balance.
+              Boundaries are not included for balance. They appear only when
+              leaving them out would make the claim materially misleading, when
+              a specific exception would make the sentence vulnerable to
+              competent review, or when naming a narrow exception strengthens
+              the durability of the claim.
             </p>
           </GuideCallout>
         </GuideSectionCard>
 
         {positions.map((section) => (
           <React.Fragment key={section.id}>
-            <GuideSectionHeader id={section.id} number={section.number} title={section.title} subtitle={section.subtitle} />
+            <GuideSectionHeader
+              id={section.id}
+              number={section.number}
+              title={section.title}
+              subtitle={section.subtitle}
+            />
+
             <GuideSectionCard>
               <div className="rounded-2xl border border-teal-200 border-l-4 border-l-teal-600 bg-teal-50 p-5 shadow-sm sm:p-6">
-                <div className="text-xs font-bold uppercase tracking-[0.14em] text-teal-700">SOLAR’s position</div>
-                <p className="mt-2 text-lg font-semibold leading-snug text-slate-950 sm:text-xl">{section.position}</p>
+                <div className="text-xs font-bold uppercase tracking-[0.14em] text-teal-700">
+                  SOLAR’s position
+                </div>
+                <p className="mt-2 text-lg font-semibold leading-snug text-slate-950 sm:text-xl">
+                  {section.position}
+                </p>
               </div>
 
-              <div className="mb-3 mt-7 flex items-center gap-3">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Supported claims</span>
+              <div className="mt-7 mb-3 flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">
+                  Supported claims
+                </span>
                 <div className="h-px flex-1 bg-slate-200" />
               </div>
 
               <div className="space-y-5">
                 {section.claims.map((claim, index) => (
-                  <article key={`${section.id}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
+                  <article
+                    key={claim.id}
+                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
+                  >
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">Claim {section.number}.{index + 1}</div>
-                      <span className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold ring-1 ${claimTypeClasses(claim.type)}`}>{claim.type}</span>
+                      <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                        Claim {section.number}.{index + 1}
+                      </div>
+                      <span
+                        className={`inline-flex w-fit rounded-full px-3 py-1 text-xs font-semibold ring-1 ${claimTypeClasses(
+                          claim.type,
+                        )}`}
+                      >
+                        {claim.type}
+                      </span>
                     </div>
 
                     <div className="mt-4 space-y-4">
                       <div>
-                        <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">Publication-safe claim</h3>
-                        <p className="mt-2 text-lg font-semibold leading-relaxed text-slate-950">{claim.claim}</p>
+                        <h3 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Publication-safe claim
+                        </h3>
+                        <p className="mt-2 text-lg font-semibold leading-relaxed text-slate-950">
+                          {claim.claim}
+                        </p>
                       </div>
+
                       <div>
-                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">What it means</h4>
-                        <p className="mt-2 text-base leading-relaxed text-slate-700">{claim.meaning}</p>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          What it means
+                        </h4>
+                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                          {claim.meaning}
+                        </p>
                       </div>
+
                       <div>
-                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">Why we can say it / evidence</h4>
-                        <p className="mt-2 text-base leading-relaxed text-slate-700">{claim.evidence}</p>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Why we can say it / evidence
+                        </h4>
+                        <p className="mt-2 text-base leading-relaxed text-slate-700">
+                          {claim.evidence}
+                        </p>
                       </div>
+
                       <div>
-                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">Source trail</h4>
-                        <p className="mt-2 text-sm leading-relaxed">{renderSourceTrail(claim.sourceIds)}</p>
+                        <h4 className="text-sm font-bold uppercase tracking-wide text-slate-500">
+                          Source trail
+                        </h4>
+                        <p className="mt-2 text-sm leading-relaxed">
+                          {renderSourceTrail(claim.sourceIds)}
+                        </p>
                       </div>
+
                       {claim.boundary ? (
                         <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
-                          <h4 className="text-xs font-bold uppercase tracking-wide text-amber-900">Boundary</h4>
-                          <p className="mt-1 text-sm leading-relaxed text-amber-950">{claim.boundary}</p>
+                          <h4 className="text-xs font-bold uppercase tracking-wide text-amber-900">
+                            Boundary
+                          </h4>
+                          <p className="mt-1 text-sm leading-relaxed text-amber-950">
+                            {claim.boundary}
+                          </p>
                         </div>
                       ) : null}
                     </div>
@@ -779,48 +1364,135 @@ export default function SupportedClaimsGuide(): JSX.Element {
           </React.Fragment>
         ))}
 
-        <GuideSectionHeader id="methodology" number="10" title="Sources and methodology note" subtitle="How claims and sources are selected and presented." />
+        <GuideSectionHeader
+          id="methodology"
+          number="10"
+          title="Sources and methodology note"
+          subtitle="How claims and sources are selected and presented."
+        />
+
         <GuideSectionCard>
           <GuideProse>
             <p>
-              Claims are curated for strength, relevance, and accuracy. Complicating evidence is used to define scope where it materially changes what the evidence allows SOLAR to say. The library distinguishes empirical findings from cross-source synthesis and normative policy judgment rather than forcing every conclusion into the form of a measured statistic.
+              This page organizes primary studies, government reports, court
+              opinions, and other authoritative sources into evidence-supported
+              public claims. Source trails prioritize original sources, while
+              SOLAR evidence guides are listed below as synthesis gateways.
+            </p>
+
+            <p>
+              Claims are curated for strength, relevance, and accuracy.
+              Complicating evidence is used to define scope and boundaries when
+              it materially changes what the evidence allows SOLAR to say.
             </p>
           </GuideProse>
-          <GuideCallout tone="reminder" icon="📝" title="Common reporting mistakes to avoid">
+
+          <GuideCallout
+            tone="reminder"
+            icon="📝"
+            title="Common reporting mistakes to avoid"
+          >
             <ul className="mt-2 space-y-2 text-sm leading-relaxed text-slate-700">
-              <li>Rearrest is not reconviction, and neither is identical to all offending.</li>
+              <li>Rearrest is not reconviction.</li>
               <li>Public availability is not prevention.</li>
               <li>Practitioner perception is not measured efficacy.</li>
-              <li>Relative elevation is not the same thing as a high absolute rate.</li>
-              <li>Registration, notification, residence restrictions, supervision, treatment, and verification are not interchangeable policies.</li>
+              <li>
+                General-risk tools are not automatically specialized sexual-risk
+                instruments.
+              </li>
+              <li>
+                Registration, notification, residence restrictions, supervision,
+                treatment, and verification are not interchangeable policies.
+              </li>
             </ul>
           </GuideCallout>
         </GuideSectionCard>
 
-        <GuideSectionHeader id="related-resources" number="11" title="Related SOLAR resources" subtitle="Use these when you need deeper context or a synthesis gateway." />
+        <GuideSectionHeader
+          id="related-resources"
+          number="11"
+          title="Related SOLAR resources"
+          subtitle="Use these when you need deeper context or a synthesis gateway."
+        />
+
         <GuideSectionCard>
           <ResourceLinkGrid
             title="Primary SOLAR evidence gateways"
             resources={[
-              { label: "Registry Effectiveness Evidence Guide", description: "Deeper synthesis on registration, notification, public use, and measurable public-safety outcomes.", href: "/resources/registry-effectiveness-evidence-guide", badge: "SOLAR Guide" },
-              { label: "Recidivism Evidence Guide", description: "Deeper synthesis on rearrest, reconviction, follow-up periods, absolute rates, and comparator evidence.", href: "/resources/recidivism-evidence-guide", badge: "SOLAR Guide" },
-              { label: "Risk Assessment Guide", description: "Deeper synthesis on offense labels, actuarial tools, dynamic risk, calibration, and individualized assessment.", href: "/resources/risk-assessment-guide", badge: "SOLAR Guide" },
-              { label: "Research & Data Resources", description: "Research-oriented starting point for source trails, data resources, and evidence navigation.", href: "/resources/research-data-resources", badge: "SOLAR Resource" },
-              { label: "Advocacy Positions", description: "The public SOLAR positions this claims library is organized around.", href: "/advocacy", badge: "SOLAR Page" },
+              {
+                label: "Registry Effectiveness Evidence Guide",
+                description:
+                  "Deeper synthesis on registration, notification, public use, and measurable public-safety outcomes.",
+                href: "/resources/registry-effectiveness-evidence-guide",
+                badge: "SOLAR Guide",
+              },
+              {
+                label: "Recidivism Evidence Guide",
+                description:
+                  "Deeper synthesis on rearrest, reconviction, follow-up periods, absolute rates, and comparator evidence.",
+                href: "/resources/recidivism-evidence-guide",
+                badge: "SOLAR Guide",
+              },
+              {
+                label: "Risk Assessment Guide",
+                description:
+                  "Deeper synthesis on offense labels, actuarial tools, dynamic risk, calibration, and individualized assessment.",
+                href: "/resources/risk-assessment-guide",
+                badge: "SOLAR Guide",
+              },
+              {
+                label: "Research & Data Resources",
+                description:
+                  "Research-oriented starting point for source trails, data resources, and evidence navigation.",
+                href: "/resources/research-data-resources",
+                badge: "SOLAR Resource",
+              },
+              {
+                label: "Advocacy Positions",
+                description:
+                  "The public SOLAR positions this claims library is organized around.",
+                href: "/advocacy",
+                badge: "SOLAR Page",
+              },
             ]}
           />
+
           <RelatedGuides
             guides={[
-              { title: "Registry Effectiveness Evidence Guide", description: "Use this for broader support on whether registries reduce offending.", to: "/resources/registry-effectiveness-evidence-guide" },
-              { title: "Recidivism Evidence Guide", description: "Use this for careful distinctions among rearrest, reconviction, absolute rates, and comparator groups.", to: "/resources/recidivism-evidence-guide" },
-              { title: "Risk Assessment Guide", description: "Use this for individualized-risk, tool-purpose, calibration, and dynamic-risk issues.", to: "/resources/risk-assessment-guide" },
+              {
+                title: "Registry Effectiveness Evidence Guide",
+                description:
+                  "Use this for broader support on whether registries reduce offending.",
+                to: "/resources/registry-effectiveness-evidence-guide",
+              },
+              {
+                title: "Recidivism Evidence Guide",
+                description:
+                  "Use this for careful distinctions among rearrest, reconviction, absolute rates, and comparator groups.",
+                to: "/resources/recidivism-evidence-guide",
+              },
+              {
+                title: "Risk Assessment Guide",
+                description:
+                  "Use this for individualized-risk, tool-purpose, AUC, calibration, and dynamic-risk issues.",
+                to: "/resources/risk-assessment-guide",
+              },
             ]}
           />
         </GuideSectionCard>
 
-        <GuideSectionHeader id="sources" number="12" title="Source list" subtitle="Direct source trail for the claims above." />
+        <GuideSectionHeader
+          id="sources"
+          number="12"
+          title="Source list"
+          subtitle="Direct source trail for the claims above."
+        />
+
         <GuideSectionCard>
-          <SourceList note="Position architecture updated September 13, 2026. Source URLs may change over time; claims are framed to the evidence and boundaries identified above." sources={sourceListItems} />
+          <SourceList
+            note="Position architecture updated September 13, 2026. Source URLs may change over time; claims are framed to the evidence and boundaries identified above."
+            sources={sourceListItems}
+          />
         </GuideSectionCard>
       </main>
     </div>
