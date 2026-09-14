@@ -2,12 +2,21 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Scroll to top when route changes
+    if (hash) {
+      const targetId = decodeURIComponent(hash.slice(1));
+
+      window.requestAnimationFrame(() => {
+        document.getElementById(targetId)?.scrollIntoView({ block: 'start' });
+      });
+      return;
+    }
+
+    // Scroll to top when route changes without an anchor target.
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }
