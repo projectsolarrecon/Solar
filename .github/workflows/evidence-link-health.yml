@@ -1,0 +1,76 @@
+name: Evidence link health
+
+on:
+  pull_request:
+    paths:
+      - "src/pages/resources/researchDataSources*.ts"
+      - "src/pages/resources/SupportedClaimsGuide.tsx"
+      - "scripts/check-evidence-links.mjs"
+      - ".github/workflows/evidence-link-health.yml"
+  schedule:
+    - cron: "17 12 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check evidence links
+        run: node scripts/check-evidence-links.mjs
+
+      - name: Add report to job summary
+        if: always()
+        run: cat evidence-link-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload link-health report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-link-health-report
+          path: |
+            evidence-link-report.json
+            evidence-link-report.md
+
+      - name: Open or update evidence-link issue
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TITLE="Evidence link health requires review"
+          ATTENTION="$(node -e "const r=require('./evidence-link-report.json'); process.stdout.write(String(r.attentionCount))")"
+          EXISTING="$(gh issue list --repo "$REPO" --state open --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')"
+
+          if [ "$ATTENTION" -gt 0 ]; then
+            {
+              echo "Automated evidence-link monitoring found **$ATTENTION** link(s) that need review."
+              echo
+              cat evidence-link-report.md
+              echo
+              echo "Workflow run: $RUN_URL"
+            } > /tmp/evidence-link-issue.md
+
+            if [ -n "$EXISTING" ]; then
+              gh issue edit "$EXISTING" --repo "$REPO" --body-file /tmp/evidence-link-issue.md
+            else
+              gh issue create --repo "$REPO" --title "$TITLE" --body-file /tmp/evidence-link-issue.md
+            fi
+          elif [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --repo "$REPO" --body "The latest scheduled evidence-link check is clean. Closing this monitoring issue. Run: $RUN_URL"
+            gh issue close "$EXISTING" --repo "$REPO" --reason completed
+          fi
