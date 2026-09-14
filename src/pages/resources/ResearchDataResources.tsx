@@ -805,26 +805,33 @@ export default function ResearchDataResources(): JSX.Element {
         <GuideSectionHeader
           id="research-tools"
           number="5"
-          title="Research tools and official starting points"
-          subtitle="Use these gateways to verify, extend, or update the evidence in this guide."
+          title="Keep researching"
+          subtitle="Official databases, research indexes, and legal resources for going beyond the sources collected here."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="External research gateways"
+            title="Research starting points"
             resources={[
+              {
+                label: "Bureau of Justice Statistics",
+                description:
+                  "Official federal statistics and reports on crime, victimization, corrections, and recidivism.",
+                href: "https://bjs.ojp.gov/",
+                badge: "Official",
+              },
               {
                 label: "SMART Office",
                 description:
-                  "Federal research, SORNA implementation materials, case-law summaries, and sex-offender-management resources.",
+                  "Federal resources on sex-offender management, SORNA, case law, research, treatment, and policy.",
                 href: "https://smart.ojp.gov/",
                 badge: "Official",
               },
               {
-                label: "Bureau of Justice Statistics",
+                label: "U.S. Sentencing Commission",
                 description:
-                  "Official criminal-justice statistics, recidivism studies, and victimization data.",
-                href: "https://bjs.ojp.gov/",
+                  "Federal sentencing data and research, including reports on non-production child-pornography offenses and recidivism.",
+                href: "https://www.ussc.gov/research",
                 badge: "Official",
               },
               {
