@@ -342,81 +342,110 @@ const sourceCatalog: Record<SourceId, SourceRecord> = {
 };
 
 type PositionRecord = {
+  id: string;
   title: string;
   body: string;
   icon: string;
+  overviewTitle: string;
   sourceIds: SourceId[];
 };
 
 const positions: PositionRecord[] = [
   {
-    title:
-      "The sex offender registry system is ineffective, harmful, and rooted in misinformation.",
+    id: "registry-effectiveness",
+    title: "The sex offender registry system is ineffective and rooted in misinformation.",
     body:
-      "It does not prevent crime. The vast majority of sex offenses are committed by individuals not on any registry, and empirical evidence consistently shows lower recidivism rates for people convicted of sex offenses than commonly assumed.",
+      "Decades of research have not shown that broad registry systems reduce sexual offending. The vast majority of sexual offenses are committed by people not on a registry, and recidivism among people convicted of sex offenses is substantially lower than public rhetoric often suggests.",
     icon: "📊",
+    overviewTitle: "The registry does not deliver what it promises",
     sourceIds: ["SE01", "SE02", "SE03", "SE04", "SE05", "SE31", "SE29", "SE30"],
   },
   {
-    title:
-      "Registry systems cause lasting harm to individuals, families, and communities.",
+    id: "community-safety",
+    title: "Registry policies can make communities less safe.",
     body:
-      "Rather than increasing safety, registries foster fear, isolation, discrimination, and vigilante violence. Children and families often suffer consequences through no fault of their own.",
-    icon: "🏠",
-    sourceIds: ["SE06", "SE07", "SE08", "SE09", "SE10", "SE24", "SE26"],
+      "Policies that destabilize housing, employment, treatment, and family support can undermine the conditions that support successful reentry. Research also suggests that broad public notification can increase recidivism, challenging the assumption that more exposure necessarily means more safety.",
+    icon: "🛡️",
+    overviewTitle: "Some registry mechanisms can work against safety",
+    sourceIds: ["SE03", "SE04", "SE06", "SE08", "SE09", "SE23", "SE24"],
   },
   {
-    title: "The real risk to children often lies closer to home.",
+    id: "relationship-access",
+    title:
+      "Sexual harm to children is primarily a relationship-and-access problem, not a stranger-location problem.",
     body:
-      "Authority figures—including family members, teachers, coaches, clergy, and community leaders—are more likely to perpetrate sexual harm than strangers. Public registry systems misdirect attention toward the stranger-danger myth.",
+      "Most reported child sexual abuse is committed by someone the child knows. Prevention therefore requires attention to family and trusted-access relationships—including teachers, coaches, clergy, and community leaders—not just the locations of people already on a public registry.",
     icon: "🧭",
+    overviewTitle: "Child safety requires looking at relationships and access",
     sourceIds: ["SE11", "SE12", "SE13", "SE14", "SE25"],
   },
   {
-    title:
-      "Other types of crime present a greater and more consistent danger to public safety.",
+    id: "lifelong-branding",
+    title: "Other serious harms are addressed without lifelong public branding.",
     body:
-      "Many serious harms to children and communities are addressed through prevention, regulation, treatment, and sentence-bound accountability rather than lifelong public branding.",
+      "Nearly every other serious harm to children is addressed through prevention, regulation, treatment, and ordinary sentence-bound accountability—not lifelong public branding.",
     icon: "🧩",
-    sourceIds: ["SE01", "SE15", "SE16", "SE17"],
+    overviewTitle: "Permanent public branding is an exceptional response",
+    sourceIds: ["SE01", "SE15", "SE16", "SE17", "SE21"],
   },
   {
-    title: "Registries are punitive in practice, not administrative in nature.",
+    id: "punitive-practice",
+    title: "Registries are punitive in practice, not merely administrative.",
     body:
-      "Public exposure, recurring reporting, restrictions, and collateral consequences operate as continuing punishment after a sentence has been served and stand in tension with due process, proportionality, and fairness.",
+      "Public exposure, recurring reporting, residence, proximity, employment, and other restrictions can persist long beyond the original sentence, functioning as continuing punishment in everyday life and raising serious questions of due process, proportionality, and fairness.",
     icon: "⚖️",
+    overviewTitle: "Registries punish in practice",
     sourceIds: ["SE10", "SE18", "SE19", "SE20", "SE27", "SE28"],
   },
   {
+    id: "family-children",
+    title: "Registry systems punish families and children too.",
+    body:
+      "Public identification, housing and employment barriers, and other restrictions can destabilize entire households. Spouses and children who committed no offense can face financial strain, forced moves, stigma, harassment, isolation, and lost opportunities of their own.",
+    icon: "👪",
+    overviewTitle: "The burden reaches spouses and children",
+    sourceIds: ["SE06", "SE07", "SE08", "SE10", "SE24", "SE26"],
+  },
+  {
+    id: "individualized-risk",
     title: "One-size-fits-all registry laws are fundamentally flawed.",
     body:
-      "Blanket restrictions ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
+      "Universal requirements, restrictions, and labels ignore major differences among cases, people, time elapsed, conduct, treatment, and actual risk. Policy should be individualized, reviewable, and evidence-based.",
     icon: "🌱",
+    overviewTitle: "Risk is individual and changes over time",
     sourceIds: ["SE02", "SE21", "SE22", "SE32", "SE33", "SE34", "SE23", "SE29", "SE30"],
   },
   {
+    id: "permanent-underclass",
     title: "Registries create a permanent underclass.",
     body:
-      "They block access to housing, employment, education, financial services, and community participation, stripping people of the tools necessary to rebuild their lives and reintegrate safely.",
+      "They erect formidable barriers to housing, employment, education, financial services, and community participation, stripping many people of the basic tools needed to rebuild their lives and reintegrate safely.",
     icon: "🚪",
+    overviewTitle: "Permanent status creates durable exclusion",
     sourceIds: ["SE06", "SE07", "SE08", "SE09", "SE10", "SE24", "SE26"],
+  },
+  {
+    id: "measurable-outcomes",
+    title: "Public-safety policy should be judged by measurable outcomes, not presumed benefits.",
+    body:
+      "The seriousness of sexual harm does not make every intervention imposed in its name effective. Registration, public notification, supervision, treatment, and other interventions should be evaluated according to what they actually accomplish, whom they affect, and whether their demonstrated benefits justify their burdens.",
+    icon: "📐",
+    overviewTitle: "Measure outcomes instead of assuming benefits",
+    sourceIds: ["SE03", "SE04", "SE05", "SE06", "SE20", "SE21"],
   },
 ];
 
 const anchorSourceIds: SourceId[] = [
   "SE03",
-  "SE01",
-  "SE29",
-  "SE30",
   "SE04",
-  "SE31",
+  "SE01",
   "SE11",
-  "SE18",
-  "SE19",
-  "SE22",
-  "SE32",
   "SE06",
+  "SE07",
+  "SE18",
   "SE21",
+  "SE22",
+  "SE29",
   "SE14",
 ];
 
@@ -442,17 +471,17 @@ const sourceGroups: { title: string; description: string; ids: SourceId[] }[] = 
   {
     title: "Constitutional law and punitive effects",
     description:
-      "Cases and legal analysis that frame the civil-versus-punitive debate and the constitutional limits on registry-related restrictions.",
+      "Cases and legal analysis that frame the civil-versus-punitive debate and constitutional limits on registry-related restrictions.",
     ids: ["SE18", "SE19", "SE20", "SE27", "SE28"],
   },
   {
     title: "Risk, treatment, and individualized reform",
     description:
-      "Research on changing risk, treatment, desistance, subgroup differences, and evidence-based alternatives to blanket policy.",
+      "Research on changing risk, treatment, desistance, subgroup differences, and evidence-based alternatives to universal policy.",
     ids: ["SE02", "SE21", "SE22", "SE32", "SE33", "SE34", "SE23", "SE29", "SE30"],
   },
   {
-    title: "Comparative public safety",
+    title: "Comparative harms and public-safety responses",
     description:
       "Official sources that help compare how other serious and recurring harms are measured, prevented, regulated, and punished.",
     ids: ["SE15", "SE16", "SE17"],
@@ -568,98 +597,60 @@ export default function ResearchDataResources(): JSX.Element {
           id="solar-positions"
           number="1"
           title="SOLAR positions and supporting evidence"
-          subtitle="Our seven core advocacy positions, paired with the research and data that inform them."
+          subtitle="Our nine core advocacy positions, paired with the research and data that inform them."
         />
 
         <OverviewCards
           columns={3}
-          cards={[
-            {
-              eyebrow: "Position 1",
-              title: "The registry does not deliver what it promises",
-              icon: "📊",
-              tone: "research",
-              description:
-                "Research on recidivism and registry effectiveness challenges assumptions about prevention and repeat offending.",
-            },
-            {
-              eyebrow: "Position 2",
-              title: "Registry harm reaches beyond the person listed",
-              icon: "🏠",
-              tone: "family",
-              description:
-                "Housing, employment, family relationships, and community stability can all be affected.",
-            },
-            {
-              eyebrow: "Position 3",
-              title: "Child safety requires looking closer to home",
-              icon: "🧭",
-              tone: "info",
-              description:
-                "Prevention has to account for family, trusted-access, institutional, and authority-based risks.",
-            },
-            {
-              eyebrow: "Position 4",
-              title: "Public safety policy is selective",
-              icon: "🧩",
-              tone: "neutral",
-              description:
-                "Other serious harms are addressed through prevention, regulation, treatment, and sentence-bound accountability.",
-            },
-            {
-              eyebrow: "Position 5",
-              title: "Registries punish in practice",
-              icon: "⚖️",
-              tone: "legal",
-              description:
-                "Public exposure, recurring obligations, restrictions, and exclusion continue long after sentencing.",
-            },
-            {
-              eyebrow: "Position 6",
-              title: "Risk is individual and changes over time",
-              icon: "🌱",
-              tone: "success",
-              description:
-                "Research supports individualized assessment, treatment, review, and recognition of desistance.",
-            },
-            {
-              eyebrow: "Position 7",
-              title: "Permanent status creates a permanent underclass",
-              icon: "🚪",
-              tone: "warning",
-              description:
-                "Barriers to housing, work, services, and community participation make successful reintegration harder.",
-            },
-          ]}
+          cards={positions.map((position, index) => ({
+            eyebrow: `Position ${index + 1}`,
+            title: position.overviewTitle,
+            icon: position.icon,
+            tone:
+              index === 0
+                ? "research"
+                : index === 4
+                  ? "legal"
+                  : index === 5
+                    ? "family"
+                    : index === 6
+                      ? "success"
+                      : index === 7
+                        ? "warning"
+                        : "neutral",
+            description: position.body,
+          }))}
         />
 
         <div className="mt-6 grid gap-5">
           {positions.map((position, index) => (
-            <GuideSectionCard key={position.title}>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl" aria-hidden="true">
-                  {position.icon}
-                </span>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    SOLAR Position {index + 1}
-                  </p>
-                  <h3 className="mt-1 text-xl font-bold text-slate-950">
-                    {position.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-slate-700">
-                    {position.body}
-                  </p>
+            <div key={position.id} id={position.id} className="scroll-mt-24">
+              <GuideSectionCard>
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl" aria-hidden="true">
+                    {position.icon}
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                      SOLAR Position {index + 1}
+                    </p>
+                    <h3 className="mt-1 text-xl font-bold text-slate-950">
+                      {position.title}
+                    </h3>
+                    <p className="mt-3 leading-relaxed text-slate-700">
+                      {position.body}
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-5 border-t border-slate-200 pt-4">
-                <p className="mb-3 text-sm font-semibold text-slate-900">
-                  Supporting research and data
-                </p>
-                {renderSourceLinks(position.sourceIds)}
-              </div>
-            </GuideSectionCard>
+                <div className="mt-5 border-t border-slate-200 pt-4">
+                  <p className="mb-3 text-sm font-semibold text-slate-900">
+                    Supporting research and data
+                  </p>
+                  {renderSourceLinks(position.sourceIds)}
+                </div>
+              </GuideSectionCard>
+            </div>
           ))}
         </div>
 
@@ -825,33 +816,26 @@ export default function ResearchDataResources(): JSX.Element {
         <GuideSectionHeader
           id="research-tools"
           number="5"
-          title="Keep researching"
-          subtitle="Official databases, research indexes, and legal resources for going beyond the sources collected here."
+          title="Research tools and official starting points"
+          subtitle="Use these gateways to verify, extend, or update the evidence in this guide."
         />
 
         <GuideSectionCard>
           <ResourceLinkGrid
-            title="Research starting points"
+            title="External research gateways"
             resources={[
-              {
-                label: "Bureau of Justice Statistics",
-                description:
-                  "Official federal statistics and reports on crime, victimization, corrections, and recidivism.",
-                href: "https://bjs.ojp.gov/",
-                badge: "Official",
-              },
               {
                 label: "SMART Office",
                 description:
-                  "Federal resources on sex-offender management, SORNA, case law, research, treatment, and policy.",
+                  "Federal research, SORNA implementation materials, case-law summaries, and sex-offender-management resources.",
                 href: "https://smart.ojp.gov/",
                 badge: "Official",
               },
               {
-                label: "U.S. Sentencing Commission",
+                label: "Bureau of Justice Statistics",
                 description:
-                  "Federal sentencing data and research, including reports on non-production child-pornography offenses and recidivism.",
-                href: "https://www.ussc.gov/research",
+                  "Official criminal-justice statistics, recidivism studies, and victimization data.",
+                href: "https://bjs.ojp.gov/",
                 badge: "Official",
               },
               {
