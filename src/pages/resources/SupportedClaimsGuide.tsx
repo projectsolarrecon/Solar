@@ -13,6 +13,10 @@ import {
   RelatedGuides,
   SourceList,
 } from "../../components/solar";
+import {
+  sourceCatalog as researchSourceCatalog,
+  type ResearchSourceId,
+} from "./researchDataLibrary";
 
 type SourceLink = {
   label: string;
@@ -48,337 +52,70 @@ type PositionSection = {
   claims: Claim[];
 };
 
-const sourceLinks: Record<string, SourceLink> = {
-  zgobaMitchell: {
-    label: "Zgoba & Mitchell SORN meta-analysis",
-    href: "https://doi.org/10.1007/s11292-021-09480-z",
-    description:
-      "Broad quantitative synthesis of evaluated SORN policies and recidivism outcomes.",
-    type: "Peer-reviewed meta-analysis",
-  },
-  cohenCsem: {
-    label: "Cohen federal CSEM supervision study",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2023/06/building-a-risk-tool-persons-placed-federal-post-conviction-supervision-child-sexual-exploitation",
-    description:
-      "Federal Probation article on CSEM rearrest, PCRA, CPORT, and federal override practice.",
-    type: "Government journal article",
-  },
-  bjs1994SexOffenders: {
-    label: "BJS sex-offender recidivism, 1994 releases",
-    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-prison-1994",
-    description:
-      "Large state-prison release cohort with three-year rearrest and reconviction measures.",
-    type: "Government statistical report",
-  },
-  bjs2019NineYear: {
-    label: "BJS sex-offender recidivism, 9-year follow-up",
-    href: "https://bjs.ojp.gov/library/publications/recidivism-sex-offenders-released-state-prison-9-year-follow-2005-14",
-    description:
-      "BJS comparison of rape/sexual-assault releases and other released prisoners over nine years.",
-    type: "Government statistical report",
-  },
-  bjs2012Releases: {
-    label: "BJS prisoner recidivism, 2012 releases",
-    href: "https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/rpr34s125yfup1217.pdf",
-    description:
-      "Five-year same-type rearrest comparisons across release-offense categories.",
-    type: "Government statistical report",
-  },
-  bjs1994Specialization: {
-    label: "BJS prisoner recidivism, 1994 same-offense specialization",
-    href: "https://bjs.ojp.gov/content/pub/pdf/rpr94.pdf",
-    description:
-      "BJS same-offense rearrest table across multiple crime categories.",
-    type: "Government statistical report",
-  },
-  ussc2010Recidivism: {
-    label: "USSC federal offenders released in 2010",
-    href: "https://www.ussc.gov/sites/default/files/pdf/research-and-publications/research-publications/2021/20210930_Recidivism.pdf",
-    description:
-      "Federal same-cohort recidivism report with offense type, age, and criminal-history comparisons.",
-    type: "Federal government research report",
-  },
-  usscCsem: {
-    label: "USSC non-production child-pornography recidivism report",
-    href: "https://www.ussc.gov/research/research-reports/federal-sentencing-child-pornography-non-production-offenses",
-    description:
-      "Specialized federal CSEM recidivism benchmark for non-production child-pornography offenses.",
-    type: "Federal government research report",
-  },
-  prescottRockoff: {
-    label: "Prescott & Rockoff SORN study",
-    href: "https://doi.org/10.1086/658485",
-    description:
-      "Peer-reviewed analysis separating registration and notification mechanisms, including countervailing notification effects.",
-    type: "Peer-reviewed article",
-  },
-  agan: {
-    label: "Agan, “Sex Offender Registries: Fear without Function?”",
-    href: "https://www.journals.uchicago.edu/doi/10.1086/658483",
-    description:
-      "Peer-reviewed study testing registry effects across multiple empirical designs.",
-    type: "Peer-reviewed article",
-  },
-  sandlerFreemanSocia: {
-    label: "Sandler, Freeman & Socia New York SORN time series",
-    href: "https://doi.org/10.1037/a0013881",
-    description:
-      "New York SORN time-series evaluation of sexual-offense outcomes.",
-    type: "Peer-reviewed article",
-  },
-  levensonZgobaFlorida: {
-    label: "Levenson & Zgoba Florida repeat-arrest study",
-    href: "https://doi.org/10.1177/0306624X15573946",
-    description:
-      "Florida 1990–2010 analysis finding that an average 6.5% of sex-crime arrests involved a person with a prior felony sex-crime conviction.",
-    type: "Peer-reviewed article",
-  },
-  letourneauAdult: {
-    label: "Letourneau et al. South Carolina SORN and adult recidivism",
-    href: "https://doi.org/10.1177/0887403409353148",
-    description:
-      "South Carolina study examining whether registration status predicted adult sexual recidivism.",
-    type: "Peer-reviewed article",
-  },
-  njMeganLaw: {
-    label: "New Jersey Megan’s Law evaluation",
-    href: "https://nij.ojp.gov/library/publications/megans-law-assessing-practical-and-monetary-efficacy",
-    description:
-      "NIJ-funded state evaluation of practical, monetary, and public-safety outcomes.",
-    type: "Government report",
-  },
-  minnesotaNotification: {
-    label: "Duwe & Donnay Minnesota Level 3 notification study",
-    href: "https://doi.org/10.1111/j.1745-9125.2008.00114.x",
-    description:
-      "Minnesota study of broad community notification among selected Level 3 individuals.",
-    type: "Peer-reviewed article",
-  },
-  levensonCotter: {
-    label: "Levenson & Cotter, Megan’s Law and reintegration",
-    href: "https://doi.org/10.1177/1043986204271676",
-    description:
-      "Florida survey evidence on housing, employment, threats, and reintegration burdens.",
-    type: "Peer-reviewed article",
-  },
-  lasherMcGrath: {
-    label: "Lasher & McGrath reintegration review",
-    href: "https://doi.org/10.1177/0306624X10387524",
-    description:
-      "Review of community notification, reintegration, housing, employment, and psychological effects.",
-    type: "Peer-reviewed article",
-  },
-  zandbergenHart: {
-    label: "Zandbergen & Hart residence-restriction GIS study",
-    href: "https://doi.org/10.3818/JRP.8.2.2006.1",
-    description:
-      "GIS study of how residence restrictions can reduce lawful housing availability.",
-    type: "Peer-reviewed article",
-  },
-  residenceTransience: {
-    label: "Residence restrictions and transience study",
-    href: "https://doi.org/10.1177/0887403413512326",
-    description:
-      "Peer-reviewed study examining residence restrictions, housing availability, transience, and community stability.",
-    type: "Peer-reviewed article",
-  },
-  smartManagement: {
-    label: "DOJ SMART SOMAPI management-strategies synthesis",
-    href: "https://www.smart.ojp.gov/somapi/chapter-8-sex-offender-management-strategies",
-    description:
-      "Federal research synthesis on SORN, residence restrictions, management strategies, and unintended consequences.",
-    type: "Government evidence synthesis",
-  },
-  smartCollateralReview: {
-    label: "SMART/Library of Congress collateral-effects review",
-    href: "https://smart.ojp.gov/media/document/6346",
-    description:
-      "Government evidence review of claimed effects on housing, employment, wellbeing, family relationships, and reintegration.",
-    type: "Government evidence review",
-  },
-  levensonFamily: {
-    label: "Levenson & Tewksbury family collateral-damage study",
-    href: "https://doi.org/10.1007/s12103-008-9055-x",
-    description:
-      "Peer-reviewed study of collateral consequences reported by family members of people required to register.",
-    type: "Peer-reviewed article",
-  },
-  andersonSample: {
-    label: "Anderson & Sample public awareness and protective action",
-    href: "https://doi.org/10.1177/0887403408316705",
-    description:
-      "Nebraska survey on public registry awareness, use, and self-reported protective behavior.",
-    type: "Peer-reviewed article",
-  },
-  bonnarKidd: {
-    label: "Bonnar-Kidd SORN public-health review",
-    href: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2820068/",
-    description:
-      "Open-access peer-reviewed review of SORN, prevention claims, and public-health concerns.",
-    type: "Peer-reviewed review",
-  },
-  cubellis: {
-    label: "Cubellis, Walfield & Harris law-enforcement perspectives",
-    href: "https://doi.org/10.1177/0306624X16667574",
-    description:
-      "Law-enforcement survey documenting mixed views and registry-size effects.",
-    type: "Peer-reviewed article",
-  },
-  harrisLawEnforcement: {
-    label: "Harris et al. law-enforcement effectiveness and challenges",
-    href: "https://doi.org/10.1177/0887403416651671",
-    description:
-      "National law-enforcement research on registry reliability, public utility, and implementation limits.",
-    type: "Peer-reviewed article",
-  },
-  bjsChildKnown: {
-    label: "BJS sexual assault of young children reported to law enforcement",
-    href: "https://bjs.ojp.gov/library/publications/sexual-assault-young-children-reported-law-enforcement-victim-incident-and",
-    description:
-      "Official BJS report on juvenile victim-offender relationships in reported sexual assault cases.",
-    type: "Government statistical report",
-  },
-  cdcFirearm: {
-    label: "CDC firearm injury and death facts",
-    href: "https://www.cdc.gov/firearm-violence/data-research/facts-stats/index.html",
-    description:
-      "Official public-health information on firearm injury, death, and prevention.",
-    type: "Government public-health resource",
-  },
-  nhtsaImpaired: {
-    label: "NHTSA impaired-driving prevention report",
-    href: "https://www.nhtsa.gov/sites/nhtsa.gov/files/2026-03/Report-to-Congress-Advanced-Impaired-Driving-Prevention-Technology.pdf",
-    description:
-      "Government report illustrating prevention, technology, enforcement, and intervention approaches to a recurring public-safety harm.",
-    type: "Government report",
-  },
-  bjsDomestic: {
-    label: "BJS nonfatal domestic violence report",
-    href: "https://bjs.ojp.gov/content/pub/pdf/ndv0312.pdf",
-    description:
-      "Official victimization data on a serious and recurring form of interpersonal harm.",
-    type: "Government statistical report",
-  },
-  atsaReform: {
-    label: "ATSA evidence-based registry reform recommendations",
-    href: "https://members.atsa.com/learn/Details/report-registration-and-community-notification-of-adults-convicted-of-a-sexual-crime-recommendations-for-evidence-based-reform-194317",
-    description:
-      "Expert recommendations emphasizing individualized risk, treatment, review, reintegration, and targeted notification.",
-    type: "Expert policy recommendations",
-  },
-  hansonBussiere: {
-    label: "Hanson & Bussière predictor meta-analysis",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/prdctrs-sxl-ffnd/index-en.aspx",
-    description:
-      "Foundational meta-analysis of predictors of sexual-offense recidivism.",
-    type: "Research / government-hosted publication",
-  },
-  hansonMortonBourgon: {
-    label: "Hanson & Morton-Bourgon updated predictor meta-analysis",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/2004-02-prdctrs-sxl-rcdvsm-pdtd/index-en.aspx",
-    description:
-      "Updated meta-analysis on characteristics associated with persistent sexual offending.",
-    type: "Research / government-hosted publication",
-  },
-  hansonSimpleQuestion: {
-    label: "Hanson, “Sex Offender Recidivism: A Simple Question”",
-    href: "https://www.publicsafety.gc.ca/cnt/rsrcs/pblctns/sx-ffndr-rcdvsm/index-en.aspx",
-    description:
-      "Plain-language research summary on why recidivism rates vary by subgroup and follow-up.",
-    type: "Government-hosted research summary",
-  },
-  babchishinHanson: {
-    label: "Babchishin, Hanson & Helmus risk-assessment accuracy meta-analysis",
-    href: "https://pubmed.ncbi.nlm.nih.gov/19290762/",
-    description:
-      "Meta-analysis comparing actuarial, structured, and unstructured risk-assessment approaches.",
-    type: "Peer-reviewed article",
-  },
-  static99Coding: {
-    label: "Static-99R coding rules",
-    href: "https://www.waspc.org/assets/Static%2099%20Coding_manual_2016_v2.pdf",
-    description:
-      "Professional guidance on coding eligibility and proper Static-99R use.",
-    type: "Professional guidance",
-  },
-  static99Workbook: {
-    label: "Static-99R evaluators workbook",
-    href: "https://www.oregon.gov/boppps/Documents/R%26R/Static%20Evaluators_Workbook_2021-09-28.pdf",
-    description:
-      "Evaluator workbook explaining group norms, relative risk, and interpretation.",
-    type: "Professional guidance",
-  },
-  pcrA: {
-    label: "PCRA construction and validation",
-    href: "https://www.uscourts.gov/about-federal-courts/probation-and-pretrial-services/federal-probation-journal/2011/09/construction-and-validation-federal-post-conviction-risk-assessment-pcra",
-    description:
-      "Federal Probation article on the Post Conviction Risk Assessment as a general risk/needs tool.",
-    type: "Government journal article",
-  },
-  cportDevelopment: {
-    label: "CPORT development study",
-    href: "https://pubmed.ncbi.nlm.nih.gov/25844514/",
-    description:
-      "Development study for a CSEM-specific empirical risk tool.",
-    type: "Peer-reviewed article",
-  },
-  cportValidation: {
-    label: "CPORT validation study",
-    href: "https://pubmed.ncbi.nlm.nih.gov/29592774/",
-    description:
-      "Validation evidence for CPORT in adult male CSEM populations.",
-    type: "Peer-reviewed article",
-  },
-  cportCritical: {
-    label: "CPORT critical review for CSEM-exclusive forensic use",
-    href: "https://pubmed.ncbi.nlm.nih.gov/37471014/",
-    description:
-      "Critical review identifying limits in CPORT evidence for U.S. CSEM-exclusive forensic use.",
-    type: "Peer-reviewed article",
-  },
-  stable2007: {
-    label: "STABLE-2007 prospective study",
-    href: "https://doi.org/10.1177/0093854815602094",
-    description:
-      "Prospective evidence on structured dynamic risk factors and recidivism.",
-    type: "Peer-reviewed article",
-  },
-  sotips: {
-    label: "SOTIPS validation study",
-    href: "https://pubmed.ncbi.nlm.nih.gov/22368161/",
-    description:
-      "Dynamic risk and treatment-progress instrument validation evidence.",
-    type: "Peer-reviewed article",
-  },
-  vrsSo: {
-    label: "VRS-SO validity and reliability",
-    href: "https://pubmed.ncbi.nlm.nih.gov/17845123/",
-    description:
-      "Evidence on structured assessment of risk and therapeutic change.",
-    type: "Peer-reviewed article",
-  },
-  treatmentMeta: {
-    label: "Schmucker & Lösel treatment meta-analysis",
-    href: "https://doi.org/10.1007/s11292-015-9241-z",
-    description:
-      "Meta-analysis of specialized treatment and sexual recidivism outcomes.",
-    type: "Peer-reviewed meta-analysis",
-  },
-  smithDoe: {
-    label: "Smith v. Doe",
-    href: "https://supreme.justia.com/cases/federal/us/538/84/",
-    description:
-      "U.S. Supreme Court decision holding Alaska’s then-existing registry nonpunitive for ex post facto purposes.",
-    type: "Court opinion",
-  },
-  doesSnyder: {
-    label: "Does #1–5 v. Snyder",
-    href: "https://law.justia.com/cases/federal/appellate-courts/ca6/15-1536/15-1536-2016-08-25.html",
-    description:
-      "Sixth Circuit decision holding Michigan’s amended registry punitive in effect for ex post facto purposes.",
-    type: "Court opinion",
-  },
+const supportedClaimSourceIds: Record<string, ResearchSourceId> = {
+  zgobaMitchell: "SE03",
+  cohenCsem: "SE35",
+  bjs1994SexOffenders: "SE01",
+  bjs2019NineYear: "SE36",
+  bjs2012Releases: "SE37",
+  bjs1994Specialization: "SE38",
+  ussc2010Recidivism: "SE39",
+  usscCsem: "SE29",
+  prescottRockoff: "SE04",
+  agan: "SE31",
+  sandlerFreemanSocia: "SE40",
+  levensonZgobaFlorida: "SE41",
+  letourneauAdult: "SE42",
+  njMeganLaw: "SE43",
+  minnesotaNotification: "SE44",
+  levensonCotter: "SE45",
+  lasherMcGrath: "SE46",
+  zandbergenHart: "SE47",
+  residenceTransience: "SE08",
+  smartManagement: "SE48",
+  smartCollateralReview: "SE06",
+  levensonFamily: "SE07",
+  andersonSample: "SE49",
+  bonnarKidd: "SE50",
+  cubellis: "SE51",
+  harrisLawEnforcement: "SE52",
+  bjsChildKnown: "SE11",
+  cdcFirearm: "SE15",
+  nhtsaImpaired: "SE16",
+  bjsDomestic: "SE17",
+  atsaReform: "SE21",
+  hansonBussiere: "SE53",
+  hansonMortonBourgon: "SE54",
+  hansonSimpleQuestion: "SE55",
+  hansonMortonBourgonAccuracy: "SE56",
+  static99Coding: "SE57",
+  static99Workbook: "SE58",
+  pcrA: "SE59",
+  cportDevelopment: "SE60",
+  cportValidation: "SE61",
+  cportCritical: "SE62",
+  stable2007: "SE63",
+  sotips: "SE64",
+  vrsSo: "SE65",
+  treatmentMeta: "SE66",
+  smithDoe: "SE18",
+  doesSnyder: "SE67",
 };
+
+const sourceLinks: Record<string, SourceLink> = Object.fromEntries(
+  Object.entries(supportedClaimSourceIds).map(([key, sourceId]) => {
+    const source = researchSourceCatalog[sourceId];
+    return [
+      key,
+      {
+        label: source.title,
+        href: source.href,
+        description: source.usefulFor,
+        type: source.type,
+      },
+    ];
+  }),
+);
 
 const positions: PositionSection[] = [
   {
@@ -831,7 +568,7 @@ const positions: PositionSection[] = [
           "Risk decisions should not be based only on fear, offense title, or a professional gut feeling.",
         evidence:
           "Meta-analytic evidence supports structured, empirically grounded assessment over unstructured professional judgment.",
-        sourceIds: ["babchishinHanson", "hansonMortonBourgon"],
+        sourceIds: ["hansonMortonBourgonAccuracy", "hansonMortonBourgon"],
         boundary:
           "Structured methods are not perfect prediction; usefulness depends on the population, tool purpose, and decision being made.",
       },
@@ -1490,7 +1227,7 @@ export default function SupportedClaimsGuide(): JSX.Element {
 
         <GuideSectionCard>
           <SourceList
-            note="Position architecture updated September 13, 2026. Source URLs may change over time; claims are framed to the evidence and boundaries identified above."
+            note="Position architecture and source links verified September 13, 2026. Source URLs may change over time; claims are framed to the evidence and boundaries identified above."
             sources={sourceListItems}
           />
         </GuideSectionCard>
