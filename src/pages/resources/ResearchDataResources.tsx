@@ -606,18 +606,7 @@ export default function ResearchDataResources(): JSX.Element {
             eyebrow: `Position ${index + 1}`,
             title: position.overviewTitle,
             icon: position.icon,
-            tone:
-              index === 0
-                ? "research"
-                : index === 4
-                  ? "legal"
-                  : index === 5
-                    ? "family"
-                    : index === 6
-                      ? "success"
-                      : index === 7
-                        ? "warning"
-                        : "neutral",
+            tone: "neutral",
             description: position.body,
           }))}
         />
