@@ -81,7 +81,7 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
           actually Chris Hansen.
         </p>
 
-        <p>He says they exploited him.</p>
+        <p>He calls the film exploitative.</p>
 
         <p>And here is the uncomfortable part.</p>
 
@@ -571,7 +571,7 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
         </p>
 
         <p>
-          <strong>They are not all the same guy.</strong>
+          <strong>They are not interchangeable.</strong>
         </p>
 
         <p>Correct.</p>
@@ -643,11 +643,11 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
         <p>Now Chris Hansen has supplied the plain-English premise:</p>
 
         <p>
-          <strong>They are not all the same guy.</strong>
+          <strong>They are not interchangeable.</strong>
         </p>
 
         <PullQuote>
-          If they are not all the same guy, a system that treats them as though
+          If people in this category are meaningfully different, a system that treats them as though
           they are has a problem.
         </PullQuote>
 
@@ -667,7 +667,7 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
 
         <p>That people who commit sexual offenses are not interchangeable.</p>
 
-        <p>If they are not all the same guy, why should policy treat them as though they are?</p>
+        <p>If people in this category are meaningfully different, why should policy treat them as though they are?</p>
 
         <p>If therapy can work, shouldn’t successful treatment matter?</p>
 
@@ -715,7 +715,7 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
 
         <p>And this is where his own reasoning runs into the system he is defending.</p>
 
-        <p>If they are not all the same guy, what exactly is a broad public registry telling us?</p>
+        <p>If people in this category are meaningfully different, what exactly is a broad public registry telling us?</p>
 
         <p>A conviction tells us something extremely important:</p>
 
@@ -1176,7 +1176,7 @@ export default function ChrisHansenPrimetimeSpectacleOfPunishment(): JSX.Element
         <p>Some can be redeemed.</p>
 
         <p>
-          <strong>They are not all the same guy.</strong>
+          <strong>They are not interchangeable.</strong>
         </p>
 
         <p>He is right about that too.</p>
