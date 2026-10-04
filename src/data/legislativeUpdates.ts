@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "October 1, 2026",
+  title: "Legislative Tracker — September 2026 Update",
+  slug: "2026-10-01",
+  summary:
+    "September was a court-driven registry-policy month: Michigan removed more than 20,000 people after a major retroactivity ruling, the Eleventh Circuit protected parent-child cohabitation rights, while courts and lawmakers elsewhere expanded supervision, relief barriers, and collateral restrictions.",
+  tags: ["federal", "state", "courts", "relief", "supervision", "implementation"],
+},
+{
   date: "September 1, 2026",
   title: "Legislative Tracker — August 2026 Update",
   slug: "2026-09-01",
