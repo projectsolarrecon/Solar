@@ -13,6 +13,32 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "chris-hansen-primetime-spectacle-of-punishment",
+  title:
+    "Why Don’t You Have a Seat? Chris Hansen, Primetime, and the Spectacle of Punishment",
+  excerpt:
+    "Chris Hansen says A24’s Primetime exploited him. He also acknowledges that people who commit sexual offenses differ, treatment can work, and rehabilitation is possible. SOLAR follows those premises where they lead.",
+  author: "The SOLAR Project",
+  date: "Oct 4, 2026",
+  readTime: "15–17 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "Chris Hansen",
+    "Primetime",
+    "To Catch a Predator",
+    "CNN",
+    "predator hunters",
+    "public humiliation",
+    "child safety theater",
+    "rehabilitation",
+    "individualized risk",
+    "sex offender registry",
+    "public safety",
+    "media spectacle",
+  ],
+  path: "/blog/chris-hansen-primetime-spectacle-of-punishment",
+},
+{
   id: "results-dont-speak-for-themselves",
   title: "The Results Don’t Speak for Themselves",
   excerpt:
