@@ -212,6 +212,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
       "A calm, practical route for spouses, parents, friends, and chosen family navigating accusation, custody, registration, incarceration, or reentry.",
     pinnedPaths: [
       "/blog/when-someone-you-love-is-accused",
+      "/blog/support-subject-to-moderator-approval",
       "/blog/legal-rights",
       "/blog/federal-sex-crime-process",
       "/blog/state-sex-crime-process",
@@ -229,6 +230,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
       "A guided sequence about registry life, work, belonging, family strain, financial burden, incarceration reality, and rebuilding.",
     pinnedPaths: [
       "/blog/life-on-registry",
+      "/blog/support-subject-to-moderator-approval",
       "/blog/finding-work-after-registry",
       "/blog/community-reintegration",
       "/blog/follow-the-money-part2",
