@@ -13,6 +13,26 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "support-subject-to-moderator-approval",
+  title: "Support, Subject to Moderator Approval",
+  excerpt: "An online support forum reported rejecting nearly 90% of submitted posts. SOLAR examines what its moderation policies, legal errors, and civility standards reveal about the difference between authority and meaningful support.",
+  author: "The SOLAR Project",
+  date: "Oct 25, 2026",
+  readTime: "20–22 min read",
+  category: "Research & Evidence Literacy",
+  tags: [
+    "online support",
+    "moderation accountability",
+    "legal misinformation",
+    "reentry",
+    "sex offense registry",
+    "AI-assisted research",
+    "institutional gatekeeping",
+    "stigma",
+  ],
+  path: "/blog/support-subject-to-moderator-approval",
+},
+{
   id: "chris-hansen-primetime-spectacle-of-punishment",
   title:
     "Why Don’t You Have a Seat? Chris Hansen, Primetime, and the Spectacle of Punishment",
