@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BlogLayout from "../../components/layouts/BlogLayout";
-import { BandHeader, Divider } from "../../components/solar";
+import { BandHeader, Callout, PullQuote, Divider } from "../../components/solar";
 
 const linkCls = "text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
@@ -29,7 +29,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>Then, one day, you discover something promising.</p>
 
-        <p>An online community called <strong>r/SexOffenderSupport</strong>.</p>
+        <p>An online community called <strong><a className={linkCls} href="https://www.reddit.com/r/SexOffenderSupport/" target="_blank" rel="noopener noreferrer">r/SexOffenderSupport</a></strong>.</p>
 
         <p>Thousands of people who <em>might finally understand</em>. People who <em>may have</em> navigated similar laws, endured similar stigma, and confronted similar uncertainties. A place where you might finally ask questions without being judged, compare experiences without being dismissed, and find support without first having to explain why you deserve it.</p>
 
@@ -45,15 +45,15 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>These aren't merely hypothetical concerns.</p>
 
-        <p>In August 2026, moderator u/Weight-Slow <a className={linkCls} href="https://www.reddit.com/r/SexOffenderSupport/comments/1vfmkma/" target="_blank" rel="noopener noreferrer">publicly acknowledged</a> that r/SexOffenderSupport was rejecting close to <strong>90% of submitted posts</strong>.</p>
+        <p>In August 2026, moderator <a className={linkCls} href="https://www.reddit.com/user/Weight-Slow/" target="_blank" rel="noopener noreferrer">u/Weight-Slow</a> <a className={linkCls} href="https://www.reddit.com/r/SexOffenderSupport/comments/1vfmkma/" target="_blank" rel="noopener noreferrer">publicly acknowledged</a> that r/SexOffenderSupport was rejecting close to <strong>90% of submitted posts</strong>.</p>
 
         <p>Most, she explained, weren't rejected because the underlying questions were bad. They failed to comply with the rules. Users were generally invited to revise their submissions, but, according to her own account, most never returned to repost.</p>
 
-        <p>That distinction matters. Ninety percent of submitted posts being rejected doesn't establish that ninety percent of individual users were permanently denied assistance.</p>
-
-        <p>But consider what her statement does establish.</p>
-
-        <p><strong>An enormous share of people attempting to participate weren't getting their questions before the community—and many never tried again.</strong></p>
+        <Callout variant="research" title="What the 90% figure actually shows" icon="🔎">
+          <p>That distinction matters. Ninety percent of submitted posts being rejected doesn't establish that ninety percent of individual users were permanently denied assistance.</p>
+          <p>But consider what her statement does establish.</p>
+          <p><strong>An enormous share of people attempting to participate weren't getting their questions before the community—and many never tried again.</strong></p>
+        </Callout>
 
         <p>They never received the feedback, information, or connection they had come looking for from the broader community.</p>
 
@@ -95,7 +95,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>They may simply have encountered another closed door.</p>
 
-        <p><strong>A support community should measure success not merely by how effectively it enforces its rules, but by how effectively those rules help people obtain meaningful, accurate, compassionate assistance.</strong></p>
+        <PullQuote>A support community should measure success not merely by how effectively it enforces its rules, but by how effectively those rules help people obtain meaningful, accurate, compassionate assistance.</PullQuote>
 
         <p>Otherwise, maintaining control over the community risks becoming more important than the community's reason for existing.</p>
 
@@ -141,9 +141,10 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>But <a className={linkCls} href="https://law.justia.com/codes/tennessee/2024/title-40/chapter-39/part-2/section-40-39-215/" target="_blank" rel="noopener noreferrer">Tennessee Code § 40-39-215(a)(2)</a> expressly provided a parental defense to violations of subsection (a).</p>
 
-        <p>That defense is not blanket permission to participate in every Halloween activity. Other restrictions may still apply, and a statutory defense is not the same as immunity from arrest or prosecution.</p>
-
-        <p>Those qualifications matter.</p>
+        <Callout variant="legal" title="A statutory defense is not blanket permission" icon="⚖️">
+          <p>That defense is not blanket permission to participate in every Halloween activity. Other restrictions may still apply, and a statutory defense is not the same as immunity from arrest or prosecution.</p>
+          <p>Those qualifications matter.</p>
+        </Callout>
 
         <p><strong>But so does the existence of the defense itself.</strong></p>
 
@@ -213,7 +214,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>It merely ensures that the moderator's version is the one left standing.</p>
 
-        <p><strong>The power to control a conversation should never be mistaken for the authority to determine truth.</strong></p>
+        <PullQuote>The power to control a conversation should never be mistaken for the authority to determine truth.</PullQuote>
 
         <BandHeader title="The AI Double Standard: Who Gets to Be Wrong?" />
 
@@ -275,7 +276,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>But moderators should be expected to demonstrate them as well.</p>
 
-        <p>Consider <strong>u/ncrso</strong>, another prominent moderator.</p>
+        <p>Consider <strong><a className={linkCls} href="https://www.reddit.com/user/ncrso/" target="_blank" rel="noopener noreferrer">u/ncrso</a></strong>, another prominent moderator.</p>
 
         <p>In a June 2024 <a className={linkCls} href="https://www.reddit.com/r/SexOffenderSupport/comments/1d9irwx/" target="_blank" rel="noopener noreferrer">rules announcement</a>, he sharply criticized members whose Reddit activity reportedly involved interactions with minors or inappropriate subreddits.</p>
 
@@ -359,7 +360,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>That doesn't establish that the challenge lacked merit.</p>
 
-        <p><strong>Authority establishes who can make a decision. Evidence and reasoning establish whether that decision deserves respect.</strong></p>
+        <PullQuote>Authority establishes who can make a decision. Evidence and reasoning establish whether that decision deserves respect.</PullQuote>
 
         <p>Those are not interchangeable.</p>
 
@@ -405,7 +406,7 @@ export default function SupportSubjectToModeratorApproval(): JSX.Element {
 
         <p>Some of its moderators and regular contributors demonstrate precisely the qualities a support community needs.</p>
 
-        <p>Users such as <strong>u/KDub3344, u/gphs, and u/RedeemedbythaBlood</strong> have contributed thoughtful discussions grounded in legal knowledge, practical reentry experience, or careful acknowledgment of uncertainty.</p>
+        <p>Users such as <strong><a className={linkCls} href="https://www.reddit.com/user/KDub3344/" target="_blank" rel="noopener noreferrer">u/KDub3344</a>, <a className={linkCls} href="https://www.reddit.com/user/gphs/" target="_blank" rel="noopener noreferrer">u/gphs</a>, and <a className={linkCls} href="https://www.reddit.com/user/RedeemedbythaBlood/" target="_blank" rel="noopener noreferrer">u/RedeemedbythaBlood</a></strong> have contributed thoughtful discussions grounded in legal knowledge, practical reentry experience, or careful acknowledgment of uncertainty.</p>
 
         <p>That matters.</p>
 
