@@ -144,6 +144,7 @@ import ChrisHansenDoesntLikeFeelingExploited from "./pages/blog/ChrisHansenDoesn
 import AdamWalshAct20YearsResults from "./pages/blog/AdamWalshAct20YearsResults";
 import ResultsDontSpeakForThemselves from "./pages/blog/ResultsDontSpeakForThemselves";
 import ChrisHansenPrimetimeSpectacleOfPunishment from "./pages/blog/ChrisHansenPrimetimeSpectacleOfPunishment";
+import SupportSubjectToModeratorApproval from "./pages/blog/SupportSubjectToModeratorApproval";
 
 function App() {
   return (
@@ -161,6 +162,7 @@ function App() {
               <Route path="/advocacy/action-hub" element={<AdvocacyActionHub />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/support-subject-to-moderator-approval" element={<SupportSubjectToModeratorApproval />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blog/political-theater" element={<PoliticalTheater />} />
 
