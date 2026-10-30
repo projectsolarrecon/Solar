@@ -15,7 +15,7 @@ type HousingLead = {
   links: { label: string; href: string }[];
 };
 
-const lastReviewed = "October 29, 2026";
+const lastReviewed = "October 30, 2026";
 
 const oregonLeads: HousingLead[] = [
   {
@@ -54,6 +54,24 @@ const oregonLeads: HousingLead[] = [
       { label: "Oregon State Police resource page", href: "https://www.oregon.gov/osp/programs/sor/pages/offenderinformation.aspx" },
     ],
   },
+  {
+    name: "Union Gospel Mission of Salem — Restoration House / Grear Street Apartments",
+    region: "Salem / Marion County",
+    status: "Current reentry housing programs listed; registrant eligibility and federal release acceptance unconfirmed",
+    summary:
+      "Union Gospel Mission of Salem operates a faith-based Transitions Reentry Program for adult men, including Restoration House and Grear Street Apartments. Oregon 211 lists Restoration House as transitional housing for men 18+ with any criminal history; that broad wording is not direct confirmation of sex-offense or registry eligibility.",
+    eligibility:
+      "Ask whether the specific program accepts registrants and federal releases, whether restrictions or child visitors affect placement, whether a substance-free and faith-based environment is required, and about current fees, length of stay, waiting lists and referrals. Salem city planning materials describe distinct housing capacities and program expectations, not guaranteed openings.",
+    federalNote:
+      "The organization describes referrals from Oregon DOC, Marion County parole/probation and others. Neither 211 nor the provider confirms direct BOP prerelease placements. Check with the facility and federal placement authority before relying on an address.",
+    phone: "(503) 967-6388 — option 6 Restoration House / option 7 Grear Street",
+    phoneHref: "tel:+15039676388",
+    links: [
+      { label: "Program and both residences", href: "https://www.ugmsalem.org/transitions" },
+      { label: "211 Restoration House listing", href: "https://gethelp.211info.org/agency/20261/16163/" },
+      { label: "Salem housing-program inventory", href: "https://salem.legistar.com/View.ashx?GUID=B287DB94-735F-471F-A7E2-F3E4322C5ED4&ID=7143789&M=F" },
+    ],
+  },
 ];
 
 const sourceLinks = [
@@ -63,6 +81,10 @@ const sourceLinks = [
   { label: "Deschutes County public record — Free on the Outside's 2023 proposal (historical program description)", href: "https://mccmeetingspublic.blob.core.usgovcloudapi.net/deschutes-meet-3fcd88a2baf847848e2aa982f0a98b86/ITEM-Attachment-001-5cd80dd0b9e4490ebd475bdc51731635.pdf" },
   { label: "211 Oregon — reentry providers, including Sponsors", href: "https://www.211info.org/get-help/employment/ex-offender-reentry-programs/" },
   { label: "Oregon State Police — housing and reentry resources", href: "https://www.oregon.gov/osp/programs/sor/pages/offenderinformation.aspx" },
+  { label: "Union Gospel Mission Salem — Transitions, Restoration House and Grear Street", href: "https://www.ugmsalem.org/transitions" },
+  { label: "211 Oregon — Restoration House eligibility listing", href: "https://gethelp.211info.org/agency/20261/16163/" },
+  { label: "City of Salem — 2026 transitional housing program inventory", href: "https://salem.legistar.com/View.ashx?GUID=B287DB94-735F-471F-A7E2-F3E4322C5ED4&ID=7143789&M=F" },
+  { label: "De Muniz Reentry Services — housing referrals and other support (Salem)", href: "https://mwvcaa.org/programs/reentry-services/" },
   { label: "Federal Public Defender — 2018 community services resource guide (historical Sponsors description)", href: "https://or.fd.org/sites/or/files/pdfs/2018-06-20%20Resource%20Guide%20to%20Community%20Programs%20and%20Services%20for%20Federal%20Offenders.pdf" },
   { label: "Oregon Legislature — ORS 144.102 (state post-prison supervision)", href: "https://www.oregonlegislature.gov/bills_laws/ors/ors144.html" },
   { label: "Oregon Legislature — ORS 137.540 (state probation)", href: "https://www.oregonlegislature.gov/bills_laws/ors/ors137.html" },
@@ -169,6 +191,9 @@ export default function ReentryHousingDirectory(): JSX.Element {
           <h2 className="text-2xl font-bold">Additional help</h2>
           <p className="mt-3 leading-relaxed">
             <ExternalLink href="https://www.211info.org/get-help/employment/ex-offender-reentry-programs/">211info Oregon reentry listings</ExternalLink> and the <ExternalLink href="https://or.fd.org/housing">Federal Public Defender for Oregon's housing resource page</ExternalLink> are useful referral starting points. Confirm any provider's actual sex-offense eligibility; broad “reentry housing” labels often omit important exclusions.
+          </p>
+          <p className="mt-3 leading-relaxed">
+            <strong>Salem housing-referral help:</strong> <ExternalLink href="https://mwvcaa.org/programs/reentry-services/">De Muniz Reentry Services / Mid-Willamette Valley Community Action</ExternalLink>, (971) 332-5332, 2085 Commercial Street NE, Salem. This is a reentry resource and referral service—not a residential facility. Its public eligibility statement welcomes people with any type of criminal conviction; it does not guarantee a registrant-compatible residence.
           </p>
           <p className="mt-3 leading-relaxed">
             If an individual is still in BOP custody, coordinate with their case manager on prerelease referrals. For a proposed federal supervised-release address or interstate transfer, confirm with the responsible U.S. Probation offices before a lease or travel decision.
