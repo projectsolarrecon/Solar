@@ -13,6 +13,14 @@ export type LegislativeUpdateMeta = {
 
 export const legislativeUpdates: LegislativeUpdateMeta[] = [
 {
+  date: "November 1, 2026",
+  title: "Legislative Tracker — October 2026 Update",
+  slug: "2026-11-01",
+  summary:
+    "October paired narrow constitutional rights protections with heavier registration compliance, categorical exclusions from sentence review, proposed housing restrictions, state rulemaking, and emerging reform opportunities.",
+  tags: ["federal", "state", "local", "courts", "relief", "housing", "implementation"],
+},
+{
   date: "October 1, 2026",
   title: "Legislative Tracker — September 2026 Update",
   slug: "2026-10-01",
