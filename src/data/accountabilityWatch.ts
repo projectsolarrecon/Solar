@@ -8,6 +8,14 @@ export type AccountabilityItem = {
 
 export const accountabilityWatch: AccountabilityItem[] = [
 {
+  date: "2026-11-01",
+  title: "Accountability Watch — October 2026 Roundup",
+  slug: "2026-11-01",
+  path: "/resources/accountability-watch/2026-11-01",
+  summary: "October 2026 cases and accountability developments show how police custody, healthcare, youth programs, household dependency, religious leadership, wealth and public influence, and institutional oversight failures shaped access and delayed accountability. Includes arrests, convictions, civil actions, professional discipline, and institutional reporting.",
+},
+
+{
   date: "2026-10-01",
   title: "Accountability Watch — September 2026 Roundup",
   slug: "2026-10-01",
