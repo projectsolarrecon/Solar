@@ -35,6 +35,7 @@ import FederalSexCrimeProcess from './pages/blog/FederalSexCrimeProcess';
 import StateSexCrimeProcess from './pages/blog/StateSexCrimeProcess';
 import KnowYourRights from './pages/resources/KnowYourRights';
 import HousingSearchGuide from './pages/resources/HousingSearchGuide';
+import ReentryHousingDirectory from './pages/resources/ReentryHousingDirectory';
 import JobSearchGuide from './pages/resources/JobSearchGuide';
 import FederalProcessGuide from './pages/resources/FederalProcessGuide';
 import StateProcessGuide from './pages/resources/StateProcessGuide';
@@ -169,6 +170,7 @@ function App() {
               {/* Resource Routes */}
               <Route path="/resources/know-your-rights" element={<KnowYourRights />} />
               <Route path="/resources/housing-search-guide" element={<HousingSearchGuide />} />
+              <Route path="/resources/reentry-housing-directory" element={<ReentryHousingDirectory />} />
               <Route path="/resources/job-search-guide" element={<JobSearchGuide />} />
               <Route path="/resources/federal-process-guide" element={<FederalProcessGuide />} />
               <Route path="/resources/state-process-guide" element={<StateProcessGuide />} />

@@ -56,6 +56,12 @@ function Resources() {
           link: "/resources/housing-search-guide"
         },
         {
+          name: "Transitional & Reentry Housing Leads (Oregon Pilot)",
+          type: "Directory + Guide",
+          description: "Source-backed Oregon housing leads, including questions about sex-offense eligibility, shared homes, federal supervision, and BOP prerelease placements.",
+          link: "/resources/reentry-housing-directory"
+        },
+        {
           name: "Residency Restrictions Reality Check",
           type: "Guide",
           description: "How to evaluate a possible address safely, what to ask registering agencies, how to document answers, and why maps are only a starting point.",
@@ -228,6 +234,12 @@ function Resources() {
           type: "Checklist",
           description: "Comprehensive step-by-step checklist for successful reentry after incarceration, covering housing, employment, health, legal obligations, and long-term planning.",
           link: "/resources/reentry-checklist"
+        },
+        {
+          name: "Transitional & Reentry Housing Leads (Oregon Pilot)",
+          type: "Directory + Guide",
+          description: "Oregon provider leads and a practical checklist for verifying housing eligibility and authorized release arrangements.",
+          link: "/resources/reentry-housing-directory"
         },
         {
           name: "Transportation Resources",
