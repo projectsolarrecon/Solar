@@ -13,6 +13,26 @@ export interface BlogPost {
 export const allBlogPosts: BlogPost[] = [
   // Insert this object at the TOP of the exported array (newest-first):
 {
+  id: "pornhub-section-230-csam-accountability",
+  title: "Pornhub, Section 230, and Who Answers for CSAM",
+  excerpt:
+    "A private transfer of CSAM can carry five years in federal prison. The Pornhub settlements and Grok lawsuits raise a harder question about institutional accountability.",
+  author: "The SOLAR Project",
+  date: "Nov 19, 2026",
+  readTime: "12 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "Section 230",
+    "child sexual abuse material",
+    "platform accountability",
+    "Pornhub",
+    "xAI and Grok",
+    "mandatory minimums",
+    "survivor remedies",
+  ],
+  path: "/blog/pornhub-section-230-csam-accountability",
+},
+{
   id: "support-subject-to-moderator-approval",
   title: "Support, Subject to Moderator Approval",
   excerpt: "An online support forum reported rejecting nearly 90% of submitted posts. SOLAR examines what its moderation policies, legal errors, and civility standards reveal about the difference between authority and meaningful support.",
