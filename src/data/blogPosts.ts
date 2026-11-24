@@ -11,6 +11,27 @@ export interface BlogPost {
 }
 
 export const allBlogPosts: BlogPost[] = [
+{
+  "id": "policing-the-registry-disbelieving-the-victim",
+  "title": "Policing the Registry, Disbelieving the Victim",
+  "excerpt": "Police agencies celebrate registry compliance arrests as public safety. Cases from Mississippi and Florida expose a disturbing contrast with their handling of reported sexual violence.",
+  "author": "The SOLAR Project",
+  "date": "Nov 23, 2026",
+  "readTime": "8 min read",
+  "category": "Systemic Accountability",
+  "tags": [
+    "sex offender registry",
+    "sexual assault investigations",
+    "institutional accountability",
+    "Taylor Cadle",
+    "DARVO",
+    "police misconduct",
+    "public safety metrics",
+    "opportunity cost",
+    "victim protection"
+  ],
+  "path": "/blog/policing-the-registry-disbelieving-the-victim"
+},
   // Insert this object at the TOP of the exported array (newest-first):
 {
   id: "pornhub-section-230-csam-accountability",
