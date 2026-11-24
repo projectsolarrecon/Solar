@@ -7,6 +7,7 @@ import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import PolicingTheRegistryDisbelievingTheVictim from "./pages/blog/PolicingTheRegistryDisbelievingTheVictim";
+import WhoChecksTheSupremeCourtsClaimsAboutDanger from "./pages/blog/WhoChecksTheSupremeCourtsClaimsAboutDanger";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
@@ -337,6 +338,7 @@ element={<TheRegistryTheCourtReviewedNoLongerExists />} />
   element={<ChrisHansenPrimetimeSpectacleOfPunishment />} />
 
               <Route path="/blog/policing-the-registry-disbelieving-the-victim" element={<PolicingTheRegistryDisbelievingTheVictim />} />
+              <Route path="/blog/who-checks-the-supreme-courts-claims-about-danger" element={<WhoChecksTheSupremeCourtsClaimsAboutDanger />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />

@@ -199,6 +199,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
     pinnedPaths: [
       "/blog/understanding-risk-levels",
       "/blog/what-good-is-the-registry",
+      "/blog/who-checks-the-supreme-courts-claims-about-danger",
       "/blog/when-everything-is-violent",
       "/blog/dangerous-myth",
       "/blog/political-theater",
