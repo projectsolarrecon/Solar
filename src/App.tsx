@@ -6,6 +6,7 @@ import ScrollToTop from './components/ScrollToTop';
 import GoogleAnalytics from './components/GoogleAnalytics';
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
+import PolicingTheRegistryDisbelievingTheVictim from "./pages/blog/PolicingTheRegistryDisbelievingTheVictim";
 import About from "./pages/About";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
@@ -334,6 +335,8 @@ element={<TheRegistryTheCourtReviewedNoLongerExists />} />
 <Route
   path="/blog/chris-hansen-primetime-spectacle-of-punishment"
   element={<ChrisHansenPrimetimeSpectacleOfPunishment />} />
+
+              <Route path="/blog/policing-the-registry-disbelieving-the-victim" element={<PolicingTheRegistryDisbelievingTheVictim />} />
 
               {/* 404 Route */}
               <Route path="*" element={<NotFound />} />
