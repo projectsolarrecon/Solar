@@ -252,6 +252,7 @@ export const blogPathwayDefinitions: BlogPathwayDefinition[] = [
       "/blog/permanent-punishment-public-temporary-shame-powerful",
       "/blog/classics-and-cancel-culture",
       "/blog/politics-and-hypocrisy",
+      "/blog/policing-the-registry-disbelieving-the-victim",
     ],
   },
   {
