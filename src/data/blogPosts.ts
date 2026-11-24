@@ -12,6 +12,25 @@ export interface BlogPost {
 
 export const allBlogPosts: BlogPost[] = [
 {
+  id: "who-checks-the-supreme-courts-claims-about-danger",
+  title: "Who Checks the Supreme Court’s Claims About Danger?",
+  excerpt: "The Supreme Court’s AR-15 cases recall Smith v. Doe and a shaky recidivism claim. See how disputed premises can shape American law for decades.",
+  author: "The SOLAR Project",
+  date: "Nov 24, 2026",
+  readTime: "6 min read",
+  category: "Systemic Accountability",
+  tags: [
+    "Supreme Court",
+    "Smith v. Doe",
+    "McKune v. Lile",
+    "sexual recidivism",
+    "sex offense registry",
+    "judicial accountability",
+    "AR-15 litigation"
+  ],
+  path: "/blog/who-checks-the-supreme-courts-claims-about-danger"
+},
+{
   "id": "policing-the-registry-disbelieving-the-victim",
   "title": "Policing the Registry, Disbelieving the Victim",
   "excerpt": "Police agencies celebrate registry compliance arrests as public safety. Cases from Mississippi and Florida expose a disturbing contrast with their handling of reported sexual violence.",
